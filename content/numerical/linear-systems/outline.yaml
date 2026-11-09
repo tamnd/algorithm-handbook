@@ -1,0 +1,137 @@
+groups:
+  - title: Matrices and how to measure them
+    intro: >
+      The vocabulary of the chapter: matrix norms, positive definite and diagonally dominant matrices,
+      the spectral radius, the residual of an approximate solution, and the Hilbert matrix as the standard
+      example of a matrix that is nearly singular.
+    entries:
+      - matrix-norms
+      - positive-definite-matrix
+      - diagonally-dominant-matrix
+      - spectral-radius
+      - hilbert-matrix
+      - residual
+
+  - title: Triangular systems and factorizations
+    intro: >
+      A dense system is solved by factoring the matrix into triangular pieces and substituting. These
+      entries state the problem, solve triangular systems, and give the LUP and Cholesky factorizations
+      that do most of the work.
+    entries:
+      - linear-system-solving
+      - triangular-system-solving
+      - back-substitution
+      - lup-decomposition
+      - lup-solve
+      - cholesky-decomposition
+
+  - title: Pivoting and accuracy
+    intro: >
+      Why elimination needs row exchanges, how the growth factor measures the danger, and how to check
+      and improve a computed solution: complete pivoting, iterative refinement and a cheap estimate of the
+      condition number.
+    entries:
+      - growth-factor
+      - partial-pivoting
+      - complete-pivoting
+      - iterative-refinement
+      - hagers-condition-estimator
+
+  - title: Block elimination and updates
+    intro: >
+      Eliminating a whole block at once leaves the Schur complement. The same algebra gives the inverse of a
+      matrix changed by a low-rank term, and the matrix equations of Sylvester and Lyapunov.
+    entries:
+      - schur-complement
+      - sherman-morrison-formula
+      - woodbury-identity
+      - sylvester-equation
+      - lyapunov-equation
+
+  - title: Least squares and orthogonal factorizations
+    intro: >
+      Fitting more equations than unknowns. The normal equations are fast but square the condition number;
+      Householder reflections, Givens rotations and Gram-Schmidt build the QR factorization, which does not.
+      Rank deficiency and ill-posed problems need the pseudoinverse, rank-revealing factorizations and
+      regularization.
+    entries:
+      - least-squares-problem
+      - normal-equations
+      - householder-reflections
+      - givens-rotations
+      - qr-decomposition
+      - gram-schmidt-process
+      - pseudoinverse
+      - rank-revealing-factorization
+      - tikhonov-regularization
+
+  - title: Sparse, banded and structured matrices
+    intro: >
+      Most large matrices are mostly zeros. These entries store only the nonzeros, solve banded and
+      tridiagonal systems in linear time, split a tridiagonal solve for parallel machines, and solve
+      Toeplitz systems in quadratic time.
+    entries:
+      - sparse-matrix
+      - sparse-linear-systems
+      - banded-matrix
+      - tridiagonal-system-solving
+      - thomas-algorithm
+      - cyclic-reduction
+      - levinson-durbin-recursion
+
+  - title: Orderings and sparse factorization
+    intro: >
+      Elimination turns zeros into nonzeros. The order of the unknowns decides how many, and graph
+      algorithms choose it: bandwidth reduction by breadth-first search, minimum degree, and nested
+      dissection. The elimination tree and the multifrontal method then organize the factorization.
+    entries:
+      - fill-in
+      - bandwidth-reduction
+      - cuthill-mckee
+      - reverse-cuthill-mckee
+      - fill-reducing-ordering
+      - minimum-degree-ordering
+      - nested-dissection
+      - elimination-tree
+      - multifrontal-method
+
+  - title: Stationary iterations
+    intro: >
+      Split the matrix as $A = M - N$ with $M$ easy to solve and repeat. Jacobi, Gauss-Seidel, SOR and
+      Richardson converge exactly when the spectral radius of the iteration matrix is below 1. Kaczmarz's
+      method projects onto one equation at a time.
+    entries:
+      - matrix-splitting
+      - jacobi-method
+      - gauss-seidel-method
+      - successive-over-relaxation
+      - richardson-iteration
+      - neumann-series
+      - ostrowski-reich-theorem
+      - kaczmarz-method
+
+  - title: Krylov methods and preconditioning
+    intro: >
+      Search for the solution in the span of $b, Ab, A^2b, \ldots$. Conjugate gradients for symmetric positive
+      definite systems, MINRES for symmetric indefinite ones, GMRES, BiCG and BiCGSTAB for general ones, and
+      the preconditioners that make them fast.
+    entries:
+      - krylov-subspace
+      - conjugate-gradient-method
+      - preconditioning
+      - incomplete-cholesky-factorization
+      - incomplete-lu-factorization
+      - chebyshev-iteration
+      - minres
+      - gmres
+      - biconjugate-gradient
+      - bicgstab
+
+  - title: Multilevel methods
+    intro: >
+      Methods whose work grows only linearly with the number of unknowns: multigrid on a hierarchy of grids,
+      algebraic multigrid built from the matrix alone, and domain decomposition across subdomains.
+    entries:
+      - multigrid-method
+      - algebraic-multigrid
+      - domain-decomposition

@@ -1,0 +1,115 @@
+# The order of chapter 3.9. Groups are read in order; entries in a group too.
+groups:
+  - title: Boxes and the spatial index
+    intro: >
+      A spatial index answers questions about where things are: which objects meet a window, which
+      contain a point, which lie nearest. Almost every structure in the chapter stores objects through
+      their [minimum bounding rectangles](/minimum-bounding-rectangle/), filters with the boxes and checks
+      the real shapes afterwards. There are two ways to build such an index: group the objects, or cut
+      the space.
+    entries:
+      - minimum-bounding-rectangle
+      - spatial-index
+      - overlap-and-dead-space
+      - object-partitioning
+      - space-partitioning
+
+  - title: Grids and hashing
+    intro: >
+      The simplest partition is a grid of equal cells. A point finds its cell with two divisions, and a
+      query of radius $r$ scans $O((2\lceil r/h \rceil + 1)^2)$ cells. A hash table keeps only the cells
+      that hold something, and the grid file lets the cell boundaries follow the data on disk. Collision
+      detection in games and simulations is the main client.
+    entries:
+      - uniform-grid
+      - spatial-hashing
+      - grid-file
+      - collision-detection
+
+  - title: Trees that cut with lines
+    intro: >
+      The [k-d tree](/kd-tree/) is a binary search tree on points that splits on $x$, then on $y$, and so
+      on. A balanced one answers a range query in $O(\sqrt n + r)$ time in the plane, and the bound is
+      tight. The k-d-B tree puts the same cuts into disk pages, and the BSP tree lets the cuts take any
+      direction.
+    entries:
+      - kd-tree
+      - kd-tree-range-query-complexity
+      - kd-b-tree
+      - bsp-tree
+
+  - title: Quadtrees and octrees
+    intro: >
+      A [quadtree](/quadtree/) cuts a square into four equal quadrants and goes on cutting where there is
+      data; an octree does the same with a cube and eight octants. The variants differ in what they store:
+      one point per node, points in leaf buckets, a black and white image, rectangles at the smallest cell
+      that holds them, or moving boxes in cells that overlap.
+    entries:
+      - quadtree
+      - point-quadtree
+      - pr-quadtree
+      - region-quadtree
+      - mx-cif-quadtree
+      - octree
+      - loose-octree
+
+  - title: Space-filling curves
+    intro: >
+      A [space-filling curve](/space-filling-curve/) orders the cells of a grid in one line, so that an
+      ordinary sorted index can store points of the plane. The [Z-order](/z-order-curve/) interleaves the
+      bits of the coordinates; the [Hilbert curve](/hilbert-curve/) costs a little more and never jumps.
+      The linear quadtree is a quadtree written as a sorted list of Z-order codes.
+    entries:
+      - space-filling-curve
+      - z-order-curve
+      - hilbert-curve
+      - peano-curve
+      - linear-quadtree
+
+  - title: R-trees
+    intro: >
+      The [R-tree](/r-tree/) is a B-tree of bounding rectangles: every leaf at one depth, every node
+      between $m$ and $M$ entries, and boxes that may overlap. Its quality depends on how a full node is
+      split. These entries give the split problem, Guttman's quadratic split, the R*-tree, which most
+      systems use, and the R+-tree, which removes overlap by storing copies.
+    entries:
+      - r-tree
+      - r-tree-node-splitting
+      - quadratic-split
+      - r-star-tree
+      - r-plus-tree
+
+  - title: Building and joining
+    intro: >
+      When the data is known in advance, an R-tree can be built in a few sorts with full nodes, instead
+      of by $n$ insertions. STR and the Hilbert order give good trees in practice; the priority R-tree is
+      the only one with a worst-case bound of $O(\sqrt{N/B} + T/B)$ for a window query. The spatial join
+      pairs two whole sets of objects.
+    entries:
+      - bulk-loading
+      - str-packing
+      - hilbert-r-tree
+      - priority-r-tree
+      - spatial-join
+
+  - title: Cells on the globe
+    intro: >
+      Points on the Earth are given by latitude and longitude, and the grids above need a flat square.
+      [Geohash](/geohash/) applies the Z-order to the two angles and writes the result in base 32. Global
+      grid systems such as S2 and H3 start from a cube or an icosahedron, so their cells have nearly the
+      same size everywhere.
+    entries:
+      - geohash
+      - discrete-global-grid-system
+      - s2-cell-hierarchy
+
+  - title: Many dimensions
+    intro: >
+      Feature vectors of images and text have tens or hundreds of coordinates. There, the boxes of an
+      R-tree overlap almost everywhere and a query reads most of the tree. The SS-tree uses spheres, the
+      SR-tree uses spheres and boxes together, and the X-tree refuses bad splits and makes large nodes
+      instead.
+    entries:
+      - ss-tree
+      - sr-tree
+      - x-tree

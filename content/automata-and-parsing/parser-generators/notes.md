@@ -1,0 +1,17 @@
+## History
+
+The first parsers built from a grammar by a fixed procedure used precedence. Robert Floyd defined the [operator precedence grammars](/operator-precedence-grammar/) in 1963, with three relations between terminals that a table could hold. Two years later Donald Knuth defined the [LR(k) grammars](/lr-k-grammar/) (1965) and showed how to build their parsers from sets of items. His construction was correct for every LR(k) grammar but gave tables too large for the machines of the time. Philip Lewis and Richard Stearns defined the top-down counterpart, the [LL(k) grammars](/ll-k-grammar/), in 1968, and Daniel Rosenkrantz and Stearns showed in 1970 that the property is decidable for each fixed $k$.
+
+Frank DeRemer's 1969 MIT thesis made LR parsing practical. His LALR(1) parsers keep the states of the LR(0) automaton and add lookaheads to them, so a table for a real language has hundreds of states instead of thousands. Stephen Johnson built [yacc](/yacc/) on this method at Bell Laboratories in the early 1970s and described it in a 1975 technical report. Yacc added precedence declarations and the `error` token, and its spread with Unix made LALR(1) the default for a generation of compilers. GNU Bison, written later, reads yacc grammars and adds other table types. DeRemer and Thomas Pennello published their relational [LALR lookahead computation](/lalr-lookahead-computation/) in 1982, and David Pager's 1977 method merges LR(1) states only when no conflict results.
+
+Table size and error handling were studied alongside. Alfred Aho and Thomas Peterson gave a [minimum-distance error-correcting parser](/parser-error-recovery/) for every context-free grammar in 1972, and Michael Burke and Gerald Fisher a practical repair method for LR and LL parsers in 1987. Carlo Ghezzi and Dino Mandrioli published incremental LR parsing in 1979, and Tim Wagner and Susan Graham gave an incremental LR parser with optimal reuse of nodes in 1998.
+
+Two other lines grew from functional programming and from generalized parsing. Philip Wadler's 1985 paper on replacing failure by a list of successes set the pattern for [parser combinators](/parser-combinators/). Elizabeth Scott and Adrian Johnstone presented [GLL parsing](/gll-parsing/) in 2009, published in 2010, bringing the graph-structured stack of GLR to recursive descent, and added parse forests in 2013. Terence Parr and Kathleen Fisher described the LL(*) analysis of ANTLR in 2011.
+
+## Further reading
+
+- Aho, Lam, Sethi and Ullman, *Compilers: Principles, Techniques, and Tools*, 2nd ed. (2006), chapter 4: FIRST and FOLLOW, LL(1), SLR, canonical LR and LALR tables, with yacc, worked on the same small grammars.
+- Johnson, *Yacc: Yet Another Compiler-Compiler*, Bell Laboratories Computing Science Technical Report 32 (1975): the original manual, still the clearest account of precedence resolution and the `error` token.
+- DeRemer and Pennello, "Efficient computation of LALR(1) look-ahead sets", *ACM Transactions on Programming Languages and Systems* (1982): the relations and the graph traversal behind every fast LALR generator.
+- Grune and Jacobs, *Parsing Techniques: A Practical Guide*, 2nd ed. (2008): a survey of nearly every method in this chapter, with history and a long annotated bibliography.
+- The GNU Bison manual: how a modern generator reports conflicts, and how to ask it for canonical LR, IELR or GLR tables.

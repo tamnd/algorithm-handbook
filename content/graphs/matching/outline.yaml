@@ -1,0 +1,106 @@
+# The order of chapter 7.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Matchings and augmenting paths
+    intro: >
+      A matching is a set of edges with no shared end. A greedy choice gives a maximal matching, which may
+      be only half as large as the best. An augmenting path, which alternates between unmatched and matched
+      edges and joins two free vertices, enlarges a matching by one, and by Berge's lemma a matching is
+      maximum exactly when no such path exists. Edge covers are the dual notion.
+    entries:
+      - maximal-matching
+      - edge-cover
+      - alternating-path
+      - augmenting-path
+      - berge-lemma
+      - maximum-matching
+      - gallai-identity
+      - minimum-edge-cover
+
+  - title: Bipartite matching
+    intro: >
+      In a bipartite graph an augmenting path can be found by a simple search, which gives Kuhn's
+      $O(nm)$ algorithm; Hopcroft and Karp find many shortest paths per phase and reach $O(m \sqrt{n})$.
+      Hall's theorem says when one side can be matched completely, and Kőnig's theorem equates the largest
+      matching with the smallest vertex cover.
+    entries:
+      - bipartite-matching
+      - kuhn-algorithm
+      - hopcroft-karp
+      - hall-theorem
+      - perfect-matching
+      - konig-theorem
+      - bipartite-maximum-independent-set
+      - dulmage-mendelsohn-decomposition
+
+  - title: The assignment problem
+    intro: >
+      With costs on the edges of a complete bipartite graph, the cheapest perfect matching is the
+      assignment problem. The Hungarian algorithm keeps prices on the vertices and grows the matching
+      along shortest augmenting paths in $O(n^3)$ time. The auction algorithm lets the rows bid for the
+      columns.
+    entries:
+      - assignment-problem
+      - hungarian-algorithm
+      - jonker-volgenant-algorithm
+      - auction-algorithm
+      - bottleneck-matching
+
+  - title: Stable matching
+    intro: >
+      When each person ranks the other side, the goal changes from size or weight to stability: no two
+      people should both prefer each other to their partners. Deferred acceptance always finds a stable
+      matching in time linear in the preference lists. The stable matchings form a lattice, and with one
+      set of people ranking each other a stable matching may not exist.
+    entries:
+      - stable-matching
+      - gale-shapley
+      - hospitals-residents-problem
+      - stable-matching-with-ties
+      - stable-matching-rotations
+      - stable-roommates-problem
+      - irving-stable-roommates
+
+  - title: General graphs
+    intro: >
+      An odd cycle can hide an augmenting path from a simple search. Edmonds shrinks such a cycle, a
+      blossom, to one vertex, searches the smaller graph and expands the result, which gives the first
+      polynomial algorithm for maximum matching in general graphs. Micali and Vazirani matched the bipartite
+      bound of $O(m \sqrt{n})$.
+    entries:
+      - blossom
+      - edmonds-blossom
+      - micali-vazirani-algorithm
+      - gallai-edmonds-decomposition
+
+  - title: Tutte's theorem and its consequences
+    intro: >
+      Tutte's theorem is Hall's theorem for general graphs: a perfect matching exists exactly when removing
+      any set $S$ of vertices leaves at most $|S|$ components of odd size. The Tutte-Berge formula gives the
+      size of a maximum matching, and Petersen's theorem follows for bridgeless cubic graphs.
+    entries:
+      - tutte-theorem
+      - tutte-berge-formula
+      - petersens-theorem
+
+  - title: Weighted matching and polytopes
+    intro: >
+      Linear programming explains why weighted matching is solvable. For bipartite graphs the degree
+      constraints describe the matching polytope; for general graphs Edmonds added one inequality per odd
+      set and solved the weighted problems by a primal-dual blossom method.
+    entries:
+      - fractional-matching
+      - matching-polytope
+      - edmonds-polytope-theorem
+      - maximum-weight-matching
+      - minimum-weight-perfect-matching
+
+  - title: Degree constraints and algebra
+    intro: >
+      A $b$-matching lets a vertex have up to $b(v)$ edges, and an $f$-factor asks for exactly $f(v)$. The
+      last two entries take an algebraic route: a perfect matching exists exactly when a random version of
+      the Tutte matrix is nonsingular, which gives fast randomized and parallel algorithms.
+    entries:
+      - b-matching
+      - f-factor-problem
+      - tutte-matrix
+      - rnc-perfect-matching

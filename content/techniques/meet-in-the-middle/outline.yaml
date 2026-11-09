@@ -1,0 +1,32 @@
+# The order of chapter 2.9. Groups are read in order; entries in a group too.
+groups:
+  - title: Two keys and one table
+    intro: >
+      The method was first stated as an attack. A message encrypted twice with two independent keys has a
+      middle value that can be computed from both ends: forward from the plaintext with the first key, and
+      backward from the ciphertext with the second. A table of the forward values turns a search over all
+      key pairs into two searches over single keys, at the price of memory for one table.
+    entries:
+      - double-encryption-key-recovery
+      - meet-in-the-middle-attack
+
+  - title: Subset sum in half the exponent
+    intro: >
+      The same split solves subset sum. Horowitz and Sahni list the sums of each half of the items in sorted
+      order and find a matching pair with one two-pointer scan, in $\Theta(2^{n/2})$ time and space.
+      Schroeppel and Shamir cut the items into four quarters and produce the sums of each half in order with
+      two heaps, so the time stays near $2^{n/2}$ while the memory falls to $O(2^{n/4})$.
+    entries:
+      - horowitz-sahni-algorithm
+      - schroeppel-shamir-algorithm
+
+  - title: Below the square root
+    intro: >
+      A fixed split gives each solution exactly one left part and one right part. If the parts may be any
+      pieces of half the weight, each solution has many representations, and a filter on the residue of the
+      partial sums can throw most candidates away while one representation still survives. Howgrave-Graham
+      and Joux built on this a subset sum algorithm with heuristic time about $2^{0.337n}$ for random dense
+      instances.
+    entries:
+      - representation-technique
+      - howgrave-graham-joux-algorithm

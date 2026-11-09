@@ -1,0 +1,19 @@
+## History
+
+Shortest paths were studied as a computing problem in the middle of the 1950s, when telephone routing and transport planning gave them practical weight. Alfonso Shimbel described a matrix method in 1955, Lester Ford gave the relaxation rule in a RAND report in 1956, Richard Bellman put it in the language of dynamic programming in 1958, and Edward Moore published a version in 1959. The algorithm now called [Bellman-Ford](/bellman-ford/) is the common core of these papers, and for negative weights its $O(nm)$ bound has stood for most of the time since.
+
+Edsger Dijkstra's three-page paper of 1959 solved the problem with nonnegative weights by finishing one vertex at a time. His version scanned an array and took $O(n^2)$ time. Donald Johnson's 1977 paper on sparse graphs used a heap, and the Fibonacci heaps of Fredman and Tarjan in 1987 lowered the bound to $O(m + n \log n)$. Robert Dial's bucket method of 1969 served small integer weights. Johnson's 1977 paper also gave the reweighting by potentials that turns negative weights into nonnegative ones; the same idea had appeared in the flow algorithms of Edmonds and Karp in 1972.
+
+For all pairs, Bernard Roy in 1959 and Stephen Warshall in 1962 gave the triple loop for transitive closure, and Robert Floyd published it for distances in 1962 as Algorithm 97 of the *Communications of the ACM*. Michael Fredman showed in 1976 that the cubic bound is not a wall, and Ryan Williams lowered it in 2014 by a factor that grows faster than any power of $\log n$. Heuristics that keep a queue of changed vertices also date from these years: the D'Esopo-Pape rule appeared in 1974 and was shown exponential in the worst case by Kershenbaum in 1981, while the queue form of Bellman-Ford was published as SPFA by Duan Fanding in 1994. Tarjan's subtree disassembly, which cuts a vertex's subtree when its estimate falls, dates from 1981.
+
+Scaling gave the next step for integer weights: Harold Gabow in 1985 for nonnegative weights, and Andrew Goldberg in 1993 for negative ones, with $O(\sqrt{n}\, m \log N)$. Mikkel Thorup's 1997 algorithm solved undirected graphs with integer weights in linear time by avoiding the visit order of Dijkstra altogether. Two results of the 2020s changed the picture for directed graphs. Bernstein, Nanongkai and Wulff-Nilsen gave a near-linear algorithm for negative integer weights in 2022, and Duan, Mao, Mao, Shu and Yin showed in 2025 that Dijkstra's sorting bound can be beaten for real weights.
+
+Road networks pushed the subject in another direction, where a little preprocessing makes each query far faster than a search. The A* search of Hart, Nilsson and Raphael (1968) led to the landmark method ALT of Goldberg and Harrelson (2005). Highway hierarchies (Sanders and Schultes, 2005), contraction hierarchies (Geisberger and others, 2008) and hub labels (Abraham, Delling, Goldberg and Werneck, 2011) now answer queries on continental road maps in microseconds. In theory, Thorup and Zwick's oracle of 2001 traded a bounded stretch for small space.
+
+## Further reading
+
+- Cormen, Leiserson, Rivest and Stein, *Introduction to Algorithms*, 4th ed. (2022), chapters 22 and 23. The standard proofs of Bellman-Ford, Dijkstra, Floyd-Warshall and Johnson from the relaxation properties.
+- Ahuja, Magnanti and Orlin, *Network Flows* (1993), chapters 4 and 5. Label-setting and label-correcting methods, with the potentials and data structures used in practice.
+- Jeff Erickson, *Algorithms* (2019), chapters 8 and 9. A careful account of the generic relaxation algorithm and why each specialization is correct.
+- Alexander Schrijver, *Combinatorial Optimization* (2003), Part I. Polyhedral views of shortest paths and a detailed history of the early papers.
+- Bast, Delling, Goldberg, Müller-Hannemann, Pajor, Sanders, Wagner and Werneck, "Route planning in transportation networks" (2016). The survey of preprocessing methods for road and transit networks.

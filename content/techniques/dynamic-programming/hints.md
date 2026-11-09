@@ -1,0 +1,31 @@
+2. $f(11) = 2$ ($5 + 6$), $f(12) = 2$ ($6 + 6$) and $f(13) = 3$ ($6 + 6 + 1$). Greedy uses 3 ($9 + 1 + 1$), 4 and 5 coins. The smallest amount where greedy fails is 11. With $c_3 = 6$ and $c_4 = 9$, the Kozen-Zaks range is $7 < t < 15$, and 11 lies in it.
+
+3. With two eggs and $d$ drops, $d + \binom{d}{2} = d(d+1)/2$ floors can be handled; $9 \cdot 10 / 2 = 45 < 50 \le 55$, so 10 drops. If the first drop is from floor $x$ and the egg breaks, the other egg must test $x - 1$ floors in 9 drops, so $x \le 10$; if it survives, 9 drops with two eggs must handle $50 - x \le 45$ floors, so $x \ge 5$. Any floor from 5 to 10 works. With three eggs, $d = 6$ gives $6 + 15 + 20 = 41$ and $d = 7$ gives $7 + 21 + 35 = 63$, so 7 drops.
+
+5. The first row of the table is $m[1, 2] = 120$, $m[1, 3] = 264$, $m[1, 4] = 1080$, $m[1, 5] = 1344$; also $m[3, 5] = 1140$, with the split after $A_4$. The optimum 1344 splits after $A_2$: $((A_1 A_2)((A_3 A_4) A_5))$. Left to right costs $4 \cdot 10 \cdot 3 + 4 \cdot 3 \cdot 12 + 4 \cdot 12 \cdot 20 + 4 \cdot 20 \cdot 7 = 120 + 144 + 960 + 560 = 1784$.
+
+7. $N = (1, 0, 0, 1, 2, 2, 2, 3, 0, 3, 3, 9)$, so there are 9 splittings: `cat` or `cats` at the start, then the end of `catsand` as `s and` or `sand` after `cat`, or as `and` after `cats`, and then `dogs`, `dog s` or `do gs`: three ways for each half.
+
+11. Let $g(\ell, q)$ be the best revenue for length $\ell$ with at most $q$ pieces: $g(0, q) = 0$, $g(\ell, 0) = -\infty$ for $\ell > 0$, and $g(\ell, q) = \max_{1 \le i \le \ell} \bigl( p_i + g(\ell - i, q - 1) \bigr)$. For length 8: 18 with no cut, 19 with one cut ($2 + 6$ or $3 + 5$), 21 with two cuts ($2 + 3 + 3$), and 21 with three. The value $r_j$ does not record how many pieces it used, so the best answer for length $8 - i$ may need more cuts than are left.
+
+12. The answer is 48, from $(2, -3, -2, 4)$. The student's values are $2, -3, 6, 24, -1, 3$, so the answer is 24. A best block that ends at $i$ need not extend a best block that ends at $i - 1$: when $a_i < 0$, it extends the most negative one. Keep both the largest and the smallest product of a block ending at $i$; each is the largest or smallest of $a_i$, $a_i \cdot hi$ and $a_i \cdot lo$.
+
+13. The optimum costs 29: root $k_2$, with $k_1$ on the left and $k_4$ on the right, and $k_3$ and $k_5$ under $k_4$. The depths give $4 \cdot 1 + 5 \cdot 2 + 3 \cdot 2 + 1 \cdot 3 + 2 \cdot 3 = 29$. The greedy rule puts $k_1$ at the root, then $k_2$, then $k_4$ with $k_3$ and $k_5$ below, a tree of cost 34.
+
+16. The optimum is `to be or` / `not to be` / `that is the` / `question`, with 4, 3 and 1 extra spaces, so $64 + 27 + 1 = 92$. Filling each line gives `to be or not` / `to be that` / `is the` / `question`, with 0, 2 and 6 extra spaces, costing $0 + 8 + 216 = 224$.
+
+19. Process the cells column by column; the profile has one bit per row, set when the cell in the next column is already covered by a horizontal domino. The counts are 3, 11, 41 and 153. A $3 \times n$ board with $n$ odd has an odd number of cells, and each domino covers two.
+
+22. With $F(j)$ the least cost of the first $j$ months, $F = (0, 80, 140, 190, 270)$. For example $F(3) = \min(80 + 60 + 2 \cdot 30, \; F(1) + 80 + 30, \; F(2) + 80) = \min(200, 190, 220)$. The plan makes 40 units in month 1, 90 in month 2 and 70 in month 4: three set-ups and 30 units held for one month, 270 in all.
+
+24. If $e \ge d$, then $\sum_{i=1}^{e} \binom{d}{i} = \sum_{i=1}^{d} \binom{d}{i} = 2^d - 1$. A strategy with $d$ drops sees at most $2^d$ outcomes, and it must tell apart the $f + 1$ possible answers, so $f \le 2^d - 1$ for any number of eggs. Since $2^6 - 1 = 63 < 100$, 7 drops are needed. With 7 drops, four eggs give $7 + 21 + 35 + 35 = 98$ floors and five give 119, so five eggs are the least.
+
+25. For each vertex $v$ keep $A(v)$, with $v$ in the set; $B(v)$, with $v$ out but dominated by a child; and $C(v)$, with $v$ out and not yet dominated, so that its parent must be in the set. Then $A(v) = w(v) + \sum \min(A, B, C)$ over the children, $C(v) = \sum B$ over the children, and $B(v)$ is $\sum \min(A, B)$ over the children plus the least extra cost of forcing one child into $A$. At the root the answer is $\min(A, B)$: here $A(1) = 16$, $B(1) = 10$, $C(1) = 13$, so the least weight is 10, for the set $\{2, 3, 8, 9\}$.
+
+26. Let $f(S)$ be the least cost of matching the points not in $S$. The lowest point $i$ not in $S$ must be paired with someone, so $f(S) = \min_j \bigl( d(i, j) + f(S \cup \{i, j\}) \bigr)$; fixing $i$ instead of trying all pairs saves a factor of $n$ and avoids counting each matching more than once. There are $5 \cdot 3 \cdot 1 = 15$ perfect matchings. The optimum is $\{1, 2\}, \{3, 5\}, \{4, 6\}$ with $4 + 4 + 5 = 13$. The greedy rule takes $\{2, 5\}$ (2), then $\{1, 4\}$ (3), and is left with $\{3, 6\}$ (9), 14 in all.
+
+27. Put a balloon of value 1 at each end, at positions 0 and 5. Let $f(i, j)$ be the best total for bursting all balloons strictly between $i$ and $j$. If $k$ is the last of them to burst, then while the others burst, $k$ separates the two sides, and at the end its neighbours are $i$ and $j$: $f(i, j) = \max_{i < k < j} \bigl( f(i, k) + f(k, j) + v_i v_k v_j \bigr)$. The answer is 115: burst 3 ($4 \cdot 3 \cdot 5 = 60$), then 4 ($2 \cdot 4 \cdot 5 = 40$), then 2 ($1 \cdot 2 \cdot 5 = 10$), then 5 (5).
+
+28. Expand $(S_j - S_i)^2 = S_j^2 - 2 S_i S_j + S_i^2$. Then $E(j) = S_j^2 + C + \min_{i < j} (m_i x + b_i)$ at $x = S_j$, with $m_i = -2 S_i$ and $b_i = E(i) + S_i^2$. The numbers are positive, so the slopes decrease and the queries increase, and a deque gives $O(n)$ time. Here $S = (0, 3, 4, 8, 9, 14)$, $E = (0, 19, 26, 52, 61, 96)$, and the optimum 96 uses the groups $(3, 1)$, $(4, 1)$, $(5)$, with costs $26 + 35 + 35$.
+
+29. Show by induction on $k$ that after $k$ lines the greedy layout has placed at least as many words as any other layout. If greedy is ahead after $k$ lines, the words that the other layout puts on line $k + 1$ and that greedy has not yet placed are the end of that line, so they fit on one line, and greedy's line $k + 1$ reaches at least as far. For the cubic cost, being ahead in words is not being ahead in cost: in exercise 16 greedy's full first line pushes the slack into one line with 6 extra spaces, and $6^3$ is more than the cost of spreading it.

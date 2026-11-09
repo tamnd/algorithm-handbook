@@ -1,0 +1,58 @@
+groups:
+  - title: Subsequences and how to find them
+    intro: >
+      A subsequence keeps some items of a sequence in their order and drops the rest. These entries define it,
+      test whether one sequence is a subsequence of another with a single greedy scan, count the ways it can
+      occur, count the distinct subsequences of a string, and find the shortest window that holds a pattern.
+      The [subsequence automaton](/subsequence-automaton/) answers many tests against one text fast.
+    entries:
+      - subsequence
+      - subsequence-checking
+      - count-subsequence-occurrences
+      - distinct-subsequences
+      - minimum-window-subsequence
+      - subsequence-automaton
+
+  - title: The best subsequence of one sequence
+    intro: >
+      Here one sequence is given and we pick the best subsequence under a rule. With no two chosen items
+      adjacent, a two-term recurrence finds the heaviest choice in linear time. With the items increasing,
+      the [longest increasing subsequence](/longest-increasing-subsequence/) takes $O(n \log n)$ time by
+      binary search over piles. Two theorems say how long increasing and decreasing subsequences must be.
+    entries:
+      - max-sum-non-adjacent-subsequence
+      - longest-increasing-subsequence
+      - erdos-szekeres-theorem
+      - dilworth-theorem
+
+  - title: The longest common subsequence
+    intro: >
+      Two sequences are given and we want the longest subsequence of both. The problem has optimal substructure,
+      so a table of $mn$ cells solves it, and a traceback through the table recovers the subsequence. The
+      shortest common supersequence and the longest palindromic subsequence reduce to it.
+    entries:
+      - longest-common-subsequence
+      - lcs-optimal-substructure
+      - lcs-dynamic-programming
+      - shortest-common-supersequence
+      - longest-palindromic-subsequence
+
+  - title: Edit scripts and diff
+    intro: >
+      An edit script of insertions and deletions turns one sequence into another, and the shortest one is the
+      longest common subsequence seen from the other side. This is what `diff` computes. Myers' algorithm is
+      fast when the two files are alike; Hunt and Szymanski's is fast when few pairs of lines match.
+    entries:
+      - shortest-edit-script
+      - myers-diff
+      - hunt-szymanski
+
+  - title: Less space, fewer steps, and a limit
+    intro: >
+      The plain table needs $mn$ cells. [Hirschberg's algorithm](/hirschberg-lcs/) recovers the subsequence in
+      linear space by divide and conquer, and the bit-parallel method fills a whole column of the table with a
+      few word operations. The last entry explains why no algorithm is likely to be much faster than quadratic.
+    entries:
+      - hirschberg-lcs
+      - bit-parallel-lcs
+      - backurs-indyk-lcs-lower-bound

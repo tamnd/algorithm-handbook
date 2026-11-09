@@ -1,0 +1,17 @@
+## History
+
+Matching theory began with the Hungarian school. Dénes Kőnig proved in 1931 that in a bipartite graph the largest matching equals the smallest vertex cover, and in the same year and journal Jenő Egerváry proved a weighted version for matrices. Frobenius had a related theorem on determinants in 1917, and Philip Hall published his marriage theorem in 1935 in the language of distinct representatives. Tibor Gallai found the identities between matchings, covers and independent sets in 1959. Harold Kuhn turned the proofs of Kőnig and Egerváry into an algorithm in 1955 and named it the Hungarian method in their honour; James Munkres showed in 1957 that it runs in polynomial time.
+
+For general graphs, Julius Petersen proved in 1891 that bridgeless cubic graphs have perfect matchings, and William Tutte characterized the graphs with perfect matchings in 1947, using the skew-symmetric matrix that bears his name. Claude Berge proved the augmenting path lemma in 1957 and the deficiency formula in 1958. Jack Edmonds' 1965 paper "Paths, trees, and flowers" gave the blossom algorithm, and with it the argument that an efficient algorithm is one with a polynomial bound. In a companion paper the same year he described the matching polytope and solved the weighted problem. Gallai in 1963 and 1964 and Edmonds in 1965 found the canonical decomposition that now carries both names.
+
+Speed came next. John Hopcroft and Richard Karp gave the $O(m \sqrt{n})$ bipartite algorithm in 1973, and Alexander Karzanov found the same phase bound for unit flows. Silvio Micali and Vijay Vazirani announced the same bound for general graphs in 1980, but a complete proof appeared only in Vazirani's papers of the 2010s. Tomizawa in 1971, and Edmonds and Karp in 1972, put potentials into the Hungarian method to reach $O(n^3)$; Dimitri Bertsekas's auction algorithm of 1979 and Jonker and Volgenant's code of 1987 made the assignment problem fast in practice. László Lovász observed in 1979 that the Tutte matrix gives a randomized test, and Mulmuley, Vazirani and Vazirani's isolation lemma of 1987 gave a parallel algorithm for finding a matching.
+
+Stable matching has a separate history. David Gale and Lloyd Shapley proved in 1962 that stable marriages always exist and that the proposers get their best stable partners, and noted that the roommates version may have no solution. Alvin Roth showed in 1984 that the American medical residency match had used an equivalent procedure since the early 1950s. Robert Irving gave the roommates algorithm in 1985. Shapley and Roth shared the 2012 Nobel memorial prize in economics for this line of work.
+
+## Further reading
+
+- László Lovász and Michael D. Plummer, *Matching Theory* (1986). The standard monograph, from Kőnig's theorem to the structure of general graphs.
+- Alexander Schrijver, *Combinatorial Optimization* (2003), Parts II and III. Bipartite and general matching with complete proofs and historical notes.
+- Dan Gusfield and Robert W. Irving, *The Stable Marriage Problem: Structure and Algorithms* (1989). Rotations, the lattice of stable matchings, and the roommates algorithm.
+- Jack Edmonds, "Paths, trees, and flowers", *Canadian Journal of Mathematics* (1965). The blossom algorithm and an early statement of what makes an algorithm efficient.
+- Jon Kleinberg and Éva Tardos, *Algorithm Design* (2005), Sections 1.1 and 7.5. Gale-Shapley as a first algorithm, and bipartite matching by flows.

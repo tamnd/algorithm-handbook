@@ -1,0 +1,17 @@
+## History
+
+Hashing for tables is older than hashing for strings as an algorithmic tool, but the guarantees came late. Lawrence Carter and Mark Wegman defined universal classes of hash functions in 1979, so that the analysis of a hash table could rest on a random choice of function instead of an assumption about the keys, and in 1981 they used the same idea for authentication and for testing set equality. The fact that a nonzero polynomial of degree $d$ has at most $d$ roots, behind the polynomial hash, is old; its many-variable form became a tool for randomized algorithms through the papers of Richard Zippel (1979) and Jacob Schwartz (1980).
+
+Michael Rabin and Richard Karp brought fingerprints to string matching. Rabin described fingerprinting by random irreducible polynomials in a Harvard report of 1981, and Karp and Rabin's report of the same year, published in the IBM Journal of Research and Development in 1987, gave the matching algorithm that bears their names, with residues modulo a random prime and with extensions to two dimensions. Earlier, in 1972, Karp, Raymond Miller and Arnold Rosenberg had compared substrings in constant time by giving them names, an exact method with the same use. Martin Dietzfelbinger, Joseph Gil, Yossi Matias and Nicholas Pippenger showed in 1992 that polynomial hash functions with a random point are reliable in a precise sense, which is the form of the analysis used in this chapter.
+
+Rabin fingerprints found a second life in storage systems. Andrei Broder surveyed their applications in 1993, and the Low-Bandwidth Network File System of Athicha Muthitacharoen, Benjie Chen and David Mazières used them in 2001 to cut files into chunks at boundaries chosen by content, the method that deduplicating storage still uses.
+
+The fast table hashes came from practice. Glenn Fowler and Phong Vo proposed the FNV hash in reviewer comments to a POSIX committee in 1991, Landon Curt Noll improved it, and an informational RFC described it in 2026. Austin Appleby published MurmurHash in 2008 and its third version, together with the SMHasher test suite, in 2011. In 2012 Jean-Philippe Aumasson, Daniel J. Bernstein and Martin Bosslet showed collisions in MurmurHash that hold for every seed and used them against web servers; several language runtimes then moved to SipHash, a keyed function. Programming contests met the same problem in a different form, and Jakub Pachocki and Jakub Radoszewski explained in 2013 when polynomial hashing can be trusted and when it cannot.
+
+## Further reading
+
+- Richard M. Karp and Michael O. Rabin, "Efficient randomized pattern-matching algorithms", *IBM Journal of Research and Development* 31 (1987). The original paper, with fingerprints, two-dimensional matching and the error analysis.
+- Cormen, Leiserson, Rivest and Stein, *Introduction to Algorithms*, Section 32.2. The textbook account of Rabin-Karp with a fixed modulus.
+- Jakub Pachocki and Jakub Radoszewski, "Where to use and how not to use polynomial string hashing", *Olympiads in Informatics* 7 (2013). A short practical guide to the bound, the birthday paradox and the failure of modulus $2^{64}$.
+- Mikkel Thorup, *High speed hashing for integers and strings*, lecture notes (2015). Universal hashing for strings with attention to the cost on real machines.
+- Rajeev Motwani and Prabhakar Raghavan, *Randomized Algorithms* (1995). Fingerprinting and polynomial identity testing in the setting of randomized algorithms in general.

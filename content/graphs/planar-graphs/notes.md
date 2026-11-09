@@ -1,0 +1,18 @@
+## History
+
+The subject begins with polyhedra and maps. Euler found the relation between vertices, edges and faces of a convex polyhedron in 1752, with a proof that cut off corners one at a time and was not complete by later standards. A century later, in 1852, Francis Guthrie asked whether four colors suffice for every map. Kempe published a proof in 1879 with the chain interchange now named after him; Heawood found the gap in 1890 and saved enough of the argument to prove the five color theorem. Birkhoff's reducible configurations and Heesch's discharging prepared the proof of Appel and Haken in 1976, which checked an unavoidable set by computer. Robertson, Sanders, Seymour and Thomas gave a cleaner proof in 1996, and Gonthier verified it in the Coq proof assistant in 2005.
+
+The characterizations came in the 1930s. Kuratowski published the theorem on $K_5$ and $K_{3,3}$ in 1930; Frink and Smith found it at the same time, and Pontryagin is credited with an unpublished proof. Wagner gave the minor form in 1937, and in 1936 he had noted that maximal planar graphs can be drawn with straight edges, which Fáry published as a theorem in 1948. Koebe's circle packing theorem dates from 1936 as well. Tutte's "How to draw a graph" of 1963 gave the barycentric drawing that later became the starting point of force-directed layout.
+
+Algorithms for planarity came in the 1960s and 1970s. Lempel, Even and Cederbaum gave a vertex-addition test in 1967 along an st-numbering, and Hopcroft and Tarjan made path addition linear in 1974, with Tarjan's depth-first search and low points. Booth and Lueker's PQ-trees in 1976 made the vertex-addition test linear too, and Even and Tarjan computed st-numberings in linear time the same year. Both linear tests were known to be hard to implement correctly. Boyer and Myrvold's edge-addition method, presented in 1999 and published in 2004, was designed to be implementable from its description and was adopted by the Boost Graph Library.
+
+Lipton and Tarjan proved the separator theorem in 1979 and showed in 1980 how to use it for nested dissection, divide and conquer and approximation schemes. Frederickson's shortest-path algorithm of 1987 introduced the recursive decompositions that became r-divisions, and Henzinger, Klein, Rao and Subramanian reached linear time for nonnegative lengths in 1997. On the drawing side, de Fraysseix, Pach and Pollack in 1988 and Schnyder in 1990 put every planar graph on a quadratic grid. Robertson and Seymour's Graph Minors series, begun in 1983 and finished in 2004, showed that every minor-closed family, planar graphs and graphs of bounded genus among them, has a finite list of forbidden minors.
+
+## Further reading
+
+- Reinhard Diestel, *Graph Theory*, Chapter 4. Plane graphs, Euler's formula, Kuratowski's theorem and duality, with complete proofs.
+- Bojan Mohar and Carsten Thomassen, *Graphs on Surfaces* (2001). Rotation systems, genus and embeddings on surfaces other than the plane.
+- Takao Nishizeki and Md. Saidur Rahman, *Planar Graph Drawing* (2004). Canonical orderings, the shift method, Schnyder's method and their grid sizes.
+- Giuseppe Di Battista, Peter Eades, Roberto Tamassia and Ioannis G. Tollis, *Graph Drawing* (1999). Planarization, orthogonal drawings and the practice of drawing graphs.
+- Philip N. Klein and Shay Mozes, *Optimization Algorithms for Planar Graphs* (draft book). Separators, r-divisions, dense distance graphs and planar shortest paths.
+- Robin Wilson, *Four Colors Suffice* (2002). A readable account of the four color problem from Guthrie to the computer proofs.

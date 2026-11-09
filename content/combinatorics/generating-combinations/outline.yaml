@@ -1,0 +1,49 @@
+# The order of chapter 14.2. Groups are read in order; entries in a group too.
+groups:
+  - title: The problems
+    intro: >
+      [Combinatorial generation](/combinatorial-generation/) sets the rules of the chapter: visit each object
+      once, and count the cost of a step, on average and in the worst case. The problems are the $2^n$
+      subsets of an $n$-set, its $\binom{n}{k}$ subsets of size $k$, and the same subsets written as bit
+      strings with $k$ ones.
+    entries:
+      - combinatorial-generation
+      - power-set-enumeration
+      - k-subset-enumeration
+      - fixed-weight-binary-strings
+
+  - title: Simple generators and their cost
+    intro: >
+      A binary counter, a recursion that takes or skips each element, and a successor rule for sorted
+      $k$-subsets solve the problems with a few lines each. The counter costs $O(1)$ per subset on average but
+      $\Theta(n)$ in its worst step, and [constant amortized time](/constant-amortized-time-generation/) makes
+      that distinction precise. The two methods for $k$-subsets cost $\Theta(n/(n-k+1))$ per subset on
+      average, so they are CAT only when $k$ stays away from $n$.
+    entries:
+      - power-set-by-recursion
+      - recursive-combination-generation
+      - lexicographic-combinations
+      - constant-amortized-time-generation
+
+  - title: Colex order, ranks and multisets
+    intro: >
+      Colexicographic order compares subsets by their largest elements, so its list does not depend on $n$,
+      and the rank of a subset is a sum of binomial coefficients: the
+      [combinatorial number system](/combinatorial-number-system/). Ranks in other orders follow the same
+      pattern. A shift of the elements turns combinations with repetition into ordinary $k$-subsets, so all
+      of these methods carry over to them.
+    entries:
+      - colexicographic-order
+      - combinatorial-number-system
+      - combinatorial-ranking-and-unranking
+      - combinations-with-repetition
+
+  - title: Loopless generation
+    intro: >
+      A loopless generator takes $O(1)$ time in every step, not only on average. It needs an order in which
+      each step makes a bounded change and extra data that says where the change goes. The revolving door
+      order and cool-lex order are two such orders for combinations.
+    entries:
+      - loopless-generation
+      - ehrlich-loopless-combinations
+      - cool-lex-order

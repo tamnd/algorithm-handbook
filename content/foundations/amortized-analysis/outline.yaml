@@ -1,0 +1,47 @@
+# The order of chapter 1.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Cost over a sequence
+    intro: >
+      An amortized bound limits the total cost of any sequence of operations, not the cost of each one. These
+      entries define the amortized cost and say exactly what it does and does not promise compared with a
+      worst-case bound on each operation.
+    entries:
+      - amortized-cost
+      - amortized-vs-worst-case
+
+  - title: Two standard examples
+    intro: >
+      A binary counter and a stack with a multiple pop are the two examples on which every method of the
+      chapter is tried. In both, a single operation can be slow, and a long sequence is still fast.
+    entries:
+      - binary-counter-increment
+      - stack-with-multipop
+
+  - title: Three methods
+    intro: >
+      The aggregate method bounds the total cost directly. The accounting method charges each operation a
+      fixed amount and stores the surplus as credit on parts of the structure. The potential method keeps the
+      credit as one function of the whole state, which is the form used for the hardest analyses.
+    entries:
+      - aggregate-method
+      - accounting-method
+      - potential-function
+      - potential-method
+
+  - title: Tables that grow and shrink
+    intro: >
+      The most used application of amortized analysis is the array that doubles when it is full. These
+      entries analyze growth, and then contraction, where the threshold for shrinking must be chosen with care
+      to avoid a sequence that pays for a resize at every step.
+    entries:
+      - array-doubling
+      - dynamic-table-contraction
+
+  - title: Other kinds of guarantee
+    intro: >
+      An amortized bound is not an expected bound, and it is not a bound on each operation. The first entry
+      separates the averages over operations from the averages over random choices. The second shows how to
+      spread the work of a rebuild over many operations, which turns an amortized bound into a worst-case one.
+    entries:
+      - amortized-vs-expected-cost
+      - global-rebuilding

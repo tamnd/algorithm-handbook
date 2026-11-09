@@ -1,0 +1,120 @@
+# The order of chapter 7.12. Groups are read in order; entries in a group too.
+groups:
+  - title: Graphs that change
+    intro: >
+      A dynamic graph receives a sequence of updates with queries between them. The kind of update fixes
+      the difficulty: insertions only, deletions only, or both. When the whole sequence is known in
+      advance the problem is offline, and a temporal graph goes further and labels every edge with the
+      times at which it exists.
+    entries:
+      - dynamic-graph
+      - incremental-graph
+      - decremental-graph
+      - fully-dynamic-graph
+      - offline-dynamic-graph
+      - temporal-graph
+
+  - title: Measuring update cost
+    intro: >
+      Dynamic algorithms are compared by their time per update and per query. Amortized bounds average
+      over a sequence and allow an occasional expensive rebuild; worst-case bounds do not. A faster update
+      usually costs a slower query, and the reverse.
+    entries:
+      - amortized-update-time
+      - worst-case-update-time
+      - update-query-tradeoff
+
+  - title: Insertions only, and undoing them
+    intro: >
+      Under insertions alone, connectivity is union-find, and the bridges can be kept with a little more
+      work. Undoing operations in stack order turns union-find into a structure that can go back in time,
+      and on a segment tree over time it answers fully dynamic connectivity offline.
+    entries:
+      - incremental-connectivity
+      - online-bridge-finding
+      - rollback-technique
+      - offline-dynamic-connectivity
+
+  - title: Dynamic trees
+    intro: >
+      A forest under link and cut operations is the building block of most fully dynamic graph
+      algorithms. Link-cut trees represent paths with splay trees and answer path queries; Euler tour trees
+      keep the tour of each tree in a balanced sequence and answer subtree and connectivity queries. Top
+      trees and rake-compress trees contract the tree hierarchically and handle both kinds.
+    entries:
+      - dynamic-tree
+      - dynamic-tree-path-queries
+      - link-cut-tree
+      - euler-tour-tree
+      - top-tree
+      - rake-compress-tree
+
+  - title: Connectivity under deletions
+    intro: >
+      Deleting a tree edge may disconnect a component, or a replacement edge may reconnect it, and
+      finding that edge fast is the whole problem. Holm, de Lichtenberg and Thorup do it in polylogarithmic
+      amortized time with edge levels, and a cell-probe lower bound shows that logarithmic time is
+      necessary. Biconnectivity and bipartiteness are maintained on top of connectivity.
+    entries:
+      - decremental-connectivity
+      - dynamic-connectivity
+      - holm-de-lichtenberg-thorup
+      - dynamic-connectivity-lower-bound
+      - dynamic-biconnectivity
+      - dynamic-bipartiteness
+
+  - title: Spanning trees, sparsification and cuts
+    intro: >
+      A minimum spanning forest changes by at most one edge per update, but finding which edge is the
+      hard part. Frederickson's topology trees take $O(\sqrt{m})$ per update, and sparsification replaces
+      $m$ by $n$ by working on a tree of small certificates. The dynamic minimum cut is harder: fast
+      updates are known when the cut is small, and exact sublinear updates in general only since 2023.
+    entries:
+      - dynamic-minimum-spanning-tree
+      - frederickson-topology-trees
+      - sparsification
+      - eppstein-galil-italiano-nissenzweig
+      - dynamic-minimum-cut
+
+  - title: Directed graphs, reachability and order
+    intro: >
+      Reachability in a directed graph is harder to maintain than connectivity, because a deleted edge
+      has no undirected replacement. The transitive closure is kept as one reachability tree per vertex,
+      and a topological order is kept under insertions by moving only the vertices between the two ends
+      of a new edge.
+    entries:
+      - dynamic-reachability
+      - dynamic-transitive-closure
+      - italiano-dynamic-transitive-closure
+      - dynamic-topological-order
+      - incremental-topological-ordering
+
+  - title: Shortest paths and spanners
+    intro: >
+      After an edge change, Ramalingam and Reps repair only the distances that change. Under deletions
+      only, the Even-Shiloach tree keeps breadth-first levels in total time $O(mD)$, the base of most
+      decremental distance algorithms. All-pairs distances are maintained by Demetrescu and Italiano in
+      about $n^2$ amortized time per update, and a spanner keeps approximate distances with few edges.
+    entries:
+      - dynamic-single-source-shortest-paths
+      - ramalingam-reps
+      - decremental-sssp
+      - even-shiloach-tree
+      - dynamic-all-pairs-shortest-paths
+      - demetrescu-italiano-apsp
+      - dynamic-spanner
+
+  - title: Matching, covers, coloring, density and planarity
+    intro: >
+      For problems that are not about connectivity, exact maintenance is usually too slow, and the
+      algorithms keep approximate answers. A maximal matching gives a 2-approximate vertex cover,
+      Gupta and Peng keep a $(1 + \epsilon)$-approximate matching by lazy rebuilding, and core numbers,
+      densest subgraphs and colorings with few colors are kept approximately with local updates.
+    entries:
+      - dynamic-matching
+      - gupta-peng-dynamic-matching
+      - dynamic-vertex-cover
+      - dynamic-graph-coloring
+      - dynamic-k-core-decomposition
+      - dynamic-densest-subgraph
+      - dynamic-planarity-testing

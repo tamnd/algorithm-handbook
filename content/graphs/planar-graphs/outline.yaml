@@ -1,0 +1,119 @@
+# The order of chapter 7.11. Groups are read in order; entries in a group too.
+groups:
+  - title: Planar graphs, faces and Euler's formula
+    intro: >
+      A planar graph can be drawn in the plane without crossings, and a drawing cuts the plane into faces.
+      The Jordan curve theorem says why a cycle has an inside and an outside. Euler's formula ties
+      vertices, edges and faces together, and from it comes the bound of $3n - 6$ edges, which makes every
+      planar graph sparse. Maximal planar graphs, where every face is a triangle, and outerplanar graphs,
+      where every vertex is on the outer face, are the two extreme cases used later.
+    entries:
+      - planar-graph
+      - planar-face
+      - jordan-curve-theorem
+      - euler-formula
+      - planar-edge-bound
+      - maximal-planar-graph
+      - outerplanar-graph
+
+  - title: Minors and the forbidden graphs
+    intro: >
+      Deleting and contracting edges never destroys planarity, so the planar graphs are closed under
+      taking minors. Kuratowski's theorem names the two obstructions, $K_5$ and $K_{3,3}$, as subdivisions,
+      and Wagner's theorem names the same two as minors.
+    entries:
+      - graph-minor
+      - kuratowski-theorem
+      - wagner-theorem
+
+  - title: Embeddings as data
+    intro: >
+      An algorithm does not store a picture. It stores, for each vertex, the cyclic order of the edges
+      around it, which is a rotation system. Walking the half-edges with that order finds the faces, the
+      doubly connected edge list stores the same information with explicit links, and the faces become the
+      vertices of the dual graph.
+    entries:
+      - rotation-system
+      - planar-embedding
+      - planar-face-finding
+      - doubly-connected-edge-list
+      - planar-dual-graph
+
+  - title: Testing planarity
+    intro: >
+      Planarity can be decided in linear time, and the test can return either an embedding or a Kuratowski
+      subgraph as a certificate. The st-numbering is the vertex order of the older vertex-addition tests.
+      Hopcroft and Tarjan gave the first linear test by path addition; Boyer and Myrvold's edge-addition
+      test is the one used in the Boost Graph Library and many others.
+    entries:
+      - planarity-testing
+      - st-numbering
+      - lempel-even-cederbaum-st-numbering
+      - hopcroft-tarjan-planarity-test
+      - boyer-myrvold-planarity-test
+
+  - title: Coloring planar graphs
+    intro: >
+      Every planar graph has a vertex of degree at most 5, which gives six colors at once and five colors
+      with one Kempe chain swap. Four colors always suffice, but the only proofs check a large set of
+      configurations by computer.
+    entries:
+      - planar-graph-coloring
+      - five-color-algorithm
+      - four-color-theorem
+
+  - title: Crossings and drawing in general
+    intro: >
+      A graph that is not planar must be drawn with crossings, and the crossing number counts the fewest.
+      The crossing lemma bounds it from below for dense graphs, and the Hanani-Tutte theorem says that
+      planarity can be read from the parity of crossings. Graph drawing asks for readable pictures, and the
+      planarization heuristic gets one by turning a few crossings into dummy vertices.
+    entries:
+      - crossing-number
+      - crossing-lemma
+      - hanani-tutte-theorem
+      - graph-drawing
+      - planarization-heuristic
+
+  - title: Straight-line drawings and representations
+    intro: >
+      Fáry's theorem says that straight edges are enough for every planar graph. The constructive versions
+      put the vertices on a small grid: the shift method of de Fraysseix, Pach and Pollack works along a
+      canonical ordering, and Schnyder's method reads coordinates from three trees. Tutte's spring theorem
+      draws 3-connected graphs by solving a linear system, circle packings represent every planar graph
+      by touching disks, and book embeddings put the vertices on a line and the edges on pages.
+    entries:
+      - fary-theorem
+      - planar-straight-line-drawing
+      - canonical-ordering
+      - de-fraysseix-pach-pollack
+      - schnyder-woods
+      - schnyder-drawing
+      - tutte-spring-theorem
+      - circle-packing-theorem
+      - book-embedding
+
+  - title: Separators and planar shortest paths
+    intro: >
+      Every planar graph has a separator of $O(\sqrt{n})$ vertices with balanced sides, and Lipton and
+      Tarjan find one in linear time from breadth-first levels and a fundamental cycle. Applying it
+      recursively gives an r-division into small pieces with few boundary vertices, and shortest paths in
+      planar graphs use these pieces to beat Dijkstra's algorithm.
+    entries:
+      - planar-separator-theorem
+      - planar-separator-finding
+      - lipton-tarjan-separator
+      - r-division
+      - planar-shortest-paths
+      - frederickson-planar-shortest-paths
+
+  - title: Beyond the plane
+    intro: >
+      Graphs that are not planar may still embed on a torus or a surface with more handles, and the genus
+      is the fewest handles needed. Deciding the genus is NP-hard in general but linear for each fixed
+      genus. The graph minor theorem of Robertson and Seymour says that every minor-closed family, like
+      the graphs of genus at most $g$, is described by a finite list of forbidden minors.
+    entries:
+      - graph-genus
+      - graph-genus-computation
+      - graph-minor-theorem

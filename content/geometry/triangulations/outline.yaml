@@ -1,0 +1,90 @@
+groups:
+  - title: What a triangulation is
+    intro: >
+      A triangulation cuts a region into triangles that meet edge to edge.
+      For a simple polygon the corners are the polygon's own vertices and every
+      triangulation has $n - 2$ triangles; for a set of points the region is the
+      convex hull and the count is $2n - h - 2$. Ears and the dual tree are the two
+      tools that most later proofs use.
+    entries:
+      - triangulation
+      - ear
+      - polygon-triangulation
+      - triangulation-dual-tree
+      - triangulation-of-point-set
+      - triangulation-counting-theorem
+  - title: Triangulating a simple polygon
+    intro: >
+      Every simple polygon with four or more vertices has two ears, so cutting off
+      ears one at a time always succeeds and takes $\Theta(n^2)$ time. The standard
+      $O(n \log n)$ method first cuts the polygon into monotone pieces and then
+      triangulates each piece with a stack. Holes are handled by bridges or by the
+      same sweep.
+    entries:
+      - two-ears-theorem
+      - ear-clipping
+      - monotone-polygon-triangulation
+      - polygon-with-holes-triangulation
+  - title: Counting triangulations and choosing a good one
+    intro: >
+      A convex $n$-gon has $C_{n-2}$ triangulations, a Catalan number, and an
+      interval dynamic program over the vertices finds the best one in
+      $\Theta(n^3)$ time for any cost that is a sum over the triangles or edges. For point sets the minimum total edge
+      length is NP-hard, and the greedy shortest-edge-first triangulation is only an
+      approximation.
+    entries:
+      - catalan-triangulation-theorem
+      - polygon-triangulation-dp
+      - greedy-triangulation
+      - min-weight-triangulation
+      - number-of-triangulations
+  - title: Edge flips
+    intro: >
+      An edge flip replaces the diagonal of a convex quadrilateral by the other one.
+      Flips that raise the smallest angle lead to the triangulation that maximizes
+      the minimum angle. The triangulations of a point set with flips as edges form
+      a connected graph; for a convex $n$-gon its diameter is $2n - 10$ when
+      $n \ge 13$, while computing a flip distance on point sets is NP-complete.
+    entries:
+      - edge-flip
+      - max-min-angle-triangulation
+      - flip-graph
+      - flip-distance
+      - flip-graph-diameter-theorem
+  - title: Constraints, Steiner points and meshes
+    intro: >
+      Applications often prescribe edges that must appear and ask for triangles
+      with no small angles. Prescribed edges lead to constrained triangulations;
+      good angles need extra vertices, called Steiner points. Delaunay refinement,
+      in the versions of [Ruppert](/ruppert-algorithm/) and
+      [Chew](/chew-second-algorithm/), inserts them with provable angle bounds.
+    entries:
+      - constrained-triangulation
+      - steiner-points
+      - minimum-steiner-triangulation
+      - conforming-delaunay-triangulation
+      - mesh-generation
+      - delaunay-refinement
+      - ruppert-algorithm
+      - chew-second-algorithm
+  - title: Faster polygon triangulation
+    intro: >
+      Triangulating a simple polygon is equivalent, in linear time, to computing
+      its trapezoidal decomposition. Randomized incremental construction gives
+      $O(n \log^* n)$ expected time, Tarjan and Van Wyk reached
+      $O(n \log \log n)$ deterministically, and Chazelle's algorithm takes
+      $\Theta(n)$ time but is not practical to implement.
+    entries:
+      - seidel-polygon-triangulation
+      - tarjan-van-wyk-triangulation
+      - chazelle-polygon-triangulation
+  - title: Storing triangulations, and three dimensions
+    intro: >
+      The quad-edge structure stores a subdivision and its dual with $O(1)$-time
+      navigation and two primitive operations. In space the analog of a
+      triangulation is a tetrahedralization, and the plane's guarantees fail there:
+      the Schönhardt polyhedron cannot be cut into tetrahedra without new vertices.
+    entries:
+      - quad-edge-data-structure
+      - tetrahedralization
+      - schonhardt-polyhedron

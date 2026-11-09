@@ -1,0 +1,27 @@
+A machine word holds an integer of 32 or 64 bits, and the processor adds and multiplies such words in one step. Many computations need more. An RSA key is a number of a few thousand bits. A record computation of $\pi$ multiplies numbers of billions of digits. A computer algebra system must give the exact answer $2^{100} = 1267650600228229401496703205376$, not a rounded one. All of these work with integers stored as arrays of words, and every operation on them is an algorithm: a loop or a recursion over the digits.
+
+This chapter is about those algorithms, from the representation of a number up to the fastest known multiplication. It has a second thread that runs through the same ideas in hardware: the adders and multipliers inside a processor, where the question is the depth of a circuit, not the number of steps of a program. One fact organizes both threads. Almost every operation on big integers (division, square roots, radix conversion) costs a constant or logarithmic number of multiplications, so the cost $M(n)$ of a multiplication of $n$-limb numbers sets the cost of nearly everything else.
+
+## What the chapter covers
+
+The chapter is in nine groups, read in order.
+
+1. **Numbers and their digits.** [Division with remainder](/division-with-remainder/), the rounding rules of [floor division](/floor-division/), the [positional number system](/positional-number-system/), and the encodings of negative numbers in a word, ending with [integer overflow](/integer-overflow/).
+2. **Big integers and addition.** The [multiprecision integer](/multiprecision-integer/), a sign and an array of limbs in radix $\beta = 2^w$, and [integer addition](/integer-addition/) in $\Theta(n)$ limb operations.
+3. **Multiplication.** The [schoolbook method](/schoolbook-multiplication/) in $\Theta(n^2)$, [Karatsuba multiplication](/karatsuba-multiplication/) in $\Theta(n^{\log_2 3})$, [Toom-Cook](/toom-cook-multiplication/), and the FFT methods from [Schönhage-Strassen](/schonhage-strassen-multiplication/) to the $O(N \log N)$ bound of [Harvey and van der Hoeven](/harvey-van-der-hoeven-multiplication/).
+4. **Division.** [Long division](/long-division/) as the base case, and [Newton-Raphson division](/newton-raphson-division/), which makes division cost $O(M(n))$. A divisor known in advance turns division into a multiplication by a precomputed reciprocal ([division by a constant](/division-by-constant/)).
+5. **Roots and radix conversion.** The [integer square root](/integer-square-root/) by [Newton's method on integers](/newton-integer-root/), and [radix conversion](/radix-conversion/) between binary and decimal.
+6. **Powers and Fibonacci numbers.** [Integer exponentiation](/integer-exponentiation/), [addition chains](/addition-chain/), and [fast doubling](/fibonacci-fast-doubling/) for the [Fibonacci numbers](/fibonacci-numbers/).
+7. **Adders in hardware.** The [ripple-carry adder](/ripple-carry-adder/) of linear depth, the [carry-lookahead adder](/carry-lookahead-adder/), and the prefix adders of logarithmic depth.
+8. **Signed and redundant digits.** Representations with more digits than the radix, which make [carry-save addition](/carry-save-addition/) possible in constant depth, and the [non-adjacent form](/non-adjacent-form/).
+9. **Multipliers and dividers in hardware.** The [array multiplier](/array-multiplier/), the [Wallace tree](/wallace-tree-multiplier/), [Booth recoding](/booth-multiplication/), and [restoring division](/restoring-division/).
+
+## A first reading
+
+For a first reading, take these thirteen entries in order: [division with remainder](/division-with-remainder/), [positional number system](/positional-number-system/), [arbitrary-precision arithmetic](/arbitrary-precision-arithmetic/), [multiprecision integer](/multiprecision-integer/), [integer addition](/integer-addition/), [integer multiplication](/integer-multiplication/), [schoolbook multiplication](/schoolbook-multiplication/), [Karatsuba multiplication](/karatsuba-multiplication/), [integer division](/integer-division/), [long division](/long-division/), [integer square root](/integer-square-root/), [integer exponentiation](/integer-exponentiation/) and [Fibonacci numbers](/fibonacci-numbers/). They give the representation, the four operations, and the reason fast multiplication matters.
+
+On a first pass you can skip the three hardware groups, and in the multiplication group everything after Toom-Cook: [Fürer's](/furer-multiplication/) and Harvey and van der Hoeven's algorithms are results about asymptotic bounds, and no library uses them. The hardware groups stand on their own and can be read later as a unit; begin them with the ripple-carry adder and [carry propagation](/carry-propagation/).
+
+## Before you start
+
+You need [asymptotic notation](/asymptotic-notation/), the [word RAM](/word-ram/) model and [loop invariants](/loop-invariant/) from Volume 1, and for Karatsuba and its successors the [master theorem](/master-theorem/) and the [divide-and-conquer paradigm](/divide-and-conquer-paradigm/). [Two's complement](/twos-complement/) and [bitwise operations](/bitwise-operations/) come from Volume 2, [divisibility](/divisibility/) and [binary exponentiation](/binary-exponentiation/) from Volume 10. The hardware groups use the [Boolean circuit](/boolean-circuit/) model of Volume 1. The FFT methods of multiplication need the [fast Fourier transform](/fast-fourier-transform/) of Chapter 11.3; read them after it, or take their transform step on trust the first time.

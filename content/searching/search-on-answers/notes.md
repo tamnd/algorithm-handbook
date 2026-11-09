@@ -1,0 +1,17 @@
+## History
+
+Halving an interval to find where something changes is older than binary search on arrays. The bisection method finds a root of a continuous function by keeping the half on which the sign changes, and it was a standard tool of numerical analysis long before computers. The search for the top of a unimodal function got its theory in 1953, when Jack Kiefer proved that placing the evaluations by the Fibonacci numbers is the best possible plan for a fixed number of evaluations, and that golden-section search is its limit when the number is not fixed in advance. Richard Brent's book *Algorithms for Minimization without Derivatives* of 1973 combined the golden section with parabolic steps, and his method is still widely used.
+
+Ratios came from operations research. Abraham Charnes and William Cooper showed in 1962 that a linear program with a ratio objective can be turned into an ordinary linear program. Werner Dinkelbach published his iteration for nonlinear fractional programs in 1967, and Siegfried Schaible showed in 1976 that it converges superlinearly. Richard Karp's 1978 algorithm for the minimum mean cycle solved one ratio problem directly. Tomasz Radzik proved in 1992 that the Newton iteration, which is Dinkelbach's method, needs only a strongly polynomial number of rounds for linear ratio problems over combinatorial sets.
+
+Nimrod Megiddo turned the search on the answer into a general method. In 1979 he solved combinatorial problems with ratio objectives by running an algorithm on the unknown optimum, and in 1983 he showed that running a parallel algorithm instead cuts the number of decision calls to a logarithmic number per parallel step. This is parametric search. Richard Cole improved it in 1987 for algorithms built on sorting, and Pankaj Agarwal and Micha Sharir surveyed its many uses in geometry in 1998. Greg Frederickson and Donald Johnson's 1984 work on selection in sorted matrices gave exact methods for many problems of the second group of the chapter, such as linear partition and the k-th pair distance.
+
+The simple form, binary search on the answer with a greedy test, became one of the standard tools of programming contests, where problems such as placing cows in stalls or splitting an array into $k$ parts appear again and again. Parallel binary search is known mostly from the same setting. The post office problem was a task of the International Olympiad in Informatics in 2000, and the penalty search now called the Aliens trick takes its name from a task of the 2016 olympiad.
+
+## Further reading
+
+- Antti Laaksonen, *Guide to Competitive Programming*, first edition (2017). Short, clear treatments of binary search on the answer, ternary search and their standard problems.
+- William H. Press, Saul A. Teukolsky, William T. Vetterling and Brian P. Flannery, *Numerical Recipes*, third edition (2007). The chapter on minimization covers golden-section search and Brent's method with working code.
+- J. Kiefer, *Sequential minimax search for a maximum*, Proceedings of the American Mathematical Society 4(3) (1953). The short paper that proves the Fibonacci placement optimal.
+- Ravindra K. Ahuja, Thomas L. Magnanti and James B. Orlin, *Network Flows* (1993). Treats the minimum ratio cycle and the minimum mean cycle as searches on a parameter.
+- Pankaj K. Agarwal and Micha Sharir, *Efficient algorithms for geometric optimization*, ACM Computing Surveys 30(4) (1998). A survey of parametric search and the methods that replaced it.

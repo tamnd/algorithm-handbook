@@ -1,0 +1,18 @@
+## History
+
+Listing subsets by binary counting is older than computers and has no single inventor. Combinations in sorted order were among the first routines that programmers shared: Algorithm 154 of the Communications of the ACM, by C. J. Mifsud (1963), gives the lexicographic successor of a combination. Nijenhuis and Wilf collected such routines in Combinatorial Algorithms (1975, second edition 1978), whose early chapters treat the next subset and the next $k$-subset, each as a procedure that can be called again and again from the last object.
+
+The combinatorial number system is much older than these programs. Knuth credits it to E. Pascal (1887), and credits to D. H. Lehmer (1964) the observation that its digits give the rank of a subset in colex order. The same order is the extremal order of the Kruskal-Katona theorem, proved by J. B. Kruskal (1963) and G. Katona (1968), on the smallest shadow of a family of $k$-sets. So colex order was studied in extremal set theory and in counting before it became the standard order for ranking.
+
+Gideon Ehrlich's paper of 1973 in the Journal of the ACM introduced loopless algorithms and gave them for permutations, combinations and other objects. In the same year D. T. Tang and C. N. Liu studied the subsets of fixed weight inside the reflected Gray code, the order now called the revolving door. Bitner, Ehrlich and Reingold (1976) gave a loopless program for the Gray code with focus pointers and applied it to combinations. The index form of the revolving door generator is due to W. H. Payne, published with F. M. Ives in 1979, and Knuth credits to Payne (1974) the jump that makes it loopless.
+
+In the decades after Ehrlich's paper, a new generator came to be judged by whether it is CAT and whether it is loopless. Carla Savage's survey of combinatorial Gray codes (1997) records this view, and Knuth's Section 7.2.1 of The Art of Computer Programming, Volume 4A (2011) states the algorithms for subsets and combinations in this model, with their analysis. Cool-lex order is recent. Frank Ruskey and Aaron Williams presented it at COCOON 2005 as a way to generate combinations by prefix shifts, and gave the full treatment, with the loopless program and the rank, in Discrete Mathematics in 2009.
+
+## Further reading
+
+- Donald E. Knuth, The Art of Computer Programming, Volume 4A: Combinatorial Algorithms, Part 1, Addison-Wesley, 2011. Section 7.2.1.1 treats tuples and the binary counter, and Section 7.2.1.3 treats combinations: Algorithms L, T and R, the combinatorial number system and the Kruskal-Katona theorem, with many exercises.
+- Albert Nijenhuis and Herbert S. Wilf, Combinatorial Algorithms for Computers and Calculators, second edition, Academic Press, 1978. Short procedures for the next subset and the next $k$-subset, with ranking and random selection.
+- Donald L. Kreher and Douglas R. Stinson, Combinatorial Algorithms: Generation, Enumeration, and Search, CRC Press, 1999. Chapter 2 gives successor, rank and unrank functions for subsets and $k$-subsets in lexicographic and Gray code orders.
+- Carla Savage, A survey of combinatorial Gray codes, SIAM Review 39(4), 1997. The revolving door and other minimal-change orders for combinations, set in the wider theory.
+- Frank Ruskey and Aaron Williams, The coolest way to generate combinations, Discrete Mathematics 309(17), 2009. Cool-lex order, its loopless and branchless programs, and its rank.
+- Henry S. Warren, Jr., Hacker's Delight, second edition, Addison-Wesley, 2012. Word-level tricks for subsets, among them the next integer with the same number of one bits.

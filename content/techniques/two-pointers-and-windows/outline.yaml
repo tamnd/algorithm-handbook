@@ -1,0 +1,82 @@
+# The order of chapter 2.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The technique
+    intro: >
+      Two indices scan a sequence, and each of them only moves in one direction. The entry gives the three
+      shapes of the technique (from both ends, in the same direction, and as the two ends of a window) and
+      the one argument behind all of them: each move drops only candidates that cannot be part of a better
+      answer.
+    entries:
+      - two-pointers
+
+  - title: Pairs from both ends
+    intro: >
+      On a sorted array the sum of two items grows when the left index moves right and falls when the
+      right index moves left, so one comparison rules out a whole row or column of pairs. The pair search
+      comes first as a problem and then as an algorithm. 3SUM runs it once for each item. The container and
+      the rain water problems use the same inward scan with a different reason for each move.
+    entries:
+      - two-sum-sorted
+      - two-pointer-pair-search
+      - three-sum-two-pointer-scan
+      - container-with-most-water
+      - trapping-rain-water
+
+  - title: Reading and writing pointers
+    intro: >
+      Two indices that move in the same direction can read and write one array, or walk two sorted arrays
+      side by side. Removing duplicates compacts an array in place, and the intersection of sorted arrays
+      is the merge step of merge sort with output only on equal items.
+    entries:
+      - remove-duplicates-from-sorted-array
+      - sorted-array-intersection
+
+  - title: Partition in one pass
+    intro: >
+      Three indices split an array into the items less than, equal to and greater than a pivot. The problem
+      states what the output must be; Dijkstra's loop then does it with exactly $n$ iterations, at most $n$
+      swaps and constant extra space, and it is the partition step of three-way quicksort.
+    entries:
+      - dutch-national-flag
+      - dutch-national-flag-algorithm
+
+  - title: Pointers at two speeds
+    intro: >
+      On a sequence $x_{i+1} = f(x_i)$ over a finite set, a pointer that moves two steps at a time meets a
+      pointer that moves one step inside the cycle. From the meeting point the start and the length of the
+      cycle follow, with constant memory. On a list without a cycle the slow pointer stops at the middle.
+    entries:
+      - fast-and-slow-pointers
+
+  - title: The sliding window
+    intro: >
+      The two indices bound a contiguous window, and a summary of the window is updated as each end moves.
+      The window works when the property it tests stays true for every shorter window (or every longer
+      one), and this monotone window property is what bounds the work by $2n$ moves. The shortest
+      subarray with a large enough sum is the first example.
+    entries:
+      - sliding-window
+      - monotone-window-property
+      - minimum-size-subarray-sum
+
+  - title: Windows over strings
+    intro: >
+      With a table of character counts as the summary, the window answers questions about substrings. The
+      longest substring with no repeated character is a problem with its own algorithm; the limit of $k$
+      distinct characters changes only the validity test. The minimum window substring asks for the
+      shortest window that contains a pattern, and its algorithm keeps one counter so that the test costs
+      constant time.
+    entries:
+      - longest-substring-without-repeating-characters
+      - sliding-window-longest-substring
+      - longest-substring-with-k-distinct
+      - minimum-window-substring
+      - minimum-window-substring-algorithm
+
+  - title: The maximum of a window
+    intro: >
+      The maximum cannot be updated when an item leaves the window, so a plain counter is not enough. A
+      deque of indices whose values decrease from front to back keeps every item that can still become the
+      maximum, and gives all the window maxima in linear time.
+    entries:
+      - sliding-window-maximum-deque

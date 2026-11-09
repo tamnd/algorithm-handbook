@@ -1,0 +1,173 @@
+# The order of chapter 9.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Grammars, derivations and trees
+    intro: >
+      A context-free grammar rewrites one nonterminal at a time, and the strings of terminals it can reach form
+      its language. These entries define derivations, the parse trees that record them, and the abstract syntax
+      trees that compilers keep instead. A grammar is ambiguous when some string has two parse trees; the Dyck
+      language of balanced brackets is the standard example of a language that needs a grammar.
+    entries:
+      - context-free-grammar
+      - context-free-language
+      - derivation
+      - sentential-form
+      - leftmost-derivation
+      - parse-tree
+      - abstract-syntax-tree
+      - ambiguity
+      - dyck-language
+
+  - title: Cleaning grammars and normal forms
+    intro: >
+      Many algorithms want a grammar in a restricted shape. These entries find nullable and useless symbols,
+      remove $\varepsilon$-productions and unit productions, and bring a grammar into Chomsky normal form, with
+      two symbols or one terminal on each right side. Left recursion breaks top-down parsers, and removing it
+      leads to Greibach normal form, where every right side starts with a terminal.
+    entries:
+      - nullable-symbol
+      - useless-symbol-elimination
+      - epsilon-production-elimination
+      - unit-production-elimination
+      - cfg-normal-form-conversion
+      - chomsky-normal-form
+      - chomsky-normal-form-conversion
+      - left-recursion
+      - left-recursion-removal
+      - left-recursion-elimination
+      - greibach-normal-form
+      - greibach-normal-form-conversion
+
+  - title: Pushdown automata and the theory of context-free languages
+    intro: >
+      A pushdown automaton is a finite automaton with a stack, and it accepts exactly the context-free languages.
+      The deterministic ones accept a smaller class, which is the class that linear-time parsers handle. The rest
+      of the group gives the tools for proving that a language is not context-free, the closure properties of the
+      class, and three structural theorems.
+    entries:
+      - pushdown-automaton
+      - cfg-to-pda-conversion
+      - cfg-pda-equivalence
+      - deterministic-context-free-language
+      - cfl-pumping-lemma
+      - cfl-closure-properties
+      - linear-grammar
+      - inherent-ambiguity
+      - parikh-theorem
+      - chomsky-schutzenberger-theorem
+
+  - title: Decision problems
+    intro: >
+      Some questions about grammars have fast answers: emptiness and finiteness take linear time, and membership
+      takes cubic time. Others have no algorithm at all. Ambiguity, equivalence and emptiness of an intersection
+      are undecidable, by reductions from Post's correspondence problem. CFL reachability carries membership to
+      paths in labelled graphs.
+    entries:
+      - cfg-emptiness-problem
+      - cfg-finiteness-problem
+      - cfg-membership-problem
+      - context-free-language-recognition
+      - cfg-parsing-problem
+      - cfg-ambiguity-problem
+      - cfl-intersection-undecidable
+      - cfg-ambiguity-undecidable
+      - cfg-equivalence-problem
+      - cfg-equivalence-undecidable
+      - cfl-reachability
+
+  - title: Top-down parsing
+    intro: >
+      A top-down parser builds the parse tree from the root, choosing a production for the leftmost nonterminal
+      at each step. Backtracking makes it general but slow; one token of lookahead and a table make it linear for
+      LL(1) grammars. Left factoring prepares a grammar for this, and LL(k) and LL(*) look further ahead.
+    entries:
+      - top-down-parsing
+      - backtracking-parsing
+      - recursive-descent-parsing
+      - left-factoring
+      - ll-grammar
+      - ll-parse-table
+      - ll1-parsing
+      - ll-k-parsing
+      - ll-star-parsing
+
+  - title: Shift-reduce parsing and precedence
+    intro: >
+      A bottom-up parser builds the tree from the leaves, shifting tokens onto a stack and reducing a handle on
+      top of the stack to a nonterminal. The hard part is knowing when to reduce; conflicts mark the places where
+      a parser cannot tell. For expressions, operator precedence gives a simple answer, and the shunting-yard
+      algorithm and Pratt parsing use it directly.
+    entries:
+      - bottom-up-parsing
+      - handle
+      - shift-reduce-parsing
+      - viable-prefix
+      - shift-reduce-conflict
+      - reduce-reduce-conflict
+      - lookahead-parsing
+      - operator-grammar
+      - operator-precedence-parsing
+      - shunting-yard-algorithm
+      - pratt-parsing
+
+  - title: LR parsing
+    intro: >
+      LR parsers find handles with a finite automaton over items, dotted productions that record how much of a
+      right side is on the stack. LR(0), SLR, LALR and canonical LR differ in how they use lookahead to resolve
+      conflicts, trading table size for the class of grammars accepted. Knuth's theorem ties the LR grammars to
+      the deterministic context-free languages.
+    entries:
+      - lr-item
+      - lr0-parsing
+      - slr-grammar
+      - slr-parsing
+      - lr-grammar
+      - lr-parse-table
+      - canonical-lr-parsing
+      - lalr-grammar
+      - lalr-parsing
+      - lr-parsing
+      - knuth-lr-theorem
+      - recursive-ascent-parsing
+
+  - title: General parsing
+    intro: >
+      Every context-free grammar, ambiguous or not, can be parsed in cubic time. CYK and Earley fill a chart of
+      partial parses indexed by spans of the input; Valiant's algorithm does it in the time of Boolean matrix
+      multiplication, and Lee showed that this cannot be avoided. GLR runs an LR parser on all choices at once
+      with a graph-structured stack, and a shared packed forest stores all the parse trees.
+    entries:
+      - parse-chart
+      - chart-parsing
+      - cyk-algorithm
+      - earley-parser
+      - valiant-algorithm
+      - valiant-lee-theorem
+      - left-corner-parsing
+      - graph-structured-stack
+      - glr-parsing
+      - shared-packed-parse-forest
+      - parsing-with-derivatives
+      - incremental-parsing
+
+  - title: Probabilistic grammars
+    intro: >
+      A probabilistic grammar puts a probability on each production, so that an ambiguous sentence has a most
+      likely parse. Probabilistic CKY finds it in cubic time, and the inside-outside algorithm learns the
+      probabilities from a corpus of sentences.
+    entries:
+      - probabilistic-context-free-grammar
+      - most-probable-parse
+      - probabilistic-cky
+      - inside-outside-algorithm
+
+  - title: Meaning, errors and other formalisms
+    intro: >
+      A parser is useful because of what it does with the tree. Syntax-directed translation and attribute
+      grammars attach computations to productions, and error recovery lets a parser report more than one mistake.
+      Parsing expression grammars replace choice by ordered choice; packrat parsing runs them in linear time.
+    entries:
+      - syntax-directed-translation
+      - attribute-grammar
+      - panic-mode-error-recovery
+      - parsing-expression-grammar
+      - packrat-parsing

@@ -1,0 +1,73 @@
+# The order of chapter 2.3. Groups are read in order; entries in a group too.
+groups:
+  - title: The method
+    intro: >
+      A greedy algorithm builds its answer one piece at a time and keeps each piece for good. The first entry
+      gives the template, the four ways to prove a greedy rule right and the classic rules that fail. The
+      second names the property that every correct greedy rule has: some optimal solution starts with the
+      greedy choice.
+    entries:
+      - greedy-algorithm
+      - greedy-choice-property
+
+  - title: Proving a greedy algorithm
+    intro: >
+      Two proof patterns cover most greedy algorithms. An exchange argument turns any optimal solution into the
+      greedy one, one swap at a time, without making it worse. A stays-ahead argument picks a measure of
+      progress and shows by induction that after each step the greedy solution is at least as far along as any
+      other.
+    entries:
+      - exchange-argument
+      - greedy-stays-ahead
+
+  - title: Intervals
+    intro: >
+      Requests that each occupy an interval of time. Choosing the most pairwise disjoint intervals is solved by
+      taking the one that finishes first, again and again; the problem and the algorithm have one entry each.
+      Covering all requests with the fewest resources needs exactly as many as the largest number of intervals
+      that overlap at one point.
+    entries:
+      - activity-selection
+      - earliest-finish-time-first
+      - interval-partitioning
+
+  - title: Divisible items, merges and coins
+    intro: >
+      Three problems where a sorted order or a priority queue gives the optimum. Divisible items go into a
+      knapsack by value per unit of weight. Sorted files are merged two smallest at a time, which is Huffman's
+      algorithm under another name. Coins are paid largest first, which is optimal for some coin systems and
+      not for others, and the entry shows how to tell them apart.
+    entries:
+      - fractional-knapsack
+      - optimal-merge-pattern
+      - canonical-coin-system
+
+  - title: Scheduling one machine
+    intro: >
+      Jobs with processing times, weights and due dates on a single machine. Files on a tape are jobs in
+      disguise, so tape storage comes first. Smith's rule, sorting by processing time over weight, minimizes the
+      weighted sum of completion times; the problem and the rule have one entry each. Earliest due date first
+      minimizes the largest lateness, and the Moore-Hodgson algorithm builds on it to minimize the number of
+      late jobs.
+    entries:
+      - optimal-tape-storage
+      - minimizing-weighted-completion-time
+      - smith-rule
+      - minimizing-maximum-lateness
+      - minimizing-number-of-late-jobs
+
+  - title: Matroids
+    intro: >
+      The structure on which the greedy algorithm is always right. The definition comes first, then three
+      families of examples, then the problem of a maximum-weight basis, the algorithm that solves it and the
+      theorem that says matroids are exactly the systems where it works. Scheduling unit jobs with deadlines
+      closes the chapter as an application.
+    entries:
+      - matroid
+      - uniform-matroid
+      - partition-matroid
+      - linear-matroid
+      - maximum-weight-matroid-basis
+      - matroid-greedy-algorithm
+      - matroid-greedy-theorem
+      - job-sequencing-with-deadlines

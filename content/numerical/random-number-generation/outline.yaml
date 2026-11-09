@@ -1,0 +1,108 @@
+groups:
+  - title: Generators, seeds and periods
+    intro: >
+      What a pseudorandom generator is: a finite state, a transition, an output function and a seed. A
+      finite state forces a period, and a long period is necessary but says nothing about quality. The
+      middle-square method shows what goes wrong without theory, and statistical tests are how
+      generators are judged in practice.
+    entries:
+      - generator-period
+      - pseudorandom-number-generator
+      - seed
+      - middle-square-method
+      - statistical-tests-for-randomness
+
+  - title: Linear congruential generators
+    intro: >
+      The oldest family with a complete theory. The Hull-Dobell theorem gives the period exactly, the
+      Park-Miller and RANDU generators show a reasonable and a bad multiplier, and Marsaglia's theorem
+      and the spectral test explain the lattice on which every LCG's tuples lie.
+    entries:
+      - linear-congruential-generator
+      - park-miller-minimal-standard
+      - randu
+      - hull-dobell-theorem
+      - marsaglia-hyperplane-theorem
+      - spectral-test
+
+  - title: Linear generators over GF(2)
+    intro: >
+      Generators whose state is a vector of bits and whose step is a linear map over $\mathrm{GF}(2)$. A
+      primitive characteristic polynomial gives the maximal period $2^k - 1$, and equidistribution
+      measures how evenly the bits of consecutive outputs fill the cube. The family runs from the shift
+      register to xorshift, the Mersenne Twister, WELL and the scrambled xoshiro generators.
+    entries:
+      - linear-feedback-shift-register
+      - xorshift
+      - mersenne-twister
+      - equidistribution
+      - well-rng
+      - xoshiro-xoroshiro
+
+  - title: Longer recurrences and parallel streams
+    intro: >
+      Recurrences of higher order modulo a prime, combinations of several of them, and generators that
+      carry or borrow between words. Jump-ahead moves a linear generator far along its cycle in
+      logarithmic time, which is how one long period is cut into streams for parallel work.
+    entries:
+      - multiple-recursive-generator
+      - lecuyer-combined-generator
+      - jump-ahead
+      - mrg32k3a
+      - multiply-with-carry
+      - lagged-fibonacci-generator
+      - ranlux
+
+  - title: Scrambled outputs and counter-based generators
+    intro: >
+      A cheap linear core followed by a nonlinear output step, or no evolving state at all: PCG permutes
+      the state of an LCG, SplitMix64 hashes a Weyl sequence, and Philox and Threefry compute the $i$-th
+      block directly from a key and the counter $i$.
+    entries:
+      - pcg-random
+      - splitmix64
+      - philox
+      - threefry
+
+  - title: Random integers in a range
+    intro: >
+      Turning uniform words into a uniform integer in $[0, n)$. The remainder is biased unless $n$ divides
+      the number of words, every exact method must sometimes reject, and Lemire's method rejects with one
+      multiplication and almost no divisions.
+    entries:
+      - modulo-bias
+      - uniform-random-integer-generation
+      - lemire-bounded-integers
+
+  - title: Physical randomness and secure generators
+    intro: >
+      Unpredictable bits come from physical processes, measured in min-entropy and cleaned by
+      conditioning such as von Neumann's trick. A cryptographically secure generator stretches such a seed
+      so that no efficient test can tell the output from fair coins; Blum-Micali and Blum Blum Shub prove
+      this from discrete logarithms and factoring.
+    entries:
+      - entropy-source
+      - true-random-number-generator
+      - unbiased-bits-from-biased-coin
+      - cryptographically-secure-prng
+      - blum-micali
+      - blum-blum-shub
+
+  - title: The NIST deterministic generators
+    intro: >
+      The generators of NIST SP 800-90A, built from a hash function, HMAC or a block cipher in counter
+      mode, with reseeding and backtracking resistance. Dual_EC_DRBG, withdrawn in 2015, shows how a
+      standard generator can carry a trapdoor.
+    entries:
+      - hash-drbg
+      - hmac-drbg
+      - ctr-drbg
+      - dual-ec-drbg
+
+  - title: Low-discrepancy sequences
+    intro: >
+      Deterministic point sets that fill the unit cube more evenly than random points, for quasi-Monte
+      Carlo integration. They are not random number generators and must not be used as such.
+    entries:
+      - halton-sequence
+      - sobol-sequence

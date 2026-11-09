@@ -1,0 +1,22 @@
+The matchers of Chapter 8.1 compare symbols. Hashing compares numbers instead: each string, or each window of a text, is replaced by a short value computed from all its symbols, and two strings are compared by their values. Equal strings always get equal values. Different strings get equal values only by a collision, and the point of the chapter is to make collisions rare in a sense that can be proved, not hoped for.
+
+The central tool is the [polynomial rolling hash](/polynomial-rolling-hash/). It reads a string as the coefficients of a polynomial and evaluates the polynomial at a base $r$ modulo a prime $p$. The window of a text moves by one symbol with one multiplication and two additions, and the hash of any substring is a difference of two prefix hashes. If $r$ is drawn at random after the strings are fixed, two different strings of length at most $n$ collide with probability at most $(n-1)/p$, because their difference is a nonzero polynomial with at most $n - 1$ roots. That one fact gives [Rabin-Karp](/rabin-karp/) matching, comparison of substrings in constant time, and short messages for comparing files on two machines.
+
+The same fact has a sharp edge. The bound is over the random base, so a base fixed in the source code, or arithmetic modulo $2^{64}$, gives no guarantee at all, and inputs built against such choices collide on purpose. The chapter shows both the guarantee and the ways to lose it. It ends with hash functions of a different kind, built for speed in hash tables, which spread ordinary keys well and promise nothing against chosen ones.
+
+## What the chapter covers
+
+The chapter is in four groups, read in order.
+
+1. **Fingerprints and the polynomial hash.** [Fingerprinting](/fingerprinting/) as a general technique, the polynomial rolling hash with its window update and prefix hashes, and the [collision bound](/polynomial-hash-collision-bound/) $(n-1)/p$.
+2. **Comparing strings by their hashes.** [String equality testing](/string-equality-testing/) with $O(\log n)$ bits of communication, [substring equality queries](/substring-equality-queries/) in $O(1)$ time, the Rabin-Karp algorithm, and [dynamic polynomial hashing](/dynamic-polynomial-hashing/) for strings that change.
+3. **Adversaries and random choices.** [Anti-hash tests](/anti-hash-tests/), the inputs that break fixed parameters, and [universal string hashing](/universal-string-hashing/), which gives hash tables with string keys a bound for every set of keys.
+4. **Other hash functions for strings.** The [Rabin fingerprint](/rabin-fingerprint/) over polynomials with coefficients in $\{0, 1\}$, and the fast non-cryptographic hashes [FNV](/fnv-hash/) and [MurmurHash](/murmurhash/).
+
+## A first reading
+
+For a first reading, take these eight entries in order: [fingerprinting](/fingerprinting/), [polynomial rolling hash](/polynomial-rolling-hash/), [polynomial hash collision bound](/polynomial-hash-collision-bound/), [string equality testing](/string-equality-testing/), [substring equality queries](/substring-equality-queries/), [Rabin-Karp](/rabin-karp/), [anti-hash tests](/anti-hash-tests/) and [FNV hash](/fnv-hash/). Rabin-Karp is the third classic answer to exact matching, next to Knuth-Morris-Pratt and Boyer-Moore. The anti-hash tests are short and worth reading early, since the mistakes they show are common in practice. Dynamic hashing, universal hashing, the Rabin fingerprint and MurmurHash can wait until a task needs them.
+
+## Before you start
+
+You need [hash functions](/hash-function/), [hash collisions](/hash-collision/), [hash tables](/hash-table/) and [universal hash families](/universal-hash-family/) from Volume 3, and the [Fenwick tree](/fenwick-tree/) and [segment tree](/segment-tree/) from the same volume for dynamic hashing. From Volume 2 you need [randomized algorithms](/randomized-algorithm/) and the [sliding window](/sliding-window/), and from Volume 1 the [union bound](/union-bound/). The algebra is light: [prime numbers](/prime-number/) from Volume 10, and [polynomials](/polynomial/), [Horner's rule](/horner-rule/) and [irreducible polynomials](/irreducible-polynomial/) from Volume 11. From this volume, Rabin-Karp needs the [string matching](/string-matching/) problem of Chapter 8.1, and the anti-hash tests use the [Thue-Morse word](/thue-morse-word/) of Chapter 8.7. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

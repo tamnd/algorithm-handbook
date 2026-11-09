@@ -1,0 +1,135 @@
+# The order of chapter 7.3. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      A shortest path is a path of least total weight. These entries fix the problem in its single-pair form,
+      show why a [negative cycle](/negative-cycle/) leaves it without an answer, and prove the fact that every
+      algorithm uses: a piece of a shortest path is itself a shortest path, so all shortest paths from one
+      source fit in one tree.
+    entries:
+      - shortest-path
+      - negative-cycle
+      - shortest-path-optimal-substructure
+      - shortest-path-tree
+      - single-pair-shortest-path
+
+  - title: Relaxation
+    intro: >
+      Every classic single-source algorithm keeps an estimate $d(v)$ for each vertex and lowers it by
+      [relaxing](/edge-relaxation/) edges. The estimates never drop below the true distances, and they are
+      correct exactly when no edge can lower them further. The algorithms of the next groups differ only in
+      the order in which they relax.
+    entries:
+      - edge-relaxation
+      - single-source-shortest-paths
+      - upper-bound-property
+      - shortest-path-optimality-conditions
+      - generic-shortest-path-algorithm
+
+  - title: Negative weights and Bellman-Ford
+    intro: >
+      [Bellman-Ford](/bellman-ford/) relaxes every edge in $n - 1$ rounds and works with any weights, in
+      $O(nm)$ time; one more round detects a negative cycle. The queue-based and deque-based variants are
+      often much faster in practice but keep, or worsen, the worst case. Subtree disassembly finds negative
+      cycles early.
+    entries:
+      - bellman-ford
+      - negative-cycle-detection
+      - spfa
+      - desopo-pape-algorithm
+      - tarjan-subtree-disassembly
+
+  - title: Acyclic graphs and longest paths
+    intro: >
+      When the graph has no cycle, one pass over the vertices in topological order relaxes each edge once and
+      gives all distances in $\Theta(n + m)$ time, whatever the signs of the weights. Negating the weights
+      turns this into a longest-path method, which is how project schedules find their critical path.
+    entries:
+      - dag-shortest-paths
+      - longest-to-shortest-paths-reduction
+      - pert-chart
+
+  - title: Nonnegative weights and Dijkstra
+    intro: >
+      With no negative edge, the closest vertex not yet finished already has its true distance.
+      [Dijkstra's algorithm](/dijkstra/) uses this to finish each vertex once, in $O((n + m) \log n)$ time with
+      a binary heap. Small integer weights allow bucket queues instead of heaps, and a search from both ends
+      saves work on single-pair queries.
+    entries:
+      - dijkstra
+      - dijkstra-correctness
+      - zero-one-bfs
+      - dial-algorithm
+      - widest-path
+      - bidirectional-dijkstra
+
+  - title: Negative cycles at work
+    intro: >
+      Some problems are negative-cycle detection in disguise. A cycle of currency trades that makes money is a
+      negative cycle once each rate $r$ is replaced by $-\log r$, and a system of constraints
+      $x_j - x_i \le b$ is solvable exactly when its constraint graph has no negative cycle. Three entries treat
+      arbitrage; read [arbitrage detection](/arbitrage-detection/) first.
+    entries:
+      - arbitrage-detection
+      - currency-arbitrage
+      - currency-arbitrage-detection
+      - difference-constraints
+
+  - title: All pairs
+    intro: >
+      Distances between all pairs fill an $n \times n$ matrix. [Floyd-Warshall](/floyd-warshall/) fills it in
+      $\Theta(n^3)$ time by allowing one more intermediate vertex at a time; the matrix-product methods extend
+      paths one edge, or double them, at a time. [Johnson's algorithm](/johnson/) makes all weights
+      nonnegative with vertex potentials and then runs Dijkstra from every vertex, which wins on sparse graphs.
+    entries:
+      - all-pairs-shortest-paths
+      - floyd-warshall
+      - slow-apsp-matrix-multiplication
+      - shortest-paths-fixed-length
+      - apsp-repeated-squaring
+      - potential-function-reduced-costs
+      - johnson
+
+  - title: Faster single-source algorithms
+    intro: >
+      Dijkstra's algorithm outputs vertices in sorted order of distance, and for decades this seemed to tie it
+      to the cost of sorting. These entries explain that barrier and the algorithms that pass it: scaling for
+      integer weights, Thorup's linear-time method for undirected graphs, the near-linear algorithm for
+      negative weights, and the 2025 algorithm that beats sorting on directed graphs.
+    entries:
+      - sorting-barrier
+      - goldberg-radzik
+      - gabow-scaling-sssp
+      - goldberg-scaling-sssp
+      - thorup-undirected-sssp
+      - near-linear-negative-sssp
+      - breaking-sorting-barrier-sssp
+      - hopset
+
+  - title: Queries on large networks
+    intro: >
+      A route planner answers millions of point-to-point queries on one road network. It spends time once on
+      preprocessing so that each query touches only a tiny part of the graph: landmarks give lower bounds,
+      contraction adds shortcuts, and hub labels reduce a query to the merge of two short lists. Distance
+      oracles trade exactness for space.
+    entries:
+      - alt-algorithm
+      - highway-hierarchies
+      - contraction-hierarchies
+      - hub-labeling
+      - distance-labeling
+      - distance-oracle
+      - thorup-zwick-oracle
+
+  - title: Variants of the problem
+    intro: >
+      The last group changes the question: the $k$ best paths instead of one, the best path when an edge
+      fails, a path under a second budget, and travel times that depend on the time of departure. Some of
+      these stay polynomial; the resource-constrained problem is NP-hard.
+    entries:
+      - k-shortest-paths
+      - yen-k-shortest-paths
+      - eppstein-k-shortest-paths
+      - replacement-paths
+      - constrained-shortest-path
+      - time-dependent-shortest-paths

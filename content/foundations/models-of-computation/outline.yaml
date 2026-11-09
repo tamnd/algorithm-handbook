@@ -1,0 +1,83 @@
+# The order of chapter 1.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The random access machine
+    intro: >
+      The model behind nearly every running time in this handbook is a sequential machine with an array of
+      registers, where an instruction can read the register whose number is in another register. The entries
+      here define it, give its two cost rules, and show the variants that bound the size of a number, allow
+      exact reals, or forbid arithmetic on addresses.
+    entries:
+      - random-access-machine
+      - unit-cost-model
+      - logarithmic-cost-model
+      - word-ram
+      - transdichotomous-model
+      - real-ram
+      - pointer-machine
+
+  - title: Models that count only queries
+    intro: >
+      For lower bounds it pays to count one kind of step and let everything else be free. In the
+      [comparison model](/comparison-model/) only comparisons cost, and an algorithm becomes a
+      [decision tree](/decision-tree-model/). The later entries allow stronger tests, linear or algebraic, and
+      the cell-probe model counts only the memory cells a data structure touches.
+    entries:
+      - comparison-model
+      - decision-tree-model
+      - linear-decision-tree
+      - algebraic-decision-tree
+      - algebraic-computation-tree
+      - cell-probe-model
+      - bit-probe-model
+
+  - title: Memory that is not flat
+    intro: >
+      Real memory is a hierarchy of caches, main memory and disk, and moving data between the levels often
+      costs more than computing with it. The external memory model counts block transfers between two levels;
+      the cache-oblivious model asks for algorithms that do well without knowing the block size; the
+      red-blue pebble game proves lower bounds on the transfers.
+    entries:
+      - memory-hierarchy
+      - external-memory-model
+      - cache-oblivious-model
+      - red-blue-pebble-game
+
+  - title: Turing machines
+    intro: >
+      The Turing machine is the model of complexity theory. It is slow in absolute terms, but it agrees with
+      the RAM up to a polynomial, so the class of problems solvable in polynomial time is the same on both.
+      The theorems here say how much the number of tapes and the constant factors matter, and the last three
+      entries add nondeterminism, coin flips and alternation.
+    entries:
+      - turing-machine
+      - multitape-turing-machine
+      - multitape-simulation-theorem
+      - linear-speedup-theorem
+      - ram-turing-equivalence
+      - nondeterministic-turing-machine
+      - probabilistic-turing-machine
+      - alternating-turing-machine
+
+  - title: Circuits and non-uniform models
+    intro: >
+      A circuit handles inputs of one length only, so a problem needs a family of circuits, one for each
+      length. This is the model of hardware and of parallel time. When nothing forces the circuits of the
+      family to be built by one program, the model is non-uniform, and it can even decide undecidable sets.
+    entries:
+      - boolean-circuit
+      - non-uniform-computation
+      - branching-program
+
+  - title: Other models of computation
+    intro: >
+      These models compute the same functions as the Turing machine, or they change what a number is. The
+      lambda calculus computes with functions alone, a register machine with a few counters, a cellular
+      automaton with a grid of cells under a local rule, and a Blum-Shub-Smale machine with exact elements of
+      a ring. The last entry is a model from physics, not of computation: hard disks moving in a box, the
+      standard example of event-driven simulation.
+    entries:
+      - lambda-calculus
+      - register-machine
+      - cellular-automaton
+      - blum-shub-smale-machine
+      - hard-disk-model

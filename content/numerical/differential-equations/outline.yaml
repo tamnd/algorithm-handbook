@@ -1,0 +1,174 @@
+groups:
+  - title: Initial value problems and one-step basics
+    intro: >
+      The problem $y' = f(t, y)$, $y(t_0) = y_0$, the Lipschitz condition that makes it well posed, and
+      the theorems that say so. Then the first methods and the words used to judge every method after them:
+      local truncation error, consistency, global error and order. Euler's method, its implicit twin, Heun's
+      method and the Taylor series method are the worked cases.
+    entries:
+      - lipschitz-condition
+      - ode-initial-value-problem
+      - picard-lindelof-theorem
+      - gronwall-inequality
+      - picard-iteration
+      - local-truncation-error
+      - euler-method
+      - consistency
+      - global-error
+      - order-of-accuracy
+      - heuns-method
+      - backward-euler-method
+      - taylor-series-method
+
+  - title: Linear stability and stiffness
+    intro: >
+      Order describes what happens as $h \to 0$; stability describes what happens at the step a program
+      actually uses. Applying a method to $y' = \lambda y$ gives a stability function $R(z)$ and a stability
+      region. Stiff problems are those where this region, not accuracy, limits the step of an explicit method.
+    entries:
+      - dahlquist-test-equation
+      - absolute-stability
+      - stability-region
+      - a-stability
+      - l-stability
+      - stiff-ode-problem
+
+  - title: Runge-Kutta methods and step-size control
+    intro: >
+      A Runge-Kutta method evaluates $f$ several times inside one step and combines the slopes, with the
+      coefficients written in a Butcher tableau. The group runs from the midpoint method and RK4 to the
+      order conditions, then to embedded pairs that estimate their own error and choose the next step.
+      Dense output and extrapolation close it.
+    entries:
+      - butcher-tableau
+      - runge-kutta-methods
+      - explicit-midpoint-method
+      - classical-runge-kutta-4
+      - butcher-order-conditions
+      - adaptive-step-size-control
+      - embedded-runge-kutta-pairs
+      - runge-kutta-fehlberg-method
+      - bogacki-shampine-method
+      - cash-karp-method
+      - dormand-prince-method
+      - dense-output
+      - bulirsch-stoer-method
+
+  - title: Linear multistep methods
+    intro: >
+      A multistep method reuses the values of $f$ from earlier steps, so it costs one new evaluation per
+      step at any order. Zero-stability is the condition that keeps old errors from growing. The Adams
+      families and the backward differentiation formulas are the methods in use, and the two Dahlquist
+      theorems say which combinations of order and stability are possible.
+    entries:
+      - linear-multistep-methods
+      - zero-stability
+      - adams-bashforth-methods
+      - adams-moulton-methods
+      - adams-bashforth-moulton-method
+      - backward-differentiation-formulas
+      - dahlquist-equivalence-theorem
+      - dahlquist-barrier
+
+  - title: Boundary value problems
+    intro: >
+      When conditions are given at both ends of an interval, there is no starting value to march from.
+      Shooting turns the problem into root finding over initial values; collocation asks a piecewise
+      polynomial to satisfy the equation at chosen points. Sturm-Liouville problems add an eigenvalue.
+    entries:
+      - bvp-boundary-value-problem
+      - boundary-conditions
+      - shooting-method
+      - sturm-liouville-problem
+      - collocation-method
+
+  - title: Implicit methods for stiff problems and DAEs
+    intro: >
+      Stiff problems need methods with large stability regions. Implicit Runge-Kutta methods built on
+      Gauss and Radau points reach high order with A- or L-stability, and Rosenbrock methods trade the Newton
+      iteration for linear solves. Differential-algebraic equations, where some equations are constraints,
+      are solved by the same methods, with the index as the measure of difficulty.
+    entries:
+      - implicit-runge-kutta-methods
+      - gauss-legendre-runge-kutta
+      - radau-iia-methods
+      - rosenbrock-methods
+      - differential-algebraic-equations
+      - differentiation-index
+
+  - title: Structure, noise, delay and parallel time
+    intro: >
+      Problems with more structure than $y' = f(t, y)$. Hamiltonian systems ask for methods that keep the
+      symplectic form over long times; stochastic equations add a Brownian term and change what order
+      means; delay equations make the state a piece of the past. Parareal splits the time axis across
+      processors.
+    entries:
+      - hamiltonian-systems
+      - symplectic-euler-method
+      - verlet-integration
+      - symplectic-integrators
+      - stochastic-differential-equation
+      - euler-maruyama-method
+      - milstein-method
+      - delay-differential-equations
+      - delay-differential-solver
+      - parareal-algorithm
+
+  - title: Model PDEs and finite differences
+    intro: >
+      The three classes of second-order PDE and their model problems: the heat, wave, advection and
+      Poisson equations. Finite differences turn them into algebraic equations on a grid. The CFL condition,
+      von Neumann analysis and the Lax equivalence theorem decide when the grid solution converges, and
+      FTCS, Crank-Nicolson and ADI are the schemes they are tried on.
+    entries:
+      - pde-classification
+      - heat-equation
+      - advection-equation
+      - wave-equation
+      - poisson-equation
+      - courant-friedrichs-lewy-condition
+      - finite-difference-method
+      - ftcs-method
+      - crank-nicolson-method
+      - adi-method
+      - von-neumann-stability-analysis
+      - lax-equivalence-theorem
+
+  - title: Semi-discretization, spectral and finite element methods
+    intro: >
+      Discretizing in space only turns a PDE into a large ODE system, so the earlier groups apply to it.
+      Splitting and exponential integrators treat its parts separately. Spectral methods use global smooth
+      bases, and the Galerkin and finite element methods work from the weak form on general meshes.
+    entries:
+      - method-of-lines
+      - operator-splitting
+      - exponential-integrators
+      - spectral-methods
+      - galerkin-method
+      - finite-element-method
+
+  - title: Conservation laws, fronts and fluids
+    intro: >
+      Hyperbolic equations carry information along characteristics, and nonlinear ones form shocks. The
+      group goes from upwinding and the Riemann problem to finite volume schemes, the Lax-Friedrichs,
+      Lax-Wendroff and Godunov schemes, and the TVD, limiter and WENO ideas that keep shocks sharp without
+      oscillations. Fronts are tracked by the eikonal and level set methods, and three fluid solvers end the
+      chapter.
+    entries:
+      - upwind-scheme
+      - method-of-characteristics
+      - burgers-equation
+      - riemann-problem
+      - eikonal-equation
+      - fast-marching-method
+      - level-set-method
+      - finite-volume-method
+      - lax-friedrichs-scheme
+      - lax-wendroff-method
+      - godunov-method
+      - total-variation-diminishing
+      - flux-limiter-methods
+      - weno-scheme
+      - navier-stokes-equations
+      - lattice-boltzmann-method
+      - smoothed-particle-hydrodynamics

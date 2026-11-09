@@ -1,0 +1,571 @@
+# Learning paths across the volumes (spec handbook 03.7). Steps are entries (slugs) or chapters (by number).
+# The builder prints each step with its number; a step whose entry is not yet written is marked forthcoming.
+intro: >
+  A path is an ordered list of entries and chapters, across volumes, for one goal. Read the steps in order
+  and tick each one when you can explain it without the book and have done some of its exercises. A step
+  that names a whole chapter means: read its opening and its first-reading list, then the entries the
+  opening names. The paths share their first steps, so a reader who finishes one is well into the others.
+
+paths:
+  - id: first-course
+    title: A first course in algorithms
+    for: a student who can program and knows some discrete mathematics (sets, functions, induction, sums).
+    intro: >
+      The material of a one-semester course: how to analyse an algorithm and prove it correct, the main
+      sorts and searches, the basic data structures, graph search and shortest paths, and the main design
+      techniques. About fifty entries; most are at the intro and core levels.
+    stages:
+      - title: Analysing algorithms
+        steps:
+          - entry: random-access-machine
+            why: the model in which time is counted.
+          - asymptotic-notation
+          - common-growth-rates
+          - worst-case-analysis
+          - loop-invariant
+          - induction
+          - recurrence-relation
+          - recursion-tree-method
+          - master-theorem
+      - title: Sorting and searching
+        steps:
+          - sorting-problem
+          - insertion-sort
+          - merge-sort
+          - quicksort
+          - randomized-quicksort
+          - entry: linearity-of-expectation
+            why: the tool for the expected cost of randomized quicksort.
+          - heapsort
+          - comparison-sort-lower-bound
+          - counting-sort
+          - radix-sort
+          - binary-search
+          - quickselect
+      - title: Data structures
+        steps:
+          - stack
+          - queue
+          - linked-list
+          - dynamic-array
+          - amortized-cost
+          - hash-table
+          - binary-search-tree
+          - red-black-tree
+          - binary-heap
+          - disjoint-set
+      - title: Graphs
+        steps:
+          - graph
+          - adjacency-list
+          - breadth-first-search
+          - depth-first-search
+          - topological-sort
+          - strongly-connected-components
+          - dijkstra
+          - bellman-ford
+          - floyd-warshall
+          - minimum-spanning-tree
+          - kruskal
+          - prim
+          - max-flow-problem
+          - ford-fulkerson
+      - title: Design techniques
+        steps:
+          - divide-and-conquer-paradigm
+          - optimal-substructure
+          - memoization
+          - longest-common-subsequence
+          - matrix-chain-multiplication
+          - greedy-algorithm
+          - activity-selection
+          - entry: huffman-coding
+            why: the classic greedy code.
+          - generic-backtracking-algorithm
+      - title: Where efficient algorithms stop
+        steps:
+          - reduction
+          - entry: p-versus-np-problem
+            why: the question behind the hard problems of the later volumes.
+          - entry: cook-levin-theorem
+
+  - id: data-structures
+    title: Data structures
+    for: a reader who has done a first course and wants the second course on data structures.
+    intro: >
+      From arrays and lists to balanced trees, heaps of several kinds, range-query structures, structures for
+      strings and space, and structures that keep old versions. Read Volume 1, Chapter 1.5 on amortized
+      analysis first if it is new.
+    stages:
+      - title: Linear structures and hashing
+        steps:
+          - array
+          - dynamic-array-resizing
+          - doubly-linked-list
+          - circular-buffer
+          - deque
+          - monotonic-stack
+          - hash-function
+          - separate-chaining
+          - linear-probing
+          - universal-hashing
+          - cuckoo-hashing
+      - title: Search trees
+        steps:
+          - binary-search-tree
+          - tree-rotation
+          - avl-tree
+          - red-black-tree
+          - two-three-tree
+          - treap
+          - skip-list
+          - order-statistic-tree
+          - augmenting-data-structures
+          - b-tree
+      - title: Priority queues and sets
+        steps:
+          - priority-queue
+          - binary-heap
+          - d-ary-heap
+          - binomial-heap
+          - indexed-priority-queue
+          - disjoint-set-forest
+          - union-by-rank
+          - path-compression
+          - union-find-amortized-bound
+      - title: Range queries
+        steps:
+          - prefix-sums
+          - range-minimum-query
+          - sparse-table
+          - fenwick-tree
+          - segment-tree
+          - lazy-propagation
+          - square-root-decomposition
+      - title: Strings, space and probability
+        steps:
+          - trie
+          - radix-tree
+          - ternary-search-tree
+          - kd-tree
+          - quadtree
+          - r-tree
+          - bloom-filter
+          - cuckoo-filter
+      - title: Keeping the past
+        steps:
+          - persistent-data-structure
+          - path-copying
+          - persistent-binary-search-tree
+          - purely-functional-data-structure
+          - banker-queue
+
+  - id: graphs
+    title: Graph algorithms
+    for: a course on graph algorithms, or a reader who uses graphs in their work.
+    intro: >
+      All of Volume 7 that a working programmer and a graduate course need, in the order the ideas build on
+      each other.
+    stages:
+      - title: Graphs and search
+        steps:
+          - graph
+          - adjacency-list
+          - adjacency-matrix
+          - breadth-first-search
+          - depth-first-search
+          - edge-classification
+          - topological-sort
+          - kahns-algorithm
+          - bipartite-testing
+      - title: Shortest paths
+        steps:
+          - shortest-path
+          - edge-relaxation
+          - dag-shortest-paths
+          - dijkstra
+          - bellman-ford
+          - zero-one-bfs
+          - floyd-warshall
+          - johnson
+      - title: Trees and connectivity
+        steps:
+          - minimum-spanning-tree
+          - cut-property
+          - kruskal
+          - prim
+          - boruvka
+          - connected-components
+          - articulation-point-finding
+          - bridge-finding
+          - tarjan-scc
+          - kosaraju-sharir
+          - lowest-common-ancestor
+          - binary-lifting
+          - heavy-light-decomposition
+      - title: Flows and matchings
+        steps:
+          - flow-network
+          - residual-graph
+          - ford-fulkerson
+          - max-flow-min-cut-theorem
+          - edmonds-karp
+          - dinic
+          - push-relabel
+          - bipartite-matching
+          - hopcroft-karp
+          - hungarian-algorithm
+          - gale-shapley
+      - title: Harder questions
+        steps:
+          - graph-coloring
+          - greedy-coloring
+          - eulerian-circuit
+          - hamiltonian-cycle-problem
+          - planar-graph
+          - planarity-testing
+          - graph-isomorphism-problem
+          - chapter: "7.14"
+            why: centrality and the other measures of network analysis.
+
+  - id: interviews
+    title: Algorithmic thinking for interviews
+    for: a programmer who prepares for technical interviews.
+    intro: >
+      The patterns behind most interview questions, each with its standard examples. Know the cost of each
+      method, and practise writing the code without help.
+    stages:
+      - title: Arrays and pointers
+        steps:
+          - asymptotic-notation
+          - two-pointers
+          - two-sum-sorted
+          - dutch-national-flag
+          - sliding-window
+          - longest-substring-without-repeating-characters
+          - prefix-sums
+          - subarray-sum-equals-k
+          - kadane-algorithm
+          - interval-merging
+      - title: Searching and sorting
+        steps:
+          - binary-search
+          - lower-and-upper-bound-search
+          - rotated-sorted-array-search
+          - binary-search-on-answer
+          - merge-sort
+          - quicksort
+          - quickselect
+          - top-k-selection
+      - title: Structures
+        steps:
+          - hash-table
+          - stack
+          - monotonic-stack
+          - next-greater-element
+          - largest-rectangle-in-histogram
+          - floyd-cycle-detection
+          - reverse-linked-list
+          - binary-heap
+          - trie
+          - disjoint-set
+      - title: Trees and graphs
+        steps:
+          - tree-traversal
+          - level-order-traversal
+          - lowest-common-ancestor
+          - breadth-first-search
+          - depth-first-search
+          - flood-fill
+          - topological-sort
+          - dijkstra
+      - title: Recursion and dynamic programming
+        steps:
+          - generic-backtracking-algorithm
+          - generating-all-permutations
+          - power-set-enumeration
+          - memoization
+          - coin-change-problem
+          - longest-increasing-subsequence
+          - longest-common-subsequence
+          - edit-distance
+          - text-segmentation
+          - bitmask
+
+  - id: competitive
+    title: Competitive programming
+    for: a contestant, from the first contest to regional finals.
+    intro: >
+      The toolkit of programming contests. It assumes the first course. Each step is an entry that has
+      appeared, in one form or another, in many contest problems.
+    stages:
+      - title: Techniques
+        steps:
+          - coordinate-compression
+          - two-pointers
+          - binary-search-on-answer
+          - ternary-search
+          - horowitz-sahni-algorithm
+          - bitmask-dp
+          - interval-dp
+          - tree-dynamic-programming
+          - submask-enumeration
+          - sweep-line-technique
+      - title: Range queries and trees
+        steps:
+          - difference-array
+          - sparse-table
+          - fenwick-tree
+          - segment-tree
+          - lazy-propagation
+          - binary-lifting
+          - euler-tour-technique
+          - heavy-light-decomposition
+          - centroid
+          - dsu-with-parity
+          - union-find-with-rollback
+      - title: Graphs
+        steps:
+          - zero-one-bfs
+          - dijkstra
+          - bellman-ford
+          - floyd-warshall
+          - tarjan-scc
+          - bridge-finding
+          - kruskal
+          - dinic
+          - hopcroft-karp
+          - hungarian-algorithm
+      - title: Strings
+        steps:
+          - prefix-function
+          - z-algorithm
+          - polynomial-rolling-hash
+          - anti-hash-tests
+          - aho-corasick
+          - suffix-array
+          - lcp-array
+          - suffix-automaton
+          - manacher
+      - title: Mathematics
+        steps:
+          - extended-euclidean-algorithm
+          - modular-exponentiation
+          - modular-inverse
+          - chinese-remainder-theorem
+          - sieve-of-eratosthenes
+          - linear-sieve
+          - miller-rabin
+          - pollard-rho
+          - matrix-exponentiation
+          - fast-fourier-transform
+          - number-theoretic-transform
+          - gaussian-elimination
+      - title: Geometry
+        steps:
+          - cross-product
+          - orientation-test
+          - segment-intersection-detection
+          - polygon-area
+          - point-in-polygon
+          - andrew-monotone-chain
+          - rotating-calipers
+          - half-plane-intersection
+
+  - id: strings
+    title: Strings and text
+    for: a reader who works on search engines, editors, compilers or bioinformatics.
+    intro: >
+      Matching, indexing and comparing text, with the automata behind regular expressions.
+    stages:
+      - title: Finding a pattern
+        steps:
+          - string-matching
+          - naive-string-matching
+          - prefix-function
+          - knuth-morris-pratt
+          - z-algorithm
+          - boyer-moore
+          - rabin-karp
+          - shift-or
+          - aho-corasick
+      - title: Indexes of text
+        steps:
+          - trie
+          - suffix-trie
+          - suffix-array
+          - suffix-array-construction
+          - lcp-array
+          - suffix-tree
+          - ukkonen-algorithm
+          - suffix-automaton
+      - title: Comparing strings
+        steps:
+          - edit-distance
+          - wagner-fischer-algorithm
+          - longest-common-subsequence
+          - hirschberg-lcs
+          - myers-diff
+          - approximate-string-matching
+          - k-differences-problem
+      - title: Patterns and parsers
+        steps:
+          - deterministic-finite-automaton
+          - nondeterministic-finite-automaton
+          - regular-expression
+          - thompson-construction
+          - subset-construction
+          - dfa-minimization
+          - backtracking-regex-matching
+          - context-free-grammar
+          - recursive-descent-parsing
+          - lr-parsing
+
+  - id: scientific-computing
+    title: Scientific computing
+    for: an engineer or scientist who computes with real numbers.
+    intro: >
+      Volume 12 in the order of a course on numerical methods, with the parts of Volume 11 it needs. Start
+      with floating point: every later method depends on what rounding does.
+    stages:
+      - title: Arithmetic on a machine
+        steps:
+          - floating-point-arithmetic
+          - ieee-754
+          - machine-epsilon
+          - rounding-modes
+          - catastrophic-cancellation
+          - kahan-summation
+          - condition-number
+      - title: Equations in one variable
+        steps:
+          - root-finding-problem
+          - bisection-method
+          - fixed-point-iteration
+          - newton-raphson-method
+          - secant-method
+          - order-of-convergence
+      - title: Linear algebra
+        steps:
+          - gaussian-elimination
+          - lu-decomposition
+          - cholesky-decomposition
+          - qr-decomposition
+          - least-squares-problem
+          - jacobi-method
+          - gauss-seidel-method
+          - conjugate-gradient-method
+          - power-iteration
+          - qr-algorithm
+          - singular-value-decomposition
+      - title: Functions, integrals and differential equations
+        steps:
+          - polynomial-interpolation
+          - lagrange-interpolation
+          - chebyshev-polynomials
+          - cubic-spline-interpolation
+          - trapezoidal-rule
+          - simpsons-rule
+          - adaptive-quadrature
+          - euler-method
+          - classical-runge-kutta-4
+          - runge-kutta-fehlberg-method
+          - discrete-fourier-transform
+          - fast-fourier-transform
+      - title: Randomness
+        steps:
+          - pseudorandom-number-generator
+          - linear-congruential-generator
+          - mersenne-twister
+          - monte-carlo-integration
+
+  - id: number-theory-algebra
+    title: Number theory and algebra for computing
+    for: a reader heading for cryptography or computer algebra.
+    intro: >
+      Arithmetic on big integers and polynomials, the number theory behind public-key cryptography, and the
+      fast transforms that make multiplication fast.
+    stages:
+      - title: Integers
+        steps:
+          - big-integer
+          - karatsuba-multiplication
+          - toom-cook-multiplication
+          - greatest-common-divisor
+          - euclidean-algorithm
+          - extended-euclidean-algorithm
+          - bezouts-identity
+      - title: Modular arithmetic and primes
+        steps:
+          - congruence
+          - modular-exponentiation
+          - modular-inverse
+          - chinese-remainder-theorem
+          - fermat-little-theorem
+          - euler-totient
+          - primitive-root
+          - sieve-of-eratosthenes
+          - miller-rabin
+          - pollard-rho
+          - baby-step-giant-step
+          - pohlig-hellman
+      - title: Polynomials and transforms
+        steps:
+          - horner-rule
+          - polynomial-multiplication
+          - roots-of-unity
+          - discrete-fourier-transform
+          - fast-fourier-transform
+          - number-theoretic-transform
+          - polynomial-division
+          - newton-power-series-inversion
+      - title: Matrices and lattices
+        steps:
+          - strassen-algorithm
+          - matrix-multiplication-exponent
+          - determinant-computation
+          - lattice
+          - lagrange-gauss-reduction
+          - lll-algorithm
+          - shortest-vector-problem
+
+  - id: theory
+    title: The theory of algorithms
+    for: a graduate student who wants the tools of analysis and lower bounds.
+    intro: >
+      How to prove what an algorithm costs and what no algorithm can do. The later stages point into
+      volumes that are still being written.
+    stages:
+      - title: Models and analysis
+        steps:
+          - random-access-machine
+          - word-ram
+          - turing-machine
+          - external-memory-model
+          - master-theorem
+          - potential-method
+          - union-find-amortized-bound
+          - average-case-analysis
+          - chernoff-bound
+          - high-probability-bounds
+      - title: Lower bounds
+        steps:
+          - lower-bound
+          - decision-tree-method
+          - information-theoretic-bound
+          - adversary-argument
+          - comparison-sort-lower-bound
+          - merging-lower-bound
+          - element-distinctness
+          - reduction-lower-bound
+          - union-find-lower-bound
+      - title: Fine-grained questions
+        steps:
+          - matrix-multiplication-exponent
+          - edit-distance-hardness
+          - backurs-indyk-lcs-lower-bound
+      - title: Complexity classes
+        steps:
+          - entry: p-versus-np-problem
+          - entry: cook-levin-theorem
+          - entry: karps-21-np-complete-problems

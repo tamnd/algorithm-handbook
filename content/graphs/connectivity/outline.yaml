@@ -1,0 +1,84 @@
+# The order of chapter 7.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Connected graphs and components
+    intro: >
+      A graph is connected when every two vertices are joined by a path. In a directed graph the word
+      splits in two: weakly connected when the arrows are ignored, strongly connected when every vertex
+      reaches every other. Any traversal finds the components of an undirected graph in linear time, and a
+      [disjoint-set](/disjoint-set/) structure does it when the edges arrive one at a time.
+    entries:
+      - connected-graph
+      - weakly-connected-graph
+      - strongly-connected-graph
+      - graph-transpose
+      - reachability
+      - connected-components
+      - generic-component-growing
+      - union-find-connectivity
+
+  - title: Cut vertices and bridges
+    intro: >
+      A vertex or an edge whose removal disconnects the graph is a single point of failure. One depth-first
+      search finds them all: the [low-link value](/low-link/) of a vertex records how far up the DFS tree its
+      subtree can reach by one back edge, and a child that cannot climb above its parent marks a cut.
+    entries:
+      - articulation-point
+      - bridge
+      - low-link
+      - articulation-point-finding
+      - bridge-finding
+
+  - title: Biconnected and 2-edge-connected graphs
+    intro: >
+      A graph with no cut vertex is biconnected, and one with no bridge is 2-edge-connected. Every graph
+      breaks into maximal pieces of each kind, the blocks and the 2-edge-connected components, and the blocks
+      hang together in a tree. Ear decompositions build such graphs one path at a time, and a bridgeless
+      graph is exactly one whose edges can be directed to make it strongly connected.
+    entries:
+      - biconnected-graph
+      - two-edge-connected-graph
+      - biconnected-components
+      - hopcroft-tarjan-biconnectivity
+      - block-cut-tree
+      - two-edge-connected-components
+      - ear-decomposition
+      - strong-orientation
+
+  - title: Strongly connected components
+    intro: >
+      Mutual reachability splits a directed graph into strongly connected components, and contracting them
+      leaves a DAG, the condensation. Three linear-time algorithms find the components: Kosaraju and
+      Sharir's two passes, one of them on the transpose, Tarjan's single pass with low-links, and Gabow's
+      single pass with two stacks.
+    entries:
+      - strongly-connected-components
+      - kosaraju-sharir
+      - tarjan-scc
+      - gabow-path-based-scc
+      - condensation-graph
+
+  - title: Reachability for all pairs
+    intro: >
+      The transitive closure records which vertex reaches which. Warshall's triple loop computes it in
+      $\Theta(n^3)$ bit operations, and matrix multiplication does it faster. The transitive reduction goes
+      the other way and keeps the fewest edges with the same reachability.
+    entries:
+      - transitive-closure
+      - warshall-algorithm
+      - transitive-reduction
+
+  - title: Measuring connectivity
+    intro: >
+      The vertex connectivity and edge connectivity count how many vertices or edges must be removed to
+      disconnect a graph. Menger's theorem equates these cuts with numbers of disjoint paths, so maximum flow
+      computes them. These entries use [maximum flow](/max-flow-problem/) from Chapter 7.6, and a reader may
+      leave them until after that chapter.
+    entries:
+      - vertex-cut
+      - k-edge-connected-graph
+      - k-vertex-connected-graph
+      - menger-theorem
+      - edge-connectivity
+      - vertex-connectivity
+      - even-tarjan-vertex-connectivity
+      - nagamochi-ibaraki-certificate

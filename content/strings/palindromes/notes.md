@@ -1,0 +1,17 @@
+## History
+
+Palindromes entered computer science through machine models. Recognizing them is a standard example of a task that is easy with two pointers and hard on a weak machine: F. C. Hennie showed in 1965 that a one-tape Turing machine needs quadratic time for it, and Zvi Galil gave real-time recognition on multitape machines in 1976. The algorithmic problem of finding palindromes inside a string came at the same time. Glenn Manacher published his linear-time online algorithm in the Journal of the ACM in 1975, stated for the smallest initial palindrome of a string. Galil and Joel Seiferas recognized Palstar, a language of concatenations of palindromes, online in linear time in 1978.
+
+Manacher's scan was later read as an algorithm for all maximal palindromes. Alberto Apostolico, Dany Breslauer and Galil made this explicit in 1995, in a paper on parallel algorithms for the same task, and Dan Gusfield's 1997 book gave a second linear method, with suffix trees and longest common extensions. Gapped palindromes, with a gap between the two arms, were studied for repeats in DNA; Roman Kolpakov and Gregory Kucherov gave algorithms for them in 2009.
+
+The bound on distinct palindromes came from the combinatorics of words. Aldo de Luca used the palindromic closure in 1997 to build the standard Sturmian words. Xavier Droubay, Jacques Justin and Giuseppe Pirillo proved in 2001 that a string of length $n$ has at most $n + 1$ distinct palindromes, the empty one included, and that episturmian words reach the bound. Srecko Brlek, Sylvie Hamel, Maurice Nivat and Christophe Reutenauer defined the palindromic defect in 2004, and Amy Glen, Justin, Steve Widmer and Luca Zamboni named the words of defect 0 rich in 2009. Richard Groult, Élise Prieur and Gwénaël Richomme counted the distinct palindromes of a string in linear time in 2010.
+
+The fewest palindromic pieces had a folklore quadratic recurrence for decades. In 2014 two groups broke it at the same time: Gabriele Fici, Travis Gagie, Juha Kärkkäinen and Dominik Kempa, and Tomohiro I, Shiho Sugimoto, Shunsuke Inenaga, Hideo Bannai and Masayuki Takeda, both in $O(n \log n)$ time by grouping palindromic suffixes into arithmetic series. Mikhail Rubinchik and Arseny Shur introduced the eertree in 2015, with the journal version in 2018, and expressed the series method as links in it. With Kirill Borozdin and Dmitry Kosolobov they reached linear time for the palindromic length in 2017.
+
+## Further reading
+
+- Dan Gusfield, *Algorithms on Strings, Trees, and Sequences* (1997). Section 9.2 finds all maximal palindromes with longest common extensions, and the book discusses reverse-complement palindromes in DNA.
+- Glenn Manacher, "A new linear-time on-line algorithm for finding the smallest initial palindrome of a string", *Journal of the ACM* 22 (1975). The original paper, short and readable.
+- Mikhail Rubinchik and Arseny M. Shur, "EERTREE: an efficient data structure for processing palindromes in strings", *European Journal of Combinatorics* 68 (2018). The palindromic tree and its applications, including series links.
+- Amy Glen, Jacques Justin, Steve Widmer and Luca Q. Zamboni, "Palindromic richness", *European Journal of Combinatorics* 30 (2009). The main source on rich words, with many equivalent definitions.
+- Gabriele Fici, Travis Gagie, Juha Kärkkäinen and Dominik Kempa, "A subquadratic algorithm for minimum palindromic factorization", *Journal of Discrete Algorithms* 28 (2014). A short paper that explains the arithmetic series of palindromic suffixes.

@@ -1,0 +1,19 @@
+## History
+
+The field starts with Guy Jacobson. His FOCS 1989 paper "Space-efficient static trees and graphs", and his doctoral thesis at Carnegie Mellon University, gave rank in constant time with $o(n)$ extra bits, stored trees in level order as LOUDS, and wrote trees and planar graphs as balanced parentheses. Select was slower, and parenthesis matching took $O(\lg n)$ bit probes. In 1996 David Clark, in his Waterloo thesis "Compact Pat Trees", and Ian Munro, in his paper "Tables", made select take constant time on the word RAM.
+
+Trees came next. Munro and Venkatesh Raman gave constant-time matching for balanced parentheses at FOCS 1997, with the journal version in the SIAM Journal on Computing in 2001, and with it parent, child and subtree size in $O(1)$ time. Benoit, Demaine, Munro and Raman introduced DFUDS at WADS 1999 for trees of high degree; the journal version, with Rajeev Raman and Srinivasa Rao, appeared in Algorithmica in 2005. Geary, Rahman, Raman and Raman simplified the matching structure in 2004 and 2006, and Delpratt, Rahman and Raman showed in 2006 that LOUDS is fast in practice. Sadakane and Navarro reduced all tree operations to excess searches over the range min-max tree at SODA 2010, with the journal version in ACM Transactions on Algorithms in 2014.
+
+Compression of the bit vector itself came with Raman, Raman and Rao at SODA 2002: the fully indexable dictionary, built on the class and offset code of short blocks, in $\lg \binom{n}{m}$ bits plus a lower-order term. The split of sorted keys into a high part in unary and a low part in binary is older. Robert Fano described it in a 1971 memo of MIT Project MAC, and Peter Elias published it in the Journal of the ACM in 1974. Okanohara and Sadakane brought it into succinct structures as the sdarray at ALENEX 2007, next to the darray for dense vectors, and Sebastiano Vigna's quasi-succinct indices of 2013 made it the usual code for posting lists.
+
+For sequences, Grossi, Gupta and Vitter introduced the wavelet tree at SODA 2003, inside a compressed text index. Claude and Navarro gave the wavelet matrix at SPIRE 2012, with a journal version with Ordóñez in Information Systems in 2015. Munro, Raman, Raman and Rao gave the shortcut representation of permutations at ICALP 2003, with the journal version in Theoretical Computer Science in 2012.
+
+Lower bounds closed several questions. Fredman and Saks proved the $\Omega(\lg n / \lg \lg n)$ bound for dynamic prefix parity at STOC 1989, which applies to dynamic bit vectors. Golynski showed in 2006 and 2007 that redundancy $\Theta(n \lg \lg n / \lg n)$ is optimal when the bit vector is kept in plain form. Mihai Pătraşcu's "Succincter" at FOCS 2008, which won the best student paper award, showed that a compressed vector can have much smaller redundancy, and Pătraşcu and Viola proved the matching lower bound at SODA 2010.
+
+## Further reading
+
+- Gonzalo Navarro, *Compact Data Structures: A Practical Approach*, Cambridge University Press, 2016. The standard book on the whole chapter, with bit vectors, trees, sequences and permutations, and with attention to practice.
+- Guy Jacobson, "Space-efficient static trees and graphs", FOCS 1989. Short, and the origin of rank, LOUDS and the parenthesis encoding.
+- Rajeev Raman, Venkatesh Raman and S. Srinivasa Rao, "Succinct indexable dictionaries with applications to encoding k-ary trees, prefix sums and multisets", ACM Transactions on Algorithms 3(4), 2007. The class and offset code and the fully indexable dictionary.
+- Gonzalo Navarro and Kunihiko Sadakane, "Fully functional static and dynamic succinct trees", ACM Transactions on Algorithms 10(3), 2014. The range min-max tree and one framework for BP, DFUDS and LOUDS.
+- Gonzalo Navarro, "Wavelet trees for all", Journal of Discrete Algorithms 25, 2014. A survey of the many uses of the wavelet tree.

@@ -1,0 +1,20 @@
+A calculator needs a parser for lines such as `2 + 3 * 4`. One way to get it is to write the grammar down, $E \to E + E \mid E * E \mid (\,E\,) \mid \mathit{num}$, add two lines that say `*` binds tighter than `+` and that both group to the left, attach to each production the arithmetic it stands for, and hand the file to [yacc](/yacc/). Yacc builds a table of a few hundred entries and writes a program that runs it. The program reads the tokens once, from left to right, never backs up, and calls the arithmetic in the right order. If the grammar has a problem that the two declarations do not settle, yacc says which state and which token cause it before any input is parsed.
+
+That is what a [parser generator](/parser-generator/) does: it turns a grammar into a parser, and it checks the grammar on the way. Chapter 9.3 explained how LL and LR parsers run. This chapter is about the step before: how a tool computes the sets and tables those parsers need, which grammars it can accept, and what it does when the input or the grammar is not as tidy as the theory wants.
+
+## What the chapter covers
+
+The chapter is in four groups, read in order.
+
+1. **Generators and what they compute first.** The [parser generator](/parser-generator/) as a tool, the [FIRST and FOLLOW sets](/first-and-follow-sets/) that every table construction starts from, and the [lookahead symbols](/lookahead-symbols/) a parser inspects to choose its move.
+2. **Grammar classes for generators.** [Operator precedence grammars](/operator-precedence-grammar/), [LL(1) grammars](/ll-1-grammar/) and [LL(k) grammars](/ll-k-grammar/): the exact conditions under which a generator's table has no conflicts.
+3. **Building LR tables.** The [canonical collection of item sets](/lr-item-sets/), the [LR(k) grammars](/lr-k-grammar/), the [parsing table](/parsing-table/) and the [problem of filling it](/parser-table-construction/), DeRemer and Pennello's [LALR lookahead computation](/lalr-lookahead-computation/), [yacc](/yacc/) itself, and [parse table compression](/parse-table-compression/).
+4. **Beyond the deterministic table.** [Error recovery](/parser-error-recovery/), [incremental reparsing](/incremental-reparsing/) after an edit, [parser combinators](/parser-combinators/) and [GLL parsing](/gll-parsing/), which accepts every context-free grammar.
+
+## A first reading
+
+For a first reading, take these ten entries in order: [parser generator](/parser-generator/), [FIRST and FOLLOW sets](/first-and-follow-sets/), [lookahead symbols](/lookahead-symbols/), [LL(1) grammar](/ll-1-grammar/), [LR item sets](/lr-item-sets/), [LR(k) grammar](/lr-k-grammar/), [parsing table](/parsing-table/), [parser table construction](/parser-table-construction/), [yacc](/yacc/) and [parser error recovery](/parser-error-recovery/). Together they cover what a working compiler writer needs to read a conflict report and fix the grammar. The LALR lookahead computation, table compression and the LL(k) grammars are for readers who want to build a generator, not only use one. GLL and parser combinators are the right next step for grammars that are ambiguous or change often.
+
+## Before you start
+
+The chapter leans on Chapter 9.3 throughout. You need [context-free grammars](/context-free-grammar/), [nullable symbols](/nullable-symbol/) and [leftmost derivations](/leftmost-derivation/) for the LL entries, and [shift-reduce parsing](/shift-reduce-parsing/), [LR items](/lr-item/), [viable prefixes](/viable-prefix/) and [LALR parsing](/lalr-parsing/) for the LR entries. [Recursive descent parsing](/recursive-descent-parsing/) is the starting point for parser combinators and GLL, and GLL borrows the [graph-structured stack](/graph-structured-stack/) of GLR parsing. The LR(0) automaton is a [deterministic finite automaton](/deterministic-finite-automaton/) from Chapter 9.1, and the LALR lookahead computation uses [Tarjan's strongly connected components algorithm](/tarjan-scc/) from Volume 7. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

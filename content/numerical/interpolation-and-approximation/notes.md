@@ -1,0 +1,17 @@
+## History
+
+Interpolation began as a tool for reading between the lines of astronomical and mathematical tables. Newton stated the divided-difference formula in the *Principia* (1687) and developed it in the *Methodus differentialis*, published in 1711. Waring published the formula now named after Lagrange in 1779; Euler used it in 1783, and Lagrange presented it in his lectures of 1795, which fixed the name. Chebyshev, studying linkages such as Watt's parallelogram, founded best uniform approximation in 1854: he stated the alternation condition and found the polynomials of least deviation from zero that carry his name.
+
+The decades around 1900 settled what polynomials can and cannot do. Weierstrass proved in 1885, at the age of 70, that every continuous function on an interval is a uniform limit of polynomials, and Bernstein gave the probabilistic proof in 1912. Runge showed in 1901 that interpolation at equally spaced points can diverge for an analytic function, and Faber proved in 1914 that no fixed scheme of nodes works for every continuous function. Jackson's 1911 dissertation and Bernstein's papers measured how fast the best error falls. Padé's thesis of 1892 organized rational approximants into his table, Thiele's book of 1909 gave interpolation by continued fractions, Aitken introduced his acceleration process in 1926, and Remez published the exchange algorithm in 1934.
+
+Computers turned these results into practice. Lanczos promoted Chebyshev expansions computed from samples in 1938, and Clenshaw gave the stable summation recurrence in 1955; with economization and the Remez algorithm they produced the approximations inside early function libraries. Schoenberg introduced the mathematical spline in 1946, naming it after the draftsman's flexible strip, and Holladay proved in 1957 that the natural cubic spline has least bending energy. De Boor's work and his 1978 book made B-splines the standard representation, and Fritsch and Carlson gave monotone cubic interpolation in 1980.
+
+Data in several variables brought new methods. Krige estimated gold grades from nearby samples in 1951, and Matheron formalized the method and named it kriging in the early 1960s. Smolyak introduced sparse grids in 1963. Shepard proposed inverse-distance weighting in 1968, Hardy introduced multiquadrics in 1971, and Duchon derived thin-plate splines in the 1970s. In one variable, Higham's error analysis and Berrut and Trefethen's survey, both of 2004, made the barycentric formula at Chebyshev points the recommended way to work with polynomial interpolants, as in the Chebfun system of the same year.
+
+## Further reading
+
+- Lloyd N. Trefethen, *Approximation Theory and Approximation Practice*, extended edition, SIAM, 2019. Chebyshev interpolation, barycentric formulas, best and rational approximation, with short programs.
+- M. J. D. Powell, *Approximation Theory and Methods*, Cambridge University Press, 1981. Minimax, least squares, splines and the classical theorems, with careful proofs.
+- Carl de Boor, *A Practical Guide to Splines*, revised edition, Springer, 2001. The reference for splines and B-splines in computation.
+- Holger Wendland, *Scattered Data Approximation*, Cambridge University Press, 2005. Radial basis functions and their error theory.
+- Kendall E. Atkinson, *An Introduction to Numerical Analysis*, second edition, Wiley, 1989. The textbook treatment of interpolation, its error and the Runge phenomenon.

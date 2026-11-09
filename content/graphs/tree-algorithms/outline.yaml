@@ -1,0 +1,125 @@
+# The order of chapter 7.10. Groups are read in order; entries in a group too.
+groups:
+  - title: Trees and rooted trees
+    intro: >
+      A tree is a connected graph without cycles; equivalently, it has $n - 1$ edges and is connected, or
+      it has a unique path between every two vertices. Choosing a root gives parents and children, and
+      directing the edges away from it gives an arborescence. Binary trees and Prüfer codes are the two
+      most common ways to write trees down.
+    entries:
+      - free-tree-properties
+      - tree-edge-count
+      - rooted-tree
+      - arborescence
+      - binary-tree
+      - complete-binary-tree
+      - pruefer-code
+
+  - title: Traversals
+    intro: >
+      Preorder visits a node before its subtrees, postorder after them, and inorder, for binary trees,
+      between the left and the right subtree. Postorder is the order of bottom-up computation, and subtree
+      sizes are its first example. A Cartesian tree turns an array into a binary tree whose inorder is the
+      array.
+    entries:
+      - tree-traversal
+      - preorder-traversal
+      - inorder-traversal
+      - postorder-traversal
+      - subtree-sizes
+      - cartesian-tree
+
+  - title: Diameter, center and centroid
+    intro: >
+      The eccentricity of a vertex is its largest distance to another vertex. The diameter is the largest
+      eccentricity and is found by two searches; the center has the smallest eccentricity and is found by
+      peeling leaves. The centroid balances sizes instead of distances: removing it leaves pieces of at
+      most $n/2$ vertices.
+    entries:
+      - eccentricity
+      - tree-diameter
+      - tree-diameter-double-sweep
+      - tree-center
+      - tree-center-leaf-peeling
+      - centroid
+
+  - title: Dynamic programming on trees
+    intro: >
+      Many problems that are NP-hard on graphs are linear on trees, because each subtree interacts with
+      the rest only through its root. The largest independent set, the company party, is the standard
+      example, with two values per vertex. Rerooting reuses the values to get an answer for every possible
+      root in linear time.
+    entries:
+      - company-party-planning
+      - maximum-independent-set-in-trees
+      - independent-set-on-trees
+      - rerooting-technique
+
+  - title: Ancestors and lowest common ancestors
+    intro: >
+      The lowest common ancestor of two vertices is the deepest vertex above both. Binary lifting stores
+      the $2^k$-th ancestors and answers in $O(\log n)$. The Euler tour flattens the tree into an array,
+      where an LCA becomes a range minimum and is answered in constant time. Tarjan's offline method uses
+      union-find, and ladders answer level ancestor queries in constant time.
+    entries:
+      - lowest-common-ancestor
+      - binary-lifting
+      - lca-binary-lifting
+      - euler-tour-technique
+      - euler-tour-lca
+      - tarjan-offline-lca
+      - level-ancestor-problem
+      - ladder-decomposition
+
+  - title: Path and subtree queries
+    intro: >
+      A subtree is a range of the Euler tour, so subtree queries go to a Fenwick or segment tree. Paths
+      are harder. Heavy-light decomposition cuts every root path into $O(\log n)$ ranges, and centroid
+      decomposition splits the tree into pieces of logarithmic depth. DSU on tree and virtual trees keep
+      the work small when many subtrees or a few key vertices are involved.
+    entries:
+      - tree-path-queries
+      - euler-tour-subtree-queries
+      - heavy-light-decomposition
+      - dsu-on-tree
+      - centroid-decomposition
+      - virtual-tree
+
+  - title: Dominators
+    intro: >
+      In a flow graph with a start vertex, $u$ dominates $v$ when every path from the start to $v$ passes
+      through $u$. The immediate dominators form a tree, which compilers use for optimization. The
+      Lengauer-Tarjan algorithm builds it from a depth-first search in near-linear time.
+    entries:
+      - dominators-problem
+      - dominator-tree
+      - lengauer-tarjan-algorithm
+
+  - title: Tree decompositions and treewidth
+    intro: >
+      A tree decomposition arranges bags of vertices in a tree so that every edge lies in a bag and each
+      vertex's bags are connected. Its width measures how far a graph is from a tree. Many NP-hard
+      problems become linear for bounded width, by dynamic programming over a nice decomposition, but
+      finding the treewidth is itself NP-hard.
+    entries:
+      - tree-decomposition
+      - nice-tree-decomposition
+      - treewidth
+      - path-decomposition
+      - treewidth-computation
+      - tree-decomposition-construction
+      - dp-on-tree-decompositions
+
+  - title: Comparing, drawing and embedding trees
+    intro: >
+      Tree edit distance counts the insertions, deletions and relabelings that turn one ordered tree into
+      another, and Zhang and Shasha compute it by dynamic programming over keyroots. Reingold and Tilford
+      draw a tree with subtrees packed side by side. Finally, a whole metric can be approximated by trees:
+      FRT gives a random tree with logarithmic expected distortion.
+    entries:
+      - tree-edit-distance
+      - zhang-shasha-algorithm
+      - tree-drawing
+      - reingold-tilford-layout
+      - metric-tree-embedding
+      - frt-tree-embedding

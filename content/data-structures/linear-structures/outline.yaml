@@ -1,0 +1,111 @@
+# The order of chapter 3.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Memory, arrays and pointers
+    intro: >
+      Every structure in this volume is built from two things: cells at computed addresses, and cells that
+      hold the addresses of other cells. The [array](/array/) is the first, the [pointer](/pointer/) the
+      second. Row-major order shows how a table of two dimensions is laid out in one dimension of memory.
+    entries:
+      - array
+      - row-major-order
+      - pointer
+
+  - title: Collections defined by their operations
+    intro: >
+      An abstract type says what the operations do, not how. These entries define the list, the bag and the
+      four types that differ only in which end an item enters and which end it leaves: the stack, the queue,
+      the deque and the steque. The generalized queue and the randomized queue choose the item to remove by
+      its age or by chance.
+    entries:
+      - list
+      - bag
+      - stack
+      - queue
+      - deque
+      - steque
+      - generalized-queue
+      - randomized-queue
+
+  - title: Arrays that grow and wrap
+    intro: >
+      A plain array has a fixed size and an expensive middle. Doubling the capacity when it is full gives
+      appends in $O(1)$ amortized time; treating the last cell as the neighbour of the first gives a queue
+      with no shifting. The gap buffer keeps the free space at the place where the edits happen.
+    entries:
+      - dynamic-array
+      - dynamic-array-resizing
+      - circular-buffer
+      - gap-buffer
+
+  - title: Linked lists
+    intro: >
+      A linked list trades fast access by position for fast insertion and deletion at a node it holds. The
+      variants add a back pointer, close the chain into a ring, put a sentinel at the boundary, pack the two
+      pointers into one word, or put many items in each node. A tree with any number of children per node is
+      a list of lists.
+    entries:
+      - linked-list
+      - singly-linked-list
+      - sentinel-node
+      - doubly-linked-list
+      - circular-linked-list
+      - xor-linked-list
+      - unrolled-linked-list
+      - rooted-tree-representation
+
+  - title: Walking and rewiring lists
+    intro: >
+      Two classic pointer problems. Reversal turns every link around in one pass. Cycle detection decides
+      whether following links ever repeats, and finds the tail and the cycle, with two pointers and constant
+      memory.
+    entries:
+      - list-reversal
+      - reverse-linked-list
+      - floyd-cycle-detection
+      - brent-cycle-detection
+
+  - title: Stacks and expressions
+    intro: >
+      The stack was first used to translate and evaluate formulas, and it is still the tool for it. Postfix
+      notation needs no parentheses and is evaluated with one stack; infix notation is converted to it with a
+      stack of operators. Matching brackets is the same idea with the arithmetic taken out.
+    entries:
+      - reverse-polish-notation
+      - postfix-evaluation
+      - infix-to-postfix
+      - dijkstra-two-stack-evaluation
+      - balanced-parentheses
+
+  - title: Stacks and queues with more to say
+    intro: >
+      One type can be built from another, and a type can be taught a new query. A stack made of two queues is
+      slow; a queue made of two stacks is fast and, with a running minimum on each stack, answers the minimum
+      of a sliding window. The monotonic stack and the monotonic deque drop items that can never be the answer
+      again, which gives linear-time scans for nearest larger items and window extremes.
+    entries:
+      - stack-from-two-queues
+      - min-stack
+      - min-queue
+      - next-greater-element
+      - monotonic-stack
+      - monotonic-deque
+
+  - title: Symbol tables on lists and arrays
+    intro: >
+      The simplest ways to store keys with values: an unordered linked list searched from the head, and two
+      sorted parallel arrays searched by binary search. They are slow for large tables, but they are the base
+      cases of later chapters. A sparse vector is a symbol table from positions to nonzero values.
+    entries:
+      - sequential-search-symbol-table
+      - binary-search-symbol-table
+      - sparse-vector
+
+  - title: Lists that reorder themselves
+    intro: >
+      A list searched from the front is fast for the items near the front. If the order may change after each
+      access, which rule keeps the often-used items there? Move-to-front costs at most twice as much as any
+      other rule on every sequence of requests, which is the first result of competitive analysis.
+    entries:
+      - list-access-problem
+      - move-to-front-heuristic
+      - self-organizing-list

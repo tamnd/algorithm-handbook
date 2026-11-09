@@ -1,0 +1,17 @@
+## History
+
+Random choices entered algorithms early. C. A. R. Hoare published FIND, the selection procedure now called quickselect, as Algorithm 65 in the *Communications of the ACM* in 1961, next to Quicksort, and a random pivot is the natural way to run both. In 1973 Manuel Blum, Robert Floyd, Vaughan Pratt, Ronald Rivest and Robert Tarjan showed that selection needs only linear time in the worst case, and in 1975 Floyd and Rivest gave a sampling method with fewer comparisons in expectation. Knuth computed the exact mean number of comparisons of the random-pivot version.
+
+The idea that a test may be wrong with a small, controlled probability came in the 1970s. Gary Miller described his primality test in 1976 as a deterministic algorithm that is correct under the extended Riemann hypothesis, and Michael Rabin observed in the same year that random bases give an unconditional test; Rabin and Louis Monier both proved the bound of one quarter on the strong liars in 1980. John Gill defined probabilistic Turing machines and the classes now called ZPP, RP and BPP in the *SIAM Journal on Computing* in 1977. Later examples include David Karger's contraction algorithm for minimum cuts (1993) and the treaps of Cecilia Aragon and Raimund Seidel (1989).
+
+Random insertion orders became a design method in computational geometry. Kenneth Clarkson studied random samples of geometric objects in 1987, and Clarkson and Peter Shor bounded the total cost of randomized incremental algorithms in 1989, in two papers in *Discrete and Computational Geometry*. Seidel gave his simple linear programming algorithm in fixed dimension in 1991, and in 1993 he named backwards analysis and collected its uses in a survey chapter. Ketan Mulmuley wrote a textbook of computational geometry built around randomized algorithms.
+
+The probabilistic method is older than most of these algorithms. Paul Erdős proved in 1947, in the *Bulletin of the American Mathematical Society*, that a random two-colouring of the edges of a complete graph on $2^{k/2}$ vertices has no one-coloured $k$-clique with positive probability, a lower bound on the Ramsey numbers of Frank Ramsey's 1930 theorem. Erdős and László Lovász introduced the local lemma in 1975. Algorithms for it came later: József Beck gave polynomial-time ones for some applications in 1991, Robin Moser gave a resampling algorithm for $k$-SAT in 2009, and Moser and Gábor Tardos extended it to the general variable setting in 2010.
+
+## Further reading
+
+- Rajeev Motwani and Prabhakar Raghavan, *Randomized Algorithms*. The standard text, with Las Vegas and Monte Carlo algorithms, the probabilistic method and the geometric algorithms of this chapter.
+- Michael Mitzenmacher and Eli Upfal, *Probability and Computing*, second edition. A slower introduction to the probability that the analyses use, with many algorithmic examples.
+- Noga Alon and Joel H. Spencer, *The Probabilistic Method*, fourth edition. The reference for existence proofs by randomness, from the union bound to the local lemma.
+- Mark de Berg, Otfried Cheong, Marc van Kreveld and Mark Overmars, *Computational Geometry: Algorithms and Applications*, third edition. Randomized incremental algorithms for linear programming, trapezoidal maps and Delaunay triangulations, analysed backwards.
+- Raimund Seidel, *Backwards analysis of randomized geometric algorithms*, in *New Trends in Discrete and Computational Geometry* (1993). The short survey that named the technique.

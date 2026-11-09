@@ -1,0 +1,139 @@
+groups:
+  - title: Alphabets, borders and periods
+    intro: >
+      A string is a sequence over a finite alphabet. A border is a proper prefix that is also a suffix, and a
+      period $p$ says that each symbol equals the one $p$ places later; the two are the same fact seen from
+      two sides. The Fine and Wilf theorem says when two periods force a third, and the critical
+      factorization theorem ties the global period to local ones.
+    entries:
+      - alphabet
+      - border
+      - string-period
+      - periodicity-detection
+      - string-compression-by-period
+      - fine-and-wilf-theorem
+      - critical-factorization
+
+  - title: Rotations and primitive words
+    intro: >
+      Two words are conjugate when one is a rotation of the other. A word is primitive when it is not a
+      power of a shorter word, and every word is a power of exactly one primitive root. The least rotation
+      of a word gives a canonical name to its conjugacy class and is found in linear time.
+    entries:
+      - word-conjugacy
+      - word-conjugacy-testing
+      - primitive-word
+      - primitive-root-of-a-word
+      - minimal-rotation
+      - booth-algorithm
+      - shiloach-least-rotation
+
+  - title: Necklaces and Lyndon words
+    intro: >
+      A necklace is a conjugacy class, named by its least rotation; a bracelet also allows reflection. A
+      Lyndon word is a primitive word that is strictly smaller than all its other rotations. Witt's formula
+      counts them by Möbius inversion, and the FKM algorithm lists them in constant amortized time.
+    entries:
+      - necklace
+      - bracelet
+      - lyndon-word
+      - witt-formula
+      - necklace-enumeration
+      - fkm-algorithm
+      - cattell-necklace-generation
+
+  - title: Lyndon factorization
+    intro: >
+      Every word is, in exactly one way, a concatenation of Lyndon words that do not increase. Duval's
+      algorithm finds this factorization in linear time and constant extra space. The Lyndon array records,
+      for each position, the longest Lyndon word that starts there.
+    entries:
+      - lyndon-schutzenberger-theorem
+      - lyndon-factorization
+      - duval-algorithm
+      - lyndon-array
+      - longest-lyndon-substring
+
+  - title: de Bruijn sequences and superstrings
+    intro: >
+      A de Bruijn sequence of order $n$ contains every word of length $n$ exactly once as a cyclic factor.
+      It exists for every alphabet and order, because the de Bruijn graph has an Eulerian circuit. The
+      shortest string that contains a given set of words is NP-hard to find in general, and greedy merging
+      gives a constant-factor approximation.
+    entries:
+      - de-bruijn-graph
+      - de-bruijn-sequence
+      - de-bruijn-existence-theorem
+      - shortest-common-superstring
+      - greedy-superstring-merge
+
+  - title: Repetitions
+    intro: >
+      A square is a factor $uu$, a cube is $uuu$, and an overlap is $axaxa$. A run is a maximal repetition
+      with exponent at least 2. A string of length $n$ has fewer than $n$ runs, which are found in linear
+      time from the Lyndon array, and fewer than $n$ distinct squares.
+    entries:
+      - square
+      - cube
+      - overlap
+      - maximal-repetition
+      - computing-runs
+      - main-lorentz-algorithm
+      - runs-theorem
+      - lyndon-based-runs-computation
+      - counting-distinct-squares
+
+  - title: Avoiding repetitions
+    intro: >
+      Thue showed that an infinite binary word can avoid overlaps and an infinite ternary word can avoid
+      squares, using iterated morphisms such as the one that gives the Thue-Morse word. Dejean's theorem
+      gives the least exponent that can be avoided on each alphabet, and Zimin words decide which patterns
+      can be avoided at all.
+    entries:
+      - string-morphism
+      - thue-morse-word
+      - overlap-free-word
+      - square-free-word
+      - thue-theorem
+      - repetition-threshold
+      - dejean-theorem
+      - zimin-word
+      - avoidability
+
+  - title: Letter counts
+    intro: >
+      The Parikh vector of a word counts each letter and forgets the order. Two words are Abelian equivalent
+      when their Parikh vectors agree, and an Abelian square is $uv$ with $u$ and $v$ Abelian equivalent.
+      Keränen showed that four letters suffice to avoid Abelian squares.
+    entries:
+      - parikh-vector
+      - abelian-equivalence
+      - abelian-square
+      - keranen-theorem
+      - abelian-complexity
+
+  - title: Infinite words and complexity
+    intro: >
+      The subword complexity of an infinite word counts its distinct factors of each length. A word with at
+      most $n$ factors of some length $n$ is eventually periodic, and the Sturmian words are the aperiodic
+      words with exactly $n + 1$. The Fibonacci word is the standard example, and Christoffel words are the
+      finite words that draw a line of rational slope.
+    entries:
+      - morphic-word
+      - subword-complexity
+      - morse-hedlund-theorem
+      - sturmian-word
+      - sturmian-characterization
+      - fibonacci-word
+      - christoffel-word
+
+  - title: Absent words and attractors
+    intro: >
+      A minimal absent word does not occur in a text, but all its proper factors do. A text has $O(\sigma n)$
+      of them, and they are computed in linear time from a suffix automaton. A string attractor is a set of
+      positions that every distinct factor crosses, a measure of repetitiveness tied to compression.
+    entries:
+      - minimal-absent-word
+      - minimal-absent-words
+      - minimal-absent-words-algorithm
+      - string-attractor

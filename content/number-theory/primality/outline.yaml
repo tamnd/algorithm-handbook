@@ -1,0 +1,93 @@
+# The order of chapter 10.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Primes and how they are spread
+    intro: >
+      The definition of a prime, and the facts about how many primes there are that every primality
+      algorithm leans on. Bertrand's postulate puts a prime between $n$ and $2n$; the prime number theorem
+      says that about one integer in $\ln x$ near $x$ is prime; the study of gaps says how far a search for
+      the next prime may have to go.
+    entries:
+      - prime-number
+      - bertrands-postulate
+      - prime-number-theorem
+      - prime-gaps
+
+  - title: The problem and the Fermat test
+    intro: >
+      Primality testing asks whether an $\ell$-bit integer is prime in time polynomial in $\ell$. Wilson's
+      theorem gives an exact criterion that is too slow to use. Fermat's little theorem gives a fast check that
+      every prime passes; a base that fails it is a witness of compositeness, and a composite that passes it is
+      a pseudoprime. The Carmichael numbers pass it for every coprime base.
+    entries:
+      - primality-testing
+      - wilsons-theorem
+      - compositeness-witness
+      - probable-prime
+      - pseudoprime
+      - fermat-primality-test
+      - fermat-pseudoprime
+      - carmichael-number
+
+  - title: The Euler test and the strong test
+    intro: >
+      Two strengthenings of the Fermat check that no composite passes for every base. The Euler test compares
+      $a^{(n-1)/2}$ with the Jacobi symbol and catches each odd composite with probability at least $1/2$. The
+      strong test also looks for a nontrivial square root of 1 and catches each odd composite $n > 9$ with
+      probability above $3/4$;
+      it is the Miller-Rabin test, the one used in practice.
+    entries:
+      - euler-jacobi-pseudoprime
+      - solovay-strassen
+      - nontrivial-square-root-of-one
+      - strong-pseudoprime
+      - strong-liar
+      - miller-rabin
+      - miller-rabin-error-bound
+      - deterministic-miller-rabin-bases
+
+  - title: Stronger tests and prime generation
+    intro: >
+      Tests that combine checks which fail in different ways, and their main use: making primes. Baillie-PSW
+      pairs one strong test with a Lucas test and has no known failure. Random primes come from testing random
+      candidates; cryptography often wants primes of a special shape, such as safe primes $2q + 1$.
+    entries:
+      - baillie-psw
+      - frobenius-test
+      - random-prime-generation
+      - sophie-germain-prime
+      - safe-prime
+
+  - title: Certificates from the factors of n - 1
+    intro: >
+      A primality proof gives an answer with no chance of error, and a certificate lets someone else check it
+      fast. When enough of $n - 1$ is factored, an element of large order modulo $n$ proves $n$ prime: this is
+      the test of Lucas, the recursive certificate of Pratt and the partial-factor test of Pocklington.
+    entries:
+      - primality-certificate
+      - primality-proving
+      - lucas-primality-test
+      - pratt-certificate
+      - pocklington-primality-test
+
+  - title: Primes of special form
+    intro: >
+      For numbers of the form $2^p - 1$, $2^{2^k} + 1$ and $k \cdot 2^m + 1$, the factors of $n + 1$ or
+      $n - 1$ are known for free, and a single run of squarings decides primality exactly. This is why the
+      largest known primes have these forms.
+    entries:
+      - mersenne-prime
+      - lucas-lehmer-test
+      - fermat-prime
+      - pepin-test
+      - proth-prime
+      - proth-test
+
+  - title: General primality proofs
+    intro: >
+      Methods that prove a number of no special form prime. AKS is deterministic and polynomial but slow;
+      APR-CL is nearly polynomial and practical; ECPP replaces the group of units by an elliptic curve and is
+      the method used for large general primes.
+    entries:
+      - aks-primality-test
+      - apr-cl-primality-test
+      - ecpp

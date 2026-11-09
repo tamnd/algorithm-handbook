@@ -1,0 +1,63 @@
+# The order of chapter 10.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its settings
+    intro: >
+      Given $g$ and $h$ in a cyclic group, find $x$ with $g^x = h$. The difficulty depends on the group: it
+      is easy in the additive group of integers modulo $n$, subexponential in the multiplicative group of a
+      finite field, and, as far as is known, fully exponential on a well chosen elliptic curve. Discrete roots
+      and logarithms in a known interval are close relatives.
+    entries:
+      - discrete-logarithm-problem
+      - discrete-root
+      - finite-field-discrete-logarithm-problem
+      - elliptic-curve-discrete-logarithm-problem
+      - interval-discrete-logarithm-problem
+
+  - title: Square root algorithms
+    intro: >
+      Methods that work in any group and use about $\sqrt n$ group operations for a group of order $n$.
+      Baby-step giant-step is deterministic and needs $\sqrt n$ memory; Pohlig-Hellman reduces the work to
+      the largest prime factor of $n$. Pollard's rho and kangaroo methods need almost no memory, and
+      distinguished points let many machines share one search.
+    entries:
+      - baby-step-giant-step
+      - pohlig-hellman
+      - pollard-rho-discrete-logarithm
+      - distinguished-points
+      - parallel-collision-search
+      - pollard-kangaroo
+
+  - title: Lower bounds for generic algorithms
+    intro: >
+      In the generic group model an algorithm sees group elements only as labels and may only multiply and
+      compare them. Shoup proved that such an algorithm needs about $\sqrt q$ operations in a group of prime
+      order $q$, so the square root algorithms are optimal there, and any faster method must use the
+      representation of the elements.
+    entries:
+      - generic-group-model
+      - shoup-generic-lower-bound
+
+  - title: Index calculus
+    intro: >
+      In a finite field the elements have a representation that factors: integers into primes, polynomials
+      into irreducibles. Index calculus collects relations among smooth elements, solves a linear system for
+      the logarithms of a factor base, and expresses the target over it. Its descendants, the number field
+      sieve and the function field sieve, reach $L(1/3)$, and in small characteristic the problem is now
+      quasi-polynomial.
+    entries:
+      - factor-base
+      - index-calculus
+      - number-field-sieve-discrete-logarithm
+      - coppersmith-discrete-logarithm
+      - function-field-sieve
+      - quasi-polynomial-discrete-logarithm
+
+  - title: Attacks on special elliptic curves
+    intro: >
+      Elliptic curves have no known factor base in general, but some curves leak structure. A pairing moves
+      the logarithm on a curve with small embedding degree into a finite field; summation polynomials and
+      Weil descent bring index calculus to curves over extension fields.
+    entries:
+      - menezes-okamoto-vanstone-reduction
+      - semaev-summation-polynomial-index-calculus
+      - weil-descent-attack

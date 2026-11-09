@@ -1,0 +1,129 @@
+# The order of chapter 7.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Cliques and independent sets
+    intro: >
+      A clique is a set of pairwise adjacent vertices and an independent set a set of pairwise
+      non-adjacent ones; each is the other in the complement graph. Maximal sets are easy to find by
+      greed, but the largest ones are hard: deciding whether a clique of size $k$ exists is NP-complete,
+      and the same holds for independent sets.
+    entries:
+      - clique
+      - independent-set
+      - maximal-clique
+      - clique-number
+      - independence-number
+      - clique-decision
+      - maximum-clique
+      - maximum-independent-set
+
+  - title: Colorings and the chromatic number
+    intro: >
+      A proper coloring gives adjacent vertices different colors, so each color class is an independent
+      set and the chromatic number is the fewest classes that cover the graph. A clique forces as many
+      colors as it has vertices. Two colors are decided in linear time by a graph search, because a graph
+      is bipartite exactly when it has no odd cycle; three colors are already NP-complete.
+    entries:
+      - graph-coloring
+      - chromatic-number
+      - k-coloring
+      - bipartite-odd-cycle-theorem
+      - bipartite-graph-test
+      - bipartiteness-testing
+      - clique-cover
+
+  - title: Greedy coloring and vertex orders
+    intro: >
+      Greedy coloring gives each vertex the smallest color its earlier neighbours do not use. It never
+      needs more than $\Delta + 1$ colors, and the order decides how well it does: by degree
+      (Welsh-Powell), by smallest-last removal (at most the degeneracy plus one), by saturation (DSATUR)
+      or one class at a time (RLF). Brooks' theorem says when $\Delta$ colors suffice.
+    entries:
+      - greedy-coloring
+      - delta-plus-one-bound
+      - welsh-powell-algorithm
+      - degeneracy
+      - degeneracy-ordering
+      - dsatur
+      - recursive-largest-first
+      - brooks-theorem
+
+  - title: Chordal and perfect graphs
+    intro: >
+      In a chordal graph some vertex order makes each vertex's later neighbours a clique, and greedy
+      coloring along that order is optimal. Chordal graphs are one family of perfect graphs, where the
+      chromatic number equals the clique number in every induced subgraph. The perfect graph theorems say
+      that the complement of a perfect graph is perfect and that odd holes and antiholes are the only
+      obstacles.
+    entries:
+      - chordal-graph
+      - perfect-elimination-ordering
+      - chordal-graph-coloring
+      - circular-arc-coloring
+      - perfect-graph
+      - perfect-graph-theorem
+      - strong-perfect-graph-theorem
+
+  - title: Exact search for cliques and colorings
+    intro: >
+      Bron-Kerbosch lists all maximal cliques by backtracking with a pivot, in time that matches the
+      largest possible number of them. Branch and bound finds a maximum clique, and Tomita's algorithms
+      bound each branch by a greedy coloring. For the chromatic number, dynamic programming over subsets
+      takes $O(2.4423^n)$ and inclusion-exclusion reaches $O^*(2^n)$. The planted clique problem shows
+      how hard the average case can be.
+    entries:
+      - maximal-clique-enumeration
+      - bron-kerbosch
+      - carraghan-pardalos-algorithm
+      - tomita-maximum-clique
+      - lawler-chromatic-number
+      - bjorklund-chromatic-number
+      - planted-clique
+
+  - title: Extremal bounds
+    intro: >
+      Ramsey's theorem says that every large graph has a large clique or a large independent set, and
+      Turán's theorem gives the most edges a graph can have without a clique of a given size. In the other
+      direction, Mycielski's graphs have no triangle but need many colors, so the clique number alone
+      does not bound the chromatic number. The Motzkin-Straus theorem and the Lovász theta function give
+      continuous views of the same quantities.
+    entries:
+      - ramsey-theorem
+      - turan-theorem
+      - motzkin-straus-theorem
+      - mycielski-graph
+      - lovasz-theta-function
+      - hadwiger-nelson-problem
+
+  - title: Kempe chains and colorings with lists
+    intro: >
+      Swapping two colors along a connected two-colored piece keeps a coloring proper. This Kempe
+      interchange proves that every planar graph is 5-colorable, it failed for four colors in Kempe's
+      hands, and it reappears in Vizing's proof. Hadwiger's conjecture generalizes the four color theorem
+      to minors, and list coloring lets each vertex choose from its own set.
+    entries:
+      - kempe-chain
+      - five-color-theorem
+      - hadwiger-conjecture
+      - list-coloring
+
+  - title: Edge coloring
+    intro: >
+      Coloring edges so that edges at a vertex differ needs at least $\Delta$ colors. Vizing's theorem
+      says $\Delta + 1$ always suffice for simple graphs, and its proof by fans and alternating paths is an
+      algorithm; bipartite graphs need exactly $\Delta$. Deciding between the two values is NP-complete.
+    entries:
+      - chromatic-index
+      - edge-coloring
+      - vizing-theorem
+      - vizing-algorithm
+
+  - title: Counting colorings
+    intro: >
+      The number of proper colorings with $k$ colors is a polynomial in $k$. Deleting and contracting one
+      edge gives a recurrence for it, which extends to the two-variable Tutte polynomial that also counts
+      spanning trees, forests and acyclic orientations. Counting colorings exactly is #P-hard.
+    entries:
+      - chromatic-polynomial
+      - deletion-contraction
+      - counting-graph-colorings
+      - tutte-polynomial

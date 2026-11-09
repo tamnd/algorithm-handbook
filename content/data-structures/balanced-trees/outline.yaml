@@ -1,0 +1,76 @@
+# The order of chapter 3.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Balance and rotations
+    intro: >
+      A balanced search tree keeps its height at $O(\log n)$ under every sequence of updates. These entries
+      state the goal, give the rotation, which changes the shape of a tree but not its key order, and
+      describe the general ways of restoring balance.
+    entries:
+      - balanced-binary-search-tree
+      - tree-rotation
+      - tree-rebalancing
+
+  - title: AVL trees
+    intro: >
+      The first balanced tree asks that the two subtrees of each node differ in height by at most one. The
+      balance factor records that difference, and the height theorem shows that the rule keeps the height
+      below $1.4405 \lg(n + 2)$.
+    entries:
+      - height-balanced-tree
+      - balance-factor
+      - avl-tree
+      - avl-height-theorem
+
+  - title: Multiway trees
+    intro: >
+      A node may hold more than one key. If every leaf is at the same depth and nodes hold one to two keys,
+      or one to three, the tree is a 2-3 tree or a 2-3-4 tree. Insertion splits full nodes and pushes a key
+      up, so the tree grows at the root.
+    entries:
+      - two-three-tree
+      - two-three-four-tree
+
+  - title: Red-black trees
+    intro: >
+      A red-black tree is a 2-3-4 tree written with binary nodes, one color bit each. These entries define the
+      black-height, the tree and its height bound, the correspondence with 2-3-4 trees, deletion, and two
+      simpler variants, the left-leaning red-black tree and the AA tree.
+    entries:
+      - black-height
+      - red-black-tree
+      - red-black-height-theorem
+      - red-black-correspondence-with-2-3-4-trees
+      - left-leaning-red-black-tree
+      - red-black-tree-deletion
+      - aa-tree
+
+  - title: Sizes in the nodes
+    intro: >
+      A tree that stores subtree sizes answers rank and select in $O(\log n)$ time. Sizes can also drive the
+      balance itself: a weight-balanced tree bounds the ratio of sibling sizes, and a scapegoat tree rebuilds
+      any subtree that becomes lopsided.
+    entries:
+      - order-statistic-tree
+      - weight-balanced-tree
+      - scapegoat-tree
+
+  - title: Treaps
+    intro: >
+      A treap gives each key a random priority and keeps the tree a heap on the priorities. Its shape is that
+      of a random binary search tree whatever the input. Split and merge make every other operation short,
+      and the implicit treap uses them to store a list indexed by position.
+    entries:
+      - treap
+      - treap-split
+      - treap-merge
+      - implicit-treap
+
+  - title: Recent designs
+    intro: >
+      Three designs from this century. The WAVL tree relaxes the AVL rule so that every update does at most
+      two rotations. The zip tree is a treap with small integer ranks and no rotations. Join-based algorithms
+      build union, intersection and difference for several balanced trees from one primitive.
+    entries:
+      - wavl-tree
+      - zip-tree
+      - join-based-tree-algorithms

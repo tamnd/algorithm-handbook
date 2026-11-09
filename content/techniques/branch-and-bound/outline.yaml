@@ -1,0 +1,61 @@
+# The order of chapter 2.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The parts of the method
+    intro: >
+      Branch and bound keeps the best solution found so far, bounds the best value below each node of the
+      search tree, and discards a node whose bound cannot beat that solution. Five definitions name the
+      parts: the incumbent, the bounding function, the rule that splits a node, the rule that discards one,
+      and the rule that picks the next node to work on.
+    entries:
+      - incumbent-solution
+      - bounding-function
+      - branching-rule
+      - fathoming-rule
+      - node-selection-rule
+
+  - title: Three orders of search
+    intro: >
+      The same bound and the same branching rule give three algorithms, one for each order of the live
+      nodes. A stack gives depth-first branch and bound, with memory linear in the depth. A priority queue
+      on the bound gives best-first branch and bound, which expands the fewest nodes. A queue gives the
+      breadth-first version, which is rarely the best choice but is simple to run in parallel by levels.
+    entries:
+      - depth-first-branch-and-bound
+      - best-first-branch-and-bound
+      - breadth-first-branch-and-bound
+
+  - title: Combinatorial problems
+    intro: >
+      Three classic bounds, each from a relaxation that is easy to solve. The 0-1 knapsack is bounded by the
+      fractional knapsack, the traveling salesman problem by a reduced cost matrix, and the quadratic
+      assignment problem by a linear assignment problem built from sorted rows.
+    entries:
+      - knapsack-branch-and-bound
+      - little-algorithm
+      - gilmore-lawler-bound
+
+  - title: Integer programs
+    intro: >
+      Branch and bound began as a method for integer linear programs. The Land-Doig algorithm bounds each
+      node by a linear program and branches on a variable whose value is fractional. The Balas additive
+      algorithm handles 0-1 programs with sums and comparisons alone, and no linear programs at all.
+    entries:
+      - land-doig-algorithm
+      - balas-additive-algorithm
+
+  - title: Dominance and reduction
+    intro: >
+      A node can be discarded without a bound when another node is at least as good for every completion.
+      Branch and reduce applies such rules, and other rules that simplify an instance, before every branch;
+      for maximum independent set this turns a $2^n$ search into one with $O(1.3803^n)$ leaves.
+    entries:
+      - dominance-pruning
+      - branch-and-reduce
+
+  - title: Continuous variables
+    intro: >
+      The method also works on boxes of real numbers. Interval branch and bound bisects boxes and bounds a
+      function on each box with interval arithmetic, and so finds the global minimum of a function with a
+      guarantee that rounding errors cannot break.
+    entries:
+      - interval-branch-and-bound

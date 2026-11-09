@@ -1,0 +1,44 @@
+# The order of chapter 5.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Tables without collisions
+    intro: >
+      The fastest search reads one slot. A direct-address table does this when the universe of keys is small
+      enough to give every key its own slot. When it is not, a perfect hash function, built after the keys are
+      known, gives the same one-probe search for a fixed set. These entries define both and give the number of
+      bits that any perfect or minimal perfect hash function needs.
+    entries:
+      - direct-address-table
+      - perfect-hash-function
+      - minimal-perfect-hash-function
+
+  - title: Chaining and the cost of a search
+    intro: >
+      Expected costs of hashing rest on a model of the hash values. The first entry states the simple uniform
+      hashing assumption. Under it, a search in a chained table examines $\Theta(1 + \alpha)$ keys on average.
+      The last entry proves the same bound with no assumption on the keys, for a hash function drawn at random
+      from a universal family.
+    entries:
+      - simple-uniform-hashing
+      - chaining-expected-search-time
+      - universal-hashing-lemma
+
+  - title: Open addressing and clustering
+    intro: >
+      An open-addressing table stores the keys in the array itself and follows a probe sequence to an empty
+      slot. Linear probing builds long runs of full slots, and schemes whose sequence depends only on the home
+      slot make keys with one home repeat each other's probes. The last entry gives the expected number of
+      probes when there is no clustering at all, which is the standard the other schemes are measured against.
+    entries:
+      - primary-clustering
+      - secondary-clustering
+      - open-addressing-expected-probes
+
+  - title: Hashing for special settings
+    intro: >
+      Two settings need hashing of a different shape. Game programs hash board positions that change by one
+      move at a time, and Zobrist hashing updates the hash with a few XORs per move. Files on disk grow from
+      thousands to millions of records, and dynamic hashing splits one bucket at a time instead of rebuilding
+      the table.
+    entries:
+      - zobrist-hashing
+      - dynamic-hashing

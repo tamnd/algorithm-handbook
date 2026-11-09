@@ -1,0 +1,60 @@
+# The order of chapter 1.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Recursion and recurrences
+    intro: >
+      A recursive procedure calls itself on smaller inputs, and its cost is then given by an equation that
+      refers to itself in the same way. These entries define recursion, the recurrence relation that describes
+      its cost, and what it means to solve one exactly.
+    entries:
+      - recursion
+      - recurrence-relation
+      - closed-form-solution
+
+  - title: The divide-and-conquer form
+    intro: >
+      Most recurrences in this handbook have one shape, $T(n) = aT(n/b) + f(n)$: $a$ subproblems of size
+      $n/b$ and $f(n)$ work to split and combine. The second entry introduces the function $n^{\log_b a}$
+      against which $f$ is measured.
+    entries:
+      - divide-and-conquer-recurrence
+      - watershed-function
+
+  - title: Three ways to solve a recurrence
+    intro: >
+      Three general methods work on almost any recurrence. Iteration unrolls it into a sum, the recursion tree
+      draws the same sum level by level, and substitution proves a guessed answer by induction. The first two
+      find the answer; the third makes it rigorous.
+    entries:
+      - iteration-method
+      - recursion-tree-method
+      - substitution-method
+
+  - title: Linear recurrences
+    intro: >
+      A recurrence such as $F_n = F_{n-1} + F_{n-2}$ looks back a fixed number of steps with constant
+      coefficients. Its characteristic polynomial gives the exact solution. The Fibonacci numbers are the
+      standard example, with Binet's closed form and Cassini's identity.
+    entries:
+      - linear-recurrences-with-constant-coefficients
+      - binet-formula
+      - cassini-identity
+
+  - title: The master theorem
+    intro: >
+      The master theorem reads off the order of growth of $T(n) = aT(n/b) + f(n)$ by comparing $f$ with the
+      watershed function, in three cases. A change of variables brings some other recurrences, such as those
+      with square roots, into its form.
+    entries:
+      - master-theorem
+      - change-of-variables
+
+  - title: Beyond the master theorem
+    intro: >
+      These entries cover what the master theorem leaves out. The Akra-Bazzi theorem handles subproblems of
+      different sizes and the gaps between the cases. Roura's continuous master theorem handles recurrences
+      that sum over all smaller sizes, as in the analysis of quicksort, and gives the leading constant. The
+      smoothness rules justify the habit of solving a recurrence only for powers of 2.
+    entries:
+      - akra-bazzi-theorem
+      - continuous-master-theorem
+      - smoothness-rules

@@ -1,0 +1,74 @@
+# The order of chapter 5.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Searching by scanning
+    intro: >
+      When the items are in no order, nothing can be skipped. These entries state the problem, give the scan
+      that solves it with $n$ comparisons, and show that no comparison algorithm does better. Finding the
+      maximum is the same scan with a different test. The last entry asks how a list should reorder itself
+      when some items are asked for more often than others.
+    entries:
+      - search-in-unordered-array
+      - linear-search
+      - sentinel-search
+      - find-maximum
+      - self-organizing-list-search
+
+  - title: Binary search and its boundaries
+    intro: >
+      A sorted array lets one comparison discard half of the items. These entries give
+      [binary search](/binary-search/) with its invariant, then the form that every library ships: a search
+      for the first position where a test becomes true. The lower bound and upper bound queries are the two
+      cases that matter most, and together they find every copy of a key.
+    entries:
+      - search-in-sorted-array
+      - binary-search
+      - lower-bound-query
+      - upper-bound-query
+      - lower-and-upper-bound-search
+      - first-and-last-occurrence
+
+  - title: Other ways to probe a sorted array
+    intro: >
+      Binary search probes the middle. Other probe sequences win in other settings: forward jumps when a step
+      back is costly, doubling when the length is unknown or the key is near the start, and interpolation
+      when the keys are numbers spread evenly. Each entry says what it gains and what it gives up.
+    entries:
+      - jump-search
+      - unbounded-search
+      - exponential-search
+      - interpolation-search
+      - interpolation-search-expected-time
+
+  - title: Search beyond a plain sorted array
+    intro: >
+      The halving idea needs less than a sorted array. It needs only a test whose answer tells which part can
+      hold what is sought. These entries apply it to rotated arrays, to local and unimodal maxima, to two
+      sorted arrays at once, and to matrices whose rows and columns are sorted.
+    entries:
+      - rotated-sorted-array-minimum
+      - rotated-sorted-array-search
+      - peak-finding
+      - unimodal-maximum
+      - median-of-two-sorted-arrays
+      - sorted-matrix-search
+      - staircase-search
+
+  - title: How many comparisons
+    intro: >
+      A search algorithm on a sorted array of fixed size is a tree of comparisons. That view turns the
+      question "can any search be faster?" into a question about the height of binary trees, and the answer
+      is that $\lceil \lg(n+1) \rceil$ comparisons are needed, which binary search meets.
+    entries:
+      - search-decision-tree
+      - search-lower-bound
+
+  - title: Binary search on real machines
+    intro: >
+      Every binary search makes about $\lg n$ comparisons, but the time per comparison varies a lot. These
+      entries avoid the division of the midpoint, precompute the steps, remove the branch that the processor
+      cannot predict, and lay out the array so that the first probes share the cache.
+    entries:
+      - fibonacci-search
+      - uniform-binary-search
+      - branchless-binary-search
+      - eytzinger-layout

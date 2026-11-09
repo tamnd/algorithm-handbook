@@ -1,0 +1,88 @@
+# The order of chapter 11.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The product and its cost
+    intro: >
+      The definition gives an algorithm: each entry of $AB$ is a [dot product](/dot-product/), and the three
+      nested loops of [naive matrix multiplication](/naive-matrix-multiplication/) make $nmp$ multiplications.
+      The matrix-vector product is the case $p = 1$. Any algorithm must at least read the input and write the
+      output, so $n^2$ steps are needed for square matrices.
+    entries:
+      - naive-matrix-multiplication
+      - matrix-vector-multiplication
+      - matrix-multiplication-quadratic-lower-bound
+
+  - title: Fewer multiplications
+    intro: >
+      Cutting the matrices into blocks alone changes nothing: eight half-size products still cost $\Theta(n^3)$.
+      [Strassen's algorithm](/strassen-algorithm/) uses seven, and runs in $O(n^{\lg 7})$, about $O(n^{2.807})$.
+      The other entries count products for $3 \times 3$ blocks and for inner products, define the exponent
+      $\omega$, and show that inverting a matrix costs no more than multiplying.
+    entries:
+      - divide-and-conquer-matrix-multiplication
+      - strassen-algorithm
+      - winograd-inner-product-algorithm
+      - laderman-algorithm
+      - matrix-multiplication-exponent
+      - matrix-multiplication-inversion-equivalence
+
+  - title: Powers
+    intro: >
+      Repeated squaring computes $A^k$ with $O(\log k)$ products. With the right matrix, this gives the $n$-th
+      Fibonacci number, or the $n$-th term of any linear recurrence, in $O(\log n)$ arithmetic operations.
+    entries:
+      - matrix-power
+      - matrix-exponentiation
+      - matrix-fibonacci
+
+  - title: Other semirings
+    intro: >
+      Replace addition and multiplication by OR and AND, or by min and plus, and the same three loops count
+      paths, decide reachability or find shortest paths. The naive algorithm still works; Strassen's does not,
+      because it needs subtraction.
+    entries:
+      - boolean-matrix-multiplication
+      - min-plus-matrix-multiplication
+
+  - title: Sparse matrices
+    intro: >
+      When most entries are zero, the cost should depend on the number of nonzeros, not on $n^2$. Stored in
+      [compressed sparse row](/compressed-sparse-row/) form, a matrix-vector product takes time linear in the
+      size of the matrix, and Gustavson's algorithm multiplies two sparse matrices in time proportional to the
+      useful work.
+    entries:
+      - sparse-matrix-vector-multiplication
+      - sparse-matrix-multiplication
+
+  - title: Memory and processors
+    intro: >
+      On a real machine the cost is data movement. Blocking for a cache of size $M$ cuts the transfers to
+      $O(n^3/(B\sqrt M))$, which is optimal, and recursive splitting reaches the same bound without knowing $M$.
+      Cannon's algorithm spreads the blocks over a grid of processors.
+    entries:
+      - blocked-matrix-multiplication
+      - cache-oblivious-matrix-multiplication
+      - cannons-algorithm
+
+  - title: Tensors and bilinear algorithms
+    intro: >
+      Every algorithm like Strassen's is a way of writing the matrix multiplication tensor as a sum of rank-one
+      tensors. The number of terms, the [tensor rank](/tensor-rank/), is the number of multiplications, and it
+      bounds $\omega$. Searching for low-rank decompositions by machine has found new ones for small sizes.
+    entries:
+      - kronecker-product
+      - tensor-rank
+      - matrix-multiplication-tensor
+      - bilinear-complexity
+      - alphatensor
+
+  - title: Bounds on omega
+    intro: >
+      The best bounds on $\omega$ come from approximate algorithms and from many products done at once.
+      [Border rank](/border-rank/) allows limits, Schönhage's inequality turns a direct sum of products into a
+      bound, and the laser method applied to the Coppersmith-Winograd tensor gives every record since 1990,
+      now $\omega < 2.371552$.
+    entries:
+      - border-rank
+      - schonhage-asymptotic-sum-inequality
+      - laser-method
+      - coppersmith-winograd-algorithm

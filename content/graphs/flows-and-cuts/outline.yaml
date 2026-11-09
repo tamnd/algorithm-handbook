@@ -1,0 +1,130 @@
+# The order of chapter 7.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Networks, flows and cuts
+    intro: >
+      A flow network is a directed graph with capacities on its edges, a source and a sink. A flow respects
+      the capacities and is conserved at every other vertex; a cut splits the vertices with the source on
+      one side and the sink on the other. Every flow breaks into paths and cycles, which is how flows turn
+      into combinatorial answers.
+    entries:
+      - cut
+      - flow-network
+      - s-t-flow
+      - flow-conservation
+      - cut-capacity
+      - flow-decomposition
+
+  - title: Augmenting paths and the max-flow min-cut theorem
+    intro: >
+      The residual graph shows how a flow can still change, with reverse edges that undo flow already sent.
+      A flow is maximum exactly when the residual graph has no path from source to sink, and then the
+      vertices still reachable from the source give a cut of the same value. This is the max-flow min-cut
+      theorem, and with integer capacities it yields an integer maximum flow.
+    entries:
+      - max-flow-problem
+      - min-cut-problem
+      - residual-graph
+      - augmenting-path-flow
+      - ford-fulkerson
+      - max-flow-min-cut-theorem
+      - min-cut-max-flow-duality
+      - integrality-theorem
+      - flow-integrality-theorem
+
+  - title: Choosing the augmenting path
+    intro: >
+      Ford-Fulkerson may take a number of steps that grows with the capacities, or fail to stop with
+      irrational ones. Shortest paths bound the number of augmentations by $O(nm)$; the widest path and
+      capacity scaling bound it by a logarithm of the capacities; and blocking flows in level graphs push
+      along all shortest paths at once.
+    entries:
+      - edmonds-karp
+      - fattest-augmenting-path
+      - maximum-capacity-augmenting-path
+      - capacity-scaling
+      - level-graph
+      - blocking-flow
+      - dinic
+      - mpm-algorithm
+
+  - title: Preflows and push-relabel
+    intro: >
+      Push-relabel methods drop conservation during the run. Vertices hold excess, which moves along
+      residual edges downhill according to height labels until the preflow becomes a flow. The same
+      machinery solves a family of related problems at once, when the capacities depend on a parameter, and
+      helps when the network changes.
+    entries:
+      - preflow
+      - push-relabel
+      - parametric-max-flow-problem
+      - dynamic-max-flow-problem
+
+  - title: Modelling with flows
+    intro: >
+      Much of the use of maximum flow lies in the models. Splitting vertices limits flow through them,
+      lower bounds turn into supplies and demands, and a minimum cut chooses a set closed under
+      precedence. These entries model disjoint paths, surveys, airline schedules, sports standings, project
+      selection and image segmentation as flows or cuts.
+    entries:
+      - vertex-capacities-flow
+      - vertex-disjoint-paths
+      - edge-disjoint-paths
+      - circulation-problem
+      - hoffman-circulation-theorem
+      - survey-design-problem
+      - airline-scheduling
+      - baseball-elimination
+      - maximum-weight-closure
+      - image-segmentation-graph-cuts
+
+  - title: Minimum-cost flow
+    intro: >
+      When every unit of flow on an edge has a cost, the cheapest flow of a given value is optimal exactly
+      when the residual graph has no negative cycle. Cycle canceling uses this test directly; successive
+      shortest paths keep it true while the flow grows; the network simplex method pivots between spanning
+      trees. The fastest methods today use electrical flows and interior points.
+    entries:
+      - min-cost-flow-problem
+      - cycle-canceling
+      - successive-shortest-path
+      - network-simplex
+      - cost-scaling
+      - electrical-flow
+      - almost-linear-max-flow
+
+  - title: Global minimum cuts
+    intro: >
+      Without a fixed source and sink, the least cut of an undirected graph can be found without flows:
+      by random contraction of edges, as in Karger's algorithm, or by maximum adjacency orderings, as in
+      the algorithm of Stoer and Wagner. For directed graphs, the method of Hao and Orlin needs the time of
+      one push-relabel run.
+    entries:
+      - global-min-cut-problem
+      - karger-min-cut
+      - karger-stein
+      - stoer-wagner
+      - nagamochi-ibaraki
+      - directed-global-min-cut-problem
+      - hao-orlin
+
+  - title: Cuts between all pairs
+    intro: >
+      An undirected graph has only $n - 1$ distinct minimum cut values among its $\binom{n}{2}$ pairs, and
+      a Gomory-Hu tree stores them all. Building it takes $n - 1$ maximum flows; isolating cuts reduce the
+      work for many terminals.
+    entries:
+      - all-pairs-min-cut-problem
+      - gomory-hu-algorithm
+      - gomory-hu-tree
+      - isolating-cuts
+
+  - title: Several commodities
+    intro: >
+      With several source and sink pairs sharing the edges, flow and cut no longer match. Multicommodity
+      flow is a linear program, while the multiway cut, the multicut and the sparsest cut are NP-hard;
+      their approximation algorithms bound the gap between the flow and the cut.
+    entries:
+      - multi-commodity-flow-problem
+      - multiway-cut-problem
+      - multicut-problem
+      - sparsest-cut-problem

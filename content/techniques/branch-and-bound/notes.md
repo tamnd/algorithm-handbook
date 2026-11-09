@@ -1,0 +1,17 @@
+## History
+
+Branch and bound began with integer programming. Ailsa Land and Alison Doig, at the London School of Economics, published *An automatic method of solving discrete programming problems* in *Econometrica* in 1960. They solved the linear program of each subproblem, used its value as the bound, fixed a variable to successive integer values, and chose among the open subproblems by their linear programming values, which is best-first selection. R. J. Dakin gave the two-way split $x_j \le \lfloor x_j^* \rfloor$ or $x_j \ge \lceil x_j^* \rceil$ in 1965, and that split is the one integer programming solvers use today.
+
+The name came from the traveling salesman problem. John Little, Katta Murty, Dura Sweeney and Caroline Karel published *An algorithm for the traveling salesman problem* in *Operations Research* in 1963. They bounded tours with a reduced cost matrix, split on one arc chosen by its penalty, and called the method branch and bound. Paul Gilmore in 1962 and Eugene Lawler in 1963 gave the bound for the quadratic assignment problem that now carries both names. Egon Balas published his additive algorithm for 0-1 programs in 1965, and Arthur Geoffrion described it in 1967 as one case of implicit enumeration. Peter Kolesar gave a branch and bound for the 0-1 knapsack in 1967, and Ellis Horowitz and Sartaj Sahni gave the depth-first version in 1974.
+
+General theory followed. Eugene Lawler and D. E. Wood surveyed the early methods in 1966 and gave them a common form; L. G. Mitten gave a formal statement in 1970. Walter Kohler and Kenneth Steiglitz in 1974, and Toshihide Ibaraki in 1976 and 1977, compared search orders and dominance relations in a common framework; Ibaraki's 1976 paper studies when best-first selection expands the fewest nodes. Robert Jeroslow showed in 1974 that even trivial integer programs can need exponentially many nodes, and Vasek Chvatal gave hard knapsack instances in 1980.
+
+Two later lines took the method outside operations research. In exact exponential algorithms, Robert Tarjan and Anthony Trojanowski found a maximum independent set in $O(2^{n/3})$ time in 1977 by a careful analysis of branching cases, and Fedor Fomin, Fabrizio Grandoni and Dieter Kratsch introduced measure and conquer in 2009 to sharpen such analyses. In numerical analysis, Ramon Moore built interval arithmetic, S. Skelboe used repeated bisection to bound the range of rational functions in 1974, and Eldon Hansen turned this into global optimization in one dimension in 1979 and in several dimensions in 1980.
+
+## Further reading
+
+- E. L. Lawler and D. E. Wood, *Branch-and-bound methods: a survey*, Operations Research 14(4), 1966. The first general account, still a clear statement of the method and its early uses.
+- Laurence A. Wolsey, *Integer Programming*. Relaxations, branching and node selection as used in integer programming solvers, with the theory of the bounds.
+- Silvano Martello and Paolo Toth, *Knapsack Problems: Algorithms and Computer Implementations*. Bounds, reductions and codes for the knapsack family, with experiments.
+- Fedor V. Fomin and Dieter Kratsch, *Exact Exponential Algorithms*. Branch and reduce, branching vectors and measure and conquer, with maximum independent set as the main example.
+- Eldon Hansen and G. William Walster, *Global Optimization Using Interval Analysis*. Interval branch and bound in full, with the tests that make it fast in practice.

@@ -1,0 +1,76 @@
+# The order of chapter 6.2. Groups are read in order; entries in a group too.
+groups:
+  - title: The maximum subarray
+    intro: >
+      A subarray is a run of consecutive items. The maximum subarray problem asks for the run with the largest
+      sum, and it has algorithms at every level: cubic, quadratic, $n \log n$ and linear. Read
+      [Kadane's algorithm](/kadane-algorithm/) closely; the divide-and-conquer method is slower but leads to
+      the four-value combine that segment trees use.
+    entries:
+      - subarray
+      - maximum-subarray-problem
+      - kadane-algorithm
+      - maximum-subarray-divide-and-conquer
+
+  - title: Variations on Kadane's scan
+    intro: >
+      The scan keeps the best value of a run that ends at the current item. Change what is kept and it solves
+      more: the smallest sum as well gives the circular problem, the smallest product as well gives the
+      largest product, and one value per count of runs gives the best $k$ disjoint runs.
+    entries:
+      - maximum-circular-subarray-sum
+      - circular-kadane-algorithm
+      - maximum-product-subarray
+      - kadane-max-product
+      - k-maximum-subarray-problem
+
+  - title: Two dimensions
+    intro: >
+      The rectangle of a matrix with the largest sum was the original problem. Fixing a band of rows turns
+      it into the one-dimensional problem on column sums, which gives cubic time. A polynomially faster
+      algorithm would refute the APSP conjecture.
+    entries:
+      - maximum-sum-submatrix
+      - bentley-column-sweep
+
+  - title: Sliding windows
+    intro: >
+      When the condition on a run is monotone, so that a good window stays good when it grows, or when it
+      shrinks, two pointers that only move right find the best window in linear time. Fixed length, positive
+      sums and a bound on the number of distinct values are the three standard cases.
+    entries:
+      - maximum-sum-subarray-of-fixed-length
+      - sliding-window-positive-sum
+      - longest-subarray-with-at-most-k-distinct
+      - distinct-count-two-pointers
+
+  - title: Prefix sums with a hash table
+    intro: >
+      A subarray sum is a difference of two prefix sums. When the target is exact, such as a sum of $0$ or
+      of $k$, the question becomes one about equal values among the prefix sums, and a hash table answers it
+      in one pass. The same trick works for XOR, with a trie in place of the table for the largest value.
+    entries:
+      - longest-zero-sum-subarray
+      - subarray-sum-equals-k
+      - prefix-sum-hash-counting
+      - maximum-xor-subarray
+
+  - title: Negative items and length conditions
+    intro: >
+      With negative items a window loses its monotone property. A deque of increasing prefix sums restores
+      linear time for the shortest run with sum at least $K$ and for runs with bounded length. The largest
+      average with a minimum length reduces to such tests by a binary search on the average.
+    entries:
+      - shortest-subarray-sum-at-least-k
+      - monotonic-deque-prefix-sums
+      - maximum-density-segment
+
+  - title: Rectangles under a histogram
+    intro: >
+      The largest rectangle under a histogram covers a run of bars at the height of its lowest bar. A
+      monotonic stack finds, for every bar, how far it reaches on both sides, in one pass. Row by row, the
+      same scan finds the largest rectangle of ones in a binary matrix.
+    entries:
+      - largest-rectangle-in-histogram
+      - histogram-stack-algorithm
+      - maximal-rectangle-binary-matrix

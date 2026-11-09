@@ -1,0 +1,142 @@
+# The order of chapter 11.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Polynomials and how to store them
+    intro: >
+      A polynomial is a finite list of coefficients from a ring, added term by term and multiplied by
+      convolution. These entries fix the words used in the rest of the chapter: the ring $R[x]$, the degree,
+      monic and irreducible polynomials. They then give the two coefficient representations, the dense array
+      that every fast algorithm uses and the sparse list of terms for polynomials with few nonzero
+      coefficients.
+    entries:
+      - polynomial-ring
+      - polynomial
+      - polynomial-degree
+      - monic-polynomial
+      - irreducible-polynomial
+      - dense-polynomial-representation
+      - sparse-polynomial-representation
+
+  - title: Evaluation and roots
+    intro: >
+      To evaluate a polynomial at one point, [Horner's rule](/horner-rule/) uses $n$ multiplications and $n$
+      additions, and no general method uses fewer. The same loop divides by $x - a$, which leads to the
+      factor theorem and to Vieta's formulas linking roots and coefficients. Estrin's scheme and the
+      Paterson-Stockmeyer algorithm trade a few more operations for a shorter critical path or for fewer
+      expensive products.
+    entries:
+      - polynomial-evaluation
+      - horner-rule
+      - factor-theorem
+      - vieta-formulas
+      - estrin-scheme
+      - paterson-stockmeyer-algorithm
+
+  - title: Multiplication
+    intro: >
+      Multiplication is the central operation: the costs of division, gcd, evaluation and interpolation are
+      all stated in $M(n)$, the cost of one product. The school method takes $\Theta(n^2)$ operations. The
+      fast methods store a polynomial by its values, multiply the values, and convert back; with roots of
+      unity as the points, the FFT does the conversions in $O(n \log n)$. Kronecker substitution and the
+      heap-based sparse method cover integer and sparse inputs.
+    entries:
+      - polynomial-multiplication
+      - point-value-representation
+      - evaluation-interpolation-paradigm
+      - fft-polynomial-multiplication
+      - kronecker-substitution
+      - sparse-polynomial-multiplication
+
+  - title: Division and Newton iteration
+    intro: >
+      Long division removes the top term of the dividend one step at a time and takes quadratic time.
+      Reversing the coefficients turns the quotient into a truncated power series, and Newton iteration
+      computes the reciprocal of a power series in a constant number of multiplications. Together they make
+      division as cheap as multiplication, up to a constant factor.
+    entries:
+      - polynomial-division
+      - polynomial-long-division
+      - polynomial-remainder-theorem
+      - power-series-inversion
+      - newton-iteration
+      - newton-power-series-inversion
+      - fast-polynomial-division
+
+  - title: Many points, composition and recurrences
+    intro: >
+      With fast division in hand, a balanced tree of products of linear factors evaluates a polynomial at
+      $n$ points and interpolates through $n$ points in $O(M(n) \log n)$ operations. The same baby-step
+      giant-step idea as in Paterson-Stockmeyer speeds up composition, and polynomial arithmetic gives the
+      far terms of a linear recurrence in $O(M(d) \log N)$.
+    entries:
+      - multipoint-evaluation
+      - subproduct-tree
+      - fast-multipoint-evaluation
+      - fast-interpolation
+      - polynomial-composition
+      - brent-kung-composition
+      - linear-recurrence-nth-term
+      - bostan-mori-algorithm
+
+  - title: Greatest common divisors and resultants
+    intro: >
+      Over a field the Euclidean algorithm computes the gcd as it does for integers, with the degree in place
+      of the size, and its extended form gives inverses modulo a polynomial. The resultant and the
+      discriminant detect a common root or a repeated root without finding any root. Over the integers the
+      real difficulty is the growth of the coefficients, which pseudo-division, subresultants and modular
+      methods keep under control.
+    entries:
+      - polynomial-gcd
+      - polynomial-euclidean-algorithm
+      - polynomial-extended-euclidean-algorithm
+      - resultant
+      - discriminant
+      - primitive-polynomial
+      - gauss-lemma
+      - pseudo-division
+      - subresultant-gcd
+      - brown-modular-gcd
+
+  - title: Factoring over finite fields
+    intro: >
+      Factoring starts by separating the factors by multiplicity, using only gcds with the derivative. Over a
+      finite field the remaining square-free polynomial is split by degree with gcds against $x^{q^i} - x$,
+      and then into single factors by random gcds or by the linear algebra of Berlekamp's algorithm. The same
+      fact about $x^{q^i} - x$ gives Rabin's irreducibility test.
+    entries:
+      - square-free-polynomial
+      - square-free-factorization
+      - yun-square-free-factorization
+      - polynomial-irreducibility-testing
+      - rabin-irreducibility-test
+      - polynomial-factorization-over-finite-fields
+      - distinct-degree-factorization
+      - equal-degree-factorization
+      - cantor-zassenhaus-algorithm
+      - berlekamp-factorization
+
+  - title: Factoring over the integers
+    intro: >
+      Eisenstein's criterion proves some integer polynomials irreducible at a glance. For the general
+      problem, the Zassenhaus algorithm factors modulo a small prime, lifts the factors to a large prime
+      power with Hensel lifting, and recombines them into true factors. It is fast in practice, though its
+      last stage is exponential in the worst case.
+    entries:
+      - eisenstein-criterion
+      - polynomial-factorization-over-integers
+      - hensel-lemma
+      - hensel-lifting
+      - zassenhaus-algorithm
+
+  - title: Real roots
+    intro: >
+      The last group counts and separates the real roots of a polynomial with exact arithmetic. Descartes'
+      rule of signs bounds the number of positive roots by a scan of the coefficients, and Sturm's theorem
+      counts the roots in an interval exactly. Real root isolation bisects with either test; Vincent's
+      theorem shows why the Descartes method stops.
+    entries:
+      - descartes-rule-of-signs
+      - sturm-sequence
+      - sturm-theorem
+      - real-root-isolation
+      - vincent-theorem
+      - vincent-collins-akritas

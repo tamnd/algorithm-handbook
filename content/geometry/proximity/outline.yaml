@@ -1,0 +1,84 @@
+# The order of chapter 13.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Distances
+    intro: >
+      Every proximity question starts from a distance. Between two points it is
+      the Euclidean distance, best compared in squared form so that integer input
+      stays exact. From a point to a line or a segment it takes one cross product
+      and one dot product, and between two sets it is the Hausdorff distance, the
+      largest of the nearest-point distances.
+    entries:
+      - euclidean-distance
+      - point-to-line-distance
+      - point-to-segment-distance
+      - hausdorff-distance
+  - title: The closest pair
+    intro: >
+      The closest pair of $n$ points is the model problem of the chapter. Checking
+      all pairs takes $\Theta(n^2)$ time; divide and conquer and a sweep line take
+      $\Theta(n \log n)$, and a randomized grid takes $O(n)$ expected time. A
+      reduction from element distinctness shows that $\Omega(n \log n)$ is optimal
+      for algebraic computation trees.
+    entries:
+      - proximity-problems
+      - closest-pair-of-points
+      - closest-pair-divide-and-conquer
+      - closest-pair-sweep-line
+      - randomized-closest-pair
+      - closest-pair-lower-bound
+  - title: Other questions about pairs
+    intro: >
+      The farthest pair lies on the convex hull and is found by rotating calipers.
+      The collinear points problem asks whether three points lie on one line; it
+      takes $O(n^2)$ time and is 3SUM-hard. The bichromatic closest pair joins a
+      red point to a blue one and is tied to the minimum spanning tree.
+    entries:
+      - farthest-pair
+      - collinear-points
+      - bichromatic-closest-pair
+  - title: Nearest neighbors
+    intro: >
+      Joining each point to its nearest neighbor gives a forest whose components
+      each end in one mutual pair. A k-d tree answers one nearest neighbor query in
+      $O(\log n)$ expected time, and all $n$ nearest neighbors take $O(n \log n)$
+      time together. Approximate and reverse queries complete the group.
+    entries:
+      - nearest-neighbor-graph
+      - kd-tree-nearest-neighbor-search
+      - all-nearest-neighbors
+      - approximate-nearest-neighbor
+      - reverse-nearest-neighbor
+  - title: Proximity graphs
+    intro: >
+      Several graphs join two points when some region between them is empty. They
+      nest as $\text{NNG} \subseteq \text{MST} \subseteq \text{RNG} \subseteq
+      \text{GG} \subseteq \text{DT}$, so all of them are planar and can be cut out
+      of the Delaunay triangulation. The Urquhart graph and the $\beta$-skeletons
+      sit between members of the chain.
+    entries:
+      - proximity-graphs
+      - euclidean-minimum-spanning-tree
+      - gabriel-graph
+      - relative-neighborhood-graph
+      - urquhart-graph
+      - beta-skeleton
+  - title: Spanners and well-separated pairs
+    intro: >
+      A spanner keeps every distance within a factor $t$ using $O(n)$ edges. The
+      Yao graph picks the nearest point in each of $k$ cones, and the
+      well-separated pair decomposition covers all $\binom{n}{2}$ pairs by $O(n)$
+      pairs of clusters, which also gives fast approximate algorithms for many of
+      the earlier problems.
+    entries:
+      - geometric-spanner
+      - yao-graph
+      - well-separated-pair-decomposition
+  - title: Distances between curves
+    intro: >
+      The Hausdorff distance ignores the order of points along a curve. The
+      Fréchet distance respects it: it is the shortest leash that lets two walkers
+      traverse the two curves forward. Alt and Godau decide it in $\Theta(mn)$ time
+      with the free space diagram.
+    entries:
+      - frechet-distance
+      - alt-godau-algorithm

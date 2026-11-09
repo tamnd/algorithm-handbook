@@ -1,0 +1,107 @@
+# The order of chapter 3.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The type and the order
+    intro: >
+      A priority queue hands back the item with the smallest key, whatever the order in which the items came.
+      A heap is the usual way to build one: a tree in which every parent is at most its children. These three
+      entries fix the words used in the rest of the chapter.
+    entries:
+      - priority-queue
+      - heap-property
+      - heap
+
+  - title: The binary heap
+    intro: >
+      The [binary heap](/binary-heap/) keeps a complete binary tree in an array, with no pointers. Two moves do
+      all its work: [sift-up](/sift-up/) pushes a small key toward the root, and [sift-down](/sift-down/) pushes
+      a large key toward the leaves. Each follows one path, so each costs $O(\log n)$. The other entries of the
+      group are these two moves put to use.
+    entries:
+      - sift-up
+      - sift-down
+      - sift-down-sink
+      - binary-heap
+      - heap-extract-max
+      - heap-increase-key
+      - decrease-key
+      - heap-delete
+
+  - title: Building a heap
+    intro: >
+      Inserting $n$ keys one at a time costs $\Theta(n \log n)$ in the worst case. Calling sift-down from the
+      last parent back to the root costs $\Theta(n)$, because most nodes are near the leaves. These entries also
+      count how many comparisons the job needs at least.
+    entries:
+      - heap-construction
+      - floyd-heap-construction
+      - heap-construction-by-insertion
+
+  - title: Array heaps at work
+    intro: >
+      Small changes to the binary heap: more children per node, a map from items to positions so that keys can
+      change, a heap of fixed size that keeps the largest items of a stream, a tree of matches between runs,
+      and a heap with a weaker order that sorts with fewer comparisons.
+    entries:
+      - d-ary-heap
+      - indexed-priority-queue
+      - top-m-problem
+      - tournament-tree
+      - weak-heap
+
+  - title: Both ends at once
+    intro: >
+      A double-ended priority queue gives both the smallest and the largest key. The three heaps here do it in
+      one array, each in its own way: by alternating levels, by two heaps side by side, or by an interval in
+      each node.
+    entries:
+      - double-ended-priority-queue
+      - min-max-heap
+      - deap
+      - interval-heap
+
+  - title: Heaps that merge
+    intro: >
+      Two binary heaps cannot be merged in less than linear time. Heaps made of linked trees can: the leftist
+      and skew heaps merge along a short right path, and the binomial and pairing heaps merge by linking roots.
+      Several bounds here are amortized, and the proofs use the [potential method](/potential-method/).
+    entries:
+      - meldable-priority-queue
+      - leftist-heap
+      - skew-heap
+      - randomized-heap
+      - binomial-heap
+      - pairing-heap
+
+  - title: Small integer keys
+    intro: >
+      When the keys are small integers and never go below the last key removed, an array of buckets beats every
+      comparison heap. These structures are the ones that shortest-path codes with integer weights use.
+    entries:
+      - bucket-queue
+      - radix-heap
+      - calendar-queue
+
+  - title: Fast decrease-key
+    intro: >
+      The [Fibonacci heap](/fibonacci-heap/) does decrease-key in $O(1)$ amortized time, which makes
+      [Dijkstra's algorithm](/dijkstra/) run in $O(m + n \log n)$. The other entries keep that bound with a
+      simpler structure, or turn the amortized bounds into worst-case ones. They are research results; read the
+      Fibonacci heap first and the others as needed.
+    entries:
+      - fibonacci-heap
+      - thin-heap
+      - violation-heap
+      - rank-pairing-heap
+      - hollow-heap
+      - relaxed-heap
+      - brodal-queue
+      - strict-fibonacci-heap
+
+  - title: Beyond the exact heap
+    intro: >
+      The soft heap may raise the keys of a small fraction of its items, and in return every operation but one
+      costs $O(1)$ amortized, below the comparison lower bound for exact heaps. The kinetic heap tracks keys
+      that move with time.
+    entries:
+      - soft-heap
+      - kinetic-heap

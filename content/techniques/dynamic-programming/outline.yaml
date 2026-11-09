@@ -1,0 +1,113 @@
+# The order of chapter 2.2. Groups are read in order; entries in a group too.
+groups:
+  - title: When dynamic programming works
+    intro: >
+      Two properties decide whether a problem yields to dynamic programming. Optimal substructure says that an
+      optimal solution is built from optimal solutions of smaller instances, so that a recurrence gives the
+      optimum; overlapping subproblems says that a plain recursion meets the same instances again and again, so
+      that storing their answers pays. The principle of optimality is Bellman's form of the first property, and
+      the entry on independent subproblems shows how it fails when the parts share resources.
+    entries:
+      - optimal-substructure
+      - principle-of-optimality
+      - overlapping-subproblems
+      - independent-subproblems
+
+  - title: Filling the table
+    intro: >
+      A recurrence becomes an algorithm in two ways: top down, by a recursion that stores each answer the first
+      time it computes it, or bottom up, by a loop that fills a table in an order that puts every subproblem
+      after the ones it needs. Both walk the same subproblem graph. A second pass recovers an optimal solution
+      and not only its value, and when each row of the table needs only the row before it, two rows or one row
+      are enough.
+    entries:
+      - memoization
+      - tabulation
+      - subproblem-graph
+      - traceback
+      - rolling-array-space-reduction
+
+  - title: First problems
+    intro: >
+      Seven problems with a one-dimensional or two-dimensional table and a recurrence that is short to state.
+      Rod cutting and the coin change problem are the standard first examples; the unbounded and bounded
+      knapsack problems add a weight limit and copies of items; grid paths and text segmentation count instead
+      of optimize; egg dropping turns a worst-case game into a recurrence with two parameters.
+    entries:
+      - rod-cutting-problem
+      - coin-change-problem
+      - unbounded-knapsack
+      - bounded-knapsack
+      - grid-paths-with-obstacles
+      - text-segmentation
+      - egg-dropping-problem
+
+  - title: Paths in a DAG
+    intro: >
+      Every dynamic program is a shortest or longest path, or a path count, in the directed acyclic graph of its
+      subproblems. Two entries give this view, one from the side of design and one for a DAG given as input,
+      and five problems show it at work: assembly lines, production planning, fitting lines to points, breaking
+      a paragraph into lines, and the bitonic tour of points in the plane.
+    entries:
+      - dag-dynamic-programming
+      - dp-on-dag
+      - assembly-line-scheduling
+      - inventory-planning
+      - segmented-least-squares
+      - printing-neatly
+      - bitonic-tsp
+
+  - title: Intervals
+    intro: >
+      When an optimal solution of a sequence splits at one point into solutions of two contiguous parts, the
+      subproblems are the $\Theta(n^2)$ intervals, and the table fills by increasing length in $O(n^3)$ time.
+      The number of ways to split is a Catalan number, so the search it replaces is exponential. Matrix chains,
+      triangulations of a convex polygon and optimal binary search trees are the three classic cases.
+    entries:
+      - parenthesization
+      - interval-dp
+      - matrix-chain-multiplication
+      - optimal-polygon-triangulation
+      - optimal-binary-search-tree
+
+  - title: Trees, subsets and digits
+    intro: >
+      The state need not be an index or a pair of indices. On a rooted tree it is a vertex and a small flag,
+      filled from the leaves up. For problems over $n \le 20$ or so items it is a subset, stored as a bitmask,
+      as in the Held-Karp algorithm for the travelling salesman problem; a grid filled cell by cell keeps a
+      bitmask of its boundary; and counting the integers up to $N$ with a digit property keeps a position, a
+      summary and one flag.
+    entries:
+      - tree-dynamic-programming
+      - bitmask-dp
+      - held-karp-algorithm
+      - sum-over-subsets-dp
+      - broken-profile-dp
+      - digit-dynamic-programming
+
+  - title: Monge costs and line breaking
+    intro: >
+      Many recurrences take a minimum over a cost $w(i, j)$ that satisfies the quadrangle inequality. Then the
+      best split points move in one direction, and this cuts a factor of $n$ or more from the running time:
+      Knuth's optimization for interval programs, the divide and conquer optimization for layered programs, and
+      the SMAWK algorithm, which finds all row minima of a totally monotone matrix in linear time. Line breaking
+      is the main application, from the least weight subsequence problem to the method of TeX.
+    entries:
+      - monge-property
+      - knuth-optimization
+      - row-minima-of-totally-monotone-matrices
+      - divide-and-conquer-optimization
+      - smawk-algorithm
+      - optimal-text-wrapping
+      - knuth-plass-line-breaking
+
+  - title: Other speed-ups
+    intro: >
+      Three more tricks change how a table is stored or searched. The convex hull trick keeps the lines of a
+      transition that is linear in the query point and answers each minimum from their lower envelope. The
+      slope trick stores a convex piecewise linear table by its break points in a heap. The Aliens trick removes
+      a constraint on the number of parts with a penalty and a binary search on it.
+    entries:
+      - convex-hull-trick
+      - slope-trick
+      - aliens-trick

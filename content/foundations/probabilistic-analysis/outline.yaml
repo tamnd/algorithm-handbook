@@ -1,0 +1,115 @@
+# The order of chapter 1.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Probability spaces and events
+    intro: >
+      Every probabilistic statement in this handbook is about a probability space: a set of outcomes, the
+      events built from them, and a measure that gives each event a probability. These entries define the
+      space, conditioning on an event, independence, and distributions on finite and countable sets. The
+      Monty Hall problem at the end is a test of conditional probability that many readers fail at first.
+    entries:
+      - probability-space
+      - conditional-probability
+      - independent-events
+      - probability-distribution
+      - discrete-probability-distribution
+      - independence-of-events
+      - monty-hall-problem
+
+  - title: Random variables and distributions
+    intro: >
+      A running time on random input, or of a program that flips coins, is a random variable: a number
+      that depends on the outcome. These entries define random variables and the few distributions that
+      appear again and again in analyses: Bernoulli trials, the binomial, geometric and Poisson
+      distributions, densities for continuous variables, and the uniform distribution behind random
+      choices and random permutations.
+    entries:
+      - random-variable
+      - bernoulli-trials
+      - binomial-distribution
+      - geometric-distribution
+      - poisson-distribution
+      - probability-density-function
+      - uniform-distribution
+
+  - title: Expectation
+    intro: >
+      The expected value is the number that most analyses compute. These entries define it, introduce
+      the indicator variable of an event, and prove linearity of expectation, the rule that turns a hard
+      count into a sum of easy probabilities. Variance measures the spread around the mean, Jensen's
+      inequality compares $f(\mathbb{E}[X])$ with $\mathbb{E}[f(X)]$, and conditional expectation averages
+      over part of the randomness at a time.
+    entries:
+      - expected-value
+      - independent-random-variables
+      - indicator-random-variable
+      - linearity-of-expectation
+      - variance
+      - jensens-inequality
+      - conditional-expectation
+
+  - title: The expected cost of an algorithm
+    intro: >
+      With expectation in hand, the cost of an algorithm can be averaged over random inputs or over the
+      algorithm's own random choices. The hiring problem is the first full example; the expected running
+      time of randomized quicksort is the most used one. Smoothed analysis sits between the worst case and
+      the average case.
+    entries:
+      - average-case-analysis
+      - hiring-problem
+      - hire-assistant
+      - quicksort-expected-running-time
+      - smoothed-analysis
+
+  - title: Tail bounds
+    intro: >
+      An expected cost says nothing about how often the cost is much larger. Markov's and Chebyshev's
+      inequalities bound the probability of a large deviation from the mean and the variance alone. The
+      union bound adds up the probabilities of bad events without any assumption on how they depend on
+      each other. The law of large numbers and the central limit theorem describe the average of many
+      independent variables.
+    entries:
+      - markov-inequality
+      - chebyshev-inequality
+      - union-bound
+      - law-of-large-numbers
+      - central-limit-theorem
+
+  - title: Four random processes
+    intro: >
+      Four experiments with balls, coupons, birthdays and coins are the models behind hashing, load
+      balancing and many randomized algorithms. Each entry computes an expectation with indicators and
+      then bounds a tail with the tools of the previous group.
+    entries:
+      - coupon-collector-problem
+      - birthday-paradox
+      - balls-into-bins
+      - streaks
+
+  - title: Exponential tail bounds
+    intro: >
+      For sums of independent variables the tails fall exponentially, much faster than Chebyshev's
+      inequality can show. The moment generating function is the tool; the Chernoff bound for 0/1
+      variables, the exact tails of the binomial and Hoeffding's inequality for bounded variables are the
+      results. The last entry fixes the meaning of "with high probability", the form in which most
+      randomized algorithms state their guarantees.
+    entries:
+      - moment-generating-function
+      - chernoff-bound
+      - binomial-tail-bounds
+      - hoeffding-inequality
+      - high-probability-bounds
+
+  - title: Martingales and dependent events
+    intro: >
+      When the variables depend on each other, two ideas still give sharp bounds. A martingale is a
+      process whose expected next value is its current value; the optional stopping theorem and Wald's
+      equation compute expectations at a random time, and the Azuma-Hoeffding inequality bounds its
+      deviations. Concentration of measure collects these results for functions of many variables. The
+      Lovász local lemma shows that rare bad events that depend on few others can all be avoided at once.
+    entries:
+      - martingale
+      - optional-stopping-theorem
+      - walds-equation
+      - azuma-inequality
+      - concentration-of-measure
+      - lovasz-local-lemma

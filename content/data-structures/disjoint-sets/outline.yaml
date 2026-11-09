@@ -1,0 +1,74 @@
+# The order of chapter 3.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      Elements fall into classes, and classes only ever merge. An [equivalence relation](/equivalence-relation/)
+      is the mathematics of it, the [disjoint-set](/disjoint-set/) type is the interface, and the dynamic
+      equivalence problem asks how fast the interface can be served.
+    entries:
+      - equivalence-relation
+      - disjoint-set
+      - dynamic-equivalence-problem
+
+  - title: First solutions
+    intro: >
+      Three simple structures, each fast at one operation and slow at the other. They show what the forest of
+      the next group has to fix.
+    entries:
+      - quick-find
+      - quick-union
+      - linked-list-disjoint-sets
+
+  - title: The forest and its two rules
+    intro: >
+      The [disjoint-set forest](/disjoint-set-forest/) keeps each set as a tree of parent pointers. A rule for
+      linking keeps the trees shallow: hang the smaller tree, or the one of lower rank, under the other. A rule
+      for finding makes the trees flatter each time a path is walked. Path compression, halving and splitting
+      are three versions of the second rule.
+    entries:
+      - disjoint-set-forest
+      - union-by-size
+      - union-by-rank
+      - path-compression
+      - path-halving
+      - path-splitting
+
+  - title: How fast it is
+    intro: >
+      With both rules, $m$ operations on $n$ elements cost $O(m \log^* n)$ by the argument of Hopcroft and
+      Ullman, and $O(m\,\alpha(n))$ by Tarjan's sharper one. Random linking gives the same bound without ranks.
+    entries:
+      - hopcroft-ullman-log-star-bound
+      - union-find-amortized-bound
+      - randomized-linking
+
+  - title: More on the edges
+    intro: >
+      Each parent pointer can carry a value: a parity, a distance, or any group element. Then a find also
+      returns the relation of an element to its root, and a union can check a new fact against the old ones.
+      The last entry keeps the forest without compression so that unions can be undone.
+    entries:
+      - dsu-with-parity
+      - dsu-with-distances-to-representative
+      - weighted-union-find
+      - union-find-with-rollback
+
+  - title: Offline problems
+    intro: >
+      When all the operations are known in advance, union-find solves problems that do not look like set
+      merging at all. In each of these, the forest lets a scan jump over positions that are already used.
+    entries:
+      - offline-minimum
+      - offline-subarray-painting
+      - arpa-offline-rmq
+
+  - title: Limits and special cases
+    intro: >
+      When the shape of all unions is known in advance, the problem takes linear time on a word RAM. In general
+      it does not: the cell-probe lower bound of Fredman and Saks shows that $\alpha$ cannot be removed, and
+      Blum's structure shows what the best worst case for one operation is.
+    entries:
+      - static-tree-set-union
+      - gabow-tarjan-union-find
+      - blum-union-find
+      - fredman-saks-lower-bound

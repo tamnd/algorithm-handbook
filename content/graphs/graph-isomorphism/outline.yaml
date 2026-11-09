@@ -1,0 +1,86 @@
+# The order of chapter 7.13. Groups are read in order; entries in a group too.
+groups:
+  - title: Isomorphism and invariants
+    intro: >
+      Two graphs are isomorphic when they differ only in the names of their vertices. An invariant, such
+      as the degree sequence, can prove that two graphs are different but never that they are the same.
+      An isomorphism is a short certificate, so the problem is in NP, but it is neither known to be in P
+      nor believed to be NP-complete.
+    entries:
+      - graph-isomorphism-definition
+      - isomorphism-invariant
+      - graph-isomorphism-in-np
+      - graph-isomorphism-problem
+
+  - title: Automorphisms and symmetry
+    intro: >
+      An isomorphism from a graph to itself is an automorphism, and the automorphisms form a group. Its
+      orbits are the classes of vertices that look alike. Most graphs have no symmetry at all, and
+      computing the group, given by a few generators, is as hard as testing isomorphism.
+    entries:
+      - graph-automorphism-group
+      - automorphism-orbit
+      - asymmetric-graph
+      - almost-all-graphs-asymmetric
+      - graph-automorphism
+
+  - title: Trees
+    intro: >
+      Trees are the first class where isomorphism is easy. The AHU algorithm gives each vertex a code from
+      the sorted codes of its children and compares the codes of the roots; unrooted trees are rooted at
+      their center first.
+    entries:
+      - tree-isomorphism
+      - ahu-algorithm
+
+  - title: Subgraphs, common subgraphs and edit distance
+    intro: >
+      Asking whether one graph occurs inside another is NP-complete, unlike isomorphism itself. Ullmann's
+      algorithm and VF2 search over partial mappings with pruning, and they are the standard tools for
+      pattern matching in chemistry and in graph databases. The maximum common subgraph and the graph
+      edit distance measure how close two graphs are and are NP-hard as well.
+    entries:
+      - subgraph-isomorphism
+      - ullmann-algorithm
+      - vf2-algorithm
+      - maximum-common-subgraph
+      - graph-edit-distance
+
+  - title: Color refinement and Weisfeiler-Leman
+    intro: >
+      Color refinement colors each vertex by the multiset of its neighbours' colors until nothing changes;
+      the result is the coarsest equitable partition. It distinguishes almost all graphs, but not two
+      regular graphs with the same degree and the same number of vertices. The $k$-dimensional version colors $k$-tuples and is stronger,
+      and the Cai-Fürer-Immerman graphs show that no fixed $k$ is enough.
+    entries:
+      - equitable-partition
+      - partition-refinement
+      - weisfeiler-leman
+      - k-dimensional-weisfeiler-leman
+      - cai-furer-immerman-construction
+
+  - title: Canonical labeling in practice
+    intro: >
+      A canonical labeling renames the vertices so that isomorphic graphs become identical, which turns
+      isomorphism into string comparison and lets a database store one form per graph. The tools that
+      compute it, nauty and bliss, branch by individualizing a vertex, refine, and prune the search tree
+      with the automorphisms they find.
+    entries:
+      - canonical-labeling
+      - individualization-refinement
+      - nauty
+      - bliss
+
+  - title: Special classes and the complexity of isomorphism
+    intro: >
+      Planar graphs are tested in linear time through their embeddings, and graphs of bounded degree in
+      polynomial time by Luks's group-theoretic method. Many other problems are GI-complete, as hard as
+      isomorphism and no harder. Babai's algorithm builds on Luks and on Weisfeiler-Leman to solve the
+      general problem in quasipolynomial time.
+    entries:
+      - planar-graph-isomorphism
+      - hopcroft-tarjan-isomorphism
+      - bounded-degree-graph-isomorphism
+      - luks-algorithm
+      - gi-completeness
+      - babai-quasipolynomial-algorithm

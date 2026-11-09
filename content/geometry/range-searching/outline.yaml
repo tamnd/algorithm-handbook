@@ -1,0 +1,88 @@
+# The order of chapter 13.6. Groups are read in order; entries in a group too.
+groups:
+  - title: One dimension
+    intro: >
+      On a line a range is an interval, and a sorted array or a balanced search tree reports the $k$ keys
+      in it in $O(\log n + k)$ time. The search in a binary search tree is the pattern that every tree of the
+      chapter repeats: two paths down, and whole subtrees in between.
+    entries:
+      - one-dimensional-range-search
+      - bst-range-search
+
+  - title: Boxes, the problem and its forms
+    intro: >
+      An axis-parallel box can be asked to report its points, count them, or say whether it is empty, and
+      each form has its own bounds. Dominance ranges and three-sided ranges, boxes with sides at infinity,
+      are easier special cases, and box counting reduces to four dominance counts.
+    entries:
+      - orthogonal-range-searching
+      - orthogonal-range-reporting
+      - orthogonal-range-counting
+      - range-emptiness-query
+      - dominance-counting
+      - three-sided-range-query
+
+  - title: Range trees
+    intro: >
+      A range tree splits the points by $x$ into $O(\log n)$ canonical subtrees and searches each by $y$,
+      for $O(\log^2 n + k)$ time in $O(n \log n)$ space. Fractional cascading turns the many searches by $y$
+      into one, and the layered range tree answers in $O(\log n + k)$.
+    entries:
+      - range-tree
+      - range-tree-query
+      - layered-range-tree
+
+  - title: Linear space and offline counting
+    intro: >
+      A kd-tree uses linear space and answers a box in $O(\sqrt{n} + k)$ time. The priority search tree, a
+      heap on $y$ and a search tree on $x$ at once, answers three-sided queries in $O(\log n + k)$ with
+      linear space. When all queries are known in advance, a sweep with a Fenwick tree counts them all.
+    entries:
+      - kd-tree-range-search
+      - priority-search-tree
+      - priority-search-tree-query
+      - offline-orthogonal-range-counting
+
+  - title: Enclosure and change
+    intro: >
+      Point enclosure turns the problem around: boxes are stored and points are asked. Problems whose
+      answer for a union of sets combines the answers for the parts are decomposable, and the logarithmic
+      method makes their static structures accept insertions.
+    entries:
+      - orthogonal-point-enclosure
+      - decomposable-searching-problem
+      - dynamic-range-searching
+
+  - title: Ranges that are not boxes
+    intro: >
+      Halfplanes, disks and triangles are much harder than boxes: with linear space the best counting time
+      is about $n^{1-1/d}$. Duality turns halfspaces into points and lines, and the
+      [lifting map](/paraboloid-lifting-map/) turns disks into halfspaces one dimension up.
+    entries:
+      - halfspace-range-searching
+      - circular-range-searching
+      - simplex-range-searching
+
+  - title: Sampling and cuttings
+    intro: >
+      The VC dimension measures how many subsets a family of ranges can cut out. When it is bounded, a
+      small random sample hits every large range, and this epsilon-net theorem gives cuttings: a few
+      simplices, each crossed by few of the given hyperplanes. Shallow cuttings cover only the bottom of an
+      arrangement and drive halfspace reporting.
+    entries:
+      - range-space
+      - epsilon-net-theorem
+      - geometric-cutting
+      - shallow-cutting
+
+  - title: Partition trees and lower bounds
+    intro: >
+      The partition theorem splits $n$ points into $r$ classes so that a hyperplane crosses only
+      $O(r^{1-1/d})$ of their cells. Applied recursively it gives the partition tree, with linear space and
+      $O(n^{1-1/d})$ query time, and the semigroup lower bounds show that this, and the range tree for boxes,
+      are close to the best possible.
+    entries:
+      - partition-theorem
+      - partition-tree
+      - partition-tree-query
+      - range-searching-lower-bound

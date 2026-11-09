@@ -1,0 +1,19 @@
+## History
+
+Most of the scans in this chapter have no single inventor. The pair search from both ends, the merge-like intersection and the compaction with a read and a write index belong to the folklore of programming, and the textbooks present them as exercises. CLRS asks in Chapter 2 whether two items of a set sum to a given value, with a bound that comes from sorting first, and Skiena lists the scan from both ends among the uses of sorting. The two pointers become a named technique later, in the teaching of programming interviews and online judges, where many of the problems of this chapter carry LeetCode numbers.
+
+The oldest piece with a clear author is the three-way partition. Edsger Dijkstra posed the Dutch national flag problem in Chapter 14 of *A Discipline of Programming* (1976) and derived the loop from its invariant: three regions of known colours and one region not yet inspected. The problem was a lesson in program derivation before it was a step of quicksort. Jon Bentley and Douglas McIlroy (1993) studied three-way partitions for library sort functions and proposed a scheme that keeps the equal items at both ends and makes fewer swaps; Sedgewick's teaching of three-way quicksort uses Dijkstra's loop.
+
+The classic reference for the pointers at two speeds lies in the study of random number generators. Knuth credits Robert Floyd with the method that compares $x_n$ and $x_{2n}$ to find the period of a sequence $x_{i+1} = f(x_i)$, in an exercise of Section 3.1 of *The Art of Computer Programming*, Volume 2. Richard Brent (1980) replaced the half-speed pointer by a saved item that is renewed at powers of two, reported about 36 percent fewer evaluations of $f$ on average, and used the method to speed up Pollard's rho method of factoring. The use on linked lists, where the sequence is the chain of next pointers, is the same idea on a different $f$.
+
+The 3SUM scan gained its theory in the 1990s. Anka Gajentaan and Mark Overmars (1995) named the problem 3SUM and called a geometric problem 3SUM-hard when 3SUM reduces to it with subquadratic overhead, taking the quadratic time of the sort-and-scan method as the bar that these problems seemed unable to pass. Jeff Erickson (1999) proved an $\Omega(n^2)$ lower bound in the 3-linear decision tree model, the model in which the scan works. Allan Grønlund and Seth Pettie (2014) showed that the quadratic bound is not tight in more general models.
+
+The sliding window and its deque are also folklore. The pattern of keeping the best answer so far and the best answer that ends at the current position is the one that Bentley describes for the maximum subarray in Column 8 of *Programming Pearls*. The window maximum is the running max filter of image processing, and Daniel Lemire (2006) gave a streaming deque algorithm that computes the max and min filters together with at most three comparisons per item.
+
+## Further reading
+
+- Edsger W. Dijkstra, *A Discipline of Programming* (1976). Chapter 14 derives the Dutch national flag loop from its invariant and is still the best account of why the loop is correct.
+- Jon Bentley, *Programming Pearls*, second edition (2000). Column 8 develops the one-pass scan for the maximum subarray, the model for the windows of this chapter.
+- Donald E. Knuth, *The Art of Computer Programming, Volume 2: Seminumerical Algorithms*, third edition (1997). Section 3.1 and its exercise 6 give Floyd's method of finding the period of a sequence.
+- Steven S. Skiena, *The Algorithm Design Manual*, third edition (2020). It places the scan from both ends among the applications of sorting and has many problems of the kind in this chapter.
+- Robert Sedgewick and Kevin Wayne, *Algorithms*, fourth edition (2011). Section 2.3 uses Dijkstra's three-way partition in quicksort for inputs with many equal keys.

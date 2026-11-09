@@ -1,0 +1,19 @@
+## History
+
+Rewriting began as a tool for word problems. Axel Thue studied systems of string replacements in 1914 and asked whether one can decide when two strings are equal. Emil Post and Andrei Markov proved independently in 1947 that the word problem for finitely presented semigroups is undecidable, and Markov's normal algorithms, a model of computation built from ordered string rules, followed. On the side of equations, Garrett Birkhoff gave the rules of equational deduction in 1935 and proved them complete.
+
+The lambda calculus and combinatory logic gave the first confluence theorems. Moses Schönfinkel introduced combinators in 1924 and Haskell Curry developed combinatory logic from 1930. Alonzo Church and J. Barkley Rosser proved confluence of the lambda calculus in 1936. Max Newman in 1942 isolated the abstract argument now called Newman's lemma: a terminating relation is confluent if it is locally confluent. W. Tait and P. Martin-Löf found the parallel reduction proof around 1971, and Barry Rosen in 1973 and Michael O'Donnell in 1977 carried confluence over to first-order systems without overlaps.
+
+Donald Knuth and Peter Bendix published their completion procedure in 1970. It introduced critical pairs, turned confluence of a terminating system into a finite check, and found complete systems for groups and other theories. Gérard Huet in 1980 gave the short proof of Newman's lemma and the general critical pair lemma, and in 1981 proved completion correct for runs that do not stop. Gerald Peterson and Mark Stickel extended completion to associative and commutative operators in 1981. Unfailing completion, which keeps equations that cannot be oriented, came from Jieh Hsiang and Michaël Rusinowitch in 1987 and from Leo Bachmair, Nachum Dershowitz and David Plaisted in 1989. Jean-Marie Hullot in 1980 proved narrowing complete for unification in convergent systems.
+
+Termination proofs grew into a field of their own. Nachum Dershowitz and Zohar Manna defined the multiset ordering in 1979, and Dershowitz gave the recursive path ordering in 1982. Polynomial interpretations go back to Dallas Lankford in the 1970s, and Dieter Hofbauer and Clemens Lautemann showed in 1989 that they bound derivation lengths doubly exponentially. Thomas Arts and Jürgen Giesl published the dependency pair method in 2000, Chin Soon Lee, Neil Jones and Amir Ben-Amram the size-change principle in 2001, and Jörg Endrullis, Johannes Waldmann and Hans Zantema matrix interpretations in 2008. These methods now run inside automatic termination provers that compete every year.
+
+The implementation side grew alongside. Christoph Hoffmann and Michael O'Donnell gave table-driven tree pattern matching in 1982, for equational programs. Graph reduction, which shares subterms instead of copying them, came from Christopher Wadsworth's 1971 thesis on the lambda calculus and from David Turner's 1979 combinator machine. José Meseguer proposed rewriting logic in 1992 as a model of concurrent change, and it became the basis of the Maude system.
+
+## Further reading
+
+- Franz Baader and Tobias Nipkow, *Term Rewriting and All That* (1998). The standard first textbook, with termination orderings, critical pairs, completion and the word problem in one volume.
+- Terese, *Term Rewriting Systems* (2003). A long reference work that covers orthogonal systems, strategies, termination and higher-order rewriting in depth.
+- Henk Barendregt, *The Lambda Calculus: Its Syntax and Semantics* (revised edition, 1984). The reference for beta reduction, the Church-Rosser theorem and standardization.
+- Nachum Dershowitz and Jean-Pierre Jouannaud, "Rewrite systems", in the *Handbook of Theoretical Computer Science*, volume B (1990). A survey of the whole field as it stood around 1990, with a large bibliography.
+- Ronald Book and Friedrich Otto, *String-Rewriting Systems* (1993). The theory of Thue systems, monoid presentations and their word problems.

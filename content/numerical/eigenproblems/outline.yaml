@@ -1,0 +1,121 @@
+groups:
+  - title: Eigenvalues, eigenvectors and similarity
+    intro: >
+      The objects of the chapter and the forms a matrix can be brought to. Similarity keeps the eigenvalues,
+      a diagonal form exists only when there are enough eigenvectors, and the Schur form always exists and
+      can be reached with unitary transformations. A symmetric matrix has the best case of all, a real
+      diagonal form in an orthonormal basis.
+    entries:
+      - eigenvalue
+      - similarity-transformation
+      - eigenvector
+      - diagonalization
+      - eigenvalue-problem
+      - schur-decomposition
+      - spectral-theorem
+
+  - title: Bounds and variational principles
+    intro: >
+      Facts that say where eigenvalues lie without computing them. Gershgorin's discs need only the
+      entries; the Rayleigh quotient and the min-max theorems describe the eigenvalues of a symmetric
+      matrix as extremes, and from them follow interlacing and Weyl's bound on how far an eigenvalue moves.
+      Nonnegative matrices have a dominant positive eigenvector.
+    entries:
+      - gershgorin-circle-theorem
+      - rayleigh-quotient
+      - courant-fischer-theorem
+      - cauchy-interlacing-theorem
+      - weyls-inequality
+      - perron-frobenius-theorem
+
+  - title: Vector iterations
+    intro: >
+      Methods that only multiply by a matrix or solve with a shifted one. Power iteration finds the
+      dominant eigenvector, inverse iteration the one nearest a shift, and the Rayleigh quotient iteration
+      updates the shift each step for cubic convergence. Deflation removes a found eigenpair, and subspace
+      iteration runs the power method on a block of vectors.
+    entries:
+      - power-iteration
+      - inverse-iteration
+      - rayleigh-quotient-iteration
+      - deflation
+      - subspace-iteration
+
+  - title: The nonsymmetric problem and the QR algorithm
+    intro: >
+      The dense method for a general matrix. Balance it, reduce it to Hessenberg form in a fixed number
+      of steps, then run shifted QR steps until it reaches Schur form. The Francis double shift keeps a
+      real matrix real and is the step that libraries actually run.
+    entries:
+      - nonsymmetric-eigenproblem
+      - hessenberg-reduction
+      - qr-algorithm
+      - francis-double-shift-qr
+      - matrix-balancing
+
+  - title: The symmetric problem
+    intro: >
+      For a symmetric matrix the eigenvalues are perfectly conditioned and the work drops. Householder
+      reduction gives a tridiagonal matrix, on which the QR algorithm with the Wilkinson shift never
+      stalls. Jacobi's rotations work on the full matrix instead and give high relative accuracy.
+    entries:
+      - symmetric-eigenproblem
+      - tridiagonalization
+      - tridiagonal-eigenproblem
+      - wilkinson-shift
+      - jacobi-eigenvalue-algorithm
+
+  - title: Solvers for the tridiagonal problem
+    intro: >
+      Faster ways to finish once the matrix is tridiagonal. A Sturm count gives the number of eigenvalues
+      below any point in linear time, so bisection can find any chosen eigenvalue. Divide and conquer
+      merges two halves through a secular equation, and MRRR finds each eigenvector in linear time.
+    entries:
+      - sturm-sequence-eigenvalue-count
+      - bisection-eigenvalue-algorithm
+      - secular-equation
+      - divide-and-conquer-eigensolver
+      - mrrr-algorithm
+
+  - title: Singular values
+    intro: >
+      The singular value decomposition exists for every matrix and gives its rank, its 2-norm and its best
+      low-rank approximations. It is computed by a reduction to bidiagonal form followed by an iteration on
+      the bidiagonal matrix, either implicit QR or the dqds algorithm.
+    entries:
+      - singular-value-decomposition
+      - golub-kahan-svd-algorithm
+      - dqds-algorithm
+
+  - title: Sensitivity of eigenvalues and subspaces
+    intro: >
+      How much eigenvalues and eigenvectors move when the matrix changes. A simple eigenvalue has its own
+      condition number, a diagonalizable matrix obeys the Bauer-Fike bound, and invariant subspaces of a
+      symmetric matrix turn by at most the perturbation over the gap. Pseudospectra show what eigenvalues
+      alone hide for nonnormal matrices.
+    entries:
+      - eigenvalue-condition-number
+      - bauer-fike-theorem
+      - hoffman-wielandt-theorem
+      - davis-kahan-theorem
+      - pseudospectrum
+
+  - title: Large sparse problems
+    intro: >
+      When the matrix is too large to transform, project it onto a small subspace and solve the small
+      problem. Krylov subspaces make good projection spaces: Arnoldi builds them for a general matrix,
+      Lanczos for a symmetric one with a three-term recurrence, and implicit restarts keep the memory fixed.
+    entries:
+      - rayleigh-ritz-method
+      - arnoldi-iteration
+      - lanczos-algorithm
+      - implicitly-restarted-arnoldi
+
+  - title: Generalized problems
+    intro: >
+      Problems of the form $Ax = \lambda Bx$, which arise from vibrations and from constrained systems.
+      The symmetric definite case reduces to a standard problem by Cholesky; the general case needs the
+      QZ algorithm, which never inverts $B$.
+    entries:
+      - generalized-eigenvalue-problem
+      - qz-algorithm

@@ -1,0 +1,79 @@
+groups:
+  - title: The problem and the baseline
+    intro: >
+      String matching asks for every place where a pattern occurs in a text. The naive method tries every
+      shift and compares; it is the baseline that every other method improves on. A
+      [spurious hit](/spurious-hit/) is what goes wrong when the comparison is done on hashes instead of
+      characters, as in Rabin-Karp.
+    entries:
+      - string-matching
+      - naive-string-matching
+      - spurious-hit
+
+  - title: Tables of the pattern
+    intro: >
+      The fast algorithms first study the pattern alone. The [prefix function](/prefix-function/) gives the
+      longest border of every prefix, and the [Z-algorithm](/z-algorithm/) gives the longest prefix that
+      starts at every position. Both take linear time, and each one alone is enough to match in linear time.
+    entries:
+      - prefix-function
+      - prefix-occurrence-counting
+      - z-algorithm
+
+  - title: Scanning left to right
+    intro: >
+      These methods read the text once, from left to right, and never move back. The string-matching
+      automaton spends one table lookup per character; Morris-Pratt and Knuth-Morris-Pratt store the same
+      automaton compactly as a failure function; Shift-Or keeps the set of all partial matches in one machine
+      word.
+    entries:
+      - string-matching-automaton
+      - string-matching-automaton-construction
+      - morris-pratt
+      - knuth-morris-pratt
+      - shift-or
+
+  - title: Scanning right to left
+    intro: >
+      Boyer-Moore compares the pattern with the window from its last character backwards. A mismatch on a
+      character that is not in the pattern lets the window jump by its full length, so on large alphabets
+      most of the text is never read. The two shift rules come first, then the algorithm and its two
+      simplified forms.
+    entries:
+      - bad-character-rule
+      - good-suffix-rule
+      - boyer-moore
+      - boyer-moore-horspool
+      - quick-search
+
+  - title: Boyer-Moore with guarantees
+    intro: >
+      Plain Boyer-Moore takes $\Theta(nm)$ time when the pattern occurs often. These entries make it linear by
+      remembering what was already matched, bound its comparisons exactly, and reach the best possible
+      average with a suffix automaton.
+    entries:
+      - galil-rule
+      - boyer-moore-comparison-bound
+      - turbo-boyer-moore
+      - apostolico-giancarlo
+      - backward-dawg-matching
+
+  - title: Linear time in constant space
+    intro: >
+      Knuth-Morris-Pratt needs a table of $m$ entries. The two algorithms here need only a constant number of
+      variables besides the text and the pattern, and still run in linear time. Both rest on the
+      [periods](/string-period/) of the pattern.
+    entries:
+      - galil-seiferas
+      - two-way-string-matching
+
+  - title: Other kinds of match
+    intro: >
+      The same tools solve problems where a match is not plain equality: any rotation of the pattern, the
+      same relative order of numbers, the same text up to a renaming of symbols, or a text that is only given
+      in compressed form.
+    entries:
+      - circular-pattern-matching
+      - order-preserving-matching
+      - parameterized-pattern-matching
+      - pattern-matching-in-compressed-text

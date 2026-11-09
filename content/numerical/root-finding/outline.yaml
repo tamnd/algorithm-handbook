@@ -1,0 +1,123 @@
+groups:
+  - title: The problem and its measures
+    intro: >
+      What it means to solve $f(x) = 0$ on a computer, and the words used to compare methods: the order
+      of convergence and its rate constant, quadratic convergence, the multiplicity of a root, and the tests
+      that decide when to stop.
+    entries:
+      - root-finding-problem
+      - order-of-convergence
+      - multiplicity-of-roots
+      - quadratic-convergence
+      - stopping-criteria
+
+  - title: Brackets and bisection
+    intro: >
+      A continuous function that changes sign on an interval has a root in it. Keeping such a bracket and
+      halving it is slow but never fails, and every safe method later in the chapter falls back on it.
+    entries:
+      - bracketing-method
+      - bisection-method
+
+  - title: Equations with formulas
+    intro: >
+      Polynomials of degree up to four have roots in closed form. These entries give the formulas, the
+      way to evaluate the quadratic one without cancellation, the theorem that counts the roots, and the
+      theorem that rules out formulas from degree five on.
+    entries:
+      - quadratic-formula
+      - fundamental-theorem-of-algebra
+      - rational-root-theorem
+      - cardano-formula
+      - ferrari-method
+      - abel-ruffini-theorem
+
+  - title: Iterations from a starting point
+    intro: >
+      Fixed-point iteration, Newton's method and the secant method start near a root and move toward
+      it. They are fast when they work and give no promise when they do not. Regula falsi uses the secant
+      line inside a bracket, and Newton's method for square roots shows the whole theory in one formula.
+    entries:
+      - fixed-point-iteration
+      - newton-raphson-method
+      - secant-method
+      - regula-falsi
+      - newton-square-root
+      - banach-fixed-point-theorem
+
+  - title: Safe and fast methods for one equation
+    intro: >
+      Hybrids keep a bracket and take fast interpolation steps while those steps behave, falling back to
+      bisection when they do not. Brent's method is the one most libraries ship; the others show the
+      choices along the way.
+    entries:
+      - newton-bisection-hybrid
+      - illinois-method
+      - ridders-method
+      - dekker-method
+      - inverse-quadratic-interpolation
+      - brent-method
+      - chandrupatla-method
+
+  - title: Higher order without a bracket
+    intro: >
+      Methods that use second and higher derivatives, or that avoid derivatives by fitting a parabola or
+      by extrapolation, and how their order compares once you count evaluations.
+    entries:
+      - halley-method
+      - householder-methods
+      - muller-method
+      - steffensen-method
+
+  - title: Polynomial roots and their sensitivity
+    intro: >
+      What is special about polynomials: how much their roots move when the coefficients change,
+      Wilkinson's example, disc bounds for all roots, and exact tests that count real roots in an
+      interval.
+    entries:
+      - polynomial-root-finding
+      - root-conditioning
+      - wilkinson-polynomial
+      - cauchy-root-bound
+      - gauss-lucas-theorem
+      - real-root-counting
+      - budan-fourier-theorem
+
+  - title: Systems of equations
+    intro: >
+      Newton's method in $n$ unknowns, with a linear solve in each step; Broyden's method, which saves the
+      Jacobian; the Kantorovich theorem, which proves convergence from data at the start; and homotopy
+      continuation, which finds every root of a polynomial system.
+    entries:
+      - systems-of-nonlinear-equations
+      - newton-method-for-systems
+      - broyden-method
+      - kantorovich-theorem
+      - homotopy-continuation
+
+  - title: Polynomial root finders
+    intro: >
+      Methods that find all roots of one polynomial: one root at a time with deflation, by quadratic
+      factors, by root squaring, by correcting all approximations at once, or as the eigenvalues of the
+      companion matrix.
+    entries:
+      - polynomial-deflation
+      - laguerre-method
+      - bairstow-method
+      - bernoulli-method
+      - graeffe-method
+      - durand-kerner-method
+      - aberth-ehrlich-method
+      - jenkins-traub-algorithm
+      - companion-matrix-method
+
+  - title: Certified roots and global behaviour
+    intro: >
+      Interval Newton proves that a box holds exactly one root, the Schur-Cohn test and the Lehmer-Schur
+      method count and trap the zeros of a polynomial in discs, and the Newton fractal shows why no
+      starting rule can be safe for every polynomial.
+    entries:
+      - interval-newton-method
+      - schur-cohn-test
+      - lehmer-schur-method
+      - newton-fractal

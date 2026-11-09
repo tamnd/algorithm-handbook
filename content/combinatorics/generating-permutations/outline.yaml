@@ -1,0 +1,54 @@
+# The order of chapter 14.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Counting and ordering
+    intro: >
+      Before any generator, two facts: there are $n!$ permutations of $n$ items, and a list of them needs an
+      order. The [factorial](/factorial/) grows so fast that a full listing is practical only for small $n$: $12!$ is
+      already about 479 million. Of the orders, [lexicographic order](/lexicographic-order/) is the one most programs use. The
+      problem entry sets out what a generator must do and how its cost is measured.
+    entries:
+      - factorial
+      - lexicographic-order
+      - generating-all-permutations
+
+  - title: Lexicographic generation
+    intro: >
+      The successor rule finds the last ascent, puts the next larger item there and sorts the rest. It needs
+      no memory between steps, works for multisets without change, and costs $O(1)$ per permutation on
+      average. Read the problem entry first and then the program.
+    entries:
+      - lexicographic-permutation-successor
+      - next-permutation
+      - multiset-permutations
+
+  - title: Ranking and unranking
+    intro: >
+      A rank is the position of a permutation in the list. In lexicographic order it is the
+      [Lehmer code](/lehmer-code/) read in the factorial number system, so a program can jump into the
+      list, split it among workers, or store a permutation as one integer. The two entries are the two
+      directions of the same bijection.
+    entries:
+      - permutation-ranking
+      - permutation-unranking
+
+  - title: Cycles, sign and involutions
+    intro: >
+      A generator lists permutations; these entries look inside one. The cycles of a permutation give its
+      order and its sign, and the sign explains why every list that moves by single exchanges alternates
+      between even and odd permutations. Involutions, the permutations made of fixed points and 2-cycles,
+      are the first restricted class with a generator of its own.
+    entries:
+      - permutation-cycle-decomposition
+      - permutation-sign
+      - generating-involutions
+
+  - title: Minimal change
+    intro: >
+      Lexicographic order can change every position in one step. These orders change only two: Heap's
+      method by any exchange, and the Steinhaus-Johnson-Trotter order by an exchange of neighbors. Both cost
+      $\Theta(1)$ per permutation on average, and a program that keeps a value computed from the current
+      permutation can often update it in $O(1)$ time after each step.
+    entries:
+      - minimal-change-permutation-order
+      - heaps-algorithm
+      - steinhaus-johnson-trotter

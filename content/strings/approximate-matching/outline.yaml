@@ -1,0 +1,87 @@
+groups:
+  - title: Measuring the difference
+    intro: >
+      Before searching with errors, fix what an error is. Single-character insertions, deletions and
+      substitutions give the Levenshtein distance, computed by a quadratic table. Other choices of operations
+      and costs give other distances, and a conditional lower bound says that the quadratic table is close to
+      the best possible.
+    entries:
+      - edit-operations
+      - edit-distance
+      - wagner-fischer-algorithm
+      - weighted-edit-distance
+      - damerau-levenshtein-distance
+      - jaro-winkler-distance
+      - block-edit-distance
+      - edit-distance-hardness
+
+  - title: Matching by sound
+    intro: >
+      Names are often spelt as they sound, and two spellings of one name can be far apart in edit distance.
+      A phonetic code maps each name to a short key, and names match when their keys are equal.
+    entries:
+      - phonetic-string-matching
+      - soundex
+      - metaphone
+
+  - title: Searching a text with errors
+    intro: >
+      Approximate string matching looks for the places where a pattern occurs with at most $k$ errors. With
+      substitutions only it is the k-mismatch problem, with all three edits the k-differences problem. The
+      Sellers table solves the second in $O(mn)$ time, and the cut-off makes it fast on average.
+    entries:
+      - approximate-string-matching
+      - k-differences-problem
+      - k-mismatch-problem
+      - sellers-algorithm
+      - ukkonen-cutoff-algorithm
+
+  - title: Bit-parallel search
+    intro: >
+      A column of the table, or a row of the matching automaton, fits in a machine word when the pattern is
+      short. A few word operations then do the work of $m$ cells, which makes these the fastest methods for
+      patterns up to the word length.
+    entries:
+      - bitap-algorithm
+      - wu-manber-approximate-matching
+      - myers-bit-parallel-algorithm
+
+  - title: Diagonals and extensions
+    intro: >
+      Along a diagonal of the table the values never decrease, and they stay the same over a run of equal
+      characters. A longest common extension query jumps over such a run in one step, which gives $O(kn)$ time
+      and, for long patterns, nearly linear time.
+    entries:
+      - landau-vishkin-algorithm
+      - galil-park-algorithm
+      - cole-hariharan-algorithm
+
+  - title: Mismatches by convolution
+    intro: >
+      The Hamming distance at every alignment is a sum of products, so the fast Fourier transform computes
+      all of them at once. Splitting the symbols into frequent and rare ones bounds the number of transforms.
+    entries:
+      - hamming-string-matching
+      - fischer-paterson-algorithm
+      - amir-lewenstein-porat-algorithm
+
+  - title: Filters
+    intro: >
+      An occurrence with few errors must share long exact pieces with the pattern. A filter searches for these
+      pieces quickly, throws away the text that cannot match, and leaves the rest to a dynamic program. On
+      random text with small $k$, most of the text is never examined closely.
+    entries:
+      - pigeonhole-filtering
+      - q-gram-lemma
+      - q-gram-filtering
+      - chang-lawler-algorithm
+
+  - title: Dictionaries and collections
+    intro: >
+      A spelling corrector looks up a word in a fixed dictionary, and a data cleaning job compares two whole
+      collections. An automaton for the query, run over a trie of the dictionary, and filters on pairs of
+      strings make these searches fast.
+    entries:
+      - approximate-dictionary-lookup
+      - levenshtein-automaton
+      - string-similarity-join

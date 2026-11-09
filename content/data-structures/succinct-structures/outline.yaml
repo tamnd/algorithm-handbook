@@ -1,0 +1,61 @@
+# The order of chapter 3.12. Groups are read in order; entries in a group too.
+groups:
+  - title: Bits, space and the rank and select problem
+    intro: >
+      The chapter measures space in bits and compares it with the number of bits that any encoding of the
+      object needs. The [bit vector](/bit-vector/) is the base layer, and rank and select are the two queries
+      that make it useful: rank counts the 1s before a position, select finds the position of the j-th 1.
+      Succinct and compressed structures differ in what they compare their space with.
+    entries:
+      - bit-vector
+      - rank-select-problem
+      - succinct-data-structures
+      - compressed-data-structure
+
+  - title: Rank and select in little extra space
+    intro: >
+      Jacobson's two-level directory gives rank in constant time with o(n) extra bits, and the rank/select
+      dictionary adds constant-time select. Pătraşcu's lower bounds say how small the extra space can be for
+      a given query time. The dynamic bit vector allows insertions and deletions, at a logarithmic cost.
+    entries:
+      - jacobson-rank
+      - rank-select-dictionary
+      - patrascu-succinct-lower-bound
+      - dynamic-bit-vector
+
+  - title: Compressed bit vectors and sparse sets
+    intro: >
+      A bit vector with few 1s, or a set of n numbers from a large universe, can be stored in about
+      lg C(u, n) bits rather than u bits. The RRR encoding cuts the vector into short blocks coded by class
+      and offset; Elias-Fano splits each number into low bits in plain form and high bits in unary.
+    entries:
+      - fully-indexable-dictionary
+      - rrr-bitvector
+      - elias-fano-encoding
+      - sd-array
+
+  - title: Trees in 2n bits
+    intro: >
+      An ordinal tree of n nodes needs about 2n bits, and three encodings reach this with fast navigation.
+      LOUDS writes the degrees in level order, balanced parentheses write a depth-first walk, and DFUDS
+      writes the degrees in preorder. Parenthesis matching and the range min-max tree supply the searches
+      that the last two need.
+    entries:
+      - ordinal-tree
+      - parenthesis-matching
+      - louds-tree
+      - balanced-parentheses-representation
+      - dfuds
+      - range-min-max-tree
+
+  - title: Sequences and permutations
+    intro: >
+      Rank and select lift from bits to symbols of a larger alphabet. The wavelet tree stores one bit vector
+      per node of a tree over the alphabet, and the wavelet matrix lays the same bits out level by level
+      with no pointers. A succinct permutation gives both the permutation and its inverse in little more
+      than n lg n bits.
+    entries:
+      - static-sequence
+      - wavelet-tree
+      - wavelet-matrix
+      - succinct-permutation

@@ -1,0 +1,130 @@
+groups:
+  - title: Floating-point numbers
+    intro: >
+      What a floating-point number is, how IEEE 754 encodes it in bits, and what happens at the edges of
+      the range: infinities, NaN, signed zeros and the exception flags. Two more formats show the trade
+      between range and precision: bfloat16 for machine learning and decimal floating point for money.
+    entries:
+      - floating-point-arithmetic
+      - ieee-754
+      - special-floating-point-values
+      - floating-point-exceptions
+      - bfloat16
+      - decimal-floating-point
+
+  - title: Spacing and rounding
+    intro: >
+      The floats are not evenly spaced: the gap between neighbours, the [ulp](/ulp/), grows with the
+      magnitude, so the relative gap stays nearly constant. These entries define the gap, the unit roundoff
+      $u$ that bounds one rounding, the rules that pick a float for a real result, and what goes wrong when a
+      value is rounded twice.
+    entries:
+      - ulp
+      - machine-epsilon
+      - relative-error
+      - subnormal-numbers
+      - rounding-modes
+      - round-to-nearest-even
+      - double-rounding
+
+  - title: Error analysis
+    intro: >
+      The standard model $\mathrm{fl}(x \mathbin{op} y) = (x \mathbin{op} y)(1 + \delta)$, $|\delta| \le u$,
+      is the starting point of every error bound in the volume. These entries explain how one rounding
+      becomes the error of a whole algorithm, why subtracting close numbers is dangerous, and how the
+      condition number of the problem and the backward error of the algorithm together bound the error of
+      the result.
+    entries:
+      - floating-point-model
+      - catastrophic-cancellation
+      - sterbenz-lemma
+      - condition-number
+      - forward-error-analysis
+      - rounding-error-analysis
+      - backward-error-analysis
+      - numerical-stability
+      - log-sum-exp-trick
+      - interval-arithmetic
+
+  - title: Error-free transformations
+    intro: >
+      The rounding error of a sum or a product of two floats is itself a float, and a few more floating-point
+      operations compute it exactly. [TwoSum](/two-sum/) and [TwoProduct](/two-product/) are the two basic
+      transformations; with a [fused multiply-add](/fused-multiply-add/) the product needs only two
+      operations. Pairs of floats built from them give about twice the working precision.
+    entries:
+      - fused-multiply-add
+      - error-free-transformations
+      - fast-two-sum
+      - two-sum
+      - floating-point-product-error
+      - veltkamp-splitting
+      - two-product
+      - double-double-arithmetic
+
+  - title: Summation and dot products
+    intro: >
+      Adding $n$ numbers from left to right has an error bound that grows with $n$. Adding them along a tree
+      makes the growth logarithmic, and compensated summation removes it to first order. At the far end, an
+      expansion or a long accumulator returns the correctly rounded sum, and a reproducible sum gives the
+      same bits in any order.
+    entries:
+      - floating-point-summation
+      - pairwise-summation
+      - kahan-summation
+      - neumaier-summation
+      - accurate-dot-product
+      - shewchuk-expansion-sum
+      - dot2-compensated-dot-product
+      - kulisch-accumulator
+      - reproducible-summation
+
+  - title: Binary and decimal
+    intro: >
+      People write decimal numbers and machines store binary ones, so every program converts in both
+      directions. Reading a decimal string correctly can need big integers; printing a float with the
+      fewest digits that read back to it was solved in 1990 and made fast in the years since.
+    entries:
+      - decimal-to-floating-point
+      - floating-point-to-decimal
+      - shortest-round-trip-representation
+      - clinger-decimal-conversion
+      - dragon4
+      - grisu
+      - ryu
+
+  - title: Division and square roots in hardware
+    intro: >
+      Division is the hardest of the four operations to round correctly, because the exact quotient rarely
+      has a finite expansion. Hardware uses either a digit recurrence, such as SRT, or a multiplicative
+      iteration, such as Goldschmidt's. The fast inverse square root is a software trick in the same spirit.
+    entries:
+      - floating-point-division
+      - srt-division
+      - goldschmidt-division
+      - fast-inverse-square-root
+
+  - title: Elementary functions
+    intro: >
+      IEEE 754 requires correct rounding for $+$, $-$, $\times$, $/$ and $\sqrt{\ }$, and only recommends it
+      for $\exp$, $\log$, $\sin$ and their relatives. These entries say why correct rounding of such
+      functions is hard, how hard it is, and how a library reduces a large argument to a small one without
+      losing accuracy.
+    entries:
+      - correctly-rounded-functions
+      - table-maker-dilemma
+      - correctly-rounded-elementary-functions
+      - cody-waite-range-reduction
+      - payne-hanek-argument-reduction
+
+  - title: Other formats and roundings
+    intro: >
+      IEEE 754 is not the only way to store a real number. A block of numbers can share one exponent, a
+      posit can trade precision for range as the magnitude grows, and a logarithmic system can make
+      multiplication exact. Stochastic rounding keeps the IEEE formats but rounds at random, so that errors
+      have mean zero.
+    entries:
+      - block-floating-point
+      - posit-format
+      - logarithmic-number-system
+      - stochastic-rounding

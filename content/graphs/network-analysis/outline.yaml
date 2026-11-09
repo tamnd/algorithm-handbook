@@ -1,0 +1,171 @@
+# The order of chapter 7.14. Groups are read in order; entries in a group too.
+groups:
+  - title: Local structure and social ties
+    intro: >
+      Network analysis starts with simple counts around one vertex. The degree distribution gives the
+      share of vertices of each degree, the clustering coefficient measures how often two neighbours of
+      a vertex are themselves adjacent, and reciprocity does the same job for mutual arcs in a directed
+      network. The sociological entries explain why real networks look the way they do: friends of
+      friends tend to become friends, weak ties bridge groups, and similar people link to each other.
+    entries:
+      - degree-distribution
+      - clustering-coefficient
+      - common-neighbors
+      - ego-network
+      - reciprocity
+      - assortativity
+      - homophily
+      - triadic-closure
+      - weak-ties
+      - structural-holes
+      - structural-equivalence
+      - structural-balance-theorem
+
+  - title: Centrality
+    intro: >
+      A centrality gives each vertex a score of importance, and each definition fixes a different idea
+      of importance. Degree counts direct contacts, closeness and harmonic centrality use distances to
+      everyone else, betweenness counts the shortest paths a vertex lies on, and eigenvector and Katz
+      centrality reward links from vertices that are themselves central. Brandes' algorithm computes
+      all betweenness scores with one search from each vertex, in O(nm) time on unweighted graphs.
+    entries:
+      - centrality
+      - degree-centrality
+      - closeness-centrality
+      - harmonic-centrality
+      - betweenness-centrality
+      - betweenness-centrality-computation
+      - brandes-algorithm
+      - eigenvector-centrality
+      - katz-centrality
+
+  - title: Link analysis
+    intro: >
+      On the web and in citation graphs, the direction of a link matters. PageRank is the stationary
+      distribution of a random surfer who follows links and sometimes jumps to a random page, computed
+      by power iteration. Personalized PageRank sends the jumps back to chosen seed vertices. HITS gives
+      every page two scores, as a hub that points to good pages and as an authority that good hubs point to.
+    entries:
+      - link-analysis-ranking
+      - pagerank
+      - personalized-pagerank
+      - hits-algorithm
+
+  - title: Similarity, link prediction and embeddings
+    intro: >
+      Two vertices are similar when their neighbourhoods overlap, and similar vertices that are not yet
+      linked are good guesses for future links. The Adamic-Adar index refines the count of common
+      neighbours by giving rare neighbours more weight, and SimRank defines similarity recursively. Node
+      embeddings go further and map each vertex to a vector; DeepWalk and node2vec learn these vectors
+      from random walks.
+    entries:
+      - node-similarity
+      - adamic-adar-index
+      - simrank
+      - link-prediction
+      - node-embedding
+      - deepwalk
+      - node2vec
+
+  - title: Triangles and cores
+    intro: >
+      Triangles are the basic unit of clustering, and counting them fast matters on graphs with billions
+      of edges. Orienting every edge from the lower-degree end to the higher-degree end leaves each vertex
+      with few out-neighbours, and the listing then takes O(m^(3/2)) time. The k-core is what remains after
+      repeatedly deleting vertices of degree below k; peeling vertices of minimum degree with a bucket
+      queue gives every core number in linear time.
+    entries:
+      - triangle-counting
+      - triangle-listing-by-degree
+      - compact-forward-algorithm
+      - k-core
+      - k-core-decomposition
+      - batagelj-zaversnik-algorithm
+
+  - title: Distances and layout of large networks
+    intro: >
+      Most pairs of vertices in a social network are joined by short paths. The neighbourhood function
+      counts the pairs within each distance, and the effective diameter reads off the distance that
+      covers 90 percent of them. On large graphs these quantities are estimated rather than computed
+      exactly, with sampled searches or with the sketches of the ANF algorithm. Force-directed layout,
+      which draws a network by simulating springs, is a graph-drawing method placed here.
+    entries:
+      - six-degrees-of-separation
+      - neighborhood-function
+      - effective-diameter
+      - network-diameter-estimation
+      - anf-algorithm
+      - force-directed-layout
+
+  - title: Random graphs and small worlds
+    intro: >
+      In the Erdős-Rényi model every edge is present independently with the same probability. Its theory
+      has sharp thresholds: a giant component appears when the average degree passes 1, and the graph
+      becomes connected when p passes ln(n)/n. Real networks cluster far more than this model predicts.
+      The Watts-Strogatz model rewires a ring lattice to get high clustering and short paths together,
+      and Kleinberg's model explains how people can find the short paths using only local information.
+    entries:
+      - erdos-renyi-model
+      - giant-component
+      - erdos-renyi-giant-component-theorem
+      - erdos-renyi-connectivity-threshold
+      - small-world-network
+      - watts-strogatz-model
+      - kleinberg-small-world-model
+
+  - title: Degrees, null models and motifs
+    intro: >
+      Many real networks have heavy-tailed degree distributions. Preferential attachment, where new
+      vertices link to old ones in proportion to degree, produces a power law in the Barabási-Albert
+      model. The Chung-Lu and configuration models fix the degrees and randomize everything else, and serve
+      as null models: a pattern counts as significant only if it is rare in the null model. Network motifs
+      are small subgraphs that are over-represented in this sense, and the ESU algorithm enumerates them.
+    entries:
+      - preferential-attachment
+      - scale-free-network
+      - barabasi-albert-model
+      - chung-lu-model
+      - configuration-model
+      - kronecker-graph-model
+      - exponential-random-graph-model
+      - rich-club-coefficient
+      - network-motif
+      - network-motif-enumeration
+      - esu-algorithm
+
+  - title: Communities
+    intro: >
+      A community is a group of vertices with many edges inside and few edges leaving. Modularity scores a
+      partition against the configuration model, and the Louvain and Leiden methods maximize it greedily
+      with local moves and aggregation. Girvan-Newman removes edges of high betweenness, label propagation
+      lets labels spread, and Walktrap, Infomap and Markov clustering use random walks. Clique percolation
+      allows overlapping communities, and the stochastic block model generates graphs with planted ones.
+    entries:
+      - community-detection
+      - modularity
+      - girvan-newman-algorithm
+      - louvain-method
+      - leiden-algorithm
+      - label-propagation-algorithm
+      - walktrap-algorithm
+      - infomap
+      - markov-clustering
+      - clique-percolation-method
+      - stochastic-block-model
+      - core-periphery-structure
+
+  - title: Percolation and spreading
+    intro: >
+      Percolation keeps each vertex or edge at random and asks whether a giant component survives. The
+      same question governs epidemics: the vertices an SIR outbreak ever infects form the cluster of the
+      seeds in a bond percolation. The independent cascade and linear threshold models describe how ideas spread, and
+      influence maximization chooses the seeds that spread furthest. Its objective is submodular, so the
+      greedy choice is within a factor 1 - 1/e of the best.
+    entries:
+      - percolation
+      - random-geometric-graph
+      - sir-epidemic-model
+      - independent-cascade-model
+      - linear-threshold-model
+      - influence-maximization
+      - greedy-influence-maximization

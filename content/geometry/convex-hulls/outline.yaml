@@ -1,0 +1,92 @@
+# The order of chapter 13.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Convex sets and their hulls
+    intro: >
+      The words of the chapter. A convex combination is a weighted average with nonnegative weights; a set
+      that contains every convex combination of its points is convex, and the convex hull of a set is the
+      smallest convex set that holds it. Extreme points, supporting hyperplanes and facets describe the
+      boundary of a hull, which is what the algorithms output.
+    entries:
+      - convex-combination
+      - affine-hull
+      - convex-set
+      - convex-hull
+      - extreme-point
+      - supporting-hyperplane
+      - facet
+
+  - title: The problem and its predicates
+    intro: >
+      Every planar hull algorithm is built on one test, the [orientation test](/orientation-test/), which
+      says whether three points make a left turn, a right turn or lie on a line. These entries state the
+      problem exactly, say what to do with collinear and repeated points, and set up the split into an upper
+      and a lower hull and the angular sort that several algorithms use.
+    entries:
+      - orientation-test
+      - general-position
+      - convex-hull-problem
+      - upper-and-lower-hull
+      - angular-sort
+
+  - title: Planar hull algorithms
+    intro: >
+      Six ways to compute the hull of $n$ points in the plane. Andrew's monotone chain and the Graham scan
+      sort and then scan with a stack in $O(n \log n)$ time; the Jarvis march wraps the set in $O(nh)$
+      time, where $h$ is the size of the output; quickhull and divide and conquer split the set.
+      Melkman's algorithm shows that a simple polyline needs no sort at all.
+    entries:
+      - andrew-monotone-chain
+      - graham-scan
+      - jarvis-march
+      - quickhull
+      - divide-and-conquer-convex-hull
+      - melkman-algorithm
+
+  - title: Lower bounds and output-sensitive hulls
+    intro: >
+      Sorting reduces to the hull, so $\Omega(n \log n)$ is the price of a hull in the worst case. When the
+      hull is small the price drops to $\Theta(n \log h)$. The Kirkpatrick–Seidel algorithm and Chan's
+      algorithm reach this bound by two different routes, and a matching lower bound shows that neither can
+      be beaten.
+    entries:
+      - convex-hull-lower-bound
+      - kirkpatrick-seidel
+      - chan-algorithm
+      - convex-hull-output-sensitive-lower-bound
+
+  - title: Working with a hull
+    intro: >
+      Once the hull is known, many questions about the point set reduce to a walk around a convex polygon.
+      [Rotating calipers](/rotating-calipers/) finds the diameter and the width in linear time. Peeling the
+      hull again and again gives convex layers; a dynamic hull follows the set as points come and go. A
+      concave hull gives up convexity to follow the shape of the set more closely.
+    entries:
+      - rotating-calipers
+      - convex-layers
+      - dynamic-convex-hull
+      - concave-hull
+
+  - title: Three classical theorems
+    intro: >
+      Carathéodory, Radon and Helly found three facts about convex sets whose constants depend only on the
+      dimension $d$. Each has a short proof from an affine dependence among $d + 2$ points, and each comes
+      back later in the book: in linear programming, in the analysis of randomized algorithms and in
+      learning theory.
+    entries:
+      - caratheodory-theorem
+      - radon-theorem
+      - helly-theorem
+
+  - title: Polytopes and higher dimensions
+    intro: >
+      A convex polytope can be given by its vertices or by the half-spaces that bound it, and the
+      Minkowski–Weyl theorem says the two descriptions always exist together. Converting between them is
+      the hull problem in disguise. The last two entries compute hulls in three and more dimensions, where
+      the output can have $\Theta(n^{\lfloor d/2 \rfloor})$ facets.
+    entries:
+      - conic-hull
+      - convex-polytope
+      - support-function
+      - minkowski-weyl-theorem
+      - convex-hull-3d
+      - beneath-beyond

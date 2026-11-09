@@ -1,0 +1,17 @@
+## History
+
+Regular expressions began as a description of what nerve nets compute. Kleene wrote a RAND memorandum in 1951, published in 1956, in which he introduced "regular events", built from single events by union, concatenation and the star, and proved that they are exactly the behaviours of finite automata. McNaughton and Yamada (1960) gave the conversions in both directions as algorithms, Glushkov (1961) described the automaton whose states are the positions of an expression, and Arden (1961) stated the lemma that solves the equations of an automaton. Brzozowski and McCluskey (1963) turned the reduction of signal flow graphs into state elimination, and Brzozowski (1964) defined the derivative of an expression and proved that, up to simple rules for union, an expression has only finitely many of them.
+
+The first programs came from Ken Thompson. His 1968 paper described a search for the QED editor that compiled a pattern into machine code and followed all states of its automaton at once. The editor ed of the First Edition of Unix (1971) and grep, which appeared in the Fourth Edition (1973), nevertheless matched by recursive backtracking. Aho's egrep, in the Seventh Edition (1979), used a DFA built ahead of time, and later versions built it on the fly. Wu and Manber (1992) used bit-parallel simulation in agrep, and Navarro and Raffinot later based it on the Glushkov automaton.
+
+The theory of expressions grew alongside. Eggan (1963) posed the star height problem, and Hashiguchi (1988) solved it. Redko (1964) showed that no finite set of equations proves all valid equations between expressions, Salomaa (1966) gave complete systems with an inference rule, and Kozen (1994) proved that the finitely many axioms of Kleene algebra, with their two induction rules, are complete; he extended them with tests in 1997. Meyer and Stockmeyer (1972) proved that equivalence of expressions is PSPACE-complete. Antimirov (1996) introduced partial derivatives, and Brüggemann-Klein and Wood (1998) characterized the expressions with a deterministic Glushkov automaton.
+
+Backtracking engines spread with Perl and its successors, which added backreferences and lookaround. Aho (1990) showed that matching with backreferences is NP-complete. Russ Cox's articles from 2007 on compared backtracking with Thompson's method and described RE2, which avoids backtracking altogether, and they made the risk of ReDoS widely known. Backurs and Indyk (2016) showed, assuming the strong exponential time hypothesis, that the $O(mn)$ bound of Thompson's method cannot be improved by a polynomial factor.
+
+## Further reading
+
+- Russ Cox, *Regular Expression Matching Can Be Simple And Fast* (2007), and the articles that follow it: the clearest account of Thompson's method, the Pike VM and the design of RE2.
+- Jeffrey E. F. Friedl, *Mastering Regular Expressions* (O'Reilly): how backtracking engines behave, from the user's side.
+- Gonzalo Navarro and Mathieu Raffinot, *Flexible Pattern Matching in Strings* (Cambridge University Press, 2002): bit-parallel and automaton-based search for patterns and expressions.
+- Alfred V. Aho, Monica S. Lam, Ravi Sethi and Jeffrey D. Ullman, *Compilers: Principles, Techniques, and Tools*, Chapter 3: Thompson's construction, the position automaton and lexer generators.
+- Dexter Kozen, *Automata and Computability* (Springer, 1997): the conversions and the equational theory at textbook pace.

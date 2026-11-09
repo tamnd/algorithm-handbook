@@ -1,0 +1,48 @@
+# The order of chapter 13.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      A planar subdivision cuts the plane into vertices, edges and faces, and point location asks which of
+      them contains a query point. Most methods answer it as vertical ray shooting: find the edge directly
+      above the point. The group also gives the lower bound and the easy special case of one convex polygon.
+    entries:
+      - planar-subdivision
+      - vertical-ray-shooting
+      - planar-point-location
+      - convex-polygon-point-location
+
+  - title: Slabs and persistence
+    intro: >
+      Vertical lines through all vertices cut the plane into slabs, and inside one slab the edges are sorted
+      from bottom to top. Two binary searches then answer a query, but the slab lists can take quadratic
+      space. A persistent search tree stores all of them in linear space.
+    entries:
+      - slab-method-point-location
+      - sarnak-tarjan-point-location
+
+  - title: Trapezoidal maps
+    intro: >
+      Vertical walls from every end point cut the subdivision into trapezoids. Built by inserting the
+      segments in random order, the map comes with a search structure that answers queries in $O(\log n)$
+      expected time, and it is the method most often implemented.
+    entries:
+      - trapezoidal-map
+      - seidel-point-location
+
+  - title: Triangulations
+    intro: >
+      When every face is a triangle, two very different methods apply. Kirkpatrick's hierarchy removes
+      vertices level by level and gives optimal worst-case bounds. A walk from triangle to triangle needs no
+      extra structure at all and is what practical mesh codes use.
+    entries:
+      - kirkpatrick-point-location
+      - triangle-walk-point-location
+
+  - title: Monotone subdivisions and chains
+    intro: >
+      If every face is monotone in $x$, the subdivision is a stack of separating chains, and a query is a
+      binary search over the chains. Storing each edge once and linking the searches by fractional
+      cascading gives optimal time and space.
+    entries:
+      - monotone-subdivision
+      - chazelle-monotone-point-location

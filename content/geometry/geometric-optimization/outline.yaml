@@ -1,0 +1,92 @@
+# The order of chapter 13.9. Groups are read in order; entries in a group too.
+groups:
+  - title: The smallest enclosing circle
+    intro: >
+      The first problem of the chapter and its model. The [minimum enclosing circle](/minimum-enclosing-circle/)
+      is unique and fixed by two or three points, and [Welzl's algorithm](/welzls-algorithm/) finds it in
+      expected linear time by adding the points in random order. The same ideas give the smallest ball in
+      $\mathbb{R}^d$, fixed by at most $d + 1$ points. The thinnest annulus is the circle question turned
+      into a fit, and it is much harder.
+    entries:
+      - minimum-enclosing-circle
+      - welzls-algorithm
+      - minimum-enclosing-ball
+      - minimum-width-annulus
+
+  - title: Calipers on a convex polygon
+    intro: >
+      Questions about one convex polygon with $n$ vertices: its diameter, its width, the smallest rectangle
+      and the smallest triangle around it, and the largest triangle inside it. Most of them are answered by
+      a walk of [rotating calipers](/rotating-calipers/) over the antipodal pairs, of which there are at most
+      $\lfloor 3n/2 \rfloor$, in $O(n)$ time.
+    entries:
+      - antipodal-pairs
+      - polygon-diameter
+      - polygon-width
+      - minimum-area-enclosing-rectangle
+      - maximum-area-inscribed-triangle
+      - minimum-area-enclosing-triangle
+
+  - title: Linear time in fixed dimension
+    intro: >
+      Four general methods that make the smallest circle, linear programming and their relatives run in
+      $O(n)$ time when the dimension is a constant. Prune and search discards a fixed fraction of the input
+      per round. The [LP-type](/lp-type-problem/) framework names the two properties that the randomized
+      methods need, and Clarkson's and Chan's methods solve a large problem through small random samples.
+    entries:
+      - prune-and-search
+      - lp-type-problem
+      - clarksons-algorithm
+      - chans-randomized-optimization
+
+  - title: Approximation in high dimension
+    intro: >
+      When $d$ is large, the exact methods cost a factor exponential in $d$. A [coreset](/coreset/) of about
+      $1/\varepsilon$ points carries the smallest ball to within $1 + \varepsilon$ in any dimension, and the
+      [Bădoiu–Clarkson algorithm](/badoiu-clarkson-algorithm/) finds one by stepping toward the farthest point.
+      Khachiyan's method does the same for the smallest ellipsoid.
+    entries:
+      - coreset
+      - badoiu-clarkson-algorithm
+      - minimum-volume-enclosing-ellipsoid
+      - khachiyans-algorithm
+
+  - title: Sums of distances
+    intro: >
+      The point that minimizes the sum of the distances to given points. For three points it is the
+      [Fermat point](/fermat-point/), where the three directions meet at 120 degrees. For more points the
+      [geometric median](/geometric-median/) has no formula, and Weiszfeld's iteration computes it.
+    entries:
+      - fermat-point
+      - geometric-median
+      - weiszfelds-algorithm
+
+  - title: Shortest networks
+    intro: >
+      The shortest network that joins given points when extra junctions are allowed. The Euclidean and the
+      rectilinear versions are NP-hard, and the [minimum spanning tree](/minimum-spanning-tree/) is the quick
+      approximation. The Steiner ratio says how much longer the spanning tree can be.
+    entries:
+      - euclidean-steiner-tree-problem
+      - rectilinear-steiner-tree-problem
+      - steiner-ratio
+
+  - title: Paths among obstacles
+    intro: >
+      The shortest path around polygonal obstacles bends only at obstacle corners, so it is a shortest path
+      in the visibility graph. Faster methods avoid the graph, and inside one simple polygon a funnel walk
+      takes linear time. The minimum link path counts turns instead of length.
+    entries:
+      - visibility-graph
+      - euclidean-shortest-path
+      - lee-preparata-algorithm
+      - minimum-link-path
+
+  - title: Empty regions and spread points
+    intro: >
+      Two problems about room between points. The largest empty rectangle among $n$ points is found in
+      $O(n^2)$ time by a sweep and in $O(n \log^2 n)$ by divide and conquer. Heilbronn's problem asks how
+      to spread $n$ points so that no triangle is small, and its order of growth is still open.
+    entries:
+      - largest-empty-rectangle
+      - heilbronn-triangle-problem

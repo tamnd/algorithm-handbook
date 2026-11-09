@@ -1,0 +1,79 @@
+# The order of chapter 13.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Two objects at a time
+    intro: >
+      Every intersection algorithm in the chapter ends in a test on two objects. These entries fix how a
+      line is written down, then intersect two lines, two segments, a line and a circle, and two circles.
+      Each is a few lines of algebra, and each has degenerate cases, such as parallel lines, collinear
+      segments and tangent circles, that the code must handle on purpose.
+    entries:
+      - line-representation
+      - line-equation-from-segment
+      - line-line-intersection
+      - segment-intersection-point
+      - circle-line-intersection
+      - circle-circle-intersection
+      - common-tangents-two-circles
+
+  - title: Many segments
+    intro: >
+      Given $n$ segments, the questions are whether any pair crosses and which pairs do. Testing all pairs takes $\Theta(n^2)$
+      time. A sweep line does better: it keeps the segments that cross the line in vertical order, and only
+      neighbors in that order need to be tested. The group gives the detection problem with its
+      $\Omega(n \log n)$ lower bound, the reporting problem, and the sweeps that solve both.
+    entries:
+      - segment-intersection-detection
+      - intersecting-segment-pair-search
+      - shamos-hoey-algorithm
+      - segment-intersection-lower-bound
+      - all-segment-intersections
+      - bentley-ottmann-algorithm
+      - red-blue-intersection
+      - chazelle-edelsbrunner-algorithm
+
+  - title: Axis-parallel segments and boxes
+    intro: >
+      When every segment is horizontal or vertical, a crossing is a range question and the sweep becomes
+      simpler and faster. The same holds for axis-parallel rectangles. The group ends with the measure of a
+      union of boxes, a problem that is easy in the plane and still open in high dimensions.
+    entries:
+      - orthogonal-segment-intersection
+      - orthogonal-segment-intersection-sweep
+      - rectangle-intersection-reporting
+      - klee-measure-problem
+      - overmars-yap-algorithm
+
+  - title: Half-planes and convex polygons
+    intro: >
+      The intersection of convex sets is convex, and that makes these problems linear or close to it. The
+      intersection of $n$ half-planes is a convex polygon found by sorting the half-planes by angle and
+      making one pass with a deque. Two convex polygons meet in a convex polygon that one walk around both
+      boundaries finds.
+    entries:
+      - half-plane-intersection
+      - half-plane-intersection-deque
+      - convex-polygon-intersection
+      - convex-polyhedra-intersection
+
+  - title: Collision tests for convex objects
+    intro: >
+      A physics engine or a robot planner often needs only a yes or no: do two convex objects overlap? The
+      separating axis theorem turns this into a finite list of projections, and GJK turns it into the
+      distance from the origin to a Minkowski difference. For convex polygons stored as arrays, a search that
+      discards part of a polygon at each step answers in logarithmic time.
+    entries:
+      - separating-axis-theorem
+      - convex-collision-detection
+      - gjk-algorithm
+      - chazelle-dobkin-algorithm
+
+  - title: Arrangements of lines
+    intro: >
+      The $n$ lines of a set cut the plane into vertices, edges and faces, at most quadratically many of
+      each. The arrangement is the structure behind many problems on points, through duality, which maps
+      points to lines. The zone theorem bounds the cost of adding one line and gives an $O(n^2)$
+      construction.
+    entries:
+      - line-arrangement
+      - line-arrangement-construction
+      - edelsbrunner-o-rourke-seidel-algorithm

@@ -1,0 +1,80 @@
+# The order of chapter 4.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Ranks, medians and quantiles
+    intro: >
+      The words of the chapter. The $i$-th [order statistic](/order-statistic/) is the item of rank $i$ in
+      sorted order; the median and the quantiles are order statistics at fixed fractions of $n$. The weighted
+      median gives each item a weight and finds the point where the weight splits in half.
+    entries:
+      - order-statistic
+      - median
+      - quantile
+      - weighted-median
+
+  - title: The selection problem and its easy cases
+    intro: >
+      [Selection](/selection-problem/) asks for the item of a given rank without sorting. For the extreme
+      ranks it is a matter of counting comparisons exactly: $n - 1$ for the minimum, $\lceil 3n/2 \rceil - 2$
+      for the minimum and maximum together, and $n + \lceil \lg n \rceil - 2$ for the second smallest, found
+      by a tournament.
+    entries:
+      - selection-problem
+      - median-finding
+      - minimum-and-maximum-finding
+      - tournament-minimum
+      - tournament-method
+      - small-order-statistics
+
+  - title: Selection by partition
+    intro: >
+      Partition around a pivot, keep the side that holds the rank, and drop the other. This is
+      [quickselect](/quickselect/), Hoare's FIND. With a random pivot it makes fewer than $4n$ comparisons
+      on average, though its worst case is quadratic.
+    entries:
+      - partition-around-pivot
+      - quickselect
+      - quickselect-expected-linear
+
+  - title: Linear time in the worst case
+    intro: >
+      A pivot chosen as the [median of medians](/median-of-medians/) of groups of five leaves at most about
+      $7n/10$ items on either side, and that is enough for $\Theta(n)$ time on every input. These entries give
+      the algorithm, its proof, the lower bound that any method must meet, and the hybrid that libraries use.
+    entries:
+      - median-of-medians
+      - deterministic-linear-selection
+      - selection-lower-bound
+      - introselect
+
+  - title: Faster selection by sampling and by digits
+    intro: >
+      Two ways to beat quickselect in practice. [Floyd-Rivest select](/floyd-rivest-select/) picks two
+      pivots from a random sample so that the answer almost surely lies between them, and needs only
+      $n + \min(k, n - k) + o(n)$ comparisons on average. Radix select looks at the bits of the keys
+      instead of comparing them.
+    entries:
+      - floyd-rivest-select
+      - radix-select
+
+  - title: The k smallest
+    intro: >
+      Often the question is not one item but the $k$ smallest. As a set they take $\Theta(n)$ time; in
+      sorted order, $\Theta(n + k \log k)$. A [heap of $k$ candidates](/heap-select/) does the job in one pass
+      over a stream, and partial quicksort does it in place.
+    entries:
+      - top-k-selection
+      - heap-select
+      - partial-sorting
+      - largest-i-numbers-in-sorted-order
+
+  - title: Problems solved by selection
+    intro: >
+      Selection is a tool as much as a problem. These entries use it to find the items nearest the median,
+      the best place for a facility, many ranks at once, and the item of a given rank in a sorted matrix. The
+      last entry, the mode, shows a nearby problem that selection does not solve.
+    entries:
+      - k-nearest-to-median
+      - weighted-median-post-office-location
+      - multiple-selection
+      - sorted-matrix-selection
+      - mode-finding

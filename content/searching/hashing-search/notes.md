@@ -1,0 +1,18 @@
+## History
+
+Hashing began at IBM in the early 1950s. Hans Peter Luhn wrote an internal memorandum in 1953 that put keys into buckets by a computed address and chained the overflow, and a group with Gene Amdahl, Elaine McGraw, Nathaniel Rochester and Arthur Samuel used open addressing with linear probing in an assembler for the IBM 701 at about the same time. Arnold Dumey described the idea in print in 1956, and W. W. Peterson analyzed open addressing in 1957. Knuth worked out the exact cost of linear probing in the early 1960s, and Section 6.4 of *The Art of Computer Programming* collects the formulas for chaining and for the probing schemes. Andrew Yao proved in 1985 that uniform probing is optimal among open-addressing schemes in which keys do not move.
+
+The classic analyses assume random keys. J. Lawrence Carter and Mark Wegman moved the randomness into the hash function: their universal classes of hash functions, presented in 1977 and published in 1979, give the expected costs of chaining for every set of keys. Michael Fredman, János Komlós and Endre Szemerédi used two levels of universal hashing in 1984 to store a static set in linear space with constant worst-case search, and Kurt Mehlhorn's counting argument of 1982 gave the number of bits that any perfect hash function needs. Practical minimal perfect hashing came later, with constructions such as the hash, displace and compress method of Djamal Belazzougui, Fabiano Botelho and Martin Dietzfelbinger in 2009, which comes within a small factor of the space bound.
+
+Albert Zobrist described his method for hashing board positions in a 1970 technical report at the University of Wisconsin, and it became the standard way to index the transposition tables of chess programs. Mihai Pătraşcu and Mikkel Thorup showed in 2012 that the same scheme, under the name simple tabulation, is only 3-wise independent but still behaves well for linear probing and many other uses.
+
+Dynamic hashing came from databases. Per-Åke Larson's dynamic hashing of 1978, extendible hashing by Ronald Fagin, Jürg Nievergelt, Nicholas Pippenger and Raymond Strong in 1979, spiral storage by G. N. N. Martin in 1979, and linear hashing by Witold Litwin in 1980 all grow a file one bucket at a time. Richard Enbody and H. C. Du surveyed them in 1988, and Larson adapted linear hashing to tables in main memory in the same year.
+
+## Further reading
+
+- Donald E. Knuth, *The Art of Computer Programming, Volume 3: Sorting and Searching*, second edition (1998). Section 6.4 gives the exact analysis of chaining, linear probing and the other probing schemes, with the early history.
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, fourth edition (2022). Chapter 11 proves the expected costs of chaining and open addressing and covers universal hashing.
+- Michael Mitzenmacher and Eli Upfal, *Probability and Computing*, second edition (2017). The chapters on balls and bins and on hashing give the probability behind the longest chain and the tail bounds.
+- J. Lawrence Carter and Mark N. Wegman, *Universal classes of hash functions*, Journal of Computer and System Sciences 18(2) (1979). The paper that made the hash function, not the input, the source of randomness.
+- Michael L. Fredman, János Komlós and Endre Szemerédi, *Storing a sparse table with O(1) worst case access time*, Journal of the ACM 31(3) (1984). Two-level perfect hashing.
+- R. J. Enbody and H. C. Du, *Dynamic hashing schemes*, ACM Computing Surveys 20(2) (1988). A survey of extendible hashing, linear hashing and their variants.

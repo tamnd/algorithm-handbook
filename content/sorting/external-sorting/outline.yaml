@@ -1,0 +1,60 @@
+# The order of chapter 4.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Runs and the merge
+    intro: >
+      An external sort works on sorted runs: pieces of the file that are already in order. These entries
+      define runs, show how to merge many of them at once with a heap or a tree of losers, and put the two
+      steps together into [external merge sort](/external-merge-sort/), the method every other entry of the
+      chapter refines.
+    entries:
+      - sorted-run
+      - k-way-merge
+      - external-merge-sort
+
+  - title: Longer runs
+    intro: >
+      Fewer runs mean fewer merge passes. Replacement selection keeps a heap full while it writes, and on
+      random input it makes runs about twice as long as memory. The theorem proves the factor of 2.
+    entries:
+      - replacement-selection
+      - replacement-selection-run-length
+
+  - title: Keeping the disks busy
+    intro: >
+      Counting block transfers is only half the story. Double buffering lets the processor and the disk work
+      at the same time, and disk striping lets several disks act as one. Both cost memory, and so both lower
+      the fan-in of the merge.
+    entries:
+      - double-buffering
+      - disk-striping
+
+  - title: Sorting on tapes
+    intro: >
+      A tape can only be read from start to end, so a merge needs its input runs on different tapes. The
+      balanced merge splits the tapes into two equal sets. Polyphase and cascade merges spread the runs
+      unevenly, in Fibonacci-like patterns, to keep more tapes busy, and the oscillating sort reads tapes
+      backward so that it never rewinds.
+    entries:
+      - balanced-merge-sort
+      - polyphase-merge-sort
+      - cascade-merge-sort
+      - oscillating-sort
+
+  - title: Distribution instead of merging
+    intro: >
+      A sort can also split the file first, by splitters taken from a sample, and then sort each bucket. This
+      is the external form of samplesort. With many independent disks, Balance Sort places the blocks of each
+      bucket so that the next level can read them in parallel.
+    entries:
+      - external-samplesort
+      - balance-sort
+
+  - title: The I/O bound and what meets it
+    intro: >
+      Sorting $N$ items with memory $M$ and blocks of $B$ takes $\Theta\big(\frac NB \log_{M/B} \frac NB\big)$
+      block transfers. These entries extend the bound to several disks, compare sorting with plain
+      permuting, and show funnelsort, which meets the bound without knowing $M$ or $B$.
+    entries:
+      - external-sorting-io-lower-bound
+      - external-permuting
+      - funnelsort

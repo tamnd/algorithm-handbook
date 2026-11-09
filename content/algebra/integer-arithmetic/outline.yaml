@@ -1,0 +1,130 @@
+# The order of chapter 11.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Numbers and their digits
+    intro: >
+      Before any algorithm, the objects. These entries fix what a quotient and a remainder are, how the
+      programming languages round them, how an integer is written as digits in a radix, and the three ways a
+      fixed-width word can hold a negative number. They end with what happens when a result does not fit in
+      the word.
+    entries:
+      - division-with-remainder
+      - floor-division
+      - radix
+      - positional-number-system
+      - balanced-ternary
+      - sign-magnitude-representation
+      - ones-complement
+      - integer-overflow
+
+  - title: Big integers and addition
+    intro: >
+      An integer that does not fit in a word is stored as an array of words, called limbs, which are its
+      digits in the radix $\beta = 2^w$. These entries set up that representation and the cost model used in
+      the rest of the chapter, and then add two such numbers, where the only difficulty is the carry.
+    entries:
+      - arbitrary-precision-arithmetic
+      - big-integer
+      - multiprecision-integer
+      - integer-addition
+      - carry-propagation
+
+  - title: Multiplication
+    intro: >
+      Multiplication is the central operation: almost every other operation on big integers costs a constant
+      or logarithmic number of multiplications. The school method takes $\Theta(n^2)$ limb operations.
+      [Karatsuba multiplication](/karatsuba-multiplication/) was the first to beat it, and the FFT methods
+      that follow bring the bit cost down to $O(N \log N)$.
+    entries:
+      - integer-multiplication
+      - schoolbook-multiplication
+      - lattice-multiplication
+      - russian-peasant-multiplication
+      - gauss-complex-multiplication
+      - karatsuba-multiplication
+      - toom-cook-multiplication
+      - schonhage-strassen-multiplication
+      - furer-multiplication
+      - harvey-van-der-hoeven-multiplication
+
+  - title: Division
+    intro: >
+      Division looks harder than multiplication, but it is not, up to a constant factor. Long division is the
+      quadratic base case. The recursive method of Burnikel and Ziegler and the reciprocal by Newton's method
+      reduce division to multiplication, and a divisor known in advance turns each division into a
+      multiplication and shifts.
+    entries:
+      - integer-division
+      - long-division
+      - burnikel-ziegler-division
+      - newton-raphson-division
+      - division-by-constant
+      - granlund-montgomery-division
+
+  - title: Roots and radix conversion
+    intro: >
+      Integer square roots and $k$-th roots are computed with integers only, digit by digit or by Newton's
+      method, and cost a constant number of multiplications. Radix conversion, from binary limbs to decimal
+      text and back, is quadratic done naively and $O(M(n) \log n)$ by divide and conquer.
+    entries:
+      - integer-square-root
+      - integer-nth-root
+      - digit-by-digit-square-root
+      - newton-integer-root
+      - radix-conversion
+      - double-dabble
+      - scaled-remainder-tree
+
+  - title: Powers and Fibonacci numbers
+    intro: >
+      Computing $x^e$ by repeated squaring needs about $\log_2 e$ multiplications; an addition chain is a
+      plan with even fewer. Fibonacci numbers are the standard example of the same idea, a power of a
+      $2 \times 2$ matrix computed by doubling. The group ends with the hard questions about shortest chains.
+    entries:
+      - integer-exponentiation
+      - fibonacci-numbers
+      - fibonacci-fast-doubling
+      - addition-chain
+      - sliding-window-exponentiation
+      - addition-chain-problem
+      - scholz-brauer-conjecture
+
+  - title: Adders in hardware
+    intro: >
+      In a circuit the cost of addition is its depth, and the carry chain makes the
+      [ripple-carry adder](/ripple-carry-adder/) linear. The other adders compute the carries in
+      $O(\sqrt n)$ or $O(\log n)$ depth, and the prefix adders differ in how they trade depth against
+      the number of cells and the fan-out.
+    entries:
+      - ripple-carry-adder
+      - carry-lookahead-adder
+      - brent-kung-adder
+      - kogge-stone-adder
+      - sklansky-adder
+      - carry-select-adder
+      - carry-skip-adder
+
+  - title: Signed and redundant digits
+    intro: >
+      Allowing negative digits, or more digits than the radix, gives a number several representations. That
+      freedom stops carries, so that a sum of three numbers becomes two in constant depth, and it gives sparse
+      recodings such as the [non-adjacent form](/non-adjacent-form/) with few nonzero digits.
+    entries:
+      - signed-digit-representation
+      - non-adjacent-form
+      - redundant-number-system
+      - carry-save-addition
+      - multi-operand-addition
+
+  - title: Multipliers and dividers in hardware
+    intro: >
+      A hardware multiplier adds $n$ partial products. The array multiplier does it in rows, in linear depth;
+      the Wallace and Dadda trees do it with carry-save adders in logarithmic depth; Booth recoding halves the
+      number of rows. Restoring and non-restoring division are long division in radix 2, one quotient bit per
+      step.
+    entries:
+      - array-multiplier
+      - wallace-tree-multiplier
+      - dadda-multiplier
+      - booth-multiplication
+      - restoring-division
+      - non-restoring-division

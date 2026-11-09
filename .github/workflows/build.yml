@@ -1,0 +1,127 @@
+# The Handbook of Algorithms (spec handbook 09.3).
+# On every push and pull request: check the learner pages against the pinned content.
+# Run by hand (workflow_dispatch): also build every volume, and with `release` set, publish the release
+# v<version from EDITION> with the books. A release that already exists gets its assets replaced.
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      content_ref:
+        description: "Commit of tamnd/algorithm to build from (default: the one in EDITION)"
+        required: false
+      release:
+        description: "Publish the books as the release v<version in EDITION>"
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    outputs:
+      content: ${{ steps.ed.outputs.content }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: ed
+        run: |
+          ref="${{ inputs.content_ref }}"
+          [ -n "$ref" ] || ref=$(awk '/^content /{print $2}' EDITION)
+          echo "content=$ref" >> "$GITHUB_OUTPUT"
+      - uses: actions/checkout@v4
+        with:
+          repository: tamnd/algorithm
+          ref: ${{ steps.ed.outputs.content }}
+          path: algorithm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: hb check
+        run: |
+          python -m hb check --content algorithm --volume all 2>/dev/null | tee check.txt
+          test ! -s check.txt
+
+  build:
+    if: github.event_name == 'workflow_dispatch'
+    needs: check
+    runs-on: ubuntu-24.04
+    env:
+      PANDOC: "3.12"
+    strategy:
+      fail-fast: false
+      matrix:
+        volume: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: tamnd/algorithm
+          ref: ${{ needs.check.outputs.content }}
+          path: algorithm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz poppler-utils epubcheck
+          # the same pandoc as the editions were made with (--syntax-highlighting needs 3.8 or later)
+          curl -fsSL -o pandoc.deb "https://github.com/jgm/pandoc/releases/download/$PANDOC/pandoc-$PANDOC-1-amd64.deb"
+          sudo dpkg -i pandoc.deb
+          curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+          sudo mv tectonic /usr/local/bin/
+      - uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: tectonic-${{ hashFiles('tex/handbook.sty') }}
+          restore-keys: tectonic-
+      - name: build
+        run: python -m hb build --content algorithm --volume ${{ matrix.volume }} --formats tex,pdf,epub
+      - name: epubcheck
+        run: epubcheck build/*/main.epub
+      - name: package
+        run: |
+          d=$(ls -d build/*/ | head -1); d=${d%/}; base=$(basename "$d")
+          v=$(awk '/^version /{print $2}' EDITION)
+          mkdir -p out
+          cp "$d/main.pdf" "out/handbook-of-algorithms-$v-$base.pdf"
+          cp "$d/main.epub" "out/handbook-of-algorithms-$v-$base.epub"
+          tar -czf "out/handbook-of-algorithms-$v-$base-tex.tar.gz" -C "$d" main.tex body.tex handbook.sty fig
+      - uses: actions/upload-artifact@v4
+        with:
+          name: volume-${{ matrix.volume }}
+          path: out/*
+
+  release:
+    if: github.event_name == 'workflow_dispatch' && inputs.release
+    needs: build
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: out
+          merge-multiple: true
+      - name: bundles and checksums
+        run: |
+          cd out
+          v=$(awk '/^version /{print $2}' ../EDITION)
+          zip "handbook-of-algorithms-$v-all-pdf.zip" *.pdf
+          zip "handbook-of-algorithms-$v-all-epub.zip" *.epub
+          sha256sum * > SHA256SUMS
+      - name: release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="v$(awk '/^version /{print $2}' EDITION)"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            gh release upload "$tag" out/* --clobber
+          else
+            gh release create "$tag" out/* --target "$GITHUB_SHA" --title "The Handbook of Algorithms $tag" --notes-file RELEASE.md
+          fi

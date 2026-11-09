@@ -1,0 +1,144 @@
+# The order of chapter 9.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Terms and matching
+    intro: >
+      A term is a finite tree whose nodes carry function symbols and whose leaves may be variables. These
+      entries fix the vocabulary used in the rest of the chapter: positions and subterms, contexts with a hole,
+      the algebra of ground terms, and matching, which finds the substitution that turns a pattern into a
+      given term.
+    entries:
+      - term
+      - subterm
+      - term-context
+      - term-algebra
+      - term-matching
+
+  - title: Rewrite systems
+    intro: >
+      A rewrite rule replaces an instance of its left side by the same instance of its right side. A set of
+      rules gives a relation on terms, and an abstract reduction system keeps only the relation. The entries
+      define steps, systems, normal forms, termination and weak normalization, left-linear rules, and the
+      string rewriting systems where terms are words.
+    entries:
+      - rewrite-rule
+      - rewrite-step
+      - abstract-reduction-system
+      - term-rewriting-system
+      - normal-form
+      - termination
+      - weak-normalization
+      - linearity
+      - string-rewriting-system
+
+  - title: Confluence
+    intro: >
+      A system is confluent when the order of steps cannot change the final answer. Newman's lemma reduces
+      confluence of a terminating system to local confluence, and the critical pair lemma reduces local
+      confluence to finitely many overlaps of rules. Orthogonal systems have no overlaps at all and are
+      confluent without any termination assumption.
+    entries:
+      - joinability
+      - confluence
+      - local-confluence
+      - newman-lemma
+      - critical-pair
+      - critical-pair-lemma
+      - orthogonal-rewrite-system
+      - parallel-rewriting
+      - orthogonal-confluence-theorem
+      - hindley-rosen-lemma
+
+  - title: Strategies and evaluation
+    intro: >
+      A term usually has many redexes, and a strategy picks one. Innermost reduction is call by value and
+      outermost reduction is call by name; they differ in which terms they normalize and in how many steps
+      they take. Sharing equal subterms in a graph removes the copies that make outermost reduction slow.
+    entries:
+      - reduction-strategy
+      - normal-form-computation
+      - innermost-reduction
+      - outermost-reduction
+      - term-graph-rewriting
+      - graph-reduction
+
+  - title: Lambda calculus and combinators
+    intro: >
+      The lambda calculus and combinatory logic are the rewrite systems behind functional programming. These
+      entries cover beta-reduction, the Church-Rosser theorem, standardization, which justifies leftmost
+      reduction, the combinators S and K, and the reducibility method that proves strong normalization of
+      typed terms.
+    entries:
+      - beta-reduction
+      - church-rosser-theorem
+      - standardization-theorem
+      - combinatory-logic
+      - reducibility-method
+
+  - title: Proving termination
+    intro: >
+      Termination is undecidable, so it is proved one system at a time, usually by a reduction ordering that
+      decreases at every step. Path orderings compare terms symbol by symbol, interpretations map them to
+      numbers or vectors, and dependency pairs and size-change graphs split the proof into small pieces that
+      tools can search for.
+    entries:
+      - well-founded-reduction-ordering
+      - multiset-ordering
+      - recursive-path-ordering
+      - lexicographic-path-ordering
+      - knuth-bendix-ordering
+      - polynomial-interpretation
+      - matrix-interpretation
+      - dependency-pairs
+      - size-change-termination
+
+  - title: Equations and completion
+    intro: >
+      An equational theory says which terms are equal, and the word problem asks whether two given terms are.
+      Completion turns equations into a confluent, terminating rewrite system, which decides the word problem
+      by comparing normal forms. Narrowing solves equations with variables, and rewriting induction proves
+      equations that hold for every ground instance.
+    entries:
+      - equational-theory
+      - birkhoff-completeness-theorem
+      - word-problem
+      - knuth-bendix-completion
+      - rewrite-system-completion
+      - unfailing-completion
+      - narrowing
+      - inductive-theorem-proving
+      - rewriting-induction
+
+  - title: Rewriting modulo theories
+    intro: >
+      Some equations, such as commutativity, cannot be oriented by any reduction ordering. They are built into
+      matching and unification instead. These entries cover rewriting modulo equations, associative-commutative
+      matching, unification modulo theories and rewriting logic, the framework of the Maude system.
+    entries:
+      - rewriting-modulo-equations
+      - ac-matching
+      - undecidability-of-unification-modulo-theories
+      - rewriting-logic
+
+  - title: Matching many patterns
+    intro: >
+      A rewriting engine or a prover holds thousands of rules and must find the ones that apply to a term. Tree
+      pattern matching finds every occurrence of a set of patterns, the Hoffmann-O'Donnell automaton does it in
+      one bottom-up pass, and discrimination trees and substitution trees index the rules themselves.
+    entries:
+      - tree-pattern-matching
+      - hoffmann-odonnell-matching
+      - discrimination-tree
+      - substitution-tree
+
+  - title: Computation and undecidability
+    intro: >
+      String rewriting is as strong as Turing machines, which the Markov algorithms and Post canonical systems
+      show directly. The same power makes the word problem, termination and confluence undecidable. These
+      entries give the reductions and say which special cases remain decidable.
+    entries:
+      - markov-algorithm
+      - post-canonical-system
+      - undecidability-of-word-problem
+      - undecidability-of-termination
+      - termination-decision-problem
+      - confluence-decision-problem

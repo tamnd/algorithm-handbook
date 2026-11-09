@@ -1,0 +1,26 @@
+Pairing things up is one of the oldest problems in combinatorics. Workers must be assigned to jobs they can do, students to schools, organ donors to compatible patients, and taxis to riders. In graph terms each possible pair is an edge, and a matching is a set of edges no two of which share an end. The questions are how large a matching can be, how cheap or heavy, and how stable when people have preferences.
+
+One idea runs through the chapter. Given a matching, an [augmenting path](/augmenting-path/) starts and ends at unmatched vertices and alternates between edges outside and inside the matching. Swapping the edges along it enlarges the matching by one, and by [Berge's lemma](/berge-lemma/) a matching is maximum exactly when no augmenting path exists. In a [bipartite graph](/bipartite-matching/) one search finds such a path, which gives [Kuhn's algorithm](/kuhn-algorithm/) in $O(nm)$ time; [Hopcroft-Karp](/hopcroft-karp/) uses many shortest paths per phase and runs in $O(m \sqrt{n})$. In a general graph an odd cycle can hide the path, and [Edmonds' blossom algorithm](/edmonds-blossom/) shrinks such cycles. With weights, the same paths are found as shortest paths under vertex prices, as in the [Hungarian algorithm](/hungarian-algorithm/). Stable matching is different: the [Gale-Shapley algorithm](/gale-shapley/) has one side propose and the other accept tentatively.
+
+## What the chapter covers
+
+The chapter is in eight groups, read in order.
+
+1. **Matchings and augmenting paths.** [Maximal matchings](/maximal-matching/), [alternating](/alternating-path/) and [augmenting paths](/augmenting-path/), [Berge's lemma](/berge-lemma/), [maximum matching](/maximum-matching/), and [edge covers](/minimum-edge-cover/) with [Gallai's identity](/gallai-identity/).
+2. **Bipartite matching.** [Kuhn](/kuhn-algorithm/), [Hopcroft-Karp](/hopcroft-karp/), [Hall's theorem](/hall-theorem/), [perfect matchings](/perfect-matching/), [Kőnig's theorem](/konig-theorem/), [independent sets](/bipartite-maximum-independent-set/) and the [Dulmage-Mendelsohn decomposition](/dulmage-mendelsohn-decomposition/).
+3. **The assignment problem.** The [problem](/assignment-problem/), the [Hungarian algorithm](/hungarian-algorithm/), [Jonker-Volgenant](/jonker-volgenant-algorithm/), the [auction algorithm](/auction-algorithm/) and [bottleneck matching](/bottleneck-matching/).
+4. **Stable matching.** [Stable matchings](/stable-matching/), [Gale-Shapley](/gale-shapley/), [hospitals and residents](/hospitals-residents-problem/), [ties](/stable-matching-with-ties/), [rotations](/stable-matching-rotations/) and [stable roommates](/irving-stable-roommates/).
+5. **General graphs.** [Blossoms](/blossom/), [Edmonds' algorithm](/edmonds-blossom/), [Micali-Vazirani](/micali-vazirani-algorithm/) and the [Gallai-Edmonds decomposition](/gallai-edmonds-decomposition/).
+6. **Tutte's theorem and its consequences.** [Tutte's theorem](/tutte-theorem/), the [Tutte-Berge formula](/tutte-berge-formula/) and [Petersen's theorem](/petersens-theorem/).
+7. **Weighted matching and polytopes.** [Fractional matchings](/fractional-matching/), the [matching polytope](/matching-polytope/), [Edmonds' theorem](/edmonds-polytope-theorem/), and [maximum-weight](/maximum-weight-matching/) and [minimum-weight perfect](/minimum-weight-perfect-matching/) matching.
+8. **Degree constraints and algebra.** [$b$-matchings](/b-matching/), [$f$-factors](/f-factor-problem/), the [Tutte matrix](/tutte-matrix/) and [parallel matching](/rnc-perfect-matching/).
+
+## A first reading
+
+For a first reading, take these entries in order: [maximal matching](/maximal-matching/), [augmenting path](/augmenting-path/), [Berge's lemma](/berge-lemma/), [bipartite matching](/bipartite-matching/), [Kuhn's algorithm](/kuhn-algorithm/), [Hall's theorem](/hall-theorem/), [Kőnig's theorem](/konig-theorem/), [Hopcroft-Karp](/hopcroft-karp/), [assignment problem](/assignment-problem/), [Hungarian algorithm](/hungarian-algorithm/), [stable matching](/stable-matching/) and [Gale-Shapley](/gale-shapley/). Add [blossoms](/blossom/) and [Tutte's theorem](/tutte-theorem/) for a first look at general graphs.
+
+Three pairs overlap. The [stable roommates problem](/stable-roommates-problem/) and [Irving's algorithm](/irving-stable-roommates/) cover one problem; read the algorithm. [Maximum matching](/maximum-matching/) and [perfect matching](/perfect-matching/) state problems whose algorithms live in other entries. The [matching polytope](/matching-polytope/) and [Edmonds' polytope theorem](/edmonds-polytope-theorem/) describe the same object, the second with the proof.
+
+## Before you start
+
+From Chapter 7.1 you need [bipartite graphs](/bipartite-graph/), and from Chapter 7.2 [breadth-first](/breadth-first-search/) and [depth-first search](/depth-first-search/). Chapter 7.6 is helpful though not required: bipartite matching is a [maximum flow](/max-flow-problem/) with unit capacities, and Hopcroft-Karp is [Dinic's algorithm](/dinic/) on that network. The weighted algorithms use the [potentials](/potential-function-reduced-costs/) and [Dijkstra's algorithm](/dijkstra/) of Chapter 7.3. Group 8 uses the [determinant](/determinant/) of Volume 11.

@@ -1,0 +1,100 @@
+# The order of chapter 2.12. Groups are read in order; entries in a group too.
+groups:
+  - title: Words and signs
+    intro: >
+      A machine word is a row of $w$ bits, and a handful of operations act on all of them at once. This group
+      fixes the operations, the two's complement encoding of negative numbers that makes $-x$ and $x - 1$ so
+      useful, the widening of a signed field and the reversal of byte order. The survey of bit manipulation
+      at the end gives a map of the identities the rest of the chapter uses.
+    entries:
+      - bitwise-operations
+      - twos-complement
+      - sign-extension
+      - endianness-conversion
+      - bit-manipulation
+
+  - title: Words as sets
+    intro: >
+      Read bit $i$ as the answer to "is $i$ in the set". A single word then holds a subset of a small
+      universe, an array of words holds a subset of a large one, and fields of a fixed width can be packed
+      side by side with no gaps. Set operations become AND, OR and XOR on whole words.
+    entries:
+      - bitmask
+      - bit-packing
+      - bit-set
+
+  - title: Finding one bit
+    intro: >
+      The lowest 1-bit is reached in two operations through $x \wedge (-x)$, and that gives the power-of-two
+      test and the trailing zero count. The highest 1-bit gives $\lfloor \lg x \rfloor$, the leading zero
+      count and the next power of two. The de Bruijn bit scan turns the lowest bit into its index with one
+      multiplication and a table of $w$ entries.
+    entries:
+      - lowest-set-bit
+      - power-of-two-test
+      - trailing-zero-count
+      - floor-log2
+      - leading-zero-count
+      - next-power-of-two
+      - de-bruijn-bit-scan
+
+  - title: Counting bits
+    intro: >
+      The population count is the number of 1-bits of a word, and parity is that number modulo 2. Three
+      methods compute it: a loop that runs once per 1-bit, a table indexed by bytes, and a SWAR method that
+      treats the word as a vector of small counters. The group also gives SIMD within a register in general,
+      since the SWAR count is its best-known case.
+    entries:
+      - population-count
+      - kernighan-popcount
+      - bit-parity
+      - table-lookup
+      - simd-within-a-register
+      - swar-popcount
+
+  - title: XOR identities and branch-free code
+    intro: >
+      Exclusive-or cancels in pairs, which finds the one value without a partner and swaps two words with no
+      temporary. Masks of all ones or all zeros select between two values without a jump, which is the base
+      of branchless programming.
+    entries:
+      - single-number
+      - swap-two-values
+      - xor-swap
+      - branchless-programming
+
+  - title: Moving bits
+    intro: >
+      Some problems ask not what the bits are but where they go: reversed for the FFT, interleaved for the
+      Z-order curve, or transposed between rows and columns of a bit matrix. All of them are solved by the
+      same idea, swapping blocks of half the size in each of $\lg w$ rounds with masks.
+    entries:
+      - bit-reversal
+      - bit-interleaving
+      - morton-encoding
+      - bit-matrix-transposition
+      - bit-matrix-transpose
+
+  - title: Subsets as numbers
+    intro: >
+      A bitmask of $n$ bits is a subset of $n$ items, so loops over numbers become loops over subsets. Gosper's
+      hack steps through the subsets of one size, the loop $s \gets (s - 1) \wedge m$ steps through the
+      submasks of $m$, and SOS DP sums a function over all submasks of every mask in $n 2^{n-1}$ additions.
+    entries:
+      - next-same-popcount
+      - gospers-hack
+      - submask-enumeration
+      - sum-over-subsets
+      - sos-dp
+
+  - title: Whole algorithms in words
+    intro: >
+      The last group uses words as small parallel machines for whole algorithms: bit parallelism for automata
+      and dynamic programming tables, bit slicing for Boolean circuits, and the Four Russians method, which
+      tabulates small blocks to save a factor $\log n$. Roaring bitmaps close the chapter: they build large
+      compressed sets from bit vectors, sorted arrays and runs.
+    entries:
+      - bit-parallelism
+      - bit-slicing
+      - four-russians-method
+      - roaring-bitmap

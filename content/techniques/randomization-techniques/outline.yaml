@@ -1,0 +1,31 @@
+# The order of chapter 2.10. Groups are read in order; entries in a group too.
+groups:
+  - title: Coins inside the algorithm
+    intro: >
+      A randomized algorithm reads random bits as it runs, so its time and its output are random variables
+      for each fixed input. Las Vegas algorithms are always right and have a random running time; Monte Carlo
+      algorithms stop in a bounded time and may be wrong with a small probability. The cost of a Las Vegas
+      algorithm is its expected running time on the worst input, and randomized quickselect is the model
+      example, with at most $4n$ comparisons in expectation on every input.
+    entries:
+      - randomized-algorithm
+      - expected-running-time
+      - randomized-quickselect
+
+  - title: Random order
+    intro: >
+      Many geometric algorithms insert their objects one at a time and repair a structure after each step.
+      In a random order, the last of the first $i$ objects is a uniform member of a set that can be fixed in
+      advance, so the expected change at step $i$ is an average over a fixed structure. Backwards analysis
+      is this argument, and randomized incremental construction is the design that uses it.
+    entries:
+      - backwards-analysis
+      - randomized-incremental-construction
+
+  - title: Randomness as a proof
+    intro: >
+      The same tools prove that objects exist. If a random object is bad with probability less than 1, or
+      if a quantity has a given mean, then some object is good, or reaches the mean. The proof names no
+      object, but a sampling loop or the method of conditional expectations often turns it into an algorithm.
+    entries:
+      - probabilistic-method

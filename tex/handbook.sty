@@ -1,0 +1,351 @@
+% The style of The Handbook of Algorithms (spec handbook 05).
+% XeLaTeX (tectonic). Open fonts from the TeX Live bundle.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handbook}[2026/11/09 The Handbook of Algorithms]
+
+% ------------------------------------------------------------------ page
+\RequirePackage[paperwidth=7in,paperheight=10in,inner=0.85in,outer=0.8in,
+  top=0.9in,bottom=0.95in,headsep=0.3in,footskip=0.45in,marginparwidth=0.6in]{geometry}
+
+% ------------------------------------------------------------------ fonts
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{mathtools}
+\RequirePackage{fontspec}
+\RequirePackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math}
+\RequirePackage{centernot}   % \not over a relation with no negated Unicode form (\leadsto) crashes XeTeX
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{LibertinusSerif}[Extension=.otf,UprightFont=*-Regular,ItalicFont=*-Italic,
+  BoldFont=*-Bold,BoldItalicFont=*-BoldItalic,Scale=1.0,Numbers=Proportional]
+\setsansfont{LibertinusSans}[Extension=.otf,UprightFont=*-Regular,ItalicFont=*-Italic,
+  BoldFont=*-Bold,BoldItalicFont=*-Bold]
+\setmonofont{DejaVuSansMono}[Extension=.ttf,UprightFont=*,BoldFont=*-Bold,Scale=0.82]
+\setmathfont{LibertinusMath-Regular.otf}
+\newfontfamily\hbfbA{LibertinusMath-Regular.otf}
+\newfontfamily\hbfbB{DejaVuSansMono.ttf}[Scale=0.82]
+\newfontfamily\hbfbC{STIXTwoMath-Regular.otf}
+\newfontfamily\hbfbD{FreeSerif.otf}
+\newfontfamily\hbfbE{FandolSong-Regular.otf}
+\newfontfamily\hbfbF{LibertinusSerif-Regular.otf}
+\newcommand\hbfb[2]{\texorpdfstring{{\csname hbfb#1\endcsname #2}}{#2}}
+\newfontfamily\hbcondensed{LibertinusSans}[Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold]
+
+% ------------------------------------------------------------------ colour
+\RequirePackage{xcolor}
+\definecolor{hbink}{HTML}{1F2328}
+\definecolor{hbmuted}{HTML}{6B7280}
+\definecolor{hbrule}{HTML}{D0D5DD}
+\providecolor{hbaccent}{HTML}{2B59C3}   % the hue of the volume, set by the volume file
+\colorlet{hbaccentdark}{hbaccent!75!black}
+\colorlet{hbtint}{hbaccent!6!white}
+\colorlet{hbtintgray}{black!3!white}
+\color{hbink}
+
+% ------------------------------------------------------------------ packages
+\RequirePackage{graphicx}
+\RequirePackage{booktabs,longtable,array,calc,multicol,etoolbox}
+\RequirePackage{needspace}
+\RequirePackage[protrusion=true,expansion=false]{microtype}
+\RequirePackage{fvextra}
+\fvset{breaklines=true,breakanywhere=true,breaksymbolleft={},breakanywheresymbolpre={}}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{enumitem}
+\setlist{itemsep=1pt,topsep=3pt,parsep=1pt}
+\RequirePackage{fancyhdr}
+\RequirePackage{xurl}
+\RequirePackage{bookmark}
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=hbaccentdark,urlcolor=hbaccentdark,citecolor=hbaccentdark,
+  bookmarksnumbered=true,bookmarksopen=true,bookmarksopenlevel=1,pdfdisplaydoctitle=true,unicode=true}
+\urlstyle{same}
+
+% pandoc needs these
+\newcounter{none}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\pandocbounded}[1]{#1}
+\newcommand{\passthrough}[1]{#1}
+\setlength{\emergencystretch}{3em}
+\tolerance=1500
+\hbadness=3000
+\vbadness=10000
+\hfuzz=2pt
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt plus 1pt}
+\frenchspacing
+% the paragraph after a box, a list of exercises or a display starts flush left
+\newcommand\hbnoindentnext{\everypar{{\setbox0\lastbox}\everypar{}}}
+\widowpenalty=3000
+\clubpenalty=3000
+\raggedbottom
+
+% KaTeX names that LaTeX lacks (spec handbook 01.5)
+\providecommand{\llbracket}{\lBrack}
+\providecommand{\rrbracket}{\rBrack}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\Q}{\mathbb{Q}}
+\providecommand{\C}{\mathbb{C}}
+\providecommand{\lt}{<}
+\providecommand{\gt}{>}
+\providecommand{\bm}[1]{\symbf{#1}}
+\renewcommand{\boldsymbol}[1]{\symbf{#1}}
+\providecommand{\Set}[1]{\{#1\}}
+\providecommand{\argmin}{\operatorname*{arg\,min}}
+\providecommand{\argmax}{\operatorname*{arg\,max}}
+
+% tables: smaller type, ragged cells
+\AtBeginEnvironment{longtable}{\small\sffamily}
+\setlength{\LTpre}{6pt}
+\setlength{\LTpost}{6pt}
+\renewcommand{\arraystretch}{1.15}
+
+% ------------------------------------------------------------------ headings
+\setcounter{secnumdepth}{-2}
+\setcounter{tocdepth}{2}
+\newcommand\hbvolnum{0}
+\newcommand\hbvolname{}
+\newcommand\hbchapnum{0}
+\renewcommand\thefigure{\hbchapnum.\arabic{figure}}   % Figure 4.1.2: the second figure of chapter 4.1
+
+\newcommand\hbchapter[3]{%
+  \cleardoublepage
+  \thispagestyle{hbplain}%
+  \phantomsection\label{#3}%
+  \gdef\hbchapnum{#1}\setcounter{figure}{0}%
+  \addcontentsline{toc}{chapter}{\protect\numberline{#1}#2}%
+  \markboth{#1\quad #2}{#1\quad #2}%
+  \vspace*{0.6in}%
+  {\noindent\sffamily\bfseries\color{hbaccent}\fontsize{54}{54}\selectfont #1\par}
+  \vspace{10pt}%
+  {\noindent\color{hbaccent}\rule{\textwidth}{1.2pt}\par}
+  \vspace{12pt}%
+  {\noindent\raggedright\sffamily\bfseries\fontsize{26}{30}\selectfont #2\par}
+  \vspace{28pt}%
+  \@afterheading}
+
+\newcommand\hbintro[2]{% an unnumbered chapter: the introduction, the appendices
+  \cleardoublepage
+  \thispagestyle{hbplain}%
+  \phantomsection\label{#2}%
+  \xdef\hbchapnum{\hbvolnum.0}\setcounter{figure}{0}%
+  \addcontentsline{toc}{chapter}{#1}%
+  \markboth{#1}{#1}%
+  \vspace*{0.6in}%
+  {\noindent\color{hbaccent}\rule{\textwidth}{1.2pt}\par}
+  \vspace{12pt}%
+  {\noindent\raggedright\sffamily\bfseries\fontsize{26}{30}\selectfont #1\par}
+  \vspace{28pt}%
+  \@afterheading}
+
+\newcommand\hbgroup[1]{%
+  \par\addvspace{20pt}\needspace{16\baselineskip}%
+  \phantomsection\addcontentsline{toc}{section}{#1}%
+  {\noindent\sffamily\bfseries\large\color{hbaccentdark}#1\par}%
+  \nobreak\vspace{2pt}{\noindent\color{hbrule}\rule{\textwidth}{0.5pt}\par}\nobreak
+  \vspace{6pt}\@afterheading}
+
+% \hbentry{number}{name}{label}{kind}{level}
+\newcommand\hbentry[5]{%
+  \par\addvspace{22pt}\needspace{9\baselineskip}%
+  \phantomsection\label{#3}%
+  \addcontentsline{toc}{subsection}{\protect\numberline{#1}#2}%
+  \markright{#1\quad #2}%
+  {\noindent\parbox[b]{\textwidth}{\raggedright
+    {\sffamily\bfseries\color{hbaccent}\large #1}\hspace{0.6em}%
+    {\sffamily\bfseries\Large #2}\hfill
+    {\sffamily\scriptsize\color{hbmuted}\addfontfeatures{LetterSpace=8}\MakeUppercase{#4}\enspace·\enspace\MakeUppercase{#5}}}\par}%
+  \nobreak\vspace{3pt}{\noindent\color{hbaccent}\rule{\textwidth}{0.8pt}\par}\nobreak
+  \vspace{4pt}\@afterheading}
+
+% the sections inside an entry (pandoc level 4 and 5)
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+  {-12pt plus -3pt minus -1pt}{4pt}{\sffamily\bfseries\normalsize\color{hbink}}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {8pt plus 2pt minus 1pt}{-0.6em}{\sffamily\bfseries\small\color{hbink}}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}{\z@}%
+  {6pt plus 2pt}{-0.5em}{\sffamily\itshape\small}}
+\makeatother
+
+% ------------------------------------------------------------------ the parts of an entry
+\newenvironment{hblead}{\par\noindent\begin{minipage}{\textwidth}\itshape\color{hbink!85}}{\end{minipage}\par\vspace{6pt}}
+
+\newtcolorbox{hbfactsbox}{enhanced,breakable,colback=hbtint,colframe=hbtint,boxrule=0pt,arc=1pt,
+  left=8pt,right=8pt,top=5pt,bottom=5pt,borderline west={2pt}{0pt}{hbaccent},
+  before skip=4pt,after skip=10pt,fontupper=\small}
+\newenvironment{hbfacts}{\begin{hbfactsbox}\setlength{\parindent}{0pt}\setlength{\parskip}{1.5pt}%
+  \everypar{\hangindent=6.2em\hangafter=1\relax}\raggedright}{\end{hbfactsbox}\aftergroup\hbnoindentnext}
+\newcommand\hbfk[1]{\makebox[6.2em][l]{\sffamily\bfseries\footnotesize\color{hbaccentdark}#1}}
+
+\makeatletter
+\newtcolorbox{hbproofbox}{enhanced,breakable,colback=white,colframe=white,boxrule=0pt,arc=0pt,
+  left=9pt,right=0pt,top=2pt,bottom=2pt,borderline west={0.8pt}{0pt}{hbaccent!45},before skip=8pt,after skip=10pt}
+\newenvironment{hbproof}{\begin{hbproofbox}\setlength{\parindent}{1.2em}}{\end{hbproofbox}\aftergroup\hbnoindentnext}
+\newcommand\hbprooftitle[1]{\noindent{\sffamily\bfseries\small\color{hbaccentdark}#1}\par\nobreak\vspace{1pt}\@afterheading}
+\makeatother
+\newcommand\hbref[1]{\,{\sffamily\scriptsize\color{hbmuted}#1}}
+
+\newenvironment{hbseealso}{\par\vspace{6pt}\small\setlength{\parindent}{0pt}\raggedright
+  \everypar{\everypar{}{\sffamily\bfseries\color{hbaccentdark}See also\enspace}}}{\par\aftergroup\hbnoindentnext}
+
+\newenvironment{hbexercise}{\par\addvspace{5pt plus 1pt}\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}}{\par\aftergroup\hbnoindentnext}
+\newenvironment{hbrefs}{\par\raggedright\setlength{\parskip}{1pt}}{\par}
+\newenvironment{hbhints}{\par\setlength{\parindent}{0pt}\setlength{\parskip}{5pt plus 1pt}}{\par}
+\newenvironment{hbgroupintro}{\par\itshape}{\par\vspace{4pt}}
+\newenvironment{hbroadmap}{\par\vspace{6pt}}{\par}
+\newenvironment{hbfurther}{\par\small\raggedright}{\par}
+
+% ------------------------------------------------------------------ pseudocode
+\newtcolorbox{hbpseudobox}{enhanced,breakable,colback=hbtintgray,colframe=hbtintgray,boxrule=0pt,arc=1pt,
+  left=6pt,right=8pt,top=5pt,bottom=5pt,before skip=8pt,after skip=8pt}
+\newlength\hbplabel
+\setlength\hbplabel{2.1em}
+\newlength\hbpind
+\newenvironment{hbpseudo}{\begin{hbpseudobox}\setlength{\parindent}{0pt}\setlength{\parskip}{0pt}%
+  \raggedright\small\linespread{1.05}\selectfont}{\end{hbpseudobox}\aftergroup\hbnoindentnext}
+% \hbpl{label}{indent}{code}{comment}
+\newcommand\hbpl[4]{%
+  \setlength\hbpind{#2\dimexpr1.4em\relax}%
+  \par\hangindent=\dimexpr\hbplabel+\hbpind+1.4em\relax\hangafter=1
+  \makebox[\hbplabel][l]{\sffamily\scriptsize\color{hbmuted}#1}\hspace*{\hbpind}#3%
+  \ifblank{#4}{}{\unskip\nobreak\hfil\penalty50\hskip1.2em\hbox{}\nobreak\hfil
+    {\color{hbmuted}\footnotesize ▷ #4}\parfillskip=0pt}\par}
+\newcommand\hbpgap{\par\vspace{0.6\baselineskip}}
+\newcommand\hbkw[1]{\textbf{#1}}
+\newcommand\hbproc[1]{{\scshape\MakeLowercase{#1}}}
+
+% ------------------------------------------------------------------ code
+\DefineVerbatimEnvironment{hbverbatim}{Verbatim}{fontsize=\small,commandchars=\\\{\}}
+\newtcolorbox{hbcodebox}[1]{enhanced,breakable,colback=white,colframe=hbrule,boxrule=0.4pt,arc=1pt,
+  left=6pt,right=6pt,top=3pt,bottom=3pt,before skip=6pt,after skip=8pt,
+  title={\sffamily\scriptsize #1},coltitle=hbmuted,colbacktitle=hbtintgray,
+  toptitle=1pt,bottomtitle=1pt}
+\newenvironment{hbcode}[1]{\begin{hbcodebox}{#1}\small}{\end{hbcodebox}\aftergroup\hbnoindentnext}
+
+% ------------------------------------------------------------------ running heads
+\fancypagestyle{hbmain}{%
+  \fancyhf{}%
+  \fancyhead[LE]{\sffamily\footnotesize\leavevmode\textcolor{hbmuted}{\leftmark}}%
+  \fancyhead[RO]{\sffamily\footnotesize\leavevmode\textcolor{hbmuted}{\rightmark}}%
+  \fancyfoot[LE,RO]{\sffamily\footnotesize\thepage}%
+  \fancyfoot[RE,LO]{\sffamily\footnotesize\leavevmode\textcolor{hbmuted}{\hbvolumeline}}%
+  \renewcommand{\headrulewidth}{0pt}}
+\fancypagestyle{hbplain}{\fancyhf{}\fancyfoot[LE,RO]{\sffamily\footnotesize\thepage}\renewcommand{\headrulewidth}{0pt}}
+\newcommand\hbvolumeline{Volume \hbvolnum\enspace·\enspace\hbvolname}
+
+% ------------------------------------------------------------------ contents
+\makeatletter
+\renewcommand\tableofcontents{%
+  \hbintro{Contents}{contents}%
+  \@starttoc{toc}}
+\renewcommand*\l@chapter[2]{%
+  \addpenalty{-\@highpenalty}\vskip 9pt plus 1pt
+  {\noindent\sffamily\bfseries\normalsize\color{hbaccentdark}%
+   \setlength\@tempdima{3em}\leftskip\z@\rightskip\@pnumwidth plus 1fil\parfillskip -\@pnumwidth
+   \let\numberline\hb@tocnum #1\nobreak\hfill\nobreak\hb@pnum{#2}\par}\nobreak}
+\def\hb@tocnum#1{\makebox[3em][l]{#1}}
+\def\hb@pnum#1{\hb@to\@pnumwidth{\hss #1}}
+\def\hb@to{\hbox to}
+\renewcommand*\l@section[2]{%
+  {\sffamily\small\leftskip3em\rightskip\@pnumwidth plus 1fil\parfillskip -\@pnumwidth
+   \noindent\itshape #1\nobreak\leaders\hbox{$\m@th\mkern 6mu\cdot\mkern 6mu$}\hfill\nobreak\hb@pnum{\upshape #2}\par}}
+\renewcommand*\l@subsection[2]{%
+  {\small\leftskip3em\rightskip\@pnumwidth plus 1fil\parfillskip -\@pnumwidth
+   \noindent\def\numberline##1{\makebox[3.6em][l]{\sffamily\footnotesize\color{hbmuted}##1}}#1\nobreak
+   \leaders\hbox{$\m@th\mkern 6mu\cdot\mkern 6mu$}\hfill\nobreak\hb@pnum{#2}\par}}
+\makeatother
+
+% ------------------------------------------------------------------ figures and the index
+\newcommand\hbfigure[3]{% file, caption, label
+  \begin{figure}[htbp]\centering
+  \includegraphics[width=\textwidth,height=0.72\textheight,keepaspectratio]{#1}
+  \caption{#2}\label{#3}\end{figure}}
+\RequirePackage[font={small,sf},labelfont={bf,color=hbaccentdark},labelsep=period]{caption}
+\captionsetup[table]{labelformat=empty,textfont={color=hbmuted}}
+\newenvironment{hbindex}{\par\small\setlength{\parindent}{0pt}\setlength{\parskip}{0.5pt}\setlength{\columnsep}{1.5em}\raggedright
+  \everypar{\hangindent=1.5em\hangafter=1\relax}\begin{multicols}{2}}{\end{multicols}}
+\newenvironment{hbbib}{\par\small\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}\raggedright
+  \everypar{\hangindent=1.5em\hangafter=1\relax}}{\par}
+\newenvironment{hbglossary}{\par\small\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}\raggedright
+  \everypar{\hangindent=1.2em}}{\par}
+\newenvironment{hbtimeline}{\par\small\setlength{\parindent}{0pt}\setlength{\parskip}{3pt}\raggedright
+  \everypar{\hangindent=1.2em}}{\par}
+\newcommand\hbidx[2]{\par\hangindent=1.5em #1\enspace{\color{hbmuted}#2}}
+\newcommand\hbidxsub[2]{\par\hangindent=2.5em\hspace*{1em}#1\enspace{\color{hbmuted}#2}}
+\newcommand\hbidxletter[1]{\par\addvspace{8pt}{\sffamily\bfseries\color{hbaccent}#1}\par\nobreak}
+
+% ------------------------------------------------------------------ highlighted code (pandoc's Tok macros, a muted theme)
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\},fontsize=\small}
+\newenvironment{Shaded}{}{}
+\definecolor{hbkey}{HTML}{8A3B12}
+\definecolor{hbstr}{HTML}{2F6B3A}
+\definecolor{hbnum}{HTML}{1F5E99}
+\definecolor{hbcom}{HTML}{7A7F87}
+\definecolor{hbfun}{HTML}{5B2F91}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\KeywordTok}[1]{\textcolor{hbkey}{\textbf{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor{hbkey}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{\textcolor{hbkey}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor{hbfun}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor{hbfun}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor{hbfun}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor{hbnum}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor{hbnum}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor{hbnum}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor{hbnum}{#1}}
+\newcommand{\CharTok}[1]{\textcolor{hbstr}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor{hbstr}{#1}}
+\newcommand{\StringTok}[1]{\textcolor{hbstr}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor{hbstr}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor{hbstr}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor{hbcom}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor{hbcom}{\textit{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor{hbcom}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor{hbcom}{\textit{#1}}}
+\newcommand{\InformationTok}[1]{\textcolor{hbcom}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor{hbcom}{\textbf{#1}}}
+\newcommand{\AlertTok}[1]{\textcolor{red!60!black}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor{red!60!black}{#1}}
+\newcommand{\OtherTok}[1]{#1}
+\newcommand{\VariableTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{#1}
+\newcommand{\AttributeTok}[1]{\textcolor{hbfun}{#1}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor{hbkey}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+
+% ------------------------------------------------------------------ title, copyright, back matter
+\newcommand\hbtitlepage[5]{% number, name, summary, edition, date
+  \begin{titlepage}\thispagestyle{empty}%
+  \noindent{\color{hbaccent}\rule{\textwidth}{6pt}}\par\vspace{0.5in}%
+  {\noindent\sffamily\small\color{hbmuted}\addfontfeatures{LetterSpace=14}THE HANDBOOK OF ALGORITHMS\par}
+  \vspace{1.6in}%
+  {\noindent\sffamily\bfseries\color{hbaccent}\fontsize{20}{24}\selectfont Volume #1\par}
+  \vspace{10pt}%
+  {\noindent\raggedright\sffamily\bfseries\fontsize{38}{44}\selectfont #2\par}
+  \vspace{18pt}%
+  {\noindent\parbox{0.82\textwidth}{\raggedright\large\itshape\color{hbink!85}#3}\par}
+  \vfill
+  {\noindent\sffamily\small\color{hbmuted}Edition #4\enspace·\enspace #5\par}
+  \vspace{4pt}%
+  {\noindent\sffamily\small\color{hbmuted}algorithm.tamnd.com\par}
+  \end{titlepage}}
+\newcommand\hbcopyright[5]{% edition, date, commit, number, name
+  \clearpage\thispagestyle{empty}\null\vfill
+  {\footnotesize\raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{5pt}
+  \textbf{The Handbook of Algorithms, Volume #4: #5.} Edition #1, #2.\par
+  Built from the content of the Algorithm project at commit \texttt{#3} (\url{https://github.com/tamnd/algorithm}).
+  The online edition, with every entry, the code in several languages and the interactive figures, is at
+  \url{https://algorithm.tamnd.com}.\par
+  The text of the entries and proofs is licensed under Creative Commons Attribution-ShareAlike 4.0
+  International (CC~BY-SA~4.0). The code is licensed under the MIT licence. The learner pages of this book
+  (introductions, openings, summaries, exercises, hints and notes) are licensed under CC~BY-SA~4.0.\par
+  Much of the text was drafted by AI agents working from the sources cited in each entry, and then checked
+  by tests and reviews in the project. Errors remain. Please report them at
+  \url{https://github.com/tamnd/algorithm/issues}.\par
+  Set in Libertinus Serif, Libertinus Sans and DejaVu Sans Mono with XeTeX (Tectonic).\par}
+  \clearpage}
+\newcommand\hbbackmatter{\cleardoublepage}
+
+\pagestyle{hbmain}
+\endinput

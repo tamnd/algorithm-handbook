@@ -1,0 +1,54 @@
+groups:
+  - title: Palindromes and how many there are
+    intro: >
+      A palindrome equals its own reversal. In DNA the mirror also swaps each base for its partner, which is
+      the shape of many enzyme sites. Testing one string takes $\lfloor n/2 \rfloor$ comparisons, and a string
+      of length $n$ holds at most $n$ distinct nonempty palindromes, because each new symbol adds at most one.
+    entries:
+      - palindrome
+      - reverse-complement-palindrome
+      - palindrome-recognition
+      - palindrome-count-bound
+
+  - title: Finding all palindromes
+    intro: >
+      Every palindrome inside a string sits at one of $2n + 1$ centers. Manacher's algorithm finds the longest
+      palindrome at every center in linear time, and that one array answers the longest palindrome, the count
+      of palindromic substrings and any query of the form "is this substring a palindrome".
+    entries:
+      - longest-palindromic-substring
+      - manacher
+      - count-palindromic-substrings
+      - palindrome-substring-queries
+      - gapped-palindrome
+
+  - title: Making a string a palindrome
+    intro: >
+      Add symbols at one end, or edit the string, until it reads the same both ways. Adding at one end reduces
+      to the longest palindromic prefix or suffix; editing anywhere reduces to the longest palindromic
+      subsequence.
+    entries:
+      - shortest-palindrome
+      - palindromic-closure
+      - palindrome-edit-distance
+
+  - title: Cutting a string into palindromes
+    intro: >
+      Every string splits into palindromes, if only into single symbols. Listing all the splits is a
+      backtracking search, and the fewest pieces come from a dynamic program over prefixes in quadratic time.
+    entries:
+      - palindrome-partitioning
+      - palindrome-partition-backtracking
+      - minimum-palindrome-partition
+      - palindrome-partition-dp
+
+  - title: The palindromic tree
+    intro: >
+      Since a string has at most $n$ distinct palindromes, one node for each fits in linear space. The eertree
+      stores them with edges that add a symbol on both sides and links to palindromic suffixes. Series links
+      on top of it give the fewest palindromic pieces in $O(n \log n)$ time, and the strings that reach the
+      count bound form the class of rich strings.
+    entries:
+      - palindromic-tree
+      - series-links
+      - rich-string

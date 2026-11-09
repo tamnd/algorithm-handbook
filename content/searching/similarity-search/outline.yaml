@@ -1,0 +1,110 @@
+# The order of chapter 5.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Distances and similarities
+    intro: >
+      Similarity search starts from a way to measure closeness. These entries define a metric space and the
+      triangle inequality, which every exact index uses to prune, and the two similarities most used in
+      practice: cosine similarity for vectors and Jaccard similarity for sets, with shingling to turn a
+      document into a set. Intrinsic dimensionality measures how hard a data set is to search.
+    entries:
+      - metric-space
+      - triangle-inequality
+      - cosine-similarity
+      - jaccard-similarity
+      - shingling
+      - intrinsic-dimensionality
+
+  - title: The search problems
+    intro: >
+      A similarity index answers two basic queries: the nearest neighbors of a query and all objects within a
+      radius. These entries state them, give the scan that every index is measured against, and add three
+      related questions: all pairs within a fixed radius, the points that have the query as their nearest
+      neighbor, and the largest inner product, which is not a distance at all.
+    entries:
+      - similarity-index
+      - nearest-neighbor-search
+      - k-nearest-neighbor-search
+      - similarity-range-query
+      - fixed-radius-near-neighbors
+      - brute-force-nearest-neighbor-search
+      - reverse-nearest-neighbor-search
+      - maximum-inner-product-search
+
+  - title: Exact indexes for metric spaces
+    intro: >
+      When the only operation is the distance, an index stores distances to chosen objects and turns them into
+      lower bounds at query time. The entries go from the general idea and pivot tables to trees that split by
+      one integer distance, by a median radius, by several vantage points, by nearest split points and by
+      covering balls, and end with the cover tree and the random projection tree, whose bounds depend on the
+      intrinsic dimension.
+    entries:
+      - metric-space-indexing
+      - pivot-based-indexing
+      - bk-tree
+      - vantage-point-tree
+      - mvp-tree
+      - gnat
+      - ball-tree
+      - m-tree
+      - cover-tree
+      - rp-tree
+
+  - title: Approximate search and locality-sensitive hashing
+    intro: >
+      In high dimensions no exact method is much faster than the scan, so the problem is relaxed to a point
+      within a factor $c$ of the best. Locality-sensitive hashing solves the relaxed problem with sublinear
+      query time: a hash family that makes near points collide more often, amplified by keys and tables. The
+      later entries give the families for Hamming distance, angles and Euclidean distance, two ways to need
+      fewer tables, and a reduction for inner products.
+    entries:
+      - c-approximate-nearest-neighbor
+      - approximate-nearest-neighbor-search
+      - locality-sensitive-hash-family
+      - lsh-amplification
+      - locality-sensitive-hashing
+      - bit-sampling-lsh
+      - random-hyperplane-lsh
+      - e2lsh
+      - multi-probe-lsh
+      - lsh-forest
+      - asymmetric-lsh
+
+  - title: Near duplicates and similarity joins
+    intro: >
+      Many applications ask for all similar pairs rather than the neighbors of one query. MinHash and SimHash
+      compress sets and weighted documents into short sketches that estimate similarity. Prefix filtering
+      finds every pair above a threshold exactly by comparing only sets whose short prefixes share an element,
+      and All-Pairs and PPJoin add more filters to the same plan.
+    entries:
+      - minhash
+      - simhash
+      - all-pairs-similarity-search
+      - prefix-filtering
+      - set-similarity-join
+      - allpairs
+      - ppjoin
+
+  - title: Graph indexes
+    intro: >
+      The indexes behind most vector search today are graphs on the data points, searched by a walk toward the
+      query. The entries start with the k-nearest neighbor graph and how to build it, by exact methods and by
+      NN-Descent, then add the long links of navigable small world graphs, the layers of HNSW and the
+      disk-resident graph of DiskANN. Hubness explains why some points are reached far more often than others.
+    entries:
+      - k-nearest-neighbor-graph
+      - k-nearest-neighbor-graph-construction
+      - nn-descent
+      - navigable-small-world
+      - hnsw
+      - diskann
+      - hubness
+
+  - title: Partitions and compressed vectors
+    intro: >
+      The last two entries cut the cost of each distance and the number of distances. An inverted file index
+      splits the space into k-means cells and scans only the cells near the query; product quantization stores
+      each vector in a few bytes and estimates distances by table lookups. Together they make searches over a
+      billion vectors fit in memory.
+    entries:
+      - inverted-file-index
+      - product-quantization

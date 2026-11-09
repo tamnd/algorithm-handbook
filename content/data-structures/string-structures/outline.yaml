@@ -1,0 +1,87 @@
+# The order of chapter 3.8. Groups are read in order; entries in a group too.
+groups:
+  - title: String symbol tables and tries
+    intro: >
+      A string symbol table maps strings to values and adds queries that look at the symbols of the
+      keys: all keys with a given prefix, and all keys that match a pattern with wildcards. The
+      [trie](/trie/) answers them by following one edge per symbol, so a search costs time in the length
+      of the key and not in the number of keys. The last entry writes a code trie to a bit stream.
+    entries:
+      - string-symbol-table
+      - trie
+      - prefix-matching
+      - wildcard-matching-in-trie
+      - trie-serialization
+
+  - title: Smaller tries
+    intro: >
+      A plain trie spends a node on every symbol and, with arrays of children, a link for every symbol of
+      the alphabet in every node. The entries of this group keep the walk by symbols and cut the space:
+      by merging chains of nodes, by keeping the children in a small search tree, by choosing the node
+      layout from the number of children, by packing all nodes into two arrays, or by writing the shape
+      as bits.
+    entries:
+      - radix-tree
+      - ternary-search-tree
+      - hybrid-tst
+      - adaptive-radix-tree
+      - double-array-trie
+      - louds-trie
+
+  - title: Tries for caches and disks
+    intro: >
+      On real machines a search costs cache misses or disk reads more than steps. A burst trie keeps
+      only the top of the trie and puts the keys below it into small containers, and the HAT-trie makes
+      those containers hash tables laid out in one array each. The String B-tree is a B-tree of strings
+      on disk whose nodes hold small Patricia tries.
+    entries:
+      - burst-trie
+      - hat-trie
+      - string-b-tree
+
+  - title: Editing long texts
+    intro: >
+      A text editor must insert and delete in the middle of a long text without copying it. A rope is a
+      balanced tree of short strings, and a piece table describes the text as a list of slices of two
+      buffers that never change. Both make an edit cost time in the size of the structure, not in the
+      length of the text.
+    entries:
+      - rope
+      - piece-table
+
+  - title: Building suffix structures
+    intro: >
+      The suffix tree, the suffix array and the suffix automaton of Volume 8 are tries and automata over
+      all suffixes of one text. The entries of this group build them: the suffix automaton online, the
+      suffix array in linear time by sorting a sample of the suffixes, the LCP array from the suffix
+      array, and the suffix tree from both arrays with a stack.
+    entries:
+      - suffix-automaton-construction
+      - blumer-algorithm
+      - dc3-algorithm
+      - phi-algorithm
+      - suffix-tree-from-suffix-array
+
+  - title: Queries on one text
+    intro: >
+      Once a text is indexed, a pattern occurs at a position exactly when it is a prefix of the suffix
+      there, so substring queries are prefix matching on the suffixes. This group answers them, with the
+      full suffix structures, with the position heap, which has one node per position, and with a sparse
+      suffix tree over chosen positions. It then counts distinct substrings, finds the longest common
+      substring of two strings, and lists the documents that contain a pattern.
+    entries:
+      - substring-queries
+      - position-heap
+      - sparse-suffix-tree
+      - distinct-substrings-counting
+      - lcs-via-suffix-tree
+      - muthukrishnan-document-listing
+
+  - title: Compressed indexes
+    intro: >
+      A suffix tree or suffix array takes many times the space of the text. Compressed indexes answer
+      the same queries in space close to that of the compressed text, and most of them replace the text.
+      The LZ-index does this with two tries of the phrases of the LZ78 parsing.
+    entries:
+      - compressed-indexing
+      - lz-index

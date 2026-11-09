@@ -1,0 +1,103 @@
+groups:
+  - title: Suffixes and indexes
+    intro: >
+      Every substring of a text is a prefix of one of its suffixes. A structure that stores all suffixes
+      therefore answers questions about all substrings, and a full-text index is the name for such a
+      structure. The suffix trie is the direct version, too large for long texts but the picture behind
+      everything that follows.
+    entries:
+      - suffix
+      - sentinel-character
+      - full-text-index
+      - suffix-trie
+
+  - title: The suffix array
+    intro: >
+      Sort the suffixes and keep only their start positions. The occurrences of any pattern then form one
+      block of the array, found by binary search. The circular variant sorts rotations instead of suffixes and
+      leads to the Burrows-Wheeler transform.
+    entries:
+      - suffix-array
+      - suffix-array-search
+      - keyword-in-context-search
+      - circular-suffix-array
+
+  - title: Building the suffix array
+    intro: >
+      Comparing suffixes one by one wastes the overlap between them. Prefix doubling uses the overlap to sort
+      in $O(n \log n)$ time with simple passes; induced sorting and the skew recursion reach $O(n)$ for an
+      integer alphabet.
+    entries:
+      - suffix-array-construction
+      - prefix-doubling
+      - manber-myers-algorithm
+      - karp-miller-rosenberg-algorithm
+      - larsson-sadakane-algorithm
+      - dc3-skew-algorithm
+      - sa-is
+
+  - title: The LCP array and its uses
+    intro: >
+      The lengths of the common prefixes of neighbors in the suffix array hold the rest of the information
+      of a suffix tree. Kasai's algorithm computes them in linear time, a range minimum query turns them into
+      the common prefix of any two suffixes, and a single scan answers many classic questions about repeats.
+    entries:
+      - lcp-array
+      - lcp-array-construction
+      - kasai-algorithm
+      - lcp-rmq-reduction
+      - longest-common-extension-query
+      - count-distinct-substrings
+      - longest-repeated-substring
+      - longest-common-substring
+      - shortest-unique-substring
+
+  - title: The suffix tree
+    intro: >
+      Compact the chains of the suffix trie into single edges and the trie shrinks to at most $2n + 1$ nodes.
+      Suffix links let a construction move from one suffix to the next without starting again at the root,
+      which is how the classic algorithms reach linear time.
+    entries:
+      - suffix-tree
+      - suffix-tree-size-theorem
+      - implicit-suffix-tree
+      - suffix-link
+      - suffix-tree-construction
+      - ukkonen-algorithm
+      - mccreight-algorithm
+      - weiner-algorithm
+      - farach-algorithm
+
+  - title: Suffix trees at work
+    intro: >
+      A tree of the suffixes of several strings answers questions that compare them. Walks with suffix links
+      give matching statistics, a depth-first pass gives maximal repeats, and the same walks can be run on
+      the suffix array and the LCP array alone.
+    entries:
+      - generalized-suffix-tree
+      - matching-statistics
+      - maximal-repeats
+      - lcp-interval-tree
+      - enhanced-suffix-array
+
+  - title: The suffix automaton
+    intro: >
+      The smallest automaton that accepts the suffixes of a text also recognizes every substring. It has at
+      most $2n - 1$ states, is built online one symbol at a time, and extends to a set of strings.
+    entries:
+      - suffix-automaton
+      - suffix-automaton-size-theorem
+      - generalized-suffix-automaton
+
+  - title: Compressed indexes and document retrieval
+    intro: >
+      A suffix array takes $n$ words, many times the size of the text. The FM-index and its relatives keep
+      the same queries in space close to the compressed text. Collections of documents add their own
+      queries: which documents contain a pattern, and which contain it most often.
+    entries:
+      - fm-index
+      - r-index
+      - compressed-suffix-array
+      - compressed-suffix-tree
+      - document-listing
+      - top-k-document-retrieval

@@ -1,0 +1,17 @@
+## History
+
+Persistent structures were used long before they had a name. Lists in pure Lisp are never changed, so many lists share their tails, and every functional language inherited this persistent stack. Henry Baker used rerooting in 1978 for the shallow binding of variables in Lisp, and in 1991 for functional arrays. Robert Hood and Robert Melville gave a queue with $O(1)$ worst-case operations in pure Lisp in 1981, by an incremental reversal. Eugene Myers gave an applicative random-access stack in 1983, already built on the skew binary weights $2^k - 1$, and described path copying for applicative data types at POPL in 1984.
+
+The theory came in the mid-1980s. Neil Sarnak and Robert Tarjan used a persistent search tree over a plane sweep for planar point location in 1986. James Driscoll, Neil Sarnak, Daniel Sleator and Robert Tarjan presented the general methods at STOC in 1986, with the journal version in 1989: they named ephemeral, partial and full persistence, and gave the fat node method, node copying and node splitting. The order-maintenance structure of Paul Dietz and Daniel Sleator (1987) supplies the version comparisons that full persistence needs. Dietz gave a fully persistent array with $O(\log \log m)$ time per access in 1989, and Gerth Brodal removed the amortization from node copying in 1994. Giuseppe Italiano and Neil Sarnak studied fully persistent union-find in 1991.
+
+Chris Okasaki joined the two lines. His work of 1995 gave random-access lists on skew binary numbers and a real-time queue with a schedule; his thesis of 1996 and his book of 1998 made lazy evaluation and the debit method the standard way to analyse amortized structures under persistence. Haim Kaplan and Tarjan gave catenable deques with $O(1)$ worst-case time by recursive slowdown at STOC in 1995 (journal version 1999), and Kaplan, Okasaki and Tarjan published simpler confluently persistent catenable lists in 2000. Gérard Huet published the zipper in 1997. Ralf Hinze and Ross Paterson published the 2-3 finger tree with measures in 2006.
+
+The newer ideas widen what a version can be. Amos Fiat and Haim Kaplan gave a general method for confluent persistence in 2003, and Sébastien Collette, John Iacono and Stefan Langerman gave one with polylogarithmic overhead in 2012. Erik Demaine, John Iacono and Stefan Langerman defined retroactive structures in 2004, with the journal version in 2007. Sylvain Conchon and Jean-Christophe Filliâtre built a persistent union-find on Baker's arrays in 2007, for use in proof tools. In practice, Rich Hickey built the vector of Clojure, released in 2007, as a 32-way persistent trie on the wide tries of Phil Bagwell.
+
+## Further reading
+
+- Chris Okasaki, *Purely Functional Data Structures*, Cambridge University Press, 1998. Lazy evaluation, the debit method, numerical representations and bootstrapping.
+- James R. Driscoll, Neil Sarnak, Daniel D. Sleator and Robert E. Tarjan, Making data structures persistent, *Journal of Computer and System Sciences* 38(1), 1989. The fat node method, node copying and node splitting.
+- Neil Sarnak and Robert E. Tarjan, Planar point location using persistent search trees, *Communications of the ACM* 29(7), 1986. The first large use of a persistent tree.
+- Ralf Hinze and Ross Paterson, Finger trees, a simple general-purpose data structure, *Journal of Functional Programming*, 2006.
+- Erik D. Demaine, John Iacono and Stefan Langerman, Retroactive data structures, *ACM Transactions on Algorithms*, 2007.

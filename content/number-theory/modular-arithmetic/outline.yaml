@@ -1,0 +1,93 @@
+# The order of chapter 10.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Congruences
+    intro: >
+      Two integers are congruent modulo $n$ when $n$ divides their difference. Congruence respects addition and
+      multiplication, so a computation on integers can be done on remainders. The residues under addition form
+      the simplest cyclic group.
+    entries:
+      - congruence
+      - cyclic-group
+      - additive-group-modulo-n
+
+  - title: Multiplication, powers and inverses
+    intro: >
+      The three basic operations of modular arithmetic: a product, a power and an inverse. Binary
+      exponentiation computes $a^b \bmod n$ with about $2 \lg b$ multiplications, the extended Euclidean
+      algorithm gives inverses, and Barrett and Montgomery reduction take the division out of the inner loop.
+    entries:
+      - modular-multiplication
+      - modular-exponentiation
+      - binary-exponentiation
+      - modular-inverse
+      - batch-modular-inverse
+      - barrett-reduction
+      - montgomery-multiplication
+
+  - title: Linear congruences and the Chinese remainder theorem
+    intro: >
+      The congruence $ax \equiv b \pmod n$ is solvable exactly when $\gcd(a, n)$ divides $b$. A system of
+      congruences with coprime moduli has one solution modulo the product, by the [Chinese remainder
+      theorem](/chinese-remainder-theorem/). Read the other way, the theorem splits arithmetic modulo a large
+      number into independent pieces.
+    entries:
+      - linear-congruence
+      - modular-linear-equation
+      - modular-linear-equation-solver
+      - chinese-remainder-theorem
+      - chinese-remainder-problem
+      - residue-number-system
+      - garner-algorithm
+
+  - title: The theorems of Fermat, Euler and Wilson
+    intro: >
+      The residues coprime to $n$ form a group of size $\varphi(n)$. Lagrange's theorem on group orders gives
+      Euler's theorem $a^{\varphi(n)} \equiv 1$ and, for a prime modulus, Fermat's little theorem. Wilson's
+      theorem and Lucas's theorem handle factorials and binomial coefficients modulo a prime.
+    entries:
+      - euler-totient
+      - multiplicative-group-modulo-n
+      - lagranges-theorem-group-theory
+      - fermat-little-theorem
+      - euler-theorem
+      - wilson-theorem
+      - factorial-modulo-prime
+      - lucas-theorem
+
+  - title: Orders and primitive roots
+    intro: >
+      The order of $a$ modulo $n$ is the least $k$ with $a^k \equiv 1$; it divides $\varphi(n)$. A primitive root
+      has the largest possible order, and it exists only for a few kinds of modulus. The Carmichael function is
+      the largest order that does occur, and the Pisano period is the same kind of question for the Fibonacci
+      numbers.
+    entries:
+      - multiplicative-order
+      - primitive-root
+      - primitive-roots-existence
+      - carmichael-function
+      - pisano-period
+
+  - title: Squares modulo a prime
+    intro: >
+      Modulo an odd prime, half of the nonzero residues are squares. Euler's criterion tests a residue with one
+      power, quadratic reciprocity computes the Legendre and Jacobi symbols without factoring, and
+      Tonelli-Shanks and Cipolla's algorithm find the square root itself.
+    entries:
+      - quadratic-residue
+      - legendre-symbol
+      - euler-criterion
+      - quadratic-reciprocity
+      - jacobi-symbol
+      - modular-square-root
+      - tonelli-shanks
+      - cipolla-algorithm
+
+  - title: Calendars
+    intro: >
+      Calendar arithmetic is modular arithmetic with awkward moduli: weeks of 7 days, months of 28 to 31 days,
+      leap years every 4, 100 and 400 years. The standard method turns a date into one count of days, computes
+      with that integer, and turns it back.
+    entries:
+      - calendrical-calculations
+      - gregorian-calendar-computation
+      - julian-day-number

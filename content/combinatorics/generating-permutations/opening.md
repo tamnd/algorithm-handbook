@@ -1,0 +1,21 @@
+A permutation generator hands out the orderings of $n$ items one at a time. A test harness uses it to run a function on every order of its input. A brute-force search uses it to try every tour of a few cities, or every way to assign jobs to machines. The [factorial](/factorial/) sets the limits: $10!$ is $3\,628\,800$, $13!$ is over six billion, and $20!$ is the largest factorial that fits in a signed 64-bit integer. So the cost of each step matters, and so does the cost of the work the caller does on each permutation.
+
+Three choices shape a generator. The first is the order of the list. [Lexicographic order](/lexicographic-order/) is the order of a dictionary and is easy to reason about, but one step can rewrite every position. Minimal-change orders move from one permutation to the next by a single exchange, so the caller can update its work in $O(1)$ time. The second is the cost of a step: the good generators take $O(1)$ time per permutation on average, and some take $O(1)$ time in the worst case. The third is random access: a rank function gives the place of a permutation in the list, and an unrank function gives the permutation at a place, so a program can start in the middle or split the list among workers.
+
+## What the chapter covers
+
+The chapter is in five groups, read in order.
+
+1. **Counting and ordering.** The [factorial](/factorial/), [lexicographic order](/lexicographic-order/), and the problem of [generating all permutations](/generating-all-permutations/), with the known algorithms side by side: a successor rule, exchange methods, and unranking each rank in turn.
+2. **Lexicographic generation.** The [lexicographic successor](/lexicographic-permutation-successor/) and its program, [next permutation](/next-permutation/). The same program lists the permutations of a multiset with no repeats; [multiset permutations](/multiset-permutations/) counts them and ranks them.
+3. **Ranking and unranking.** [Permutation ranking](/permutation-ranking/) reads the rank from the Lehmer code, and [permutation unranking](/permutation-unranking/) goes back. Both take $O(n \log n)$ time with a Fenwick tree, and $O(n)$ time in an order made for the purpose.
+4. **Cycles, sign and involutions.** The [cycle decomposition](/permutation-cycle-decomposition/) of a permutation, its [sign](/permutation-sign/), and the [generation of involutions](/generating-involutions/), the permutations that are their own inverse.
+5. **Minimal change.** [Minimal-change orders](/minimal-change-permutation-order/) in general, then [Heap's algorithm](/heaps-algorithm/), which makes one exchange per step, and the [Steinhaus-Johnson-Trotter algorithm](/steinhaus-johnson-trotter/), which makes one exchange of neighbors per step.
+
+## A first reading
+
+For a first reading, take these ten entries in order: [factorial](/factorial/), [lexicographic order](/lexicographic-order/), [generating all permutations](/generating-all-permutations/), [lexicographic permutation successor](/lexicographic-permutation-successor/), [next permutation](/next-permutation/), [permutation ranking](/permutation-ranking/), [permutation unranking](/permutation-unranking/), [permutation cycle decomposition](/permutation-cycle-decomposition/), [minimal-change permutation order](/minimal-change-permutation-order/) and [Heap's algorithm](/heaps-algorithm/). Multiset permutations, the sign and the Steinhaus-Johnson-Trotter algorithm can wait for a second pass. Leave the generation of involutions for last: it is an advanced entry and uses backtracking.
+
+## Before you start
+
+You need [permutations](/permutation/), [inversions](/inversion/), the [Lehmer code](/lehmer-code/) and the [factorial number system](/factorial-number-system/) from Volume 6, where the chapter on inversions and permutations treats a permutation as a sequence to be measured. From Volume 1 you need [recursion](/recursion/), [loop invariants](/loop-invariant/), [asymptotic notation](/asymptotic-notation/) and [amortized cost](/amortized-cost/). The fast ranking uses the [Fenwick tree](/fenwick-tree/) from Volume 3, and the involution generator is an instance of the [generic backtracking algorithm](/generic-backtracking-algorithm/) from Volume 2. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

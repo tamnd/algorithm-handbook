@@ -1,0 +1,64 @@
+# The order of chapter 4.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The model
+    intro: >
+      A sorting network is a list of comparators fixed in advance. These entries define the comparator, the
+      network, and its two costs: the size, which is the total work, and the depth, which is the time when
+      the comparators of one layer run at once.
+    entries:
+      - comparator
+      - sorting-network
+      - network-size
+      - network-depth
+
+  - title: Proving that a network sorts
+    intro: >
+      A network that sorts every list of zeros and ones sorts every list. The
+      [zero-one principle](/zero-one-principle/) turns a check of $n!$ orders into a check of $2^n$ bit
+      strings, and it is the tool behind every proof in this chapter. The second entry shows that no check is
+      fast in the worst case.
+    entries:
+      - zero-one-principle
+      - sorting-network-verification
+
+  - title: Bitonic sorting
+    intro: >
+      A sequence that goes up and then down can be sorted by $\lg n$ layers of half-cleaners. Two sorted
+      lists, one of them turned around, form such a sequence. Batcher's bitonic sort builds a full sort from
+      this merge, with depth $\tfrac12 \lg n (\lg n + 1)$.
+    entries:
+      - bitonic-sequence
+      - bitonic-merger
+      - bitonic-sort
+
+  - title: Odd-even merging
+    intro: >
+      A merging network merges two sorted lists with a fixed list of comparators. Batcher's odd-even merge
+      does it with fewer comparators than the bitonic merger and the same depth, and odd-even merge sort is
+      the result. The pairwise network of Parberry reaches exactly the same size and depth by another route.
+    entries:
+      - merging-network
+      - odd-even-merge-sort
+      - pairwise-sorting-network
+
+  - title: The best networks for small inputs
+    intro: >
+      For each $n$, how few comparators and how few layers are enough? The answers are known only for small
+      $n$, mostly from large computer searches. For some $n$ no network is best in both costs at once.
+      Green's network for 16 inputs has held the record for size for more than fifty years.
+    entries:
+      - minimum-size-sorting-network
+      - minimum-depth-sorting-network
+      - depth-size-tradeoff
+      - green-filter
+
+  - title: Depth O(log n)
+    intro: >
+      Every sorting network has depth $\Omega(\log n)$. Batcher's networks have depth $\Theta(\log^2 n)$,
+      and closing the gap took until 1983. The AKS network splits items roughly in half with constant-depth
+      [halvers](/halver/) built from expander graphs, and reaches depth $O(\log n)$ with a very large
+      constant.
+    entries:
+      - sorting-network-depth-lower-bound
+      - halver
+      - aks-sorting-network

@@ -1,0 +1,112 @@
+# The order of chapter 14.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Partitions and their diagrams
+    intro: >
+      A partition of $n$ writes $n$ as a sum when the order of the parts does not matter; a composition is
+      the same sum when it does. The Ferrers diagram draws a partition as rows of cells, and many facts
+      about partitions are proved by flipping or cutting this picture. Euler's theorem on distinct and odd
+      parts is the first identity of this kind, and the Durfee square is the tool for the next ones.
+    entries:
+      - integer-partitions
+      - integer-compositions
+      - ferrers-diagram
+      - conjugate-partition
+      - euler-partition-theorem
+      - durfee-square
+
+  - title: How many partitions
+    intro: >
+      The partition function $p(n)$ is the length of every list of all partitions of $n$. It has a simple
+      product generating function and fast recurrences, and it grows like $e^{\pi\sqrt{2n/3}}$ divided by a
+      linear factor, so $\log p(n) = \Theta(\sqrt n)$. The last entry gives $p(n)$ exactly as a convergent
+      series and is for readers with some complex analysis.
+    entries:
+      - integer-partition-function
+      - hardy-ramanujan-theorem
+      - rademacher-formula
+
+  - title: Generating partitions and compositions
+    intro: >
+      Output-sensitive generation is the yardstick for the whole chapter: the time should be paid for by
+      the objects listed, not by a larger set that is searched. Algorithm P lists the partitions of $n$ in
+      reverse lexicographic order, and a binary countdown on the cut set lists the compositions. Both take
+      $O(1)$ time per object on average and $\Theta(n)$ in the worst step.
+    entries:
+      - output-sensitive-generation
+      - integer-partition-generation
+      - composition-generation
+
+  - title: Young tableaux
+    intro: >
+      Fill the cells of a Ferrers diagram with $1, \ldots, n$ so that rows and columns increase, and you get
+      a standard Young tableau. The hook length formula counts them, and the containment order of diagrams,
+      Young's lattice, turns each tableau into a path that adds one cell at a time. The generation entry
+      lists the tableaux of one shape by placing $n$ in each corner in turn.
+    entries:
+      - young-tableau
+      - standard-young-tableaux
+      - youngs-lattice
+
+  - title: Set partitions
+    intro: >
+      A partition of the set $\{1, \ldots, n\}$ into blocks is coded by a restricted growth string, and the
+      strings are listed in lexicographic order in constant amortized time. There are $B_n$ of them, the Bell
+      number, split by the number of blocks into the Stirling numbers $S(n, k)$. The partition lattice
+      orders them by refinement.
+    entries:
+      - set-partitions
+      - restricted-growth-string
+      - stirling-numbers
+      - set-partition-generation
+      - partition-lattice
+
+  - title: Balanced parentheses, ranking and unranking
+    intro: >
+      Dyck words, the balanced strings of $n$ pairs of parentheses, are the code for binary and ordered
+      trees, and there are $C_n$ of them. The entries list them by a successor rule that rewrites a suffix,
+      then show the general technique of ranking and unranking and apply it to the words, with a table of
+      completion counts of size $\Theta(n^2)$.
+    entries:
+      - dyck-word
+      - balanced-parentheses-generation
+      - next-balanced-bracket-sequence
+      - ranking-unranking
+      - balanced-bracket-sequence-ranking
+      - kth-balanced-bracket-sequence
+
+  - title: Binary, ordered and labeled trees
+    intro: >
+      For these trees every code word is a different tree, so no symmetry has to be removed. Binary and
+      ordered trees are Dyck words in disguise, and Zaks' z-sequences give a second code for $t$-ary trees.
+      Labeled trees on $\{1, \ldots, n\}$ are the $n^{n-2}$ Prüfer codes, and decoding one takes $\Theta(n)$
+      time.
+    entries:
+      - binary-tree-generation
+      - ordered-tree-generation
+      - zaks-tree-generation
+      - labeled-tree-generation
+      - pruefer-decoding
+
+  - title: Unlabeled rooted and free trees
+    intro: >
+      An unlabeled tree has many drawings, and a generator must list each tree once. The level sequence of
+      depths in preorder, taken at its lexicographic largest, is a canonical code for rooted trees. The
+      Beyer-Hedetniemi successor lists these codes in constant amortized time, and the
+      Wright-Richmond-Odlyzko-McKay algorithm adapts it to free trees by rooting each tree at its center.
+    entries:
+      - level-sequence
+      - rooted-tree-generation
+      - beyer-hedetniemi
+      - free-tree-generation
+      - wright-richmond-odlyzko-mckay
+
+  - title: Graphs up to isomorphism
+    intro: >
+      For graphs there is no cheap canonical code, and the number of classes grows like
+      $2^{\binom{n}{2}}/n!$. Orderly generation keeps a graph only if its code is the largest among its
+      relabelings, and canonical augmentation accepts a new vertex only if a canonical labeling would remove
+      it first. Neither stores the graphs already found.
+    entries:
+      - graph-generation
+      - orderly-generation
+      - canonical-augmentation

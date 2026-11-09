@@ -1,0 +1,116 @@
+groups:
+  - title: Rules and their accuracy
+    intro: >
+      What it means to integrate from values of a function, the weighted sum that every method in the
+      chapter produces, and the two measures of a rule: the degree of the polynomials it integrates
+      exactly and the size of its error. Interpolatory rules connect the two.
+    entries:
+      - numerical-integration
+      - quadrature-rule
+      - degree-of-precision
+      - interpolatory-quadrature
+      - quadrature-error
+
+  - title: Rules on equally spaced points
+    intro: >
+      The midpoint, trapezoidal and Simpson rules, the Newton-Cotes family they belong to, and the
+      composite rules that repeat a small rule on many panels instead of raising its degree. The Peano
+      kernel theorem turns the error of any such rule into an integral against a derivative of $f$.
+    entries:
+      - midpoint-rule
+      - trapezoidal-rule
+      - simpsons-rule
+      - newton-cotes-formulas
+      - composite-quadrature
+      - peano-kernel-theorem
+
+  - title: Extrapolation and adaptivity
+    intro: >
+      The Euler-Maclaurin formula shows that the trapezoidal error is a series in $h^2$. Richardson
+      extrapolation cancels its terms one by one, and Romberg integration is the result. Adaptive
+      quadrature spends evaluations where a local error estimate says they are needed.
+    entries:
+      - euler-maclaurin-formula
+      - richardson-extrapolation
+      - romberg-integration
+      - adaptive-quadrature
+
+  - title: Gaussian quadrature
+    intro: >
+      Choosing the nodes as well as the weights doubles the degree: $n$ nodes at the zeros of an
+      orthogonal polynomial integrate every polynomial of degree $2n - 1$. These entries prove it, build
+      the rule from the three-term recurrence, and compute its nodes and weights, by Newton's method for
+      Legendre and by an eigenvalue problem in general.
+    entries:
+      - gauss-quadrature-theorem
+      - gaussian-quadrature
+      - gauss-legendre-quadrature
+      - gauss-nodes-and-weights
+      - golub-welsch-algorithm
+
+  - title: Gauss rules for weights, endpoints and error estimates
+    intro: >
+      The weight function of a Gauss rule can hold a singular or decaying factor: Jacobi weights for
+      algebraic endpoint singularities, Laguerre for the half-line, Hermite for the whole line. Radau and
+      Lobatto rules fix one or both endpoints as nodes, and Kronrod rules extend a Gauss rule so that
+      the difference gives an error estimate.
+    entries:
+      - gauss-jacobi-quadrature
+      - gauss-laguerre-quadrature
+      - gauss-hermite-quadrature
+      - gauss-radau-quadrature
+      - gauss-lobatto-quadrature
+      - gauss-kronrod-quadrature
+
+  - title: Rules on Chebyshev points
+    intro: >
+      Interpolatory rules on the Chebyshev extreme points and zeros, computed by an FFT in
+      $O(n \log n)$ operations. They have about half the degree of Gauss rules and nearly the same
+      accuracy, positive weights, and nested node sets.
+    entries:
+      - clenshaw-curtis-quadrature
+      - fejer-quadrature
+
+  - title: Singular ends and infinite intervals
+    intro: >
+      Integrals over infinite intervals or with integrands that blow up at an end. A change of
+      variables that sends the ends to infinity, followed by the trapezoidal rule, handles both cases;
+      the tanh-sinh and sinc rules differ in how fast the transformed integrand decays.
+    entries:
+      - improper-integration
+      - tanh-sinh-quadrature
+      - sinc-quadrature
+
+  - title: Oscillatory integrals
+    intro: >
+      Integrands that oscillate many times across the interval defeat rules built for smooth
+      functions. Filon's method integrates the oscillating factor exactly, and Levin's method solves a
+      differential equation for a function without oscillations. Both become more accurate as the
+      frequency grows.
+    entries:
+      - oscillatory-integration
+      - filon-quadrature
+      - levin-method
+
+  - title: Integration in several dimensions
+    intro: >
+      Rules over squares, cubes and other regions of $\mathbb{R}^s$. Products of one-dimensional rules
+      work in two or three dimensions; Smolyak's sparse grids push polynomial accuracy to more
+      dimensions with far fewer points.
+    entries:
+      - multidimensional-integration
+      - cubature-rule
+      - product-quadrature
+      - sparse-grid-quadrature
+
+  - title: Random and quasi-random points
+    intro: >
+      Monte Carlo integration averages $f$ at random points, with an error near $N^{-1/2}$ in any
+      dimension. Discrepancy measures how evenly a point set fills the cube, the Koksma-Hlawka
+      inequality bounds the error of an equal-weight rule by it, and quasi-Monte Carlo methods use
+      low-discrepancy points to approach $N^{-1}$.
+    entries:
+      - monte-carlo-integration
+      - discrepancy
+      - koksma-hlawka-inequality
+      - quasi-monte-carlo-integration

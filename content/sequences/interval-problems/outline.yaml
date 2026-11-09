@@ -1,0 +1,80 @@
+# The order of chapter 6.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Merging, union and intersection
+    intro: >
+      The first thing to do with a pile of intervals is often to tidy it: replace it by the disjoint pieces of its
+      union. Sort by left end and make one scan. The same idea gives the total length covered, and two tidy lists
+      can be intersected in one pass, like the merge step of merge sort.
+    entries:
+      - interval-merging
+      - interval-merging-sort
+      - interval-union-length
+      - sweep-union-length
+      - interval-list-intersection
+      - interval-list-intersection-two-pointers
+
+  - title: Nesting and the relations between two intervals
+    intro: >
+      One interval can lie inside another. Finding the nested pairs is again a sort and a scan, this time with a
+      running maximum of the right ends. [Allen's interval algebra](/allens-interval-algebra/) names all thirteen
+      ways two intervals can relate, and gives a precise vocabulary for the tests in the rest of the chapter.
+    entries:
+      - interval-containment
+      - interval-containment-sort
+      - allens-interval-algebra
+
+  - title: Depth and partitioning
+    intro: >
+      The depth of a family is the largest number of intervals through one point. A sweep over the sorted end
+      points finds it. The depth is also the fewest resources, rooms or colors that the intervals need, and a
+      greedy with a heap meets that bound. The Helly property explains why: on a line, intervals that meet in
+      pairs all share one point.
+    entries:
+      - maximum-overlap
+      - sweep-maximum-overlap
+      - interval-partitioning-greedy
+      - interval-coloring-depth-theorem
+      - helly-property-intervals
+
+  - title: Covering and piercing
+    intro: >
+      Two greedy problems that look alike. Covering asks for the fewest intervals whose union contains a target;
+      the greedy takes, again and again, the interval that reaches farthest. Piercing asks for the fewest points
+      that hit every interval; the greedy places a point at the earliest right end. Both are proved by showing
+      that the greedy stays ahead.
+    entries:
+      - interval-covering
+      - interval-covering-greedy
+      - interval-piercing
+      - interval-piercing-greedy
+
+  - title: Choosing intervals with weights
+    intro: >
+      When each interval has a weight and the chosen ones must be disjoint, no greedy rule works, but a dynamic
+      program over the intervals sorted by right end does, in $O(n \log n)$ time. With $k$ machines in place of
+      one, the problem becomes a minimum cost flow, and in graph terms a heaviest $k$-colorable subgraph of an
+      interval graph.
+    entries:
+      - weighted-interval-scheduling
+      - weighted-interval-dp
+      - k-machine-interval-scheduling
+      - k-colorable-interval-subgraph
+
+  - title: Queries on a stored set
+    intro: >
+      Here the intervals are stored once and many questions come later: which intervals contain this point,
+      which ones meet this range. The answers come from search trees built on the sorted end points, in
+      logarithmic time plus the size of the output.
+    entries:
+      - interval-stabbing-query
+      - interval-overlap-query
+      - interval-tree-search
+
+  - title: Orders in which sets are intervals
+    intro: >
+      The last group turns the question around. Given some sets, is there an order of the elements in which
+      every set is an interval? This is the consecutive ones property, and the PQ-tree stores all such orders
+      at once. It is the tool behind the linear-time recognition of interval graphs.
+    entries:
+      - consecutive-ones-property
+      - pq-tree

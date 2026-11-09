@@ -1,0 +1,102 @@
+# The order of chapter 10.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Divisors and common divisors
+    intro: >
+      The chapter starts from one relation, $a \mid b$. These entries define divisors, the greatest common
+      divisor, coprime integers and the least common multiple, and show how the remainder of a decimal number
+      can be read off its digits.
+    entries:
+      - divisibility
+      - divisor
+      - divisibility-tests
+      - greatest-common-divisor
+      - coprime-integers
+      - least-common-multiple
+
+  - title: Euclid's algorithm
+    intro: >
+      The greatest common divisor can be computed without factoring. The [GCD recursion
+      theorem](/gcd-recursion-theorem/) says that $\gcd(a, b) = \gcd(b, a \bmod b)$, and repeating this step is
+      the [Euclidean algorithm](/euclidean-algorithm/). Lamé's theorem bounds its number of steps through the
+      Fibonacci numbers. The other entries are a division-free variant and the first uses of the gcd.
+    entries:
+      - gcd-of-two-integers
+      - gcd-recursion-theorem
+      - euclidean-algorithm
+      - lames-theorem
+      - binary-gcd
+      - gcd-of-array
+      - reducing-fractions
+
+  - title: Bézout's identity and linear equations
+    intro: >
+      The gcd of $a$ and $b$ is an integer combination $ax + by$, and the extended Euclidean algorithm finds
+      the coefficients. With them come the product rule for the gcd and the lcm, and a complete solution of the
+      equation $ax + by = c$ in integers.
+    entries:
+      - bezouts-identity
+      - extended-euclidean-algorithm
+      - gcd-lcm-identity
+      - lcm-of-integers
+      - linear-diophantine-equation
+      - linear-diophantine-solution
+      - linear-diophantine-solutions-in-interval
+
+  - title: Unique factorization
+    intro: >
+      Bézout's identity gives Euclid's lemma, and Euclid's lemma gives the uniqueness of prime factorization.
+      Legendre's formula reads the factorization of $n!$ without computing $n!$. The last entry asks which other
+      rings have a Euclidean algorithm, and so unique factorization too.
+    entries:
+      - euclids-lemma
+      - fundamental-theorem-of-arithmetic
+      - legendre-formula
+      - euclidean-domain
+
+  - title: Arithmetic functions
+    intro: >
+      Many functions of $n$ depend only on the exponents in its factorization. When they are multiplicative,
+      their values come from the values at prime powers. Dirichlet convolution is the product that ties them
+      together, and the Möbius function is the inverse that undoes a sum over divisors.
+    entries:
+      - multiplicative-function
+      - divisor-function
+      - enumerating-divisors
+      - mobius-function
+      - mobius-inversion-formula
+      - dirichlet-convolution
+      - totient-divisor-sum
+
+  - title: Summing over divisors
+    intro: >
+      The total number of divisors of all $k \le n$ counts the lattice points under a hyperbola. Counting them
+      from both axes gives an exact $O(\sqrt n)$ algorithm, and the error in the asymptotic formula is a famous
+      open problem.
+    entries:
+      - divisor-summatory-function
+      - dirichlet-hyperbola-method
+      - dirichlets-divisor-problem
+
+  - title: Continued fractions and trees of fractions
+    intro: >
+      The quotients of Euclid's algorithm on $a$ and $b$ are the partial quotients of the continued fraction
+      of $a/b$. Its convergents are the best rational approximations. The Farey sequence, the
+      [Stern-Brocot tree](/stern-brocot-tree/) and the Calkin-Wilf tree arrange all reduced fractions by the
+      same mediant rule.
+    entries:
+      - continued-fraction
+      - continued-fraction-convergents
+      - farey-sequence
+      - stern-brocot-tree
+      - calkin-wilf-tree
+
+  - title: The gcd of big numbers and of many numbers
+    intro: >
+      For numbers of thousands of digits, Euclid's quadratic cost matters. Lehmer's method does most steps on
+      leading words, and the half-GCD brings the cost down to $O(M(n) \log n)$. Batch GCD finds every pair
+      among millions of numbers that shares a factor, which is how weak RSA keys were found on the internet.
+    entries:
+      - lehmers-gcd
+      - half-gcd
+      - all-pairs-gcd
+      - batch-gcd

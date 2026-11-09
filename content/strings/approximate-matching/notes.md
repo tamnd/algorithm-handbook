@@ -1,0 +1,17 @@
+## History
+
+The distance came first. Fred Damerau studied spelling errors in 1964 and found that most of them are one insertion, deletion, substitution or transposition of neighbors. Vladimir Levenshtein defined the distance with the first three operations in 1965, for codes that correct the loss and insertion of bits. The table that computes it was found several times in different fields: by Vintsyuk in speech recognition in 1968, by Needleman and Wunsch for protein sequences in 1970, and by Wagner and Fischer, whose 1974 paper in the Journal of the ACM stated the string-to-string correction problem in its general form. Sellers made the one change that turns the table into a search in a 1980 paper, by setting its first row to zero.
+
+The 1980s brought bounds in terms of the number of errors. Esko Ukkonen described the cut-off and the diagonal method in 1985, and Gad Landau and Uzi Vishkin reached $O(kn)$ time for the k-differences problem with suffix trees and constant-time lowest common ancestors; Galil and Park later reached the same bound without a suffix tree of the text. For mismatches only, Fischer and Paterson had reduced matching to convolutions in 1974, and Abrahamson split the symbols into frequent and rare ones in 1987. Cole and Hariharan showed in 1998 that the k-differences problem takes linear time when the pattern is long compared with $k^4$.
+
+Bit-parallelism made approximate search fast in practice. Ricardo Baeza-Yates and Gaston Gonnet presented the shift-add method for mismatches in 1989, and in the same 1992 issue of the Communications of the ACM that printed their journal version, Sun Wu and Udi Manber extended it to insertions and deletions and described the tool `agrep`. Gene Myers packed a whole column of the table into two bit vectors in 1998, and his algorithm is still the standard for short patterns. In parallel, filters such as the q-gram lemma of Jokinen and Ukkonen (1991) and the algorithm of Chang and Lawler (1990) showed that most of a random text need not be examined at all. Gonzalo Navarro's survey of 2001 put these lines of work in one frame.
+
+Phonetic codes are much older than computers. Robert Russell patented Soundex in 1918, and the system was used to index the records of the United States census. Lawrence Philips published Metaphone in 1990. On the side of lower bounds, Arturs Backurs and Piotr Indyk showed in 2015 that a strongly subquadratic algorithm for the edit distance would refute the Strong Exponential Time Hypothesis, which explains why fifty years of work have not beaten the quadratic table by more than logarithmic factors.
+
+## Further reading
+
+- Gonzalo Navarro, "A guided tour to approximate string matching", ACM Computing Surveys (2001). The standard survey: it classifies the algorithms by method and compares them by experiment.
+- Dan Gusfield, *Algorithms on Strings, Trees, and Sequences* (1997). Part III covers edit distance, alignment and the k-differences algorithms with suffix trees.
+- Gonzalo Navarro and Mathieu Raffinot, *Flexible Pattern Matching in Strings* (2002). Its chapter on approximate matching gives the bit-parallel and filter algorithms in short, practical form.
+- David Sankoff and Joseph Kruskal, editors, *Time Warps, String Edits, and Macromolecules* (1983). It shows how the same table arose in speech, biology and computing.
+- Arturs Backurs and Piotr Indyk, "Edit distance cannot be computed in strongly subquadratic time (unless SETH is false)", STOC (2015). A clear account of the reduction behind the lower bound.

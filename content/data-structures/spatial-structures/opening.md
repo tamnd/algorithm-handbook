@@ -1,0 +1,27 @@
+A spatial structure stores objects that have a place: points on a map, the outlines of buildings, the boxes around the parts of a chip, the bodies in a game, the feature vectors of a million images. The questions are about place too. Which objects lie in this window? Which contain this point? Which is nearest to it? Which pairs touch? A [binary search tree](/binary-search-tree/) answers such questions for numbers on a line, because a line has an order. The plane has none that keeps near points near, and the structures of this chapter are the different ways around that fact.
+
+There are two families. A structure of the first kind cuts the space into cells and puts each object in its cell: the [uniform grid](/uniform-grid/), the [k-d tree](/kd-tree/), the [quadtree](/quadtree/) and its relatives, and the [space-filling curves](/space-filling-curve/) that number the cells along one line. A structure of the second kind groups the objects and stores a [bounding rectangle](/minimum-bounding-rectangle/) for each group: the [R-tree](/r-tree/) and its many variants. The first kind never has two cells that overlap, but must cut or copy an object that crosses a border. The second kind stores each object once, but its boxes overlap, and a query may have to enter several of them. Most of the chapter is a study of this trade.
+
+The bounds here are weaker than those of the earlier chapters. A balanced k-d tree answers a range query in $O(\sqrt n + r)$ time in the plane, not $O(\log n + r)$, and no R-tree does better than $O(\sqrt{N/B} + T/B)$ disk reads in the worst case. Many structures, the R-tree among them, have no useful worst-case bound at all and are judged by experiments. Read the costs that follow with that in mind.
+
+## What the chapter covers
+
+The chapter is in nine groups, read in order.
+
+1. **Boxes and the spatial index.** The [minimum bounding rectangle](/minimum-bounding-rectangle/), the [spatial index](/spatial-index/) as an abstract type, the two measures of a bad index, [overlap and dead space](/overlap-and-dead-space/), and the two designs, [object partitioning](/object-partitioning/) and [space partitioning](/space-partitioning/).
+2. **Grids and hashing.** The [uniform grid](/uniform-grid/), [spatial hashing](/spatial-hashing/), which keeps only the cells in use, the [grid file](/grid-file/) on disk, and [collision detection](/collision-detection/).
+3. **Trees that cut with lines.** The [k-d tree](/kd-tree/), the proof that its range query visits $O(n^{1-1/k} + r)$ [nodes](/kd-tree-range-query-complexity/), the paged [k-d-B tree](/kd-b-tree/) and the [BSP tree](/bsp-tree/) of computer graphics.
+4. **Quadtrees and octrees.** The [quadtree](/quadtree/), its [point](/point-quadtree/), [PR](/pr-quadtree/), [region](/region-quadtree/) and [MX-CIF](/mx-cif-quadtree/) forms, the [octree](/octree/) and the [loose octree](/loose-octree/).
+5. **Space-filling curves.** The [Z-order](/z-order-curve/), [Hilbert](/hilbert-curve/) and [Peano](/peano-curve/) curves, and the [linear quadtree](/linear-quadtree/).
+6. **R-trees.** The [R-tree](/r-tree/), the [node splitting](/r-tree-node-splitting/) problem, the [quadratic split](/quadratic-split/), the [R*-tree](/r-star-tree/) and the [R+-tree](/r-plus-tree/).
+7. **Building and joining.** [Bulk loading](/bulk-loading/), [STR packing](/str-packing/), the [Hilbert R-tree](/hilbert-r-tree/), the [priority R-tree](/priority-r-tree/) and the [spatial join](/spatial-join/).
+8. **Cells on the globe.** [Geohash](/geohash/), [discrete global grid systems](/discrete-global-grid-system/) and the [S2 cell hierarchy](/s2-cell-hierarchy/).
+9. **Many dimensions.** The [SS-tree](/ss-tree/), the [SR-tree](/sr-tree/) and the [X-tree](/x-tree/).
+
+## A first reading
+
+For a first reading, take these twelve entries in order: [minimum bounding rectangle](/minimum-bounding-rectangle/), [spatial index](/spatial-index/), [uniform grid](/uniform-grid/), [space partitioning](/space-partitioning/), [object partitioning](/object-partitioning/), [k-d tree](/kd-tree/), [quadtree](/quadtree/), [Z-order curve](/z-order-curve/), [R-tree](/r-tree/), [overlap and dead space](/overlap-and-dead-space/), [collision detection](/collision-detection/) and [geohash](/geohash/). Together they show both families, one structure of each kind in full, and the curve that turns a point of the plane into one number. Then read the [quadratic split](/quadratic-split/) and [STR packing](/str-packing/) to see how R-trees are built in practice. The last two groups, and the proofs about the k-d tree and the priority R-tree, can wait.
+
+## Before you start
+
+You need [asymptotic notation](/asymptotic-notation/) and the [external memory model](/external-memory-model/) from Volume 1; the disk structures, the grid file, the k-d-B tree and the R-trees, count their cost in block reads. The trees build on the [binary search tree](/binary-search-tree/) of Chapter 3.3 and the [B-tree](/b-tree/) of Chapter 3.13, and spatial hashing builds on the [hash table](/hash-table/) of Chapter 3.2. The Z-order uses [bit interleaving](/bit-interleaving/) and [Morton encoding](/morton-encoding/) from Volume 2. The k-d tree uses [median finding](/median-finding/) from Volume 4, and the high-dimensional trees answer [nearest neighbor search](/nearest-neighbor-search/), from Volume 5. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

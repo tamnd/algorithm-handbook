@@ -1,0 +1,19 @@
+## History
+
+The question of when two graphs are the same is as old as chemistry's interest in structural formulas. Morgan's 1965 method for naming chemical structures already refined vertex labels by the labels of their neighbours, which is the idea behind [color refinement](/weisfeiler-leman/). In 1968 Weisfeiler and Leman published a refinement on ordered pairs of vertices, today called the [2-dimensional version](/k-dimensional-weisfeiler-leman/). On the algorithmic side, Aho, Hopcroft and Ullman showed in their 1974 textbook that [rooted trees](/ahu-algorithm/) can be compared in linear time, as an application of sorting strings of different lengths.
+
+When the theory of NP-completeness took shape in the early 1970s, graph isomorphism stood out as a problem that is clearly [in NP](/graph-isomorphism-in-np/) and yet resisted both a polynomial algorithm and a hardness proof. Karp listed it among the open cases in 1972, and Garey and Johnson kept it on their list of open problems in 1979. Read and Corneil surveyed the many attempts in 1977 under the title "The graph isomorphism disease". For special classes the news was better. Hopcroft and Tarjan gave an $O(n \log n)$ test for [triconnected planar graphs](/hopcroft-tarjan-isomorphism/) in 1972 and 1973, and Hopcroft and Wong reached linear time for all [planar graphs](/planar-graph-isomorphism/) in 1974.
+
+In practice, the decisive program was Brendan McKay's [nauty](/nauty/). Its method, described in "Practical graph isomorphism" (1981), searches a tree of refined partitions and prunes it with the automorphisms found along the way. Ullmann's 1976 algorithm became the standard method for [finding a pattern](/ullmann-algorithm/) inside a larger graph, and [VF2](/vf2-algorithm/) by Cordella, Foggia, Sansone and Vento (2001, journal 2004) replaced its candidate matrix with linear memory. Junttila and Kaski's [bliss](/bliss/) (2007) adapted the nauty scheme to the large sparse graphs that arise from SAT instances.
+
+Group theory gave the theoretical breakthroughs. Luks showed in 1980 that graphs of [bounded degree](/luks-algorithm/) can be tested in polynomial time, starting from the fact that edge stabilizers of trivalent graphs are 2-groups. With Babai he reached the bound $\exp(O(\sqrt{n \log n}))$ for general graphs in 1983. In the other direction, Cai, Fürer and Immerman showed in 1992 that [no fixed dimension](/cai-furer-immerman-construction/) of Weisfeiler-Leman identifies all graphs, so combinatorial refinement alone cannot settle the problem.
+
+The bound of 1983 stood for more than thirty years. Babai announced a [quasi-polynomial algorithm](/babai-quasipolynomial-algorithm/) in November 2015 and presented it at STOC 2016. In January 2017 Helfgott found an error in one step of the analysis; Babai repaired it within days. In 2019 he extended the result to canonical forms. Whether graph isomorphism is in P remains open.
+
+## Further reading
+
+- Johannes Köbler, Uwe Schöning and Jacobo Torán, *The Graph Isomorphism Problem: Its Structural Complexity* (1993), is a monograph on the place of the problem among complexity classes.
+- Brendan D. McKay and Adolfo Piperno, "Practical graph isomorphism, II" (2014), describes the individualization-refinement framework behind nauty and its successors.
+- Martin Grohe and Pascal Schweitzer, "The graph isomorphism problem" (Communications of the ACM, 2020), is a short survey of the state of the problem after Babai's result.
+- Donald L. Kreher and Douglas R. Stinson, *Combinatorial Algorithms: Generation, Enumeration, and Search* (1999), treats tree isomorphism and canonical forms with working code.
+- Ronald C. Read and Derek G. Corneil, "The graph isomorphism disease" (1977), surveys the methods and the status of the problem as they stood in the 1970s.

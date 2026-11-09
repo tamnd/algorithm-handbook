@@ -1,0 +1,120 @@
+# The order of chapter 10.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Lattices and bases
+    intro: >
+      A lattice is the set of integer combinations of independent vectors, and a basis is one choice of such
+      vectors; two bases differ by a unimodular matrix. The determinant is the volume of a fundamental
+      domain and does not depend on the basis. Gram-Schmidt orthogonalization gives the lengths and
+      coefficients in which every reduction notion of the chapter is stated, and the dual lattice is the
+      lattice of vectors with integer inner products.
+    entries:
+      - lattice
+      - lattice-basis
+      - lattice-determinant
+      - gram-schmidt-orthogonalization
+      - dual-lattice
+
+  - title: Shortest and closest vectors
+    intro: >
+      The two central problems: find a shortest nonzero vector of a lattice, and find the lattice vector
+      closest to a given target. The successive minima measure how far one must go to find $i$ independent
+      lattice vectors, and the covering radius is the worst distance a target can have from the lattice.
+    entries:
+      - shortest-vector-problem
+      - closest-vector-problem
+      - successive-minima
+      - covering-radius
+
+  - title: Bounds from the geometry of numbers
+    intro: >
+      How short the shortest vector can be, in terms of the determinant. Minkowski's theorem bounds
+      $\lambda_1$ by $\sqrt n \det(L)^{1/n}$, the Hermite constant is the best such bound in each dimension,
+      and Minkowski's second theorem bounds the product of all the minima. The Gaussian heuristic replaces
+      the worst case by the typical case and is the basis of every practical cost estimate.
+    entries:
+      - hermite-constant
+      - minkowski-theorem
+      - minkowski-second-theorem
+      - gaussian-heuristic
+
+  - title: Approximate and promise problems
+    intro: >
+      The exact problems are hard, so algorithms and hardness proofs work with relaxed versions. Approximate
+      SVP accepts a vector within a factor $\gamma$ of the shortest, GapSVP is its decision form, unique SVP
+      and bounded distance decoding promise a gap that makes the answer unique, and SIVP asks for $n$ short
+      independent vectors.
+    entries:
+      - approximate-svp
+      - gap-svp
+      - unique-svp
+      - bounded-distance-decoding
+      - shortest-independent-vectors-problem
+
+  - title: What a reduced basis is
+    intro: >
+      Basis reduction asks for a basis of short, nearly orthogonal vectors. In dimension 2 the
+      Lagrange-Gauss algorithm, a vector form of Euclid's algorithm, finds the best basis exactly. In higher
+      dimension there are several notions of reduced: size reduction bounds the Gram-Schmidt coefficients,
+      the Lovász condition orders the Gram-Schmidt lengths, and the two together define LLL reduction; HKZ
+      and Minkowski reduction are stronger and hard to compute.
+    entries:
+      - lattice-basis-reduction
+      - lagrange-gauss-reduction
+      - size-reduction
+      - lovasz-condition
+      - lll-reduction
+      - hkz-reduction
+      - minkowski-reduced-basis
+
+  - title: The LLL algorithm and its uses
+    intro: >
+      The LLL algorithm computes an LLL-reduced basis in polynomial time, and its first vector is within
+      $2^{(n-1)/2}$ of the shortest; in practice it does much better, as the root Hermite factor measures.
+      Deep insertions and Seysen's measure are variants that reduce further. With a reduced basis, Babai's
+      rounding and nearest plane methods solve CVP approximately.
+    entries:
+      - lll-algorithm
+      - lll-approximation-guarantee
+      - root-hermite-factor
+      - deep-lll
+      - seysen-reduction
+      - babai-rounding
+      - babai-nearest-plane
+
+  - title: Enumeration, block reduction and sieving
+    intro: >
+      Exact SVP and CVP take exponential time. Enumeration searches the tree of Gram-Schmidt coordinates
+      inside a ball, in the orders of Fincke-Pohst and Schnorr-Euchner, and Kannan's preprocessing brings the
+      cost to $n^{O(n)}$. BKZ applies an exact SVP solver to blocks of size $\beta$ and trades time for basis
+      quality. Sieves reach time $2^{O(n)}$ at the price of exponential memory.
+    entries:
+      - lattice-enumeration
+      - fincke-pohst-enumeration
+      - schnorr-euchner-enumeration
+      - kannan-enumeration
+      - bkz-algorithm
+      - lattice-sieving
+      - gauss-sieve
+
+  - title: Applications to numbers and polynomials
+    intro: >
+      Problems that become lattice problems. An integer relation among real numbers is a short vector of a
+      lattice built from their approximations; PSLQ finds one with proved bounds. Simultaneous Diophantine
+      approximation asks for one denominator good for several numbers. Coppersmith's method finds small roots
+      of polynomials modulo $N$, with consequences for RSA.
+    entries:
+      - integer-relation-problem
+      - pslq-algorithm
+      - simultaneous-diophantine-approximation
+      - coppersmith-method
+
+  - title: How hard lattice problems are
+    intro: >
+      Exact CVP is NP-hard by a reduction from subset sum, and exact SVP is NP-hard under randomized
+      reductions. Ajtai's theorem goes the other way for cryptography: solving random instances of a lattice
+      problem is as hard as solving the worst case of approximate SIVP, which is why lattice problems can
+      carry public-key systems.
+    entries:
+      - cvp-np-hardness
+      - svp-randomized-np-hardness
+      - ajtai-worst-case-to-average-case-reduction

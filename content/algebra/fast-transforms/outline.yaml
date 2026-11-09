@@ -1,0 +1,98 @@
+# The order of chapter 11.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Roots of unity and the DFT
+    intro: >
+      Every transform in the chapter rests on the [roots of unity](/roots-of-unity/) and three short lemmas
+      about them. With these in hand the [discrete Fourier transform](/discrete-fourier-transform/) is
+      evaluation of a polynomial at the $n$-th roots of unity, the inverse is the same map with
+      $\omega^{-1}$ and a factor $1/n$, and Parseval's theorem says the transform keeps energy up to that factor.
+    entries:
+      - roots-of-unity
+      - fft-cancellation-lemma
+      - fft-halving-lemma
+      - fft-summation-lemma
+      - discrete-fourier-transform
+      - dft-matrix
+      - inverse-discrete-fourier-transform
+      - parseval-theorem
+
+  - title: The fast Fourier transform
+    intro: >
+      The halving lemma splits a DFT of length $n$ into two of length $n/2$, joined by $n/2$
+      [butterflies](/butterfly-operation/). The [fast Fourier transform](/fast-fourier-transform/) applies
+      the split recursively and takes $\Theta(n \log n)$ time. The other entries make it iterative and in place,
+      run it backwards, and lay it out as a circuit of depth $\lg n$.
+    entries:
+      - butterfly-operation
+      - bit-reversal-permutation
+      - fast-fourier-transform
+      - twiddle-factor
+      - iterative-fft
+      - inverse-fft
+      - parallel-fft-circuit
+
+  - title: Convolution
+    intro: >
+      The main use of the FFT. The [convolution theorem](/convolution-theorem/) turns cyclic convolution into
+      a pointwise product of transforms, so two sequences can be convolved, and two polynomials multiplied, in
+      $O(n \log n)$ operations. Over $\mathbb{Z}/p$ with a suitable prime the same algorithm runs with no
+      rounding error at all.
+    entries:
+      - convolution
+      - convolution-theorem
+      - convolution-via-fft
+      - number-theoretic-transform
+
+  - title: FFTs for every length
+    intro: >
+      The radix-2 FFT needs $n$ to be a power of 2. These algorithms remove that limit: split by any factor,
+      split coprime factors with no twiddles at all, or turn a prime length, or any length, into a convolution
+      that a power-of-two FFT can do.
+    entries:
+      - mixed-radix-fft
+      - chinese-remainder-theorem-fft
+      - rader-fft
+      - bluestein-fft
+      - winograd-fourier-transform
+
+  - title: Fewer operations, more dimensions
+    intro: >
+      Ways to beat the plain radix-2 count: split radix for complex data, half-length transforms for real data,
+      and the row-column method for arrays in two or more dimensions.
+    entries:
+      - split-radix-fft
+      - real-valued-fft
+      - multidimensional-fft
+
+  - title: A few coefficients, or points off the grid
+    intro: >
+      Sometimes the full transform is not what is wanted. The Goertzel algorithm computes one coefficient in
+      linear time, the sparse Fourier transform finds a few large ones in sublinear time, and the nonuniform
+      transforms handle samples or frequencies that are not equally spaced.
+    entries:
+      - goertzel-algorithm
+      - sparse-fourier-transform
+      - nonuniform-discrete-fourier-transform
+      - nonuniform-fft
+
+  - title: Real transforms
+    intro: >
+      For real data there are transforms with real kernels: the sine and cosine transforms behind image and
+      audio coding, and the Hartley transform, which is its own inverse up to a factor $1/n$. Each has a fast
+      algorithm of the same $O(n \log n)$ shape as the FFT.
+    entries:
+      - discrete-sine-transform
+      - fast-dct
+      - discrete-hartley-transform
+      - fast-hartley-transform
+
+  - title: Walsh-Hadamard and wavelets
+    intro: >
+      Two transforms with no complex numbers at all. The [Walsh-Hadamard transform](/walsh-hadamard-transform/)
+      is a Fourier transform over the group $(\mathbb{Z}/2)^k$, computed with $n \lg n$ additions. Wavelet
+      transforms trade frequency for position and run in linear time.
+    entries:
+      - walsh-hadamard-transform
+      - fast-walsh-hadamard-transform
+      - haar-wavelet-transform
+      - fast-wavelet-transform

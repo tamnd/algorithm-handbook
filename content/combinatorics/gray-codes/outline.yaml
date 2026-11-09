@@ -1,0 +1,67 @@
+# The order of chapter 14.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Gray codes and minimal change
+    intro: >
+      A [Gray code](/gray-code/) lists all $2^n$ binary strings of length $n$ so that each two neighbors
+      differ in one bit. A [minimal-change ordering](/minimal-change-ordering/) asks the same of any class of
+      objects, with a small change that the class defines. [Gray code generation](/gray-code-generation/)
+      states the task of producing such a list and what it costs.
+    entries:
+      - gray-code
+      - minimal-change-ordering
+      - gray-code-generation
+
+  - title: The binary reflected Gray code
+    intro: >
+      The [binary reflected Gray code](/binary-reflected-gray-code/) puts a 0 in front of the list for
+      $n - 1$ and a 1 in front of the same list read backwards. Its string of rank $k$ is
+      $k \oplus \lfloor k/2 \rfloor$, and the bit that changes at step $k$ is the number of trailing zeros of
+      $k$, the [ruler sequence](/ruler-sequence/).
+    entries:
+      - binary-reflected-gray-code
+      - ruler-sequence
+
+  - title: Ranks and strings
+    intro: >
+      [Gray code conversion](/gray-code-conversion/) maps a rank to its string and back. The forward map is
+      one shift and one exclusive or. The inverse is a prefix exclusive or of the bits, which takes
+      $\Theta(n)$ steps bit by bit and $\lceil \lg w \rceil$ rounds on a word of $w$ bits.
+    entries:
+      - gray-code-conversion
+      - binary-to-gray-conversion
+      - gray-to-binary-conversion
+
+  - title: Cycles in the cube
+    intro: >
+      A [cyclic Gray code](/cyclic-gray-code/) is a Hamiltonian cycle of the $n$-cube, and the
+      [hypercube Hamiltonian cycle](/hypercube-hamiltonian-cycle/) theorem says one exists for every
+      $n \ge 2$. Among the many such cycles, a [balanced Gray code](/balanced-gray-code/) makes every bit
+      change about $2^n/n$ times.
+    entries:
+      - cyclic-gray-code
+      - hypercube-hamiltonian-cycle
+      - balanced-gray-code
+
+  - title: Loopless generation and larger alphabets
+    intro: >
+      [Loopless Gray code generation](/loopless-gray-code-generation/) keeps $n + 1$ focus pointers and
+      finds the next bit to flip in $O(1)$ time in every step. The same idea, with one direction flag per
+      digit, lists strings over digits $0$ to $k - 1$ in a [k-ary Gray code](/k-ary-gray-code/), where each
+      step moves one digit up or down by 1.
+    entries:
+      - loopless-gray-code-generation
+      - k-ary-gray-code-generation
+      - k-ary-gray-code
+
+  - title: Gray codes for combinations
+    intro: >
+      [Combination Gray code generation](/combination-gray-code-generation/) lists the $\binom{n}{k}$
+      strings with $k$ ones so that each step moves a single 1. The
+      [revolving door order](/revolving-door-ordering/) allows any move, [Chase's sequence](/chase-sequence/)
+      moves a 1 by at most two places, and the [Eades-McKay order](/eades-mckay-algorithm/) moves a 1 only
+      across 0s.
+    entries:
+      - combination-gray-code-generation
+      - revolving-door-ordering
+      - chase-sequence
+      - eades-mckay-algorithm

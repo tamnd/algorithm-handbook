@@ -1,0 +1,17 @@
+## History
+
+The oldest result in the chapter is a theorem, not an algorithm. In 1935 Paul Erdős and George Szekeres proved that every sequence of $nm + 1$ distinct numbers has an increasing subsequence of length $n + 1$ or a decreasing one of length $m + 1$; the short pigeonhole proof usually taught today is Abraham Seidenberg's of 1959. Robert Dilworth proved his theorem on chains and antichains in 1950, and Leon Mirsky gave the dual in 1971. Craige Schensted connected longest increasing subsequences to Young tableaux in 1961, and his insertion procedure is the pile method in another form.
+
+The longest common subsequence became an algorithmic problem around 1974, when Robert Wagner and Michael Fischer published the table for the string-to-string correction problem. Daniel Hirschberg showed in 1975 how to recover the subsequence in linear space. Vašek Chvátal and David Sankoff asked in the same year how long the LCS of two random strings is, and the exact constant for two letters is still unknown. In 1976 Alfred Aho, Hirschberg and Jeffrey Ullman proved that with only equality tests on an unbounded alphabet, $\Omega(mn)$ tests are needed, and David Maier showed in 1978 that the LCS of many strings is NP-hard. William Masek and Michael Paterson broke the quadratic barrier slightly in 1980 with the Four Russians method.
+
+The `diff` program drove the next step. James Hunt and Douglas McIlroy wrote the Unix `diff` at Bell Labs in 1976, and Hunt and Thomas Szymanski published its algorithm, fast when few lines match, in 1977. Eugene Myers' $O(ND)$ algorithm of 1986, found independently by Esko Ukkonen in 1985, is fast when few lines differ, and it became the default in GNU `diff` and later in Git. Bit-parallel methods came from Lloyd Allison and Trevor Dix in 1986 and were refined by Heikki Hyyrö and others in the 2000s.
+
+The random case has its own story. Michael Fredman counted comparisons for the LIS in 1975. Anatoly Vershik and Sergei Kerov, and independently Benjamin Logan and Larry Shepp, showed in 1977 that the expected LIS of a random permutation is about $2\sqrt{n}$, and Jinho Baik, Percy Deift and Kurt Johansson found its limiting distribution in 1999. On the lower-bound side, Arturs Backurs and Piotr Indyk showed in 2015 that edit distance has no strongly subquadratic algorithm unless the strong exponential time hypothesis fails. Amir Abboud, Backurs and Virginia Vassilevska Williams, and separately Karl Bringmann and Marvin Künnemann, proved the same for the LCS that year.
+
+## Further reading
+
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, fourth edition (2022). Section 14.4 develops the LCS table from optimal substructure to traceback.
+- Dan Gusfield, *Algorithms on Strings, Trees, and Sequences* (1997). Chapters 11 and 12 treat edit scripts, LCS, Hirschberg's method and the speedups with biological sequences in view.
+- Eugene W. Myers, *An O(ND) Difference Algorithm and Its Variations*, Algorithmica 1(2), 1986. A short, clear paper that explains the edit graph, the greedy diagonals and the middle snake.
+- David Aldous and Persi Diaconis, *Longest Increasing Subsequences: From Patience Sorting to the Baik–Deift–Johansson Theorem*, Bulletin of the AMS 36(4), 1999. A survey of the random LIS, from card games to random matrices.
+- M. Lothaire, *Combinatorics on Words* (1997). Chapter 6 covers subwords, their counts and Higman's theorem.

@@ -1,0 +1,75 @@
+# The order of chapter 14.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Search spaces and brute force
+    intro: >
+      Every exhaustive search starts from a [search space](/search-space/): the set of candidates it may
+      have to look at, whose size is the first estimate of its cost. That size grows like $2^n$ or $n!$,
+      the [combinatorial explosion](/combinatorial-explosion/), so a faster machine buys only a few more
+      items. [Brute-force search](/brute-force-search/) and [generate-and-test](/generate-and-test/) are
+      the plain methods, and [exact exponential-time algorithms](/exact-exponential-algorithms/) ask how
+      small the base of the exponent can be made.
+    entries:
+      - search-space
+      - combinatorial-explosion
+      - brute-force-search
+      - generate-and-test
+      - exact-exponential-algorithms
+
+  - title: Two classic searches
+    intro: >
+      The [n-queens problem](/n-queens-problem/) is the standard test of a backtracking program: its
+      counts are known only from search, and a bitwise program reaches them fast. The
+      [Golomb ruler problem](/golomb-ruler-problem/) asks for the shortest ruler with $n$ marks and no
+      repeated distance, and each new optimum has needed years of distributed search.
+    entries:
+      - n-queens-problem
+      - golomb-ruler-problem
+
+  - title: Exact cover
+    intro: >
+      Many puzzles ask to choose sets that cover every item exactly once: tilings, Sudoku, Langford pairs
+      and queens. The [exact cover problem](/exact-cover/) states this form, [dancing links](/dancing-links/)
+      remove and restore an option of a sparse matrix in time proportional to its size, and
+      [Algorithm X](/algorithm-x/) is the backtracking search that uses them.
+    entries:
+      - exact-cover
+      - dancing-links
+      - algorithm-x
+
+  - title: Listing all solutions
+    intro: >
+      An [enumeration problem](/enumeration-problem/) asks for every solution, so its cost is measured
+      against the number of solutions $N$ as well as the input size.
+      [Output-sensitive enumeration](/output-sensitive-enumeration/) defines total time, incremental time
+      and delay, and [reverse search](/reverse-search/) is the general method that turns a local rule into
+      a listing with polynomial delay and small space.
+    entries:
+      - enumeration-problem
+      - output-sensitive-enumeration
+      - reverse-search
+
+  - title: Polyominoes and walks
+    intro: >
+      Counting lattice shapes is exhaustive search where the answer is a number, not a list.
+      [Polyomino enumeration](/polyomino-enumeration/) gives the counts and the growth constant near
+      $4.06$, [Redelmeier's algorithm](/redelmeier-algorithm/) generates each fixed polyomino once with no
+      check for repeats, and [self-avoiding walk enumeration](/self-avoiding-walk-enumeration/) counts walks
+      whose growth constant on the square lattice is about $2.638$.
+    entries:
+      - polyomino-enumeration
+      - redelmeier-algorithm
+      - self-avoiding-walk-enumeration
+
+  - title: Independent sets and transversals
+    intro: >
+      A graph on $n$ vertices has at most $3^{n/3}$ maximal independent sets, and
+      [maximal independent set enumeration](/maximal-independent-set-enumeration/) lists them; the
+      [Tsukiyama algorithm](/tsukiyama-algorithm/) does it with polynomial delay. For hypergraphs the
+      question is open: [minimal transversal enumeration](/minimal-transversal-enumeration/) has no known
+      algorithm of polynomial total time, and the [Fredman-Khachiyan algorithm](/fredman-khachiyan-algorithm/)
+      gives quasi-polynomial time.
+    entries:
+      - maximal-independent-set-enumeration
+      - tsukiyama-algorithm
+      - minimal-transversal-enumeration
+      - fredman-khachiyan-algorithm

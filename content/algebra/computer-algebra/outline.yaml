@@ -1,0 +1,169 @@
+# The order of chapter 11.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Formulas as data
+    intro: >
+      A computer algebra system holds formulas, not numbers. These entries give the abstract type of a symbolic
+      expression and its three data structures: the tree, the DAG with shared parts, and the straight-line
+      program. Then they ask when two formulas are equal, which is easy with a [canonical form](/canonical-form/)
+      and, for expressions with $\sin$, $\exp$ and $|x|$, undecidable.
+    entries:
+      - expression
+      - expression-tree
+      - expression-dag
+      - straight-line-program
+      - canonical-form
+      - expression-swell
+      - constant-problem
+      - richardson-theorem
+
+  - title: Algebraic groundwork
+    intro: >
+      A few definitions from algebra that the rest of the chapter uses: groups and subgroups, the minimal
+      polynomial of an algebraic element, and the vocabulary of polynomials in several variables. A
+      [monomial order](/monomial-ordering/) decides which term of a polynomial leads, and an ideal is the set of
+      all consequences of a system of equations.
+    entries:
+      - finite-group
+      - subgroup
+      - minimal-polynomial-algebraic-element
+      - monomial
+      - monomial-ordering
+      - leading-term
+      - polynomial-ideal
+
+  - title: Storing polynomials and recovering them from values
+    intro: >
+      A polynomial in many variables can be stored densely, recursively in a main variable, or sparsely as a
+      sorted list of its nonzero terms. When it is known only through its values, sparse interpolation recovers
+      the terms with a number of evaluations that depends on the number of terms, not on the degree.
+    entries:
+      - dense-polynomial
+      - sparse-polynomial
+      - sparse-polynomial-interpolation
+      - ben-or-tiwari-algorithm
+      - zippel-sparse-interpolation
+
+  - title: Greatest common divisors and factors over the integers
+    intro: >
+      Euclid's algorithm in $\mathbb{Z}[x]$ is correct but its numbers grow fast. The entries here control that
+      growth in three ways: remove the content at each step, divide by a factor known in advance
+      ([subresultants](/subresultant/)), or compute modulo primes and rebuild the answer. Factoring over the
+      integers closes the group, with the oldest method that is known to work.
+    entries:
+      - sylvester-matrix
+      - subresultant
+      - primitive-prs
+      - subresultant-prs
+      - modular-methods
+      - heuristic-gcd
+      - polynomial-factorization
+      - kronecker-factorization-method
+
+  - title: Gröbner bases
+    intro: >
+      Division by several polynomials in several variables gives a remainder that depends on the order of the
+      divisors. A [Gröbner basis](/groebner-basis/) is a generating set for which it does not, and then the
+      remainder decides ideal membership. Buchberger's algorithm computes one by reducing
+      [S-polynomials](/s-polynomial/) until all of them reduce to zero.
+    entries:
+      - hilbert-basis-theorem
+      - multivariate-division-algorithm
+      - groebner-basis
+      - reduced-groebner-basis
+      - s-polynomial
+      - buchberger-criteria
+      - buchberger-algorithm
+      - groebner-basis-computation
+      - ideal-membership-problem
+      - syzygy
+      - hilbert-series
+
+  - title: Faster Gröbner bases and changing the order
+    intro: >
+      Plain Buchberger spends most of its time reducing pairs to zero. The pair criteria and the sugar strategy
+      choose and discard pairs; F4 and F5 replace single reductions by linear algebra on Macaulay matrices and
+      predict useless pairs. Because grevlex bases are cheap and lex bases are useful, the last entries convert
+      one into the other.
+    entries:
+      - gebauer-moller-criteria
+      - sugar-strategy
+      - macaulay-matrix
+      - f4-algorithm
+      - f5-algorithm
+      - xl-algorithm
+      - groebner-basis-conversion
+      - fglm-algorithm
+      - groebner-walk
+
+  - title: Solving polynomial systems
+    intro: >
+      A lex Gröbner basis is triangular, so it eliminates variables and turns a system into a sequence of
+      equations in one unknown. The Nullstellensatz says when a system has no solution at all. The other entries
+      give the outputs a solver can return: a univariate representation, a primary decomposition, or a union of
+      triangular sets built by pseudo-division.
+    entries:
+      - elimination-ideal
+      - elimination-theorem
+      - hilbert-nullstellensatz
+      - polynomial-system-solving
+      - lazard-structure-theorem
+      - rational-univariate-representation
+      - primary-decomposition
+      - characteristic-set
+      - wu-characteristic-set-method
+      - triangular-decomposition
+      - regular-chain
+
+  - title: Real algebra and quantifier elimination
+    intro: >
+      Over the real numbers, equations come with inequalities. The Tarski-Seidenberg theorem says that a
+      formula with quantifiers over the reals is equivalent to one without, and the
+      [cylindrical algebraic decomposition](/cylindrical-algebraic-decomposition/) computes it, at a cost doubly
+      exponential in the number of variables.
+    entries:
+      - real-closed-field
+      - semialgebraic-set
+      - tarski-seidenberg-theorem
+      - quantifier-elimination
+      - cylindrical-algebraic-decomposition
+
+  - title: Integration and differential equations
+    intro: >
+      The integral of a rational function is a rational part plus logarithms. Hermite's reduction finds the
+      rational part without factoring, and a resultant finds the logarithms in the smallest extension of the
+      constants. Liouville's theorem extends this shape to all elementary functions, and the Risch algorithm
+      turns it into a decision procedure. The group ends with closed-form solutions of linear differential
+      equations.
+    entries:
+      - partial-fraction-decomposition
+      - symbolic-integration
+      - integration-of-rational-functions
+      - hermite-reduction
+      - horowitz-ostrogradsky
+      - rothstein-trager
+      - lazard-rioboo-trager
+      - liouville-theorem
+      - risch-structure-theorem
+      - risch-algorithm
+      - risch-norman-heuristic
+      - closed-form-ode-solving
+      - differential-galois-theory
+      - kovacic-algorithm
+
+  - title: Symbolic summation
+    intro: >
+      Sums are the discrete twin of integrals. For [hypergeometric terms](/hypergeometric-term/), Gosper's
+      algorithm decides whether a partial sum has a closed form, Zeilberger's algorithm finds a recurrence for a
+      definite sum, and Petkovšek's Hyper solves the recurrence. Holonomic functions and Ore algebras are the
+      general setting behind these methods.
+    entries:
+      - hypergeometric-term
+      - indefinite-summation
+      - gosper-algorithm
+      - definite-summation
+      - creative-telescoping
+      - zeilberger-algorithm
+      - wz-method
+      - petkovsek-hyper-algorithm
+      - holonomic-function
+      - ore-algebra

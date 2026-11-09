@@ -1,0 +1,71 @@
+# The order of chapter 2.8. Groups are read in order; entries in a group too.
+groups:
+  - title: The method
+    intro: >
+      A line moves across the plane and stops only where something changes. The first entry gives the
+      template and its classic uses, the second says what the stops are, and the third states the
+      invariant that every sweep must keep: at each stop the status holds exactly the objects that the
+      line crosses, in the right order.
+    entries:
+      - sweep-line-technique
+      - event-point
+      - sweep-invariant
+
+  - title: The two structures
+    intro: >
+      Every sweep keeps two structures. The event queue yields the next stop and can take new stops that
+      the sweep finds on the way, such as crossing points. The status structure keeps the objects on the
+      line in their order along it, and its comparator depends on where the line is.
+    entries:
+      - event-queue
+      - sweep-status-structure
+
+  - title: Ties and degenerate input
+    intro: >
+      Proofs of sweeps often assume general position: no two events at one coordinate, no three segments
+      through one point. Real input breaks these rules. The entry gives the tie rules that make a sweep
+      correct without them, and shows what goes wrong when the order of events at one coordinate is
+      chosen badly.
+    entries:
+      - degeneracy-in-sweeps
+
+  - title: Rectangles
+    intro: >
+      Axis-parallel rectangles are the simplest objects to sweep, because each one enters and leaves the
+      line once and is an interval while it is there. The detection problem comes before its sweep, and
+      the union area problem comes before Bentley's sweep with a segment tree. Both sweeps take
+      $\Theta(n \log n)$ time and both are optimal in their models.
+    entries:
+      - rectangle-intersection-detection
+      - rectangle-intersection-sweep
+      - area-of-union-of-rectangles
+      - rectangle-union-sweep
+
+  - title: Outlines and envelopes
+    intro: >
+      The skyline is the upper outline of rectangles on one baseline, and a sweep with a max-heap computes
+      it. The lower envelope of segments is the same question for sloped pieces. There the outline can
+      have more pieces than there are segments, and Davenport-Schinzel sequences count them.
+    entries:
+      - skyline-problem
+      - skyline-sweep
+      - lower-envelope-of-segments
+
+  - title: Turning the line
+    intro: >
+      A ray that turns around a fixed point is also a sweep line. The events are angles, the status is
+      the order of the segments along the ray, and the classic uses are visibility and the largest number
+      of points in a circle of given radius.
+    entries:
+      - rotational-sweep
+
+  - title: Sweeping in time
+    intro: >
+      A simulation sweeps the time axis. A time-driven simulation stops at every multiple of a fixed step,
+      while an event-driven one keeps the next events in a priority queue, as a geometric sweep does. The
+      last entry predicts and resolves the collisions of moving disks. These three entries are about
+      simulation more than geometry, and the chapter keeps them for their shared method.
+    entries:
+      - time-driven-simulation
+      - event-driven-simulation
+      - collision-prediction-and-resolution

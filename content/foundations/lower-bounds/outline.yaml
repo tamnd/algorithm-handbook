@@ -1,0 +1,87 @@
+# The order of chapter 1.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Upper and lower bounds
+    intro: >
+      An upper bound is a statement about one algorithm; a lower bound is a statement about all algorithms
+      for a problem, in a fixed model of computation. These entries define the two, say when an algorithm
+      is optimal, and give the first and weakest lower bound: an algorithm must at least read its input and
+      write its output.
+    entries:
+      - upper-bound
+      - lower-bound
+      - optimality
+      - trivial-lower-bound
+
+  - title: Counting and decision trees
+    intro: >
+      The oldest method counts. A comparison tree of height $h$ has at most $2^h$ leaves, so a problem with
+      $N$ possible answers needs height at least $\lg N$. These entries give the counting argument in
+      general, apply it to comparison algorithms through decision trees, and use it to show that binary
+      search and merge sort are optimal. Element distinctness, which has only two answers, shows where plain
+      counting stops working.
+    entries:
+      - counting-argument
+      - information-theoretic-bound
+      - decision-tree-method
+      - sorted-search-lower-bound
+      - element-distinctness
+      - merge-sort-optimality
+
+  - title: Adversary arguments
+    intro: >
+      An adversary answers the algorithm's questions as unhelpfully as it can while staying consistent with
+      some input. Adversaries prove bounds that counting cannot: exactly $n - 1$ comparisons for the maximum,
+      $\lceil 3n/2 \rceil - 2$ for the maximum and minimum together, and $n + \lceil \lg n \rceil - 2$ for the
+      second largest.
+    entries:
+      - max-finding-lower-bound
+      - adversary-argument
+      - max-min-lower-bound
+      - second-largest-lower-bound
+
+  - title: Reductions and algebraic models
+    intro: >
+      A lower bound for one problem carries over to every problem that it reduces to cheaply. Ben-Or's
+      theorem bounds algebraic computation trees by the number of connected components of the set of yes
+      inputs, which gives $\Omega(n \log n)$ for element distinctness and, by reduction, for many geometric
+      problems. The last two entries prove that Horner's rule and the fast Fourier transform are optimal in
+      models that count arithmetic operations.
+    entries:
+      - reduction-lower-bound
+      - ben-or-theorem
+      - element-distinctness-lower-bound
+      - horners-rule-optimality
+      - fft-lower-bound
+
+  - title: Reads, pebbles and block transfers
+    intro: >
+      Some lower bounds count a resource other than comparisons. These entries count the characters of a
+      text that a string matcher must read, the transfers between fast and slow memory that a fixed
+      computation needs, and the block transfers of sorting in the external memory model.
+    entries:
+      - string-matching-lower-bound
+      - pebbling-lower-bound
+      - external-sorting-lower-bound
+
+  - title: Randomness and incompressibility
+    intro: >
+      Yao's minimax principle turns a lower bound for deterministic algorithms on a random input into a
+      lower bound for randomized algorithms. The incompressibility method proves lower bounds by fixing a
+      single input with no short description and showing that a fast algorithm would describe it briefly.
+    entries:
+      - yao-minimax-principle
+      - incompressibility-method
+
+  - title: Data structures in the cell-probe model
+    intro: >
+      The cell-probe model counts only the memory cells a data structure reads and writes, so its lower
+      bounds hold for every program on a word RAM. These entries give the general methods and four
+      results: sorted tables are optimal for implicit dictionaries, partial sums under updates need
+      $\Omega(\log n)$, predecessor search has a known time-space trade-off, and union-find needs the inverse
+      Ackermann function.
+    entries:
+      - cell-probe-lower-bound
+      - static-dictionary-lower-bound
+      - dynamic-partial-sums-lower-bound
+      - predecessor-lower-bound
+      - union-find-lower-bound

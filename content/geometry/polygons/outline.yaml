@@ -1,0 +1,106 @@
+groups:
+  - title: Points, vectors and the basic tests
+    intro: >
+      This group is the toolkit of the whole volume. A point is a pair of
+      coordinates and a vector is a difference of points; the
+      [cross product](/cross-product/) $u \times v = u_x v_y - u_y v_x$ gives
+      orientation and area, and the [dot product](/dot-product/) gives angles
+      and projections. With integer input every test here is an exact integer
+      computation of degree 2.
+    entries:
+      - point-and-vector
+      - cross-product
+      - dot-product
+      - geometry-primitives
+      - oriented-triangle-area
+      - point-projection-and-reflection
+      - vector-rotation
+  - title: Kinds of polygons
+    intro: >
+      A polygon is a closed chain of vertices. Most algorithms need it to be
+      simple, and many work faster when it is convex, monotone or star-shaped.
+      Rectilinear polygons and polygons with holes are the shapes of floor plans
+      and maps.
+    entries:
+      - polygon
+      - simple-polygon
+      - convex-polygon
+      - rectilinear-polygon
+      - star-shaped-polygon
+      - monotone-polygon
+      - polygon-with-holes
+  - title: Area, orientation and lattice points
+    intro: >
+      The [shoelace formula](/shoelace-formula/) $2A = \sum_i v_i \times v_{i+1}$
+      gives the signed area in $\Theta(n)$ time, and its sign gives the
+      orientation. For lattice polygons, Pick's theorem $A = I + B/2 - 1$ links
+      area to the count of lattice points, and floor sums extend the count to
+      polygons with rational vertices.
+    entries:
+      - polygon-area
+      - shoelace-formula
+      - polygon-orientation
+      - picks-theorem
+      - lattice-points-in-non-lattice-polygon
+  - title: Containment and simplicity tests
+    intro: >
+      Whether a point is inside a polygon is decided in $\Theta(n)$ time by
+      counting crossings of a ray, with care at vertices and horizontal edges.
+      The winding number gives the nonzero rule for self-intersecting polygons,
+      and a convex polygon answers in $O(\log n)$ time by binary search. Testing
+      that the input is simple takes $O(n \log n)$ time by a sweep.
+    entries:
+      - point-in-polygon
+      - crossing-number-algorithm
+      - winding-number-algorithm
+      - point-in-convex-polygon
+      - polygon-simplicity-test
+  - title: Cutting polygons into pieces
+    intro: >
+      A sweep cuts a simple polygon into monotone pieces in $O(n \log n)$ time,
+      the first step of the standard triangulation. Convex pieces are found by
+      deleting unneeded diagonals of a triangulation, which uses at most four
+      times the fewest possible pieces.
+    entries:
+      - monotone-polygon-partition
+      - convex-decomposition
+      - hertel-mehlhorn
+  - title: Clipping, union and Minkowski sums
+    intro: >
+      Boolean operations on polygons range from
+      [Sutherland-Hodgman](/sutherland-hodgman/), which clips against a convex
+      window, to boundary tracing and sweeps that handle any two polygons, whose
+      result can have $\Theta(nm)$ vertices. The Minkowski sum of two convex
+      polygons is a merge of their edge sequences in $\Theta(n + m)$ time.
+    entries:
+      - sutherland-hodgman
+      - polygon-clipping
+      - weiler-atherton-algorithm
+      - greiner-hormann-algorithm
+      - vatti-clipping
+      - polygon-union
+      - minkowski-sum
+      - minkowski-sum-convex-polygons
+  - title: Visibility, guards and shortest paths
+    intro: >
+      A point sees another if the segment between them stays inside the polygon.
+      The kernel is the set of points that see everything; $\lfloor n/3 \rfloor$
+      guards always suffice, while the fewest guards for a given polygon is
+      NP-hard to find. Shortest paths inside a triangulated simple polygon take
+      linear time with the funnel algorithm.
+    entries:
+      - polygon-kernel
+      - art-gallery-problem
+      - art-gallery-theorem
+      - visibility-graph-of-polygon
+      - euclidean-shortest-path-in-polygon
+      - funnel-algorithm
+      - watchman-route-problem
+  - title: Simplifying and shrinking
+    intro: >
+      Simplification replaces a polygon by one with fewer vertices within a given
+      error. The straight skeleton traces the corners of a polygon whose edges move
+      inward at equal speed, and gives a tree with $2n - 3$ arcs.
+    entries:
+      - polygon-simplification
+      - straight-skeleton

@@ -1,0 +1,27 @@
+# The order of chapter 2.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The method
+    intro: >
+      Split an instance into smaller instances of the same problem, solve them by recursion, and combine the
+      answers. The entry gives the template with its four holes, the recurrence $T(n) = aT(n/b) + f(n)$ that
+      prices it, the induction that proves it correct, and a list of classic algorithms built on it, from
+      binary search to the fast Fourier transform.
+    entries:
+      - divide-and-conquer-paradigm
+
+  - title: One subproblem
+    intro: >
+      When the answer for the whole follows from the answer for a single smaller instance, the method is
+      called decrease and conquer. The instance shrinks by a constant, by a constant factor or by an amount
+      that depends on the data, and the three cases give linear, logarithmic and data-dependent bounds.
+    entries:
+      - decrease-and-conquer
+
+  - title: Recursion over time
+    intro: >
+      When all updates and queries are known in advance, the recursion can run over the time line instead of
+      over the input items. Two methods do this: one stores each update on the nodes of a segment tree over
+      time and undoes its changes on the way back up, and the other, CDQ divide and conquer, counts the effect
+      of the early half of the operations on the late half by a sweep.
+    entries:
+      - divide-and-conquer-on-queries

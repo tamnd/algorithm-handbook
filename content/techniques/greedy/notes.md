@@ -1,0 +1,17 @@
+## History
+
+Greedy algorithms were used before they had a name. Otakar Borůvka built minimum spanning trees by repeatedly adding cheapest edges in 1926, and Joseph Kruskal gave the rule "take the lightest edge that closes no cycle" in 1956. Hassler Whitney had meanwhile defined the matroid in *On the abstract properties of linear dependence* (1935), to capture what linear independence of vectors and acyclic sets of edges have in common. David Huffman's *A method for the construction of minimum-redundancy codes* (1952) merged the two least frequent symbols first; the same rule, applied to file sizes, is the optimal merge pattern.
+
+Scheduling theory produced the single-machine rules of this chapter in a few years. J. R. Jackson showed in 1955 that earliest due date first minimizes the largest lateness, and Wayne E. Smith proved the ratio rule for the weighted sum of completion times in *Naval Research Logistics Quarterly* in 1956. J. Michael Moore gave the algorithm for the number of late jobs in *Management Science* in 1968. The neighbouring problems turned out to be hard: Lawler and Moore solved the weighted number of late jobs by a pseudo-polynomial dynamic program in 1969, Karp listed it among his NP-complete problems in 1972, and Lenstra, Rinnooy Kan and Brucker showed in 1977 that release dates make $1 | r_j | L_{\max}$ and $1 | r_j | \sum C_j$ strongly NP-hard. Eugene Lawler solved the largest lateness under precedence constraints in $O(n^2)$ time in 1973.
+
+The link between greedy and matroids came next. Richard Rado proved in his *Note on independence functions* (1957) that the greedy algorithm is optimal on matroids. David Gale showed in 1968 that the greedy basis dominates every other basis element by element. Jack Edmonds, in *Matroids and the greedy algorithm* (1971), proved that the matroids are exactly the systems on which greedy is optimal for every weighting, and that the greedy solution also solves a linear program over the matroid polytope, whose vertices are therefore integral.
+
+The coin problem had its own line. Chang and Gill gave an algorithm for change making in 1970, Magazine, Nemhauser and Trotter a test for adding one coin to a canonical system in 1975, Kozen and Zaks the bound on the smallest counterexample in 1994, and David Pearson a test in $O(n^3)$ time in 2005. The names of the two proof patterns are more recent and come from teaching: "greedy stays ahead" is from the textbook of Kleinberg and Tardos.
+
+## Further reading
+
+- Jon Kleinberg and Éva Tardos, *Algorithm Design* (2005). Chapter 4 teaches the exchange argument and greedy stays ahead on intervals, lateness, caching and spanning trees.
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, third edition (2009). Chapter 16 covers activity selection, Huffman codes and, in Sections 16.4 and 16.5, matroids and unit-task scheduling.
+- Ellis Horowitz, Sartaj Sahni and Sanguthevar Rajasekaran, *Computer Algorithms*, second edition (2008). Chapter 4 has the knapsack, job sequencing, tape storage and merge patterns as worked problems.
+- Michael L. Pinedo, *Scheduling: Theory, Algorithms, and Systems*, fifth edition (2016). Chapter 3 sets the single-machine rules among the problems around them.
+- Bernhard Korte and Jens Vygen, *Combinatorial Optimization*, sixth edition (2018). Chapter 13 proves the matroid greedy theorem and its relatives with full rigour.

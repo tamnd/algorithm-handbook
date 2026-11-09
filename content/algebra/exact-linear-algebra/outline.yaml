@@ -1,0 +1,115 @@
+# The order of chapter 11.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Independence, rank and the nullspace
+    intro: >
+      The words the rest of the chapter uses. A set of vectors is independent when no combination of them
+      vanishes; the rank of a matrix counts its independent columns, and the nullspace holds the solutions
+      of the homogeneous system. The echelon form makes all three visible, and the rank-nullity theorem ties
+      them together.
+    entries:
+      - linear-independence
+      - echelon-form
+      - rank
+      - nullspace
+      - rank-nullity-theorem
+
+  - title: Determinants
+    intro: >
+      The determinant is a single number that is nonzero exactly when a square matrix is invertible. These
+      entries define it as a signed sum over permutations, expand it along a row, and use it to write the
+      solution of a square system as a ratio of determinants. The formulas are for proofs, not for computing.
+    entries:
+      - determinant
+      - laplace-expansion
+      - cramers-rule
+
+  - title: Gaussian elimination
+    intro: >
+      The one algorithm the chapter cannot do without. [Gaussian elimination](/gaussian-elimination/)
+      brings a matrix to echelon form by row operations in about $2n^3/3$ field operations. Choosing the
+      pivot, going on to the reduced form, and recording the multipliers as an LU factorization are the
+      variations every later group uses.
+    entries:
+      - gaussian-elimination
+      - pivot
+      - reduced-row-echelon-form
+      - gauss-jordan-elimination
+      - lu-decomposition
+
+  - title: Determinant, rank, nullspace and inverse
+    intro: >
+      Each of the four objects of the first two groups is a problem to compute, and elimination solves all
+      of them in cubic time. These entries state the problems, give the elimination algorithms for the
+      determinant, and say what faster methods based on matrix multiplication achieve.
+    entries:
+      - determinant-computation
+      - determinant-gaussian-elimination
+      - kraut-determinant
+      - rank-computation
+      - nullspace-computation
+      - matrix-inversion
+
+  - title: Elimination over finite fields
+    intro: >
+      Over the integers modulo a prime, elimination works unchanged once division becomes multiplication by
+      a modular inverse, and no number ever grows. Over the field of two elements a row fits in a few
+      machine words, and one XOR adds 64 entries at once.
+    entries:
+      - gaussian-elimination-modular
+      - linear-system-modulo-2
+      - bitset-gaussian-elimination
+
+  - title: Integer matrices and the size of numbers
+    intro: >
+      Over the rationals, elimination is exact but its numbers can grow. The Hadamard bound says in advance
+      how large a determinant can be. Fraction-free elimination keeps every intermediate number a minor of
+      the input; multimodular methods and $p$-adic lifting avoid large numbers until the very end.
+    entries:
+      - hadamard-bound
+      - bareiss-algorithm
+      - multimodular-determinant
+      - dixon-p-adic-lifting
+
+  - title: Integer normal forms
+    intro: >
+      Over the integers only unimodular row and column operations can be undone. The Hermite normal form is
+      the echelon form they allow, and the Smith normal form is the diagonal form; with the Smith form, a
+      system of linear Diophantine equations is solved one equation at a time.
+    entries:
+      - unimodular-matrix
+      - hermite-normal-form
+      - kannan-bachem-algorithm
+      - smith-normal-form
+      - linear-diophantine-system
+
+  - title: Characteristic and minimal polynomials
+    intro: >
+      A square matrix has two polynomials attached to it: the characteristic polynomial $\det(xI - A)$ and
+      the minimal polynomial, the least polynomial that kills the matrix. These entries define both, compute
+      them with and without division, and use them to put a matrix into the rational canonical and Jordan
+      forms.
+    entries:
+      - characteristic-polynomial
+      - cayley-hamilton-theorem
+      - matrix-minimal-polynomial
+      - characteristic-polynomial-computation
+      - berkowitz-algorithm
+      - faddeev-leverrier-algorithm
+      - minimal-polynomial-computation
+      - rational-canonical-form
+      - jordan-normal-form
+
+  - title: Sparse and structured matrices
+    intro: >
+      A sparse matrix with millions of rows is too large to eliminate. Methods that only multiply the matrix
+      by vectors find its minimal polynomial and solve the system in about $n$ such products; these are the
+      linear algebra step of integer factoring. Toeplitz matrices, constant along each diagonal, have their
+      own quadratic-time solver.
+    entries:
+      - black-box-matrix
+      - wiedemann-algorithm
+      - block-wiedemann-algorithm
+      - block-lanczos-algorithm
+      - structured-gaussian-elimination
+      - toeplitz-system-solving
+      - levinson-durbin-algorithm

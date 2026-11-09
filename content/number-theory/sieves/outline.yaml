@@ -1,0 +1,63 @@
+# The order of chapter 10.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Listing primes
+    intro: >
+      The oldest algorithm of number theory and its first relatives. The sieve of Eratosthenes crosses out
+      the multiples of each prime up to $\sqrt n$ in $\Theta(n \log \log n)$ steps; Sundaram's sieve does the
+      same job on the odd numbers in a slower way. The segmented sieve runs the same idea one block at a time,
+      which lists the primes of an interval far from 0 with memory near $\sqrt R$.
+    entries:
+      - primes-up-to-n
+      - sieve-of-eratosthenes
+      - sieve-of-sundaram
+      - primes-in-range
+      - segmented-sieve
+
+  - title: Sieves in linear time
+    intro: >
+      Two ways to remove the factor $\log \log n$. The linear sieve writes each composite exactly once, by
+      its least prime factor, and leaves behind a table that factors any $m \le n$ in $O(\log m)$ steps. The
+      sieve of Atkin replaces multiples by quadratic forms.
+    entries:
+      - smallest-prime-factor-table
+      - linear-sieve
+      - sieve-of-atkin
+
+  - title: Arithmetic functions on a whole range
+    intro: >
+      Tables of $d(m)$, $\sigma(m)$, $\varphi(m)$, $\mu(m)$ and other functions for every $m \le n$. The
+      harmonic sieve adds each divisor to its multiples in $\Theta(n \log n)$ steps, the totient sieve
+      applies the product formula prime by prime, and the linear sieve computes any multiplicative function
+      in $\Theta(n)$, the size of the output.
+    entries:
+      - divisor-function-up-to-n
+      - divisor-count-sieve
+      - totient-values-up-to-n
+      - euler-phi-sieve
+      - multiplicative-functions-up-to-n
+      - mobius-sieve
+
+  - title: Counting primes without listing them
+    intro: >
+      $\pi(x)$ can be found exactly with far fewer than the $x / \ln x$ steps that listing the primes needs.
+      Legendre's phi function counts the survivors of the first rounds of the sieve; the Lucy_Hedgehog method
+      sieves only the values $\lfloor x/k \rfloor$ in about $x^{3/4}$ steps, and the Meissel-Lehmer method
+      gets down to about $x^{2/3}$.
+    entries:
+      - prime-counting-function
+      - legendre-phi-function
+      - lucy-hedgehog-prime-counting
+      - meissel-lehmer-algorithm
+
+  - title: Sieve theory
+    intro: >
+      Sieves as tools for estimates rather than tables. Sieve theory bounds how many elements of a set have
+      no small prime factor, using only how the set falls into residue classes. Brun's sieve truncates
+      inclusion-exclusion, Selberg's sieve optimizes a quadratic form, and the large sieve handles sets that
+      miss many classes; the Buchstab function gives the limit for the integers themselves.
+    entries:
+      - sieve-theory
+      - buchstab-function
+      - brun-sieve
+      - selberg-sieve
+      - large-sieve-inequality

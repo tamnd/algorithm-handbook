@@ -1,0 +1,161 @@
+# The order of chapter 14.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The rules of counting
+    intro: >
+      A [counting problem](/counting-problem/) asks how many solutions an instance has, not for one of them.
+      Two rules do most of the work: split the objects into disjoint cases and add, or build each object by
+      a sequence of independent choices and multiply. A bijection moves a count from one set to another,
+      counting one set in two ways proves an identity, and the pigeonhole principle turns a count into a
+      proof that some collision exists.
+    entries:
+      - rule-of-sum
+      - rule-of-product
+      - counting-problem
+      - bijective-proof
+      - double-counting
+      - pigeonhole-principle
+
+  - title: Binomial coefficients
+    intro: >
+      The [binomial coefficient](/binomial-coefficient/) $\binom{n}{k}$ counts the $k$-subsets of an
+      $n$-set, and almost every later count is a sum or product of them. The group gives the definition and
+      the identities, then the two ways to compute a value: the addition-only table of Pascal's triangle and
+      the product formula with exact divisions, with factorial tables and Lucas's theorem for residues. Stars
+      and bars turns distributions of identical items into binomial coefficients, and compositions are its
+      first application.
+    entries:
+      - binomial-coefficient
+      - binomial-theorem
+      - pascal-triangle-dp
+      - binomial-coefficient-computation
+      - hockey-stick-identity
+      - vandermondes-identity
+      - binomial-coefficient-bounds
+      - multinomial-coefficient
+      - stars-and-bars
+      - counting-integer-compositions
+
+  - title: Inclusion-exclusion and Möbius inversion
+    intro: >
+      When the good objects are those with none of $m$ bad properties, count the objects that have at
+      least a given set of bad properties and add these counts with alternating signs. The derangements,
+      the bounded solutions of a linear equation and the coprime pairs are the standard examples. Möbius
+      inversion is the same idea on the divisors of an integer, and it reaches sublinear time for the
+      coprime pairs.
+    entries:
+      - inclusion-exclusion-principle
+      - derangement
+      - bounded-integer-solutions-counting
+      - mobius-inversion
+      - counting-coprime-pairs
+
+  - title: Lattice paths, Catalan numbers and tableaux
+    intro: >
+      A monotone path in the grid is a word in two letters, so the free paths are counted by a binomial
+      coefficient. A boundary is handled by reflection, which gives the
+      [Catalan numbers](/catalan-numbers/) and the ballot theorem, or by the cycle lemma, which divides a
+      plain count by the length. Brackets and parenthesizations are Catalan objects. The last entries count
+      families of paths that do not touch, as a determinant, and the standard Young tableaux of a shape, by
+      the hook length formula.
+    entries:
+      - counting-lattice-paths
+      - reflection-principle
+      - catalan-numbers
+      - counting-balanced-bracket-sequences
+      - counting-parenthesizations
+      - ballot-theorem
+      - cycle-lemma
+      - lindstrom-gessel-viennot-lemma
+      - hook-length-formula
+      - counting-standard-young-tableaux
+
+  - title: Stirling, Bell and Eulerian numbers
+    intro: >
+      Three triangles count the ways to break a set or a permutation into pieces: set partitions by number
+      of blocks, permutations by number of cycles, and permutations by number of descents. Each is filled
+      by a recurrence of the same shape as Pascal's rule, in $O(n^2)$ operations, and the row sums of the
+      first are the [Bell numbers](/bell-numbers/).
+    entries:
+      - stirling-numbers-second-kind
+      - bell-numbers
+      - counting-set-partitions
+      - stirling-numbers-first-kind
+      - eulerian-numbers
+
+  - title: Generating functions
+    intro: >
+      A [generating function](/generating-functions/) holds a whole sequence as one power series, so a
+      recurrence becomes an equation and a convolution becomes a product. Making change and counting subsets
+      with a given sum are coefficients of a product of simple factors, filled by a table in pseudo-polynomial
+      time. A finite set of states gives a rational series and a linear recurrence, which is the
+      transfer-matrix method; Zeckendorf's theorem is a number system read off the same strings.
+    entries:
+      - generating-functions
+      - coin-change-counting
+      - counting-subset-sum
+      - transfer-matrix-method
+      - zeckendorf-theorem
+
+  - title: Integer partitions
+    intro: >
+      The partition function $p(n)$ is the coefficient of $z^n$ in $\prod_k 1/(1 - z^k)$. Euler's pentagonal
+      number theorem makes the inverse of this product sparse, which gives a recurrence with about
+      $1.6\sqrt n$ terms and the whole prefix in $\Theta(n^{3/2})$ additions. The Hardy-Ramanujan formula
+      gives the size of $p(n)$, about $3.70\sqrt n$ bits.
+    entries:
+      - integer-partition-counting
+      - euler-pentagonal-number-theorem
+      - euler-pentagonal-recurrence
+      - hardy-ramanujan-asymptotics
+
+  - title: Labelled structures
+    intro: >
+      For objects whose atoms carry labels, the
+      [exponential generating function](/exponential-generating-functions/) $\sum a_n z^n/n!$ is the
+      right tool: its product shares the labels between two structures, and its exponential builds a set of
+      components. All labelled graphs are easy to count; the connected ones, those with $k$ components and
+      the bipartite ones follow by recurrences on the component of vertex 1 or by the logarithm of a series.
+      Cayley's formula counts the labelled trees, and the symbolic method turns a grammar into series
+      equations in one step.
+    entries:
+      - exponential-generating-functions
+      - counting-labeled-graphs
+      - counting-connected-labeled-graphs
+      - counting-labeled-graphs-with-k-components
+      - counting-labeled-bipartite-graphs
+      - cayley-formula
+      - symbolic-method
+
+  - title: Counting up to symmetry
+    intro: >
+      Two colourings that a rotation maps to each other often count as one. Burnside's lemma counts the
+      classes as the average number of objects fixed by a symmetry, and those fixed counts are usually
+      powers. Necklaces are the main example, and Pólya's theorem refines the count by how often each
+      colour is used.
+    entries:
+      - burnside-lemma
+      - necklace-counting
+      - polya-enumeration-theorem
+
+  - title: Permanents, hard counts and approximation
+    intro: >
+      The permanent is the determinant without signs and counts the perfect matchings of a bipartite graph.
+      It is #P-complete, and the best exact methods, Ryser's and Glynn's formulas, take $\Theta(2^n n)$
+      operations. Planar graphs are the exception: Kasteleyn's method counts their matchings with a
+      determinant. For the hard problems that remain, such as DNF formulas, linear extensions and the
+      permanent itself, an [FPRAS](/fpras/) gives a $(1 \pm \varepsilon)$ estimate by sampling.
+      Lattice points in a polytope of fixed dimension close the chapter with an exact polynomial method.
+    entries:
+      - permanent-computation
+      - ryser-formula
+      - glynn-formula
+      - counting-perfect-matchings
+      - kasteleyn-method
+      - counting-latin-squares
+      - dnf-counting
+      - fpras
+      - karp-luby-algorithm
+      - approximate-counting
+      - counting-linear-extensions
+      - lattice-point-counting
+      - barvinok-algorithm

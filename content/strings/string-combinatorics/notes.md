@@ -1,0 +1,19 @@
+## History
+
+Combinatorics on words began with Axel Thue. In 1906 he built an infinite word over three letters with no square, and in 1912 an infinite binary word with no overlap, the word now named after him and Marston Morse, who met it again in 1921 in his work on geodesics. Thue's papers appeared in German in a Norwegian series and were little read for decades, so several of his results were found again later. In 1938 and 1940 Morse and Hedlund founded symbolic dynamics, proved that a word with at most $n$ factors of some length $n$ is eventually periodic, and studied the Sturmian words that sit just above this bound.
+
+Lyndon words come from algebra. Lyndon introduced them in 1954 as standard lexicographic sequences, in work on free groups, and Chen, Fox and Lyndon proved the unique factorization in 1958. Witt's 1937 formula for the dimensions of free Lie algebras counts the same words. Fine and Wilf proved their periodicity theorem in 1965. The first algorithms came with string matching: borders and periods are the tables of Knuth-Morris-Pratt, and the least rotation was found in linear time by Booth in 1980 and by Shiloach in 1981. Duval's 1983 algorithm gave the Lyndon factorization in linear time and constant space, and Fredricksen, Kessler and Maiorana listed necklaces in lexicographic order in papers of 1978 and 1986.
+
+de Bruijn sequences are older than their name. Flye Sainte-Marie solved and counted the binary case in 1894; de Bruijn and Good returned to the problem in 1946, and de Bruijn introduced the graph. The superstring problem came from data compression and DNA sequencing: Gallant, Maier and Storer showed in 1980 that it is NP-hard, and Blum and his coauthors proved in 1991 that greedy merging is within a factor 4 of the optimum.
+
+Repetitions became an algorithmic topic with Crochemore's 1981 algorithm for all repetitions and the 1984 divide-and-conquer method of Main and Lorentz. Kolpakov and Kucherov showed in 1999 that a string has a linear number of runs and conjectured that it has fewer than $n$. Bannai, I, Inenaga, Nakashima, Takeda and Tsuruta proved this in 2015 by assigning to each run a Lyndon root, and the same idea gives a simple linear-time algorithm. On the avoidance side, Dejean in 1972 asked for the least exponent avoidable on $k$ letters; the last cases of her conjecture were settled by Currie and Rampersad and, independently, by Rao, in papers published in 2011. Erdős asked in 1961 whether Abelian squares can be avoided, and Keränen answered with four letters in 1992.
+
+The collective author M. Lothaire, a group of French researchers around Schützenberger, wrote the first textbook of the subject in 1983. Minimal absent words, also called minimal forbidden words, entered the subject in the 1990s with the work of Crochemore, Mignosi and Restivo, and string attractors were defined by Kempa and Prezza in 2018 to unify measures of repetitiveness.
+
+## Further reading
+
+- M. Lothaire, *Combinatorics on Words* (1983, reprinted 1997). The classic textbook: free monoids, Lyndon words, square-free words, Sturmian words and the theorems of Thue and Fine and Wilf.
+- M. Lothaire, *Algebraic Combinatorics on Words* (2002). The sequel, with a full treatment of Sturmian words, unavoidable patterns and the periodicity theorems.
+- Jean-Paul Allouche and Jeffrey Shallit, *Automatic Sequences* (2003). Morphic and automatic words, the Thue-Morse word and subword complexity, with many exercises.
+- Maxime Crochemore, Christophe Hancart and Thierry Lecroq, *Algorithms on Strings* (2007). The algorithmic side: periods, Lyndon factorization, repetitions and runs, with full proofs.
+- Donald E. Knuth, *The Art of Computer Programming*, Volume 4A (2011). Section 7.2.1.1 generates necklaces, prenecklaces and de Bruijn cycles, with a careful history.

@@ -1,0 +1,120 @@
+# The order of chapter 4.1 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the rules
+    intro: >
+      Before any algorithm, the problem. These entries say what it means to sort, what a comparison sort may
+      do, how its cost is counted, and two properties that matter in practice: whether a sort works in place,
+      and whether it is stable.
+    entries:
+      - sorting-problem
+      - comparison-sort
+      - comparison-cost-model
+      - in-place-algorithm
+      - stable-sort
+      - multi-key-sorting
+      - index-sort
+
+  - title: The simple sorts
+    intro: >
+      These sorts take quadratic time in the worst case. Read [insertion sort](/insertion-sort/) and
+      [selection sort](/selection-sort/) closely: they are the base cases of faster sorts and the first proofs
+      by loop invariant. The others are variations, each with one idea worth knowing, and two curiosities that
+      show what not to do.
+    entries:
+      - insertion-sort
+      - selection-sort
+      - bubble-sort
+      - cocktail-shaker-sort
+      - comb-sort
+      - gnome-sort
+      - pancake-sort
+      - cycle-sort
+      - bogosort
+      - stooge-sort
+
+  - title: Insertion with gaps
+    intro: >
+      Insertion sort is slow because it moves each item one place at a time. Two ideas let items take longer
+      steps: sort items that lie far apart first, as Shellsort does, or leave gaps in the array so that an
+      insertion moves little, as library sort does.
+    entries:
+      - h-sorting
+      - shell-sort
+      - shell-sort-gap-sequence
+      - library-sort
+
+  - title: Merge sort
+    intro: >
+      Merging two sorted lists is easy and fast. Merge sort turns that into a sort by divide and conquer, in
+      $\Theta(n \log n)$ time on every input. The variants sort linked lists, take advantage of runs that are
+      already in order, and save the extra array at the price of a more delicate merge.
+    entries:
+      - merging-sorted-lists
+      - merge-sort
+      - linked-list-merge-sort
+      - natural-merge-sort
+      - strand-sort
+      - in-place-merge-sort
+      - block-sort
+
+  - title: Quicksort
+    intro: >
+      Quicksort splits the array around a pivot and sorts the two sides. It has no merge step, it works in
+      place, and on most inputs it is the fastest comparison sort known. Its weak point is the pivot: a bad
+      choice gives quadratic time. Most of this group is about choosing the pivot well and partitioning fast,
+      including when many keys are equal.
+    entries:
+      - lomuto-partition
+      - hoare-partition
+      - quicksort
+      - randomized-quicksort
+      - pivot-selection
+      - median-of-three-pivot
+      - tukeys-ninther
+      - quicksort-stack-depth
+      - three-way-quicksort
+      - bentley-mcilroy-partitioning
+      - dual-pivot-quicksort
+      - fuzzy-sorting-of-intervals
+
+  - title: Sorting with heaps and trees
+    intro: >
+      A priority queue that can return its smallest item gives a sort at once: insert everything, then remove
+      the items one by one. The sorts here differ in the structure they use and in how much of it they keep
+      inside the array.
+    entries:
+      - tree-sort
+      - heapsort
+      - tournament-sort
+      - smoothsort
+      - weak-heapsort
+
+  - title: How many comparisons
+    intro: >
+      Every comparison sort needs about $n \lg n$ comparisons in the worst case. These entries prove the bound,
+      prove the matching bound for merging, and show the algorithm that comes closest to the bound for small
+      $n$.
+    entries:
+      - comparison-sort-lower-bound
+      - merging-lower-bound
+      - ford-johnson-algorithm
+
+  - title: Input that is already partly sorted
+    intro: >
+      The lower bound is about the worst input. Real inputs are often partly in order. An adaptive sort runs
+      faster when there is less disorder to remove, and the entries here say how to measure disorder and how
+      to use it.
+    entries:
+      - adaptive-sorting
+      - average-sorting
+      - patience-sorting
+
+  - title: The sorts that libraries use
+    intro: >
+      The sort in a standard library is a hybrid: quicksort or merge sort for the bulk of the work, insertion
+      sort for short ranges, and a fallback that guards the worst case. These entries show how the parts of
+      this chapter are put together in practice.
+    entries:
+      - introsort
+      - timsort
+      - java-system-sort

@@ -1,0 +1,71 @@
+# The order of chapter 10.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and trial division
+    intro: >
+      Factoring asks for the prime factors of an $n$-bit integer $N$, and no method polynomial in $n$ is
+      known. Trial division solves it in $O(\sqrt N)$ divisions and removes the small factors before every
+      other method; a wheel skips the divisors that share a factor with $2 \cdot 3 \cdot 5 \cdots$.
+    entries:
+      - integer-factorization
+      - trial-division
+      - wheel-factorization
+
+  - title: Differences of squares
+    intro: >
+      An odd $N = x^2 - y^2$ splits as $(x - y)(x + y)$. Fermat's method searches upward from $\sqrt N$ and is
+      fast when the two factors are close. Lehman and Hart run the same search on multiples of $N$, which
+      brings the cost down to about $N^{1/3}$.
+    entries:
+      - fermat-factorization
+      - lehman-factorization
+      - hart-one-line-factorization
+
+  - title: Rho and the square root barrier
+    intro: >
+      Pollard's rho walks a pseudo-random sequence modulo $N$ and waits for a collision modulo an unknown prime
+      $p$; by the birthday paradox this takes about $\sqrt p$ steps, at most $N^{1/4}$. Brent's variant is the
+      form used in practice. The Pollard-Strassen algorithm reaches $N^{1/4 + o(1)}$ with a proof and no
+      randomness, by fast polynomial arithmetic.
+    entries:
+      - pollard-rho
+      - brent-pollard-rho
+      - pollard-strassen
+
+  - title: Smooth numbers and group methods
+    intro: >
+      A number is smooth when all its prime factors are small, and the Dickman function says how rare such
+      numbers are. Pollard's $p - 1$ method finds $p$ when $p - 1$ is smooth, Williams' method when $p + 1$
+      is, and Lenstra's elliptic curve method tries groups of many different orders near $p$ until one is
+      smooth.
+    entries:
+      - smooth-number
+      - dickman-function
+      - pollard-p-minus-1
+      - williams-p-plus-1
+      - elliptic-curve-factorization
+
+  - title: Congruences of squares
+    intro: >
+      If $x^2 \equiv y^2$ but $x \not\equiv \pm y \pmod N$, then $\gcd(x - y, N)$ is a proper factor. The fast
+      methods build such a pair from many relations $x_i^2 \equiv a_i$ with smooth $a_i$, combined by linear
+      algebra modulo 2. Dixon draws the $x_i$ at random; CFRAC and SQUFOF take them from the continued
+      fraction of $\sqrt{kN}$, where the residues are small.
+    entries:
+      - congruence-of-squares
+      - relation-collection
+      - dixon-random-squares
+      - continued-fraction-factorization
+      - shanks-squfof
+
+  - title: The sieves
+    intro: >
+      The quadratic sieve finds the smooth values of $x^2 - N$ all at once with a sieve, and the multiple
+      polynomial form keeps the values small. The number field sieve takes one side of each relation from a
+      ring of algebraic integers, which lowers the cost from $L_N[1/2]$ to $L_N[1/3]$; its special form
+      handles numbers such as $2^k \pm 1$.
+    entries:
+      - quadratic-sieve
+      - multiple-polynomial-quadratic-sieve
+      - knuth-schroeppel-multiplier
+      - general-number-field-sieve
+      - special-number-field-sieve

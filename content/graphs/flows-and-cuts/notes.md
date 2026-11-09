@@ -1,0 +1,17 @@
+## History
+
+Flows began as a military and economic question. In 1955 T. E. Harris and F. S. Ross at RAND studied how much the Soviet rail network could carry to Eastern Europe, and where it could be cut most cheaply. L. R. Ford Jr. and D. R. Fulkerson answered the general question in a RAND report of 1954, published in 1956: the largest flow equals the smallest cut. Elias, Feinstein and Shannon published an independent proof the same year. Ford and Fulkerson's labelling method of 1957 and their book *Flows in Networks* of 1962 showed how the theorem yields those of König, Hall and Menger, and gave the example with irrational capacities on which augmenting paths never stop. Alan Hoffman's circulation theorem of 1960 and Gale's supply-demand theorem of 1957 extended the same duality.
+
+Making the method polynomial took more than a decade. Yefim Dinitz, in Georgy Adelson-Velsky's group in Moscow, published shortest augmenting paths and blocking flows in 1970. Jack Edmonds and Richard Karp, independently, proved the bound for shortest paths in 1972 and introduced the fattest-path rule and scaling. Alexander Karzanov's preflows of 1974 gave $O(n^3)$, and Malhotra, Pramodh Kumar and Maheshwari found a simpler $O(n^3)$ method in 1978. Shimon Even and Alon Itai brought Dinitz's ideas to the West. Andrew Goldberg's push-relabel method, published with Robert Tarjan in 1986 and 1988, became the basis of the fastest practical codes.
+
+Minimum-cost flow grew out of the transportation problem. George Dantzig specialized the simplex method to it in 1951, and Morton Klein published cycle canceling in 1967. Edmonds and Karp, and Tomizawa, used potentials to keep shortest-path lengths nonnegative. Éva Tardos found the first strongly polynomial algorithm in 1985, and Goldberg and Tarjan showed in 1989 that cancelling cycles of minimum mean cost is strongly polynomial.
+
+For cuts without terminals, Ralph Gomory and T. C. Hu proved in 1961 that $n - 1$ flows give all pairwise minimum cuts of an undirected network. Nagamochi and Ibaraki found a deterministic minimum cut without flows in 1992, which Stoer and Wagner simplified in 1994. David Karger's random contraction of 1993 and its recursive form with Clifford Stein gave the randomized side, and Hao and Orlin computed the directed minimum cut in the time of one flow. Electrical flows, used for approximate flows by Christiano, Kelner, Mądry, Spielman and Teng in 2011, led in 2022 to the almost-linear maximum flow algorithm of Chen, Kyng, Liu, Peng, Probst Gutenberg and Sachdeva.
+
+## Further reading
+
+- L. R. Ford Jr. and D. R. Fulkerson, *Flows in Networks* (1962). The founding book, short and still readable, with the combinatorial applications.
+- Ravindra K. Ahuja, Thomas L. Magnanti and James B. Orlin, *Network Flows: Theory, Algorithms, and Applications* (1993). The standard reference for maximum flow and minimum-cost flow algorithms and their many applications.
+- Jon Kleinberg and Éva Tardos, *Algorithm Design* (2005), Chapter 7. Ford-Fulkerson, scaling, and a long series of modelling examples such as survey design, airline scheduling and baseball elimination.
+- Alexander Schrijver, "On the history of the transportation and maximum flow problems", *Mathematical Programming* (2002). The story from Tolstoi's rail problems of the 1930s to Harris and Ross.
+- Andrew V. Goldberg and Robert E. Tarjan, "Efficient maximum flow algorithms", *Communications of the ACM* (2014). A short survey of the main ideas from augmenting paths to recent results.

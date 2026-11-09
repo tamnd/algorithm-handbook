@@ -1,0 +1,122 @@
+# The order of chapter 9.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Machines and their languages
+    intro: >
+      A finite automaton reads its input once, from left to right, and remembers only its current state. These
+      entries define the deterministic machine, the class of languages it accepts, and two relaxations that do
+      not change the class: several next states, and moves that read no input. Kleene's theorem adds regular
+      expressions as a fourth description of the same class.
+    entries:
+      - deterministic-finite-automaton
+      - regular-language
+      - nondeterministic-finite-automaton
+      - epsilon-nfa
+      - epsilon-closure
+      - kleene-theorem
+
+  - title: Running and determinizing an NFA
+    intro: >
+      An NFA can be run without building a DFA, by keeping the set of states it might be in. Doing the same
+      for all inputs at once gives the subset construction, which turns an NFA with $n$ states into a DFA with
+      at most $2^n$ states.
+    entries:
+      - nfa-membership
+      - nfa-simulation
+      - nfa-determinization
+      - subset-construction
+      - rabin-scott-theorem
+
+  - title: Building new automata from old
+    intro: >
+      Two DFAs run side by side form one DFA on pairs of states. This product construction and its relatives
+      prove that the regular languages are closed under the Boolean operations, concatenation, star and more.
+      The pumping lemma goes the other way: it is the first tool for showing that a language is not regular.
+    entries:
+      - product-construction
+      - regular-language-intersection
+      - closure-properties-of-regular-languages
+      - pumping-lemma-for-regular-languages
+
+  - title: Questions about a DFA
+    intro: >
+      Almost every question about the language of a DFA is a question about paths in its transition graph.
+      Emptiness is reachability, finiteness is a cycle on a useful path, and equivalence is emptiness of a
+      product, or a near-linear merge with a disjoint-set structure.
+    entries:
+      - dfa-emptiness
+      - dfa-finiteness
+      - dfa-equivalence
+      - hopcroft-karp-equivalence
+
+  - title: The minimal DFA
+    intro: >
+      Two strings are equivalent for a language when no suffix tells them apart. The classes of this
+      [Myhill-Nerode relation](/myhill-nerode-relation/) are the states of the unique smallest DFA, and the
+      minimization algorithms compute them by refining a partition of the states: by a table of pairs, by
+      rounds, by Hopcroft's smaller-half rule, or by two reversals.
+    entries:
+      - myhill-nerode-relation
+      - myhill-nerode-theorem
+      - minimal-dfa-uniqueness
+      - dfa-minimization
+      - table-filling-minimization
+      - moore-minimization
+      - hopcroft-minimization
+      - brzozowski-minimization
+
+  - title: Size, and what nondeterminism costs
+    intro: >
+      An NFA can be exponentially smaller than any equivalent DFA, and the price of that saving is paid by the
+      algorithms. These entries measure the sizes of automata, show that the subset construction cannot do
+      better in the worst case, and show that universality, equivalence and minimization, easy for DFAs, are
+      PSPACE-hard for NFAs.
+    entries:
+      - state-complexity
+      - determinization-blowup-lower-bound
+      - nfa-universality
+      - nfa-equivalence
+      - nfa-minimization
+
+  - title: Automata with output
+    intro: >
+      A DFA gives one bit at the end. A Moore machine gives an output in each state, a Mealy machine on each
+      transition, and a finite-state transducer relates input strings to output strings. Weighted automata go
+      further and give each string a value in a semiring.
+    entries:
+      - moore-machine
+      - mealy-machine
+      - finite-state-transducer
+      - weighted-automaton
+
+  - title: Other kinds of finite automata
+    intro: >
+      Each entry here changes one rule of the NFA: exactly one accepting run, universal as well as existential
+      branching, a head that moves both ways, random moves, or input that never ends. Most of these models
+      still accept only regular languages but differ greatly in size and in the cost of their decision
+      problems.
+    entries:
+      - unambiguous-nfa
+      - alternating-finite-automaton
+      - two-way-finite-automaton
+      - probabilistic-finite-automaton
+      - buchi-automaton
+
+  - title: The algebra of regular languages
+    intro: >
+      The transitions of a DFA generate a finite monoid, and the properties of this monoid classify the
+      language. Schützenberger's theorem matches the star-free languages with the aperiodic monoids, and the
+      Krohn-Rhodes theorem breaks every automaton into simple pieces.
+    entries:
+      - star-free-language
+      - syntactic-monoid
+      - schutzenberger-theorem
+      - krohn-rhodes-theorem
+
+  - title: Learning automata
+    intro: >
+      When the language is unknown, a DFA can be learned from questions. With membership and equivalence
+      queries, the L* algorithm finds the minimal DFA in polynomial time; from examples alone, the problem is
+      NP-hard.
+    entries:
+      - dfa-learning
+      - lstar-algorithm

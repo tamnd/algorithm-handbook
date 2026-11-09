@@ -1,0 +1,30 @@
+# The order of chapter 5.4. Groups are read in order; entries in a group too.
+groups:
+  - title: One key in many lists
+    intro: >
+      The chapter has one problem: find the place of the same key in many sorted lists. These entries state it
+      for lists on a path and then in its general form, where the lists sit at the vertices of a graph and a
+      query walks a connected part of it, often choosing the next vertex as it goes.
+    entries:
+      - multiple-list-search
+      - catalog-graph
+
+  - title: Bridges
+    intro: >
+      The solution copies a fraction of each list into its neighbour, with pointers back. After one binary
+      search in the first list, each later list costs a constant number of steps, and the copies add only a
+      linear amount of space. The hive graph is an earlier planar structure built on the same idea of keeping
+      every other edge.
+    entries:
+      - fractional-cascading-bridge
+      - hive-graph
+
+  - title: Updates and limits
+    intro: >
+      Two questions remain. The first is what happens when the lists change: dynamic fractional cascading keeps
+      the gaps between bridges small under insertions and deletions, at an extra $O(\log \log n)$ per list.
+      The second is whether the idea extends from lists to planar maps, and the lower bound of Chazelle and
+      Liu shows that in general it does not.
+    entries:
+      - dynamic-fractional-cascading
+      - fractional-cascading-lower-bound

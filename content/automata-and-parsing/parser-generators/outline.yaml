@@ -1,0 +1,47 @@
+# The order of chapter 9.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Generators and what they compute first
+    intro: >
+      A parser generator reads a grammar and writes a parser. Before it can build any table it needs to know
+      which terminals can start each phrase and which can follow it. These entries define the tool, the FIRST
+      and FOLLOW sets, and the lookahead tokens that every table-driven parser uses to choose its next move.
+    entries:
+      - parser-generator
+      - first-and-follow-sets
+      - lookahead-symbols
+
+  - title: Grammar classes for generators
+    intro: >
+      A generator accepts a grammar only if its table has no conflicts, so each method comes with a class of
+      grammars. Operator precedence grammars compare terminals only. LL(1) and LL(k) grammars let a top-down
+      parser predict each production from the next tokens; the definitions here make that test exact.
+    entries:
+      - operator-precedence-grammar
+      - ll-1-grammar
+      - ll-k-grammar
+
+  - title: Building LR tables
+    intro: >
+      An LR generator first builds the canonical collection of item sets, then fills a table of shift, reduce
+      and goto actions over it. The LR(k) grammars are those whose table has no conflict. LALR(1) lookaheads can
+      be found without the large LR(1) collection, and yacc, the classic generator, does exactly this. The last
+      entry shows how the finished tables are packed into little memory.
+    entries:
+      - lr-item-sets
+      - lr-k-grammar
+      - parsing-table
+      - parser-table-construction
+      - lalr-lookahead-computation
+      - yacc
+      - parse-table-compression
+
+  - title: Beyond the deterministic table
+    intro: >
+      A real parser must also handle bad input, edited input and grammars that no table accepts. These entries
+      cover error recovery, reparsing after an edit, parsers built from functions instead of tables, and GLL,
+      a top-down method that accepts every context-free grammar.
+    entries:
+      - parser-error-recovery
+      - incremental-reparsing
+      - parser-combinators
+      - gll-parsing

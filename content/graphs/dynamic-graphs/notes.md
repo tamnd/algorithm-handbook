@@ -1,0 +1,17 @@
+## History
+
+Dynamic graph algorithms grew out of two older lines of work. Union-find, analysed by Tarjan in 1975, already solved incremental connectivity, and in 1981 Even and Shiloach handled the decremental case with the tree of breadth-first levels that still bears their names. The same year Sleator and Tarjan introduced dynamic trees, to speed up Dinic's blocking flows; their 1985 version with splay trees is the link-cut tree used today. Frederickson's topology trees of 1983 gave the first fully dynamic minimum spanning tree with sublinear time per update, $O(\sqrt{m})$, and introduced the hierarchical clusters that reappeared in top trees and rake-compress trees.
+
+The 1990s brought general techniques. Eppstein, Galil, Italiano and Nissenzweig presented sparsification in 1992, which lowered many bounds from functions of $m$ to functions of $n$. Henzinger and King gave the first polylogarithmic fully dynamic connectivity algorithm in 1995, randomized, and introduced Euler tour trees for it. Holm, de Lichtenberg and Thorup made it deterministic with $O(\log^2 n)$ amortized updates in 1998, by assigning levels to edges. On the lower bound side, Fredman and Henzinger proved $\Omega(\log n / \log \log n)$ in the cell-probe model in 1998, and Pătraşcu and Demaine reached $\Omega(\log n)$ in 2004, which shows that the polylogarithmic upper bounds are close to the truth.
+
+Directed problems followed a separate path. Italiano's reachability trees of 1986 kept the transitive closure under insertions, and Ramalingam and Reps in 1996 measured the cost of an update by the size of the change rather than the size of the graph, for shortest paths among other problems. Demetrescu and Italiano reached about $n^2$ amortized time per update for fully dynamic all-pairs shortest paths in 2003, close to the size of the output. Incremental topological order went from Marchetti-Spaccamela, Nanni and Rohnert's $O(mn)$ total in 1996 to the local reordering of Pearce and Kelly in 2004 and the bounds of Haeupler, Kavitha, Mathew, Sen and Tarjan in 2008.
+
+The last fifteen years shifted attention to approximation. Maximal matchings were kept in polylogarithmic or constant amortized time, Gupta and Peng gave a $(1 + \epsilon)$-approximate matching in 2013 by rebuilding a stable solution lazily, and similar ideas now keep colorings, core numbers, densest subgraphs and spanners. In programming contests, the offline method that combines rollback union-find with a segment tree over time became standard.
+
+## Further reading
+
+- Robert E. Tarjan, *Data Structures and Network Algorithms* (1983), Chapter 5. Link-cut trees and their use in network flow, from one of their inventors.
+- Monika R. Henzinger and Valerie King, "Randomized fully dynamic graph algorithms with polylogarithmic time per operation" (*Journal of the ACM*, 1999). Euler tour trees and the first polylogarithmic connectivity.
+- Jacob Holm, Kristian de Lichtenberg and Mikkel Thorup, "Poly-logarithmic deterministic fully-dynamic algorithms for connectivity, minimum spanning tree, 2-edge, and biconnectivity" (*Journal of the ACM*, 2001). The level structure in full.
+- Camil Demetrescu and Giuseppe F. Italiano, "A new approach to dynamic all pairs shortest paths" (*Journal of the ACM*, 2004). Locally shortest paths and the $n^2$ barrier.
+- David Eppstein, Zvi Galil and Giuseppe F. Italiano, "Dynamic graph algorithms", in *Algorithms and Theory of Computation Handbook* (1999). A survey of the classical results and techniques.

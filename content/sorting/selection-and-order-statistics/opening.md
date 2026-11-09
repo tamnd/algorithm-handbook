@@ -1,0 +1,23 @@
+A list of a million house prices has a median, the price with half the houses below it and half above. One way to find it is to sort the list and read the middle item, but that does far more work than the question needs: it puts every price in its place when only one place matters. Selection finds the item of a given rank directly, in $\Theta(n)$ time, and that is less than any comparison sort can manage. The same idea answers questions about the minimum, the 90th percentile, the ten cheapest houses, or the place to build a warehouse that serves a set of towns at least cost.
+
+The chapter is about these questions. The central result is that selection takes linear time, on average with a random pivot and in the worst case with a pivot chosen with care. Around it sit exact counts of comparisons for the small cases, faster methods based on sampling, and problems that reduce to one or more selections.
+
+## What the chapter covers
+
+The chapter is in seven groups, read in order.
+
+1. **Ranks, medians and quantiles.** The [order statistic](/order-statistic/) of rank $i$, the [median](/median/), the [quantiles](/quantile/) and the [weighted median](/weighted-median/). These are definitions, with care about ties and about the several conventions in use.
+2. **The selection problem and its easy cases.** [The selection problem](/selection-problem/) stated in the comparison model, then exact answers for the extreme ranks: the minimum and maximum together in $\lceil 3n/2 \rceil - 2$ comparisons, and the second smallest in $n + \lceil \lg n \rceil - 2$ by the [tournament method](/tournament-method/).
+3. **Selection by partition.** [Partition around a pivot](/partition-around-pivot/), and [quickselect](/quickselect/), which keeps only the side that holds the answer. Its expected cost is linear, and [the proof](/quickselect-expected-linear/) is a good model of an expected-time analysis.
+4. **Linear time in the worst case.** The [median of medians](/median-of-medians/) pivot, the proof that it gives $\Theta(n)$ time, the [lower bound](/selection-lower-bound/) for any comparison method, and [introselect](/introselect/), the hybrid in libraries.
+5. **Faster selection by sampling and by digits.** [Floyd-Rivest select](/floyd-rivest-select/), which needs about $1.5n$ comparisons for the median on average, and [radix select](/radix-select/), which reads the bits of the keys instead of comparing them.
+6. **The k smallest.** [Top-k selection](/top-k-selection/) as a set or in sorted order, by selection, by a [heap](/heap-select/), or by [partial quicksort](/partial-sorting/).
+7. **Problems solved by selection.** The items [nearest the median](/k-nearest-to-median/), the [post office problem](/weighted-median-post-office-location/), [many ranks at once](/multiple-selection/), selection in a [sorted matrix](/sorted-matrix-selection/), and the [mode](/mode-finding/), which selection does not solve.
+
+## A first reading
+
+For a first reading, take these ten entries in order: [order statistic](/order-statistic/), [median](/median/), [the selection problem](/selection-problem/), [minimum and maximum finding](/minimum-and-maximum-finding/), [partition around a pivot](/partition-around-pivot/), [quickselect](/quickselect/), [the expected cost of quickselect](/quickselect-expected-linear/), [median of medians](/median-of-medians/), [top-k selection](/top-k-selection/) and [heap select](/heap-select/). Each one is marked *Intro* or *Core* in its heading. The analysis of median of medians is the one proof in the chapter that every reader should work through: the recurrence $T(n) \le T(n/5) + T(7n/10) + O(n)$ is linear because $1/5 + 7/10 < 1$, and the same argument returns in many places later in the book. Leave the exact comparison counts, Floyd-Rivest select and the lower bound for a second pass.
+
+## Before you start
+
+You need the [comparison model](/comparison-model/) and [loop invariants](/loop-invariant/) from Volume 1, and the [substitution method](/substitution-method/) for the recurrence of median of medians. The analysis of quickselect uses [indicator random variables](/indicator-random-variable/), [linearity of expectation](/linearity-of-expectation/) and the [harmonic numbers](/harmonic-series/). The lower bounds use the [adversary argument](/adversary-argument/). Heap select needs the [binary heap](/binary-heap/) from Volume 3, and the [Lomuto partition](/lomuto-partition/) and [quicksort](/quicksort/) come from Chapter 4.1. Radix select builds on [MSD radix sort](/msd-radix-sort/) from Chapter 4.2. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

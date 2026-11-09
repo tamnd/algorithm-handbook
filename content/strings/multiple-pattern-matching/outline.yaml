@@ -1,0 +1,48 @@
+groups:
+  - title: The problem
+    intro: >
+      Many patterns, one text. The output can be much larger than the input, so the right measure of speed
+      counts the occurrences too. With patterns of one length, a table of
+      [rolling hashes](/polynomial-rolling-hash/) already gives a short and correct solution.
+    entries:
+      - multiple-string-matching
+      - output-sensitive-matching
+      - karp-rabin-multiple-patterns
+
+  - title: The Aho-Corasick automaton
+    intro: >
+      Put the patterns in a [trie](/trie/) and give each node a failure link, as Knuth-Morris-Pratt does for
+      one pattern. The result reads the text once and reports every occurrence in $O(n + m + z)$ time. The
+      dictionary suffix link is the small addition that makes the reporting cost exactly one step per
+      occurrence.
+    entries:
+      - failure-link
+      - aho-corasick
+      - dictionary-suffix-link
+
+  - title: Skipping text
+    intro: >
+      Boyer-Moore and Horspool skip text by reading windows from the right. These algorithms do the same for
+      a set of patterns, with a trie of the reversed patterns or a table of blocks. They read only part of the
+      text when the patterns are long and not too many, but their worst case is not linear.
+    entries:
+      - commentz-walter
+      - set-horspool
+      - block-shift-table
+      - wu-manber
+
+  - title: A fixed dictionary
+    intro: >
+      When the patterns are known in advance and many texts arrive later, the question becomes the size of
+      the structure and, if the dictionary changes, the cost of an update.
+    entries:
+      - dictionary-matching
+      - dynamic-dictionary-matching
+
+  - title: Two dimensions
+    intro: >
+      A picture is a matrix of symbols, and a pattern is a smaller matrix. Naming the rows of the patterns
+      with Aho-Corasick turns the search into string matching on the columns.
+    entries:
+      - two-dimensional-dictionary-matching
+      - bird-baker

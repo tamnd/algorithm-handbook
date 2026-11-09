@@ -1,0 +1,58 @@
+/* The Handbook of Algorithms: EPUB style (spec handbook 05.6). Plain, readable, reflowable. */
+body { font-family: serif; line-height: 1.45; color: #1F2328; margin: 0 4%; padding: 0; }
+/* book paragraphs: no gap, first-line indent; flush left after a heading, box, list, table or code */
+p { margin: 0; text-indent: 1.2em; orphans: 2; widows: 2; }
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p, div + p, table + p, ul + p, ol + p, pre + p, figure + p,
+blockquote + p, hr + p, p:first-child { text-indent: 0; }
+p + div, p + ul, p + ol, p + table, p + figure, p + pre { margin-top: 0.6em; }
+a { color: #20448f; text-decoration: none; }
+ul, ol { margin: 0.5em 0 0.6em; padding-left: 1.6em; }
+li { margin: 0.2em 0; }
+li p { text-indent: 0; margin: 0.2em 0; }
+blockquote { margin: 0.8em 1.5em; }
+img, svg { max-width: 100%; height: auto; }
+figure { margin: 1em 0; text-align: center; }
+figcaption { font-family: sans-serif; font-size: 0.82em; color: #6B7280; text-align: left; margin-top: 0.4em; }
+.math.display, math[display="block"] { margin: 0.6em 0; }
+h1, h2, h3, h4, h5, h6 { font-family: sans-serif; line-height: 1.25; color: #1F2328; }
+h1 { font-size: 1.7em; margin: 1.5em 0 0.8em; border-bottom: 2px solid #2B59C3; padding-bottom: 0.2em; }
+h2 { font-size: 1.25em; margin: 1.8em 0 0.4em; color: #20448f; }
+h3 { font-size: 1.3em; margin: 2em 0 0.3em; border-bottom: 1px solid #2B59C3; }
+h4 { font-size: 1.05em; margin: 1.4em 0 0.3em; }
+h5, h6 { font-size: 1em; margin: 1em 0 0.2em; }
+span.num { color: #2B59C3; margin-right: 0.4em; }
+span.badge { font-family: sans-serif; font-size: 0.75em; letter-spacing: 0.08em; text-transform: uppercase; color: #6B7280; }
+span.ref { font-family: sans-serif; font-size: 0.75em; color: #6B7280; margin-left: 0.15em; }
+div.lead { font-style: italic; margin: 0.4em 0 0.8em; }
+div.facts { background: #F1F4FB; border-left: 3px solid #2B59C3; padding: 0.4em 0.8em; margin: 0.6em 0 1em; font-size: 0.92em; }
+div.facts p { margin: 0.15em 0; text-indent: 0; padding-left: 6.6em; text-indent: -6.6em; }
+span.fk { font-family: sans-serif; font-weight: bold; font-size: 0.85em; color: #20448f; display: inline-block; width: 7.4em; text-indent: 0; }
+div.pseudo { background: #F6F6F6; padding: 0.5em 0.7em; margin: 0.8em 0; font-size: 0.92em; }
+div.pseudo div.pl { margin: 0; }
+div.pseudo div.gap { height: 0.6em; }
+div.pseudo span.ln { display: inline-block; width: 2.2em; font-family: sans-serif; font-size: 0.7em; color: #8A8F98; }
+div.pseudo span.proc { font-variant: small-caps; }
+div.pseudo span.cm { color: #6B7280; font-size: 0.85em; margin-left: 1.5em; }
+div.code { border: 1px solid #D0D5DD; margin: 0.8em 0; }
+pre { font-size: 0.8em; white-space: pre-wrap; word-wrap: break-word; margin: 0; padding: 0.5em 0.7em; }
+code { font-size: 0.88em; }
+div.proof { border-left: 1px solid #A9B9E3; padding-left: 0.8em; margin: 0.8em 0 1em; }
+span.prooftitle { font-family: sans-serif; font-weight: bold; font-size: 0.9em; color: #20448f; }
+div.seealso { font-size: 0.92em; margin-top: 0.8em; }
+div.seealso::before { content: "See also  "; font-family: sans-serif; font-weight: bold; color: #20448f; }
+div.groupintro { font-style: italic; }
+div.further { font-size: 0.92em; }
+div.exercise { margin: 0.6em 0; }
+div.exercise p, div.hints p { text-indent: 0; margin: 0.3em 0; }
+div.hints p { margin: 0.5em 0; }
+div.refs li, div.refs p { text-align: left; text-indent: 0; }
+div.seealso p, div.further p, div.lead p, div.groupintro p { text-indent: 0; }
+div.proof p + p { text-indent: 1.2em; }
+div.proof > p:first-child + p { text-indent: 0; }
+div.index p, div.bibliography p, div.glossary p, div.timeline p { margin: 0.1em 0; padding-left: 1.5em; text-indent: -1.5em; font-size: 0.92em; }
+span.idxletter { display: block; font-family: sans-serif; font-weight: bold; color: #2B59C3; margin-top: 0.8em; }
+table { border-collapse: collapse; margin: 0.8em 0; font-size: 0.88em; }
+th, td { border-bottom: 1px solid #D0D5DD; padding: 0.2em 0.5em; text-align: left; vertical-align: top; }
+th { border-bottom: 1.5px solid #1F2328; }
+caption { font-size: 0.85em; color: #6B7280; }
+math { font-size: 1.05em; }

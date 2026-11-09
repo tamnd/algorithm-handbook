@@ -1,0 +1,87 @@
+# The order of chapter 1.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Saying what a program must do
+    intro: >
+      A program can be correct only with respect to a statement of what it should do. These entries define
+      that statement, the specification, and its two halves: the precondition the caller must establish and
+      the postcondition the program promises. An assertion is a condition attached to one point of the code.
+    entries:
+      - specification
+      - precondition
+      - postcondition
+      - assertion
+
+  - title: Induction and other proof methods
+    intro: >
+      Almost every correctness proof is an induction, over the natural numbers, over the steps of a loop or
+      over the shape of a data structure. These entries give induction in its ordinary, strong and structural
+      forms, its equivalents (the least counterexample and well-founded orders), and the two other arguments
+      that algorithm proofs use most: contradiction and cut and paste.
+    entries:
+      - induction
+      - structural-induction
+      - well-ordering-principle
+      - well-founded-relation
+      - proof-by-contradiction
+      - cut-and-paste-argument
+
+  - title: Invariants and termination
+    intro: >
+      A loop is proved correct with a loop invariant, which says what the loop has achieved so far, and
+      proved to stop with a variant function, a quantity that decreases in a well-founded order. Together
+      they give the correctness of an algorithm: on every allowed input it stops, and with the right answer.
+    entries:
+      - invariant
+      - loop-invariant
+      - variant-function
+      - termination-proof
+      - inductive-invariant
+      - correctness
+
+  - title: Data structures and contracts
+    intro: >
+      A data structure is correct when every operation keeps its representation invariant and does to the
+      abstract value what the specification says. The abstraction function links the two, and design by
+      contract writes the conditions into the code.
+    entries:
+      - representation-invariant
+      - abstraction-function
+      - design-by-contract
+
+  - title: Checking programs by running them
+    intro: >
+      Tests cannot prove a program correct, but they find most of its errors cheaply. These entries generate
+      many inputs from a stated property, compare two implementations, explore paths with symbolic inputs,
+      and make an algorithm hand out a certificate that a small checker can verify on each run.
+    entries:
+      - property-based-testing
+      - differential-testing
+      - symbolic-execution
+      - certifying-algorithms
+
+  - title: Hoare logic
+    intro: >
+      Hoare logic turns the informal loop-invariant argument into a proof system with one rule for each
+      construct of the language. These entries give the Hoare triple, partial and total correctness, the rules,
+      the weakest precondition that computes proofs backwards, Floyd's method on flowcharts, and what it takes
+      to verify a real program with these tools.
+    entries:
+      - hoare-triple
+      - partial-correctness
+      - total-correctness
+      - hoare-logic
+      - weakest-precondition
+      - floyd-inductive-assertions
+      - program-verification
+
+  - title: Deriving and analyzing programs
+    intro: >
+      The last group goes beyond checking a finished program. Dijkstra's guarded commands and the refinement
+      calculus derive a program from its specification in small correct steps. Separation logic extends Hoare
+      logic to programs with pointers, and abstract interpretation computes invariants automatically by
+      working with approximations of the program's states.
+    entries:
+      - guarded-commands
+      - refinement-calculus
+      - separation-logic
+      - abstract-interpretation

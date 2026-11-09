@@ -1,0 +1,89 @@
+groups:
+  - title: Nearest sites and empty circles
+    intro: >
+      The Voronoi cell of a site is the set of points that have no nearer site,
+      an intersection of $n - 1$ half-planes. The Delaunay triangulation joins the
+      sites into triangles whose circumcircles hold no site inside. The
+      [in-circle test](/in-circle-test/), a determinant of degree 4, decides every
+      such question exactly.
+    entries:
+      - circumcircle
+      - circumcenter
+      - voronoi-cell
+      - voronoi-diagram
+      - in-circle-test
+      - empty-circle-property
+      - delaunay-triangulation
+  - title: The structure theorems
+    intro: >
+      The two structures are dual, and in general position the diagram has
+      $2n - 2 - h$ vertices and $3n - 3 - h$ edges. A triangulation is Delaunay as
+      soon as every interior edge passes a local test, it is unique when no four
+      sites are cocircular, and it maximizes the smallest angle. Lifting each point
+      to $(x, y, x^2 + y^2)$ explains all of this at once.
+    entries:
+      - voronoi-delaunay-duality
+      - voronoi-complexity-theorem
+      - general-position-delaunay
+      - delaunay-triangulation-uniqueness
+      - local-delaunay-criterion
+      - delaunay-max-min-angle
+      - paraboloid-lifting-map
+  - title: Building the triangulation
+    intro: >
+      Both problems take $\Theta(n \log n)$ time and each gives the other in $O(n)$
+      time. Lawson's flips and the Bowyer-Watson cavity are simple and quadratic in
+      the worst case; divide and conquer meets the lower bound, and Dwyer's strips
+      reach $O(n \log \log n)$ expected time on uniform points.
+    entries:
+      - delaunay-triangulation-construction
+      - voronoi-diagram-construction
+      - lawson-flip-algorithm
+      - bowyer-watson-algorithm
+      - guibas-stolfi-algorithm
+      - dwyer-algorithm
+      - voronoi-construction-lower-bound
+  - title: Fortune's sweep
+    intro: >
+      A horizontal line sweeps down the plane, and the finished part of the
+      diagram ends at the beach line, a chain of parabolic arcs. Site events add
+      arcs and circle events remove them, at most $2n - 5$ times, for
+      $O(n \log n)$ time and $O(n)$ space.
+    entries:
+      - beach-line
+      - fortunes-algorithm
+  - title: Updates, constraints and higher dimensions
+    intro: >
+      An insertion changes $O(1)$ triangles in expectation but $\Theta(n)$ in the
+      worst case. Required segments call for a visibility rule in place of the empty
+      circle. In $d$ dimensions the triangulation can have
+      $\Theta(n^{\lceil d/2 \rceil})$ simplices.
+    entries:
+      - dynamic-delaunay-triangulation
+      - constrained-delaunay-triangulation
+      - higher-dimensional-delaunay
+  - title: Other distances and other diagrams
+    intro: >
+      Changing what "nearest" means gives a family of diagrams: the farthest site,
+      the $k$ nearest sites, squared distance minus a weight, distance minus or
+      divided by a weight. The power diagram keeps straight edges and has the
+      regular triangulation as its dual; the multiplicative diagram can have
+      $\Theta(n^2)$ size.
+    entries:
+      - farthest-point-voronoi-diagram
+      - order-k-voronoi-diagram
+      - power-diagram
+      - regular-triangulation
+      - weighted-voronoi-diagram
+  - title: Using the diagrams
+    intro: >
+      The largest empty circle has its center at a Voronoi vertex or on the hull
+      boundary. The medial axis is a Voronoi diagram of a shape's edges, alpha shapes
+      are pieces of the Delaunay triangulation, and Lloyd's algorithm moves every
+      site to the centroid of its cell until the cells are centroidal.
+    entries:
+      - largest-empty-circle
+      - medial-axis
+      - alpha-shape
+      - centroidal-voronoi-tessellation
+      - lloyds-algorithm

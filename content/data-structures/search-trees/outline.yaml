@@ -1,0 +1,77 @@
+# The order of chapter 3.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Ordered sets
+    intro: >
+      A dictionary answers whether a key is present. An ordered set also answers questions about order: the
+      smallest key, the next key, the rank of a key, the largest key not above a query. These entries define
+      the abstract type, its version with values, and the floor and ceiling queries that the rest of the
+      chapter implements.
+    entries:
+      - ordered-set
+      - ordered-symbol-table
+      - floor-and-ceiling-in-ordered-set
+
+  - title: The binary search tree
+    intro: >
+      A binary search tree stores the keys in a binary tree so that an in-order walk lists them in sorted
+      order. Each operation follows one path from the root, so each costs time proportional to the height.
+      These entries give the order rule, the tree, and its search, insertion, deletion, floor and ceiling.
+    entries:
+      - binary-search-tree-property
+      - binary-search-tree
+      - bst-search
+      - bst-insertion
+      - bst-deletion
+      - bst-floor-and-ceiling
+
+  - title: More in each node
+    intro: >
+      A node can hold more than a key and two links. Threads put the empty links to work and make in-order
+      traversal free of stacks. Augmentation stores a summary of each subtree, such as its size, and so
+      answers new queries at no extra asymptotic cost.
+    entries:
+      - threaded-binary-tree
+      - augmenting-data-structures
+
+  - title: Random trees and skip lists
+    intro: >
+      A tree built from keys in random order is short: the expected depth of a node is about $2 \ln n$. These
+      entries prove that bound and give the skip list, which draws its randomness from coin flips instead of
+      from the input and reaches the same expected costs with linked lists.
+    entries:
+      - random-binary-search-tree
+      - random-bst-expected-depth
+      - skip-list
+
+  - title: Trees for known frequencies
+    intro: >
+      When some keys are searched far more often than others, the best tree is not the balanced one. These
+      entries define the expected cost of a search and find the tree that minimizes it by dynamic
+      programming.
+    entries:
+      - expected-search-cost-bst
+      - optimal-bst-dynamic-programming
+
+  - title: Self-adjusting trees
+    intro: >
+      A splay tree keeps no balance information. It moves each accessed node to the root by rotations, and
+      its amortized cost is $O(\log n)$ per operation. The theorems in this group show that it also adapts to
+      skewed and local access patterns, and the last two entries ask how close any binary search tree can
+      come to the best possible cost.
+    entries:
+      - splaying
+      - splay-tree
+      - static-optimality-theorem
+      - working-set-theorem
+      - dynamic-optimality-conjecture
+      - tango-tree
+
+  - title: Beyond the logarithm
+    intro: >
+      Two ways to beat $\lg n$ per search. A finger search tree pays only for the distance from a recent
+      position. On integer keys, the predecessor problem can be solved without comparing whole keys, and the
+      fusion tree compares many keys in one machine word.
+    entries:
+      - finger-search-tree
+      - predecessor-problem
+      - fusion-tree

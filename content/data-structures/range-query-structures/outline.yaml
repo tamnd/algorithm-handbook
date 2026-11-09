@@ -1,0 +1,109 @@
+# The order of chapter 3.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its operations
+    intro: >
+      A range query asks for $A[l] \oplus A[l+1] \oplus \cdots \oplus A[r]$ for some operation $\oplus$.
+      What a structure can do depends on the laws of $\oplus$: a [monoid](/monoid/) can be split into
+      pieces, an idempotent operation such as the minimum lets pieces overlap, and an invertible one such
+      as the sum lets two prefixes be subtracted. The range sum, the range minimum and the range gcd are
+      the three standard cases.
+    entries:
+      - range-query-problem
+      - monoid
+      - range-query-structure
+      - idempotent-operation
+      - invertible-operation
+      - range-minimum-query
+      - range-gcd-query
+      - point-update-range-sum-query
+
+  - title: Blocks and tables
+    intro: >
+      Two simple ideas set the baselines. Cutting the array into blocks of about $\sqrt n$ items answers
+      any query in $O(\sqrt n)$ time. Storing the answers for all ranges whose length is a power of two
+      answers a minimum in $O(1)$ time, and the disjoint sparse table and the sqrt tree extend this to every
+      associative operation, but none of the three tables supports updates.
+    entries:
+      - square-root-decomposition
+      - sparse-table
+      - disjoint-sparse-table
+      - sqrt-tree
+
+  - title: Fenwick trees and segment trees
+    intro: >
+      These two trees answer a query and apply a point update in $O(\log n)$ time. The
+      [Fenwick tree](/fenwick-tree/) is an array of $n$ partial sums indexed by low bits, and needs an
+      inverse. The [segment tree](/segment-tree/) stores the answer of each node's range and works for any
+      monoid, so it also gives the range minimum, the best subsegment, a tree over a huge index range, and
+      a tree of sorted lists.
+    entries:
+      - fenwick-tree
+      - segment-tree
+      - point-update-range-min-query
+      - segment-tree-maximum-subsegment-sum
+      - dynamic-segment-tree
+      - merge-sort-tree
+
+  - title: Updates on whole ranges
+    intro: >
+      An update can change a whole range too. Lazy propagation keeps a pending update at each node that
+      covers the range and pushes it down only when a later operation needs the children, so range add and
+      range assignment cost $O(\log n)$. The Chtholly tree keeps runs of equal values instead, and segment
+      tree beats handle "set each item to at most $x$" with an amortized bound.
+    entries:
+      - range-update-range-query
+      - lazy-propagation
+      - range-assignment-query
+      - range-assignment-and-sum-query
+      - chtholly-tree
+      - segment-tree-beats
+
+  - title: Two dimensions
+    intro: >
+      A rectangle sum is four prefix sums by inclusion and exclusion. The two-dimensional Fenwick tree and
+      the two-dimensional segment tree nest one tree in the other and take $O(\log n \log m)$ time per
+      operation on an $n \times m$ grid.
+    entries:
+      - two-dimensional-range-sum-query
+      - two-dimensional-fenwick-tree
+      - two-dimensional-segment-tree
+
+  - title: Answering queries offline
+    intro: >
+      When all queries are known in advance, they can be answered in any order. Sorting them by an end
+      point turns many problems into sweeps. [Mo's algorithm](/mo-algorithm/) orders them so that a window
+      moves $O(n \sqrt q)$ steps in all, and offline deletion turns deletions into undo on a tree over time.
+    entries:
+      - offline-query-processing
+      - mo-algorithm
+      - mo-algorithm-with-updates
+      - offline-deletion
+
+  - title: Queries that do not split
+    intro: >
+      The number of distinct values, the $k$-th smallest value and the mode of a range cannot be combined
+      from the answers of two halves. Each needs its own idea: a reduction to counting by previous
+      occurrence, a tree over the values, or blocks with precomputed modes.
+    entries:
+      - range-distinct-count-query
+      - range-kth-smallest-query
+      - range-mode-query
+
+  - title: Trees over other objects
+    intro: >
+      The same tree shapes store intervals and lines. The interval tree finds the stored intervals that
+      overlap a query interval. The Li Chao tree keeps one line per node of a segment tree over the $x$
+      axis and returns the lowest line at a point in $O(\log C)$ time.
+    entries:
+      - interval-tree
+      - li-chao-tree
+
+  - title: Optimal range minimum
+    intro: >
+      The range minimum and the lowest common ancestor in a tree reduce to each other in linear time.
+      With this reduction and small blocks, a range minimum takes $O(1)$ time after $O(n)$ preprocessing,
+      and a succinct form needs only $2n + o(n)$ bits and never reads the array.
+    entries:
+      - rmq-lca-equivalence
+      - bender-farach-colton-rmq
+      - fischer-heun-rmq

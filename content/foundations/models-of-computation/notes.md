@@ -1,0 +1,17 @@
+## History
+
+The first models were built to answer a question of logic, which functions can be computed at all. Alonzo Church introduced the lambda calculus in the early 1930s, and in 1936 Alan Turing described his machine in *On Computable Numbers, with an Application to the Entscheidungsproblem*. Church and Turing showed that the two models compute the same functions, and the thesis that bears their names says that these are all the functions computable by any mechanical procedure. Register machines with only increment, decrement and a test for zero followed in the early 1960s, in papers by Marvin Minsky and by J. C. Shepherdson and H. E. Sturgis.
+
+Running time entered with Juris Hartmanis and Richard Stearns, whose 1965 paper *On the computational complexity of algorithms* measured the steps of multitape Turing machines and proved the linear speedup theorem and the quadratic simulation of many tapes by one. Frederick Hennie and Stearns cut the cost of simulating many tapes on two to a logarithmic factor in 1966. The random access machine, the model closest to a real computer, was studied as a measure of time by Stephen Cook and Robert Reckhow in 1973. They charged each operation by the length of its operands and showed that Turing machines and RAMs simulate each other with polynomial overhead. Aho, Hopcroft and Ullman's textbook of 1974 made the RAM the standard model for the analysis of algorithms. The word RAM in its present form, with $w \ge \lg n$, comes from the transdichotomous model of Michael Fredman and Dan Willard (1990).
+
+Models for lower bounds grew alongside. Claude Shannon counted circuits in 1949 and showed that most Boolean functions of $n$ variables need circuits of size at least about $2^n/n$. Michael Shamos used the real RAM in his 1978 thesis on computational geometry. Andrew Yao introduced the cell-probe model in 1981, in *Should tables be sorted?*, and Michael Ben-Or proved lower bounds for algebraic computation trees in 1983. Lenore Blum, Michael Shub and Stephen Smale defined their machine over the real numbers in 1989.
+
+Memory hierarchies got their own models in the 1980s and 1990s. Jia-Wei Hong and H. T. Kung's red-blue pebble game (1981) gave the first lower bounds on the traffic between a small fast memory and a large slow one. Alok Aggarwal and Jeffrey Scott Vitter defined the external memory model in 1988 and found the exact cost of sorting in it. Matteo Frigo, Charles Leiserson, Harald Prokop and Sridhar Ramachandran introduced cache-oblivious algorithms in 1999.
+
+## Further reading
+
+- Alfred V. Aho, John E. Hopcroft and Jeffrey D. Ullman, *The Design and Analysis of Computer Algorithms* (1974). Chapter 1 defines the RAM with both cost rules and compares it with the Turing machine.
+- Peter van Emde Boas, "Machine models and simulations", in *Handbook of Theoretical Computer Science*, volume A (1990). A survey of sequential and parallel machine models and of the simulations between them.
+- Michael Sipser, *Introduction to the Theory of Computation*, third edition (2013). Turing machines, nondeterminism, the Church-Turing thesis and the first complexity classes, at the level of a first course.
+- Sanjeev Arora and Boaz Barak, *Computational Complexity: A Modern Approach* (2009). Probabilistic and alternating machines, circuits, advice and decision trees, with proofs.
+- Jeffrey Scott Vitter, *Algorithms and Data Structures for External Memory* (2008). The external memory model and its algorithms, from sorting to search trees.

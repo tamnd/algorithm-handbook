@@ -1,0 +1,94 @@
+# The order of chapter 6.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Permutations and their cycles
+    intro: >
+      A permutation is a rearrangement, and it can be read in two directions: from positions to values, and,
+      through its inverse, from values to positions. Following each item to where it goes splits a permutation
+      into disjoint cycles, and most facts about permutations are read from those cycles.
+    entries:
+      - permutation
+      - permutation-cycles
+      - permutation-inverse
+      - symmetric-group
+
+  - title: Applying a permutation
+    intro: >
+      To move the items of an array by a permutation without a second array, walk each cycle once with one item
+      in hand. The hard part is to remember which cycles are done. The same cycles let you apply a permutation
+      $k$ times in linear time, however large $k$ is.
+    entries:
+      - in-place-permutation
+      - cycle-leader-permutation
+      - permutation-power
+
+  - title: Inversions and descents
+    intro: >
+      An inversion is a pair of items in the wrong order, and a descent is such a pair of neighbours. The number
+      of inversions is the standard measure of disorder: a random permutation has $n(n-1)/4$ of them on average.
+      Its parity, which can also be read from the cycles, is the sign of the permutation.
+    entries:
+      - inversion
+      - expected-number-of-inversions
+      - descents
+      - permutation-parity
+
+  - title: Counting inversions
+    intro: >
+      Checking all pairs takes quadratic time. A merge sort that counts as it merges, or a left-to-right scan
+      with a Fenwick tree, counts the inversions in $O(n \log n)$ time, which is optimal for comparison
+      algorithms. The count is also the fewest swaps of neighbours that sort the sequence.
+    entries:
+      - counting-inversions
+      - inversion-count-by-merge-sort
+      - inversion-count-with-fenwick-tree
+      - sorting-by-adjacent-swaps
+
+  - title: Codes, ranks and successors
+    intro: >
+      Listing, for each item, how many smaller items follow it gives the [Lehmer code](/lehmer-code/), a
+      sequence of independent digits that names the permutation. Read in the factorial number system, the code
+      is the rank of the permutation in lexicographic order, and adding one to it gives the next permutation.
+      The same code counts the permutations with $k$ inversions.
+    entries:
+      - inversion-table
+      - lehmer-code
+      - mahonian-numbers
+      - factorial-number-system
+      - permutation-rank-unrank
+      - lexicographic-successor
+
+  - title: Distances between rankings
+    intro: >
+      Two rankings of the same items can be compared by how many moves of a given kind turn one into the other:
+      swaps of neighbours, swaps of any two items, or moves of one item to another place. Each kind of move
+      gives a distance with its own formula and cost. Measures of presortedness are the same distances, taken
+      to the sorted order.
+    entries:
+      - kendall-tau-distance
+      - ranking-comparison-kendall-tau
+      - cayley-distance
+      - spearman-footrule
+      - ulam-distance
+      - presortedness
+
+  - title: Sorting with restricted moves
+    intro: >
+      When the only move is to flip a prefix, reverse a segment or move a block, the fewest moves that sort a
+      permutation is hard to find. Breakpoints, the neighbours that should not be neighbours, give the basic
+      lower bound. These problems come from genome rearrangement and from a puzzle about pancakes.
+    entries:
+      - pancake-sorting
+      - breakpoint-distance
+      - sorting-by-reversals
+      - sorting-by-transpositions
+
+  - title: Stacks and patterns
+    intro: >
+      A single stack can produce or sort only some permutations, and Knuth showed that they are the ones that
+      avoid one pattern of length 3. This started the study of pattern avoidance: which permutations contain no
+      copy of a given small permutation, how many there are, and how hard it is to test.
+    entries:
+      - stack-permutation-generability
+      - permutation-pattern-avoidance
+      - stack-sortable-permutations
+      - permutation-pattern-matching

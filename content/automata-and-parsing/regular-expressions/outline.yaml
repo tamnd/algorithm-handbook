@@ -1,0 +1,114 @@
+# The order of chapter 9.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Expressions and what they denote
+    intro: >
+      A regular expression is a term built from symbols with union, concatenation and the Kleene star. These
+      entries define the star, the expressions of automata theory, and the larger syntax of POSIX tools, whose
+      extra operators are shorthands. Bounded repetition is the shorthand that costs the most.
+    entries:
+      - kleene-star
+      - regular-expression
+      - extended-regular-expressions
+      - bounded-repetition
+
+  - title: The basic problems
+    intro: >
+      Five problems recur through the chapter: is the language empty, does a whole string match, where in a text
+      does the pattern match, and how to turn an expression into an automaton and back. Emptiness is a single
+      pass over the syntax tree; the others are the subject of the groups that follow.
+    entries:
+      - regex-emptiness
+      - regex-matching
+      - regex-search
+      - regex-to-nfa-conversion
+      - dfa-to-regex-conversion
+
+  - title: Converting between expressions and automata
+    intro: >
+      Thompson's construction and the Glushkov automaton give NFAs of linear size, with and without
+      $\varepsilon$-moves. The DFA can be exponentially larger, and one family of expressions shows that this is
+      unavoidable. In the other direction, state elimination and Arden's lemma turn an automaton into an
+      expression, whose size can also be exponential.
+    entries:
+      - thompson-construction
+      - glushkov-automaton
+      - regex-dfa-state-blowup
+      - state-elimination
+      - arden-lemma
+
+  - title: Matching with automata
+    intro: >
+      An automaton built from the pattern can be run without ever building the full DFA. Thompson's simulation
+      keeps the set of active states and takes $O(mn)$ time for every pattern; grep is this method applied to
+      lines of text. A lazy DFA caches the sets it meets, bit-parallel matching packs them into machine words,
+      and one-pass matching follows a single state when the expression allows it.
+    entries:
+      - thompson-nfa-simulation
+      - grep
+      - lazy-dfa-construction
+      - bit-parallel-regex-matching
+      - one-unambiguous-regular-expression
+      - one-pass-regex-matching
+
+  - title: Derivatives
+    intro: >
+      The derivative of an expression by a symbol is an expression for what may follow that symbol. It gives a
+      matcher that rewrites the expression once per input symbol and a DFA whose states are expressions.
+      Brzozowski's finiteness theorem makes the construction stop, and Antimirov's partial derivatives give a
+      small NFA instead.
+    entries:
+      - regex-derivative
+      - brzozowski-finiteness-theorem
+      - brzozowski-derivatives
+      - antimirov-derivatives
+
+  - title: Backtracking and what it costs
+    intro: >
+      Most programming languages match patterns by a depth-first search over the choices of the expression. The
+      method is short and handles backreferences and lookaround, but it can take exponential time, and ReDoS
+      attacks exploit this. Ambiguity of the expression is the root of the slow cases; backreferences make the
+      problem NP-complete.
+    entries:
+      - backtracking-regex-matching
+      - redos
+      - regex-ambiguity-detection
+      - backreference
+      - backreference-matching
+      - regex-lookaround
+
+  - title: Which match, and its parts
+    intro: >
+      When a pattern can match a text in several ways, a rule must pick one. Perl-style engines take the first
+      match in the order of a backtracking search, guided by greedy and lazy quantifiers; POSIX takes the
+      leftmost-longest. These entries define the rules and the algorithms that report capture groups in linear
+      time.
+    entries:
+      - greedy-and-lazy-quantifiers
+      - posix-regex-semantics
+      - submatch-extraction
+      - pike-vm
+
+  - title: Deciding questions about expressions
+    intro: >
+      Equivalence, inclusion and universality of regular expressions are decidable but PSPACE-complete, and
+      finding a shortest equivalent expression is at least as hard. The star height problem took 25 years to
+      settle. The Backurs-Indyk theorem shows that even matching cannot be done much faster than $O(mn)$ under a
+      standard hypothesis.
+    entries:
+      - regex-equivalence
+      - regex-inclusion
+      - regex-universality
+      - regex-equivalence-pspace-completeness
+      - regex-minimization
+      - star-height-problem
+      - backurs-indyk-regex-hardness
+
+  - title: The algebra of regular expressions
+    intro: >
+      Equations between regular expressions can be proved by algebra. Kleene algebra gives finitely many axioms
+      that prove all of them, and Kleene algebra with tests extends the method to programs. Star-free expressions
+      trade the star for complement and describe a smaller class with its own algebraic test.
+    entries:
+      - kleene-algebra
+      - kleene-algebra-with-tests
+      - star-free-expressions

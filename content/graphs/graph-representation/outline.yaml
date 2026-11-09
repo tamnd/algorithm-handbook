@@ -1,0 +1,123 @@
+# The order of chapter 7.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Vertices and edges
+    intro: >
+      A graph is a set of vertices and a set of edges. These entries fix the words the rest of the volume uses:
+      what an edge is in a directed and in an undirected graph, which edges a simple graph allows, and what
+      changes when edges repeat, carry weights, or join a vertex to itself.
+    entries:
+      - graph
+      - vertex
+      - edge
+      - undirected-graph
+      - directed-graph
+      - directed-and-undirected-graphs
+      - self-loop
+      - simple-graph
+      - multigraph
+      - weighted-graph
+      - labeled-graph
+
+  - title: Neighbours and degrees
+    intro: >
+      The neighbours of a vertex are what a graph algorithm reads, one vertex at a time, and the degree is how
+      many there are. The [handshake lemma](/handshake-lemma/), $\sum_v d(v) = 2m$, ties the degrees to the
+      number of edges and fixes the size of every adjacency list.
+    entries:
+      - neighborhood
+      - degree
+      - in-degree-and-out-degree
+      - handshake-lemma
+      - handshaking-lemma
+      - regular-graph
+
+  - title: Parts and kinds of graphs
+    intro: >
+      Most graph problems ask for a part of a graph with some property, so the chapter defines subgraphs next.
+      Then come the kinds of graphs that every later chapter names: complete and empty graphs, dense and sparse
+      families, graphs with no cycles, trees, and graphs whose vertices fall into two sides.
+    entries:
+      - subgraph
+      - induced-subgraph
+      - complete-graph
+      - complement-graph
+      - dense-graph
+      - sparse-graph
+      - acyclic-graph
+      - directed-acyclic-graph
+      - tree
+      - bipartite-graph
+
+  - title: Three ways to store a graph
+    intro: >
+      The [adjacency matrix](/adjacency-matrix/) spends $\Theta(n^2)$ space to answer each pair query in $O(1)$
+      time. The [adjacency list](/adjacency-list/) spends $\Theta(n + m)$ space and lists the neighbours of a
+      vertex in time proportional to their number. The [edge list](/edge-list/) is the form in which graphs
+      are written to files. The other entries here are variations on these three.
+    entries:
+      - adjacency-matrix
+      - adjacency-list
+      - edge-list
+      - incidence-matrix
+      - symbol-graph
+
+  - title: Basic questions on a stored graph
+    intro: >
+      These problems show how much the choice of representation decides. Asking about one pair, listing one
+      neighbourhood and reversing every edge each cost very different amounts on a matrix and on lists. The
+      [universal sink](/universal-sink/) shows that a matrix question can sometimes be answered without reading
+      most of the matrix.
+    entries:
+      - adjacency-query
+      - neighborhood-enumeration
+      - transpose-graph
+      - universal-sink
+      - graph-square
+
+  - title: Storing trees
+    intro: >
+      A rooted tree needs less than a general graph. A parent array is enough for algorithms that only walk
+      up, two links per node are enough for any number of children, and a labelled tree fits in a sequence
+      of $n - 2$ labels.
+    entries:
+      - parent-pointer-tree
+      - left-child-right-sibling
+      - prufer-sequence
+
+  - title: Representations for special needs
+    intro: >
+      Real programs adjust the basic forms. Packing a matrix into bits makes row operations 64 times faster;
+      hash sets give fast pair queries in linear space; incidence lists give each edge an identity of its own.
+      For a graph that does not change, [compressed sparse row](/compressed-sparse-row/) packs all adjacency
+      lists into two arrays, and it is the form most large graphs are stored in.
+    entries:
+      - bitset-adjacency-matrix
+      - hash-based-adjacency
+      - incidence-list
+      - compressed-sparse-row
+      - compressed-sparse-column
+      - forward-star
+
+  - title: Graphs built from other objects
+    intro: >
+      Some graphs are made from other graphs or from other structures: the line graph turns edges into
+      vertices, a hypergraph lets an edge join many vertices, a function on a finite set is a graph with one
+      edge out of each vertex, and an implicit graph is a rule that is never written down. The
+      [Laplacian matrix](/laplacian-matrix/) turns a graph into linear algebra.
+    entries:
+      - line-graph
+      - hypergraph
+      - functional-graph
+      - implicit-graph
+      - laplacian-matrix
+
+  - title: Graphs in few bits
+    intro: >
+      A graph with $n$ vertices and $m$ edges needs about $m \log_2(n^2/m)$ bits in the worst case, and an
+      adjacency array spends about $\log_2 n$ bits per edge. These entries close the gap with succinct
+      structures that still answer queries fast, and beat it on web graphs, whose structure a worst-case count
+      does not see.
+    entries:
+      - graph-compression
+      - succinct-graph-representation
+      - webgraph-compression

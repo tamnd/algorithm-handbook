@@ -1,0 +1,26 @@
+A parallel sort puts $n$ keys in order with many processors working at the same time. A graphics processor sorts millions of keys with thousands of threads. A cluster sorts a file of many terabytes in the shuffle phase of a MapReduce job. A chip sorts packets with a fixed grid of comparators. In each case one processor alone would be too slow, and the question is how to share the work so that the processors do not wait for each other.
+
+A parallel sort is judged by two numbers. The *time* (or *span*) is how long you wait for the result with as many processors as you like. The *work* is the total number of operations of all processors together. A good parallel sort has short time and is [work-efficient](/work-efficiency/): its work is within a constant factor of the $\Theta(n \log n)$ of the best sequential comparison sort. Both numbers depend on the machine: a [PRAM](/pram-model/) with shared memory, the [work-span model](/work-span-model/), a [BSP](/bsp-model/) machine that exchanges messages in rounds, or a fixed network such as a line, a mesh or a hypercube where only neighbours talk. Every bound in this chapter names its model.
+
+## What the chapter covers
+
+The chapter is in six groups, read in order.
+
+1. **The problem and the simplest sort.** The [parallel sorting problem](/parallel-sorting-problem/) and its cost measures in each model. [Odd-even transposition sort](/odd-even-transposition-sort/) sorts $n$ keys on a line of $n$ processors in $n$ rounds of neighbour compare-exchanges: the parallel form of bubble sort.
+2. **Sorting on meshes and matrices.** The [mesh sorting problem](/mesh-sorting-problem/), where the diameter of the grid forces $2\sqrt n - 2$ steps. [Shearsort](/shearsort/) sorts rows and columns in turn in $\sqrt n (\lg n + 1)$ steps, and [columnsort](/columnsort/) sorts a tall matrix with four rounds of column sorts.
+3. **Merging in parallel.** The [parallel merging problem](/parallel-merging-problem/), solved by ranking each item in the other list. [Merge path](/merge-path/) and [Shiloach-Vishkin merging](/shiloach-vishkin-merge/) cut a merge into equal pieces for $p$ processors.
+4. **Merge sort and quicksort in parallel.** [Parallel merge sort](/parallel-merge-sort/) has work $\Theta(n \log n)$ and span $O(\log^3 n)$. [Parallel quicksort](/parallel-quicksort/) partitions with prefix sums and has span $O(\log^2 n)$ with high probability. [Hyperquicksort](/hyperquicksort/) runs quicksort on a hypercube.
+5. **Sorting with splitters and digits.** [Sample sort](/sample-sort/) and [parallel sorting by regular sampling](/parallel-sorting-by-regular-sampling/) cut the keys into $p$ buckets of nearly equal size, so each key moves once. [Parallel radix sort](/parallel-radix-sort/) sorts integer keys with one prefix sum per digit, and is the standard sort on graphics processors.
+6. **How fast sorting and merging can be.** The [depth lower bound](/parallel-sorting-depth-lower-bound/) of $\Omega(\log n)$ steps, [Cole's merge sort](/cole-merge-sort/), which meets it on the PRAM, and [Valiant's merge](/valiant-parallel-merge/), which shows that merging needs only $O(\log \log n)$ rounds of comparisons.
+
+## A first reading
+
+For a first reading, take these nine entries in order: [the parallel sorting problem](/parallel-sorting-problem/), [odd-even transposition sort](/odd-even-transposition-sort/), [shearsort](/shearsort/), [the parallel merging problem](/parallel-merging-problem/), [merge path](/merge-path/), [parallel merge sort](/parallel-merge-sort/), [parallel quicksort](/parallel-quicksort/), [sample sort](/sample-sort/) and [parallel radix sort](/parallel-radix-sort/). They give one sort for each kind of machine and the two ideas that run through the chapter: find each item's place by ranking, and cut the work into pieces of equal size.
+
+Skip at first the entries marked *Advanced* and *Research*. Hyperquicksort, regular sampling and columnsort are variations on the first reading. Cole's merge sort and Valiant's merge are of theoretical interest: they settle how fast sorting and merging can be, but they are not used to sort on real machines. Read the depth lower bound after the rest, since it explains why the fast sorts stop where they do.
+
+## Before you start
+
+From Chapter 4.1 you need [merge sort](/merge-sort/), [merging sorted lists](/merging-sorted-lists/), [randomized quicksort](/randomized-quicksort/) and the [comparison sorting lower bound](/comparison-sort-lower-bound/). From Chapter 4.2 you need [counting sort](/counting-sort/), [radix sort](/radix-sort/) and [bucket sort](/bucket-sort/). From Chapter 4.4 you need [comparators](/comparator/), [sorting networks](/sorting-network/) and the [zero-one principle](/zero-one-principle/), which proves most of the network and mesh sorts.
+
+From the volume on parallel algorithms you need the [PRAM model](/pram-model/) with its [EREW](/erew-pram/), [CREW](/crew-pram/) and [CRCW](/crcw-pram/) variants, the [work-span model](/work-span-model/), [Brent's theorem](/brent-theorem/), the [BSP model](/bsp-model/) and [all-prefix-sums](/all-prefix-sums/). For the analysis of the randomized sorts you need the [Chernoff bound](/chernoff-bound/) from Volume 1. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

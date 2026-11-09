@@ -1,0 +1,65 @@
+# The order of chapter 3.14. Groups are read in order; entries in a group too.
+groups:
+  - title: Shared queues
+    intro: >
+      The [concurrent queue](/concurrent-queue/) fixes the questions of the whole chapter: what a correct
+      result is when calls overlap, and how much parallelism a design allows. One lock gives a correct but
+      serial queue, two locks let an enqueue and a dequeue run together, and the ring-based designs replace
+      locks by sequence numbers and fetch-and-add.
+    entries:
+      - concurrent-queue
+      - two-lock-queue
+      - disruptor-ring-buffer
+      - lcrq
+
+  - title: One lock per part
+    intro: >
+      [Lock striping](/lock-striping/) splits a structure into parts with a lock each, so that calls on
+      different parts do not wait for each other. The [concurrent hash table](/concurrent-hash-table/) is the
+      standard example, and the [sloppy counter](/sloppy-counter/) applies the same idea to one integer, at the
+      price of an approximate read.
+    entries:
+      - lock-striping
+      - concurrent-hash-table
+      - sloppy-counter
+
+  - title: Weaker correctness conditions
+    intro: >
+      Linearizability is the usual condition, but two weaker ones matter for this chapter.
+      [Sequential consistency](/sequential-consistency/) keeps only the order inside each thread, and
+      [quiescent consistency](/quiescent-consistency/) keeps real-time order only across moments with no call
+      in progress. The counters of the next group are quiescently consistent.
+    entries:
+      - sequential-consistency
+      - quiescent-consistency
+
+  - title: Counters that combine or spread
+    intro: >
+      A shared counter under heavy load is a hot spot. A [combining tree](/combining-tree/) and a
+      [combining funnel](/combining-funnel/) merge many increments into one step on the counter, while a
+      [diffracting tree](/diffracting-tree/) spreads the calls over many counters with balancers and prisms.
+    entries:
+      - combining-tree
+      - combining-funnel
+      - diffracting-tree
+
+  - title: Priority queues, exact and relaxed
+    intro: >
+      An exact delete-min makes every thread go to the same item. The
+      [fine-grained concurrent heap](/fine-grained-concurrent-heap/) keeps the order exact with one lock per
+      slot. A [relaxed priority queue](/relaxed-priority-queue/) returns an item near the minimum instead, and
+      the [MultiQueue](/multiqueue/) and the [SprayList](/spraylist/) use this freedom to scale.
+    entries:
+      - fine-grained-concurrent-heap
+      - relaxed-priority-queue
+      - multiqueue
+      - spraylist
+
+  - title: Concurrent search structures
+    intro: >
+      The [B-link tree](/blink-tree/) lets searches run without locks by giving each node a high key and a
+      right link, and the [Ctrie](/ctrie/) makes a hash trie lock-free by changing one indirection word per
+      update with compare-and-swap.
+    entries:
+      - blink-tree
+      - ctrie

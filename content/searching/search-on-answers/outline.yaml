@@ -1,0 +1,57 @@
+# The order of chapter 5.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Searching over answers
+    intro: >
+      Binary search does not need an array. It needs a test that is false and then true along an ordered set
+      of candidates. These entries say exactly when such a test exists, how an optimization question becomes
+      a sequence of yes/no questions, and how to run the search over integers and over real numbers.
+    entries:
+      - monotone-predicate
+      - optimization-to-decision-reduction
+      - binary-search-on-answer
+      - binary-search-on-real-numbers
+
+  - title: Problems solved by a search on the answer
+    intro: >
+      Three problems show the pattern at work. In each one the best value is hard to compute directly, but
+      a greedy pass or a two-pointer count decides in linear time whether a given value can be reached, and
+      a binary search over the values does the rest.
+    entries:
+      - maximin-placement
+      - minimax-partition
+      - kth-smallest-pair-distance
+
+  - title: Unimodal functions
+    intro: >
+      When a function rises and then falls, comparing two of its values discards part of the domain. These
+      entries define the property, state the optimization problem, and give three methods for it, from the
+      simplest, [ternary search](/ternary-search/), to the optimal one, Fibonacci search, and its open-ended
+      limit, golden-section search.
+    entries:
+      - unimodal-function
+      - unimodal-optimization
+      - ternary-search
+      - fibonacci-search-unimodal
+      - golden-section-search
+
+  - title: Optimizing a ratio
+    intro: >
+      Cost per unit of time and profit per unit of weight are ratios, and a ratio is not linear. The trick is
+      to guess the ratio $\lambda$ and ask whether some solution beats it, which is an ordinary problem with
+      the linear objective $N - \lambda D$. A binary search on $\lambda$ works; Dinkelbach's Newton iteration
+      usually needs far fewer steps.
+    entries:
+      - fractional-programming
+      - minimum-ratio-problem
+      - dinkelbach-algorithm
+
+  - title: Advanced searches on the answer
+    intro: >
+      Three extensions of the idea. Parallel binary search answers many offline queries with one sweep of
+      the updates per round. Parametric search finds an exact real threshold by running a decision algorithm
+      at the unknown optimum. The post office problem searches over a price per facility instead of over the
+      answer itself.
+    entries:
+      - parallel-binary-search
+      - parametric-search
+      - post-office-problem

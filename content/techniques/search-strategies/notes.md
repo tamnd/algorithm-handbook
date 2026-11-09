@@ -1,0 +1,17 @@
+## History
+
+The strategies of this chapter come from two places: graph algorithms, where the graph is given as a table, and artificial intelligence, where the space is given by a successor function and is often too large to store. Edsger Dijkstra published his shortest path algorithm in 1959 in *Numerische Mathematik*, as a set of nodes whose distance is final, grown in order of distance. The form that starts from one state, makes the graph on demand and stops at a goal is what the artificial intelligence literature calls uniform-cost search. Ariel Felner argued in a 2011 position paper that this search form is the better one to teach and to use on large or implicit graphs, because it never initializes all vertices.
+
+Heuristic search took shape in 1968, when Peter Hart, Nils Nilsson and Bertram Raphael defined A* and proved that it returns a cheapest path when the heuristic never overestimates. Judea Pearl's book *Heuristics* (1984) made best-first search with a general evaluation function the common frame of these methods, and Rina Dechter and Pearl studied in 1985 when A* is optimal among such strategies. Ira Pohl studied bidirectional search in his Stanford thesis of 1969 and in a 1971 paper, *Bi-directional search*, with the rule that expands the side with the smaller frontier.
+
+Iterative deepening began in practice before it had a theory. Chess programs of the 1970s, such as CHESS 4.5 of David Slate and Larry Atkin, searched again with a larger depth to fit the search into the time on the clock. Richard Korf named depth-first iterative deepening as a general method in *Artificial Intelligence* in 1985, counted its nodes against breadth-first search, proved it asymptotically optimal among brute-force tree searches, and introduced IDA* in the same paper. Matthew Ginsberg and William Harvey presented iterative broadening at AAAI-90 and in *Artificial Intelligence* in 1992, and named it after Korf's method.
+
+The theory of local optima came from complexity theory. David Johnson, Christos Papadimitriou and Mihalis Yannakakis defined the class PLS in *How easy is local search?* in 1988, showed that Circuit Flip is complete for it, and showed that no problem in PLS is NP-hard unless NP = co-NP. Alejandro Schäffer and Yannakakis showed in 1991 that Max-Cut with single flips is PLS-complete, and that on some weighted instances every sequence of improving flips is exponentially long.
+
+## Further reading
+
+- Stuart Russell and Peter Norvig, *Artificial Intelligence: A Modern Approach*, fourth edition. The standard account of uninformed and heuristic search, with one best-first frame for uniform-cost search, greedy search and A*.
+- Judea Pearl, *Heuristics: Intelligent Search Strategies for Computer Problem Solving*. A careful treatment of best-first search, of the conditions on heuristics, and of the analysis of search trees.
+- Richard E. Korf, *Depth-first iterative-deepening: an optimal admissible tree search*, Artificial Intelligence 27(1), 1985. Short and clear; it gives the node counts and the optimality argument for iterative deepening.
+- David S. Johnson, Christos H. Papadimitriou and Mihalis Yannakakis, *How easy is local search?*, Journal of Computer and System Sciences 37(1), 1988. The paper that defines PLS and the reductions between local search problems.
+- Ronald L. Graham, Donald E. Knuth and Oren Patashnik, *Concrete Mathematics*, second edition. Its first chapter turns the simulation of the Josephus problem into a recurrence and a closed form.

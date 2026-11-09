@@ -1,0 +1,62 @@
+# The order of chapter 3.13. Groups are read in order; entries in a group too.
+groups:
+  - title: Stacks and queues on disk
+    intro: >
+      The simplest structures already show the main idea of the chapter: move data between memory and disk
+      only in whole blocks, and arrange the work so that each transfer serves many operations. A stack and a
+      queue that keep one or two blocks of their ends in memory cost $O(1/B)$ I/Os per operation.
+    entries:
+      - external-stack
+      - external-queue
+
+  - title: Searching on disk
+    intro: >
+      A search in a sorted file reads a block per probe, and binary search wastes almost all of each block. A
+      tree whose nodes fill a block has fan-out near $B$ and height $\log_B N$, which is the lower bound. The
+      B+ tree keeps all keys in linked leaves for range scans, and the B*-tree shares keys with siblings to
+      keep nodes two-thirds full.
+    entries:
+      - external-searching
+      - b-tree
+      - b-plus-tree
+      - b-star-tree
+
+  - title: Permuting
+    intro: >
+      Moving records to given places looks easier than sorting, since the target of each record is known. On
+      disk it is not: unless blocks are tiny, permuting costs as much as sorting, and a counting argument
+      shows that no method does better.
+    entries:
+      - permuting-problem
+      - permuting-lower-bound
+
+  - title: Batched structures
+    intro: >
+      When the answers can wait, operations can be collected in buffers and pushed down a tree in large
+      batches. The buffer tree does this for a whole dictionary, and gives a priority queue whose operations
+      cost what sorting costs per item. Time-forward processing uses that queue to evaluate a DAG on disk.
+    entries:
+      - buffer-tree
+      - external-memory-priority-queue
+      - time-forward-processing
+
+  - title: Write-optimized dictionaries
+    intro: >
+      An online dictionary must answer searches at once, but it can still delay its writes. The B^ε-tree puts
+      a buffer in each node, and the LSM tree keeps sorted runs that are merged level by level. Both make an
+      insert cost far less than one I/O, and pay a constant factor or more on searches.
+    entries:
+      - write-optimized-structure
+      - b-epsilon-tree
+      - log-structured-merge-tree
+
+  - title: Cache-oblivious structures
+    intro: >
+      A structure that does not know $B$ can still be efficient for every $B$ at once, and so for every level
+      of a memory hierarchy. The van Emde Boas layout stores a static tree so that a search touches
+      $O(\log_B N)$ blocks; the packed memory array keeps a sorted array with gaps; the two together give a
+      dynamic search tree.
+    entries:
+      - van-emde-boas-layout
+      - packed-memory-array
+      - cache-oblivious-b-tree

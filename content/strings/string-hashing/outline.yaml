@@ -1,0 +1,43 @@
+groups:
+  - title: Fingerprints and the polynomial hash
+    intro: >
+      A fingerprint replaces a long string by a short value, so that equal strings always agree and different
+      strings rarely do. The polynomial hash with a random base modulo a prime is the standard fingerprint for
+      strings: it slides along a text in constant time per step, and two fixed different strings of length at
+      most $n$ collide with probability at most $(n-1)/p$.
+    entries:
+      - fingerprinting
+      - polynomial-rolling-hash
+      - polynomial-hash-collision-bound
+
+  - title: Comparing strings by their hashes
+    intro: >
+      With the collision bound in hand, a comparison of two strings becomes a comparison of two numbers. This
+      group uses it to test equality across a network, to compare any two substrings of a text in constant
+      time, to search a text in Rabin-Karp's way, and to keep the hashes current while the string changes.
+    entries:
+      - string-equality-testing
+      - substring-equality-queries
+      - rabin-karp
+      - dynamic-polynomial-hashing
+
+  - title: Adversaries and random choices
+    intro: >
+      The collision bound holds only if the base is drawn after the input is fixed. Anti-hash tests show what
+      happens when it is not: fixed parameters, and arithmetic modulo $2^{64}$, admit inputs that collide on
+      purpose. Universal string hashing composes the polynomial hash with a universal family to give hash
+      tables a bound that holds for every set of keys.
+    entries:
+      - anti-hash-tests
+      - universal-string-hashing
+
+  - title: Other hash functions for strings
+    intro: >
+      The Rabin fingerprint works with polynomials over the field of two elements and needs only shifts and
+      exclusive ors, which suits bit strings and file chunking. FNV and MurmurHash are fast functions without
+      a random key, built for hash tables; they spread typical keys well but give no bound against chosen
+      inputs.
+    entries:
+      - rabin-fingerprint
+      - fnv-hash
+      - murmurhash

@@ -1,0 +1,23 @@
+Modular arithmetic is arithmetic on remainders. To work modulo $n$ you keep only the remainder of each number on division by $n$, and you may take the remainder after every addition and every multiplication without changing the final answer. So the numbers never grow past $n$, however long the computation. A 64-bit processor already computes modulo $2^{64}$ whenever an unsigned sum overflows. RSA encrypts by computing $m^e \bmod n$ for a modulus of thousands of bits; a hash table reduces keys modulo a prime; a calendar finds the day of the week modulo 7.
+
+Three operations do most of the work: the product $ab \bmod n$, the power $a^b \bmod n$, and the inverse $a^{-1} \bmod n$. The power is fast even when $b$ has hundreds of digits, because [binary exponentiation](/binary-exponentiation/) needs only about $2 \lg b$ multiplications. The inverse exists exactly when $\gcd(a, n) = 1$, and the [extended Euclidean algorithm](/extended-euclidean-algorithm/) finds it. The rest of the chapter is the theory that says what these operations do: which equations have solutions, which powers are 1, and which residues are squares.
+
+## What the chapter covers
+
+The chapter is in seven groups, read in order.
+
+1. **Congruences.** The [congruence relation](/congruence/) and the [additive group modulo n](/additive-group-modulo-n/), the model of every [cyclic group](/cyclic-group/).
+2. **Multiplication, powers and inverses.** [Modular exponentiation](/modular-exponentiation/) by [binary exponentiation](/binary-exponentiation/), the [modular inverse](/modular-inverse/), and the reductions of [Barrett](/barrett-reduction/) and [Montgomery](/montgomery-multiplication/) that replace division by multiplication.
+3. **Linear congruences and the Chinese remainder theorem.** Solving [linear congruences](/linear-congruence/) $ax \equiv b \pmod n$, the [Chinese remainder theorem](/chinese-remainder-theorem/), and [Garner's algorithm](/garner-algorithm/) for rebuilding a number from its residues.
+4. **The theorems of Fermat, Euler and Wilson.** [Euler's totient](/euler-totient/), the [multiplicative group modulo n](/multiplicative-group-modulo-n/), [Fermat's little theorem](/fermat-little-theorem/), [Euler's theorem](/euler-theorem/), [Wilson's theorem](/wilson-theorem/) and [Lucas's theorem](/lucas-theorem/) for binomial coefficients modulo a prime.
+5. **Orders and primitive roots.** The [multiplicative order](/multiplicative-order/), [primitive roots](/primitive-root/) and the [theorem](/primitive-roots-existence/) that says which moduli have them, and the [Carmichael function](/carmichael-function/).
+6. **Squares modulo a prime.** [Quadratic residues](/quadratic-residue/), [Euler's criterion](/euler-criterion/), [quadratic reciprocity](/quadratic-reciprocity/), the [Jacobi symbol](/jacobi-symbol/), and the square root algorithms of [Tonelli and Shanks](/tonelli-shanks/) and of [Cipolla](/cipolla-algorithm/).
+7. **Calendars.** [Calendrical calculations](/calendrical-calculations/) by way of a single day count, the [Julian day number](/julian-day-number/).
+
+## A first reading
+
+For a first reading, take these fifteen entries in order: [congruence](/congruence/), [modular multiplication](/modular-multiplication/), [modular exponentiation](/modular-exponentiation/), [binary exponentiation](/binary-exponentiation/), [modular inverse](/modular-inverse/), [linear congruence](/linear-congruence/), [Chinese remainder theorem](/chinese-remainder-theorem/), [Euler's totient](/euler-totient/), [multiplicative group modulo n](/multiplicative-group-modulo-n/), [Fermat's little theorem](/fermat-little-theorem/), [Euler's theorem](/euler-theorem/), [multiplicative order](/multiplicative-order/), [primitive root](/primitive-root/), [quadratic residue](/quadratic-residue/) and [Euler's criterion](/euler-criterion/). They are what Chapters 10.3 and 10.6 use. Barrett and Montgomery reduction, the square root algorithms and the calendars can wait until you need them.
+
+## Before you start
+
+From Chapter 10.1 you need the [greatest common divisor](/greatest-common-divisor/), [coprime integers](/coprime-integers/), [Bézout's identity](/bezouts-identity/) and the [extended Euclidean algorithm](/extended-euclidean-algorithm/). From Volume 11 you need [division with remainder](/division-with-remainder/) and [floor division](/floor-division/), and, for the group-theoretic proofs, [finite groups](/finite-group/) and [subgroups](/subgroup/). An [equivalence relation](/equivalence-relation/) is all the set theory assumed. [Loop invariants](/loop-invariant/) from Volume 1 prove binary exponentiation correct.

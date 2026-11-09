@@ -1,0 +1,60 @@
+# The order of chapter 2.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The frame
+    intro: >
+      A search strategy decides which state to look at next. The four entries give the words used in the
+      rest of the chapter: the strategy itself, the search tree of paths that it explores, the frontier of
+      generated but unexpanded nodes whose order is the strategy, and the two properties asked of a search,
+      that it finds a solution when one exists and that the solution is the cheapest.
+    entries:
+      - search-strategy
+      - search-tree
+      - search-frontier
+      - completeness-and-optimality-of-search
+
+  - title: Repeated states
+    intro: >
+      A state space with cycles or with many paths to one state has a search tree far larger than the
+      space, often infinite. Graph search stores the states it has reached and skips them when they come
+      again; tree search stores nothing and pays in time. The entry says when each is right and when a
+      stored state must be opened again.
+    entries:
+      - graph-search-vs-tree-search
+
+  - title: Searching by depth
+    intro: >
+      Depth-first search uses memory linear in the depth but can run forever down one branch. A depth limit
+      stops it, and raising the limit one step at a time gives iterative deepening, which finds a shallowest
+      goal with the memory of depth-first search and a constant factor of extra time. Iterative broadening
+      limits the number of children tried at each node instead of the depth.
+    entries:
+      - depth-limited-search
+      - iterative-deepening-search
+      - iterative-broadening
+
+  - title: Searching by cost
+    intro: >
+      A priority queue on an evaluation function $f$ gives best-first search. With $f$ equal to the path
+      cost it is uniform-cost search, which returns a cheapest path when every step costs at least some
+      $\varepsilon > 0$; with a heuristic added it becomes greedy search or A*.
+    entries:
+      - best-first-search
+      - uniform-cost-search
+
+  - title: Searching from both ends
+    intro: >
+      When the goal is a single known state and the moves can be run backwards, two searches of depth
+      $d/2$, one from each end, replace one search of depth $d$. The saving is a square root in time and in
+      memory, and the stopping rule needs care.
+    entries:
+      - bidirectional-search
+
+  - title: Beyond systematic search
+    intro: >
+      Two entries step outside the tree of paths. A local search problem asks only for a state that no
+      single move can improve, and its complexity class, PLS, explains why such a state can be hard to reach.
+      Simulation steps a system forward one state at a time and, when the state repeats, jumps over whole
+      cycles at once.
+    entries:
+      - local-search-problem
+      - simulation-technique

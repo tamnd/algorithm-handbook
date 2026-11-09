@@ -1,0 +1,99 @@
+# The order of chapter 3.11. Groups are read in order; entries in a group too.
+groups:
+  - title: Versions and degrees of persistence
+    intro: >
+      An ordinary structure forgets its past; a persistent one keeps every version. These entries fix the
+      words: which versions may be read, which may be updated, and whether two versions may be combined. The
+      shape of the version tree tells the three degrees apart, and structural sharing is what makes keeping
+      all versions cheap.
+    entries:
+      - ephemeral-data-structure
+      - persistent-data-structure
+      - partial-persistence
+      - full-persistence
+      - version-tree
+      - confluent-persistence
+      - structural-sharing
+
+  - title: Immutable lists and the functional style
+    intro: >
+      The [persistent stack](/persistent-stack/) is the list of Lisp: push makes one cell that points to the
+      old list, and nothing is ever written twice. A purely functional structure follows this rule
+      everywhere, so it is persistent for free. The zipper adds a movable position to an immutable tree.
+    entries:
+      - persistent-stack
+      - purely-functional-data-structure
+      - zipper
+
+  - title: Path copying and persistent trees
+    intro: >
+      To change a node of a tree without destroying the old tree, copy the node and its ancestors and share
+      everything else. In a balanced tree this costs $O(\log n)$ time and space per update. The entries apply
+      the method to search trees, tries and segment trees, the last two being the forms most used in
+      programming contests.
+    entries:
+      - path-copying
+      - persistent-dynamic-set
+      - persistent-binary-search-tree
+      - persistent-red-black-tree
+      - persistent-treap
+      - persistent-trie
+      - persistent-segment-tree
+
+  - title: General methods for linked structures
+    intro: >
+      Path copying needs a tree. The fat node method and node copying work on any linked structure: the
+      first stores every value of a field with a version stamp, the second adds a few spare slots to each
+      node and copies a node only when they are full. The theorem of Driscoll, Sarnak, Sleator and Tarjan
+      says that with bounded in-degree, persistence costs only a constant factor.
+    entries:
+      - fat-node
+      - node-copying
+      - dsst-persistence-theorem
+
+  - title: Persistent arrays
+    intro: >
+      An array cell is reached by index from every version, so the general methods do not give constant
+      overhead. A balanced tree with path copying gives $O(\log n)$ per access, a wide trie makes the
+      logarithm small, and Baker's trick makes the version in use as fast as a plain array. Persistent
+      union-find is built on top of the last.
+    entries:
+      - fully-persistent-array
+      - persistent-vector
+      - bakers-trick
+      - semi-persistent-array
+      - persistent-union-find
+
+  - title: Asking about the past, and changing it
+    intro: >
+      A partially persistent structure answers questions about any earlier state, and many static problems
+      turn into such questions once one coordinate is read as time. A retroactive structure goes further: it
+      lets a program insert or delete an operation in the past and see the effect on the present.
+    entries:
+      - historical-queries
+      - retroactive-data-structure
+
+  - title: Laziness and amortization under persistence
+    intro: >
+      An amortized bound can fail under persistence, because an old version that is about to pay for an
+      expensive step can be used again and again. Lazy evaluation with memoization repairs this: the
+      expensive step is suspended, and once forced it is never repeated. The [banker's queue](/banker-queue/)
+      is the first example, debit analysis is the proof method, and scheduling turns the amortized bounds
+      into worst-case ones.
+    entries:
+      - banker-queue
+      - debit-analysis
+      - lazy-rebuilding
+      - real-time-queue
+
+  - title: Sequences built from number systems
+    intro: >
+      A list of complete binary trees whose sizes follow the digits of $n$ gives fast indexing, and the
+      choice of number system decides the cost of cons: binary numbers give $O(\log n)$, skew binary numbers
+      give $O(1)$. Bootstrapping and the finger tree add catenation and splitting.
+    entries:
+      - binary-random-access-list
+      - skew-binary-random-access-list
+      - bootstrapping
+      - catenable-deque
+      - finger-tree

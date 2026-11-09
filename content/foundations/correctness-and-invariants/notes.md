@@ -1,0 +1,16 @@
+## History
+
+The first proof that a program is correct was given by Alan Turing. In a short paper of 1949, *Checking a large routine*, he annotated a program that computes $n!$ by repeated addition with assertions about its variables at chosen points, and argued separately that it stops. The paper was little read, and the method was found again in the 1960s. Robert Floyd's *Assigning meanings to programs* (1967) attached assertions to the edges of a flowchart and proved termination with a quantity that decreases in a well-founded set. C. A. R. Hoare's *An axiomatic basis for computer programming* (1969) turned the same ideas into a logic with one rule for each statement of a program, and the triple $\{P\}\,S\,\{Q\}$ carries his name.
+
+Edsger Dijkstra moved the emphasis from checking programs to deriving them. His paper on guarded commands (1975) and his book *A Discipline of Programming* (1976) introduced the weakest precondition and the method of developing a loop and its invariant together. Ralph-Johan Back began the refinement calculus in his thesis of 1978, and Carroll Morgan and Joseph Morris developed it in the 1980s. For data structures, Hoare's 1972 paper on the correctness of data representations introduced the abstraction function and the representation invariant, and Bertrand Meyer built preconditions, postconditions and class invariants into the Eiffel language in the late 1980s under the name design by contract.
+
+Tools for programs as they are written came in parallel. Symbolic execution was introduced in the mid-1970s, in papers by James King and by Robert Boyer, Bernard Elspas and Karl Levitt. Patrick and Radhia Cousot defined abstract interpretation in 1977. Separation logic, by John Reynolds and Peter O'Hearn with others, was developed around 2000 to reason about pointers. On the testing side, QuickCheck by Koen Claessen and John Hughes (2000) started property-based testing, and certifying algorithms grew from the program checkers of Manuel Blum and Sampath Kannan (1989) and the checkers that Kurt Mehlhorn and Stefan Näher added to the LEDA library.
+
+## Further reading
+
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, fourth edition (2022). Section 2.1 introduces loop invariants with insertion sort, and the book uses them in most of its proofs.
+- Edsger W. Dijkstra, *A Discipline of Programming* (1976). Weakest preconditions and guarded commands, with many small programs derived from their specifications.
+- David Gries, *The Science of Programming* (1981). A textbook on developing programs and their proofs together, with many exercises on loop invariants.
+- Jon Bentley, *Programming Pearls*, second edition (2000). Column 4 writes binary search with its invariant and shows how often the program goes wrong without one.
+- Eric Lehman, F. Thomson Leighton and Albert R. Meyer, *Mathematics for Computer Science* (2017). Induction, well-ordering, structural induction and state machines with invariants, from first principles.
+- Ross M. McConnell, Kurt Mehlhorn, Stefan Näher and Pascal Schweitzer, "Certifying algorithms", *Computer Science Review* 5(2) (2011). A survey of algorithms that prove their own answers.

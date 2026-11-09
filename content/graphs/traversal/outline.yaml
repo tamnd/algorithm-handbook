@@ -1,0 +1,84 @@
+# The order of chapter 7.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Reaching every vertex
+    intro: >
+      A traversal visits every vertex that can be reached from a start vertex, each one time. These two entries
+      state the task and the question it answers, which vertices are reachable at all, before any particular
+      order of visiting is chosen.
+    entries:
+      - graph-traversal
+      - graph-reachability
+
+  - title: Breadth-first search
+    intro: >
+      [Breadth-first search](/breadth-first-search/) keeps the vertices it has seen in a queue, so it reaches
+      them in order of their distance in edges from the start. It runs in $\Theta(n + m)$ time, and the layers
+      and the tree it leaves behind are shortest-path information. Starting from many sources at once, or
+      running on a tree, gives two common variants.
+    entries:
+      - breadth-first-search
+      - bfs-layers
+      - bfs-tree
+      - multi-source-bfs
+      - level-order-traversal
+
+  - title: Two colours
+    intro: >
+      A graph is bipartite exactly when it has no cycle of odd length, and one breadth-first or depth-first
+      search either colours it with two colours or finds such a cycle. Three entries treat this one problem;
+      read [bipartiteness checking](/bipartiteness-check/) first.
+    entries:
+      - bipartiteness-check
+      - bipartite-graph-recognition
+      - bipartite-testing
+
+  - title: Depth-first search
+    intro: >
+      [Depth-first search](/depth-first-search/) follows one path as far as it can and backs up only when it
+      is stuck. It also runs in $\Theta(n + m)$ time. Written with recursion it is a few lines; written with an
+      explicit stack it survives deep graphs. Trémaux's walk through a maze and the flood fill of a paint
+      program are the same search in other settings.
+    entries:
+      - depth-first-search
+      - iterative-depth-first-search
+      - dfs-forest
+      - tremaux-traversal
+      - flood-fill
+
+  - title: The structure of a depth-first search
+    intro: >
+      Depth-first search stamps each vertex with a discovery time and a finish time. The intervals between
+      them nest like brackets, which is the [parenthesis theorem](/parenthesis-theorem/); from them one reads
+      ancestry, the class of every edge, and the three depth-first orders on which the algorithms of this
+      chapter and of Chapter 7.5 are built.
+    entries:
+      - discovery-and-finish-times
+      - parenthesis-theorem
+      - white-path-theorem
+      - edge-classification
+      - depth-first-orders
+
+  - title: Topological order
+    intro: >
+      A directed graph can be laid out with every edge pointing forward exactly when it has no cycle.
+      [Kahn's algorithm](/kahns-algorithm/) peels off vertices with no incoming edge; the DFS method lists the
+      vertices in reverse order of finishing. Both take $\Theta(n + m)$ time and both report a cycle when there
+      is no order.
+    entries:
+      - topological-ordering
+      - topological-ordering-theorem
+      - kahns-algorithm
+      - topological-sort
+
+  - title: Other search orders
+    intro: >
+      Breadth-first and depth-first search are two cases of one procedure with a bag of pending edges,
+      [whatever-first search](/whatever-first-search/). Choosing the next vertex by other rules gives
+      lexicographic BFS and maximum cardinality search, which recognize chordal graphs. The group ends with a
+      stackless traversal of binary trees and with the exploration of a graph that is not known in advance.
+    entries:
+      - whatever-first-search
+      - lexicographic-bfs
+      - maximum-cardinality-search
+      - morris-traversal
+      - graph-exploration

@@ -1,0 +1,47 @@
+groups:
+  - title: Range sums
+    intro: >
+      The first problem of the chapter asks for the sums of many ranges of an array that does not change.
+      A running total answers each one with a single subtraction. The reason is the
+      [telescoping sum](/telescoping-sum/): a sum of differences collapses to its two ends.
+    entries:
+      - range-sum-query
+      - telescoping-sum
+      - prefix-sums
+
+  - title: Range updates
+    intro: >
+      The mirror problem adds a value to many ranges and reads the array afterwards. Storing the steps
+      between neighbours, not the values, turns each range add into two point changes, and one pass of
+      prefix sums brings the values back.
+    entries:
+      - range-update-point-query
+      - difference-array
+
+  - title: Two dimensions
+    intro: >
+      On a grid, a rectangle sum is a signed sum of four corner entries of a table of top-left sums, by
+      inclusion-exclusion. The same four corners, with the signs turned into point updates, add a value to a
+      whole rectangle.
+    entries:
+      - range-sum-query-2d
+      - two-dimensional-prefix-sums
+      - two-dimensional-difference-array
+
+  - title: The calculus of finite sums
+    intro: >
+      Prefix sums and differences are the discrete forms of the integral and the derivative. These entries
+      make that precise: an antidifference sums a sequence the way an antiderivative integrates a function,
+      and summation by parts is the discrete form of integration by parts.
+    entries:
+      - discrete-antiderivative
+      - abel-summation
+
+  - title: When the array changes
+    intro: >
+      A prefix-sum table costs $\Theta(n)$ to repair after a single change. The partial sums problem asks
+      for updates and prefix sums that are both fast. Trees of partial sums give $O(\log n)$ for both, and
+      the lower bound of Fredman and Saks shows that no structure can do much better.
+    entries:
+      - partial-sums-problem
+      - fredman-saks-partial-sums-lower-bound

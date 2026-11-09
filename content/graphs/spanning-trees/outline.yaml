@@ -1,0 +1,121 @@
+# The order of chapter 7.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Spanning trees and forests
+    intro: >
+      A spanning tree keeps every vertex of a connected graph and just enough edges to hold it together:
+      $n - 1$ of them, with no cycle. Adding any other edge closes exactly one
+      [fundamental cycle](/fundamental-cycle/), and the forests of a graph form a
+      [matroid](/graphic-matroid/), which is why greedy choices work in the rest of the chapter.
+    entries:
+      - spanning-tree
+      - spanning-forest
+      - fundamental-cycle
+      - graphic-matroid
+
+  - title: The minimum spanning tree and its two rules
+    intro: >
+      The [minimum spanning tree problem](/minimum-spanning-tree/) asks for a spanning tree of least total
+      weight. Two facts settle which edges belong to it: the lightest edge across a cut is always safe, and
+      the heaviest edge on a cycle is never needed. From them follow uniqueness for distinct weights, a test
+      of optimality, and the bottleneck and maximum versions of the problem.
+    entries:
+      - minimum-spanning-tree
+      - cut-property
+      - safe-edge
+      - cycle-property
+      - mst-uniqueness
+      - mst-optimality-conditions
+      - maximum-spanning-tree
+      - minimum-bottleneck-spanning-tree
+
+  - title: The classical algorithms
+    intro: >
+      One generic method adds safe edges until the tree is complete, and the classical algorithms differ in
+      the cut they look at. [Kruskal's algorithm](/kruskal/) scans edges by weight with a disjoint-set
+      structure, [Prim's algorithm](/prim/) grows one tree with a priority queue, and
+      [Borůvka's algorithm](/boruvka/) lets every component pick an edge at once. Reverse-delete applies the
+      cycle rule instead.
+    entries:
+      - generic-mst-method
+      - greedy-mst-algorithm
+      - kruskal
+      - prim
+      - boruvka
+      - reverse-delete
+
+  - title: Checking and perturbing a tree
+    intro: >
+      Given a spanning tree, one can test in linear time whether it is minimum, find how far each weight may
+      move before the tree changes, and find the best tree that differs from it. Every test compares a
+      non-tree edge with the heaviest edge on its tree path. The last entry shows that every algorithm must
+      read all the edges.
+    entries:
+      - mst-verification
+      - mst-sensitivity-analysis
+      - second-best-mst
+      - mst-lower-bound
+
+  - title: Faster minimum spanning trees
+    intro: >
+      Since the 1970s a sequence of algorithms has pushed the bound below $O(m \log n)$: Yao's
+      $O(m \log \log n)$, Fredman and Tarjan's Fibonacci-heap method, the randomized linear-time algorithm of
+      Karger, Klein and Tarjan, Chazelle's $O(m \, \alpha(m, n))$ and an algorithm of Pettie and Ramachandran
+      that is optimal though its running time is unknown.
+    entries:
+      - yao-mst
+      - fredman-tarjan-mst
+      - karger-klein-tarjan-mst
+      - chazelle-mst
+      - pettie-ramachandran-mst
+
+  - title: Directed graphs
+    intro: >
+      In a directed graph the analogue of a spanning tree is an arborescence, a tree of arcs directed away
+      from a root. Greedy choice fails here, and the algorithm of Chu, Liu and Edmonds instead picks the
+      cheapest arc into each vertex, contracts any cycle that forms, and recurses.
+    entries:
+      - cycle-contraction
+      - minimum-arborescence
+      - edmonds-arborescence
+
+  - title: Counting, listing and sampling
+    intro: >
+      The number of spanning trees is a determinant of the Laplacian matrix, so it can be computed in
+      $O(n^3)$ time even when it is exponential. Listing the trees one by one takes backtracking with bridge
+      tests, and drawing one uniformly at random takes a random walk.
+    entries:
+      - matrix-tree-theorem
+      - counting-spanning-trees
+      - spanning-tree-enumeration
+      - gabow-myers-enumeration
+      - uniform-spanning-tree-sampling
+      - aldous-broder
+      - wilson-algorithm
+
+  - title: Packing and covering with trees
+    intro: >
+      Two questions ask how a graph splits into trees: how few forests cover all its edges, and how many
+      edge-disjoint spanning trees fit inside it. The two theorems of Nash-Williams and Tutte answer both with a count of edges over
+      every subgraph or partition. The spanning tree polytope describes all spanning trees by linear
+      inequalities.
+    entries:
+      - arboricity
+      - nash-williams-arboricity-theorem
+      - nash-williams-tutte-theorem
+      - spanning-tree-packing
+      - spanning-tree-polytope
+
+  - title: Trees with other objectives
+    intro: >
+      Change the goal and the problem is usually NP-hard. The Steiner tree must connect only some terminals,
+      other problems bound the degrees, maximize the leaves, or measure the tree by its diameter, its total
+      routing cost or the stretch it gives to the graph's edges. Some have good approximations, such as the
+      MST-based 2-approximation for Steiner trees.
+    entries:
+      - steiner-tree-problem
+      - kou-markowsky-berman
+      - degree-constrained-spanning-tree
+      - maximum-leaf-spanning-tree
+      - minimum-diameter-spanning-tree
+      - minimum-routing-cost-spanning-tree
+      - low-stretch-spanning-tree

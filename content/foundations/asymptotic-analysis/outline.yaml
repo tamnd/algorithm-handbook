@@ -1,0 +1,79 @@
+# The order of chapter 1.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Cost as a function of size
+    intro: >
+      An analysis states the cost of an algorithm as a function of the size of its input, and states it up to
+      a constant factor. These entries define the notation that drops the constants, what the size of an input
+      is, and the time and the memory that are measured. The last two say which inputs of a given size the
+      bound is about: the worst one or the best one.
+    entries:
+      - asymptotic-notation
+      - input-size
+      - time-complexity
+      - space-complexity
+      - worst-case-analysis
+      - best-case-analysis
+
+  - title: Logarithms and sums
+    intro: >
+      Most running times are sums, one term for each pass of a loop, and many contain logarithms. These
+      entries collect the few facts used again and again: the laws of logarithms, the arithmetic and the
+      geometric series, the comparison of a sum with an integral, and the harmonic numbers, which grow like
+      $\ln n$.
+    entries:
+      - logarithms
+      - arithmetic-series
+      - geometric-series
+      - integral-bounds-for-sums
+      - harmonic-series
+
+  - title: The common growth rates
+    intro: >
+      A handful of functions describe the running times of nearly all algorithms. The first two entries give
+      the idea of an order of growth and the whole ladder from $1$ to $n!$. The others take one rung each, in
+      increasing order, with the algorithms that typically land there. The last one, polynomial time, is the
+      line that complexity theory draws between feasible and infeasible.
+    entries:
+      - order-of-growth
+      - common-growth-rates
+      - constant-time
+      - logarithmic-time
+      - polylogarithmic-time
+      - sublinear-time
+      - linear-time
+      - linearithmic-time
+      - quadratic-time
+      - cubic-time
+      - polynomial-time
+
+  - title: Sharper statements
+    intro: >
+      $\Theta$ throws away the constant factor, and sometimes the constant is what you want to know. These
+      entries decide comparisons by limits, keep the leading constant with $\sim$, apply this to $n!$, extend
+      the notation to costs with several parameters, and say when an algorithm is as fast as any algorithm
+      can be.
+    entries:
+      - comparing-growth-by-limits
+      - asymptotic-equivalence
+      - tilde-notation
+      - stirling-approximation
+      - multivariate-asymptotic-notation
+      - asymptotic-optimality
+
+  - title: Checking by experiment
+    intro: >
+      A bound on paper is a prediction about a program. These two entries show how to test the prediction by
+      timing the program, and how to read the exponent of a power law from the ratio of two timings.
+    entries:
+      - empirical-analysis-of-algorithms
+      - doubling-hypothesis
+
+  - title: Functions that grow very slowly
+    intro: >
+      Some bounds contain functions that tend to infinity but are at most 5 for every input size that can occur.
+      The [iterated logarithm](/iterated-logarithm/) is one; the inverse of the Ackermann function, which
+      appears in the cost of union-find, grows more slowly still.
+    entries:
+      - iterated-logarithm
+      - ackermann-function
+      - inverse-ackermann-function

@@ -1,0 +1,18 @@
+## History
+
+Partitions were counted long before anyone listed them by machine. Euler's *Introductio in analysin infinitorum* of 1748 gave the product generating function of $p(n)$, proved that partitions into distinct parts and into odd parts are equally many, and found the pentagonal number recurrence. Glaisher turned the second result into a bijection in 1883. MacMahon's memoir of 1893 treated compositions, the ordered version. Hardy and Ramanujan found the asymptotic formula for $p(n)$ in 1918, and Rademacher made their method exact in 1937 with a convergent series. Standard Young tableaux of shape $\lambda$ give the dimensions of the representations of the symmetric group; the hook length formula of Frame, Robinson and Thrall (1954) counts them, and Greene, Nijenhuis and Wilf (1979) proved it with a random walk on hooks.
+
+Trees have a parallel history. Cayley gave the count $n^{n-2}$ of labeled trees in 1889, and Prüfer's code of 1918 gave a bijection that also serves as a generator: step through the codes and decode each one. Binary and ordered trees were linked to balanced parentheses and counted by the Catalan numbers, which made the listing of trees a problem about words.
+
+Programs for these objects appeared in the 1970s. J. K. S. McKay published Algorithm 371 in the Communications of the ACM in 1970, a generator of partitions in natural order. Nijenhuis and Wilf's book of 1978 gave short procedures for the next partition, the next composition and the next set partition, with ranking and random selection, and Milne (1977) studied the restricted growth functions that code set partitions. Ruskey and Hu (1977) gave a lexicographic generator for binary trees, and Zaks and Richards (1979) and Zaks (1980) coded $t$-ary and ordered trees by sequences and listed them with ranking and unranking. Beyer and Hedetniemi (1980) introduced level sequences and proved that their successor runs in constant amortized time, and Wright, Richmond, Odlyzko and McKay (1986) extended the method to free trees.
+
+Graphs needed a different idea, since no cheap canonical code is known. Read and Faradzev, in independent papers of 1978, proposed orderly generation, which keeps a graph only if its code is canonical and needs no list of graphs already found. B. D. McKay's canonical augmentation (1998) accepts an extension only if it is the canonical one, and it is the method of his program geng. Knuth's Volume 4A of 2011 collected the generators for partitions, set partitions, parentheses and trees in one model, with their analysis.
+
+## Further reading
+
+- Donald E. Knuth, *The Art of Computer Programming, Volume 4A: Combinatorial Algorithms, Part 1* (2011). Sections 7.2.1.4 to 7.2.1.6 give Algorithm P for partitions, Algorithm H for set partitions and the generators for parentheses and trees, with many exercises.
+- Albert Nijenhuis and Herbert S. Wilf, *Combinatorial Algorithms for Computers and Calculators* (1978). Short procedures for partitions, compositions and set partitions, each with a rank and a random version.
+- Frank Ruskey, *Combinatorial Generation* (working version, University of Victoria). Trees, parentheses and partitions from the point of view of constant amortized time, with the proofs.
+- George E. Andrews, *The Theory of Partitions* (1976). The standard text on partition identities, generating functions and the asymptotics of $p(n)$.
+- Donald L. Kreher and Douglas R. Stinson, *Combinatorial Algorithms: Generation, Enumeration, and Search* (1999). Successor, rank and unrank functions for integer partitions, set partitions and Catalan families.
+- Brendan D. McKay, *Isomorph-free exhaustive generation* (1998). The paper of canonical augmentation, with the proof that it lists each class once.

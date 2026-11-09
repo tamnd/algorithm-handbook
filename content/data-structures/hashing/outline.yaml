@@ -1,0 +1,118 @@
+# The order of chapter 3.2. Groups are read in order; entries in a group too.
+groups:
+  - title: The dictionary problem
+    intro: >
+      A dictionary stores keys with values and answers three questions: insert this key, delete it, and find
+      it. The [dictionary problem](/dictionary-problem/) states the task and the [dictionary](/dictionary/)
+      gives the abstract type. Every other entry in the chapter is a way to solve it in $O(1)$ time per
+      operation, in expectation or in the worst case.
+    entries:
+      - dictionary-problem
+      - dictionary
+
+  - title: Hash functions and collisions
+    intro: >
+      A [hash function](/hash-function/) maps a large universe of keys to the $m$ slots of a table. When
+      $m$ is smaller than the universe, two keys must share a slot, and a [collision](/hash-collision/)
+      is the normal case, not an accident. The division and multiplication methods are the two classic
+      ways to turn an integer key into a slot.
+    entries:
+      - hash-function
+      - hash-collision
+      - division-method
+      - multiplicative-hashing
+
+  - title: The hash table and its load
+    intro: >
+      A [hash table](/hash-table/) is an array of slots, a hash function and a rule for collisions. Its
+      cost is governed by the [load factor](/load-factor/) $\alpha = n/m$, and [rehashing](/rehashing/)
+      into a larger table keeps $\alpha$ bounded as keys arrive. Two first uses, removing duplicates and
+      counting words, show why the expected $O(1)$ time matters. The last entry shows how to hash keys that
+      are records rather than integers.
+    entries:
+      - collision-resolution
+      - hash-table
+      - dedup
+      - frequency-counter
+      - load-factor
+      - rehashing
+      - hash-code-for-user-defined-types
+
+  - title: Separate chaining
+    intro: >
+      The simplest rule for collisions keeps a linked list in each slot. Under simple uniform hashing a
+      search looks at $\alpha$ keys on a miss and $1 + \alpha/2 - \alpha/(2n)$ keys on a hit, so chaining
+      stays fast even when $\alpha$ is above 1.
+    entries:
+      - separate-chaining
+      - chaining-analysis
+
+  - title: Open addressing
+    intro: >
+      Open addressing stores every key in the array itself and follows a
+      [probe sequence](/probe-sequence/) until it finds the key or an empty slot. Deletion needs
+      tombstones or a shift. Linear, quadratic and double hashing differ in how they choose the next slot,
+      and the [uniform hashing assumption](/uniform-hashing-assumption/) is the ideal against which they
+      are measured. Coalesced hashing keeps chains, but inside the array.
+    entries:
+      - probe-sequence
+      - open-addressing
+      - lazy-deletion
+      - uniform-hashing-assumption
+      - linear-probing
+      - quadratic-probing
+      - double-hashing
+      - coalesced-hashing
+
+  - title: Probing in depth
+    intro: >
+      Linear probing is the fastest scheme in practice and the hardest to analyse: its unsuccessful search
+      costs $\frac12(1 + 1/(1-\alpha)^2)$ probes. Yao proved that no open-addressing scheme of a certain
+      kind beats uniform hashing. Robin Hood hashing, hopscotch hashing and the Swiss table are modern
+      layouts that cut the variance or the cache misses of probing.
+    entries:
+      - linear-probing-analysis
+      - yao-open-addressing-lower-bound
+      - robin-hood-hashing
+      - hopscotch-hashing
+      - swiss-table
+
+  - title: Random hash functions
+    intro: >
+      A fixed hash function has bad inputs, and an adversary can find them. Choosing the function at random
+      from a [universal family](/universal-hash-family/) makes the expected cost $O(1 + \alpha)$ for every
+      input. Stronger families, with $k$-wise independence or tabulation, are what the analyses of linear
+      probing and cuckoo hashing need. The [complexity attack](/algorithmic-complexity-attack/) shows what
+      happens without randomness.
+    entries:
+      - universal-hash-family
+      - universal-hashing
+      - algorithmic-complexity-attack
+      - k-wise-independent-hashing
+      - tabulation-hashing
+
+  - title: Worst-case lookups and static sets
+    intro: >
+      [Cuckoo hashing](/cuckoo-hashing/) gives each key two places, so a search looks at two cells at most.
+      When the set of keys is fixed, [perfect hashing](/perfect-hashing/) has no collisions at all: the FKS
+      scheme uses two levels and $\Theta(n)$ space, and a minimal perfect hash function maps $n$ keys onto
+      $n$ slots in about 2 to 3 bits per key. Dynamic perfect hashing keeps the worst-case search when keys
+      are added and removed.
+    entries:
+      - cuckoo-hashing
+      - static-dictionary-problem
+      - perfect-hashing
+      - fks-perfect-hashing
+      - minimal-perfect-hashing
+      - chd-hashing
+      - dynamic-perfect-hashing
+
+  - title: Tables on disk, and shared terms
+    intro: >
+      Extendible hashing and linear hashing grow a table on disk one bucket at a time, with no full
+      rehash. Hash-consing uses a hash table for a different end: it stores each distinct term once, so
+      that equal terms become equal pointers.
+    entries:
+      - extendible-hashing
+      - linear-hashing
+      - hash-consing

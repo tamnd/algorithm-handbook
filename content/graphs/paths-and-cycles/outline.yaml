@@ -1,0 +1,110 @@
+# The order of chapter 7.9. Groups are read in order; entries in a group too.
+groups:
+  - title: Walks, paths and cycles
+    intro: >
+      A walk may repeat anything, a trail repeats no edge, and a path repeats no vertex; a cycle is a
+      closed path. These words are used throughout the volume. The girth is the length of a shortest
+      cycle, and the powers of the adjacency matrix count walks of each length.
+    entries:
+      - walk
+      - simple-path
+      - trail
+      - simple-cycle
+      - girth
+      - counting-fixed-length-paths
+
+  - title: Detecting cycles
+    intro: >
+      Depth-first search finds a cycle, or proves there is none, in linear time: in a directed graph a
+      cycle exists exactly when the search meets an edge to a vertex still on the stack. A graph with no
+      directed cycle always has a source, which is the fact behind topological sorting.
+    entries:
+      - cycle-detection
+      - cycle-detection-in-graph
+      - dfs-cycle-detection
+      - dag-source-lemma
+
+  - title: Eulerian trails and circuits
+    intro: >
+      A connected graph has a closed trail through every edge exactly when every degree is even, and an
+      open one when exactly two degrees are odd. This is Euler's theorem of 1736. Hierholzer's algorithm
+      builds the circuit in linear time by splicing closed tours; Fleury's older rule avoids bridges and
+      is slower.
+    entries:
+      - eulerian-path
+      - eulerian-circuit
+      - eulerian-graph
+      - eulers-theorem-eulerian-graphs
+      - eulerian-path-problem
+      - hierholzer-algorithm
+      - fleury-algorithm
+
+  - title: Postman problems
+    intro: >
+      When a graph is not Eulerian, a closed walk through every edge must repeat some edges. The cheapest
+      choice pairs up the odd vertices by a minimum-weight perfect matching on shortest-path distances,
+      which is the Edmonds-Johnson algorithm. When only some edges must be covered, the problem becomes
+      NP-hard.
+    entries:
+      - chinese-postman-problem
+      - edmonds-johnson-algorithm
+      - rural-postman-problem
+
+  - title: Hamiltonian paths and cycles
+    intro: >
+      A path or cycle through every vertex looks like the Eulerian question with vertices in place of
+      edges, but no degree condition decides it: the problem is NP-complete. Sufficient conditions exist.
+      Dirac's theorem asks for minimum degree $n/2$, and Ore's theorem for degree sums of $n$ on
+      non-adjacent pairs.
+    entries:
+      - hamiltonian-path
+      - hamiltonian-cycle
+      - hamiltonian-cycle-problem
+      - hamiltonian-path-problem
+      - dirac-theorem
+      - ore-theorem
+
+  - title: Longest paths and path covers
+    intro: >
+      A longest simple path is as hard as a Hamiltonian path in general, but in a directed acyclic graph
+      every path is simple and dynamic programming over a topological order finds the longest in linear
+      time. Covering the vertices of a DAG with the fewest disjoint paths reduces to bipartite matching.
+    entries:
+      - longest-path-problem
+      - dag-longest-path
+      - minimum-path-cover-problem
+      - path-cover-by-bipartite-matching
+
+  - title: Shortest cycles and cycle structure
+    intro: >
+      The girth of an unweighted graph is found by one breadth-first search from each vertex. The cycles
+      of a graph form a vector space over GF(2), whose dimension is $m - n + c$ and whose basis can be
+      read off a spanning forest. With weights, a cycle of least average weight is found by Karp's
+      dynamic program over walk lengths.
+    entries:
+      - shortest-cycle-problem
+      - itai-rodeh-girth-algorithm
+      - cycle-basis
+      - minimum-mean-cycle-problem
+      - karp-minimum-mean-cycle
+
+  - title: Breaking cycles
+    intro: >
+      Removing the fewest arcs to make a directed graph acyclic, or the fewest vertices to leave a forest,
+      is NP-hard. The arcs kept form a maximum acyclic subgraph, and a vertex order or its reverse keeps at least half
+      the arcs. Subset dynamic programming solves small cases exactly.
+    entries:
+      - maximum-acyclic-subgraph
+      - feedback-arc-set-problem
+      - feedback-vertex-set-problem
+
+  - title: Listing paths and cycles
+    intro: >
+      A graph can have exponentially many paths and cycles, so listing them is measured by the time per
+      item. Backtracking that never enters a dead end, as in Read and Tarjan's method for paths and
+      Johnson's blocking rule for cycles, spends $O(n + m)$ per item.
+    entries:
+      - enumerating-simple-paths
+      - read-tarjan-path-enumeration
+      - enumerating-elementary-cycles
+      - johnson-elementary-cycles-algorithm

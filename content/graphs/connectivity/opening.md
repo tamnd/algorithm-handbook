@@ -1,0 +1,24 @@
+A road network, a power grid and a computer network all invite the same questions. Can every site reach every other? Which single junction, if closed, would cut the network in two? In a system of one-way streets, or of modules that call one another, which groups can all reach one another? This chapter answers these questions, and nearly all of its answers come from one [depth-first search](/depth-first-search/) in $\Theta(n + m)$ time.
+
+For an undirected graph, [connected components](/connected-components/) come from any traversal. The finer structure needs the DFS tree. Every non-tree edge of an undirected DFS joins a vertex to an ancestor, so the only way out of a subtree is a back edge. The [low-link value](/low-link/) of a vertex records how high its subtree can climb. A tree edge whose lower end cannot climb past it is a [bridge](/bridge/), and a vertex with a child that cannot climb above it is an [articulation point](/articulation-point/). Gathering the edges between such points gives the [biconnected components](/biconnected-components/). For a directed graph the same idea finds the [strongly connected components](/strongly-connected-components/): [Tarjan's algorithm](/tarjan-scc/) does it in one pass, and the [Kosaraju-Sharir algorithm](/kosaraju-sharir/) in two, the second on the [transpose](/graph-transpose/). Contracting the components leaves a DAG, the [condensation](/condensation-graph/), on which the methods of Chapter 7.2 apply.
+
+## What the chapter covers
+
+The chapter is in six groups, read in order.
+
+1. **Connected graphs and components.** [Connected](/connected-graph/), [weakly connected](/weakly-connected-graph/) and [strongly connected](/strongly-connected-graph/) graphs, [reachability](/reachability/), and components by [traversal](/generic-component-growing/) or [union-find](/union-find-connectivity/).
+2. **Cut vertices and bridges.** [Articulation points](/articulation-point/), [bridges](/bridge/), [low-link values](/low-link/), and the algorithms that [find articulation points](/articulation-point-finding/) and [bridges](/bridge-finding/).
+3. **Biconnected and 2-edge-connected graphs.** [Biconnected graphs](/biconnected-graph/), [blocks](/biconnected-components/), the [Hopcroft-Tarjan algorithm](/hopcroft-tarjan-biconnectivity/), the [block-cut tree](/block-cut-tree/), [2-edge-connected components](/two-edge-connected-components/), [ear decompositions](/ear-decomposition/) and [strong orientations](/strong-orientation/).
+4. **Strongly connected components.** [The components](/strongly-connected-components/), the algorithms of [Kosaraju and Sharir](/kosaraju-sharir/), [Tarjan](/tarjan-scc/) and [Gabow](/gabow-path-based-scc/), and the [condensation](/condensation-graph/).
+5. **Reachability for all pairs.** The [transitive closure](/transitive-closure/), [Warshall's algorithm](/warshall-algorithm/) and the [transitive reduction](/transitive-reduction/).
+6. **Measuring connectivity.** [Vertex cuts](/vertex-cut/), [$k$-connected graphs](/k-vertex-connected-graph/), [Menger's theorem](/menger-theorem/), [edge](/edge-connectivity/) and [vertex connectivity](/vertex-connectivity/), and [sparse certificates](/nagamochi-ibaraki-certificate/).
+
+## A first reading
+
+For a first reading, take these entries in order: [connected graph](/connected-graph/), [connected components](/connected-components/), [articulation point](/articulation-point/), [bridge](/bridge/), [low-link values](/low-link/), [bridge finding](/bridge-finding/), [articulation point finding](/articulation-point-finding/), [biconnected components](/biconnected-components/), [strongly connected components](/strongly-connected-components/), [Kosaraju-Sharir](/kosaraju-sharir/), [Tarjan's algorithm](/tarjan-scc/), [condensation](/condensation-graph/) and [transitive closure](/transitive-closure/). Group 6 rests on maximum flow and is best read after Chapter 7.6.
+
+Some entries repeat others. The [Hopcroft-Tarjan algorithm](/hopcroft-tarjan-biconnectivity/) is the algorithm of the entries on articulation points and blocks, presented once more as a whole; read it after them. [Reachability](/reachability/) restates [graph reachability](/graph-reachability/) of Chapter 7.2, and the [graph transpose](/graph-transpose/) restates the [transpose graph](/transpose-graph/) of Chapter 7.1.
+
+## Before you start
+
+From Chapter 7.2 you need [depth-first search](/depth-first-search/) with its [discovery and finish times](/discovery-and-finish-times/), the [white-path theorem](/white-path-theorem/) and the [classification of edges](/edge-classification/); this chapter uses them on every page. From Volume 3 you need the [stack](/stack/) and the [disjoint-set](/disjoint-set/) structure. Group 6 uses the [max-flow min-cut theorem](/max-flow-min-cut-theorem/) of Chapter 7.6.

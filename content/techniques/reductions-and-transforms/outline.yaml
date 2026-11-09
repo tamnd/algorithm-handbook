@@ -1,0 +1,54 @@
+# The order of chapter 2.11. Groups are read in order; entries in a group too.
+groups:
+  - title: Transform, then solve
+    intro: >
+      Transform-and-conquer changes the instance, its representation or the problem itself before solving
+      it. When the new problem is one with a known algorithm, the change is a reduction: transform the
+      instance, solve, and map the answer back. Read forward, a reduction gives an algorithm; read backward,
+      it carries hardness from one problem to another, and two problems that reduce to each other in
+      polynomial time stand or fall together.
+    entries:
+      - transform-and-conquer
+      - reduction
+      - reductions-for-algorithms
+      - polynomial-time-equivalence
+
+  - title: Sort first
+    intro: >
+      Sorting is the most common first step. After a sort, equal items are neighbours, a closest pair is
+      adjacent, and intervals can be merged in one pass. The same idea, applied to the values instead of the
+      items, replaces large numbers by their ranks so that an array or a Fenwick tree can be indexed by them.
+    entries:
+      - presorting
+      - reduction-to-sorting
+      - coordinate-compression
+
+  - title: One form for each meaning
+    intro: >
+      A normal form gives every object a restricted shape that a later algorithm can rely on, such as
+      clauses for a SAT solver. When equal meanings also get equal forms, the form is canonical, and a test
+      of equivalence becomes a test of equality, so that many objects can be grouped by one sort or one hash
+      table.
+    entries:
+      - normal-form-representation
+      - canonicalization
+
+  - title: Numbers, exact and rounded
+    intro: >
+      Two ways to use the numbers of a problem. A linear program solves many problems at once, and for
+      flows, matchings and shortest paths the optimum of the program is already integral. Scaling solves a
+      problem with the numbers rounded to their high bits first, then adds one bit at a time, so that each
+      phase needs only a small correction.
+    entries:
+      - reduction-to-linear-programming
+      - scaling-technique
+
+  - title: Change the graph
+    intro: >
+      Some graph problems become standard ones on a slightly larger graph. Splitting each vertex into an in
+      copy and an out copy turns vertex capacities into edge capacities. Taking two copies of each vertex,
+      with edges that switch copies, turns questions about odd and even walks into questions about plain
+      distances.
+    entries:
+      - vertex-splitting
+      - bipartite-double-cover

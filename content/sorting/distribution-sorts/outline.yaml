@@ -1,0 +1,74 @@
+# The order of chapter 4.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Sorting by the value of the key
+    intro: >
+      A distribution sort computes where an item goes from its key, instead of finding out by comparisons.
+      These entries define the idea, state the problem of sorting integers, and give the two simplest
+      methods: count the keys of each value, or drop each item into a hole for its value. Both take
+      $\Theta(n + k)$ time for $k$ possible keys.
+    entries:
+      - distribution-sort
+      - integer-sorting
+      - counting-sort
+      - pigeonhole-sort
+
+  - title: Radix sort
+    intro: >
+      Counting sort is fast only when the keys are small. Radix sort handles large keys by sorting on one
+      digit at a time, from the last digit to the first, with a stable counting sort for each digit. The
+      theorem gives its cost and the best size of a digit.
+    entries:
+      - radix-sort
+      - radix-sort-time-bound
+
+  - title: Bucket sort and random keys
+    intro: >
+      When the keys are real numbers spread evenly over a known interval, cutting the interval into $n$
+      equal buckets puts about one key in each. The model of the input comes first, then the sort, then
+      the proof that its expected time is linear.
+    entries:
+      - uniform-input-model
+      - bucket-sort
+      - bucket-sort-expected-linear
+
+  - title: Strings, from the first character
+    intro: >
+      Strings have different lengths, and two strings often share a long prefix. The cost of sorting them is
+      counted in characters read. [MSD radix sort](/msd-radix-sort/) splits on the first character and
+      recurses, so it reads each string only up to the point where it differs from all others. The other
+      entries handle items of different lengths, remove the buffer, and work on single bits.
+    entries:
+      - string-sorting
+      - sorting-variable-length-items
+      - msd-radix-sort
+      - american-flag-sort
+      - radix-exchange-sort
+
+  - title: Radix quicksort and tries
+    intro: >
+      A three-way partition on one character, with recursion on the next character for the middle part,
+      mixes quicksort with MSD radix sort. It needs only comparisons of characters, so a large alphabet costs
+      nothing extra. Burstsort builds a small trie of buckets and sorts the buckets with this method.
+    entries:
+      - multikey-quicksort
+      - three-way-radix-quicksort
+      - burstsort
+
+  - title: Engineered distribution sorts
+    intro: >
+      These sorts take the ideas above into practice: a linear map from keys to classes, a counting pass, a
+      permutation in place, and a comparison sort to finish small or unlucky ranges. They are fast on keys
+      that are close to uniform and need care on keys that are not.
+    entries:
+      - flashsort
+      - proxmap-sort
+      - spreadsort
+
+  - title: How fast can integers be sorted
+    intro: >
+      On the word RAM, integers can be sorted faster than $n \log n$ for every word length. These two
+      research entries give the best bounds known in linear space: $O(n \log \log n)$ deterministic and
+      $O(n \sqrt{\log \log n})$ expected. Whether $O(n)$ is possible is open.
+    entries:
+      - han-integer-sort
+      - han-thorup-integer-sort

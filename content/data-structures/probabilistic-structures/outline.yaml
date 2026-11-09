@@ -1,0 +1,58 @@
+# The order of chapter 3.10. Groups are read in order; entries in a group too.
+groups:
+  - title: Approximate membership
+    intro: >
+      A filter answers "is $x$ in the set?" with no false negatives and a small rate $\varepsilon$ of
+      false positives. The [false positive rate](/false-positive-rate/) is the price paid for space, and
+      the [lower bound](/bloom-filter-lower-bound/) says that any filter needs at least
+      $n \log_2(1/\varepsilon)$ bits.
+    entries:
+      - approximate-membership
+      - false-positive-rate
+      - bloom-filter-lower-bound
+
+  - title: The Bloom filter and its variants
+    intro: >
+      A [Bloom filter](/bloom-filter/) sets $k$ bits per key in an array of $m$ bits. With
+      $k = (m/n)\ln 2$ its false positive rate is about $0.6185^{m/n}$, which is 1.44 times the lower bound
+      in space. The variants add deletion with counters, growth with a series of filters, decay for
+      streams, and a learned model in front.
+    entries:
+      - bloom-filter
+      - bloom-filter-optimal-hash-count
+      - counting-bloom-filter
+      - scalable-bloom-filter
+      - stable-bloom-filter
+      - learned-bloom-filter
+
+  - title: Filters that store fingerprints
+    intro: >
+      A cuckoo filter or a quotient filter stores a short fingerprint of each key in a compact hash table.
+      Both support deletion, and both beat the Bloom filter in space when the target rate is low.
+    entries:
+      - cuckoo-filter
+      - quotient-filter
+
+  - title: Static filters from linear equations
+    intro: >
+      When the set is known in advance, a filter can store one fingerprint per key as the solution of a
+      system of equations over bits. The [xor filter](/xor-filter/) uses about $1.23 n$ cells, the
+      binary fuse filter about $1.125 n$, and the ribbon filter even fewer. The Bloomier filter, the
+      first of these, stores a value with each key.
+    entries:
+      - bloomier-filter
+      - xor-filter
+      - binary-fuse-filter
+      - ribbon-filter
+
+  - title: Counting in a stream
+    intro: >
+      Sketches answer questions about counts in a stream too large to store. The count-min sketch
+      overestimates each frequency by at most $\varepsilon N$ with probability $1 - \delta$, the spectral
+      Bloom filter adds counts to a filter, and the Flajolet–Martin sketch estimates the number of
+      distinct items from the positions of low-order bits.
+    entries:
+      - frequency-estimation
+      - count-min-error-bound
+      - spectral-bloom-filter
+      - flajolet-martin-sketch

@@ -1,0 +1,17 @@
+## History
+
+Context-free grammars come from linguistics. Chomsky described phrase structure grammars in 1956 as one of three models of the syntax of English, and in 1959 he gave the normal form that carries his name. At the same time, Backus used a similar notation to define the syntax of ALGOL 58, and the ALGOL 60 report, edited by Naur, made "Backus-Naur form" the standard way to define a programming language. Bar-Hillel, Perles and Shamir (1961) proved the pumping lemma, the closure under intersection with regular languages, and the first undecidability results. Cantor and Floyd showed independently in 1962 that ambiguity is undecidable, and Chomsky and Schützenberger (1963) gave their algebraic theory with its characterization by Dyck languages. Parikh's theorem appeared in a 1961 report and in print in 1966. Greibach gave her normal form in 1965.
+
+Parsing algorithms grew with the first compilers. Dijkstra described the shunting-yard algorithm in 1961, Irons built a syntax-directed compiler for ALGOL 60 in 1961, and Floyd introduced operator precedence parsing in 1963. Knuth (1965) defined the LR(k) grammars and proved that they describe exactly the deterministic context-free languages. Lewis and Stearns (1968) studied the top-down counterpart, the LL(k) grammars. Knuth's tables were too large for the machines of the time, and DeRemer's SLR and LALR methods of 1969 made LR parsing practical; LALR became the method of yacc. Knuth (1968) also introduced attribute grammars, and Pratt (1973) gave his top-down method for operator precedence.
+
+General parsing started with the cubic algorithm found independently by Cocke, Kasami and Younger in the 1960s, and with Earley's 1968 algorithm, which needs no normal form. Valiant (1975) reduced recognition to Boolean matrix multiplication, and Lee (1997) showed that the reduction also goes the other way. Lang (1974) described a nondeterministic LR parser with shared stacks, and Tomita (1986) made it a practical method, GLR, for natural language. Baker (1979) introduced the inside-outside algorithm for estimating the probabilities of a grammar.
+
+More recent work revisited top-down parsing. Ford introduced packrat parsing in 2002 and parsing expression grammars in 2004. Parr and Fisher (2011) described LL(*), the method of ANTLR, and Might, Darais and Spiewak (2011) extended Brzozowski's derivatives from regular expressions to grammars. On the theory side, Sénizergues announced in 1997, with a full proof in 2001, that equivalence of deterministic pushdown automata is decidable, a question open since the 1960s.
+
+## Further reading
+
+- John E. Hopcroft, Rajeev Motwani and Jeffrey D. Ullman, *Introduction to Automata Theory, Languages, and Computation*: grammars, pushdown automata, normal forms, the pumping lemma and the decision problems.
+- Alfred V. Aho, Monica S. Lam, Ravi Sethi and Jeffrey D. Ullman, *Compilers: Principles, Techniques, and Tools*, Chapters 4 and 5: top-down and LR parsing and syntax-directed translation, as used in compilers.
+- Dick Grune and Ceriel J. H. Jacobs, *Parsing Techniques: A Practical Guide* (Springer, 2nd edition, 2008): every parsing method in this chapter and many more, with a large annotated bibliography.
+- Seppo Sippu and Eljas Soisalon-Soininen, *Parsing Theory* (Springer, two volumes): a rigorous treatment of LL and LR parsing.
+- Christopher D. Manning and Hinrich Schütze, *Foundations of Statistical Natural Language Processing* (MIT Press, 1999): probabilistic grammars, probabilistic CKY and the inside-outside algorithm.

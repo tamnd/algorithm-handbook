@@ -1,0 +1,38 @@
+# The order of chapter 2.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Partial solutions and the tree they form
+    intro: >
+      Backtracking works on partial solutions: the first few decisions of a solution, with a test that says
+      whether they can still lead anywhere. The partial solutions form a rooted tree, the state space tree, and
+      pruning cuts away the subtrees that cannot contain what is wanted. These three entries fix the words used
+      in the rest of the chapter.
+    entries:
+      - partial-solution
+      - state-space-tree
+      - search-tree-pruning
+
+  - title: The algorithm
+    intro: >
+      The generic algorithm extends a partial solution by every candidate in turn, recurses on each one that
+      passes the test, and undoes the choice when the recursion returns. Chronological backtracking is the same
+      algorithm on a constraint satisfaction problem, where a failure always sends the search back to the most
+      recent variable.
+    entries:
+      - generic-backtracking-algorithm
+      - chronological-backtracking
+
+  - title: Two problems
+    intro: >
+      A path through a grid maze and a sum written in letters. Both are small enough to trace by hand, and both
+      show how the order of the choices and the strength of the test decide the size of the search.
+    entries:
+      - rat-in-a-maze
+      - cryptarithmetic-puzzle
+
+  - title: The order of the search
+    intro: >
+      Which variable to assign next and which value to try first. Choosing the variable with the fewest
+      remaining values can turn an exponential search into a straight line; the entry measures the effect on
+      queens and on graph coloring.
+    entries:
+      - variable-ordering-heuristics

@@ -1,0 +1,119 @@
+groups:
+  - title: Interpolation and approximation problems
+    intro: >
+      The questions the chapter answers. Interpolation asks for a function that passes through given
+      points; approximation asks for a simple function close to a given one in some norm; least squares and
+      curve fitting sit between them when the data are many or noisy.
+    entries:
+      - interpolation-problem
+      - function-approximation
+      - approximation-theory
+      - least-squares-approximation
+      - curve-fitting
+
+  - title: Polynomial interpolation
+    intro: >
+      One polynomial of degree at most $n$ passes through $n + 1$ points with distinct abscissas. The
+      entries give the ways to write it down: the Vandermonde system, which is badly conditioned, the
+      Lagrange form, the Newton form from divided differences, Neville's scheme and the barycentric
+      formula, which is the one to use. Hermite interpolation also matches derivatives.
+    entries:
+      - polynomial-interpolation
+      - vandermonde-matrix
+      - interpolating-polynomial-uniqueness
+      - lagrange-interpolation
+      - divided-differences
+      - finite-differences
+      - newton-interpolation
+      - neville-algorithm
+      - barycentric-interpolation
+      - hermite-interpolation
+
+  - title: Error and Chebyshev nodes
+    intro: >
+      The error of an interpolant is a derivative of $f$ times the node polynomial. Choosing the nodes to
+      make that polynomial small leads to Chebyshev polynomials and their zeros, the standard nodes for
+      polynomial interpolation on an interval.
+    entries:
+      - polynomial-interpolation-error-theorem
+      - chebyshev-polynomials
+      - chebyshev-nodes
+
+  - title: Best approximation and the cost of interpolating
+    intro: >
+      Every continuous function is a uniform limit of polynomials, and for each degree there is a unique
+      best one, characterized by equioscillation and computed by the Remez exchange. Jackson's theorem says
+      how fast the best error falls. The Lebesgue constant measures how far interpolation can be from that
+      best, and the Runge phenomenon shows what happens when it is large.
+    entries:
+      - weierstrass-approximation-theorem
+      - stone-weierstrass-theorem
+      - minimax-approximation
+      - chebyshev-equioscillation-theorem
+      - remez-algorithm
+      - jackson-theorem
+      - kolmogorov-width
+      - lebesgue-constant
+      - runge-phenomenon
+
+  - title: Orthogonal polynomials and series
+    intro: >
+      Polynomials orthogonal under a weight give stable bases with three-term recurrences. Legendre and
+      Chebyshev families are the main ones; a Chebyshev series is a Fourier cosine series in disguise, so
+      the FFT computes it, and periodic data are interpolated by trigonometric polynomials in the same way.
+    entries:
+      - orthogonal-polynomials
+      - legendre-polynomials
+      - chebyshev-series
+      - chebyshev-interpolation
+      - chebyshev-economization
+      - trigonometric-interpolation
+
+  - title: Piecewise interpolation and splines
+    intro: >
+      Instead of raising the degree, cut the interval into pieces and use a low-degree polynomial on each.
+      The entries go from nearest-neighbour and linear pieces to cubic Hermite pieces, monotone slopes, the
+      $C^2$ cubic spline from one tridiagonal solve, smoothing splines for noisy data, and evaluation.
+    entries:
+      - nearest-neighbor-interpolation
+      - piecewise-linear-interpolation
+      - cubic-hermite-spline
+      - fritsch-carlson-monotone-interpolation
+      - cubic-spline-interpolation
+      - smoothing-spline
+      - spline-evaluation
+
+  - title: Grids and many variables
+    intro: >
+      On a rectangular grid, one-dimensional rules applied along each axis give bilinear, bicubic and
+      tensor-product interpolation. Their cost grows like $n^d$, and sparse grids cut it for smooth
+      functions. Away from grids, polynomial interpolation in several variables depends on where the points are.
+    entries:
+      - bilinear-interpolation
+      - bicubic-interpolation
+      - multivariate-interpolation
+      - tensor-product-interpolation
+      - smolyak-sparse-grids
+
+  - title: Scattered data
+    intro: >
+      Data at arbitrary points in several dimensions. Shepard's method averages with distance weights,
+      radial basis functions solve a dense linear system, and kriging adds a statistical model that also
+      gives an error estimate.
+    entries:
+      - scattered-data-interpolation
+      - shepard-interpolation
+      - radial-basis-function-interpolation
+      - kriging
+
+  - title: Rational approximation and extrapolation
+    intro: >
+      Quotients of polynomials handle poles and kinks that defeat polynomials. Padé approximants match a
+      Taylor series and Thiele's continued fractions interpolate. The same ideas estimate the limit of a
+      slowly converging sequence from a few of its terms, as Aitken's process does.
+    entries:
+      - rational-approximation
+      - pade-approximation
+      - thiele-continued-fraction-interpolation
+      - sequence-extrapolation
+      - aitken-delta-squared
