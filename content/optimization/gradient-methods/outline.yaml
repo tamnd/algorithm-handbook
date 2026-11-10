@@ -1,0 +1,102 @@
+groups:
+  - title: The problem and its measures
+    intro: >
+      A first-order method sees a function only through its values and its gradient. The entries of
+      this group fix the setting: the gradient, the smoothness constant $L_f$ that bounds how fast the
+      gradient changes, the problem of minimizing a smooth function, and the two measures used
+      everywhere after them, the rate of convergence and the condition number $\kappa = L_f/\mu$.
+    entries:
+      - gradient
+      - smoothness
+      - unconstrained-smooth-minimization
+      - convergence-rate
+      - condition-number-of-an-optimization-problem
+  - title: Gradient descent and its guarantees
+    intro: >
+      Gradient descent moves against the gradient with a fixed step. With step $1/L_f$ it reaches
+      accuracy $\varepsilon$ in $O(L_fR^2/\varepsilon)$ steps on convex functions and in
+      $O(\kappa\log(1/\varepsilon))$ steps on strongly convex ones. The Polyak-Lojasiewicz condition
+      gives the linear rate without convexity, and coordinate descent applies the same step one
+      coordinate at a time.
+    entries:
+      - gradient-descent
+      - gradient-descent-convergence-theorem
+      - linear-convergence-strongly-convex
+      - polyak-lojasiewicz-condition
+      - coordinate-descent
+  - title: Choosing the step
+    intro: >
+      When $L_f$ is unknown, a line search picks the step from values of $f$ along the search
+      direction. The Armijo condition asks for enough decrease and backtracking finds such a step by
+      halving; the Wolfe conditions add a curvature test that quasi-Newton and conjugate gradient
+      methods need. Exact line search and the Polyak step are the two ends of the range.
+    entries:
+      - step-size-selection
+      - armijo-condition
+      - backtracking-line-search
+      - exact-line-search
+      - wolfe-conditions
+      - polyak-step-size
+  - title: Momentum and acceleration
+    intro: >
+      Adding a multiple of the last step to the gradient step changes the dependence on the condition
+      number from $\kappa$ to $\sqrt\kappa$. The heavy ball method does this on quadratics; the
+      lower bound for first-order methods shows that $\sqrt\kappa$ and $1/k^2$ cannot be beaten, and
+      Nesterov's method attains both on every smooth convex function.
+    entries:
+      - momentum-method
+      - first-order-lower-bound
+      - nesterov-accelerated-gradient
+  - title: Constraints and nonsmooth terms
+    intro: >
+      A constraint or a nonsmooth regularizer enters through a cheap subproblem: a projection, a
+      proximal operator or a mirror step. Projected and proximal gradient methods keep the rates of
+      gradient descent, FISTA keeps the accelerated rate, and mirror descent uses a
+      [Bregman divergence](/bregman-divergence/) to match the geometry of the feasible set.
+    entries:
+      - constrained-smooth-minimization
+      - projected-gradient-descent
+      - proximal-operator
+      - composite-minimization
+      - proximal-gradient-method
+      - fista
+      - bregman-divergence
+      - mirror-descent
+  - title: Curvature from gradients
+    intro: >
+      Differences of gradients carry information about the Hessian. Nonlinear conjugate gradient
+      keeps one extra vector; quasi-Newton methods build an approximation of the inverse Hessian
+      from the secant equation, and BFGS and its limited memory form are the standard
+      methods for smooth problems of moderate and large size.
+    entries:
+      - nonlinear-conjugate-gradient
+      - quasi-newton-method
+      - bfgs
+      - limited-memory-bfgs
+  - title: Stochastic gradients
+    intro: >
+      When the objective is an expectation or a long sum, a method can afford only a noisy estimate of
+      the gradient. Stochastic gradient descent needs decreasing steps, and its rates are
+      $O(1/\sqrt k)$ and $O(1/k)$ instead of linear. For finite sums, SVRG and SAGA remove the noise
+      at the solution and recover a linear rate at the cost of one component gradient per step.
+    entries:
+      - stochastic-optimization
+      - stochastic-gradient-descent
+      - robbins-monro-algorithm
+      - finite-sum-minimization
+      - svrg
+      - saga
+  - title: Adaptive steps and geometry
+    intro: >
+      The methods used to train neural networks scale each coordinate of the gradient by a running
+      measure of its size. AdaGrad sums the squared gradients, RMSProp and Adadelta use moving
+      averages, Adam adds momentum, and Rprop keeps only the signs. Natural gradient descent
+      replaces the coordinate scaling by the inverse Fisher information matrix.
+    entries:
+      - adagrad
+      - rmsprop
+      - adam
+      - adadelta
+      - rprop
+      - fisher-information-matrix
+      - natural-gradient-descent

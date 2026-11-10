@@ -1,0 +1,109 @@
+# The order of chapter 16.3 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: Problems and models
+    intro: >
+      A [constraint satisfaction problem](/constraint-satisfaction-problem/) has variables, finite
+      domains and constraints on small sets of variables. The constraint graph shows which variables
+      interact, constraint programming is the way of working that states a model and leaves the search
+      to a solver, and the dual graph turns constraints of any arity into binary ones.
+    entries:
+      - constraint-satisfaction-problem
+      - constraint-graph
+      - constraint-programming
+      - dual-graph-transformation
+
+  - title: Local consistency
+    intro: >
+      A solver first removes values that cannot be part of any solution. Node and
+      [arc consistency](/arc-consistency/) look at one constraint at a time, and AC-3 and AC-4 enforce
+      arc consistency in $O(ed^3)$ and $O(ed^2)$ time. Stronger levels check pairs and triples of
+      variables, up to $k$-consistency. Global constraints come last, because each has its own
+      propagator for generalized arc consistency.
+    entries:
+      - node-consistency
+      - arc-consistency
+      - constraint-propagation
+      - ac-3
+      - ac-4
+      - bounds-consistency
+      - singleton-arc-consistency
+      - path-consistency
+      - pc-2
+      - k-consistency
+      - global-constraint
+
+  - title: Search and heuristics
+    intro: >
+      Propagation alone rarely finishes the job, so search assigns variables one by one.
+      [Forward checking](/forward-checking/) and maintaining arc consistency prune the future domains
+      after each assignment. The fail-first idea picks the variable with the fewest values left, and
+      the value ordering picks the value that removes the least. Min-conflicts is the local search
+      alternative.
+    entries:
+      - forward-checking
+      - minimum-remaining-values
+      - degree-heuristic
+      - least-constraining-value
+      - maintaining-arc-consistency
+      - min-conflicts
+
+  - title: Smarter backtracking
+    intro: >
+      Plain backtracking undoes the last choice even when an earlier one caused the failure.
+      Backjumping goes straight to a variable that shares the blame, using the constraint graph or a
+      conflict set kept during the search. Nogood learning records the cause of a failure, and dynamic
+      backtracking keeps the work done in between.
+    entries:
+      - graph-based-backjumping
+      - conflict-directed-backjumping
+      - nogood-learning
+      - dynamic-backtracking
+
+  - title: All-different and symmetry
+    intro: >
+      The [all-different constraint](/all-different-constraint/) is the most used global constraint.
+      Pairwise $\ne$ constraints say the same thing but propagate much less, and Régin's filter reaches
+      generalized arc consistency with one matching and one pass of strongly connected components.
+      Symmetry breaking removes solutions that differ only by a symmetry of the model.
+    entries:
+      - all-different-constraint
+      - regin-all-different-filtering
+      - symmetry-breaking
+
+  - title: Structure
+    intro: >
+      The shape of the constraint graph can make a problem easy. Freuder's theorem gives
+      backtrack-free search when the level of consistency exceeds the width, and a
+      [tree-structured CSP](/tree-structured-csp/) takes $O(nd^2)$ time. Cutset conditioning reduces a
+      graph to a tree, and bucket elimination costs time exponential only in the induced width.
+    entries:
+      - freuder-theorem
+      - tree-structured-csp
+      - cutset-conditioning
+      - bucket-elimination
+
+  - title: Costs, real numbers and time
+    intro: >
+      Some problems ask for the best assignment rather than any. Maximum CSP counts satisfied
+      constraints, and soft constraints give each tuple a cost or a preference. Real variables with
+      interval domains need interval propagation and branch and prune, and the simple temporal problem
+      decides bounds on differences of time points by shortest paths.
+    entries:
+      - maximum-csp
+      - soft-constraints
+      - numeric-constraint-satisfaction
+      - interval-constraint-propagation
+      - simple-temporal-problem
+
+  - title: Complexity of constraint languages
+    intro: >
+      Fix the allowed relations and ask how hard the CSP is. Schaefer's theorem answers this for Boolean
+      relations: six classes are in P and all others are NP-complete. Polymorphisms, operations that
+      preserve every relation, explain the classes, and the [CSP dichotomy theorem](/csp-dichotomy-theorem/)
+      extends the answer to every finite domain. Counting has its own dichotomy.
+    entries:
+      - boolean-constraint-satisfaction
+      - constraint-language-polymorphisms
+      - schaefer-dichotomy-theorem
+      - counting-csp
+      - csp-dichotomy-theorem

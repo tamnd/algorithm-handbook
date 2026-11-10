@@ -569,3 +569,141 @@ paths:
           - entry: p-versus-np-problem
           - entry: cook-levin-theorem
           - entry: karps-21-np-complete-problems
+
+  - id: optimization-and-solving
+    title: Optimization and constraint solving
+    for: a programmer who wants to state a problem as a model and hand it to a solver, and to know what the solver does.
+    intro: >
+      Linear and integer programs, convex problems and gradient methods, the heuristics used when no exact
+      method is fast enough, and the solvers for logic: SAT, SMT and constraint programming. The path follows
+      Volumes 15 and 16 and borrows a few entries from the earlier volumes. Its last stage, on decision
+      diagrams, unification and model checking, can be read on its own.
+    stages:
+      - title: Linear programming
+        steps:
+          - convex-set
+          - linear-programming-problem
+          - dual-linear-program
+          - weak-duality
+          - simplex-method
+          - strong-duality
+          - complementary-slackness
+          - entry: max-flow-problem
+            why: a problem you already know, written as a linear program.
+      - title: Integer programming
+        steps:
+          - lp-relaxation
+          - integrality-gap
+          - total-unimodularity
+          - cutting-plane-method-integer-programming
+          - branch-and-cut
+          - knapsack-problem
+          - traveling-salesman-problem
+      - title: Convex and continuous optimization
+        steps:
+          - convex-function
+          - lagrangian-duality
+          - kkt-conditions
+          - gradient-descent
+          - nesterov-accelerated-gradient
+          - stochastic-gradient-descent
+          - adam
+      - title: When no exact method is fast enough
+        steps:
+          - local-search
+          - hill-climbing
+          - simulated-annealing
+          - tabu-search
+          - genetic-algorithm
+          - no-free-lunch-theorem
+          - pareto-front
+      - title: SAT solving
+        steps:
+          - sat
+          - conjunctive-normal-form
+          - tseitin-transformation
+          - unit-propagation
+          - dpll
+          - two-watched-literals
+          - implication-graph
+          - clause-learning
+          - cdcl
+          - 2-sat
+          - walksat
+      - title: SMT and constraint programming
+        steps:
+          - smt-problem
+          - congruence-closure
+          - euf-satisfiability
+          - dpll-t
+          - constraint-satisfaction-problem
+          - arc-consistency
+          - ac-3
+          - forward-checking
+          - min-conflicts
+          - constraint-programming
+      - title: Decision diagrams, unification and model checking
+        steps:
+          - binary-decision-diagram
+          - most-general-unifier
+          - robinson-unification
+          - robinson-resolution
+          - ctl-model-checking
+          - ltl-model-checking
+
+  - id: randomized-and-approximation
+    title: Randomized and approximation algorithms
+    for: a student who has done a first course and wants the algorithms that flip coins or settle for a near-optimal answer.
+    intro: >
+      The probability needed, then sampling, shuffling and hashing, the two kinds of randomized algorithm,
+      Markov chains, and how randomness is removed again. The last stage starts the study of approximation
+      with covering and packing problems; the rest of Volume 18 is still being written.
+    stages:
+      - title: The probability you need
+        steps:
+          - linearity-of-expectation
+          - markov-inequality
+          - chernoff-bound
+          - high-probability-bounds
+      - title: Sampling and shuffling
+        steps:
+          - uniform-random-subset
+          - reservoir-sampling
+          - inverse-transform-sampling
+          - rejection-sampling
+          - alias-method
+          - fisher-yates-shuffle
+          - entry: naive-shuffle
+            why: the shuffle that looks right and is not.
+      - title: Hashing
+        steps:
+          - universal-hashing
+          - pairwise-independence
+          - universal-hashing-expected-chain-length
+      - title: Las Vegas and Monte Carlo
+        steps:
+          - las-vegas-algorithm
+          - monte-carlo-algorithm
+          - error-amplification
+          - freivalds-algorithm
+          - miller-rabin-primality-test
+          - schwartz-zippel-lemma
+      - title: Markov chains
+        steps:
+          - markov-chain
+          - metropolis-hastings
+          - mixing-time
+      - title: Removing the randomness
+        steps:
+          - method-of-conditional-expectations
+          - k-wise-independence
+      - title: Covering and packing
+        steps:
+          - vertex-cover-2-approximation
+          - greedy-set-cover
+          - set-cover-primal-dual
+          - local-ratio-technique
+          - maximum-cut
+          - first-fit-decreasing
+          - bin-packing-aptas
+          - gonzalez-k-center

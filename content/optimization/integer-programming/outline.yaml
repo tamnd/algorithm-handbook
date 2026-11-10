@@ -1,0 +1,124 @@
+# The order of chapter 15.2. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its relaxation
+    intro: >
+      An integer program is a linear program in which some variables must take integer values. These entries
+      define the mixed and the 0-1 problems and the decision question behind them, and then the tool that every
+      method of the chapter uses: drop integrality, solve the linear program that is left, and measure how far
+      its value can sit from the integer optimum.
+    entries:
+      - mixed-integer-programming
+      - binary-integer-programming
+      - integer-feasibility
+      - lp-relaxation
+      - integrality-gap
+
+  - title: Modelling with binary variables
+    intro: >
+      A binary variable can switch a constraint on and off. The [big-M formulation](/big-m-formulation/) does it
+      with one large constant, and the size of that constant decides how strong the relaxation is. Indicator
+      constraints state the same logic directly and let the solver choose how to enforce it.
+    entries:
+      - big-m-formulation
+      - indicator-constraint
+
+  - title: Integral polyhedra
+    intro: >
+      The convex hull of the integer points of a polyhedron is again a polyhedron, and a formulation whose
+      relaxation equals it can be solved as a linear program. These entries say when that happens. Total
+      unimodularity is a property of the matrix alone, and the Hoffman-Kruskal theorem shows it is exactly what
+      makes every right-hand side give an integral polyhedron. Total dual integrality is a weaker property of
+      the system.
+    entries:
+      - integer-hull
+      - ideal-formulation
+      - total-unimodularity
+      - hoffman-kruskal-theorem
+      - totally-dual-integrality
+
+  - title: Chvátal-Gomory cuts and the closure
+    intro: >
+      A cutting plane is an inequality that every integer point satisfies but the current LP optimum does not.
+      The simplest ones come from rounding: combine the rows, round the coefficients and the right-hand side
+      down. Adding all such cuts at once gives the Chvátal closure, and repeating it reaches the integer hull of
+      a rational polyhedron after finitely many rounds.
+    entries:
+      - cutting-plane-method-integer-programming
+      - chvatal-gomory-cut
+      - chvatal-closure
+      - chvatal-gomory-finite-convergence
+      - zero-half-cut
+
+  - title: Cuts from the simplex tableau and mixed-integer cuts
+    intro: >
+      Gomory read his cuts off the rows of the optimal simplex tableau and proved that the method ends. The
+      mixed-integer version of his cut and the mixed-integer rounding inequality handle continuous variables,
+      and are the same cut seen two ways. Subadditive duality explains why rounding is enough: the dual of an
+      integer program is a problem over functions built with round-down.
+    entries:
+      - gomory-cutting-plane-algorithm
+      - gomory-mixed-integer-cut
+      - mixed-integer-rounding-inequality
+      - subadditive-duality
+
+  - title: Cuts from structure and disjunctions
+    intro: >
+      Some cuts use the form of one row. A [cover inequality](/cover-inequality/) comes from a set of items too
+      heavy for a knapsack, and a flow cover from a set of arcs whose capacity exceeds a demand. Others use the
+      fact that each integer variable is either at most $k$ or at least $k + 1$: a disjunctive cut is valid for
+      both sides, and lift-and-project builds such cuts from a linear program.
+    entries:
+      - cover-inequality
+      - flow-cover-inequality
+      - disjunctive-cut
+      - lift-and-project
+
+  - title: Branch and cut and its parts
+    intro: >
+      Modern solvers combine branch and bound with cutting planes. These entries describe that framework and
+      the parts that decide its speed: presolve shrinks the model before the search, and the branching rules
+      choose the variable to split. Strong branching measures, pseudocosts remember, reliability branching
+      mixes the two, and orbital branching uses symmetry.
+    entries:
+      - branch-and-cut
+      - presolve
+      - strong-branching
+      - pseudocost-branching
+      - reliability-branching
+      - orbital-branching
+
+  - title: Primal heuristics
+    intro: >
+      A good feasible solution found early prunes much of the tree. Diving rounds and fixes variables down one
+      path of LP solves. The feasibility pump alternates between rounding and projection. RINS and local
+      branching search a small region around the incumbent with a sub-solver.
+    entries:
+      - diving-heuristic
+      - feasibility-pump
+      - relaxation-induced-neighborhood-search
+      - local-branching
+
+  - title: Decomposition
+    intro: >
+      Large programs often have a block structure. Benders decomposition keeps the integer variables in a
+      master problem and turns the duals of the continuous part into cuts. Branch and price does the opposite:
+      it puts columns, not rows, into the LP as needed, and branches on them.
+    entries:
+      - benders-decomposition
+      - branch-and-price
+
+  - title: Fixed dimension and pseudo-polynomial algorithms
+    intro: >
+      Integer programming is NP-hard, but it becomes polynomial when the number of variables is fixed, and
+      pseudo-polynomial when the number of constraints is fixed. Lenstra's algorithm uses lattice basis
+      reduction to find a thin direction and branch on it; Kannan's algorithm lowers the cost to $n^{O(n)}$, and
+      the Frank-Tardos method makes the numbers small. Proximity between LP and integer optima gives the
+      fastest pseudo-polynomial algorithms.
+    entries:
+      - integer-programming-fixed-dimension
+      - lenstra-algorithm
+      - lenstra-theorem
+      - kannan-algorithm
+      - frank-tardos-algorithm
+      - papadimitriou-pseudopolynomial-theorem
+      - eisenbrand-weismantel-proximity-theorem

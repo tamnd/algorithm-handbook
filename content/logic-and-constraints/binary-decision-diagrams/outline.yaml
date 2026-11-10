@@ -1,0 +1,91 @@
+# The order of chapter 16.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Boolean functions and their cofactors
+    intro: >
+      Everything in the chapter rests on one object and one identity. A [Boolean function](/boolean-function/)
+      maps $\{0,1\}^n$ to $\{0,1\}$; fixing one variable gives a [cofactor](/cofactor/); and the
+      [Shannon expansion](/shannon-expansion/) writes a function from its two cofactors. Two problems that
+      BDDs later make easy, equivalence and quantifier elimination, are stated here in their general form.
+    entries:
+      - boolean-function
+      - cofactor
+      - shannon-expansion
+      - boolean-equivalence-checking
+      - boolean-quantifier-elimination
+
+  - title: From decision diagrams to a canonical form
+    intro: >
+      A [binary decision diagram](/binary-decision-diagram/) applies the Shannon expansion again and again
+      and shares equal subgraphs. Fixing one variable order and applying two reduction rules gives the
+      [reduced ordered BDD](/reduced-ordered-bdd/), and the [canonicity theorem](/bdd-canonicity/) says it is
+      unique for each function and order. Read these five entries closely: the rest of the chapter builds on them.
+    entries:
+      - binary-decision-diagram
+      - ordered-binary-decision-diagram
+      - bdd-reduction-rules
+      - reduced-ordered-bdd
+      - bdd-canonicity
+
+  - title: Operations on BDDs
+    intro: >
+      The operations recurse on the top variable and cache their results in a
+      [computed table](/computed-table/), so their cost is bounded by products of the sizes of their
+      arguments. [APPLY](/bdd-apply/) and [ITE](/ite-operator/) combine functions; counting, quantification
+      and composition are built from them. [Complemented edges](/complemented-edges/) are the main
+      refinement that real packages add.
+    entries:
+      - computed-table
+      - bdd-apply
+      - ite-operator
+      - bdd-satisfy-count
+      - bdd-quantification
+      - boolean-function-composition
+      - bdd-compose
+      - complemented-edges
+
+  - title: Simplifying with a care set
+    intro: >
+      Often a function matters only on part of its inputs, such as the reachable states of a circuit.
+      [Generalized cofactors](/generalized-cofactor/) use that freedom to shrink a BDD by a fast heuristic,
+      and [don't-care minimization](/dont-care-minimization/) is the exact problem, which is NP-complete.
+    entries:
+      - generalized-cofactor
+      - dont-care-minimization
+
+  - title: The variable order
+    intro: >
+      The size of a reduced ordered BDD can change from linear to exponential when only the order of the
+      variables changes. These entries state the [ordering problem](/variable-ordering/), show that it is
+      NP-complete, and give the methods used in practice, [sifting](/bdd-sifting/) above all, and the exact
+      exponential algorithm of Friedman and Supowit.
+    entries:
+      - variable-ordering
+      - variable-ordering-np-hardness
+      - bdd-sifting
+      - window-permutation-reordering
+      - friedman-supowit-ordering
+
+  - title: Limits and stronger models
+    intro: >
+      Some functions have no small ordered BDD under any order. Free BDDs, where each path may read the
+      variables in its own order, are exponentially stronger, and two classic lower bounds, for the
+      [hidden weighted bit](/hidden-weighted-bit-lower-bound/) function and for the
+      [middle bit of multiplication](/multiplier-bdd-lower-bound/), mark where ordered BDDs fail.
+    entries:
+      - read-once-branching-program
+      - free-binary-decision-diagram
+      - hidden-weighted-bit-lower-bound
+      - multiplier-bdd-lower-bound
+
+  - title: Other decision diagrams
+    intro: >
+      The same ideas, a fixed order, shared nodes and reduction rules, work for variables with more than two
+      values, for numeric outputs, for families of sets and for other expansions than Shannon's. The general
+      [decision diagram](/decision-diagram/) comes first; each of the others changes one part of it.
+    entries:
+      - decision-diagram
+      - multi-valued-decision-diagram
+      - algebraic-decision-diagram
+      - zero-suppressed-bdd
+      - binary-moment-diagram
+      - kronecker-functional-decision-diagram

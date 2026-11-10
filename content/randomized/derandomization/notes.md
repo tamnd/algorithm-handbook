@@ -1,0 +1,17 @@
+## History
+
+Von Neumann (1951) described the pair trick for biased coins in a note on random digits for Monte Carlo computation. Elias (1972) proved that no exact procedure beats the entropy rate, and Peres (1992) reached that rate by iterating von Neumann's procedure. The deterministic side began in combinatorics: Erdős and Selfridge (1973) used a potential function to win a game, Johnson (1974) gave the greedy algorithm for MAX-SAT, and Raghavan (1988) introduced pessimistic estimators and used them to round linear programs.
+
+Small sample spaces came from parallel algorithms. Luby (1986) and Alon, Babai and Itai (1986) found maximal independent sets with pairwise independent choices and then searched the small space; Alon, Babai and Itai also proved the lower bound on the size of $k$-wise independent spaces. Chor and Goldreich (1989) analysed two-point sampling. Naor and Naor (1990) introduced small-bias spaces, and Alon, Goldreich, Håstad and Peralta (1992) gave the simple constructions. Ajtai, Komlós and Szemerédi (1987) used walks on expanders to save random bits, and Cohen and Wigderson (1989) and Impagliazzo and Zuckerman (1989) used them to reduce errors.
+
+Pseudorandom generators began in cryptography. Blum and Micali (1982) built one from the discrete logarithm with the next-bit test, and Yao (1982) proved that test universal. Goldwasser and Micali (1984) defined computational indistinguishability. Håstad, Impagliazzo, Levin and Luby, in the journal paper of 1999, built a generator from any one-way function. Nisan and Wigderson (1988, journal 1994) used a weaker assumption, a hard function in exponential time, and Impagliazzo and Wigderson (1997) reached BPP $=$ P from worst-case hardness. For space, Nisan (1990, journal 1992) gave a generator with no assumption, and Saks and Zhou (1999) put BPL in space $O(\log^{3/2} n)$.
+
+Weak sources were studied by Santha and Vazirani (1986) and by Chor and Goldreich (1988), who gave the inner product as a two-source extractor. Sipser (1988) defined dispersers. Impagliazzo, Levin and Luby (1989) proved the leftover hash lemma, and Nisan and Zuckerman (journal 1996) defined seeded extractors. Radhakrishnan and Ta-Shma (2000) proved the lower bounds on seed and entropy loss, and Trevisan (1999, journal 2001) built extractors from the Nisan-Wigderson generator. Chattopadhyay and Zuckerman (2016) gave two-source extractors for polylogarithmic min-entropy.
+
+## Further reading
+
+- Salil P. Vadhan, *Pseudorandomness*, Foundations and Trends in Theoretical Computer Science 7(1–3) (2012). The standard survey; it treats limited independence, expanders, extractors, codes and generators as one subject.
+- Sanjeev Arora and Boaz Barak, *Computational Complexity: A Modern Approach* (2009). Chapters 9, 20 and 21 cover cryptographic generators, hardness versus randomness, extractors and generators for small space.
+- Noga Alon and Joel H. Spencer, *The Probabilistic Method*, fourth edition (2016). Chapter 16 covers the method of conditional probabilities and $d$-wise independence in small sample spaces.
+- Oded Goldreich, *Foundations of Cryptography, Volume 1: Basic Tools* (2001). Chapter 3 is a careful treatment of pseudorandom generators from one-way functions.
+- Michael Mitzenmacher and Eli Upfal, *Probability and Computing*, second edition (2017). An undergraduate text with derandomization by conditional expectations and pairwise independence.

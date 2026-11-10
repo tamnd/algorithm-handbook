@@ -79,12 +79,66 @@ tests and reviews in the project. Errors remain. Please report them at
 """
 
 
+# TeX that pandoc's MathML writer (texmath) cannot read and prints as source. XeTeX reads all of it; the EPUB
+# gets equivalent forms: `{n \atop k}` (Stirling and Eulerian numbers), `\xRightarrow{a}`, `\textsc{update}` (a
+# procedure name; MathML has no small capitals, so capitals), `{\rm best}`, `\cfrac`, `\tbinom` and `\bmod`.
+_MATH = re.compile(r"\$\$.*?\$\$|(?<![\\$])\$[^$\n]+\$", re.S)
+_MATHML = [
+    (re.compile(r"(?<!\\)\{\s*([^{}$]*?)\s*\\atop\s*([^{}$]*?)\s*(?<!\\)\}"),
+     lambda m: "{\\begin{matrix}" + m[1] + "\\\\" + m[2] + "\\end{matrix}}"),
+    (re.compile(r"(\\left(?:\\[A-Za-z]+|\\.|.))\s*([^{}$]*?)\s*\\atop\s*([^{}$]*?)\s*(\\right(?:\\[A-Za-z]+|\\.|.))"),
+     lambda m: m[1] + " \\begin{matrix}" + m[2] + "\\\\" + m[3] + "\\end{matrix} " + m[4]),
+    (re.compile(r"\\texttt\{([^{}$]*)\}"), lambda m: "\\texttt{" + m[1].replace("\\dots", "...") + "}"),
+    (re.compile(r"\\dbinom(?![A-Za-z])"), lambda m: "\\binom"),
+    (re.compile(r"\\xRightarrow\{([^{}$]*)\}"), lambda m: "\\overset{" + m[1] + "}{\\Rightarrow}"),
+    (re.compile(r"\\textsc\{([^{}$]*)\}"), lambda m: "\\text{" + m[1].upper() + "}"),
+    (re.compile(r"\{\\rm\s+([^{}$]*)\}"), lambda m: "\\mathrm{" + m[1] + "}"),
+    (re.compile(r"\\cfrac(?![A-Za-z])"), lambda m: "\\dfrac"),
+    (re.compile(r"\\tbinom(?![A-Za-z])"), lambda m: "\\binom"),
+    (re.compile(r"\\bmod(?![A-Za-z])"), lambda m: "\\mathbin{\\mathrm{mod}}"),
+]
+
+
+def mathml_safe(md: str) -> str:
+    def span(m: re.Match) -> str:
+        t = m.group(0)
+        for rx, f in _MATHML:
+            t = rx.sub(f, t)
+        return t
+    return _MATH.sub(span, md)
+
+
+_HEADING = re.compile(r"^(#{1,6} .*?)(?:\s*(?<!\])\{([^{}]*)\})?\s*$")
+_FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+
+
+def heading_ids(md: str) -> str:
+    """Give every heading without an identifier one of its own (`h-1`, `h-2`, …). Pandoc's EPUB writer would
+    otherwise make one from the text, and the section "Termination" of one entry would take the identifier of
+    the entry `termination`, and its links."""
+    out, fence, n = [], None, 0
+    for ln in md.split("\n"):
+        f = _FENCE.match(ln)
+        if f:
+            if fence is None:
+                fence = f.group(1)[0]
+            elif f.group(1)[0] == fence:
+                fence = None
+        elif fence is None and ln.startswith("#") and (m := _HEADING.match(ln)):
+            attrs = m.group(2) or ""
+            if not re.search(r"(^|\s)#", attrs):
+                n += 1
+                ln = f"{m.group(1)} {{#h-{n}{' ' + attrs if attrs else ''}}}"
+        out.append(ln)
+    return "\n".join(out)
+
+
 def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str) -> dict:
     os.makedirs(outdir, exist_ok=True)
     t = time.time()
     src = os.path.join(outdir, "epub.md")
     open(src, "w").write(metadata(book, vol, edition, date) + "\n" + copyright_md(book, vol, edition, date)
-                         + "\n\n" + md)
+                         + "\n\n" + heading_ids(mathml_safe(md)))
     cover = os.path.join(outdir, "cover.png")
     cover_png(vol, edition, cover)
     out = os.path.join(outdir, "main.epub")
@@ -99,7 +153,8 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     if r.returncode:
         info["error"] = r.stderr[-4000:]
     elif r.stderr.strip():
-        info["epub_warnings"] = len(r.stderr.strip().splitlines())
+        info["epub_warnings"] = r.stderr.count("[WARNING]")
+        open(os.path.join(outdir, "epub.log"), "w").write(r.stderr)
     if os.path.exists(out):
         space_functions(out)
         info["epub"] = out

@@ -40,6 +40,27 @@ PATCHES: dict[str, list[tuple[str, str]]] = {
         '"the sum is $O(\\text{largest term})" is valid',
         '"the sum is $O(\\text{largest term})$" is valid',
     )],
+    # a stray closing $ after the last value of each list
+    "strings/string-combinatorics/lyndon-schutzenberger-theorem/node.md": [
+        ("99, 186, 335$, and for", "99, 186, 335, and for"),
+        ("116, 312, 810$.", "116, 312, 810."),
+    ],
+    # hexadecimal literals between dollars: pandoc ends no span at a $ followed by a digit
+    "numerical/floating-point/double-double-arithmetic/node.md": [(
+        "$x = (-$0x1.45445899589ccp+2$, -$0x1.ff9da156eb005p-52$)$ and "
+        "$y = ($0x1.45445899589cdp+2$, -$0x1.fff91af117dcep-52$)$",
+        "$x = (-\\texttt{0x1.45445899589ccp+2}, -\\texttt{0x1.ff9da156eb005p-52})$ and "
+        "$y = (\\texttt{0x1.45445899589cdp+2}, -\\texttt{0x1.fff91af117dcep-52})$",
+    )],
+    "numerical/floating-point/fast-two-sum/node.md": [(
+        "| $-$0x1.ffffffffffffep-54 $= -2^{-53} + 2^{-105}$ |",
+        "| $-\\texttt{0x1.ffffffffffffep-54} = -2^{-53} + 2^{-105}$ |",
+    )],
+    # the end marker $ is a literal; the dollars around t = are mathematics
+    "data-structures/string-structures/suffix-tree-from-suffix-array/node.md": [(
+        "with the end marker $ smaller than every letter, $t = $ banana$ and $n = 7$:",
+        "with the end marker \\$ smaller than every letter, $t =$ banana\\$ and $n = 7$:",
+    )],
 }
 
 

@@ -1,0 +1,110 @@
+# The order of chapter 15.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its order
+    intro: >
+      With several objectives there is no single best value, only trade-offs. These entries set up the
+      problem, the dominance order that compares two images, the Pareto optimal solutions that this order
+      leaves, and the front they form. The ideal and nadir points bound the front from below and from above.
+    entries:
+      - multi-objective-optimization
+      - pareto-dominance
+      - pareto-optimality
+      - pareto-front
+      - ideal-point
+      - nadir-point
+
+  - title: Preferences and scalarization
+    intro: >
+      A decision maker picks one point of the front, so a method needs some account of preferences, and
+      the entries say when that account enters. The common tool is a scalarization: one objective whose
+      optima are Pareto optimal. The [weighted sum](/weighted-sum-method/) reaches only the supported
+      points; the [epsilon-constraint](/epsilon-constraint-method/) and
+      [Tchebycheff](/weighted-tchebycheff-method/) methods reach all of them, at the price of weak optima.
+    entries:
+      - utility-function
+      - preference-articulation
+      - scalarization
+      - weighted-sum-method
+      - epsilon-constraint-method
+      - weighted-tchebycheff-method
+      - goal-programming
+      - lexicographic-optimization
+
+  - title: Reference points and directions
+    intro: >
+      A reference point says where the decision maker would like to be, and the achievement function finds
+      the front point that matches it best, whether the point is attainable or not. Normal-boundary
+      intersection instead sends evenly spaced rays from the plane of the single-objective optima, to get an
+      even spread of points along the front.
+    entries:
+      - achievement-scalarizing-function
+      - reference-point-method
+      - normal-boundary-intersection
+
+  - title: Finite sets of vectors
+    intro: >
+      Many methods hold a list of images and must find its non-dominated part, or sort it into layers.
+      For $p \le 3$ objectives [Kung's algorithm](/kung-algorithm/) does the first in $O(n \log n)$ time.
+      The fast non-dominated sort, the ranks built on it and the crowding distance are the parts from
+      which NSGA-II is made.
+    entries:
+      - pareto-front-computation
+      - kung-algorithm
+      - non-dominated-sorting
+      - pareto-ranking
+      - crowding-distance
+
+  - title: Evolutionary algorithms
+    intro: >
+      A population can approximate the whole front in one run. The entries follow the history: selection by
+      one objective at a time, then by Pareto rank with sharing, then elitism by archives and by survival of
+      the best fronts, and last decomposition and reference lines for many objectives. All of them are
+      heuristics, with no general guarantee to reach the front.
+    entries:
+      - multi-objective-evolutionary-algorithm
+      - vega
+      - moga
+      - npga
+      - nsga-ii
+      - spea
+      - spea2
+      - nsga-iii
+      - moea-d
+
+  - title: Local search with an archive
+    intro: >
+      One current solution and a memory of the non-dominated points seen so far give the multi-objective
+      forms of [local search](/local-search/) and [simulated annealing](/simulated-annealing/). The archive
+      is the part that carries over to every method: it always equals the front of the points evaluated.
+    entries:
+      - paes
+      - multi-objective-simulated-annealing
+      - pareto-local-search
+
+  - title: Measuring and approximating fronts
+    intro: >
+      Two outputs of heuristics must be compared, and a huge front must be cut down to a short list. Epsilon
+      dominance gives both a measure and a notion of approximation. The hypervolume respects dominance but
+      is hard to compute in many objectives; IGD and the spread are cheap but do not respect it.
+    entries:
+      - epsilon-dominance
+      - epsilon-indicator
+      - approximate-pareto-set
+      - hypervolume-indicator
+      - hypervolume-computation
+      - igd-indicator
+      - spread-indicator
+
+  - title: Problems with structure
+    intro: >
+      For linear programs the front is a union of faces and every point on it is supported, and
+      [Benson's algorithm](/benson-algorithm/) finds its extreme points in the objective space. For paths,
+      spanning trees and knapsacks the front can have $2^k$ points from $2k$ arcs, edges or items, and even
+      one point within two bounds is NP-hard to find. Labels, dynamic programs and two-phase methods find
+      the whole front; approximate Pareto sets of polynomial size stand in for it.
+    entries:
+      - multi-objective-linear-programming
+      - benson-algorithm
+      - multi-objective-shortest-path
+      - multi-objective-minimum-spanning-tree
+      - multi-objective-knapsack

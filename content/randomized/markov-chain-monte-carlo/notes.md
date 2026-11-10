@@ -1,0 +1,17 @@
+## History
+
+Andrey Markov introduced chains with dependence on the last state in 1906, to show that the law of large numbers can hold for dependent variables. Wolfgang Doeblin proved convergence to the stationary distribution by coupling in 1938, and George David Birkhoff and John von Neumann proved the ergodic theorems for time averages in 1931 and 1932.
+
+The sampling method came from physics. In 1953 Nicholas Metropolis, Arianna Rosenbluth, Marshall Rosenbluth, Augusta Teller and Edward Teller simulated a system of hard disks on the MANIAC computer at Los Alamos, with a chain that accepts a move with probability $\min(1, \pi(y)/\pi(x))$. W. K. Hastings allowed asymmetric proposals in 1970, and P. H. Peskun showed in 1973 that the Metropolis rule gives the smallest asymptotic variance for a given proposal. Roy Glauber studied single-spin dynamics of the Ising model in 1963. Stuart Geman and Donald Geman named the Gibbs sampler in 1984, in work on image restoration, and Alan Gelfand and Adrian Smith brought it to Bayesian statistics in 1990. From then on, MCMC became the standard way to compute posteriors. Andrew Gelman and Donald Rubin proposed their diagnostic in 1992.
+
+Physicists kept adding samplers for hard cases. Robert Swendsen and Jian-Sheng Wang introduced cluster moves in 1987, using the random-cluster representation of Cees Fortuin and Pieter Kasteleyn. Simon Duane, Anthony Kennedy, Brian Pendleton and Duncan Roweth introduced hybrid Monte Carlo for lattice field theory in 1987, and Radford Neal made it a tool of statistics. Charles Geyer proposed parallel tempering in 1991, and Koji Hukushima and Koji Nemoto made it common in physics in 1996. Peter Green introduced reversible jump in 1995, Fugao Wang and David Landau their flat-histogram method in 2001, and Matthew Hoffman and Andrew Gelman the No-U-Turn sampler in 2014.
+
+The theory of mixing times grew in computer science. David Aldous used coupling to bound mixing times in 1983. Mark Jerrum and Alistair Sinclair proved rapid mixing through conductance and canonical paths in 1989, for the chain on matchings that gives an approximation algorithm for the permanent, and Persi Diaconis and Daniel Stroock gave the canonical path bound on the spectral gap in 1991. Russ Bubley and Martin Dyer introduced path coupling in 1997. James Propp and David Wilson showed in 1996 that coupling from the past gives exact samples, with the critical Ising model as their first large example.
+
+## Further reading
+
+- David A. Levin and Yuval Peres, with Elizabeth L. Wilmer, *Markov Chains and Mixing Times*, second edition (2017). The standard text on mixing times, with coupling, spectral methods, conductance and coupling from the past.
+- J. R. Norris, *Markov Chains* (1997). A short and careful course on the convergence theorem, the ergodic theorem and reversibility.
+- Christian P. Robert and George Casella, *Monte Carlo Statistical Methods*, second edition (2004). Metropolis-Hastings, Gibbs sampling and their convergence, from the side of statistics.
+- Steve Brooks, Andrew Gelman, Galin L. Jones and Xiao-Li Meng (editors), *Handbook of Markov Chain Monte Carlo* (2011). Chapters by the authors of the methods, including Neal's chapter on Hamiltonian Monte Carlo and Geyer's introduction.
+- Mark Jerrum, *Counting, Sampling and Integrating: Algorithms and Complexity* (2003). Rapid mixing and the link between sampling and approximate counting.

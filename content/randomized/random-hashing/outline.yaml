@@ -1,0 +1,25 @@
+# The order of chapter 17.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Two keys at a time
+    intro: >
+      Most analyses of hashing look at one pair of keys at a time. [Pairwise independence](/pairwise-independence/)
+      asks that each pair of hash values be uniform, which gives exact variances. The dot-product family builds
+      such functions over a prime field, and multiply-shift builds nearly as good ones from one machine
+      multiplication. The chain length theorem then shows what a chained table gets from the collision bound
+      alone: $O(1 + \alpha)$ expected time per operation on every key set.
+    entries:
+      - pairwise-independence
+      - dot-product-hashing
+      - multiply-shift-hashing
+      - universal-hashing-expected-chain-length
+
+  - title: More than two keys
+    intro: >
+      Some uses need the joint behaviour of more keys. A random polynomial of degree $k - 1$ makes every $k$
+      keys independent, and the number $k$ is how an analysis states its needs: 5 for linear probing,
+      $O(\log(1/\varepsilon))$ for an $\varepsilon$-approximate min-wise family. Cuckoo hashing is analysed
+      with fully random functions, and its two-choice form has a sharp load threshold of one half.
+    entries:
+      - k-independent-hashing
+      - min-wise-independent-hashing
+      - cuckoo-hashing-load-threshold

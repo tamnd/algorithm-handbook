@@ -1,0 +1,71 @@
+# The order of chapter 15.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The problems and the knapsack
+    intro: >
+      The first entry says what a combinatorial optimization problem is and why trying every solution fails.
+      The [knapsack problem](/knapsack-problem/) is the gentlest hard problem of the chapter. Its fractional
+      relaxation is solved exactly by a greedy rule, and the 0-1 problem by a table of size $nW$, so the group
+      shows both a bound and an exact method on one small problem.
+    entries:
+      - combinatorial-optimization-problem
+      - knapsack-problem
+      - greedy-fractional-knapsack
+      - knapsack-dynamic-programming
+
+  - title: Tours and routes
+    intro: >
+      The [traveling salesman problem](/traveling-salesman-problem/) asks for a shortest closed tour, and the
+      [vehicle routing problem](/vehicle-routing-problem/) splits the customers among trucks of bounded
+      capacity. Each problem comes with the simple constructive heuristic that most people try first:
+      nearest neighbor for tours, and the savings method for routes.
+    entries:
+      - traveling-salesman-problem
+      - nearest-neighbor-heuristic
+      - vehicle-routing-problem
+      - clarke-wright-savings
+
+  - title: Splitting graphs
+    intro: >
+      Graph partitioning cuts a graph into parts of nearly equal size with few edges between them. Exact
+      bisection is NP-hard, so practice rests on two local search methods. Kernighan-Lin swaps pairs of
+      vertices; Fiduccia-Mattheyses moves single vertices and runs a pass in linear time.
+    entries:
+      - graph-partitioning-problem
+      - kernighan-lin
+      - fiduccia-mattheyses
+
+  - title: Placing facilities
+    intro: >
+      Three problems about where to put things. [Facility location](/facility-location-problem/) trades
+      opening costs against service costs and has good approximation algorithms for metric costs. The
+      quadratic assignment problem prices pairs of placements and is among the hardest problems of the
+      chapter. The competitive version is a game between two players, and it is PSPACE-complete.
+    entries:
+      - facility-location-problem
+      - quadratic-assignment-problem
+      - competitive-facility-location
+
+  - title: Matroids and submodular functions
+    intro: >
+      These entries explain when combinatorial problems are easy. The [Rado-Edmonds
+      theorem](/rado-edmonds-theorem/) says exactly when greedy is optimal, and
+      [submodular functions](/submodular-function/) are the set functions with diminishing returns, which can
+      be minimized in polynomial time. Two matroids can still be intersected in polynomial time, with a
+      min-max theorem and an augmenting path algorithm; three cannot, unless P = NP.
+    entries:
+      - rado-edmonds-theorem
+      - submodular-function
+      - submodular-minimization
+      - matroid-intersection
+      - matroid-intersection-theorem
+      - matroid-intersection-algorithm
+
+  - title: General methods for hard problems
+    intro: >
+      Two methods that work across the problems above. [Lagrangian relaxation](/lagrangian-relaxation/)
+      moves hard constraints into the objective and gives lower bounds that are never weaker than the LP
+      bound. Large neighborhood search destroys part of a solution and repairs it with a strong method; it
+      leans on the local search ideas of the next chapter.
+    entries:
+      - lagrangian-relaxation
+      - large-neighborhood-search

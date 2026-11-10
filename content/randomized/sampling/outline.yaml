@@ -1,0 +1,75 @@
+# The order of chapter 17.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Samples and designs
+    intro: >
+      A sample is defined by its design, the law that says how likely each subset is. The simplest
+      designs give every subset of a fixed size the same chance, or keep each item on its own coin flip.
+      Survey practice adds designs that cost less or estimate better: one random start and a fixed step,
+      separate samples inside strata, and chances in proportion to a known size. Each comes with an
+      unbiased estimator and a variance that depends on how the population is arranged.
+    entries:
+      - random-sampling
+      - uniform-random-subset
+      - bernoulli-sampling
+      - systematic-sampling
+      - stratified-sampling
+      - probability-proportional-to-size-sampling
+
+  - title: Variates from uniform numbers
+    intro: >
+      A generator gives uniform numbers, and most uses need other laws. Inversion applies the inverse
+      distribution function to one uniform. Rejection proposes from an easier law and keeps each proposal
+      with the right probability. The normal law has its own methods: the Box-Muller formula, the polar
+      method that avoids the sine and cosine, and the ziggurat, which almost always ends after one table
+      lookup. Ratio-of-uniforms and adaptive rejection build envelopes for whole classes of densities.
+    entries:
+      - random-variate-generation
+      - inverse-transform-sampling
+      - rejection-sampling
+      - box-muller-transform
+      - marsaglia-polar-method
+      - ratio-of-uniforms
+      - ziggurat-method
+      - adaptive-rejection-sampling
+
+  - title: Uniform subsets in one pass
+    intro: >
+      When the ground set is known, a scan can choose each item with probability (still needed)/(still
+      left), and Floyd's method picks $k$ numbers from a huge range with exactly $k$ draws. When the items
+      come as a stream of unknown length, a reservoir keeps a uniform sample of everything seen so far.
+      The skip methods of Vitter and Li draw how many items will not enter and jump over them, so a stream
+      of $n$ items costs $O(k(1 + \log(n/k)))$ random numbers.
+    entries:
+      - selection-sampling
+      - floyd-sampling
+      - stream-sampling
+      - reservoir-sampling
+      - algorithm-l
+      - vitter-reservoir-skip
+
+  - title: Sampling by weight
+    intro: >
+      With weights, "a random item" has several meanings. Drawing with replacement is a table problem,
+      and the alias method answers each draw in $O(1)$. Drawing without replacement can mean successive
+      draws among the items left, or inclusion chances in proportion to weight, and the two differ.
+      Random keys turn weighted sampling into selecting the largest keys, which works on a stream and
+      can also give unbiased estimates of the total weight of any subset.
+    entries:
+      - weighted-sampling
+      - alias-method
+      - gumbel-max-trick
+      - weighted-reservoir-sampling
+      - priority-sampling
+
+  - title: Estimating and counting with samples
+    intro: >
+      Samples are often a means to a number. Latin hypercube designs spread a few expensive runs over every
+      input. Importance sampling draws from a different law and corrects with weights. The Karp-Luby
+      estimator counts a union of huge sets from a weighted sample, and the theorem of Jerrum, Valiant and
+      Vazirani shows that for self-reducible problems, counting approximately and sampling almost uniformly
+      are equally hard.
+    entries:
+      - latin-hypercube-sampling
+      - importance-sampling
+      - karp-luby-estimator
+      - jerrum-valiant-vazirani-theorem

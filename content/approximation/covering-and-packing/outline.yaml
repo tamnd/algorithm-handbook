@@ -1,0 +1,97 @@
+groups:
+  - title: Bin packing
+    intro: >
+      Bin packing puts items of sizes in $(0, 1]$ into as few unit bins as possible. It is the first
+      problem of the chapter because its lower bounds are easy to see and its simple rules are easy to
+      analyze. The entries go from the problem and its lower bounds to the online rules, then to the
+      sorted rule, the proof that no ratio below $3/2$ is possible, and the asymptotic scheme that gets
+      as close to OPT as you like.
+    entries:
+      - bin-packing
+      - bin-packing-lower-bound
+      - next-fit-bin-packing
+      - first-fit-bin-packing
+      - best-fit-bin-packing
+      - first-fit-decreasing
+      - bin-packing-np-hardness
+      - bin-packing-aptas
+  - title: Relatives of bin packing
+    intro: >
+      Four problems change one part of bin packing. Bin covering asks for many full bins in place of few
+      bins. Cutting stock gives the sizes with large demands and solves a configuration LP by column
+      generation. Strip packing and rectangle packing pack rectangles, in a strip of least height or in
+      fewest unit squares.
+    entries:
+      - bin-covering
+      - cutting-stock-problem
+      - strip-packing
+      - rectangle-packing
+  - title: Set cover
+    intro: >
+      Set cover asks for the cheapest family of sets that covers a universe. Greedy gives the ratio
+      $H_d \le \ln n + 1$, and this is close to the best possible. The element frequency $f$ is the
+      parameter of the second family of methods. Dominating set and hitting set are set cover in other
+      clothes.
+    entries:
+      - set-cover
+      - greedy-set-cover
+      - element-frequency
+      - dominating-set
+      - hitting-set
+  - title: Maximum coverage and submodular greedy
+    intro: >
+      Maximum coverage turns set cover around: choose $k$ sets to cover as many elements as possible.
+      Greedy covers at least $1 - (1 - 1/k)^k > 1 - 1/e$ of the optimum. The Nemhauser-Wolsey-Fisher
+      theorem proves the same bound for every monotone submodular function.
+    entries:
+      - max-coverage
+      - greedy-max-coverage
+      - nemhauser-wolsey-fisher-theorem
+  - title: Vertex cover
+    intro: >
+      Vertex cover is set cover with frequency 2. The endpoints of a maximal matching give ratio 2 in
+      linear time. With weights on the vertices the matching argument fails, and the LP takes its place.
+    entries:
+      - vertex-cover
+      - vertex-cover-2-approximation
+      - weighted-vertex-cover
+  - title: Primal-dual and local ratio
+    intro: >
+      The primal-dual method raises a dual solution until its constraints go tight and buys the tight
+      items, so it never solves the LP. The two linear-time algorithms of Bar-Yehuda and Even, for
+      weighted vertex cover and for set cover with ratio $f$, are its simplest cases. The local ratio
+      technique reaches the same algorithms by splitting the weights, with no LP in the proof.
+    entries:
+      - primal-dual-approximation
+      - primal-dual-weighted-vertex-cover
+      - set-cover-primal-dual
+      - local-ratio-technique
+  - title: Packings, independent sets and cuts
+    intro: >
+      Set packing asks for many pairwise disjoint sets, and it is as hard to approximate as independent
+      set. The Caro-Wei theorem gives a lower bound on the independence number, and the minimum-degree
+      greedy algorithm reaches it. Maximum cut closes the group: a random cut, greedy and local search all
+      cut at least half of the edges.
+    entries:
+      - set-packing
+      - caro-wei-theorem
+      - greedy-independent-set
+      - maximum-cut
+  - title: k-center
+    intro: >
+      The $k$-center problem places $k$ centers so that the farthest point is as close as possible. It is
+      a covering problem in a metric: radius $r$ is feasible exactly when $k$ balls of radius $r$ cover the
+      points. Farthest-first traversal gives ratio 2, and no polynomial-time algorithm does better unless
+      P = NP.
+    entries:
+      - k-center-problem
+      - gonzalez-k-center
+  - title: Covering and packing integer programs
+    intro: >
+      The last group states the two general forms behind the chapter, $\min c^\top x$ with $Ax \ge b$ and
+      $\max c^\top x$ with $Ax \le b$, for nonnegative $A$. Randomized rounding of the LP, with the
+      Chernoff bound, gives ratios that depend on the number of constraints and on the size of the right
+      sides.
+    entries:
+      - covering-integer-program
+      - packing-integer-program

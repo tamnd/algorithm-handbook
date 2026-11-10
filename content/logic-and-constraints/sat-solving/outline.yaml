@@ -1,0 +1,149 @@
+# The order of chapter 16.1 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: Clauses and the problem
+    intro: >
+      The words come first: literals, clauses and formulas in conjunctive normal form, and the DIMACS
+      text format that every solver reads. Then the problem itself, [satisfiability](/sat/), and its
+      restriction to short clauses. Two simple rules, the pure literal rule and
+      [unit propagation](/unit-propagation/), appear here because every later method uses them.
+    entries:
+      - literal
+      - clause
+      - unit-clause
+      - conjunctive-normal-form
+      - dimacs-cnf-format
+      - sat
+      - 3-sat
+      - pure-literal-elimination
+      - unit-propagation
+      - k-sat
+
+  - title: Classes solved in polynomial time
+    intro: >
+      Three kinds of formula are easy. Clauses of two literals become an implication graph, and
+      strongly connected components decide them in $\Theta(n + m)$ time. Horn clauses have a least
+      model that forward chaining finds in linear time, and XOR clauses form a linear system over
+      GF(2) that Gaussian elimination solves.
+    entries:
+      - 2-sat
+      - two-sat-algorithm
+      - horn-sat
+      - horn-sat-forward-chaining
+      - xor-sat
+      - xor-gaussian-elimination
+
+  - title: Encodings
+    intro: >
+      Problems rarely arrive as CNF. The [Tseitin transformation](/tseitin-transformation/) turns a
+      circuit into an equisatisfiable CNF of linear size by naming each gate, and the
+      Plaisted-Greenbaum form keeps only the clauses of one polarity. The last three entries encode
+      counting constraints, "at most $k$ of these literals are true", and general 0-1 inequalities.
+    entries:
+      - tseitin-transformation
+      - plaisted-greenbaum-transformation
+      - sequential-counter-encoding
+      - totalizer-encoding
+      - pseudo-boolean-sat
+
+  - title: Davis-Putnam and DPLL
+    intro: >
+      The first complete methods. Davis and Putnam (1960) eliminated variables by resolution and ran
+      out of memory, and [DPLL](/dpll/) (1962) replaced elimination by splitting on a literal, with unit
+      propagation at every node. Lookahead, failed literal probing and Stålmarck's method spend more
+      work per node to choose better splits.
+    entries:
+      - davis-putnam-elimination
+      - dpll-backtracking-sat
+      - dpll
+      - lookahead-sat
+      - failed-literal-probing
+      - stalmarck-algorithm
+
+  - title: Clause learning
+    intro: >
+      This is the heart of a modern solver. When propagation reaches a conflict, the
+      [implication graph](/implication-graph/) records why, a cut at the first unique implication
+      point gives a new clause, and the search jumps back to the level where that clause becomes unit.
+      Two watched literals make propagation cheap, and [CDCL](/cdcl/) puts the pieces together.
+    entries:
+      - implication-graph
+      - first-uip
+      - clause-learning
+      - non-chronological-backtracking
+      - two-watched-literals
+      - cdcl
+      - clause-minimization
+
+  - title: CDCL heuristics and engineering
+    intro: >
+      A CDCL solver is only as fast as its choices. These entries cover which variable to branch on,
+      which value to try, when to restart, which learned clauses to keep, and how to solve many related
+      formulas or one formula on many cores.
+    entries:
+      - vsids
+      - phase-saving
+      - restarts
+      - clause-database
+      - literal-block-distance
+      - clause-database-reduction
+      - incremental-sat
+      - parallel-portfolio-sat
+      - cube-and-conquer
+
+  - title: Simplifying formulas
+    intro: >
+      Before and between searches, solvers shrink the formula. Subsumption removes redundant
+      clauses, [bounded variable elimination](/bounded-variable-elimination/) resolves a variable away
+      when the formula does not grow, and blocked clauses and equivalent literals give further cuts.
+      Autarkies and backbones describe parts of the formula that can be settled at once.
+    entries:
+      - clause-subsumption
+      - bounded-variable-elimination
+      - blocked-clause-elimination
+      - equivalent-literal-substitution
+      - autarky
+      - backbone
+
+  - title: Proofs and lower bounds
+    intro: >
+      A solver that says "unsatisfiable" should be able to prove it. DRAT and LRAT are the proof
+      formats that solver competitions check. The last two entries show what such proofs cannot do:
+      pigeonhole formulas need resolution refutations of exponential size, and CDCL with restarts can
+      simulate resolution with only a polynomial loss.
+    entries:
+      - drat-proof
+      - lrat-proof
+      - haken-resolution-lower-bound
+      - cdcl-simulates-resolution
+
+  - title: Local search, random formulas and exponential bounds
+    intro: >
+      Incomplete methods flip one variable at a time to reduce the number of false clauses. GSAT
+      flips greedily, and [WalkSAT](/walksat/) and probSAT restrict flips to a false clause. Random
+      walks also give the best proven bounds for 3-SAT, through Schöning's $O^*((4/3)^n)$ algorithm and
+      PPSZ. Random formulas have a sharp threshold, and survey propagation works close to it.
+    entries:
+      - gsat
+      - walksat
+      - probsat
+      - schoning-algorithm
+      - ppsz-algorithm
+      - satisfiability-threshold
+      - survey-propagation
+
+  - title: MaxSAT, cores, counting and quantifiers
+    intro: >
+      Beyond yes or no. [MaxSAT](/max-sat/) asks for the most clauses that can hold together, with
+      hard clauses or weights in its variants. Minimal unsatisfiable and minimal correction subsets
+      explain why a formula fails and drive core-guided MaxSAT. Model counting and quantified Boolean
+      formulas are harder still: #P-complete and PSPACE-complete.
+    entries:
+      - max-sat
+      - max-2-sat
+      - partial-max-sat
+      - weighted-max-sat
+      - minimal-unsatisfiable-subset
+      - minimal-correction-subset
+      - core-guided-maxsat
+      - model-counting
+      - qbf

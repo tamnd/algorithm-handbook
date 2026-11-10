@@ -1,0 +1,139 @@
+# The order of chapter 16.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Clauses and normal forms
+    intro: >
+      A resolution prover works on clauses, not on formulas. These entries say how a first-order formula
+      becomes a set of clauses with the same satisfiability: [prenex form](/prenex-normal-form/),
+      [Skolemization](/skolemization/) and [clausal normal form](/clausal-normal-form/). A
+      [refutation](/refutation/) then proves a goal by deriving the empty clause from its negation, and
+      [Horn clauses](/horn-clause/) are the special case that logic programming uses.
+    entries:
+      - horn-clause
+      - prenex-normal-form
+      - refutation
+      - skolemization
+      - clausal-normal-form
+
+  - title: Substitutions and unifiers
+    intro: >
+      A [substitution](/substitution/) replaces variables by terms; a [unifier](/unifier/) is one that makes
+      two terms equal. The [most general unifier](/most-general-unifier/) commits to as little as possible,
+      and the [unification theorem](/mgu-existence-theorem/) says that it exists whenever any unifier does.
+      The [occurs check](/occurs-check/) and the renaming of clauses apart are the two details that every
+      correct implementation gets right.
+    entries:
+      - substitution
+      - unifier
+      - standardization-apart
+      - idempotent-substitution
+      - most-general-unifier
+      - unification-problem
+      - occurs-check
+      - mgu-existence-theorem
+
+  - title: Unification algorithms
+    intro: >
+      [Robinson's algorithm](/robinson-unification/) is the simplest, but on terms stored as trees it can
+      take exponential time. Storing terms as a [term DAG](/term-dag/) removes the blow-up: the
+      [Martelli-Montanari](/martelli-montanari-unification/) rules and Huet's algorithm run in
+      $O(N\,\alpha(N))$ time with union-find, and [Paterson and Wegman](/paterson-wegman-unification/)
+      reach linear time.
+    entries:
+      - robinson-unification
+      - term-dag
+      - martelli-montanari-unification
+      - huet-unification
+      - paterson-wegman-unification
+
+  - title: Resolution and its completeness
+    intro: >
+      [Binary resolution](/binary-resolution/) and [factoring](/factoring/) are the two rules of
+      [Robinson's resolution](/robinson-resolution/). Their completeness rests on
+      [Herbrand's theorem](/herbrand-theorem/), which reduces unsatisfiability to a finite set of ground
+      clauses, and on the [lifting lemma](/lifting-lemma/), which turns ground steps into first-order steps.
+      First-order theorem proving, the problem that all of this serves, is semi-decidable and no more.
+    entries:
+      - resolvent
+      - binary-resolution
+      - factoring
+      - robinson-resolution
+      - herbrand-universe
+      - herbrand-theorem
+      - lifting-lemma
+      - robinson-completeness-theorem
+      - first-order-theorem-proving
+
+  - title: Restricting the search
+    intro: >
+      Unrestricted resolution derives far too many clauses. Each strategy here allows only some steps:
+      one parent a unit, an input clause, a clause from the goal, or the largest literal under an ordering.
+      Some keep completeness for all clause sets and some only for [Horn clauses](/horn-clause/).
+      [Subsumption](/subsumption/) deletes redundant clauses, and [term indexing](/term-indexing/) makes the
+      retrievals fast.
+    entries:
+      - unit-resolution
+      - set-of-support
+      - hyperresolution
+      - input-resolution
+      - linear-resolution
+      - subsumption
+      - term-indexing
+      - ordered-resolution
+
+  - title: Logic programming
+    intro: >
+      For Horn clauses, linear input resolution becomes [SLD resolution](/sld-resolution/), and a proof
+      becomes a computation whose result is an [answer substitution](/answer-substitution/). Negation as
+      failure extends it to normal programs, and the [Warren Abstract Machine](/warren-abstract-machine/)
+      is how Prolog runs it fast.
+    entries:
+      - logic-programming
+      - sld-resolution
+      - answer-substitution
+      - sldnf-resolution
+      - warren-abstract-machine
+
+  - title: Equality
+    intro: >
+      Equality axioms make resolution provers slow. [Paramodulation](/paramodulation/) builds equality into
+      an inference rule, [demodulation](/demodulation/) rewrites clauses with unit equations, and
+      [superposition](/superposition/) orders paramodulation so that the main provers of today stay
+      complete with far fewer inferences.
+    entries:
+      - paramodulation
+      - demodulation
+      - superposition
+
+  - title: Variations of first-order unification
+    intro: >
+      Three problems change one part of unification. [Anti-unification](/anti-unification-problem/) looks
+      for the most specific common pattern instead of a common instance. [Equational
+      unification](/equational-unification/) works modulo a theory, and for associativity and commutativity
+      a single most general unifier gives way to a finite complete set. Semi-unification mixes unification
+      with matching and becomes undecidable.
+    entries:
+      - anti-unification-problem
+      - plotkin-lgg
+      - equational-unification
+      - ac-unification-problem
+      - stickel-ac-unification
+      - semi-unification-problem
+      - semi-unification-undecidability
+
+  - title: Unification with binders
+    intro: >
+      When variables may stand for functions, as in [higher-order unification](/higher-order-unification-problem/),
+      the problem is undecidable and most general unifiers can fail to exist. The
+      [pattern fragment](/pattern-unification-problem/) and nominal unification keep the good properties
+      of the first-order case, and [Huet's pre-unification](/huet-pre-unification/) is the search used for
+      the rest.
+    entries:
+      - higher-order-unification-problem
+      - pattern-unification-problem
+      - miller-pattern-unification
+      - huet-pre-unification
+      - second-order-unification-problem
+      - higher-order-unification-undecidability
+      - second-order-unification-undecidability
+      - nominal-unification-problem
+      - urban-nominal-unification

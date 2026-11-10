@@ -1,0 +1,116 @@
+# The order of chapter 17.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Markov chains and their limits
+    intro: >
+      A [Markov chain](/markov-chain/) moves from state to state by a fixed [transition matrix](/transition-matrix/).
+      These entries say when it has a unique [stationary distribution](/stationary-distribution/) $\pi$, when the
+      law of its state converges to $\pi$, and when time averages along one run converge to averages under $\pi$.
+      [Detailed balance](/detailed-balance/) is the easy way to check that a chain keeps $\pi$, and every sampler
+      in the chapter is built on it or on a close relative.
+    entries:
+      - markov-chain
+      - transition-matrix
+      - stationary-distribution
+      - irreducibility
+      - aperiodicity
+      - ergodicity
+      - detailed-balance
+      - ergodic-theorem
+
+  - title: How far from stationary
+    intro: >
+      Convergence is not enough: a sampler needs to know how many steps it takes.
+      [Total variation distance](/total-variation-distance/) measures how far the law of the state is from $\pi$,
+      and the [mixing time](/mixing-time/) is the number of steps until that distance is at most $1/4$ from
+      every start. A family of chains is [rapidly mixing](/rapid-mixing/) when this time is polynomial in
+      $\log|\Omega|$, much less than the number of states.
+    entries:
+      - total-variation-distance
+      - mixing-time
+      - rapid-mixing
+
+  - title: Metropolis-Hastings and Gibbs
+    intro: >
+      The problem is to draw from a target known only up to a constant. [Metropolis-Hastings](/metropolis-hastings/)
+      proposes a move from a [proposal distribution](/proposal-distribution/) and accepts it with a probability
+      that makes detailed balance hold. The [random-walk](/random-walk-metropolis/) and
+      [independence](/independence-sampler/) samplers are its two basic proposals. [Gibbs sampling](/gibbs-sampling/)
+      redraws one coordinate at a time from its conditional, and [slice sampling](/slice-sampling/) adds an
+      auxiliary height so that every step is a Gibbs step.
+    entries:
+      - sampling-from-stationary-distribution
+      - metropolis-hastings
+      - proposal-distribution
+      - acceptance-probability
+      - random-walk-metropolis
+      - independence-sampler
+      - gibbs-sampling
+      - slice-sampling
+
+  - title: Reading the output
+    intro: >
+      The draws of a chain are correlated, so $n$ of them are worth fewer than $n$ independent ones. The
+      [autocorrelation](/mcmc-autocorrelation/) time $\tau$ says how many, and the
+      [effective sample size](/effective-sample-size/) is $n/\tau$. The other entries are about the practice of
+      a run: whether to [thin](/thinning/), how much to discard as [burn-in](/burn-in/), and what the
+      [Gelman-Rubin diagnostic](/gelman-rubin-diagnostic/) can and cannot detect.
+    entries:
+      - mcmc-autocorrelation
+      - effective-sample-size
+      - thinning
+      - burn-in
+      - gelman-rubin-diagnostic
+
+  - title: Bounding the mixing time
+    intro: >
+      Two families of tools prove how fast a chain mixes. Coupling runs two copies until they meet; the
+      [coupling inequality](/coupling-inequality/) turns the meeting time into a bound, and
+      [path coupling](/path-coupling/) reduces the work to neighbouring states. The spectral tools start from the
+      [spectral gap](/spectral-gap/), relate it to bottlenecks through [conductance](/conductance/) and the
+      [Cheeger inequality](/cheeger-inequality/), and bound it from below with [canonical paths](/canonical-paths/).
+    entries:
+      - coupling-inequality
+      - coupling-method
+      - path-coupling
+      - spectral-gap
+      - conductance
+      - cheeger-inequality
+      - canonical-paths
+
+  - title: Spin systems and exact sampling
+    intro: >
+      The [Ising model](/ising-model/) and the [hard-core model](/hard-core-model/) are the test cases of the
+      theory. [Glauber dynamics](/glauber-dynamics/) updates one site at a time and mixes fast at high
+      temperature; [Swendsen-Wang](/swendsen-wang/) flips whole clusters and stays fast near the critical point.
+      [Coupling from the past](/coupling-from-the-past/) uses a monotone coupling to return a draw from exactly
+      $\pi$, with no burn-in.
+    entries:
+      - ising-model
+      - hard-core-model
+      - glauber-dynamics
+      - swendsen-wang
+      - exact-sampling-from-stationary-distribution
+      - coupling-from-the-past
+
+  - title: Samplers that follow the gradient
+    intro: >
+      On $\mathbb R^d$ the gradient of $\log\pi$ points to where the mass is. [Hamiltonian Monte Carlo](/hamiltonian-monte-carlo/)
+      simulates [Hamiltonian dynamics](/hamiltonian-dynamics/) with the leapfrog method to make long moves that
+      are still accepted, and the [No-U-Turn sampler](/no-u-turn-sampler/) chooses the length of each trajectory
+      by itself. [MALA](/metropolis-adjusted-langevin-algorithm/) takes a single gradient step with noise.
+    entries:
+      - hamiltonian-dynamics
+      - hamiltonian-monte-carlo
+      - no-u-turn-sampler
+      - metropolis-adjusted-langevin-algorithm
+
+  - title: Hard targets
+    intro: >
+      Some targets defeat local moves. [Parallel tempering](/parallel-tempering/) runs copies at higher
+      temperatures and swaps their states, so that the cold copy can cross barriers.
+      [Wang-Landau](/wang-landau/) learns the density of states and samples a flat histogram of energies.
+      [Reversible jump](/reversible-jump-mcmc/) moves between models of different dimension.
+    entries:
+      - parallel-tempering
+      - wang-landau
+      - reversible-jump-mcmc

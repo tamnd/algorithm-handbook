@@ -1,0 +1,106 @@
+# The order of chapter 16.2 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      An [SMT problem](/smt-problem/) is a formula with Boolean structure whose atoms belong to a
+      background theory, such as arithmetic or arrays. These entries fix the words: what a decision
+      procedure must guarantee, the SMT-LIB standard that names theories and logics, and the Boolean
+      abstraction that hands the propositional skeleton to a SAT solver. Unsat cores and incremental
+      solving are the two services every solver offers on top.
+    entries:
+      - smt-problem
+      - decision-procedure
+      - smt-lib
+      - boolean-abstraction
+      - unsat-core
+      - incremental-solving
+
+  - title: Equality and uninterpreted functions
+    intro: >
+      The simplest theory has only equality and function symbols with no meaning beyond
+      $x = y \Rightarrow f(x) = f(y)$. [Congruence closure](/congruence-closure/) decides a conjunction
+      of such literals in $O(n \log n)$ expected time, and the e-graph is the data structure behind it.
+      Arrays reduce to the same theory.
+    entries:
+      - euf-satisfiability
+      - congruence-closure
+      - e-graph
+      - array-theory-satisfiability
+
+  - title: Arithmetic
+    intro: >
+      Difference constraints $x - y \le c$ are decided by negative-cycle detection. General linear
+      constraints are polynomial over the reals and NP-complete over the integers, where the omega
+      test refines Fourier-Motzkin elimination. Polynomial constraints over the reals are decidable by
+      Tarski's theorem but expensive, and δ-satisfiability trades exactness for a bounded numeric error.
+    entries:
+      - difference-logic-satisfiability
+      - linear-real-arithmetic-satisfiability
+      - linear-integer-arithmetic-satisfiability
+      - presburger-arithmetic
+      - omega-test
+      - nonlinear-real-arithmetic-satisfiability
+      - tarski-decidability-theorem
+      - delta-satisfiability
+
+  - title: Bit-vectors and eager encodings
+    intro: >
+      Machine integers have a fixed width, so a formula over them can be written as a circuit and
+      given to a SAT solver. [Bit-blasting](/bit-blasting/) does this for bit-vectors, and
+      Ackermannization removes function symbols first. The eager approach translates the whole formula
+      at once, and floating-point arithmetic follows the same path with IEEE 754 rounding.
+    entries:
+      - bit-vector-satisfiability
+      - ackermannization
+      - bit-blasting
+      - eager-smt-encoding
+      - floating-point-satisfiability
+
+  - title: Lazy solving and DPLL(T)
+    intro: >
+      Most solvers are lazy. A SAT solver searches the Boolean abstraction, a theory solver checks each
+      partial model, and a failed check returns an explanation that becomes a learned clause.
+      [DPLL(T)](/dpll-t/) states this as transition rules, theory propagation lets the theory set atoms
+      as unit propagation does, and the simplex method for SMT is the arithmetic solver of this loop.
+    entries:
+      - lazy-smt
+      - dpll-t
+      - theory-conflict-explanation
+      - theory-propagation
+      - cdcl-t
+      - simplex-for-smt
+
+  - title: Combining theories
+    intro: >
+      A formula can mix arithmetic, arrays and functions. [Nelson-Oppen](/nelson-oppen/) combines
+      solvers for theories with disjoint signatures by exchanging equalities between shared variables.
+      It needs stably infinite theories, and convex theories need only single equalities. Shostak's
+      method and model-based combination are the alternatives used in practice.
+    entries:
+      - convex-theory
+      - stable-infiniteness
+      - nelson-oppen
+      - shostak-combination
+      - model-based-theory-combination
+
+  - title: Quantifiers
+    intro: >
+      First-order logic is undecidable, so solvers handle $\forall x\, \varphi$ by adding ground
+      instances and hoping that some of them lead to a contradiction. E-matching finds the instances
+      whose patterns match terms of the e-graph.
+    entries:
+      - quantifier-instantiation
+      - e-matching
+
+  - title: Optimization, strings and synthesis
+    intro: >
+      SMT solvers also optimize and search for programs. MaxSMT and optimization modulo theories add
+      soft constraints and objectives. String constraints with length and regular membership are
+      decidable only in fragments. Syntax-guided synthesis finds a program in a grammar, and
+      [CEGIS](/cegis/) does it by a loop between a synthesizer and a verifier.
+    entries:
+      - maxsmt
+      - optimization-modulo-theories
+      - string-constraint-satisfiability
+      - syntax-guided-synthesis
+      - cegis

@@ -1,0 +1,77 @@
+# The order of chapter 17.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Fixing the coins one at a time
+    intro: >
+      The plainest way to remove randomness is to make the random choices one after another, each time
+      taking the value that keeps the conditional expectation as good as it was. When the exact conditional
+      expectation is too hard to compute, a pessimistic estimator, an upper bound that behaves like one,
+      takes its place.
+    entries:
+      - method-of-conditional-expectations
+      - pessimistic-estimators
+
+  - title: Few independent bits
+    intro: >
+      Many analyses use only the independence of small groups of random variables. Such variables can be
+      generated from a seed of $O(k \log n)$ bits, so a deterministic algorithm can try every seed. Small-bias
+      spaces weaken the requirement further, to parities, and get by with about $\log n$ seed bits.
+    entries:
+      - k-wise-independence
+      - limited-independence
+      - sample-space-reduction
+      - small-bias-sample-space
+      - small-bias-generator
+
+  - title: Saving random bits with expanders
+    intro: >
+      Some algorithms keep their randomness but use less of it. A walk on an expander supplies correlated
+      runs that fail together almost as rarely as independent runs, and randomness amplification asks
+      how few random bits can drive the error down to $2^{-k}$.
+    entries:
+      - expander-walk-sampler
+      - randomness-amplification
+
+  - title: Pseudorandom generators
+    intro: >
+      A pseudorandom generator stretches a short seed into a long string that no efficient test can tell
+      from uniform. The entries define the tests through computational indistinguishability, reduce the
+      definition to predicting one bit at a time, and build a generator from a one-way function. A hitting
+      set generator is the one-sided version.
+    entries:
+      - pseudorandom-generation
+      - computational-indistinguishability
+      - pseudorandom-generator
+      - yao-next-bit-unpredictability
+      - hill-prg-from-one-way-functions
+      - hitting-set-generator
+
+  - title: Hardness versus randomness
+    intro: >
+      If some function is hard for small circuits, its values on overlapping parts of a seed look random to
+      them. This turns circuit lower bounds into derandomization of [BPP](/bpp/), conditionally. For
+      machines with little memory the generator needs no assumption, and the open question is whether
+      randomized logspace equals logspace.
+    entries:
+      - hardness-versus-randomness
+      - nisan-wigderson-generator
+      - impagliazzo-wigderson-theorem
+      - nisan-prg
+      - rl-versus-l
+
+  - title: Weak sources and extractors
+    intro: >
+      Physical sources of randomness are biased and correlated. Min-entropy measures how much randomness
+      they hold, and an extractor turns that randomness into nearly uniform bits with the help of a short
+      seed. The group runs from von Neumann's pair trick to extractors from hash functions, from codes and
+      from two independent sources.
+    entries:
+      - von-neumann-debiasing
+      - min-entropy
+      - randomness-extraction
+      - randomness-extractor
+      - santha-vazirani-source
+      - seeded-extractor
+      - leftover-hash-lemma
+      - disperser
+      - two-source-extractor
+      - trevisan-extractor

@@ -1,0 +1,124 @@
+# The order of the chapter on metaheuristics. Groups are read in order; entries in a group too.
+groups:
+  - title: Search spaces and their optima
+    intro: >
+      Every method of the chapter searches a set of solutions with a neighborhood on it. These entries fix the
+      words: a neighborhood, a local optimum, the global problem and the fitness that guides the search. The
+      last three say what changes when the function is a black box that can only be evaluated, and when the
+      goal is to find many optima at once.
+    entries:
+      - neighborhood-structure
+      - local-optimum
+      - global-optimization
+      - fitness-function
+      - multimodal-optimization
+      - black-box-optimization
+      - derivative-free-optimization
+
+  - title: Local search and the idea of a metaheuristic
+    intro: >
+      [Hill climbing](/hill-climbing/) moves to a better neighbor until there is none, and stops in a local
+      optimum. Restarting it from random points is the first way out. A metaheuristic is a strategy placed on
+      top of such a search to keep it going; the last entries name the two forces every such strategy balances
+      and describe the shape of the function that it searches.
+    entries:
+      - local-search
+      - hill-climbing
+      - random-restart-hill-climbing
+      - metaheuristic
+      - stochastic-local-search
+      - fitness-landscape
+      - intensification-and-diversification
+
+  - title: Accepting worse moves
+    intro: >
+      The methods of this group stay with one solution and sometimes accept a worse neighbor. Simulated
+      annealing accepts a rise $\Delta$ with probability $e^{-\Delta/T}$ and lowers the temperature $T$; it is
+      the only one with an exact convergence theorem. Threshold accepting, the great deluge and late
+      acceptance replace the random test by a fixed one, and extremal optimization changes the worst part of
+      the solution at each step.
+    entries:
+      - metropolis-criterion
+      - simulated-annealing
+      - cooling-schedule
+      - simulated-annealing-convergence
+      - threshold-accepting
+      - great-deluge-algorithm
+      - late-acceptance-hill-climbing
+      - extremal-optimization
+
+  - title: Memory, perturbation and restarts
+    intro: >
+      [Tabu search](/tabu-search/) escapes local optima by remembering what it did and forbidding it for a
+      while. The other entries restart local search in better places: from a perturbed copy of the best
+      solution, in a larger neighborhood, under penalties, from a randomized greedy start, or on the path
+      between two good solutions.
+    entries:
+      - tabu-search
+      - tabu-list
+      - aspiration-criterion
+      - iterated-local-search
+      - variable-neighborhood-search
+      - guided-local-search
+      - grasp
+      - path-relinking
+      - scatter-search
+
+  - title: Evolutionary algorithms
+    intro: >
+      A population of solutions changes by selection, crossover and mutation. The entries take the parts one
+      at a time, then put them together as the [genetic algorithm](/genetic-algorithm/). The last three show
+      how a population loses its spread, how local search joins the scheme, and how the same scheme evolves
+      programs.
+    entries:
+      - population-based-search
+      - evolutionary-computation
+      - roulette-wheel-selection
+      - tournament-selection
+      - crossover
+      - mutation
+      - elitism
+      - genetic-algorithm
+      - premature-convergence
+      - memetic-algorithm
+      - genetic-programming
+
+  - title: Real vectors and learned distributions
+    intro: >
+      On $\mathbb{R}^n$, evolution strategies add Gaussian noise and adapt its size, and CMA-ES learns a full
+      covariance matrix. Differential evolution uses differences of members as steps. The cross-entropy method
+      and the estimation of distribution algorithms replace the population by a probability model that they
+      fit to the best samples.
+    entries:
+      - evolution-strategies
+      - differential-evolution
+      - cross-entropy-method
+      - cma-es
+      - estimation-of-distribution-algorithm
+
+  - title: Swarms and metaphors
+    intro: >
+      Ant colony optimization builds solutions with learned pheromone, and particle swarm optimization moves
+      points toward the best places found. The five research entries after them came with new metaphors;
+      read without the metaphor, each is close to or a special case of a method already in this chapter, and
+      the entries say which.
+    entries:
+      - swarm-intelligence
+      - ant-colony-optimization
+      - particle-swarm-optimization
+      - artificial-bee-colony
+      - firefly-algorithm
+      - bat-algorithm
+      - cuckoo-search
+      - harmony-search
+
+  - title: What theory says
+    intro: >
+      The schema theorem and the building block hypothesis were the first attempts to explain why genetic
+      algorithms work, and they say less than was once claimed. The no free lunch theorem says that no method
+      beats another over all functions. Hyper-heuristics move the choice of method into the search itself.
+    entries:
+      - schema-theorem
+      - building-block-hypothesis
+      - no-free-lunch-theorem
+      - hyper-heuristic

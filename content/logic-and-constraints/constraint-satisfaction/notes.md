@@ -1,0 +1,17 @@
+## History
+
+Constraint satisfaction began in computer vision. Montanari (1974) studied networks of constraints for picture processing and introduced path consistency. Mackworth (1977) gave the arc consistency algorithms AC-1 to AC-3 and the path consistency algorithms PC-1 and PC-2, and Freuder (1978) defined k-consistency for every $k$. Mohr and Henderson (1986) reached the optimal $O(ed^2)$ bound for arc consistency with AC-4, by counting the supports of each value.
+
+Search was studied at the same time. Haralick and Elliott (1980) studied forward checking and named the fail-first principle behind the minimum remaining values heuristic. Gaschnig (1979) gave the first backjumping algorithm, Dechter (1990) the graph-based form, and Prosser (1993) conflict-directed backjumping. Sabin and Freuder (1994) argued that maintaining full arc consistency during search pays for itself, and MAC became the default of constraint solvers. Minton, Johnston, Philips and Laird (1990, 1992) went the other way with min-conflicts, a local search that grew out of scheduling observations for the Hubble Space Telescope and solved the million-queens problem in minutes.
+
+The structural results came in the 1980s. Freuder (1982) related the width of a constraint graph to the level of consistency that makes search backtrack-free, which gives the linear-time algorithm for trees. Dechter and Pearl (1987) turned this into directional and adaptive consistency and the cycle cutset method, and Dechter (1999) presented adaptive consistency as bucket elimination, with a cost exponential in the induced width. Dechter, Meiri and Pearl (1991) solved temporal constraint networks by shortest paths. On the side of global constraints, Régin (1994) filtered all-different by matching theory, and constraint programming systems made such filters their main tool.
+
+The question of which constraint languages are easy has a separate line. Schaefer (1978) classified every Boolean language into six polynomial classes and NP-complete ones. Feder and Vardi (1998) conjectured that every finite domain shows the same split, and Jeavons, Cohen and Gyssens (1997) showed that the polymorphisms of a language decide its complexity. Bulatov, Jeavons and Krokhin (2005) gave the algebraic form of the conjecture. Bulatov (2017) and Zhuk (2017, 2020) proved it independently, each with a polynomial algorithm for every language that has a weak near-unanimity polymorphism.
+
+## Further reading
+
+- Rina Dechter, *Constraint Processing* (2003). The standard text on consistency, search, backjumping, tree methods and bucket elimination, with the proofs.
+- Francesca Rossi, Peter van Beek and Toby Walsh (eds.), *Handbook of Constraint Programming* (2006). Chapters by the authors of the methods on propagation, global constraints, symmetry, soft constraints and tractable languages.
+- Stuart Russell and Peter Norvig, *Artificial Intelligence: A Modern Approach*, 4th ed. (2020). Its chapter on constraint satisfaction is the gentlest start, with the map colouring and queens examples.
+- Nadia Creignou, Sanjeev Khanna and Madhu Sudan, *Complexity Classifications of Boolean Constraint Satisfaction Problems* (2001). Schaefer's theorem and its variants for counting, optimization and other questions.
+- Ramon E. Moore, R. Baker Kearfott and Michael J. Cloud, *Introduction to Interval Analysis* (2009). The interval arithmetic that numeric constraint propagation is built on.

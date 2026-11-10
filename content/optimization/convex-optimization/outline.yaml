@@ -1,0 +1,118 @@
+# The order of chapter 15.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Convex functions
+    intro: >
+      Everything in the chapter rests on one property: a function is convex when the chord between two points
+      of its graph never dips below the graph. These entries give the tests for it, the
+      [epigraph](/epigraph/) that turns a function into a set, and two variations that matter later:
+      [strong convexity](/strong-convexity/), which gives linear rates, and quasiconvexity, which keeps only
+      the convex sublevel sets.
+    entries:
+      - convex-function
+      - epigraph
+      - strong-convexity
+      - quasiconvex-function
+
+  - title: Constrained problems and multipliers
+    intro: >
+      A constrained problem asks for the best point of a set. These entries state the problem, attach a
+      [Lagrange multiplier](/lagrange-multiplier/) to each constraint, and collect the multipliers into the
+      [Lagrangian](/lagrangian-function/). A [convex optimization problem](/convex-optimization-problem/) is
+      the case in which every local minimum is global, and the feasibility problem is the case with no
+      objective at all.
+    entries:
+      - constrained-optimization
+      - lagrange-multiplier
+      - lagrangian-function
+      - convex-optimization-problem
+      - convex-feasibility-problem
+
+  - title: Separation and subgradients
+    intro: >
+      Two disjoint convex sets can be split by a hyperplane, and a convex set has a supporting hyperplane at
+      each boundary point. Applied to the epigraph, the second fact gives the
+      [subgradient](/subgradient/): a slope $g$ with $f(y) \ge f(x) + g^\top(y - x)$ for all $y$, which
+      exists even where $f$ has a kink. The set of all such slopes is the
+      [subdifferential](/subdifferential/), and $0 \in \partial f(x^*)$ is the optimality condition that
+      needs no derivative.
+    entries:
+      - separating-hyperplane-theorem
+      - supporting-hyperplane-theorem
+      - subgradient
+      - subdifferential
+
+  - title: Duality and optimality conditions
+    intro: >
+      The dual function gives a lower bound on the optimal value for every choice of multipliers. For a
+      convex problem with a strictly feasible point, the [Slater condition](/slater-condition/), the best
+      bound is exact, and the [KKT conditions](/kkt-conditions/) then characterize the solutions. Read these
+      three entries closely: the methods of the later groups are built on them.
+    entries:
+      - lagrangian-duality
+      - slater-condition
+      - kkt-conditions
+
+  - title: Conjugates and envelopes
+    intro: >
+      The [convex conjugate](/convex-conjugate/) $f^*(y) = \sup_x (y^\top x - f(x))$ describes a function by
+      its supporting hyperplanes. It gives a second form of duality, [Fenchel duality](/fenchel-duality/), and
+      its double conjugate is the [convex envelope](/convex-envelope/), the largest convex function below
+      $f$.
+    entries:
+      - convex-conjugate
+      - fenchel-duality
+      - convex-envelope
+
+  - title: Problem classes
+    intro: >
+      A few standard forms cover most convex problems met in practice, and solvers are written for them.
+      [Quadratic programs](/quadratic-programming/) come first, with portfolio selection as the classic case.
+      Second-order cone and [semidefinite programs](/semidefinite-programming/) replace the nonnegative
+      orthant of linear programming by other cones. Geometric programs become convex after a change of
+      variables, and a convex relaxation replaces a hard problem by a convex one whose value is a bound.
+    entries:
+      - quadratic-programming
+      - portfolio-optimization
+      - second-order-cone-programming
+      - semidefinite-programming
+      - geometric-programming
+      - convex-relaxation
+
+  - title: Interior-point methods
+    intro: >
+      The [barrier method](/barrier-method/) replaces the constraints by a logarithmic barrier and follows
+      the minimizers, the [central path](/central-path/), as the weight on the objective grows. Each point of
+      the path has a known duality gap. Self-concordance is the property that bounds the number of Newton
+      steps independently of the data, and the [interior-point method](/interior-point-method/) for linear
+      programs is the primal-dual form of the same idea.
+    entries:
+      - barrier-method
+      - central-path
+      - self-concordant-function
+      - interior-point-method
+
+  - title: Penalty and multiplier methods
+    intro: >
+      These methods move the constraints into the objective. A [penalty method](/penalty-method/) charges
+      for violation and must let the charge grow. [Dual ascent](/dual-ascent/) instead updates the
+      multipliers by a gradient step on the dual, and the
+      [augmented Lagrangian method](/augmented-lagrangian-method/) combines the two with a fixed penalty.
+      [ADMM](/admm/) splits the augmented Lagrangian step into two easier ones.
+    entries:
+      - penalty-method
+      - dual-ascent
+      - dual-decomposition
+      - augmented-lagrangian-method
+      - admm
+
+  - title: Methods for nonsmooth functions
+    intro: >
+      When $f$ is known only through its values and one subgradient at each point, a method can build a
+      piecewise linear model from the cuts. The [cutting-plane method](/cutting-plane-method/) minimizes the
+      model and can be unstable. The [proximal point method](/proximal-point-method/) adds a quadratic term
+      that keeps each step close to the last one, and the [bundle method](/bundle-method/) applies that term
+      to the model.
+    entries:
+      - cutting-plane-method
+      - proximal-point-method
+      - bundle-method

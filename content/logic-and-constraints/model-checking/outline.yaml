@@ -1,0 +1,168 @@
+# The order of chapter 16.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Systems and properties
+    intro: >
+      Model checking starts with a finite model of the system and a precise property. A
+      [Kripke structure](/kripke-structure/) labels states with the facts true in them, and a
+      [labelled transition system](/labelled-transition-system/) labels the moves instead.
+      [Safety](/safety-property/) says that nothing bad happens and [liveness](/liveness-property/) that
+      something good eventually does; every property is the intersection of a safety property and a liveness property.
+    entries:
+      - kripke-structure
+      - labelled-transition-system
+      - temporal-logic
+      - safety-property
+      - liveness-property
+      - petri-net
+
+  - title: Temporal logics
+    intro: >
+      [Linear temporal logic](/linear-temporal-logic/) speaks about single runs, and
+      [computation tree logic](/computation-tree-logic/) about the tree of all runs from a state.
+      [CTL*](/ctl-star/) contains both. [Fairness](/fairness/) rules out runs that starve a process, and
+      [probabilistic CTL](/probabilistic-ctl/) replaces "on all paths" by "with probability at least $p$".
+    entries:
+      - computation-tree-logic
+      - linear-temporal-logic
+      - predicate-specification-patterns
+      - ctl-star
+      - fairness
+      - probabilistic-ctl
+
+  - title: Reachability and CTL model checking
+    intro: >
+      Most questions reduce to search in the state graph. [Reachability](/reachability-problem/) answers
+      invariants and deadlock freedom in linear time, and the [labelling algorithm](/ctl-labelling-algorithm/)
+      checks a CTL formula in time $O(|M| \cdot |\varphi|)$, one subformula at a time. When a property
+      fails, the checker returns a [counterexample](/counterexample-generation/), the feature that made
+      model checking useful in practice.
+    entries:
+      - reachability-problem
+      - invariant-checking
+      - deadlock-freedom-checking
+      - ctl-model-checking
+      - ctl-labelling-algorithm
+      - ctl-model-checking-linear-time
+      - counterexample-generation
+      - shortest-counterexample
+      - ctl-satisfiability
+
+  - title: LTL and automata
+    intro: >
+      LTL model checking turns the negated formula into a Büchi automaton, builds its product with the
+      system, and looks for an accepting cycle with [nested depth-first search](/nested-depth-first-search/).
+      The cost is linear in the system and exponential in the formula, and the problem is
+      [PSPACE-complete](/ltl-model-checking-pspace-completeness/). The same
+      [automata-theoretic approach](/automata-theoretic-approach/) also decides satisfiability and
+      language containment.
+    entries:
+      - ltl-model-checking
+      - nested-depth-first-search
+      - ltl-to-buchi-translation
+      - automata-theoretic-approach
+      - language-containment
+      - ltl-satisfiability
+      - ltl-model-checking-pspace-completeness
+      - vacuity-checking
+
+  - title: Fixed points and equivalences
+    intro: >
+      Temporal operators are [fixed points](/fixed-point/) of monotone maps on sets of states, and the
+      [Knaster-Tarski theorem](/knaster-tarski-theorem/) says that these fixed points exist. Fixed points
+      also define the equivalences between systems: on finite structures [bisimulation](/bisimulation/) is exactly equality of CTL* formulas, and
+      weaker relations such as [simulation](/simulation-relation/) and [stuttering
+      equivalence](/stuttering-equivalence/) preserve less but allow smaller models.
+    entries:
+      - fixed-point
+      - bisimulation
+      - knaster-tarski-theorem
+      - simulation-relation
+      - stuttering-equivalence
+      - trace-equivalence
+      - equivalence-checking
+
+  - title: Explicit-state search and its reductions
+    intro: >
+      An [explicit-state checker](/explicit-state-model-checking/) stores every visited state in a hash table,
+      and $n$ components with $k$ local states can have $k^n$ global states. These entries fight that
+      [state explosion](/state-explosion-problem/): build the graph on the fly, store hash bits instead of
+      states, explore only one order of independent moves, merge symmetric states, or check the components
+      one at a time.
+    entries:
+      - explicit-state-model-checking
+      - state-explosion-problem
+      - on-the-fly-model-checking
+      - bitstate-hashing
+      - partial-order-reduction
+      - sleep-sets
+      - symmetry-reduction
+      - compositional-verification
+      - assume-guarantee-reasoning
+      - stateless-model-checking
+      - dynamic-partial-order-reduction
+
+  - title: Symbolic and SAT-based model checking
+    intro: >
+      [Symbolic model checking](/symbolic-model-checking/) represents sets of states and the transition
+      relation as BDDs and computes fixed points on whole sets at once.
+      [Bounded model checking](/bounded-model-checking/) instead unrolls the system $k$ steps into a SAT
+      formula. [k-induction](/k-induction/), interpolation and [IC3](/ic3-pdr/) turn bounded search into
+      full proofs by finding inductive invariants.
+    entries:
+      - symbolic-model-checking
+      - symbolic-reachability
+      - bounded-model-checking
+      - sat-based-bounded-model-checking
+      - k-induction
+      - completeness-threshold
+      - interpolation-based-model-checking
+      - ic3-pdr
+      - liveness-to-safety
+      - saturation-algorithm
+
+  - title: Abstraction
+    intro: >
+      For software the state space is often infinite. [Predicate abstraction](/predicate-abstraction/)
+      keeps only the truth values of a few predicates, and [CEGAR](/cegar/) refines the abstraction when a
+      counterexample turns out to be spurious. [Lazy abstraction](/lazy-abstraction/) refines only the parts
+      of the search that need it.
+    entries:
+      - predicate-abstraction
+      - cegar
+      - lazy-abstraction
+
+  - title: The mu-calculus and parity games
+    intro: >
+      The [modal mu-calculus](/modal-mu-calculus/) adds least and greatest fixed points to modal logic and
+      contains CTL*. Checking it is equivalent to solving a [parity game](/parity-game/), a problem in
+      NP $\cap$ co-NP that has no known polynomial algorithm. [Zielonka's
+      algorithm](/zielonka-algorithm/) is a simple recursive solver and one of the fastest in practice.
+    entries:
+      - modal-mu-calculus
+      - mu-calculus-model-checking
+      - emerson-lei-algorithm
+      - parity-game
+      - parity-game-solving
+      - zielonka-algorithm
+      - local-model-checking
+
+  - title: Probabilities, clocks, stacks and counters
+    intro: >
+      The last group leaves finite Kripke structures. Probabilistic systems are checked by solving linear
+      equations or by sampling. [Timed automata](/timed-automata/) have real-valued clocks but a finite
+      [region graph](/region-graph/). [Pushdown systems](/pushdown-system/) model recursion, and
+      [Petri nets](/petri-net/) model unbounded counters, where coverability is EXPSPACE-complete and
+      reachability is decidable but far harder.
+    entries:
+      - pctl-model-checking
+      - timed-automata
+      - difference-bound-matrix
+      - region-graph
+      - statistical-model-checking
+      - hybrid-automata
+      - pushdown-system
+      - pushdown-reachability
+      - pushdown-saturation
+      - coverability
+      - karp-miller-tree
+      - petri-net-reachability-decidability

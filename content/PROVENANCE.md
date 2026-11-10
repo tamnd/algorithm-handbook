@@ -30,6 +30,12 @@ For edition 0.13.0, the eight chapters that the site's release v0.13.0 filled (1
 14.3 to 14.6) were written the same way, one agent per chapter, and the introductions of Volumes 13 and 14 were
 rewritten by the coordinating agent.
 
+For edition 0.16.0, the four volumes that the site's release v0.16.0 opened (15 *Optimization*, 16 *Logic and
+constraints*, 17 *Randomized* and 18 *Approximation*) were written the same way. Six agents shared them: two for
+Volume 15, two for Volume 16, one for Volume 17 and one for Volume 18, each with helper agents for single
+chapters. In Volume 18 only Chapter 18.1 has entries so far; the other five chapters have an opening only, written
+from the site's short pages. Two learning paths through the new volumes were added to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

@@ -1,0 +1,124 @@
+groups:
+  - title: Linear programs and their forms
+    intro: >
+      A linear program asks for the best value of a linear function over a polyhedron. These entries state
+      the problem, its feasibility version, and the two standard shapes that every algorithm assumes. Slack
+      variables turn inequalities into equations, and the slack form is the shape on which the simplex
+      method does its work.
+    entries:
+      - polyhedron
+      - linear-feasibility
+      - linear-programming-problem
+      - lp-standard-form
+      - slack-variables
+      - lp-slack-form
+
+  - title: Vertices and basic feasible solutions
+    intro: >
+      A basic feasible solution is a vertex of the feasible region described by algebra: choose $m$
+      independent columns, set the other variables to zero, and solve. The fundamental theorem says that an
+      optimum, when one exists, is found at such a point, which turns a continuous problem into a finite
+      search.
+    entries:
+      - basic-feasible-solution
+      - fundamental-theorem-of-lp
+      - vertex-enumeration
+
+  - title: Duality
+    intro: >
+      Every linear program has a dual whose feasible solutions are bounds on the primal objective. Weak
+      duality is the easy inequality between the two. Fourier-Motzkin elimination proves Farkas' lemma, and
+      Farkas' lemma proves strong duality: the best bound equals the optimum. Complementary slackness
+      restates the equality as one small condition per constraint.
+    entries:
+      - dual-linear-program
+      - weak-duality
+      - fourier-motzkin-elimination
+      - farkas-lemma
+      - strong-duality
+      - lp-duality
+      - complementary-slackness
+
+  - title: Network problems as linear programs
+    intro: >
+      Maximum flow, minimum-cost flow and shortest paths are all linear programs over the incidence matrix
+      of a graph. Writing them this way explains their min-max theorems as duality, and the integrality of
+      their vertices as a property of the matrix.
+    entries:
+      - max-flow-linear-program
+      - max-flow-lp-formulation
+      - min-cost-flow-lp-formulation
+      - shortest-paths-lp-formulation
+
+  - title: The simplex method
+    intro: >
+      The simplex method walks from vertex to vertex along edges that improve the objective. One step is a
+      pivot: the reduced costs choose the entering variable and the ratio test chooses the leaving one. At a
+      degenerate vertex a pivot can leave the point where it is, and a careless rule can cycle; Bland's rule
+      cannot.
+    entries:
+      - pivot-operation
+      - ratio-test
+      - reduced-cost
+      - simplex-method
+      - lp-degeneracy
+      - dantzig-pivot-rule
+      - bland-rule
+      - simplex-termination
+
+  - title: The simplex method in practice
+    intro: >
+      A run of the simplex method needs a first feasible basis, which phase one or the big-M method
+      supplies. Real solvers keep a factorization of the basis instead of the whole tableau, choose the
+      entering column by steepest edge, and use the dual simplex method after a constraint is added.
+    entries:
+      - initial-basic-feasible-solution
+      - two-phase-simplex-method
+      - big-m-method
+      - revised-simplex-method
+      - steepest-edge-pivot-rule
+      - dual-simplex-method
+
+  - title: How many pivots
+    intro: >
+      The simplex method is fast on real programs, but the Klee-Minty cube makes Dantzig's rule visit all
+      $2^n$ vertices. These entries give the bad example, the question about the diameter of polytopes that
+      bounds every pivot rule, and the smoothed analysis that explains why bad cases are rare.
+    entries:
+      - klee-minty-cube
+      - hirsch-conjecture
+      - smoothed-simplex-analysis
+
+  - title: Prices, sensitivity and large programs
+    intro: >
+      The optimal dual variables are prices: the rate at which the optimum changes with each right-hand
+      side. Sensitivity analysis and parametric programming follow the optimal basis as the data change.
+      Column generation and Dantzig-Wolfe decomposition use the same prices to solve programs with far too
+      many columns to write down.
+    entries:
+      - shadow-price
+      - lp-sensitivity-analysis
+      - parametric-linear-programming
+      - column-generation
+      - dantzig-wolfe-decomposition
+
+  - title: Polynomial-time algorithms
+    intro: >
+      The ellipsoid method was the first algorithm to solve linear programs in time polynomial in the bit
+      length $L$ of the input, and it needs only a separation oracle. Karmarkar's algorithm and affine
+      scaling move through the interior of the region instead of along its edges.
+    entries:
+      - separation-oracle
+      - ellipsoid-method
+      - lp-in-p
+      - karmarkar-algorithm
+      - affine-scaling-method
+
+  - title: Linear programs in fixed dimension
+    intro: >
+      When the number of variables $n$ is a constant, a linear program with $m$ constraints is solved in
+      $O(m)$ time. Seidel's algorithm does it with random order and recursion, Megiddo's without randomness
+      by prune and search; in both, the constant grows very fast with $n$.
+    entries:
+      - seidel-linear-programming
+      - megiddo-fixed-dimension-lp

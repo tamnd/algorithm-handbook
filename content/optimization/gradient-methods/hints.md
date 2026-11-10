@@ -1,0 +1,29 @@
+1. Here $L_f = 4$ and $x_{k+1} = (1 - 4\alpha)x_k$, so $x_3 = (1 - 4\alpha)^3$: $0.216$, $0$, $-1$ and $-2.744$. The step $0.25 = 1/L_f$ solves the problem in one step, $0.5 = 2/L_f$ makes the iterates oscillate between $1$ and $-1$, and $0.6$ diverges. The iterates converge exactly when $0 < \alpha < \frac12$.
+
+2. The eigenvalues are $8$ and $2$, so $L_f = 8$, $\mu = 2$ and $\kappa = 4$. The theorem guarantees $1 - 1/\kappa = \frac34$; on this $f$ the component along the eigenvalue $2$ is multiplied by $\frac34$ and the other is removed, so $f - f^*$ shrinks by $\frac9{16}$. The step $\frac15$ gives the distance factor $\frac35$. The heavy ball parameters are $\alpha = 4/(\sqrt8 + \sqrt2)^2 = \frac29$, $\rho = \frac13$ and $\beta = \rho^2 = \frac19$. The counts are $28$ steps for $(\frac35)^k$ and $13$ for $(\frac13)^k$.
+
+3. $2^{-k}$ is linear with rate $\frac12$, $k = 20$. $1/k^2$ is sublinear, $k = 1000$. $2^{-2^k}$ is quadratic, since $e_{k+1} = e_k^2$, and $k = 5$. $1/k!$ is superlinear, since $e_{k+1}/e_k = 1/(k+1) \to 0$, but not quadratic, since $e_{k+1}/e_k^2 = k!/(k+1) \to \infty$; $k = 10$.
+
+4. $\nabla f(x) = (2, 8)$ and $\varphi(\alpha) = 5 - 68\alpha + 260\alpha^2$. Armijo holds for $\alpha \le 68(1 - c)/260$: $\alpha \le 0.26151$ for $c = 10^{-4}$ and $\alpha \le \frac{17}{130} \approx 0.13077$ for $c = \frac12$. Backtracking accepts $0.25$ on the third trial with $f = 4.25$, and $0.125$ on the fourth trial with $f = 0.5625$. The exact step is $\frac{17}{130}$ with $f = \frac{36}{65} \approx 0.5538$; here the stricter $c$ gives the better step.
+
+8. With bias correction $\hat m_1 = g_1$ and $\hat v_1 = g_1^2$, so the step is $-\alpha\operatorname{sign}(g_1) = (-0.001, 0.001)$ whatever the size of $g_1$. Without it, $m_1 = 0.1g_1$ and $\sqrt{v_1} = \sqrt{0.001}\,|g_1|$, and the step is $\sqrt{10}$ times longer, $(-0.003162, 0.003162)$. Gradient descent moves by $(-0.00002, 0.005)$.
+
+12. The Polyak step is $\alpha = |x|^p/(p^2|x|^{2p-2})$, so $\alpha f'(x) = x/p$. For $p = 4$ the factor is $\frac34$, and $(\frac34)^k \le 10^{-6}$ first holds at $k = 49$. Gradient descent with any fixed step slows down near $0$ because $f'(x) = 4x^3$ vanishes fast; the Polyak step grows like $1/x^2$ and compensates.
+
+14. With $L_i = a_{ii}$ the coordinate step is exact minimization along the coordinate, so this is Gauss-Seidel. The iterates are $(0.25, 0.5)$ and $(0, \frac23)$, with $x^* = (-\frac18, \frac34)$. If $e = x - x^*$, one sweep gives $e_1' = -a_{12}e_2/a_{11}$ and then $e_2' = -a_{12}e_1'/a_{22} = a_{12}^2e_2/(a_{11}a_{22})$.
+
+15. The recurrence is $x_{k+1} = \frac12x_k - \frac12x_{k-1}$, so the iterates are $0, -0.5, -0.25, 0.125, 0.1875$, and $f$ increases from step $1$ to step $2$ and from step $4$ to step $5$. The roots of $z^2 - \frac12z + \frac12$ are $(1 \pm i\sqrt7)/4$, with modulus $\sqrt{1/2} = \sqrt\beta$.
+
+17. The problem separates. $L_f = 4$, so $t = \frac14$ and the threshold is $\frac14$. The solution is $x^* = (2, \frac14)$ with $F^* = 2.875$. The second coordinate reaches $\frac14$ in one step; the first follows $x \mapsto \frac34x + \frac12$, so $x_k = (2 - 2(\frac34)^k, \frac14)$: $(0.5, 0.25)$, $(0.875, 0.25)$, $(1.15625, 0.25)$. The error falls below $10^{-6}$ at $k = 51$; the factor $\frac34$ is $1 - \mu/L_f$.
+
+22. Co-coercivity with $x$ and $x_{k+1}$ gives $\nabla f(x_{k+1})^\top\nabla f(x_k) \ge \|\nabla f(x_{k+1})\|^2$, and Cauchy-Schwarz finishes the first claim. For the second, expand $\|x_{k+1} - x^*\|^2$ and use co-coercivity with $x^*$, where $\nabla f(x^*) = 0$: $\nabla f(x_k)^\top(x_k - x^*) \ge \|\nabla f(x_k)\|^2/L_f$. The distance then drops by at least $\|\nabla f(x_k)\|^2/L_f^2$.
+
+23. At $x = c(L, \pm\mu)$ the gradient is $c\mu L(1, \pm1)$, and the exact step $g^\top g/g^\top Ag$ is $2/(\mu + L)$. The new point is $c\frac{L - \mu}{L + \mu}(L, \mp\mu)$, of the same form, and $f$ is quadratic in $x$.
+
+24. The error obeys $x_{k+1} = (1 + \beta - \alpha\lambda)x_k - \beta x_{k-1}$. Both roots of $z^2 - tz + \beta$ lie inside the unit circle if and only if $\beta < 1$ and $|t| < 1 + \beta$; check the cases of real and complex roots. With $t = 1 + \beta - \alpha\lambda$ this is $0 < \alpha\lambda < 2(1 + \beta)$. For the given parameters, $\alpha\lambda \le \frac{25}{9} < \frac{26}{9} = 2(1 + \beta)$, so the method converges on every quadratic with spectrum in $[1, 25]$, and the counterexample must use a function that is not quadratic.
+
+25. The restriction of $g$ to the range of $A$ has a unique minimizer $y^* = Ax_p$. For a given $x$, choose $x_p$ as the closest point to $x$ of the solution set $\{x : Ax = y^*\}$; then $x - x_p$ lies in the row space of $A$, so $\|A(x - x_p)\| \ge \sigma_+\|x - x_p\|$. Write strong convexity of $g$ between $Ax$ and $y^*$, express it in $x$ with $\nabla f(x) = A^\top\nabla g(Ax)$, and minimize the right-hand side over the vector $x_p - x$.
+
+26. Independence gives $V_{n+1} = (1 - a/n)^2V_n + a^2\sigma^2/n^2$. Substituting $V_n \approx c/n$ and matching the terms in $1/n^2$ gives $c(2a - 1) = a^2\sigma^2$; a comparison argument makes this rigorous. The constant $a^2/(2a - 1)$ is smallest at $a = 1$, where $x_{n+1}$ is the sample mean of $\xi_1, \dots, \xi_n$ and $V_{n+1} = \sigma^2/n$. For $a < \frac12$ the product $\prod_j(1 - a/j)^2$ behaves like $n^{-2a}$, and the noise terms add only a convergent sum on that scale.
+
+27. Write the KKT conditions of $\min\frac12\|x - v\|^2$ subject to $x \ge 0$ and $\sum_ix_i = 1$: with the multiplier $\theta$ of the equality, $x_i = \max(v_i - \theta, 0)$, and $\sum_i\max(v_i - \theta, 0)$ decreases strictly where it is positive, so $\theta$ is unique. Sort $v$ in decreasing order as $u$, take the largest $j$ with $u_j > (\sum_{i \le j}u_i - 1)/j$, and set $\theta$ to that quotient. For $v = (1.2, 0.7, 0.4, -1)$, $j = 2$, $\theta = 0.45$ and the projection is $(0.75, 0.25, 0, 0)$.

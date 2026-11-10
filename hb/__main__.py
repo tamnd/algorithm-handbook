@@ -88,6 +88,10 @@ def check_content(book: Book) -> list[str]:
             if slug not in book.corpus.nodes and slug != "areas":
                 probs.append(f"{rel}: link to unknown slug /{slug}/")
         prose = re.sub(r"\$\$.*?\$\$|\$[^$\n]*\$|`[^`\n]*`|```.*?```", " ", t, flags=re.S)
+        # slugs are names, not prose: `fitness-landscape` in a link target or an outline is not the word
+        prose = re.sub(r"\]\(/[a-z0-9-]+/[^)]*\)", "]", prose)
+        if f.endswith(".yaml"):
+            prose = re.sub(r"\b[a-z0-9]+(?:-[a-z0-9]+)+\b", " ", prose)
         for w in sorted(set(re.findall(BANNED, prose, flags=re.I))):
             probs.append(f"{rel}: style: '{w}' (see the writing standard in prompts/area.md)")
         if re.search(r"[A-Za-z)]!(\s|$)", prose):

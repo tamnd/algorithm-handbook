@@ -1,0 +1,64 @@
+# The order of chapter 17.2. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the standard shuffle
+    intro: >
+      A shuffle must give each of the $n!$ orders of $n$ items probability exactly $1/n!$. The first entry
+      states the problem, its models of randomness and its bounds. The [Fisher-Yates
+      shuffle](/fisher-yates-shuffle/) solves it in place with $n - 1$ random integers, and it is the method
+      every other entry of the chapter is measured against.
+    entries:
+      - random-permutation
+      - fisher-yates-shuffle
+
+  - title: Shuffles that go wrong
+    intro: >
+      Two short programs look like shuffles and are not. One swaps each position with a position of the whole
+      array; the other sorts with a comparator that flips a coin. A single counting argument rules out both:
+      their runs are equally likely, and the number of runs is not a multiple of $n!$.
+    entries:
+      - naive-shuffle
+      - sort-based-shuffle
+
+  - title: Shuffling with sorts and merges
+    intro: >
+      A sort becomes a correct shuffle when each item gets its own random key, drawn once. A merge becomes a
+      correct shuffle when its coins are weighted by the sizes of the parts, or when it stops early and places
+      the leftover items by Fisher-Yates. These methods fit linked lists, databases and parallel machines,
+      where Fisher-Yates does not.
+    entries:
+      - permute-by-sorting
+      - shuffling-a-linked-list
+      - merge-shuffle
+
+  - title: One cycle through all items
+    intro: >
+      Some uses need a random permutation with a single cycle, such as a random tour or a chain of pointers that
+      visits every slot. There are $(n-1)!$ such cycles. [Sattolo's algorithm](/sattolo-algorithm/) draws one
+      uniformly by a change of one range in Fisher-Yates.
+    entries:
+      - random-cyclic-permutation
+      - sattolo-algorithm
+
+  - title: How many shuffles mix a deck
+    intro: >
+      A person shuffles a deck by repeating one random move, so the deck is a Markov chain on its $n!$ orders.
+      The question is how many moves bring it close to uniform in total variation. The top-to-random shuffle
+      gives the first complete answer, $n \ln n$ moves, through a strong uniform time. Random transpositions need
+      $\frac12 n \ln n$ moves.
+    entries:
+      - card-shuffling
+      - top-to-random-shuffle
+      - strong-uniform-time
+      - random-transposition-shuffle
+
+  - title: Riffles and overhand shuffles
+    intro: >
+      The perfect riffle is deterministic and never mixes. The random riffle of the Gilbert-Shannon-Reeds model
+      mixes a deck of $n$ cards in about $\frac32 \log_2 n$ shuffles, seven for 52 cards, by the exact formula
+      of Bayer and Diaconis. The overhand shuffle, which moves packets without interleaving them, needs order
+      $n^2 \log n$.
+    entries:
+      - faro-shuffle
+      - gilbert-shannon-reeds-model
+      - bayer-diaconis-theorem
+      - overhand-shuffle-model

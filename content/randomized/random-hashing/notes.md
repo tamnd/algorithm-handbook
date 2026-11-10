@@ -1,0 +1,17 @@
+## History
+
+J. Lawrence Carter and Mark Wegman introduced universal classes of hash functions at STOC in 1977, with the journal version in 1979. Their point was that the expected cost of a chained table can be proved for every input, with the probability taken over the choice of the function, instead of assuming that the keys are random. Among their first classes were linear maps, of which the dot-product family over a prime field is the textbook form. In 1981 Wegman and Carter defined strongly universal classes, the pairwise and $k$-wise independent families of this chapter, built them from random polynomials over a finite field, and used them for message authentication and for testing set equality.
+
+The bounds of the chain length theorem became the standard analysis of hashing, and Fredman, Komlós and Szemerédi used its count of colliding pairs for their two-level perfect hashing scheme in 1984. Fast families on machine words came later. Martin Dietzfelbinger, Torben Hagerup, Jyrki Katajainen and Martti Penttonen proved the $2/m$ bound for multiply-shift in a paper on the closest-pair problem, published in 1997, and Dietzfelbinger showed in 1996 that the multiply-add-shift variant with a slightly wider product is pairwise independent, with no prime at all.
+
+The question of how much independence a structure needs was settled for linear probing by Anna Pagh, Rasmus Pagh and Milan Ružić, who proved in 2009 that 5-wise independence gives constant expected time; Mihai Pătrașcu and Mikkel Thorup then showed that some 4-wise independent families do not. Min-wise independent permutations were defined by Andrei Broder, Moses Charikar, Alan Frieze and Michael Mitzenmacher in 1998, with the journal version in 2000, because it is exactly the property that the MinHash estimate of set resemblance needs. Piotr Indyk showed in 2001 that $O(\log(1/\varepsilon))$-wise independence gives approximate min-wise independence, and Pătrașcu and Thorup proved that this much is needed.
+
+Rasmus Pagh and Flemming Friche Rodler presented cuckoo hashing at ESA in 2001, with the journal version in 2004, and analysed it through the cuckoo graph. Adam Kirsch, Michael Mitzenmacher and Udi Wieder added the stash. The exact load thresholds for three or more choices were found in 2010 by three groups independently, one of them through a link with random XORSAT.
+
+## Further reading
+
+- Michael Mitzenmacher and Eli Upfal, *Probability and Computing*, second edition (2017). Chapter 15 covers pairwise independence, universal families and their use in hashing and perfect hashing, with the probability made explicit.
+- Michael Luby and Avi Wigderson, *Pairwise Independence and Derandomization*, Foundations and Trends in Theoretical Computer Science 1(4), 2005. A short survey of the constructions and of their uses outside hashing; it leads into Chapter 17.6.
+- Mikkel Thorup, *High Speed Hashing for Integers and Strings*, lecture notes, 2015. Multiply-shift, its strongly universal variants and tabulation hashing, with proofs and code for real word sizes.
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, fourth edition (2022). Section 11.3 gives the universal hashing theorem for chained tables in textbook form.
+- Andrei Z. Broder, Moses Charikar, Alan M. Frieze and Michael Mitzenmacher, *Min-Wise Independent Permutations*, Journal of Computer and System Sciences 60(3), 2000. The definitions, the resemblance estimate and the bounds on the size of exact families.

@@ -10,10 +10,10 @@ a reading order for each chapter, summaries, exercises with hints, notes on hist
 concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface, the
 notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.13.0
+## Volumes in edition 0.16.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.13.0](https://github.com/tamnd/algorithm/releases/tag/v0.13.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.16.0](https://github.com/tamnd/algorithm/releases/tag/v0.16.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
 
@@ -34,7 +34,11 @@ number of the handbook follows the release of the site it is built from. The boo
 | 12 | Numerical | 465 | written |
 | 13 | Geometry | 280 | written |
 | 14 | Combinatorics | 174 | written |
-| 15–31 | Optimization … Complexity | – | forthcoming: the site has only short pages so far |
+| 15 | Optimization | 301 | written |
+| 16 | Logic and constraints | 325 | written |
+| 17 | Randomized | 141 | written |
+| 18 | Approximation | 35 | Chapter 18.1 written; openings only for 18.2–18.6 |
+| 19–31 | Online and streaming … Complexity | – | forthcoming: the site has only short pages so far |
 
 ## Building
 

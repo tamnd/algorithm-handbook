@@ -233,19 +233,23 @@ def clean_html(md: str) -> str:
 
 
 # `$j' $`: KaTeX on the site accepts a space before the closing dollar; pandoc does not, and prints the dollars
-_MATH_TRAIL = re.compile(r"(?<![\\$\w])\$([^\s$][^$\n]{0,60}?)\s+\$(?![\w$])")
+# and the TeX between them as text. Two forms are repaired: a span after a space or punctuation (`the potential
+# $\Phi = $ the number`), and an argument list after a procedure name in capitals (`RANK$(b) - $ RANK$(a)$`).
+_MATH_TRAIL = re.compile(r"(?:(?<![\\$\w])|(?<=[A-Z0-9])(?=\$\())\$([^\s$][^$\n]{0,60}?)\s+\$(?![\w$])")
 
 
 def fix_math(md: str) -> str:
     def line(ln: str) -> str:
         if "$" not in ln or "$$" in ln:
             return ln
-        def repl(m):
-            before = ln[:m.start()].replace("\\$", "")
-            if before.count("$") % 2:      # this dollar closes a span: leave it
-                return m.group(0)
-            return "$" + m.group(1) + "$"
-        return _MATH_TRAIL.sub(repl, ln)
+        i = 0
+        while (m := _MATH_TRAIL.search(ln, i)):
+            if ln[:m.start()].replace("\\$", "").count("$") % 2:
+                i = m.start() + 1          # this dollar closes a span: try the next one
+                continue
+            ln = ln[:m.start()] + "$" + m.group(1) + "$" + ln[m.end():]
+            i = m.start() + len(m.group(1)) + 2
+        return ln
     return "\n".join(line(x) for x in md.split("\n"))
 
 # --------------------------------------------------------------------------- sections of a body
@@ -506,7 +510,42 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
     md = "\n\n".join(x for x in out if x and x.strip())
     md = convert_fences(md)
     md = shift_headings(md, 2)     # ## → ####, ### → #####
+    md = scope_anchors(md, node.slug)
     return "\n".join(head) + "\n" + md + "\n"
+
+
+def _anchor(text: str) -> str:
+    """The identifier the site gives a heading: lower case, punctuation dropped, spaces to hyphens."""
+    t = re.sub(r"\{[^{}]*\}\s*$", "", text).strip().lower()
+    t = re.sub(r"[^\w\s-]", "", t)
+    return re.sub(r"\s+", "-", t).strip("-")
+
+
+def scope_anchors(md: str, slug: str) -> str:
+    """Give the section headings of an entry identifiers of their own (`quicksort--complexity`), and point the
+    entry's links to its own sections (`[below](#complexity)`) at them. Without this, such a link found the first
+    heading of that name in the whole volume, in another entry."""
+    out, fence, ids = [], None, set(re.findall(r"\{#(" + re.escape(slug) + r"--[^\s}]+)", md))
+    for line in md.split("\n"):
+        f = re.match(r"^(`{3,}|~{3,})", line)
+        if f:
+            if fence is None:
+                fence = f.group(1)[0]
+            elif f.group(1)[0] == fence:
+                fence = None
+        elif fence is None and (m := re.match(r"^(#{4,6} )(.*?)(?:\s*\{([^{}]*)\})?\s*$", line)):
+            attrs = m.group(3) or ""
+            if "#" not in attrs and (a := _anchor(m.group(2))):
+                ident, k = f"{slug}--{a}", 1
+                while ident in ids:
+                    k += 1
+                    ident = f"{slug}--{a}-{k}"
+                ids.add(ident)
+                line = f"{m.group(1)}{m.group(2)} {{#{ident}{' ' + attrs if attrs else ''}}}"
+        out.append(line)
+    md = "\n".join(out)
+    return re.sub(r"\]\(#([a-z0-9][a-z0-9-]*)\)",
+                  lambda m: f"](#{slug}--{m[1]})" if f"{slug}--{m[1]}" in ids else m.group(0), md)
 
 # --------------------------------------------------------------------------- learner layer
 
@@ -516,7 +555,7 @@ def glue(book: Book, refs: Refs, *parts, shift: int = 2) -> str:
     t = book.text(*parts)
     if not t.strip():
         return ""
-    t = re.sub(r"^---\n.*?\n---\n", "", t, flags=re.S)
+    t = fix_math(re.sub(r"^---\n.*?\n---\n", "", t, flags=re.S))
 
     def repl(m):
         slug, frag = m.group(1), m.group(2) or ""
@@ -552,17 +591,20 @@ def chapter_md(book: Book, vol: Volume, ch: Chapter, refs: Refs, fig: str = "") 
     elif not opening:
         out.append("The entries of this chapter are being written. "
                    f"The planned topics are listed below and on the site: <{SITE}/areas/>.")
-    for g in ch.groups:
+    # Group headings get their own identifiers: without one, pandoc's EPUB writer makes `quicksort` from the
+    # heading "Quicksort", which then collides with the entry of that name and can capture its links.
+    cid = "ch-" + ch.num.replace(".", "-")
+    for gi, g in enumerate(ch.groups, 1):
         if g.title:
             out += ["```{=latex}", r"\hbgroup{%s}" % tex(g.title), "```", "",
-                    f"## {md_plain(g.title)} {{.html-only}}", ""]
+                    f"## {md_plain(g.title)} {{#{cid}-g{gi} .html-only}}", ""]
             if g.intro:
                 out.append(f'::: {{.groupintro latex-env="hbgroupintro"}}\n{glue_inline(book, refs, g.intro)}\n:::\n')
         for e in g.entries:
             out.append(entry_md(e, book.ref(e.slug), refs))
     if ch.stubs:
         out += ["```{=latex}", r"\hbgroup{Further topics}", "```", "",
-                "## Further topics {.html-only}", "",
+                f"## Further topics {{#{cid}-further .html-only}}", "",
                 "These topics belong to the chapter. Their entries are not written yet; "
                 "the site has a short page for each.\n",
                 '::: {.further latex-env="hbfurther"}']
@@ -577,7 +619,7 @@ def chapter_md(book: Book, vol: Volume, ch: Chapter, refs: Refs, fig: str = "") 
             continue
         if fname == "exercises.md":
             t = number_exercises(t, ch.num)
-        out += ["```{=latex}", r"\hbgroup{%s}" % title, "```", "", f"## {title} {{.html-only}}", "", t]
+        out += ["```{=latex}", r"\hbgroup{%s}" % title, "```", "", f"## {title} {{#{cid}-{fname[:-3]} .html-only}}", "", t]
     return "\n".join(out) + "\n"
 
 

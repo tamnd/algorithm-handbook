@@ -1,0 +1,53 @@
+# The order of chapter 17.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Two kinds of randomized algorithm
+    intro: >
+      A Las Vegas algorithm is always right and has a random running time; a Monte Carlo algorithm has a
+      bounded running time and may be wrong with small probability. Monte Carlo errors come in two shapes.
+      With one-sided error one of the two answers is always right; with two-sided error either answer can be
+      wrong, but each is right with probability bounded away from $1/2$.
+    entries:
+      - las-vegas-algorithm
+      - monte-carlo-algorithm
+      - one-sided-error
+      - two-sided-error
+
+  - title: Lowering the error, changing the kind
+    intro: >
+      Independent runs drive the error down exponentially: an OR of the answers for one-sided error, a
+      majority vote for two-sided error. A Las Vegas algorithm becomes Monte Carlo when it is cut off at a
+      multiple of its expected time, and a Monte Carlo algorithm with a fast verifier becomes Las Vegas when
+      it is repeated until the verifier accepts.
+    entries:
+      - error-amplification
+      - las-vegas-to-monte-carlo-conversion
+
+  - title: "Primality: witnesses of compositeness"
+    intro: >
+      The two classical randomized primality tests look for a base that proves $n$ composite. A prime has no
+      such base, so the answer "composite" is always right. For Miller-Rabin at least three quarters of the
+      bases are witnesses, for Solovay-Strassen at least half, so $k$ rounds err with probability at most
+      $4^{-k}$ or $2^{-k}$.
+    entries:
+      - miller-rabin-primality-test
+      - solovay-strassen-primality-test
+
+  - title: Testing identities at random points
+    intro: >
+      A nonzero polynomial of degree $d$ vanishes at a random point of $S^n$ with probability at most
+      $d/|S|$. This one lemma gives a one-sided test for polynomial identities, and its degree-one case is
+      Freivalds' check of a matrix product with $O(n^2)$ work per round.
+    entries:
+      - schwartz-zippel-lemma
+      - polynomial-identity-testing
+      - matrix-product-verification
+      - freivalds-algorithm
+
+  - title: Random choices in combinatorial problems
+    intro: >
+      Two problems where a random choice does what no simple deterministic rule does. Matching nuts and bolts
+      with a random pivot is a Las Vegas algorithm with $O(n \log n)$ expected comparisons. The analysis of
+      random edge contraction bounds the number of minimum cuts of any graph by $\binom{n}{2}$.
+    entries:
+      - nuts-and-bolts
+      - minimum-cut-count-bound

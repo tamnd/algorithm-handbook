@@ -1,0 +1,16 @@
+## History
+
+The name Monte Carlo comes from physics. Nicholas Metropolis and Stanislaw Ulam used it in 1949 for computing with random samples, and it later came to mean any algorithm whose answer may be wrong with small probability. László Babai proposed the name Las Vegas in 1979 for algorithms that are never wrong and whose running time is random. John Gill defined the complexity classes of probabilistic computation in 1977, among them PP and BPP, and so gave one-sided and two-sided error their formal setting.
+
+Primality testing was the first problem where a randomized algorithm clearly beat every known deterministic one. Gary Miller gave a deterministic test in 1976 whose correctness rests on the extended Riemann hypothesis. Robert Solovay and Volker Strassen published their test with the Jacobi symbol in 1977, with error at most $1/2$ per round. Michael Rabin turned Miller's test into a randomized one, and in 1980 Rabin and Louis Monier each proved that at most a quarter of the bases are strong liars. Manindra Agrawal, Neeraj Kayal and Nitin Saxena put primality in P in 2002, by derandomizing a polynomial identity.
+
+Rūsiņš Freivalds presented the randomized check of a matrix product at the IFIP Congress in 1977. The bound on the zeros of a polynomial was found several times: Richard DeMillo and Richard Lipton published it in 1978, Richard Zippel in 1979 and Jacob Schwartz in 1980, and Øystein Ore had the case of finite fields in 1922. László Lovász used it in 1979 to test a graph for a perfect matching with a random Tutte matrix. Valentine Kabanets and Russell Impagliazzo showed in 2004 that a deterministic polynomial-time test for polynomial identities would prove circuit lower bounds.
+
+David Karger proved the bound of $\binom{n}{2}$ on the number of minimum cuts with his contraction algorithm in 1993, and Karger and Clifford Stein made the algorithm faster in 1996. For nuts and bolts, Noga Alon, Manuel Blum, Amos Fiat, Sampath Kannan, Moni Naor and Rafail Ostrovsky gave the first deterministic algorithm with $o(n^2)$ comparisons in 1994. János Komlós, Yuan Ma and Endre Szemerédi reached $O(n \log n)$ in 1998, with constants too large for practice.
+
+## Further reading
+
+- Rajeev Motwani and Prabhakar Raghavan, *Randomized Algorithms* (1995). The first chapter defines Las Vegas and Monte Carlo algorithms through randomized quicksort and the contraction algorithm. Later chapters cover the primality tests, Freivalds' algorithm and the Schwartz-Zippel lemma.
+- Michael Mitzenmacher and Eli Upfal, *Probability and Computing*, second edition (2017). The early chapters prove the matrix product check and the minimum cut bound, and the chapter on Chernoff bounds gives the tail estimates behind amplification.
+- Sanjeev Arora and Boaz Barak, *Computational Complexity: A Modern Approach* (2009). Chapter 7 defines RP, co-RP, ZPP and BPP, proves amplification for each, and treats polynomial identity testing as the main problem in co-RP.
+- Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest and Clifford Stein, *Introduction to Algorithms*, third edition (2009). The problems at the end of Chapter 8 pose nuts and bolts as matching water jugs, with a lower bound and a randomized algorithm.
