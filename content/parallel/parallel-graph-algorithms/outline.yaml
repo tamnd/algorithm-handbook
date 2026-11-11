@@ -1,0 +1,70 @@
+# The order of chapter 20.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Frontiers and contraction
+    intro: >
+      Two ideas carry most of the chapter. A round can touch only the vertices that changed, the frontier,
+      so that the work follows the input and not the number of rounds; or it can shrink the graph by a
+      constant factor, so that $O(\log n)$ rounds are enough. Both are built from the
+      [prefix sums](/all-prefix-sums/), [packs](/parallel-pack/) and [pointer jumping](/pointer-jumping/)
+      of Chapter 20.2.
+    entries:
+      - frontier-based-processing
+      - graph-contraction
+
+  - title: Breadth-first search and shortest paths
+    intro: >
+      [Parallel BFS](/parallel-bfs/) is frontier processing in its plainest form: linear work, and a span
+      that grows with the number of levels $D$. Reading the frontier from the unvisited side saves most of
+      the edge checks on graphs with a small diameter. With weights, [delta-stepping](/delta-stepping/)
+      groups the distances into buckets of width $\Delta$ and treats each bucket as a frontier.
+    entries:
+      - parallel-bfs
+      - direction-optimizing-bfs
+      - delta-stepping
+
+  - title: Connectivity and spanning trees
+    intro: >
+      Connected components need no search at all. Vertices hook into stars by coin flips or by comparing
+      labels, and the stars collapse by pointer jumping, so the span is polylogarithmic even when $D$ is
+      large. The same hooking finds a minimum spanning forest, and with the
+      [Euler tour technique](/euler-tour-technique/) it gives the biconnected components.
+    entries:
+      - random-mate-contraction
+      - shiloach-vishkin
+      - parallel-minimum-spanning-tree
+      - tarjan-vishkin
+
+  - title: Symmetry breaking
+    intro: >
+      A greedy pass over the vertices in a fixed order is sequential, and for the lexicographically first
+      order the problem is P-complete. Random priorities let many vertices decide at once. These entries
+      find a maximal independent set, a colouring with at most $\Delta + 1$ colours, and maximal and
+      weighted matchings, each in a polylogarithmic number of rounds with high probability.
+    entries:
+      - maximal-independent-set
+      - luby-mis
+      - jones-plassmann
+      - israeli-itai
+      - locally-dominant-matching
+
+  - title: Strongly connected components
+    intro: >
+      Tarjan's one-pass method depends on depth-first order, so the parallel methods use reachability
+      instead. A forward and a backward search from one pivot cut out one component and split the rest
+      into three independent parts; label propagation finds many components at once. Neither has a good
+      bound on every graph, but both run well on real ones.
+    entries:
+      - forward-backward-scc
+      - coloring-scc
+
+  - title: Flow, reachability and depth-first search
+    intro: >
+      For these problems no method in the chapter has both polylogarithmic span and near-linear work.
+      Push-relabel runs in synchronous pulses, with a span polynomial in $n$; transitive closure by
+      sampling trades work against span through one parameter $t$; and the lexicographically first
+      depth-first order is P-complete, so a parallel depth-first search gives up that order or accepts a
+      span that grows with the depth of the tree.
+    entries:
+      - parallel-push-relabel
+      - ullman-yannakakis
+      - parallel-dfs

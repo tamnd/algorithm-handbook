@@ -1,0 +1,26 @@
+A sequential algorithm has one cost that matters most, its running time. A parallel algorithm has two. The *work* $T_1$ is the total number of steps it does, as if one processor did them all. The *span* $T_\infty$ is the length of the longest chain of steps that must happen one after another, the time it would take on a machine with as many processors as it could use. Summing $n$ numbers with a balanced tree of additions has work $n - 1$ and span $\lceil \lg n \rceil$. No schedule can beat either number, since $p$ processors do at most $p$ steps at a time and no processor can shorten a chain. The surprise, and the reason the model is worth learning, is that a simple scheduler comes close to both at once: $T_p \le T_1/p + T_\infty$.
+
+This chapter sets up the cost models the rest of the volume uses. It starts with the PRAM, the older model that counts processors and synchronous steps, and moves to the work-span model, which counts only the dependences and leaves the processors to a scheduler. Every later chapter states its costs in one of these two models, and most in the second.
+
+## What the chapter covers
+
+The chapter is in six groups, read in order.
+
+1. **The PRAM.** The [PRAM model](/pram-model/) puts $p$ processors on one shared memory, all stepping in lockstep. The [EREW](/erew-pram/), [CREW](/crew-pram/) and [CRCW](/crcw-pram/) variants differ in whether two processors may read, or write, the same cell in one step, and the gaps between them are real: a CRCW PRAM finds an OR in one step, a CREW PRAM needs $\Omega(\log n)$.
+2. **Computations as graphs.** The [work-span model](/work-span-model/) describes a run as a [computation DAG](/computation-dag/). [Work and span](/work-and-span/) are its number of vertices and the length of its [critical path](/critical-path/).
+3. **Fork-join programs.** The [fork-join model](/fork-join-model/) writes parallel code with spawn and sync. [Parallel Fibonacci](/parallel-fibonacci/) is the running example, [determinacy races](/determinacy-race/) are the bugs to avoid, and [work-span analysis](/work-span-analysis/) turns code into recurrences for $T_1$ and $T_\infty$.
+4. **The laws and measures.** The [work law](/work-law/) and the [span law](/span-law/) bound every schedule from below. [Parallelism](/parallelism/), [speedup](/speedup/), [parallel efficiency](/parallel-efficiency/) and [work efficiency](/work-efficiency/) are the measures built from them.
+5. **Scaling.** [Amdahl's law](/amdahls-law/) and [strong scaling](/strong-scaling/) fix the problem size; [Gustafson's law](/gustafsons-law/) and [weak scaling](/weak-scaling/) grow it with the machine.
+6. **Scheduling.** [Greedy scheduling](/greedy-scheduling/) and [Brent's theorem](/brent-theorem/) give the upper bound $T_1/p + T_\infty$. [Parallel slackness](/parallel-slackness/) says when that bound means near-perfect speedup. [Work stealing](/work-stealing/) is how real runtimes get it, and the [Blumofe–Leiserson bound](/blumofe-leiserson-bound/) proves that they do.
+
+## A first reading
+
+For a first reading, take these twelve entries in order: [the work-span model](/work-span-model/), [the computation DAG](/computation-dag/), [work and span](/work-and-span/), [the fork-join model](/fork-join-model/), [parallel Fibonacci](/parallel-fibonacci/), [work-span analysis](/work-span-analysis/), [the work law](/work-law/), [the span law](/span-law/), [parallelism](/parallelism/), [speedup](/speedup/), [Amdahl's law](/amdahls-law/) and [greedy scheduling](/greedy-scheduling/). They give you the two numbers, the way to compute them from code, the bounds on either side, and the one scheduling theorem the rest of the volume quotes. Draw the DAG of a small program for yourself while you read; the definitions are short, but the counting conventions differ between books, and drawing is the quickest way to see which one an entry uses.
+
+The PRAM group can be read before or after the rest. The later chapters use it mostly for its names (an algorithm "runs on an EREW PRAM in $O(\log n)$ time") and for the lower bounds that separate the variants. [Work stealing](/work-stealing/) and the [Blumofe–Leiserson bound](/blumofe-leiserson-bound/) are the hardest entries here; the second is a probabilistic proof with a potential function and can wait.
+
+## Before you start
+
+You need [asymptotic notation](/asymptotic-notation/), [recurrence relations](/recurrence-relation/) and the [master theorem](/master-theorem/) from Volume 1, and the [random-access machine](/random-access-machine/) with its [unit-cost model](/unit-cost-model/), which the PRAM extends. From Volume 7 you need the [directed acyclic graph](/directed-acyclic-graph/), [topological sort](/topological-sort/) and the [longest path in a DAG](/dag-longest-path/), since the span is exactly that. The [Fibonacci numbers](/fibonacci-numbers/) of Volume 11 appear in the running example. For work stealing you need the [deque](/deque/) of Volume 3, and [Markov's inequality](/markov-inequality/) and [balls into bins](/balls-into-bins/) from Volume 1.
+
+The same scheduling question, with tasks of arbitrary length, comes back as [list scheduling](/list-scheduling-bound/) in Volume 18, where Graham's bound of $2 - 1/m$ is the greedy bound of this chapter in a different notation.

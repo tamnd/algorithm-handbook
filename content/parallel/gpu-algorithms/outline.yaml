@@ -1,0 +1,88 @@
+# The order of chapter 20.4, GPU algorithms. Groups are read in order; entries in a group too.
+groups:
+  - title: The SIMT machine
+    intro: >
+      A GPU runs threads in warps of 32 that issue one instruction at a time for all their lanes. These
+      entries set out that cost model, what happens when the lanes of a warp disagree on a branch, and how
+      CUDA groups threads into blocks and grids. The [SIMT model](/simt-model/) is the base of every later
+      entry.
+    entries:
+      - simt-model
+      - warp-divergence
+      - cuda-programming-model
+      - thread-block-and-grid
+
+  - title: Memory
+    intro: >
+      Most GPU kernels wait for memory, not for arithmetic. The first entry lays out the memory spaces, from
+      registers to global memory. The other two give the two rules for using them well: the lanes of a warp
+      should touch neighbouring words of global memory, and different banks of shared memory.
+    entries:
+      - gpu-memory-hierarchy
+      - memory-coalescing
+      - shared-memory-bank-conflicts
+
+  - title: Performance models
+    intro: >
+      Arithmetic intensity is the number of operations a kernel does per byte it moves. The roofline model
+      turns it into a bound, $P(I) = \min(\pi, I\beta)$, and its ridge point $\pi/\beta$ says whether a kernel
+      is limited by memory or by compute.
+    entries:
+      - arithmetic-intensity
+      - roofline-model
+
+  - title: Keeping the SMs busy
+    intro: >
+      A GPU hides the latency of memory by switching between many resident warps. [Occupancy](/occupancy/)
+      counts how many warps fit on a multiprocessor, and latency hiding uses Little's law to say how many are
+      enough. Warp-level primitives let the lanes of a warp share values in registers, without shared memory.
+    entries:
+      - occupancy
+      - latency-hiding
+      - warp-level-primitives
+
+  - title: Host, streams and launches
+    intro: >
+      A kernel runs on a device that the host must feed. These entries count the cost of copies over the
+      bus, show how streams overlap copies with kernels, and measure the fixed cost of each launch, which
+      makes many small kernels slow.
+    entries:
+      - host-device-data-transfer
+      - cuda-streams
+      - kernel-launch-overhead
+
+  - title: Tiled kernels
+    intro: >
+      A block loads a tile of data into shared memory once and reuses it many times. Tiling raises the
+      intensity of matrix multiplication to $T/4$ FLOP per byte for $T \times T$ tiles. Stencils use the same
+      idea with a halo, wavefronts sweep a table along its anti-diagonals, and tensor cores multiply whole
+      small tiles in one instruction.
+    entries:
+      - shared-memory-tiling
+      - stencil-computation
+      - wavefront-parallelism
+      - tensor-cores
+
+  - title: Layout and passes over memory
+    intro: >
+      When a kernel is limited by bandwidth, its time is the number of bytes it moves. ELLPACK lays out a
+      sparse matrix so that a warp's loads coalesce, kernel fusion removes the round trips to memory between
+      kernels, and the decoupled look-back scan computes a prefix sum in one pass, about $2n$ items moved
+      instead of $3n$.
+    entries:
+      - ellpack-format
+      - kernel-fusion
+      - decoupled-look-back-scan
+
+  - title: Advanced control of blocks and warps
+    intro: >
+      These entries go past one plain kernel per step. Cooperative groups give a safe barrier over the whole
+      grid, persistent threads keep a fixed grid and take work from a queue, and dynamic parallelism launches
+      kernels from the device. Warp-aggregated atomics and warp specialization give the warps of a block
+      different roles.
+    entries:
+      - cooperative-groups
+      - persistent-threads
+      - dynamic-parallelism
+      - warp-aggregated-atomics
+      - warp-specialization

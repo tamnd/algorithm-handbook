@@ -1,0 +1,95 @@
+# The order of chapter 20.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Ways to write parallel code
+    intro: >
+      A parallel program says what may run at the same time. In [data parallelism](/data-parallelism/) one
+      operation runs on every item of a collection; in [task parallelism](/task-parallelism/) different tasks
+      run as their dependences allow. [Fork-join parallelism](/fork-join-parallelism/) is the structured form
+      of both: spawn, sync and combine. The [parallel for loop](/parallel-for/) and
+      [parallel map](/parallel-map/) are its simplest patterns, with $\Theta(\log n)$ span for the spawn tree.
+    entries:
+      - data-parallelism
+      - task-parallelism
+      - fork-join-parallelism
+      - parallel-for
+      - parallel-map
+
+  - title: Reduce
+    intro: >
+      An [associative operator](/associative-operator/) can be bracketed in any way, so $n$ items can be
+      combined over a balanced tree with $n - 1$ combines and span $\lceil \lg n \rceil$. That is
+      [parallel reduction](/parallel-reduce/), and the [reduction](/parallel-reduction/) page treats the problem
+      with its monoids, models and lower bounds. A [histogram](/histogram-computation/) is a reduce with $k$
+      counters at once, and the [parallel histogram](/parallel-histogram/) trades work against span as $k$
+      grows.
+    entries:
+      - associative-operator
+      - parallel-reduce
+      - parallel-reduction
+      - histogram-computation
+      - parallel-histogram
+
+  - title: Scan
+    intro: >
+      [All-prefix-sums](/all-prefix-sums/), or scan, asks for every prefix and not only the total. The
+      [Hillis-Steele scan](/hillis-steele-scan/) takes $\lceil \lg n \rceil$ rounds but does $\Theta(n \log n)$
+      work; the [Blelloch scan](/blelloch-scan/) does $\Theta(n)$ work in twice as many rounds. The
+      [parallel prefix](/parallel-prefix/) circuits sit between the two, and Snir's bound
+      $s + d \ge 2n - 2$ limits them all. [Segmented prefix sums](/segmented-prefix-sums/) restart at segment
+      boundaries, and the [segmented scan](/segmented-scan/) computes them with one ordinary scan.
+    entries:
+      - all-prefix-sums
+      - hillis-steele-scan
+      - blelloch-scan
+      - parallel-prefix
+      - segmented-prefix-sums
+      - segmented-scan
+
+  - title: Moving data
+    intro: >
+      [Scatter and gather](/scatter-and-gather/) write and read at computed indices, and the PRAM variant
+      decides what repeated indices cost. [Compaction](/compaction/) keeps the items that pass a test, in order,
+      and [parallel pack](/parallel-pack/) solves it with a flag array, an exclusive scan and a scatter. Pack
+      is the step that keeps later algorithms work-efficient.
+    entries:
+      - scatter-and-gather
+      - compaction
+      - parallel-pack
+
+  - title: Merging
+    intro: >
+      [Merging sorted sequences](/merging-sorted-sequences/) in parallel means finding where each item goes:
+      its rank in the other input, or the co-rank of a cut of the output. [Parallel merge](/parallel-merge/)
+      splits at the median of the longer input by binary search and recurses on both sides, with $\Theta(n)$
+      work and $\Theta(\log^2 n)$ span.
+    entries:
+      - merging-sorted-sequences
+      - parallel-merge
+
+  - title: Matrices
+    intro: >
+      Three fork-join divide and conquer programs on square matrices. The
+      [parallel transpose](/parallel-matrix-transpose/) swaps blocks in place with span $2 \lg n + 1$ and the
+      least cache misses. [Parallel matrix multiplication](/parallel-matrix-multiplication/) shows how a
+      temporary matrix buys span $\Theta(\log^2 n)$ at the cost of memory, and
+      [parallel Strassen](/parallel-strassen/) keeps that span with work $\Theta(n^{\lg 7})$.
+    entries:
+      - parallel-matrix-transpose
+      - parallel-matrix-multiplication
+      - parallel-strassen
+
+  - title: Lists and trees
+    intro: >
+      A linked list hides its order, so even [list ranking](/list-ranking/) needs a new idea in parallel.
+      [Pointer jumping](/pointer-jumping/) doubles every pointer in each round and does $\Theta(n \log n)$ work.
+      [List contraction](/list-contraction/) splices out an independent set of nodes and recurses, which gives
+      the work-efficient [parallel list ranking](/parallel-list-ranking/). [Tree contraction](/tree-contraction/)
+      adds RAKE to the same splicing step, and it evaluates any
+      [expression tree](/tree-expression-evaluation/) in $O(\log n)$ rounds.
+    entries:
+      - list-ranking
+      - pointer-jumping
+      - list-contraction
+      - parallel-list-ranking
+      - tree-contraction
+      - tree-expression-evaluation

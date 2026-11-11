@@ -42,6 +42,10 @@ agents for single chapters. The five new chapters of Volume 18 got their full pa
 rewritten, and the volume introduction now covers the whole volume; Volume 19 was written in full. Two learning
 paths, *Approximation algorithms* and *Online and streaming algorithms*, were added to Volume 0.
 
+For edition 0.19.0, the site's release v0.19.0 opened Volume 20 *Parallel*. One agent wrote its volume
+introduction and first chapter and helper agents wrote the other four chapters, the same way; a learning path
+*Parallel algorithms* was added to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

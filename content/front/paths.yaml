@@ -839,3 +839,74 @@ paths:
           - sliding-window-maximum
           - dgim-algorithm
           - exponential-histogram
+
+  - id: parallel-algorithms
+    title: Parallel algorithms
+    for: a student who has done a first course and wants to design and analyse algorithms for many processors, from multicore machines to GPUs and clusters.
+    intro: >
+      Work and span first, the two numbers that bound the running time of a parallel algorithm on any number of
+      processors, and the schedulers that come close to the bound. Then the primitives most parallel algorithms
+      are built from, parallel graph algorithms, how a GPU runs them, and the bulk-synchronous and MapReduce
+      models of a cluster.
+    stages:
+      - title: Work and span
+        steps:
+          - work-span-model
+          - computation-dag
+          - work-and-span
+          - work-law
+          - span-law
+          - parallelism
+          - work-span-analysis
+          - parallel-fibonacci
+          - amdahls-law
+      - title: Scheduling and the PRAM
+        steps:
+          - greedy-scheduling
+          - brent-theorem
+          - work-stealing
+          - entry: determinacy-race
+            why: the bug that parallel code adds.
+          - pram-model
+          - crcw-pram
+      - title: Primitives
+        steps:
+          - parallel-reduce
+          - all-prefix-sums
+          - hillis-steele-scan
+          - blelloch-scan
+          - parallel-pack
+          - segmented-scan
+          - parallel-merge
+          - pointer-jumping
+          - list-ranking
+          - tree-contraction
+      - title: Graphs
+        steps:
+          - parallel-bfs
+          - direction-optimizing-bfs
+          - delta-stepping
+          - luby-mis
+          - shiloach-vishkin
+          - parallel-minimum-spanning-tree
+          - forward-backward-scc
+      - title: GPUs
+        steps:
+          - simt-model
+          - thread-block-and-grid
+          - gpu-memory-hierarchy
+          - memory-coalescing
+          - warp-divergence
+          - shared-memory-tiling
+          - roofline-model
+          - decoupled-look-back-scan
+      - title: Clusters
+        steps:
+          - bsp-model
+          - superstep
+          - h-relation
+          - mapreduce-model
+          - shuffle-phase
+          - word-count
+          - pregel-model
+          - resilient-distributed-datasets

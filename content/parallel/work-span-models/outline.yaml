@@ -1,0 +1,72 @@
+# The order of chapter 20.1 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: The PRAM
+    intro: >
+      The first model of a parallel machine is the [random-access machine](/random-access-machine/) with many
+      processors sharing one memory. All processors step in lockstep, and the variants differ only in what
+      happens when two of them read or write the same cell in the same step. The rule matters: the maximum of
+      $n$ numbers takes $\Theta(\log n)$ steps on an EREW PRAM and $O(1)$ steps on a CRCW PRAM.
+    entries:
+      - pram-model
+      - erew-pram
+      - crew-pram
+      - crcw-pram
+
+  - title: Computations as graphs
+    intro: >
+      The work-span model forgets the processors and keeps only the dependences. A run of a program is a
+      [directed acyclic graph](/directed-acyclic-graph/) of unit strands. Its size is the work $T_1$ and its
+      longest path is the span $T_\infty$; these two numbers describe the program on any number of processors.
+    entries:
+      - work-span-model
+      - computation-dag
+      - work-and-span
+      - critical-path
+
+  - title: Fork-join programs
+    intro: >
+      Programs written with spawn and sync give DAGs of a special series-parallel shape, so their work and
+      span follow from the code by two rules: add along a sequence, take the maximum across a fork.
+      [Parallel Fibonacci](/parallel-fibonacci/) is the standard small example. Determinacy races are the bugs
+      that make such a program give different answers on different runs.
+    entries:
+      - fork-join-model
+      - parallel-fibonacci
+      - determinacy-race
+      - work-span-analysis
+
+  - title: The laws and measures
+    intro: >
+      Two lower bounds hold for every schedule: $T_p \ge T_1/p$ and $T_p \ge T_\infty$. From them come the
+      measures used everywhere else in the volume: the parallelism $T_1/T_\infty$, the speedup $T_1/T_p$, the
+      efficiency $T_1/(pT_p)$, and work efficiency, which compares the work with the best sequential time.
+    entries:
+      - work-law
+      - span-law
+      - parallelism
+      - speedup
+      - parallel-efficiency
+      - work-efficiency
+
+  - title: Scaling
+    intro: >
+      Amdahl's law fixes the problem and asks how far speedup goes as processors are added; Gustafson's law
+      grows the problem with the machine. The two are the same algebra seen from two ends, and strong and weak
+      scaling are the experiments that go with them.
+    entries:
+      - amdahls-law
+      - strong-scaling
+      - gustafsons-law
+      - weak-scaling
+
+  - title: Scheduling
+    intro: >
+      A greedy scheduler never leaves a processor idle when a strand is ready, and that alone gives
+      $T_p \le T_1/p + T_\infty$, within a factor of two of the best schedule. Work stealing reaches the same
+      bound in expectation without a central queue, using one [deque](/deque/) per processor.
+    entries:
+      - greedy-scheduling
+      - brent-theorem
+      - parallel-slackness
+      - work-stealing
+      - blumofe-leiserson-bound

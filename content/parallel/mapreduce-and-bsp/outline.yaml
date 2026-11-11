@@ -1,0 +1,87 @@
+# The order of chapter 20.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The MapReduce model
+    intro: >
+      A [MapReduce](/mapreduce-model/) job is a map function that emits key-value pairs, a shuffle that brings
+      the pairs of each key together, and a reduce function called once per key. The
+      [partitioner](/partitioner/) decides which reduce task owns a key, the [shuffle](/shuffle-phase/) moves
+      and sorts the pairs, and a [combiner](/combiner/) shrinks them before they leave the map task. The costs
+      are the rounds, the pairs or bytes shuffled, and the largest input of one reduce task.
+    entries:
+      - mapreduce-model
+      - partitioner
+      - shuffle-phase
+      - combiner
+
+  - title: First jobs
+    intro: >
+      [Word count](/word-count/) and [distributed grep](/distributed-grep/) are the two jobs of the original
+      paper, one with a real reduce and one with almost none. [Secondary sort](/secondary-sort/) lets the
+      framework sort the values of a key, which an [inverted index](/inverted-index/) uses for its posting
+      lists. [Distributed sorting](/distributed-sorting/) replaces the hash partitioner by key ranges taken from
+      a sample, so that the outputs read in order are sorted.
+    entries:
+      - word-count
+      - distributed-grep
+      - secondary-sort
+      - inverted-index
+      - distributed-sorting
+
+  - title: Running on a real cluster
+    intro: >
+      A round ends when its slowest task ends. [Data skew](/data-skew/) makes one reduce task slow because one
+      key is large, and no partitioner that keeps a key whole can beat $c_{\max}$, the count of that key.
+      Machines also fail or slow down. [Re-execution](/fault-tolerance-by-recomputation/) recovers lost work by
+      running the same deterministic task again, and [speculative execution](/speculative-execution/) runs
+      backup copies of the last tasks.
+    entries:
+      - data-skew
+      - fault-tolerance-by-recomputation
+      - speculative-execution
+
+  - title: Joins
+    intro: >
+      The [reduce-side join](/reduce-side-join/) tags each tuple with its relation and shuffles both relations
+      on the join key. The [map-side join](/map-side-join/) copies a small relation to every map task and
+      skips the shuffle for the large one. The [Shares join](/hypercube-shares-join/) computes a join of three
+      or more relations in one round by arranging the reducers as a grid, with sides found by Lagrange
+      multipliers.
+    entries:
+      - reduce-side-join
+      - map-side-join
+      - hypercube-shares-join
+
+  - title: Bulk synchronous parallel
+    intro: >
+      The [BSP model](/bsp-model/) runs a program as a sequence of [supersteps](/superstep/), each ended by a
+      [barrier](/barrier-synchronization/). A superstep with local work $w$ and an
+      [h-relation](/h-relation/) costs $w + g h + L$ on $p$ processors, so only the busiest sender or receiver
+      counts. A MapReduce round is one such superstep.
+    entries:
+      - barrier-synchronization
+      - bsp-model
+      - superstep
+      - h-relation
+
+  - title: Iteration and graphs
+    intro: >
+      [Iterative MapReduce](/iterative-mapreduce/) runs one job per iteration and pays for the unchanged data
+      in every round. [Resilient distributed datasets](/resilient-distributed-datasets/) keep the data in memory
+      and rebuild lost parts from their lineage. [Pregel](/pregel-model/) keeps each vertex on one worker and
+      sends only messages, one BSP superstep at a time, and the [gather-apply-scatter model](/gas-model/)
+      splits a vertex of high degree over several machines.
+    entries:
+      - iterative-mapreduce
+      - resilient-distributed-datasets
+      - pregel-model
+      - gas-model
+
+  - title: Rounds and communication
+    intro: >
+      The [MRC model](/mrc-model/) gives each machine memory sublinear in the input and counts rounds, and
+      compares them with the class [NC](/nc/) of fast parallel algorithms. For one round, the
+      [lower bounds](/mapreduce-communication-lower-bounds/) of Afrati, Das Sarma, Salihoglu and Ullman trade
+      the reducer size $q$ against the replication rate $r$.
+    entries:
+      - mrc-model
+      - mapreduce-communication-lower-bounds
