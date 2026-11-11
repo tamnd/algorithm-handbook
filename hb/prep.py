@@ -12,6 +12,7 @@ import re
 from .mathcost import cost_md
 from .book import Book, Chapter, Volume
 from .corpus import KIND_LABEL, Node, clean_code
+from .statements import Statements
 
 SITE = "https://algorithm.tamnd.com"
 LEVEL_LABEL = {"intro": "Intro", "core": "Core", "advanced": "Advanced", "research": "Research"}
@@ -64,6 +65,7 @@ class Refs:
 
     def __init__(self, book: Book, volume: Volume):
         self.book, self.volume = book, volume
+        self.statements: list = []     # (number, kind, note, id, entry slug) for the list of statements
 
     def target(self, slug: str, frag: str = "") -> str:
         if self.book.volume_of.get(slug) == self.volume.number:
@@ -79,7 +81,7 @@ class Refs:
             s += f" [{num}]{{.ref}}"
         return s
 
-    def rewrite_body(self, md: str, node: Node) -> str:
+    def rewrite_body(self, md: str, node: Node, in_proof: bool = False) -> str:
         def repl(m):
             slug, frag = m.group(1), m.group(2) or ""
             if slug == node.slug and frag:
@@ -88,8 +90,26 @@ class Refs:
                 return "](" + self.target(slug, frag) + ")"
             return f"]({SITE}/{slug}/{frag})"
         md = re.sub(r"\]\(/([a-z0-9][a-z0-9-]*)/(#[^)]*)?\)", repl, md)
-        # links to the proofs of the same node
-        md = re.sub(r"\]\(proofs/([a-z0-9-]+)\.md\)", lambda m: f"](#{node.slug}--proof-{m.group(1)})", md)
+
+        def proof(slug, pid):
+            n = self.book.corpus.nodes.get(slug)
+            if n is None:
+                return f"]({SITE}/{slug}/proofs/{pid}/)"
+            if pid not in {p.id for p in n.proofs}:
+                return "](" + self.target(slug) + ")"
+            if self.book.volume_of.get(slug) == self.volume.number:
+                return f"](#{slug}--proof-{pid})"
+            return f"]({SITE}/{slug}/proofs/{pid}/)"
+        # links to the proofs of another node, of the same node, and (inside a proof) of a sibling proof
+        md = re.sub(r"\]\(/([a-z0-9][a-z0-9-]*)/proofs/([a-z0-9-]+)(?:\.md|/)?\)", lambda m: proof(m[1], m[2]), md)
+        md = re.sub(r"\]\((?:\./)?proofs/([a-z0-9-]+)(?:\.md|/)?\)", lambda m: proof(node.slug, m[1]), md)
+        ids = {p.id for p in node.proofs}
+        md = re.sub(r"\]\((?:\./)?([a-z0-9-]+)\.md\)",
+                    lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
+        if in_proof:   # a proof page sits at /slug/proofs/id/: ../ is the entry, ../other/ (or other/) a sibling proof
+            md = re.sub(r"\]\((?:\.\./)?([a-z0-9-]+)/\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
+            md = re.sub(r"\]\(\.\./([a-z0-9-]+)\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
+            md = re.sub(r"\]\(\.\./\)", "](" + self.target(node.slug) + ")", md)
         md = re.sub(r"\]\((?:\./)?impl/[^)]*\)", f"]({SITE}/{node.slug}/#code-tabs)", md)
         return md
 
@@ -170,9 +190,11 @@ def _pseudo_tex_code(code: str) -> str:
     return "".join(out)
 
 
-def pseudo_latex(text: str) -> str:
+def pseudo_latex(text: str, caption: tuple | None = None) -> str:
     rows = pseudo_lines(text)
     out = [r"\begin{hbpseudo}"]
+    if caption:
+        out.append(r"\hbpcap{%s}{%s}{%s}" % (caption[0], tex(caption[1]), caption[2]))
     for r in rows:
         if r is None:
             out.append(r"\hbpgap")
@@ -187,9 +209,12 @@ def _html(s: str) -> str:
     return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
 
-def pseudo_html(text: str) -> str:
+def pseudo_html(text: str, caption: tuple | None = None) -> str:
     rows = pseudo_lines(text)
     out = ['<div class="pseudo">']
+    if caption:
+        name = f' <span class="proc">{_html(caption[1])}</span>' if caption[1] else ""
+        out.append(f'<div class="pcap"><b>{caption[0]}</b>{name}</div>')
     for r in rows:
         if r is None:
             out.append('<div class="pl gap"></div>')
@@ -211,12 +236,17 @@ def pseudo_html(text: str) -> str:
 FENCE_RE = re.compile(r"^(`{3,})([^\n`]*)\n(.*?)^\1[ \t]*$", re.M | re.S)
 
 
-def convert_fences(md: str) -> str:
+def convert_fences(md: str, st: Statements | None = None) -> str:
+    """Code fences to the forms of the book. With `st`, each pseudocode block is a numbered algorithm."""
     def repl(m):
         info, body = m.group(2).strip(), m.group(3)
         lang = info.split()[0] if info else ""
         if lang == "pseudo":
-            return ("```{=latex}\n" + pseudo_latex(body) + "\n```\n\n```{=html}\n" + pseudo_html(body) + "\n```\n")
+            cap = None
+            if st is not None:
+                mk = st.algorithm(body)
+                cap = ("Algorithm " + mk, st.items[-1].name, mk.replace("A", "I", 1))
+            return ("```{=latex}\n" + pseudo_latex(body, cap) + "\n```\n\n```{=html}\n" + pseudo_html(body, cap) + "\n```\n")
         if lang in ("", "text", "txt", "plain"):
             return "```{.plain}\n" + body + "```"
         return "```" + lang + "\n" + body + "```"
@@ -437,10 +467,10 @@ def implementation(node: Node, refs: Refs) -> str:
     return "\n".join(out)
 
 
-def proofs_md(node: Node) -> str:
+def proofs_md(node: Node, bodies: dict | None = None) -> str:
     out = []
     for p in node.proofs:
-        body = fix_math(shift_headings(p.body, 4))
+        body = (bodies or {}).get(p.id) or fix_math(shift_headings(p.body, 4))
         status = {"full": "", "sketch": " (sketch)"}.get(p.status, "")
         out.append(f'::: {{#{node.slug}--proof-{p.id} .proof latex-env="hbproof"}}\n'
                    f'[Proof: {md_plain(p.title)}{status}]{{.prooftitle latex-cmd="hbprooftitle"}}\n\n'
@@ -466,6 +496,11 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
         "",
     ]
     body = clean_html(refs.rewrite_body(node.body, node))
+    st = Statements(node.slug)
+    body = st.mark(body, "body")
+    pbodies = {p.id: st.mark(fix_math(shift_headings(refs.rewrite_body(p.body, node, in_proof=True), 4)), p.id) for p in node.proofs}
+    body = st.refs(body, "body")
+    pbodies = {k: st.refs(v, k) for k, v in pbodies.items()}
     sections = split_h2(body)
     have = {h for h, _ in sections if h}
     out = []
@@ -484,7 +519,7 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
             continue
         if h == "References":
             if not proofs_placed:
-                out.append(proofs_md(node)); proofs_placed = True
+                out.append(proofs_md(node, pbodies)); proofs_placed = True
             if not impl_placed and node.langs:
                 out.append("## Implementation\n\n" + implementation(node, refs)); impl_placed = True
             items = fmt_sources(node.fm.get("sources"))
@@ -499,18 +534,19 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
             sec += "\n\n" + solver_table(node, refs)
         out.append(sec)
         if h == proof_anchor and not proofs_placed:
-            out.append(proofs_md(node)); proofs_placed = True
+            out.append(proofs_md(node, pbodies)); proofs_placed = True
     if not proofs_placed:
-        out.append(proofs_md(node))
+        out.append(proofs_md(node, pbodies))
     if not impl_placed and node.langs:
         out.append("## Implementation\n\n" + implementation(node, refs))
     see = [s for s in node.fm.get("see_also") or [] if s in refs.book.corpus.nodes]
     if see:
         out.append('::: {.seealso latex-env="hbseealso"}\n' + ", ".join(refs.link(s) for s in see) + ".\n:::")
     md = "\n\n".join(x for x in out if x and x.strip())
-    md = convert_fences(md)
+    md = convert_fences(md, st)
     md = shift_headings(md, 2)     # ## → ####, ### → #####
     md = scope_anchors(md, node.slug)
+    md = st.finalize(md, num, node.slug, refs.statements)
     return "\n".join(head) + "\n" + md + "\n"
 
 

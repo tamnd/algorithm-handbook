@@ -195,6 +195,26 @@
 \newenvironment{hbroadmap}{\par\vspace{6pt}}{\par}
 \newenvironment{hbfurther}{\par\small\raggedright}{\par}
 
+% ------------------------------------------------------------------ numbered statements
+% Theorem 4.1.12.3 (Name). The head in bold sans, the statement in italics; definitions, examples and remarks in
+% roman. The numbers are made by hb/statements.py, so that the EPUB has the same ones.
+\newcommand\hbstskip{\par\addvspace{7pt plus 2pt minus 1pt}}
+\newenvironment{hbthm}{\hbstskip\hbnoindentnext\itshape}{\hbstskip\aftergroup\hbnoindentnext}
+\newenvironment{hbdefn}{\hbstskip\hbnoindentnext}{\hbstskip\aftergroup\hbnoindentnext}
+\newenvironment{hbrem}{\hbstskip\hbnoindentnext}{\hbstskip\aftergroup\hbnoindentnext}
+\newcommand\hbsthead[1]{{\upshape\sffamily\bfseries\color{hbaccentdark}#1}}
+\newcommand\hbstnote[1]{{\upshape #1}}
+% the end of a proof: the square at the right of the last line, or alone on a new line if it does not fit
+\newcommand\hbqed[1]{\ifhmode\unskip\nobreak\hfil\penalty50\hskip1em\null\nobreak\hfil{\upshape#1}%
+  {\parfillskip=0pt\finalhyphendemerits=0\par}\else\hfill{\upshape#1}\par\fi}
+% the list of statements: number and name, leaders, page
+\newenvironment{hbstlist}{\par\small\setlength{\parindent}{0pt}\setlength{\parskip}{1.5pt}\raggedright
+  \everypar{\hangindent=2em\hangafter=1\relax}}{\par\addvspace{8pt}}
+\makeatletter
+\newcommand\hbstpage[1]{\unskip\nobreak\leaders\hbox{$\m@th\mkern 6mu\cdot\mkern 6mu$}\hfill\nobreak
+  \hbox to 2.2em{\hss\pageref{#1}}{\parfillskip=0pt\par}}
+\makeatother
+
 % ------------------------------------------------------------------ pseudocode
 \newtcolorbox{hbpseudobox}{enhanced,breakable,colback=hbtintgray,colframe=hbtintgray,boxrule=0pt,arc=1pt,
   left=6pt,right=8pt,top=5pt,bottom=5pt,before skip=8pt,after skip=8pt}
@@ -211,6 +231,9 @@
   \ifblank{#4}{}{\unskip\nobreak\hfil\penalty50\hskip1.2em\hbox{}\nobreak\hfil
     {\color{hbmuted}\footnotesize ▷ #4}\parfillskip=0pt}\par}
 \newcommand\hbpgap{\par\vspace{0.6\baselineskip}}
+% \hbpcap{Algorithm 4.1.12.2}{PROC}{label}: the caption of a numbered algorithm, above a thin rule
+\newcommand\hbpcap[3]{\phantomsection\label{#3}\par{\sffamily\bfseries\small\color{hbaccentdark}#1}%
+  \ifblank{#2}{}{\enspace\hbproc{#2}}\par\nobreak\vspace{2pt}{\color{hbrule}\hrule height 0.4pt}\nobreak\vspace{4pt}}
 \newcommand\hbkw[1]{\textbf{#1}}
 \newcommand\hbproc[1]{{\scshape\MakeLowercase{#1}}}
 

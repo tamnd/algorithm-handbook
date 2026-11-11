@@ -1,0 +1,75 @@
+# The order of chapter 21.2, Leader election. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem on a ring
+    intro: >
+      Most of the theory of election grows on the [ring network](/ring-network/), where each process
+      talks only to its two neighbours. [Ring leader election](/ring-leader-election/) states the task and
+      collects the known bounds, and [explicit election](/explicit-leader-election/) adds the demand that
+      every process learns who won. [Chang-Roberts](/chang-roberts/) is the first algorithm to read: short,
+      correct, and quadratic in the worst case.
+    entries:
+      - ring-network
+      - ring-leader-election
+      - explicit-leader-election
+      - chang-roberts
+
+  - title: Message-optimal ring election
+    intro: >
+      Four algorithms bring the cost down to $O(n \log n)$ messages by running in phases that at least
+      halve the number of candidates. [Hirschberg-Sinclair](/hirschberg-sinclair/) probes in doubling
+      distances, [Franklin](/franklin/) keeps the local maxima, and [Peterson](/peterson-leader-election/)
+      and [Dolev-Klawe-Rodeh](/dolev-klawe-rodeh/) do the same on a one-way ring. The
+      [lower bound](/ring-election-lower-bound/) shows that no comparison-based algorithm does better.
+    entries:
+      - hirschberg-sinclair
+      - franklin
+      - peterson-leader-election
+      - dolev-klawe-rodeh
+      - ring-election-lower-bound
+
+  - title: Anonymous rings and randomization
+    intro: >
+      Without identifiers a deterministic algorithm cannot break symmetry. An
+      [anonymous network](/anonymous-network/) shows when symmetry blocks election, and
+      [Angluin's theorem](/anonymous-ring-impossibility/) proves it for rings. Random choices break the tie
+      with probability one: [anonymous election](/anonymous-leader-election/) states what is possible, and
+      [Itai-Rodeh](/itai-rodeh/) is the standard algorithm.
+    entries:
+      - anonymous-network
+      - anonymous-ring-impossibility
+      - anonymous-leader-election
+      - itai-rodeh
+
+  - title: Trees and general networks
+    intro: >
+      On other graphs the cost depends on the structure. [FloodMax](/floodmax/) works on any synchronous
+      network that knows a bound on its diameter. On a tree, election costs $\Theta(n)$ messages, and
+      [saturation](/tree-election/) reaches it. On a general network,
+      [Awerbuch's algorithm](/awerbuch-leader-election/) elects with $O(m + n \log n)$ messages in linear
+      time.
+    entries:
+      - floodmax
+      - tree-leader-election
+      - tree-election
+      - awerbuch-leader-election
+
+  - title: Complete networks
+    intro: >
+      When every pair of processes shares a link, the obvious algorithm costs $n(n-1)$ messages, and
+      [complete-network election](/complete-network-leader-election/) shows that $\Theta(n \log n)$ is the
+      right answer. [Korach-Kutten-Moran](/korach-kutten-moran/) reaches it by letting candidates capture
+      each other by level, and [Afek-Gafni](/afek-gafni/) does it in $O(\log n)$ synchronous rounds.
+    entries:
+      - complete-network-leader-election
+      - korach-kutten-moran
+      - afek-gafni
+
+  - title: Election with failures
+    intro: >
+      The last two entries drop the assumption that nothing fails. The [bully algorithm](/bully-algorithm/)
+      elects the largest live process in a synchronous system with crashes. The
+      [invitation algorithm](/invitation-algorithm/) gives up a single leader and keeps one coordinator per
+      group when the network can split.
+    entries:
+      - bully-algorithm
+      - invitation-algorithm

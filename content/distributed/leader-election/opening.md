@@ -1,0 +1,26 @@
+Eight sensors sit in a loop of cable, each wired only to the sensor on its left and the one on its right. Each has a serial number burnt in at the factory. One of them must collect the readings and talk to the outside world, but nobody chose it in advance, and no sensor knows how many others there are. The sensors must agree on one of themselves by passing messages round the loop. That is leader election. Once a leader exists, many harder tasks become easy: it can count the processes, orient the ring, build a spanning tree or order requests.
+
+The simplest answer sends every serial number round the loop and lets the largest one win. It is correct, and on a bad ordering of the numbers it sends $\Theta(n^2)$ messages. Most of this chapter is about doing better, and about proving when better is impossible. On an asynchronous ring the answer is $\Theta(n \log n)$ messages. Without serial numbers a deterministic algorithm cannot elect anyone on a ring at all, and coin flips are the way out. On trees, complete networks and general graphs the cost changes with the structure, and with crashes the problem changes again.
+
+## What the chapter covers
+
+The chapter is in six groups, read in order.
+
+1. **The problem on a ring.** The [ring network](/ring-network/), the task of [ring leader election](/ring-leader-election/), the stronger [explicit election](/explicit-leader-election/), and the [Chang-Roberts algorithm](/chang-roberts/) with its $O(n^2)$ worst case and $n H_n$ average.
+2. **Message-optimal ring election.** [Hirschberg-Sinclair](/hirschberg-sinclair/), [Franklin](/franklin/), [Peterson](/peterson-leader-election/) and [Dolev-Klawe-Rodeh](/dolev-klawe-rodeh/), all with $O(n \log n)$ messages, and the [lower bound](/ring-election-lower-bound/) that matches them.
+3. **Anonymous rings and randomization.** [Anonymous networks](/anonymous-network/), [Angluin's impossibility theorem](/anonymous-ring-impossibility/), [anonymous election](/anonymous-leader-election/) with coin flips, and the [Itai-Rodeh algorithm](/itai-rodeh/).
+4. **Trees and general networks.** [FloodMax](/floodmax/) for synchronous networks, [election on trees](/tree-leader-election/) and the [saturation algorithm](/tree-election/), and [Awerbuch's algorithm](/awerbuch-leader-election/) for any connected network.
+5. **Complete networks.** [Election on complete networks](/complete-network-leader-election/), the capture algorithm of [Korach, Kutten and Moran](/korach-kutten-moran/), and the synchronous algorithm of [Afek and Gafni](/afek-gafni/).
+6. **Election with failures.** The [bully algorithm](/bully-algorithm/) for synchronous systems with crashes and the [invitation algorithm](/invitation-algorithm/) for networks that can split.
+
+## A first reading
+
+For a first reading, take these ten entries in order: the ring network, ring leader election, Chang-Roberts, Hirschberg-Sinclair, Franklin, Peterson, the lower bound, Angluin's theorem, Itai-Rodeh and the bully algorithm. They give you the model, the problem, the quadratic algorithm, two ways to reach $O(n \log n)$ on a bidirectional ring and one on a one-way ring, the proof that this is optimal, the reason identifiers are needed, the randomized way round that need, and the one algorithm that practitioners name most often. Run Chang-Roberts and Franklin by hand on the same ring of six or eight processes and count the messages. The gap between $n(n+1)/2$ and $2n \lfloor \lg n \rfloor + 2n$ is clearer on paper than in the formulas.
+
+Skip Dolev-Klawe-Rodeh on a first pass; it is Peterson's algorithm with one more trip round the ring. The tree, general-network and complete-network groups can wait until you have read the [Gallager-Humblet-Spira](/gallager-humblet-spira/) algorithm and the [echo algorithm](/echo-algorithm/), since Awerbuch's algorithm and saturation build on that kind of reasoning. The invitation algorithm is a design for real systems with partitions, and its guarantees are weaker than those of the rest of the chapter.
+
+## Before you start
+
+The ring algorithms run in the [asynchronous model](/asynchronous-model/) or the [synchronous model](/synchronous-model/) of Chapter 21.1, and the bully algorithm uses its [crash failures](/crash-failure/). Costs are counted by [message complexity](/message-complexity/) and [round complexity](/round-complexity/) from Chapter 21.5, and anonymous networks use its [port numbering](/port-numbering/). The average cost of Chang-Roberts needs the [harmonic series](/harmonic-series/) from Volume 1, and the proofs use [induction](/induction/) on rounds and phases. From Volume 7 you need the [graph](/graph/), the [tree](/tree/) and the [complete graph](/complete-graph/). Itai-Rodeh is a [Las Vegas algorithm](/las-vegas-algorithm/), and its analysis needs only the basic probability of the [geometric distribution](/geometric-distribution/).
+
+Several entries point outside the chapter. Election in a real cluster is usually done by a consensus protocol such as [Raft](/raft/), or with the [Omega failure detector](/omega-failure-detector/), and its main danger there is [split brain](/split-brain/). The symmetry-breaking ideas of anonymous rings come back in [Cole-Vishkin colouring](/cole-vishkin/) in Chapter 21.5.

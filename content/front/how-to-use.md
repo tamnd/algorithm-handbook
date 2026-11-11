@@ -22,7 +22,7 @@ Each **chapter** has the same parts in the same order:
 6. The **exercises**, in three bands.
 7. **Notes and further reading**: the history of the chapter's ideas, and the books and papers to read next.
 
-At the end of the volume come the appendices: hints to the exercises, a table of the problems of the volume and the algorithms that solve them, the bibliography, an index of names and the index.
+At the end of the volume come the appendices: hints to the exercises, a table of the problems of the volume and the algorithms that solve them, a list of its theorems and definitions with their pages, the bibliography, an index of names and the index.
 
 ## The parts of an entry
 
@@ -31,6 +31,14 @@ An entry begins with its number, its name, its kind and its level, and a short s
 The body has a fixed order for each kind. An algorithm entry, for instance, explains the idea in plain words, states the problem, gives the pseudocode and walks through it, works an example, proves the algorithm correct, analyses its cost, lists its properties and its variants, says when to use it and what goes wrong in practice, and gives its history. A data structure entry gives the representation and its invariant, then each operation with its cost. A problem entry defines the problem exactly, then lists the algorithms that solve it in a table, with their costs, and gives the known bounds. A theorem entry gives the statement, then the proof. Proofs stand in shaded boxes; a proof marked *sketch* gives the main steps and leaves routine checks to the reader.
 
 Most algorithm and data structure entries end with code in Python, the one the site tests. The site has the same code in several other languages, all tested against the same cases, and its address is printed under the code. Each entry ends with its references, which are collected into the bibliography of the volume, and with a list of related entries.
+
+## Statements, algorithms and proofs
+
+Inside an entry, the definitions, theorems, lemmas, corollaries, propositions, claims, facts, invariants, examples and remarks are numbered with one counter, which continues the number of the entry. The pseudocode blocks of the entry share the same counter. In entry 8.4.21, say, Algorithm 8.4.21.1 gives the procedure, Fact 8.4.21.2 recalls a result of another entry, Lemmas 8.4.21.3 and 8.4.21.4 prepare the proof, and Theorem 8.4.21.5 states that the algorithm is correct. One counter keeps the numbers in the order of the text, so a number tells you where to look: Lemma 8.4.21.3 comes before Theorem 8.4.21.5 in the same entry. When the text cites a statement by number, the number is a link. A theorem that a proof states again keeps its first number.
+
+The head of a statement is set in bold, with its name, if it has one, in parentheses: *Lemma 8.6.9.2 (the compressor)*. Theorems, lemmas and the other claims are set in italics, so that the statement stands apart from the argument around it; definitions, examples and remarks are set in roman type. A proof begins with the word *Proof* and ends with a square at the right of its last line. A proof that the site keeps on a page of its own stands in a box with a rule at its left and a title, such as *Proof: correctness*.
+
+Each pseudocode block has a caption with its number and the name of its main procedure, such as *Algorithm 8.6.9.1* UNIVERSAL-STRING-HASH. Its lines are labelled L1, L2, …, and the text and the proofs refer to them by these labels. The appendix *Theorems and definitions* of each volume lists its definitions, theorems, propositions, corollaries and conjectures, chapter by chapter, with their pages.
 
 ## Levels
 

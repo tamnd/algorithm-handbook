@@ -1,0 +1,124 @@
+# The order of chapter 21.4. Groups are read in order; entries in a group too.
+groups:
+  - title: What a replicated store promises
+    intro: >
+      Before any protocol, fix the contract. [Consistency models](/consistency-models/) say which values
+      a read may return, from linearizable through sequential, causal and PRAM down to
+      [eventual consistency](/eventual-consistency/), which only promises that replicas agree once
+      writes stop. [Session guarantees](/session-guarantees/) give one client a consistent view on top of
+      a weak store. The [CAP theorem](/cap-theorem/) and [PACELC](/pacelc/) say what the strong contracts
+      cost: availability during a partition, and a message delay when there is none.
+    entries:
+      - consistency-models
+      - causal-consistency
+      - eventual-consistency
+      - session-guarantees
+      - read-your-writes
+      - monotonic-reads
+      - cap-theorem
+      - pacelc
+
+  - title: Replicating a service in one order
+    intro: >
+      A deterministic service stays correct when every replica applies the same commands in the same
+      order. [State machine replication](/state-machine-replication/) states the problem and the
+      [replicated log](/replicated-log/) is its data structure. [Active](/active-replication/),
+      [primary-backup](/primary-backup-replication/) and [chain](/chain-replication/) replication are
+      three ways to run it, which differ in who executes a command, who answers, and what a crash costs.
+    entries:
+      - state-machine-replication
+      - replicated-log
+      - active-replication
+      - primary-backup-replication
+      - chain-replication
+
+  - title: Quorums
+    intro: >
+      A store need not agree on an order if every read meets every write. [Quorum
+      intersection](/quorum-intersection/) is the counting fact $|Q_r \cap Q_w| \ge R + W - N$, and
+      [quorum replication](/quorum-replication/) turns it into an atomic register. Dropping the leader
+      gives [leaderless replication](/leaderless-replication/). [Read repair](/read-repair/),
+      [sloppy quorums](/sloppy-quorum/) and [hinted handoff](/hinted-handoff/) keep such a store
+      fast and writable, at the price of weaker intersection.
+    entries:
+      - quorum-intersection
+      - quorum-replication
+      - leaderless-replication
+      - read-repair
+      - sloppy-quorum
+      - hinted-handoff
+
+  - title: Conflicts and background repair
+    intro: >
+      When several replicas accept writes, concurrent writes conflict.
+      [Last-writer-wins](/last-writer-wins/) is the simplest rule and
+      [multi-master replication](/multi-master-replication/) the general setting.
+      [Anti-entropy](/anti-entropy/) compares replicas in the background, with
+      [set reconciliation](/set-reconciliation/) to send only the difference, and
+      [tombstones](/tombstone/) keep deleted data from coming back.
+      [Dynamo-style replication](/dynamo-style-replication/) puts all of these pieces into one design.
+    entries:
+      - last-writer-wins
+      - multi-master-replication
+      - anti-entropy
+      - set-reconciliation
+      - tombstone
+      - dynamo-style-replication
+
+  - title: Why CRDTs converge
+    intro: >
+      A [join-semilattice](/join-semilattice/) is a set with a merge that is associative, commutative and
+      idempotent. [Strong eventual consistency](/strong-eventual-consistency/) asks that replicas with the
+      same updates are in the same state at once. A [CRDT](/crdt/) meets it in one of two ways:
+      [state-based](/state-based-crdt/) with inflationary updates and join as merge, or
+      [op-based](/op-based-crdt/) with commuting concurrent operations over causal delivery. The
+      [convergence theorem](/crdt-convergence-theorem/) proves both, and the [CALM theorem](/calm-theorem/)
+      says which computations can avoid coordination at all.
+    entries:
+      - join-semilattice
+      - strong-eventual-consistency
+      - crdt
+      - state-based-crdt
+      - op-based-crdt
+      - crdt-convergence-theorem
+      - calm-theorem
+
+  - title: Counters, registers and sets
+    intro: >
+      The catalogue of basic CRDTs. The [g-counter](/g-counter/) and [PN-counter](/pn-counter/) keep one
+      entry per replica. The [LWW-register](/lww-register/) keeps one winner and the
+      [MV-register](/mv-register/) keeps every concurrent write. The sets differ in what happens when an
+      add and a remove of one element are concurrent: the [2P-Set](/two-phase-set/) lets the remove win,
+      the [LWW-Element-Set](/lww-element-set/) lets the clock decide, and the [OR-Set](/or-set/) lets the
+      add win. [Delta-state CRDTs](/delta-state-crdt/) ship small pieces of state instead of the whole.
+    entries:
+      - g-counter
+      - pn-counter
+      - lww-register
+      - mv-register
+      - g-set
+      - two-phase-set
+      - lww-element-set
+      - or-set
+      - delta-state-crdt
+
+  - title: Shared text
+    intro: >
+      [Collaborative text editing](/collaborative-text-editing/) is the hardest common case, because
+      inserts name positions that other inserts move. [Operational
+      transformation](/operational-transformation/) shifts the positions, and the
+      [TP1 and TP2 conditions](/tp1-tp2-conditions/) say when that converges. Sequence CRDTs give every
+      character an identity instead: neighbour ids in [WOOT](/woot/), tree paths in
+      [Treedoc](/treedoc/), dense positions in [Logoot](/logoot/) and [LSEQ](/lseq/), and a reference
+      with a timestamp in [RGA](/rga/), the [causal tree](/causal-tree/) and [YATA](/yata/).
+    entries:
+      - collaborative-text-editing
+      - operational-transformation
+      - tp1-tp2-conditions
+      - woot
+      - treedoc
+      - logoot
+      - lseq
+      - rga
+      - causal-tree
+      - yata

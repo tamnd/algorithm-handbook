@@ -910,3 +910,85 @@ paths:
           - word-count
           - pregel-model
           - resilient-distributed-datasets
+
+  - id: distributed-algorithms
+    title: Distributed algorithms
+    for: a student who has done a first course and wants the algorithms that let many machines, joined only by messages, act as one.
+    intro: >
+      The models first: synchronous and asynchronous networks and the failures they suffer. Then time and order
+      without a shared clock, electing a leader, reaching consensus and why it is impossible in some models,
+      agreement despite Byzantine faults, replicas that stay consistent, graph algorithms run by the nodes of
+      the graph themselves, and gossip.
+    stages:
+      - title: Models and failures
+        steps:
+          - synchronous-model
+          - asynchronous-model
+          - crash-failure
+          - message-complexity
+          - flooding
+          - echo-algorithm
+      - title: Time and order
+        steps:
+          - happened-before
+          - lamport-clocks
+          - vector-clocks
+          - causal-broadcast
+          - chandy-lamport-snapshot
+          - cristian-algorithm
+          - hybrid-logical-clocks
+      - title: Electing a leader
+        steps:
+          - ring-leader-election
+          - chang-roberts
+          - hirschberg-sinclair
+          - ring-election-lower-bound
+          - bully-algorithm
+      - title: Consensus
+        steps:
+          - consensus-problem
+          - two-phase-commit
+          - floodset
+          - flp-impossibility
+          - failure-detector
+          - paxos
+          - multi-paxos
+          - raft
+          - replicated-state-machine
+      - title: Byzantine agreement
+        steps:
+          - byzantine-failure-model
+          - byzantine-resilience-bound
+          - oral-messages-algorithm
+          - dolev-strong-algorithm
+          - phase-king-algorithm
+          - pbft
+          - hotstuff
+      - title: Replication and consistency
+        steps:
+          - consistency-models
+          - cap-theorem
+          - primary-backup-replication
+          - chain-replication
+          - quorum-replication
+          - eventual-consistency
+          - crdt
+          - g-counter
+          - or-set
+          - operational-transformation
+      - title: Graph algorithms on the network
+        steps:
+          - local-model
+          - congest-model
+          - distributed-spanning-tree
+          - cole-vishkin
+          - distributed-mis
+          - gallager-humblet-spira
+          - synchronizer
+      - title: Gossip
+        steps:
+          - gossip-protocol
+          - push-pull-gossip
+          - push-sum
+          - peer-sampling-service
+          - swim

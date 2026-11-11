@@ -1,0 +1,105 @@
+# The order of chapter 21.6, Byzantine agreement. Groups are read in order; entries in a group too.
+groups:
+  - title: Faults that lie
+    intro: >
+      A [Byzantine](/byzantine-failure-model/) process may do anything: lie, stay silent, or tell
+      different processes different things, in league with the other faulty processes. The
+      [oral messages model](/oral-messages-model/) fixes what the network promises in synchronous rounds,
+      and the [signed messages model](/signed-messages-model/) adds signatures that nobody can forge.
+      [Byzantine fault tolerance](/byzantine-fault-tolerance/) explains why replicated services need
+      $3f + 1$ replicas to agree on an order.
+    entries:
+      - byzantine-failure-model
+      - oral-messages-model
+      - signed-messages-model
+      - byzantine-fault-tolerance
+
+  - title: What agreement means
+    intro: >
+      In [Byzantine broadcast](/byzantine-broadcast/) one sender's value must reach every correct process
+      the same way. Consensus asks every process to propose, and its validity rule comes in a
+      [strong](/strong-validity/) and a [weak](/weak-validity/) form, which differ in what they cost.
+      [Interactive consistency](/interactive-consistency/) agrees on a whole vector of inputs, and
+      [Byzantine reliable broadcast](/byzantine-reliable-broadcast/) is the weaker task that still
+      makes sense when the network has no clock.
+    entries:
+      - byzantine-broadcast
+      - strong-validity
+      - weak-validity
+      - interactive-consistency
+      - byzantine-reliable-broadcast
+
+  - title: Agreement by word of mouth
+    intro: >
+      Without signatures a process can repeat a value but cannot prove where it came from. The
+      [oral messages algorithm](/oral-messages-algorithm/) of Lamport, Shostak and Pease works when
+      $n > 3t$, and the [resilience bound](/byzantine-resilience-bound/) shows that no algorithm does
+      better. The [phase king](/phase-king-algorithm/) and [phase queen](/phase-queen-algorithm/)
+      algorithms reach the same goal with polynomially many messages.
+    entries:
+      - oral-messages-algorithm
+      - byzantine-resilience-bound
+      - phase-king-algorithm
+      - phase-queen-algorithm
+
+  - title: Agreement with signatures
+    intro: >
+      A [signature chain](/signature-chain/) records who passed a value on, and in what order, so a liar
+      cannot change what an honest process said. With it the
+      [signed messages algorithm](/signed-messages-algorithm/) and the
+      [Dolev-Strong algorithm](/dolev-strong-algorithm/) solve broadcast for any number of faults. The
+      [authenticated resilience bound](/authenticated-resilience-bound/) shows that consensus with
+      strong validity still needs $n > 2t$.
+    entries:
+      - signature-chain
+      - signed-messages-algorithm
+      - dolev-strong-algorithm
+      - authenticated-resilience-bound
+
+  - title: The cost of determinism
+    intro: >
+      Two lower bounds hold with or without signatures. The
+      [round lower bound](/byzantine-round-lower-bound/) says that a deterministic algorithm needs
+      $t + 1$ rounds in some run, and the [Dolev-Reischuk bound](/dolev-reischuk-lower-bound/) says that
+      it needs $\Omega(n + t^2)$ messages.
+    entries:
+      - byzantine-round-lower-bound
+      - dolev-reischuk-lower-bound
+
+  - title: Asynchrony and coins
+    intro: >
+      With no bound on message delay, no deterministic algorithm reaches agreement, by the
+      [FLP theorem](/flp-impossibility/), so these algorithms flip coins. [Bracha's reliable broadcast](/bracha-reliable-broadcast/) stops a liar from sending two
+      stories, and [Bracha's agreement](/bracha-asynchronous-agreement/) builds on it with local coins.
+      In synchronous rounds a common coin gives a constant expected number of rounds, from a trusted
+      dealer in [Rabin's algorithm](/rabin-randomized-byzantine-agreement/) and from the processes
+      themselves in [Feldman and Micali's](/feldman-micali-byzantine-agreement/).
+    entries:
+      - bracha-reliable-broadcast
+      - bracha-asynchronous-agreement
+      - rabin-randomized-byzantine-agreement
+      - feldman-micali-byzantine-agreement
+
+  - title: Quorums and certificates
+    intro: >
+      A [Byzantine quorum system](/byzantine-quorum-system/) makes every two quorums overlap in more
+      servers than the faults can cover. A [quorum certificate](/quorum-certificate/) is $2f + 1$ signed
+      votes from one quorum, a proof that any replica can check and that no conflicting proof can match.
+    entries:
+      - byzantine-quorum-system
+      - quorum-certificate
+
+  - title: Replicated services
+    intro: >
+      [Byzantine state machine replication](/byzantine-state-machine-replication/) runs one service on
+      $3f + 1$ replicas. [PBFT](/pbft/) does it in three phases with a primary and a view change,
+      [Zyzzyva](/zyzzyva/) speculates and lets the client check, [Tendermint](/tendermint/) and
+      [HotStuff](/hotstuff/) rotate the leader and lock on certificates, and
+      [HoneyBadgerBFT](/honeybadger-bft/) needs no timing at all.
+    entries:
+      - byzantine-state-machine-replication
+      - pbft
+      - zyzzyva
+      - tendermint
+      - hotstuff
+      - honeybadger-bft

@@ -4,17 +4,19 @@ The content of [algorithm.tamnd.com](https://algorithm.tamnd.com) as a set of bo
 from the first page to the last: one volume per area of the site, in PDF, EPUB and LaTeX.
 
 Each area of the site is a volume, each sub-area a chapter, and each written page an entry with a fixed number
-(4.1.12 is the twelfth entry of chapter 1 of Volume 4, *Sorting*). Around the entries, the handbook adds the
-pages a reference site does not need and a textbook does: an introduction to each volume, an opening, groups and
-a reading order for each chapter, summaries, exercises with hints, notes on history and further reading,
-concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface, the
-notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
+(4.1.12 is the twelfth entry of chapter 1 of Volume 4, *Sorting*), and the definitions, theorems, lemmas and
+algorithms inside an entry are numbered after it (Lemma 4.1.12.2), as in a mathematics book. Around the entries,
+the handbook adds the pages a reference site does not need and a textbook does: an introduction to each volume, an
+opening, groups and a reading order for each chapter, summaries, exercises with hints, notes on history and further
+reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
+the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.19.0
+## Volumes in edition 0.20.1
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.19.0](https://github.com/tamnd/algorithm/releases/tag/v0.19.0), the commit named in [`EDITION`](EDITION). The edition
-number of the handbook follows the release of the site it is built from. The books are on the
+[v0.20.0](https://github.com/tamnd/algorithm/releases/tag/v0.20.0), the commit named in [`EDITION`](EDITION). The edition
+number of the handbook follows the release of the site it is built from; a larger third number (0.20.1) marks a
+new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
 
 | | Volume | Entries | Learner pages |
@@ -40,7 +42,8 @@ number of the handbook follows the release of the site it is built from. The boo
 | 18 | Approximation | 213 | written |
 | 19 | Online and streaming | 195 | written |
 | 20 | Parallel | 128 | written |
-| 21–31 | Distributed … Complexity | – | forthcoming: the site has only short pages so far |
+| 21 | Distributed | 281 | written |
+| 22–31 | Concurrency … Complexity | – | forthcoming: the site has only short pages so far |
 
 ## Building
 

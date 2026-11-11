@@ -1,0 +1,131 @@
+# The order of chapter 21.5, Distributed graph algorithms. Groups are read in order; entries in a group too.
+groups:
+  - title: Models and measures
+    intro: >
+      Here the network is the input graph, and every node is a processor that sees only its own edges.
+      The [port numbering](/port-numbering/) model shows what nodes without names cannot do, and
+      [message complexity](/message-complexity/) counts the traffic. The [LOCAL model](/local-model/) and
+      [round complexity](/round-complexity/) count rounds: after $r$ rounds a node knows exactly its ball
+      of radius $r$.
+    entries:
+      - port-numbering
+      - message-complexity
+      - local-model
+      - round-complexity
+
+  - title: Broadcast and waves
+    intro: >
+      One node tells all the others. [Flooding](/flooding/) does it with exactly $2m - n + 1$ messages and
+      leaves a spanning tree behind, and the [echo algorithm](/echo-algorithm/) adds an answer that tells
+      the source the wave is over. A [convergecast](/convergecast/) collects values up a tree, a
+      [synchronizer](/synchronizer/) runs synchronous code on an asynchronous network, and
+      [Dijkstra-Scholten](/dijkstra-scholten/) detects that a computation has stopped.
+    entries:
+      - broadcast-problem
+      - flooding
+      - distributed-spanning-tree
+      - convergecast
+      - echo-algorithm
+      - breadth-first-search-distributed
+      - synchronizer
+      - termination-detection
+      - dijkstra-scholten
+
+  - title: Limited bandwidth and changing links
+    intro: >
+      The [CONGEST model](/congest-model/) keeps the rounds of LOCAL but allows only $O(\log n)$ bits per edge
+      per round, and that limit is what makes global problems slow. The
+      [congested clique](/congested-clique-model/) removes distance and keeps only the bandwidth limit.
+      [Dynamic networks](/distributed-graph-dynamics/) let the links change from round to round.
+    entries:
+      - congest-model
+      - congested-clique-model
+      - distributed-graph-dynamics
+
+  - title: Colouring and the log-star barrier
+    intro: >
+      Colouring a ring with 3 colours is the smallest problem where nodes must break symmetry.
+      [Cole-Vishkin](/cole-vishkin/) does it in $\log^* N + 3$ rounds, and
+      [Linial's lower bound](/linial-coloring-lower-bound/) shows that $\frac12 \log^* n - 1$ rounds are
+      needed. [Linial's algorithm](/linial-algorithm/) carries the colour reduction to every graph, and
+      the last two entries survey $(\Delta+1)$-vertex colouring and edge colouring.
+    entries:
+      - ring-coloring
+      - cole-vishkin
+      - linial-coloring-lower-bound
+      - linial-algorithm
+      - distributed-vertex-coloring
+      - distributed-edge-coloring
+
+  - title: Independent sets, matchings and locally checkable problems
+    intro: >
+      [Locally checkable labelings](/locally-checkable-labeling/) are the problems whose solutions each node
+      can check in a ball of constant radius, and on cycles they take $O(1)$, $\Theta(\log^* n)$ or
+      $\Theta(n)$ rounds. The [maximal independent set](/distributed-mis/) is the central one; a
+      [ruling set](/ruling-set/) relaxes it and a [maximal matching](/distributed-maximal-matching/) is the
+      same problem on the line graph. [Sinkless orientation](/sinkless-orientation/) shows the exponential
+      gap between deterministic and randomized rounds.
+    entries:
+      - locally-checkable-labeling
+      - distributed-mis
+      - ruling-set
+      - distributed-maximal-matching
+      - sinkless-orientation
+
+  - title: Clustering the network
+    intro: >
+      Many algorithms first cut the graph into clusters of small diameter. A
+      [low-diameter decomposition](/low-diameter-decomposition/) cuts few edges, a
+      [network decomposition](/network-decomposition/) also colours the clusters so that a $(C, D)$
+      decomposition solves MIS in $O(CD)$ rounds, and a [sparse neighbourhood cover](/sparse-neighborhood-cover/)
+      lets the clusters overlap so that each ball lies in one of them.
+    entries:
+      - low-diameter-decomposition
+      - network-decomposition
+      - sparse-neighborhood-cover
+
+  - title: Approximation and the KMW bound
+    intro: >
+      Optimization problems such as [vertex cover](/distributed-minimum-vertex-cover/),
+      [dominating set](/distributed-dominating-set/) and [weighted matching](/distributed-weighted-matching/)
+      are not locally checkable, but a constant number of rounds can still give a good approximation.
+      The [KMW lower bound](/kmw-lower-bound/) says how good: with $k$ rounds the ratio for vertex cover
+      is $\Omega(\Delta^{1/(k+1)}/k)$.
+    entries:
+      - distributed-minimum-vertex-cover
+      - distributed-dominating-set
+      - distributed-weighted-matching
+      - kmw-lower-bound
+
+  - title: Spanning trees and cuts in CONGEST
+    intro: >
+      Global problems need at least $D$ rounds in any model, and in CONGEST many of them need about
+      $\sqrt{n}$ more. [Distributed MST](/distributed-mst/) is the model case: from
+      [Gallager-Humblet-Spira](/gallager-humblet-spira/) to $\tilde O(D + \sqrt n)$, with the
+      [Peleg-Rubinovich bound](/peleg-rubinovich-lower-bound/) showing that the $\sqrt n$ term is needed.
+      [Low-congestion shortcuts](/low-congestion-shortcuts/) explain when it can be avoided, and min cut
+      and max flow follow the same pattern.
+    entries:
+      - distributed-connected-components
+      - distributed-mst
+      - gallager-humblet-spira
+      - peleg-rubinovich-lower-bound
+      - low-congestion-shortcuts
+      - distributed-min-cut
+      - distributed-max-flow
+
+  - title: Distances and counting
+    intro: >
+      [Distributed Bellman-Ford](/distributed-bellman-ford/) finds single-source distances in $n - 1$ rounds,
+      and faster exact and approximate methods bring this near $\sqrt n + D$. All-pairs distances and the
+      [diameter](/distributed-diameter/) need about $n$ rounds, for a lower-bound reason that differs from the
+      MST one. Triangle enumeration and PageRank close the chapter.
+    entries:
+      - distributed-bellman-ford
+      - distributed-shortest-paths
+      - distributed-approximate-sssp
+      - distributed-apsp
+      - distributed-diameter
+      - diameter-lower-bound-distributed
+      - distributed-triangle-enumeration
+      - distributed-pagerank

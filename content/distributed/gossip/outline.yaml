@@ -1,0 +1,105 @@
+# The order of chapter 21.7, Gossip. Groups are read in order; entries in a group too.
+groups:
+  - title: Gossip and its models
+    intro: >
+      A [gossip protocol](/gossip-protocol/) has every process talk, round after round, with a few peers
+      chosen at random. The [fanout](/gossip-fanout/) of $\ln n + c$ and the [SIR model](/epidemic-model/)
+      say how far one message gets, and the [epidemic threshold](/epidemic-threshold/) says when it gets
+      anywhere at all. The [random phone call model](/random-phone-call-model/) fixes the rules for the
+      rest of the chapter, and the [rumour spreading problem](/rumor-spreading-problem/) states the task.
+    entries:
+      - gossip-protocol
+      - gossip-fanout
+      - epidemic-model
+      - epidemic-threshold
+      - random-phone-call-model
+      - rumor-spreading-problem
+
+  - title: Push, pull and push-pull
+    intro: >
+      The three directions of a call give three algorithms with different shapes. [Push](/push-gossip/)
+      starts fast and ends slowly, in $\log_2 n + \ln n + O(1)$ rounds; [pull](/pull-gossip/) starts
+      slowly and then squares the uninformed fraction in every round; [push-pull](/push-pull-gossip/)
+      takes the good half of each and needs $\log_3 n + O(\log \log n)$ rounds. The
+      [message lower bound](/rumor-spreading-message-lower-bound/) shows that its $O(n \log \log n)$
+      transmissions cannot be beaten by any address-oblivious algorithm.
+    entries:
+      - push-gossip
+      - push-rumor-spreading-time
+      - pull-gossip
+      - push-pull-gossip
+      - rumor-spreading-message-lower-bound
+
+  - title: Spreading on general graphs
+    intro: >
+      Off the complete graph the speed of gossip depends on how well the graph is connected. The
+      [conductance](/graph-conductance/) $\Phi$ measures the worst bottleneck, and push-pull informs every
+      node in $O(\log n / \Phi)$ rounds on every graph, a bound that is
+      [tight](/conductance-rumor-spreading-bound/). Push or pull alone can be slow even when $\Phi$ is large.
+    entries:
+      - graph-conductance
+      - conductance-rumor-spreading-bound
+
+  - title: Epidemic replication and broadcast
+    intro: >
+      Demers and his colleagues at Xerox used gossip to keep replicas of a database in step.
+      [Rumour mongering](/rumor-mongering/) spreads a hot update cheaply and leaves a small residue,
+      [death certificates](/death-certificates/) make deletions spread, and
+      [Scuttlebutt](/scuttlebutt-reconciliation/) makes anti-entropy fit in a bounded message. The other
+      entries turn gossip into a broadcast with a stated reliability:
+      [probabilistic broadcast](/probabilistic-broadcast/), [bimodal multicast](/bimodal-multicast/) and
+      [Plumtree](/epidemic-broadcast-tree/).
+    entries:
+      - rumor-mongering
+      - death-certificates
+      - scuttlebutt-reconciliation
+      - probabilistic-broadcast
+      - bimodal-multicast
+      - epidemic-broadcast-tree
+
+  - title: Failure detection
+    intro: >
+      A gossip system has to notice crashed members without flooding the network with heartbeats.
+      [Failure detection](/failure-detection/) sets out the trade between detection time, wrong
+      suspicions and load. The [phi accrual detector](/phi-accrual-failure-detector/) turns heartbeat
+      gaps into a suspicion level, and [SWIM](/swim/) probes one random member per period and spreads the
+      verdicts by gossip.
+    entries:
+      - failure-detection
+      - phi-accrual-failure-detector
+      - swim
+
+  - title: Membership and peer sampling
+    intro: >
+      Every analysis above assumes that a node can call a uniform random peer, while a real node knows
+      only a few dozen others and the set of nodes changes all the time through [churn](/churn/).
+      [Random peer sampling](/random-peer-sampling/) and the [peer sampling service](/peer-sampling-service/)
+      state what a node needs, and [membership management](/membership-management/) states what the views
+      must keep. [Newscast](/newscast/), [Cyclon](/cyclon/), [SCAMP](/scamp/), [HyParView](/hyparview/)
+      and [lpbcast](/lpbcast/) are the protocols that keep the views.
+    entries:
+      - churn
+      - random-peer-sampling
+      - peer-sampling-service
+      - membership-management
+      - newscast
+      - cyclon
+      - scamp
+      - hyparview
+      - lpbcast
+
+  - title: Averaging and aggregation
+    intro: >
+      Gossip can also compute. In [distributed averaging](/distributed-averaging/) every node must learn the
+      mean of all values. [Pairwise gossip averaging](/gossip-averaging/) converges at a rate set by
+      $\lambda_2$ of the expected matrix, as the [spectral gap theorem](/averaging-convergence-spectral-gap/)
+      states, and [push-sum](/push-sum/) does the same with one-way messages.
+      [Gossip aggregation](/gossip-aggregation/) runs push-pull averaging over a peer sampling service,
+      and [network size estimation](/network-size-estimation/) applies it to counting the nodes.
+    entries:
+      - distributed-averaging
+      - gossip-averaging
+      - averaging-convergence-spectral-gap
+      - push-sum
+      - gossip-aggregation
+      - network-size-estimation

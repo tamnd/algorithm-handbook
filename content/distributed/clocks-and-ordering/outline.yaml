@@ -1,0 +1,122 @@
+# The order of chapter 21.3, Clocks and ordering. Groups are read in order; entries in a group too.
+groups:
+  - title: Physical clocks
+    intro: >
+      A hardware clock counts oscillations of a crystal, and no two crystals run at the same rate. These
+      entries give the vocabulary for that error: the [drift](/clock-drift/) rate $\rho$ of one clock, the
+      [skew](/clock-skew/) between two clocks, and the difference between precision and accuracy. The
+      [monotonic clock](/monotonic-clock/) is the one to use for timeouts, because nobody can set it back.
+    entries:
+      - clock-drift
+      - clock-skew
+      - monotonic-clock
+
+  - title: Clock synchronization
+    intro: >
+      The [clock synchronization](/clock-synchronization/) problem asks for clocks that stay close to each
+      other or to a time standard, using messages whose delays are known only within bounds. Cristian reads
+      one server and halves the round trip, Berkeley averages a group, Marzullo intersects intervals, and NTP
+      and PTP combine these ideas into the protocols in use today. The group ends with the
+      [lower bound](/clock-synchronization-lower-bound/) of $(1 - 1/n)u$ that no algorithm can beat.
+    entries:
+      - clock-synchronization
+      - cristian-algorithm
+      - berkeley-algorithm
+      - marzullo-algorithm
+      - ntp
+      - precision-time-protocol
+      - clock-synchronization-lower-bound
+
+  - title: Causality
+    intro: >
+      Without a shared clock, the order that matters is the order of cause and effect. A
+      [space-time diagram](/space-time-diagram/) draws a run, [happened-before](/happened-before/) is the
+      partial order of its paths, and [concurrent events](/concurrent-events/) are the pairs with no path
+      between them. [Event ordering](/event-ordering/) states the task of the next group: timestamps that
+      respect this order, or capture it exactly.
+    entries:
+      - space-time-diagram
+      - happened-before
+      - concurrent-events
+      - event-ordering
+
+  - title: Logical clocks
+    intro: >
+      A [Lamport clock](/lamport-clocks/) is one counter per process, and it gives
+      $a \to b \implies C(a) < C(b)$, which is enough for a [total order](/total-order/) that all processes
+      agree on. A
+      [vector clock](/vector-clocks/) of $n$ counters gives the converse too, and Charron-Bost showed that
+      fewer than $n$ entries cannot. Matrix clocks add what each process knows about the others, and
+      plausible clocks trade exactness for a fixed size.
+    entries:
+      - lamport-clocks
+      - total-order
+      - lamport-clock-condition
+      - vector-clocks
+      - vector-clock-characterization
+      - matrix-clocks
+      - plausible-clocks
+
+  - title: Message ordering
+    intro: >
+      Each ordering guarantee comes as three entries: the property, the delivery problem and an algorithm.
+      [FIFO ordering](/fifo-ordering/) constrains the messages of one sender and is met with one sequence
+      number per sender. [Causal ordering](/causal-ordering/) is FIFO order plus local order, and
+      [causal broadcast](/causal-broadcast/) meets it with vector timestamps.
+    entries:
+      - fifo-ordering
+      - fifo-delivery
+      - fifo-broadcast
+      - causal-ordering
+      - causal-order-delivery
+      - causal-broadcast
+
+  - title: Cuts and snapshots
+    intro: >
+      A [consistent cut](/consistent-cut/) holds no receive without its send, and the consistent cuts of a run
+      form a distributive lattice. A [global snapshot](/global-snapshot/) records the states at one such cut
+      while the run goes on, by [markers](/chandy-lamport-snapshot/) on FIFO channels or by
+      [colours](/lai-yang-snapshot/) on the messages. Predicate detection asks whether a condition held at
+      some consistent cut, or along every run.
+    entries:
+      - consistent-cut
+      - global-snapshot
+      - chandy-lamport-snapshot
+      - lai-yang-snapshot
+      - distributed-predicate-detection
+      - weak-conjunctive-predicate-detection
+
+  - title: Versions of replicated data
+    intro: >
+      A [version vector](/version-vectors/) is a vector clock that ticks only on updates, attached to a copy of
+      the data, so that two copies conflict exactly when their vectors are incomparable. Dotted version vectors
+      fix it for stores where a few servers act for many clients, and interval tree clocks for systems where
+      replicas come and go.
+    entries:
+      - version-vectors
+      - dotted-version-vectors
+      - interval-tree-clocks
+
+  - title: Logical clocks with real time
+    intro: >
+      Databases want timestamps that respect causality and are also close to the time of day. A
+      [hybrid logical clock](/hybrid-logical-clocks/) keeps the largest physical time it has heard of and
+      a counter, and stays within the clock skew of physical time. [TrueTime](/truetime/) returns an interval
+      of width $2\varepsilon$ and waits it out, which gives [external consistency](/external-consistency/).
+    entries:
+      - hybrid-logical-clocks
+      - external-consistency
+      - truetime
+
+  - title: Virtual time and simulation
+    intro: >
+      In [virtual time](/virtual-time/) the program sets the clock, and every process must act as if it
+      handled its messages in timestamp order. [Parallel discrete event simulation](/parallel-discrete-event-simulation/)
+      is the main use. The conservative Chandy-Misra-Bryant method waits until an event is safe, the
+      optimistic Time Warp runs ahead and rolls back, and global virtual time tells Time Warp which work is final.
+    entries:
+      - virtual-time
+      - parallel-discrete-event-simulation
+      - chandy-misra-bryant
+      - time-warp
+      - global-virtual-time

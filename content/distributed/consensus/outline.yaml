@@ -1,0 +1,132 @@
+# The order of chapter 21.1, Consensus. Groups are read in order; entries in a group too.
+groups:
+  - title: Models of time and failure
+    intro: >
+      Every result in the chapter depends on what the network promises about time and what a faulty process
+      may do. These entries set out the [synchronous](/synchronous-model/) and
+      [asynchronous](/asynchronous-model/) models, the [crash failures](/crash-failure/) that most of the
+      chapter assumes, and the middle ground of [partial synchrony](/partial-synchrony/) where practical
+      protocols live. The [two generals problem](/two-generals-problem/) shows that lost messages alone can
+      make agreement impossible.
+    entries:
+      - synchronous-model
+      - two-generals-problem
+      - asynchronous-model
+      - crash-failure
+      - partial-synchrony
+
+  - title: The problem and its tools
+    intro: >
+      The [consensus problem](/consensus-problem/) asks every process to decide one value, with agreement,
+      validity and termination. Two tools appear in almost every protocol after it. A
+      [quorum](/quorum/) is a set of processes large enough that any two such sets meet, and a
+      [ballot number](/ballot-number/) orders attempts so that a newer one can override an older one.
+    entries:
+      - consensus-problem
+      - consensus-properties
+      - quorum
+      - ballot-number
+
+  - title: Bounds and impossibility
+    intro: >
+      In synchronous rounds consensus is easy and its cost is known exactly: [FloodSet](/floodset/) uses
+      $f + 1$ rounds, and no algorithm does better in the worst case. In the asynchronous model the
+      [FLP theorem](/flp-impossibility/) rules out every deterministic protocol, even with one crash.
+      [Ben-Or's algorithm](/ben-or-consensus/) shows the first way around it, coin flips.
+    entries:
+      - floodset
+      - consensus-round-lower-bound
+      - flp-impossibility
+      - ben-or-consensus
+
+  - title: Failure detectors
+    intro: >
+      The second way around FLP is to give each process a module that suspects crashed processes and may be
+      wrong for a while. These entries define the classes of [failure detectors](/failure-detector/), show
+      how the [Chandra-Toueg algorithm](/chandra-toueg-consensus/) uses the weakest useful one, and end with
+      the theorem that the leader oracle [Omega](/omega-failure-detector/) is exactly what consensus needs.
+    entries:
+      - failure-detector
+      - eventually-perfect-failure-detector
+      - omega-failure-detector
+      - chandra-toueg-consensus
+      - weakest-failure-detector-consensus
+
+  - title: Paxos and the replicated log
+    intro: >
+      [Paxos](/paxos/) decides one value safely in any asynchronous run and makes progress once one leader
+      runs alone. Agreeing on a sequence of values is [total-order broadcast](/total-order-broadcast/),
+      which turns a deterministic program into a [replicated state machine](/replicated-state-machine/).
+      [Multi-Paxos](/multi-paxos/) and [Raft](/raft/) are the two standard ways to build that log.
+    entries:
+      - paxos
+      - total-order-broadcast
+      - replicated-state-machine
+      - multi-paxos
+      - raft
+
+  - title: Running a replicated service
+    intro: >
+      A real system must replace a failed leader, stop an old leader from acting, keep the log short and
+      change the set of servers. [Viewstamped Replication](/viewstamped-replication/) and
+      [Zab](/zab/) are two complete protocols built around a [view change](/view-change/). The other entries
+      treat one operational problem each, and most of them apply to any leader-based protocol.
+    entries:
+      - view-change
+      - viewstamped-replication
+      - zab
+      - split-brain
+      - leader-lease
+      - log-compaction
+      - cluster-reconfiguration
+
+  - title: Variants of Paxos
+    intro: >
+      Each variant changes one assumption of Paxos to save delays, messages or machines.
+      [Flexible Paxos](/flexible-paxos/) relaxes the quorums, [Fast Paxos](/fast-paxos/) lets clients skip
+      the leader, [Generalized Paxos](/generalized-paxos/) and [EPaxos](/epaxos/) order only commands that
+      conflict, and [Mencius](/mencius/) shares the leader's work. Cheap Paxos and Vertical Paxos reduce the
+      number of machines that must stay up.
+    entries:
+      - flexible-paxos
+      - fast-paxos
+      - generalized-paxos
+      - epaxos
+      - mencius
+      - cheap-paxos
+      - vertical-paxos
+
+  - title: Atomic commit
+    intro: >
+      In [atomic commit](/atomic-commit/) the processes of a transaction must all commit or all abort, and
+      one "no" vote forces an abort. [Two-phase commit](/two-phase-commit/) is safe but can block.
+      [Three-phase commit](/three-phase-commit/) avoids blocking only under strong timing assumptions, and
+      [Paxos Commit](/paxos-commit/) avoids it by replicating each vote.
+    entries:
+      - atomic-commit
+      - two-phase-commit
+      - three-phase-commit
+      - paxos-commit
+
+  - title: Weaker agreement
+    intro: >
+      Relaxing agreement makes some problems solvable where consensus is not. In
+      [approximate agreement](/approximate-agreement/) the outputs need only be close, and in
+      [k-set agreement](/k-set-agreement/) up to $k$ different values may be decided. Both are solvable in
+      the asynchronous model under conditions that the entries state exactly.
+    entries:
+      - approximate-agreement
+      - approximate-agreement-algorithm
+      - k-set-agreement
+
+  - title: Blockchains
+    intro: >
+      Open blockchains have no fixed list of members, so they cannot count votes.
+      [Proof of work](/proof-of-work/) makes each proposal cost hash computations,
+      [Nakamoto consensus](/nakamoto-consensus/) follows the chain with the most work, and
+      [proof of stake](/proof-of-stake/) replaces work with locked-up coins. Agreement here holds only with
+      a probability that grows with the depth of a block.
+    entries:
+      - proof-of-work
+      - nakamoto-consensus
+      - proof-of-stake

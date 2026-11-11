@@ -61,6 +61,20 @@ PATCHES: dict[str, list[tuple[str, str]]] = {
         "with the end marker $ smaller than every letter, $t = $ banana$ and $n = 7$:",
         "with the end marker \\$ smaller than every letter, $t =$ banana\\$ and $n = 7$:",
     )],
+    # B-tree states written as [keys](children) read as Markdown links; set them as code
+    "data-structures/external-memory-structures/b-tree/node.md": [(t, "`" + t + "`") for t in (
+        "[8]([3 5] [12])",
+        "[8]([1 3 5] [9 12 15])",
+        "[3 8]([1] [5 7] [9 12 15])",
+        "[3 8]([1] [4 5 7] [9 12 15])",
+        "[3 8 12]([1] [4 5 7] [9 10] [15])",
+        "[3 8 10]([1] [4 5 7] [9] [15])",
+        "[4 8 10]([1] [5 7] [9] [15])",
+        "[4 7 10]([1] [5] [9] [15])",
+        "[4 7]([1] [5] [10 15])",
+        "[7]([1 5] [10 15])",
+        "[5]([1] [10 15])",
+    )],
 }
 
 

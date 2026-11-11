@@ -46,6 +46,15 @@ For edition 0.19.0, the site's release v0.19.0 opened Volume 20 *Parallel*. One 
 introduction and first chapter and helper agents wrote the other four chapters, the same way; a learning path
 *Parallel algorithms* was added to Volume 0.
 
+For edition 0.20.0, the site's release v0.20.0 opened Volume 21 *Distributed*. Two agents shared it, one writing
+the volume introduction and Chapters 21.1, 21.2, 21.3 and 21.6, the other Chapters 21.4, 21.5 and 21.7, each with
+helper agents for single chapters; a learning path *Distributed algorithms* was added to Volume 0.
+
+Edition 0.20.1 is built from the same release of the site as 0.20.0, with a new typesetting of the entries: their
+definitions, theorems and algorithms are numbered, and each volume has a list of its theorems and definitions. The
+section *Statements, algorithms and proofs* of Chapter 0.1 and the note on numbering in each volume introduction
+were written for it the same way.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

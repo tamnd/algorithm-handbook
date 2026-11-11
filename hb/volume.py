@@ -9,6 +9,7 @@ from __future__ import annotations
 from . import apparatus
 from .book import Book, Volume
 from .prep import SITE, Refs, chapter_md, glue, hints_md, md_plain, tex
+from .statements import numbering_note, statements_md
 
 
 def _intro_head(title: str, label: str) -> str:
@@ -39,6 +40,10 @@ def introduction(book: Book, vol: Volume, refs: Refs, fig: str = "") -> str:
     out.append(chapter_table(book, vol, refs))
     if fig:
         out.append(fig)
+    note = numbering_note(vol, refs)
+    if note:
+        out.append("```{=latex}\n\\hbgroup{How this volume is numbered}\n```\n\n"
+                   f"## How this volume is numbered {{#intro-{vol.id}-numbering .html-only}}\n\n{note}")
     return "\n".join(out)
 
 
@@ -46,13 +51,14 @@ def volume_md(book: Book, vol: Volume, figs: dict | None = None) -> tuple[str, d
     """The Markdown of the volume, and some numbers about it. figs: from figures.make_figures."""
     figs = figs or {}
     refs = Refs(book, vol)
-    parts = [introduction(book, vol, refs, figs.get("volume", ""))]
-    for ch in vol.chapters:
-        parts.append(chapter_md(book, vol, ch, refs, figs.get(ch.num, "")))
+    chapters = [chapter_md(book, vol, ch, refs, figs.get(ch.num, "")) for ch in vol.chapters]
+    # the introduction is made last: its note on numbering quotes a statement of the volume
+    parts = [introduction(book, vol, refs, figs.get("volume", ""))] + chapters
     parts.append("```{=latex}\n\\hbbackmatter\n```\n")
     appx = [
         ("Hints to the exercises", "hints", lambda: hints_md(book, vol, refs)),
         ("Problems and their algorithms", "problems", lambda: apparatus.problems_appendix(book, vol, refs)),
+        ("Theorems and definitions", "statements", lambda: statements_md(book, vol, refs)),
         ("Bibliography", "bibliography", lambda: apparatus.bibliography(book, vol, refs)),
         ("Index of names", "names", lambda: apparatus.name_index(book, vol, refs)),
         ("Index", "index", lambda: apparatus.subject_index(book, vol, refs)),
