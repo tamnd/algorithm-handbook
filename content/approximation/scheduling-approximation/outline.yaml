@@ -1,0 +1,108 @@
+groups:
+  - title: Problems, notation and lower bounds
+    intro: >
+      A scheduling problem names its machines, its job constraints and its objective, and the three-field
+      notation writes these as $\alpha \mid \beta \mid \gamma$. The first entries fix the vocabulary and
+      the main objective of the chapter, the makespan. They also give the lower bounds, the average load
+      and the longest job, that every ratio proof in the next groups compares against.
+    entries:
+      - makespan
+      - machine-environments
+      - scheduling-notation
+      - makespan-lower-bounds
+      - makespan-minimization
+  - title: Preemption
+    intro: >
+      When a job may be cut and resumed on another machine, the makespan problem on identical machines
+      becomes easy. McNaughton's wrap-around rule reaches the lower bound $\max(P/m, p_{\max})$ in linear
+      time. That optimum is also the yardstick for the nonpreemptive rules that follow.
+    entries:
+      - preemptive-makespan-scheduling
+      - mcnaughton-wrap-around
+  - title: Greedy rules on identical machines
+    intro: >
+      List scheduling puts each job on the machine that frees up first and is within $2 - 1/m$ of the
+      optimum. Sorting the jobs longest first improves the bound to $4/3 - 1/(3m)$. Sorted-Balance is the
+      textbook version of the same sorted rule. The group ends with machine covering, which maximizes the
+      least load and uses the same greedy rule.
+    entries:
+      - list-scheduling
+      - list-scheduling-bound
+      - longest-processing-time-first
+      - lpt-bound
+      - sorted-balance
+      - machine-covering
+  - title: Bin packing and approximation schemes
+    intro: >
+      A makespan of $T$ is a bin packing with bins of size $T$. MULTIFIT searches for the least $T$ at
+      which first fit decreasing uses at most $m$ bins, and is within $\frac{13}{11} + 2^{-k}$ after $k$ rounds. The Hochbaum-Shmoys scheme
+      turns the same idea into a dual approximation that gets within $1 + \varepsilon$ for every fixed
+      $\varepsilon$.
+    entries:
+      - multifit-algorithm
+      - multifit-bound
+      - hochbaum-shmoys-ptas
+  - title: Uniform and unrelated machines
+    intro: >
+      Machines may differ by a speed, or each job may take a different time on each machine. Uniform
+      machines still allow greedy rules with constant ratios. Unrelated machines need linear programming:
+      the Lenstra-Shmoys-Tardos rounding gives ratio 2, and no ratio below $3/2$ is possible unless
+      P = NP. Restricted assignment, where each job may run on some machines only, is the special case
+      between the two.
+    entries:
+      - uniform-machine-scheduling
+      - unrelated-machine-scheduling
+      - lenstra-shmoys-tardos
+      - restricted-assignment-scheduling
+      - unrelated-makespan-inapproximability
+  - title: Precedence constraints
+    intro: >
+      With a precedence graph, the longest chain is a second lower bound, and list scheduling is still
+      within $2 - 1/m$. Graham's anomalies show that a list schedule can get longer when the instance gets
+      easier. Unit jobs give two exact cases: in-trees on any number of machines by Hu's algorithm, and
+      any graph on two machines by Coffman-Graham.
+    entries:
+      - critical-path-lower-bound
+      - precedence-constrained-scheduling
+      - graham-anomalies
+      - hu-algorithm
+      - coffman-graham-algorithm
+  - title: Due dates on one machine
+    intro: >
+      With due dates the objectives are the largest lateness, the number of late jobs and the total
+      tardiness. Earliest due date first and Lawler's backward rule solve the first exactly. Moore-Hodgson
+      solves the second. The weighted count and the total tardiness are NP-hard, but both have
+      pseudo-polynomial dynamic programs and so fully polynomial schemes.
+    entries:
+      - lateness-and-tardiness
+      - earliest-due-date-first
+      - maximum-lateness-minimization
+      - lawler-algorithm
+      - minimizing-tardy-jobs
+      - weighted-tardy-jobs
+      - total-tardiness-minimization
+  - title: Completion time, release dates and flow time
+    intro: >
+      Sum objectives reward finishing short jobs early. Shortest processing time first and Smith's ratio
+      rule are exact on one machine, and Sidney's decomposition extends the ratio rule to precedence
+      constraints with ratio 2. Release dates make the problem strongly NP-hard, and flow time is harder
+      still to approximate without preemption.
+    entries:
+      - shortest-processing-time-first
+      - weighted-completion-time-scheduling
+      - sidney-decomposition
+      - scheduling-with-release-dates
+      - flow-time-minimization
+  - title: Shops and other models
+    intro: >
+      In a shop each job has one operation on each of several machines. Johnson's rule solves the
+      two-machine flow shop and Gonzalez-Sahni the two-machine open shop; three machines are NP-hard, and
+      the job shop is hard in practice too. The last entries change the job model: setup times between
+      jobs, tasks that may use several machines, and jobs that may be rejected for a penalty.
+    entries:
+      - flow-shop-scheduling
+      - job-shop-scheduling
+      - open-shop-scheduling
+      - scheduling-with-setup-times
+      - moldable-task-scheduling
+      - scheduling-with-rejection

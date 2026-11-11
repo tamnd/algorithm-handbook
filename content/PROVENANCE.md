@@ -36,6 +36,12 @@ Volume 15, two for Volume 16, one for Volume 17 and one for Volume 18, each with
 chapters. In Volume 18 only Chapter 18.1 has entries so far; the other five chapters have an opening only, written
 from the site's short pages. Two learning paths through the new volumes were added to Volume 0.
 
+For edition 0.18.0, the site's release v0.18.0 wrote the entries of Chapters 18.2 to 18.6 and opened Volume 19
+*Online and streaming*. Two agents shared the work, one for Volume 18 and one for Volume 19, each with helper
+agents for single chapters. The five new chapters of Volume 18 got their full pages, their openings were
+rewritten, and the volume introduction now covers the whole volume; Volume 19 was written in full. Two learning
+paths, *Approximation algorithms* and *Online and streaming algorithms*, were added to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

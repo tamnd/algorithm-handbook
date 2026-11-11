@@ -1,0 +1,99 @@
+# The order of chapter 19.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Machines and notation
+    intro: >
+      A scheduling problem is named by three fields: the machines, the constraints and the objective.
+      [Graham's notation](/graham-three-field-notation/) adds an entry that says how the jobs arrive, one by one in a
+      list or over time. The machines may be identical, have speeds, have a time for each job, or accept only some
+      jobs. Online, each step from identical to unrelated machines makes the best ratio worse, from a constant to
+      $\Theta(\log m)$.
+    entries:
+      - graham-three-field-notation
+      - identical-machines
+      - uniform-machines
+      - unrelated-machines
+      - restricted-assignment
+
+  - title: Jobs over time
+    intro: >
+      When jobs arrive over time, a [release time](/release-time/) is both the earliest start and the moment the job
+      becomes known. Deadlines, preemption and migration change what a schedule may do, and clairvoyance says whether
+      the size of a job is known when it arrives. On one machine EDF keeps every deadline that can be kept; on two
+      machines no online rule does.
+    entries:
+      - release-time
+      - deadline
+      - preemptive-scheduling
+      - job-migration
+      - clairvoyant-scheduling
+
+  - title: Makespan over a list
+    intro: >
+      List scheduling puts each job on a machine of least load and is $(2 - \frac1m)$-competitive. That is the
+      best possible for two and three machines. For many machines the best known algorithms keep some machines
+      lightly loaded and reach about $1.9201$, while adversaries force about $1.88$.
+    entries:
+      - list-scheduling-competitive-ratio
+      - online-makespan-minimization
+      - online-makespan-lower-bound
+
+  - title: Restricted assignment
+    intro: >
+      If each job may run only on some machines, the greedy rule that picks the eligible machine of least load is
+      $(\lceil \log_2 m \rceil + 1)$-competitive. An adversary that halves the set of useful machines in each round
+      shows that no deterministic rule is better than $\lceil \log_2 (m + 1) \rceil$, and a random order of the
+      machines gives $H_m > \ln m$ against randomized rules.
+    entries:
+      - online-restricted-assignment-load-balancing
+      - greedy-restricted-assignment
+      - online-restricted-assignment-lower-bound
+
+  - title: Flow time and SRPT
+    intro: >
+      The [flow time](/flow-time/) of a job is the time from its release to its completion. On one machine with
+      preemption, [SRPT](/srpt/) gives the least total flow time of all schedules, online, by an exchange argument.
+      Without preemption, on several machines or with weights, the ratios grow, and the total completion time has
+      the exact deterministic ratio 2.
+    entries:
+      - flow-time
+      - srpt
+      - srpt-optimality
+      - online-flow-time-minimization
+      - online-total-completion-time
+
+  - title: Unknown sizes and stretch
+    intro: >
+      If the size of a job is known only when it ends, no deterministic rule beats $\Omega(n^{1/3})$ for the total
+      flow time. The randomized rule RMLF reaches $O(\log n)$, and shortest elapsed time first is good with a
+      little extra speed. The
+      [stretch](/stretch/) divides the flow time by the size. SRPT is 2-competitive for its sum, but the maximum
+      stretch has an online ratio between $\Omega(\Delta^{1/3})$ and $O(\sqrt\Delta)$.
+    entries:
+      - non-clairvoyant-flow-time-minimization
+      - stretch
+      - online-max-stretch
+
+  - title: Deadlines, value and machines
+    intro: >
+      When not every job can meet its deadline, the goal is the total value of the jobs that do. Plain EDF fails
+      under overload, and the best deterministic ratio is 4 when the value is the size. Intervals that must run at
+      once, requests for bandwidth, and jobs that must all be done on as few machines as possible are the other
+      problems of the group.
+    entries:
+      - online-throughput-maximization
+      - online-interval-scheduling
+      - online-admission-control
+      - online-machine-minimization
+
+  - title: Speed scaling
+    intro: >
+      A processor that runs at speed $s$ uses power $s^\alpha$, and the jobs must meet their deadlines. The offline
+      optimum runs each densest interval at its density. Online, Average Rate is $2^{\alpha - 1}\alpha^\alpha$-competitive,
+      Optimal Available exactly $\alpha^\alpha$, and BKP, which guards against work that may still come, has a
+      ratio that grows like $e^\alpha$.
+    entries:
+      - online-speed-scaling
+      - avr
+      - avr-competitive-ratio
+      - optimal-available
+      - bkp-speed-scaling

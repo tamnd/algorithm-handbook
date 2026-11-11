@@ -1,0 +1,74 @@
+groups:
+  - title: Ratios and classes of schemes
+    intro: >
+      These six definitions are used across the whole volume. The approximation ratio measures how far an
+      answer may be from the optimum. A scheme takes an accuracy $\varepsilon$ as input and reaches ratio
+      $1 + \varepsilon$, and the form of its running time places it in FPTAS, EPTAS or PTAS. An asymptotic
+      scheme may add a term that does not grow with OPT, and APX is the larger class of problems with some
+      constant ratio.
+    entries:
+      - approximation-ratio
+      - ptas
+      - fptas
+      - eptas
+      - asymptotic-ptas
+      - apx
+  - title: Rounding the numbers
+    intro: >
+      The knapsack problem and subset sum have exact dynamic programs whose tables grow with the size of
+      the numbers. Scaling the numbers down, or trimming the lists of partial sums, makes the tables
+      polynomial and costs at most a factor $1 + \varepsilon$. The theorem of Garey and Johnson shows
+      where this stops: a strongly NP-hard problem with small integer values has no FPTAS. The multiple
+      knapsack problem is such a problem, and the Chekuri-Khanna scheme is its PTAS.
+    entries:
+      - profit-indexed-dynamic-programming
+      - rounding-and-scaling
+      - knapsack-fptas
+      - trimming-technique
+      - subset-sum-fptas
+      - no-fptas-for-strongly-np-hard-problems
+      - multiple-knapsack-problem
+      - chekuri-khanna-ptas
+  - title: Scheduling and bin packing
+    intro: >
+      For makespan scheduling and bin packing, the schemes split the input into large and small items.
+      The large items are rounded to few sizes and packed exactly; the small items are added greedily.
+      Dual approximation guesses the optimum and tests the guess. Bin packing admits only asymptotic
+      schemes, with $(1 + \varepsilon)\,\mathrm{OPT} + 1$ bins.
+    entries:
+      - dual-approximation
+      - hochbaum-shmoys-makespan-ptas
+      - fernandez-de-la-vega-lueker-aptas
+      - epstein-levin-eptas-bin-packing
+  - title: Shifting and planar graphs
+    intro: >
+      Cut the plane into strips, or a planar graph into bands of breadth-first levels, and solve each part
+      exactly. Some shift of the cuts loses at most a $1/k$ part of the optimum. This gives linear-time
+      schemes for independent set, vertex cover and many other problems on planar graphs, and, with a
+      finer decomposition, for Steiner tree.
+    entries:
+      - shifting-technique
+      - baker-technique
+      - baker-planar-ptas
+      - planar-steiner-tree-ptas
+  - title: Geometric schemes
+    intro: >
+      Two methods, found independently in the 1990s, give schemes for the Euclidean TSP and related
+      problems in the plane. Mitchell adds short segments to an optimal network so that it can be cut
+      again and again by lines; Arora puts portals on the squares of a randomly shifted quadtree and
+      lets a solution cross each side only at a portal. In both, a dynamic program over the
+      subregions finds the best restricted solution. Arora's method also gives a scheme for Euclidean
+      $k$-median.
+    entries:
+      - guillotine-cut-technique
+      - mitchell-guillotine-ptas
+      - portal-based-dissection
+      - euclidean-k-median
+      - arora-euclidean-k-median-ptas
+  - title: Dense instances
+    intro: >
+      Max cut has no PTAS in general, but on graphs with at least $\delta n^2$ edges the optimum is so
+      large that an additive error of $\varepsilon \delta n^2 / 2$ is a relative error of $\varepsilon$.
+      Sampling a few vertices and trying every way to place them gives such an error.
+    entries:
+      - dense-max-cut-ptas

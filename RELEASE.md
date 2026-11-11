@@ -1,14 +1,14 @@
-The Handbook of Algorithms, edition 0.16.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.18.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.16.0](https://github.com/tamnd/algorithm/releases/tag/v0.16.0)
-(`daf7502a7e0e04e831fe0648a57951da63a3e390`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.18.0](https://github.com/tamnd/algorithm/releases/tag/v0.18.0)
+(`aea3293f66757588daf1d5493e06ecf4ffe5e768`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 823 |
+| 0 | Guide and Index | the whole set | 898 |
 | 1 | Foundations | 204 | 920 |
-| 2 | Techniques | 208 | 1,030 |
-| 3 | Data structures | 427 | 3,228 |
+| 2 | Techniques | 208 | 1,033 |
+| 3 | Data structures | 427 | 3,230 |
 | 4 | Sorting | 156 | 840 |
 | 5 | Searching | 115 | 592 |
 | 6 | Sequences | 120 | 540 |
@@ -23,40 +23,26 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 15 | Optimization | 301 | 1,626 |
 | 16 | Logic and constraints | 325 | 1,948 |
 | 17 | Randomized | 141 | 775 |
-| 18 | Approximation | 35 | 203 |
-| | **All** | **4,688** | **27,178** |
+| 18 | Approximation | 213 | 1,325 |
+| 19 | Online and streaming | 195 | 1,033 |
+| | **All** | **5,061** | **29,413** |
 
-- **New in this edition: Volumes 15 to 18.**
-  - **Volume 15, Optimization**: linear and integer programming, convex optimization, gradient methods,
-    combinatorial optimization, metaheuristics, multi-objective optimization.
-  - **Volume 16, Logic and constraints**: SAT solving, SMT, constraint satisfaction, binary decision diagrams,
-    unification and resolution, model checking.
-  - **Volume 17, Randomized**: sampling, shuffling, random hashing, Monte Carlo and Las Vegas algorithms,
-    Markov chain Monte Carlo, derandomization.
-  - **Volume 18, Approximation** (partial): Chapter 18.1, covering and packing, is complete. The other five
-    chapters have an opening only, because the site has not yet written their entries.
-  - Each new volume has the same apparatus as the others: a volume introduction, chapter openings, summaries,
+- **New in this edition: Volume 19, Online and streaming**, and the whole of **Volume 18, Approximation**.
+  - **Volume 18, Approximation**, is now complete. Besides covering and packing (Chapter 18.1, as in 0.16.0) it
+    has scheduling, the travelling salesman problem, LP rounding, approximation schemes and hardness of
+    approximation: 213 entries in place of 35.
+  - **Volume 19, Online and streaming**: paging and caching, online scheduling, competitive analysis (ski rental,
+    secretary and prophet problems, online matching, learning from experts), streaming sketches (Count-Min,
+    HyperLogLog, Misra-Gries, quantile summaries) and sliding windows.
+  - Both have the same apparatus as the other volumes: a volume introduction, chapter openings, summaries,
     exercises with hints, notes, concept maps and indexes.
-- **Volume 0, Guide and Index**: preface, how to use the set, notation, the volumes and their map, learning
-  paths, problems and their algorithms, glossary, timeline, bibliography and indexes of the whole set. It has
-  two new learning paths: *Optimization and constraint solving* and *Randomized and approximation algorithms*.
-- **Volumes 1 to 14** are rebuilt from the new release of the site, with the same entries under the same numbers
-  as in 0.13.0.
-- Volumes 19 to 31 are forthcoming; Volume 0 lists their chapters.
+- **Volume 0, Guide and Index**, covers the whole set of 5,061 entries and has two new learning paths:
+  *Approximation algorithms* and *Online and streaming algorithms*.
+- **Volumes 1 to 17** are rebuilt from the new release of the site, with the same entries under the same numbers
+  as in 0.16.0. Their cross-references to entries of Volumes 18 and 19 now give entry numbers.
+- Volumes 20 to 31 are forthcoming; Volume 0 lists their chapters.
 
-**Fixes since 0.13.0.**
-- **Mathematics printed as text.** Pandoc does not close an inline formula whose closing `$` follows a space,
-  as in `$\Phi = $`. A few entries and exercises printed their dollar signs and TeX source as text, including
-  the two `𝛷` that were missing from Volume 1 in 0.13.0. The builder now repairs such formulas in the entries and
-  in the learner pages, and four entries whose source mathematics was damaged are patched (`hb/patches.py`).
-- **EPUB formulas shown as TeX source.** Some EPUB formulas (`\textsc`, `\atop`, `\cfrac`, `\bmod` and a few
-  others) appeared as TeX source; they are now written in forms that MathML can show.
-- **EPUB links.** A group or section heading with the same name as an entry ("Quicksort", "Termination") took
-  the entry's identifier, so some links in the EPUB went to the heading and not to the entry. Every heading now
-  has an identifier of its own, and links from an entry to one of its own sections ("see Variants below") now
-  go to that section of that entry, in the PDF and the EPUB.
-
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.16.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.18.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

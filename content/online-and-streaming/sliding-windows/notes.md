@@ -1,0 +1,18 @@
+## History
+
+Windows over a sequence are older than streaming algorithms. Moving averages smoothed economic and astronomical series long before computers, and exponential smoothing came into forecasting in the 1950s; Roberts (1959) used the geometric moving average in a control chart for quality control. Image processing needed the maximum over a sliding window, and van Herk (1992) and Gil and Werman (1993) computed it with about three comparisons per element, independently of the window size. Lemire (2006) kept two monotone deques and needed at most three comparisons per element for the maximum and the minimum together.
+
+The sliding window model as a question of space began with Datar, Gionis, Indyk and Motwani, at SODA 2002 and in the SIAM Journal on Computing the same year. They posed basic counting, gave the exponential histogram and proved that $\Theta(\frac{1}{\varepsilon}\log^2 W)$ bits are needed. At the same SODA, Babcock, Datar and Motwani gave chain sampling, and Gibbons and Tirthapura (SPAA 2002) gave waves, with worst-case constant time per bit. Arasu and Manku (PODS 2004) treated counts and quantiles over windows, and Lee and Ting (PODS 2006) reached $O(1/\varepsilon)$ space for frequencies. Braverman and Ostrovsky introduced smooth histograms at FOCS 2007, which carry insertion-only algorithms to windows for many functions, and Braverman, Ostrovsky and Zaniolo (PODS 2009) gave optimal sampling. Chabchoub and Hébrail (2010) built Sliding HyperLogLog on the list idea of Fusy and Giroire (2007).
+
+Database research brought windows into query languages. The symmetric hash join of Wilschut and Apers (1991) was adapted to windows, and Kang, Naughton and Viglas (ICDE 2003) gave a cost model for window joins. Li, Maier, Tufte, Papadimos and Tucker (2005) split hopping windows into panes to share partial aggregates. The Dataflow model of Akidau and others (PVLDB 2015) fixed the vocabulary of tumbling, sliding and session windows that Flink and Beam use today. Cormode, Shkapenyuk, Srivastava and Xu (ICDE 2009) proposed forward decay for such systems.
+
+Exact aggregation over a window for any associative operator is old folklore: the queue made of two stacks appears in functional programming, and Okasaki (1995) made it real-time. Tangwongsan, Hirzel, Schneider and Wu (PVLDB 2015) studied the general problem, and Tangwongsan, Hirzel and Schneider (DEBS 2017) gave DABA, with a constant number of operator calls in the worst case.
+
+## Further reading
+
+- S. Muthukrishnan, *Data Streams: Algorithms and Applications*, Foundations and Trends in Theoretical Computer Science 1(2) (2005). A survey of the streaming model, with a section on windows and decay.
+- Jure Leskovec, Anand Rajaraman and Jeffrey D. Ullman, *Mining of Massive Datasets*, second edition (2014). Chapter 4 explains DGIM and decaying windows with worked examples.
+- Mayur Datar, Aristides Gionis, Piotr Indyk and Rajeev Motwani, "Maintaining stream statistics over sliding windows", *SIAM Journal on Computing* 31(6) (2002). The paper that defined the model, with the exponential histogram and the lower bounds.
+- Vladimir Braverman and Rafail Ostrovsky, "Effective computations on sliding windows", *SIAM Journal on Computing* 39(6) (2010). The full version of smooth histograms.
+- Kanat Tangwongsan, Martin Hirzel and Scott Schneider, "Low-latency sliding-window aggregation in worst-case constant time", DEBS 2017. Two-Stacks, DABA and their costs, with experiments.
+- Juliane Verwiebe, Philipp M. Grulich, Jonas Traub and Volker Markl, "Survey of window types for aggregation in stream processing systems", *The VLDB Journal* 32 (2023). The window types of current systems and how they are computed.

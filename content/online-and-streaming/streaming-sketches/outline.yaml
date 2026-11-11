@@ -1,0 +1,121 @@
+# The order of chapter 19.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The streaming model
+    intro: >
+      A [streaming algorithm](/streaming-model/) reads its input once, in order, with memory far below its
+      size. The input is summed up by a [frequency vector](/frequency-vector/), which only grows in the
+      [cash register model](/cash-register-model/) and can also shrink in the [turnstile model](/turnstile-model/).
+      Answers are approximate and random, so the [(ε, δ) guarantee](/epsilon-delta-guarantee/) and the
+      [median trick](/median-trick/) set the terms, and a [linear sketch](/linear-sketch/) is the form that
+      survives deletions.
+    entries:
+      - streaming-model
+      - frequency-vector
+      - cash-register-model
+      - turnstile-model
+      - epsilon-delta-guarantee
+      - median-trick
+      - linear-sketch
+
+  - title: Problems on a stream
+    intro: >
+      Seven questions recur through the chapter: is there a majority item, how many items have passed, which
+      items are frequent, how many are distinct, what are the moments and the join size, and where are the
+      quantiles. Each problem page states the exact question, shows why an exact answer needs memory linear
+      in the input, and lists the algorithms and bounds for the approximate one.
+    entries:
+      - majority-element-problem
+      - approximate-counting-problem
+      - frequent-items-problem
+      - distinct-elements-problem
+      - frequency-moment-problem
+      - join-size-estimation-problem
+      - quantile-summary-problem
+
+  - title: Counter summaries
+    intro: >
+      The oldest streaming algorithms keep a few counters and nothing else. Boyer and Moore find a majority
+      with one, Morris counts to $n$ in $O(\log\log n)$ bits, and Misra-Gries and Space-Saving keep $k$
+      counters with error $m/k$ for every item. Lossy counting, sticky sampling and sample and hold trade a
+      fixed size for simpler rules or for randomness. Mergeable summaries close the group, because two
+      Misra-Gries summaries combine with no growth in error.
+    entries:
+      - boyer-moore-majority
+      - morris-counter
+      - misra-gries-summary
+      - space-saving
+      - lossy-counting
+      - sticky-sampling
+      - sample-and-hold
+      - mergeable-summaries
+
+  - title: Linear sketches of frequencies
+    intro: >
+      A linear sketch multiplies the frequency vector by a random matrix, so it handles deletions and merges
+      by addition. Count-min gives counts with error $\varepsilon\|f\|_1$, the count sketch and the AMS sketch
+      work with $\|f\|_2$, and stable laws extend the idea to every $\ell_p$ with $0 < p \le 2$. Dyadic
+      intervals turn point counts into range counts, and entropy is estimated from the moments near $p = 1$.
+    entries:
+      - dyadic-intervals
+      - count-min-sketch
+      - count-sketch
+      - ams-sketch
+      - p-stable-distribution
+      - indyk-p-stable-sketch
+      - entropy-estimation-problem
+
+  - title: Counting distinct items
+    intro: >
+      A hash function turns each distinct item into a random number, and repeats change nothing. The
+      Flajolet-Martin counter reads the count from the longest run of zero bits, PCSA and LogLog average many
+      such counters, and HyperLogLog averages them with a harmonic mean, about $1.04/\sqrt m$ error with
+      $m$ registers of 5 bits. Linear counting is exact enough for small counts, and KMV keeps the smallest
+      hash values, which also gives unions and intersections.
+    entries:
+      - flajolet-martin-algorithm
+      - linear-counting
+      - kmv-sketch
+      - pcsa
+      - loglog-counting
+      - hyperloglog
+      - hyperloglog-plus-plus
+
+  - title: Quantile summaries
+    intro: >
+      A quantile summary answers every rank query within $\varepsilon n$. Munro and Paterson showed how
+      sampling by merging and halving finds the exact median in a few passes. Greenwald-Khanna is the
+      deterministic one-pass summary, q-digest works on an integer universe and merges, KLL halves at random
+      and reaches the optimal size, and the t-digest is accurate in practice without a worst-case bound.
+    entries:
+      - munro-paterson-algorithm
+      - greenwald-khanna-summary
+      - q-digest
+      - kll-sketch
+      - t-digest
+
+  - title: Sampling under deletions and graph streams
+    intro: >
+      An L0 sampler returns a random nonzero coordinate of a vector that has seen insertions and deletions.
+      Added up over the vertices of a graph, such samplers find an edge that leaves any set, which gives a
+      spanning forest of a dynamic graph in $O(n\log^3 n)$ bits. Matching and triangle counting show the
+      limits of one pass: greedy matching keeps half the optimum, and triangle counts need space that
+      depends on the graph.
+    entries:
+      - l0-sampling-problem
+      - l0-sampler
+      - stream-connectivity-problem
+      - agm-graph-sketch
+      - streaming-maximal-matching-problem
+      - greedy-streaming-matching
+      - streaming-triangle-counting-problem
+      - streaming-triangle-counting
+
+  - title: Lower bounds
+    intro: >
+      The memory of a one-pass algorithm is a message from the first half of the stream to the second. The
+      INDEX problem shows that such a message must be long for many exact questions, and set disjointness
+      shows that frequency moments above the second need polynomial space, so $p = 2$ is the exact edge of
+      the easy range.
+    entries:
+      - index-problem-lower-bound
+      - frequency-moment-lower-bounds

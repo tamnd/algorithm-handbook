@@ -1,0 +1,77 @@
+groups:
+  - title: The problem and its first lower bound
+    intro: >
+      The metric TSP asks for a shortest round trip when the costs obey the triangle inequality, which
+      lets a tour skip cities without getting longer. Every ratio in the chapter compares a tour with a
+      lower bound on OPT, and the first one is the minimum spanning tree: deleting one edge of an
+      optimal tour leaves a spanning tree.
+    entries:
+      - metric-tsp
+      - mst-lower-bound-for-tsp
+  - title: Building a tour city by city
+    intro: >
+      The construction heuristics add one city or one edge at a time by a local rule. Nearest neighbour
+      and greedy edge have ratio $\Theta(\log n)$. Nearest and cheapest insertion pay at most twice the
+      cost of a minimum spanning tree, so they cost at most twice OPT; farthest insertion gives the best
+      tours of the four in practice but has no proved constant ratio.
+    entries:
+      - nearest-neighbor-tsp
+      - nearest-insertion
+      - cheapest-insertion
+      - farthest-insertion
+      - greedy-edge-heuristic
+  - title: Tours from a spanning tree
+    intro: >
+      A minimum spanning tree becomes a tour once every vertex has even degree. Doubling each edge gives
+      ratio 2; adding a minimum weight perfect matching on the odd vertices, as Christofides did, gives
+      ratio $3/2$. The two forms of the same idea, the preorder walk and the MST family with a final
+      2-opt pass, follow.
+    entries:
+      - double-tree-algorithm
+      - mst-preorder-walk-tsp
+      - christofides-algorithm
+      - mst-tsp-heuristic
+  - title: The subtour LP and the Held-Karp bound
+    intro: >
+      The subtour elimination LP gives a lower bound that is much closer to OPT than the tree. Held and
+      Karp reached the same value with 1-trees and penalties on the vertex degrees. Sampling a random
+      spanning tree that follows the LP solution gave the first ratio below $3/2$.
+    entries:
+      - subtour-elimination-lp
+      - held-karp-bound
+      - karlin-klein-oveis-gharan-algorithm
+  - title: Improving a tour by local search
+    intro: >
+      Local search starts from any tour and exchanges a few edges while the tour gets shorter. Its
+      worst-case ratio is poor, of order $\sqrt{n}$ for 2-opt, but its tours are within a few percent
+      of OPT in practice. Lin-Kernighan and its modern form LKH, which uses the Held-Karp bound to choose
+      candidate edges, are the best heuristics known.
+    entries:
+      - two-opt
+      - three-opt
+      - or-opt
+      - lin-kernighan
+      - lin-kernighan-helsgaun
+  - title: Points in the plane
+    intro: >
+      When the cities are points with straight-line distances, the problem becomes easier to
+      approximate. Fast heuristics sort the points along a curve or solve small cells exactly, and the
+      schemes of Arora and Mitchell reach ratio $1 + \varepsilon$ for every fixed $\varepsilon > 0$,
+      which is impossible for general metric costs unless P = NP.
+    entries:
+      - euclidean-tsp
+      - space-filling-curve-tsp
+      - karp-partitioning-tsp
+      - arora-euclidean-tsp-ptas
+      - mitchell-euclidean-tsp-ptas
+  - title: Asymmetric and bottleneck tours
+    intro: >
+      Two variants change the problem. In the asymmetric TSP the cost of a road depends on its
+      direction, and the tree methods fail; cycle covers give ratio $\log_2 n$ and random thin trees
+      give $O(\log n / \log \log n)$. The bottleneck TSP minimizes the longest edge, and its ratio 2 is
+      best possible.
+    entries:
+      - asymmetric-tsp
+      - asadpour-atsp-algorithm
+      - bottleneck-tsp
+      - bottleneck-tsp-approximation

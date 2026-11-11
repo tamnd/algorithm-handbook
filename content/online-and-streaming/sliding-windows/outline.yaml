@@ -1,0 +1,97 @@
+# The order of chapter 19.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The window model
+    intro: >
+      In the [sliding window model](/sliding-window-model/) each query asks about the last $W$ items, or the
+      items of the last $W$ time units, and older items expire without a message to the algorithm. Storing the
+      window costs about $W \log n$ bits, so the interesting algorithms use $o(W)$ space. A
+      [landmark window](/landmark-window/) only grows, which is the insertion-only model again.
+    entries:
+      - sliding-window-model
+      - count-based-window
+      - time-based-window
+      - landmark-window
+
+  - title: Windows in stream processing systems
+    intro: >
+      Stream processors cut the time axis into windows and run one aggregation per window.
+      [Tumbling windows](/tumbling-window/) are disjoint blocks, [hopping windows](/hopping-window/) of size $s$
+      start every $h$ time units and overlap when $h < s$, and [session windows](/session-window/) close after
+      a gap with no activity. Each item belongs to a set of windows that can be computed from its timestamp.
+    entries:
+      - tumbling-window
+      - hopping-window
+      - session-window
+
+  - title: Averages and decay
+    intro: >
+      A [moving average](/moving-average/) keeps a running sum and needs the item that leaves the window. The
+      [exponential moving average](/exponential-moving-average/) and [exponential decay](/exponential-decay/)
+      give old items a smaller weight instead of cutting them off, so one number per statistic is enough.
+      [Forward decay](/forward-decay/) fixes each weight at arrival and divides once at query time.
+    entries:
+      - moving-average
+      - exponential-moving-average
+      - exponential-decay
+      - forward-decay
+
+  - title: Exact answers over a stored window
+    intro: >
+      When the window fits in memory, the question is time. A monotone deque gives the
+      [sliding window maximum](/sliding-window-maximum/) in $O(1)$ amortized time, and
+      [sliding-window aggregation](/sliding-window-aggregation/) asks the same for any associative operator.
+      The [two-stacks queue](/two-stacks-queue/) is amortized and the [DABA queue](/daba-queue/) spreads its flip
+      to get $O(1)$ operator calls in the worst case. The median and the join of two streams need other tools.
+    entries:
+      - sliding-window-maximum
+      - sliding-window-aggregation
+      - two-stacks-queue
+      - daba-queue
+      - sliding-window-median
+      - sliding-window-join
+
+  - title: Counting with exponential histograms
+    intro: >
+      [Basic counting](/basic-counting/) asks for the number of 1s among the last $W$ bits. An exact count needs
+      $W$ bits. The [DGIM algorithm](/dgim-algorithm/) keeps buckets of power-of-2 sizes and has relative error
+      below $1/k$ in $O(k \log^2 W)$ bits, the [exponential histogram](/exponential-histogram/) extends it to
+      sums, and the [space bound](/exponential-histogram-bound/) shows that $\Theta(\frac{1}{\varepsilon}\log^2 W)$
+      bits are needed.
+    entries:
+      - basic-counting
+      - dgim-algorithm
+      - exponential-histogram
+      - exponential-histogram-bound
+
+  - title: Sampling a window
+    intro: >
+      A reservoir sample cannot be repaired when its items expire.
+      [Sliding window sampling](/sliding-window-sampling/) keeps priorities or blocks instead, and
+      [chain sampling](/chain-sampling/) picks a successor for the sample before it expires, with an expected
+      memory below $e - 1$ items.
+    entries:
+      - sliding-window-sampling
+      - chain-sampling
+
+  - title: Smooth functions
+    intro: >
+      A [smooth function](/smooth-function/) does not grow when old items are dropped, and two suffixes with
+      almost the same value stay close after any common continuation. The [smooth histogram](/smooth-histogram/)
+      uses this to run $O(\frac{1}{\beta}\log W)$ insertion-only instances and answer within a factor
+      $1 - \alpha$, for functions such as $F_2$ that buckets cannot handle.
+    entries:
+      - smooth-function
+      - smooth-histogram
+
+  - title: Frequencies, distinct items and quantiles
+    intro: >
+      The sketches of Chapter 19.4 move to windows in two ways: summaries per block of the stream, or
+      timestamps kept inside the sketch. [Heavy hitters](/sliding-window-heavy-hitters/) and
+      [quantiles](/sliding-window-quantiles/) use blocks, and [Sliding HyperLogLog](/sliding-hyperloglog/) keeps
+      a short list of (time, rank) pairs in each register for the
+      [distinct count](/sliding-window-distinct-count/).
+    entries:
+      - sliding-window-heavy-hitters
+      - sliding-window-distinct-count
+      - sliding-hyperloglog
+      - sliding-window-quantiles

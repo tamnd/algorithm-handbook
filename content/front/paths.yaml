@@ -657,7 +657,7 @@ paths:
     intro: >
       The probability needed, then sampling, shuffling and hashing, the two kinds of randomized algorithm,
       Markov chains, and how randomness is removed again. The last stage starts the study of approximation
-      with covering and packing problems; the rest of Volume 18 is still being written.
+      with covering and packing problems; the path *Approximation algorithms* continues it.
     stages:
       - title: The probability you need
         steps:
@@ -707,3 +707,135 @@ paths:
           - first-fit-decreasing
           - bin-packing-aptas
           - gonzalez-k-center
+
+  - id: approximation-algorithms
+    title: Approximation algorithms
+    for: a student who knows linear programming and NP-completeness and wants provable answers to problems that have no fast exact algorithm.
+    intro: >
+      What an approximation ratio is and how a lower bound on the optimum proves one, then the classic
+      problems one family at a time: scheduling, the travelling salesman, rounding a linear program,
+      schemes that come as close as you like, and the limits that hardness of approximation sets.
+    stages:
+      - title: Ratios and lower bounds
+        steps:
+          - approximation-ratio
+          - vertex-cover-2-approximation
+          - greedy-set-cover
+          - primal-dual-approximation
+      - title: Scheduling
+        steps:
+          - scheduling-notation
+          - makespan-lower-bounds
+          - list-scheduling
+          - list-scheduling-bound
+          - longest-processing-time-first
+          - lpt-bound
+          - entry: graham-anomalies
+            why: a faster machine or fewer constraints can make the schedule longer.
+          - lenstra-shmoys-tardos
+      - title: The travelling salesman
+        steps:
+          - metric-tsp
+          - mst-lower-bound-for-tsp
+          - double-tree-algorithm
+          - christofides-algorithm
+          - held-karp-bound
+          - nearest-neighbor-tsp
+          - two-opt
+      - title: Rounding a linear program
+        steps:
+          - linear-programming-rounding
+          - lp-rounding-vertex-cover
+          - lp-rounding-set-cover
+          - randomized-rounding
+          - max-sat-lp-rounding
+          - primal-dual-schema
+          - dual-fitting
+          - iterative-rounding
+      - title: Approximation schemes
+        steps:
+          - ptas
+          - fptas
+          - rounding-and-scaling
+          - knapsack-fptas
+          - shifting-technique
+          - hochbaum-shmoys-makespan-ptas
+          - arora-euclidean-tsp-ptas
+          - no-fptas-for-strongly-np-hard-problems
+      - title: Hardness of approximation
+        steps:
+          - gap-problem
+          - gap-preserving-reduction
+          - l-reduction
+          - apx-completeness
+          - metric-tsp-inapproximability
+          - hastad-3bit-pcp
+          - max-3sat-inapproximability
+          - set-cover-inapproximability
+          - unique-games-conjecture
+
+  - id: online-and-streaming
+    title: Online and streaming algorithms
+    for: a student who has done a first course and wants algorithms that must act before the whole input is known, or that see it once in little memory.
+    intro: >
+      Competitive analysis and the ski rental problem first, then paging and caching, scheduling jobs as they
+      arrive, choosing and matching online, and learning from experts. The second half turns to streams:
+      counters and sketches that summarise a stream in small space, and the sliding windows that keep only
+      its recent part.
+    stages:
+      - title: Competitive analysis
+        steps:
+          - online-algorithm
+          - competitive-ratio
+          - ski-rental-problem
+          - break-even-strategy
+          - doubling-trick
+          - oblivious-adversary
+          - randomized-online-algorithm
+      - title: Paging and caching
+        steps:
+          - paging-problem
+          - belady-algorithm
+          - belady-optimality
+          - marking-algorithm
+          - randomized-marking
+          - list-update-problem
+          - move-to-front
+          - k-server-problem
+          - double-coverage
+      - title: Scheduling online
+        steps:
+          - list-scheduling-competitive-ratio
+          - online-makespan-minimization
+          - srpt
+          - srpt-optimality
+          - online-speed-scaling
+      - title: Choosing, matching and learning online
+        steps:
+          - secretary-problem
+          - prophet-inequality
+          - online-bipartite-matching
+          - ranking-algorithm
+          - weighted-majority
+          - multiplicative-weights-update
+          - regret
+      - title: Streams and sketches
+        steps:
+          - streaming-model
+          - morris-counter
+          - boyer-moore-majority
+          - misra-gries-summary
+          - count-min-sketch
+          - count-sketch
+          - flajolet-martin-algorithm
+          - hyperloglog
+          - ams-sketch
+          - median-trick
+          - kll-sketch
+      - title: Sliding windows
+        steps:
+          - sliding-window-model
+          - two-stacks-queue
+          - sliding-window-maximum
+          - dgim-algorithm
+          - exponential-histogram

@@ -1,0 +1,104 @@
+# The order of chapter 18.4, LP rounding. Groups are read in order; entries in a group too.
+groups:
+  - title: The method
+    intro: >
+      Every algorithm of the chapter starts from the same plan: write the problem as an integer program,
+      solve its [LP relaxation](/lp-relaxation/), and turn the [fractional solution](/fractional-solution/)
+      into an integral one that costs at most $\rho$ times the LP value. These entries set out the plan,
+      the facts about vertex solutions that make it work, and what a ratio means when the algorithm flips
+      coins.
+    entries:
+      - fractional-solution
+      - linear-programming-rounding
+      - randomized-approximation-algorithm
+  - title: Threshold rounding
+    intro: >
+      The simplest rounding keeps every variable at or above a threshold $t$ and multiplies the cost by at
+      most $1/t$. With $t = 1/2$ it gives ratio 2 for weighted vertex cover, and with $t = 1/f$ ratio $f$
+      for set cover. The vertex cover LP has a half-integral optimum, which says more: the variables at 1
+      and at 0 can be fixed in an optimal cover.
+    entries:
+      - threshold-rounding
+      - lp-rounding-vertex-cover
+      - half-integrality
+      - frequency-rounding-set-cover
+  - title: Randomized rounding
+    intro: >
+      Read each fractional value as a probability and round each variable by a coin flip. Linearity of
+      expectation bounds the cost, and the Chernoff and union bounds show that each constraint fails only
+      with small probability. This gives $O(\log m / \log \log m)$ congestion for routing, $\ln n + O(1)$
+      for set cover, and with a random assignment, ratio $3/4$ for MAX-SAT.
+    entries:
+      - randomized-rounding
+      - lp-rounding-set-cover
+      - random-assignment-max-3-sat
+      - max-sat-lp-rounding
+  - title: Duality without solving the LP
+    intro: >
+      The primal-dual schema builds a feasible dual and an integral primal together and never solves an
+      LP. If the primal and dual satisfy complementary slackness up to factors $\alpha$ and $\beta$, the
+      ratio is $\alpha\beta$. Dual fitting goes the other way: it runs a greedy algorithm and then shows
+      that its charges, scaled down, form a feasible dual.
+    entries:
+      - primal-dual-schema
+      - bar-yehuda-even-vertex-cover
+      - dual-fitting
+  - title: Steiner forest and its relatives
+    intro: >
+      Connecting given pairs of terminals at least cost is the main success of the primal-dual schema.
+      The algorithm of Agrawal, Klein and Ravi and of Goemans and Williamson grows the duals of all
+      active components at once and reaches ratio $2 - 2/k$. A threshold or the same growth handles the
+      prize-collecting version, where a terminal may be left out at a penalty.
+    entries:
+      - steiner-forest
+      - goemans-williamson-steiner-forest
+      - prize-collecting-steiner-tree
+  - title: Iterative rounding
+    intro: >
+      Iterative rounding solves the LP, fixes the variables that a vertex solution forces to be large,
+      and solves again on what is left. Jain showed that every vertex of the survivable network design LP
+      has an edge with $x_e \ge 1/2$, which gives ratio 2 for any connectivity requirements. Iterative
+      relaxation drops constraints in place of rounding variables and gives a spanning tree within one of
+      every degree bound.
+    entries:
+      - iterative-rounding
+      - survivable-network-design
+      - generalized-steiner-network
+      - jain-iterative-rounding-network-design
+      - iterative-relaxation
+  - title: Assignment, scheduling and bin packing
+    intro: >
+      When two quantities matter at once, such as cost and machine load, a bicriteria guarantee bounds
+      both. The LP for the generalized assignment problem has a vertex whose support is a pseudo-forest,
+      so rounding it costs at most the LP and loads each machine to at most $2T$. The configuration LP
+      for bin packing has one variable per way to fill a bin, and Karmarkar and Karp round it to within
+      $O(\log^2 \text{OPT})$ bins of the optimum.
+    entries:
+      - bicriteria-approximation
+      - generalized-assignment-problem
+      - shmoys-tardos-gap
+      - unrelated-machine-scheduling-makespan
+      - configuration-lp
+      - karmarkar-karp-bin-packing
+  - title: Facility location
+    intro: >
+      Facility location chooses which facilities to open and where each client goes. Filtering throws
+      away the assignments that are much longer than the LP pays for, and then rounds by clusters, which
+      gives the first constant ratio. The primal-dual algorithm of Jain and Vazirani gives ratio 3 without
+      solving an LP. Hard capacities break the natural LP, and the best ratios there come from local search.
+    entries:
+      - filtering-technique
+      - shmoys-tardos-aardal-facility-location
+      - jain-vazirani-facility-location
+      - capacitated-facility-location
+  - title: Dependent rounding
+    intro: >
+      Independent coin flips break equality constraints, such as "choose exactly $k$ sets" or "match each
+      vertex once". Dependent rounding moves fractional values in pairs so that every sum stays fixed while
+      each variable still ends at 1 with probability $x_i$. Pipage rounding moves along lines on which the
+      objective is convex, so its value never drops, and swap rounding works for the bases of a matroid, with the negative correlation that keeps
+      Chernoff bounds valid.
+    entries:
+      - dependent-rounding
+      - pipage-rounding
+      - swap-rounding

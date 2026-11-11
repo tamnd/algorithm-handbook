@@ -1,0 +1,144 @@
+# The order of chapter 19.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Online and offline
+    intro: >
+      An [online algorithm](/online-algorithm/) answers each request before it sees the next one, and an
+      [offline algorithm](/offline-algorithm/) sees the whole input first. The cost of the best offline answer,
+      the [offline optimum](/offline-optimum/), is the yardstick, and the [competitive ratio](/competitive-ratio/)
+      is the worst factor between the two. [Frequency count](/frequency-count/), a list update rule that is
+      not competitive, shows what the definition rules out.
+    entries:
+      - online-algorithm
+      - offline-algorithm
+      - offline-optimum
+      - competitive-ratio
+      - frequency-count
+
+  - title: Randomization and adversaries
+    intro: >
+      A [randomized online algorithm](/randomized-online-algorithm/) is measured by its expected cost, and the
+      result depends on what the adversary may see. The [oblivious adversary](/oblivious-adversary/) fixes the
+      input in advance; the [adaptive adversary](/adaptive-adversary/) and the
+      [adaptive offline adversary](/adaptive-offline-adversary/) see the coins as they fall. The
+      [request-answer game](/request-answer-game/) is the common frame, and against the strongest adversary
+      randomness does not help.
+    entries:
+      - randomized-online-algorithm
+      - oblivious-adversary
+      - request-answer-game
+      - adaptive-adversary
+      - adaptive-offline-adversary
+
+  - title: Guessing an unknown length
+    intro: >
+      In the [ski rental problem](/ski-rental-problem/) the algorithm does not know how long the season lasts.
+      The [break-even strategy](/break-even-strategy/) rents until the rent paid equals the price, which gives
+      $2 - 1/B$, and a random buying day gives $e/(e - 1)$. Waiting for a lift, buying a rail card and sending
+      acknowledgments are the same trade-off. In the [linear search problem](/linear-search-problem/) the
+      unknown is a distance, and doubling the excursions gives 9.
+    entries:
+      - ski-rental-problem
+      - break-even-strategy
+      - take-the-stairs-strategy
+      - bahncard-problem
+      - tcp-acknowledgment-problem
+      - linear-search-problem
+
+  - title: Stopping and selection
+    intro: >
+      Values arrive one at a time, and each must be taken or refused at once. In the
+      [secretary problem](/secretary-problem/) the order is random and the values are unknown, and the
+      [1/e stopping rule](/one-over-e-stopping-rule/) picks the best with probability about $1/e$. In the
+      [prophet inequality](/prophet-inequality/) the distributions are known, and one threshold earns half of
+      what a prophet earns. The [online hiring problem](/online-hiring-problem/) asks how fast a good team can grow.
+    entries:
+      - secretary-problem
+      - one-over-e-stopping-rule
+      - prophet-inequality
+      - online-hiring-problem
+
+  - title: Regret and online learning
+    intro: >
+      Here the benchmark is the best fixed action in hindsight, and the measure is [regret](/regret/), the
+      difference of the costs. In the [expert problem](/expert-problem/), [weighted majority](/weighted-majority/)
+      and [multiplicative weights](/multiplicative-weights-update/) keep the regret near $\sqrt{T \ln n}$, while
+      [follow the leader](/follow-the-leader/) needs noise to work. [Online convex optimization](/online-convex-optimization/)
+      and [online gradient descent](/online-gradient-descent/) extend the same bound to convex losses.
+    entries:
+      - regret
+      - doubling-trick
+      - expert-problem
+      - weighted-majority
+      - multiplicative-weights-update
+      - follow-the-leader
+      - online-convex-optimization
+      - online-gradient-descent
+
+  - title: Metrical task systems
+    intro: >
+      A [metrical task system](/metrical-task-systems/) has $n$ states in a metric space and tasks that cost
+      something in each state; the algorithm pays to move and to serve. The best deterministic ratio is
+      $2n - 1$ on every metric, and the [work function](/work-function/) is the tool behind it. Service systems
+      and page migration are special cases with their own bounds.
+    entries:
+      - metrical-task-systems
+      - work-function
+      - metrical-service-systems
+      - page-migration-problem
+
+  - title: Matching and packing
+    intro: >
+      In [online bipartite matching](/online-bipartite-matching/) one side is known and the other arrives.
+      [Greedy](/greedy-online-matching/) gets half of the optimum, and the [Ranking algorithm](/ranking-algorithm/)
+      gets $1 - 1/e$ with one random order. [Balance](/balance-algorithm/) and the
+      [adwords problem](/online-adwords-problem/) reach the same limit with capacities and budgets. The
+      [online knapsack problem](/online-knapsack-problem/) has no bounded ratio until the densities are bounded.
+    entries:
+      - online-bipartite-matching
+      - greedy-online-matching
+      - ranking-algorithm
+      - balance-algorithm
+      - online-adwords-problem
+      - online-knapsack-problem
+      - online-threshold-knapsack
+
+  - title: Covering and network design
+    intro: >
+      The [online primal-dual method](/online-primal-dual/) raises a covering solution and a packing dual
+      together, and gives [online set cover](/online-set-cover-problem/) its $O(\log m \log n)$ ratio. Trees
+      that grow with arriving terminals or points cost a logarithmic factor more than the optimum, and the
+      greedy rule already reaches that factor. [Facility location](/online-facility-location-problem/) adds an opening cost, and
+      [Meyerson's algorithm](/meyerson-algorithm/) opens with probability proportional to the distance.
+    entries:
+      - online-primal-dual
+      - online-set-cover-problem
+      - online-randomized-set-cover
+      - online-vertex-cover-problem
+      - online-steiner-tree-problem
+      - online-greedy-steiner-tree
+      - online-minimum-spanning-tree-problem
+      - online-facility-location-problem
+      - meyerson-algorithm
+
+  - title: Graphs and routing
+    intro: >
+      Some graph problems are hard online. In [colouring](/online-graph-coloring-problem/), an adversary forces
+      every deterministic algorithm to use $\log_2 n + 1$ colours on a tree, and an [independent set](/online-independent-set-problem/) can be $n - 1$ times too
+      small. An explorer of an unknown graph pays $\Theta(\log n)$ times the best tour with the nearest neighbour
+      rule, and servers that visit or carry requests over time are 2-competitive.
+    entries:
+      - online-graph-coloring-problem
+      - online-independent-set-problem
+      - online-graph-exploration-problem
+      - online-traveling-salesman-problem
+      - online-dial-a-ride-problem
+
+  - title: Predictions and advice
+    intro: >
+      Two models give the algorithm some knowledge of the future. A
+      [learning-augmented algorithm](/learning-augmented-algorithms/) gets a prediction and must stay good when
+      the prediction is wrong. The [advice model](/advice-model/) counts the bits of perfect information that
+      a given ratio needs.
+    entries:
+      - learning-augmented-algorithms
+      - advice-model

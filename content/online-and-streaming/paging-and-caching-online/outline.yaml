@@ -1,0 +1,91 @@
+# The order of chapter 19.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The paging model
+    intro: >
+      A cache holds $k$ pages, requests arrive one at a time, and each request for a page that is not in the
+      cache is a [fault](/page-fault/) that costs 1. The [paging problem](/paging-problem/) asks for few faults
+      with no knowledge of later requests. Loading pages only on demand loses nothing, and a replacement rule
+      is then just the choice of the page to evict. Write policies add a second cost, for pages that changed.
+    entries:
+      - page-fault
+      - paging-problem
+      - demand-paging
+      - cache-replacement-policy
+      - write-back-policy
+
+  - title: The offline optimum
+    intro: >
+      An algorithm that knows the whole sequence can evict the page whose next request is furthest away.
+      [Belady's rule](/belady-algorithm/) is optimal, which an exchange argument proves, and it is the yardstick
+      for every online rule. Stack algorithms, LRU and Belady's rule among them, never fault more with a larger
+      cache, so one pass gives the fault counts for every cache size.
+    entries:
+      - belady-algorithm
+      - belady-optimality
+      - stack-algorithms
+
+  - title: Deterministic online paging
+    intro: >
+      An adversary that always requests the page just evicted forces $k$ faults for each fault of the
+      optimum, so no deterministic rule is better than $k$-competitive. Splitting the requests into phases of
+      $k$ distinct pages shows that every marking algorithm, LRU and flush when full among them, reaches
+      this bound. The Sleator-Tarjan bound adds the effect of a larger cache: $k/(k - h + 1)$ against an
+      optimum with $h$ pages.
+    entries:
+      - online-caching-lower-bound
+      - marking-phases
+      - marking-algorithm
+      - flush-when-full
+      - sleator-tarjan-paging-bound
+
+  - title: Randomized paging and predictions
+    intro: >
+      Against an adversary that fixes the sequence in advance, a random choice among the unmarked pages
+      lowers the ratio from $k$ to $2H_k$, where $H_k \approx \ln k$. Yao's principle with random requests on
+      $k + 1$ pages shows that no randomized rule beats $H_k$. A marking rule that follows predicted next
+      requests is near optimal when the predictions are good and keeps an $O(\log k)$ bound when they are bad.
+    entries:
+      - randomized-marking
+      - harmonic-paging-bound
+      - learning-augmented-marking
+
+  - title: Rules in hardware and databases
+    intro: >
+      Real caches use rules that are cheap to run. Tree PLRU keeps $k - 1$ bits per set instead of an LRU
+      order and can keep a dead block for ever. 2Q filters pages that are used only once through a small FIFO
+      queue, which protects a database buffer from scans.
+    entries:
+      - plru-replacement
+      - two-q-replacement
+
+  - title: List update
+    intro: >
+      A linked list is a cache in which every item is present but the cost of an access is its position.
+      [Move-to-front](/move-to-front/) is 2-competitive by a potential that counts inversions against the
+      optimal list. Transpose looks safer, since it moves an item one step at a time, but it is not competitive.
+    entries:
+      - list-update-problem
+      - move-to-front
+      - transposition-rule
+
+  - title: Servers on a metric
+    intro: >
+      In the [$k$-server problem](/k-server-problem/), $k$ servers move in a metric space to serve requests at
+      points, and paging is the case of the uniform metric. Double coverage is $k$-competitive on the line
+      and on trees, the work function algorithm is $(2k - 1)$-competitive on every metric, and the conjecture
+      that $k$ is always possible is still open.
+    entries:
+      - k-server-problem
+      - double-coverage
+      - work-function-algorithm
+      - k-server-conjecture
+
+  - title: Weights and sizes
+    intro: >
+      When pages differ in cost, the number of faults is the wrong measure, and Belady's rule is no longer
+      optimal. Weighted paging is the $k$-server problem on a star. Landlord charges rent to the cached files
+      in proportion to their size and evicts the files whose credit runs out; it is $k$-competitive, the best
+      a deterministic rule can do.
+    entries:
+      - weighted-paging-problem
+      - landlord-algorithm

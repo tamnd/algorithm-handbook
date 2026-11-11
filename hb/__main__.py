@@ -158,7 +158,10 @@ def cmd_build(args):
     from . import latex
     from .volume import volume_md
     book = load(args)
-    date = datetime.date.today().isoformat()
+    # SOURCE_DATE_EPOCH (reproducible builds) fixes the edition date, so a volume rebuilt later matches the rest.
+    epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    date = (datetime.datetime.fromtimestamp(int(epoch), datetime.timezone.utc).date() if epoch
+            else datetime.date.today()).isoformat()
     formats = set(args.formats.split(","))
     report = {}
     failed = []

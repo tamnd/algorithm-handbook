@@ -1,0 +1,101 @@
+groups:
+  - title: Gap problems and the first bounds
+    intro: >
+      A hardness result needs a precise notion of an optimization problem, which [NPO](/npo-class/)
+      gives, and a precise way to say that telling large optima from small ones is hard, which the
+      [gap problem](/gap-problem/) gives. The four results that follow need nothing deeper than an
+      NP-complete decision problem. Hamiltonian cycle rules out every ratio for the general TSP,
+      partition rules out $3/2 - \varepsilon$ for bin packing, dominating set rules out
+      $2 - \varepsilon$ for $k$-center, and small integer optima give the bounds for makespan.
+    entries:
+      - npo-class
+      - gap-problem
+      - general-tsp-inapproximability
+      - bin-packing-inapproximability
+      - k-center-inapproximability
+      - scheduling-makespan-inapproximability
+  - title: Reductions and the class APX
+    intro: >
+      Hardness spreads from one problem to another by reductions that keep the quality of solutions.
+      A gap-preserving reduction carries a gap; the L-reduction and the PTAS-reduction carry ratios
+      close to 1. With them, [APX](/apx-class/) gets its complete problems, which have no PTAS unless
+      P = NP. The group ends with the [approximation threshold](/approximation-threshold/), the
+      exact ratio at which a problem turns from easy to hard, and a table of the known thresholds.
+    entries:
+      - approximation-preserving-reduction
+      - gap-preserving-reduction
+      - l-reduction
+      - ptas-reduction
+      - apx-class
+      - apx-completeness
+      - approximation-threshold
+  - title: Constant gaps from the PCP theorem
+    intro: >
+      The PCP theorem gives a constant gap for MAX 3SAT, and Håstad's form of it gives the tight
+      $7/8 + \varepsilon$. Gap-preserving reductions carry this gap to vertex cover, Steiner tree and
+      the metric TSP. For clique and graph colouring, products of instances amplify a constant gap
+      into a polynomial one, so no constant ratio is possible.
+    entries:
+      - max-3sat-inapproximability
+      - vertex-cover-inapproximability
+      - steiner-tree-inapproximability
+      - metric-tsp-inapproximability
+      - gap-amplification
+      - clique-inapproximability
+      - graph-coloring-inapproximability
+  - title: Two-prover games and label cover
+    intro: >
+      A [two-prover one-round game](/two-prover-one-round-game/) is the form of the PCP theorem that
+      reductions use most. Written as a graph problem it is [label cover](/label-cover/), and the
+      [parallel repetition theorem](/parallel-repetition-theorem/) pushes its soundness down to any
+      constant. From label cover come the logarithmic bound for set cover and dominating set, the
+      bound $1 - 1/e$ for maximum coverage and the bound $1 + 2/e$ for $k$-median.
+    entries:
+      - two-prover-one-round-game
+      - label-cover
+      - parallel-repetition-theorem
+      - set-cover-inapproximability
+      - dominating-set-inapproximability
+      - max-coverage-inapproximability
+      - k-median-inapproximability
+  - title: Boolean functions and tight bounds
+    intro: >
+      Tight constants need an inner code that can be tested with very few queries. Fourier analysis
+      on $\{-1,1\}^n$ is the tool for the [linearity test](/linearity-test/), its algebraic
+      relative the low-degree test, and the [dictatorship test](/dictatorship-test/) on the
+      [long code](/long-code/). Composed with label cover, these give
+      [Håstad's 3-bit PCP](/hastad-3bit-pcp/) and the hardness of the nearest codeword problem.
+    entries:
+      - fourier-analysis-of-boolean-functions
+      - linearity-test
+      - low-degree-test
+      - long-code
+      - dictatorship-test
+      - hastad-3bit-pcp
+      - nearest-codeword-inapproximability
+  - title: The Unique Games Conjecture
+    intro: >
+      For problems with two variables per constraint, such as maximum cut, label cover is too weak
+      an outer problem, and the [Unique Games Conjecture](/unique-games-conjecture/) is the stronger
+      assumption that takes its place. Under it the Goemans-Williamson ratio is optimal for max cut,
+      the basic SDP is optimal for every CSP, many predicates are approximation resistant, and
+      multiway cut and sparsest cut get their bounds. The last entry is an algorithm: unique games
+      can be solved in subexponential time, which limits any reduction that would prove the
+      conjecture.
+    entries:
+      - unique-games-conjecture
+      - max-cut-ugc-hardness
+      - approximation-resistance
+      - raghavendra-theorem
+      - multiway-cut-inapproximability
+      - sparsest-cut-ugc-hardness
+      - unique-games-subexponential-algorithm
+  - title: Hardness beyond polynomial time
+    intro: >
+      The [Gap Exponential Time Hypothesis](/gap-eth/) says that the gap version of 3-SAT needs time
+      $2^{\Omega(n)}$. It gives lower bounds for algorithms that may run in time $f(k) \cdot n^{O(1)}$
+      for a parameter $k$, which is the subject of
+      [parameterized inapproximability](/parameterized-inapproximability/).
+    entries:
+      - gap-eth
+      - parameterized-inapproximability
