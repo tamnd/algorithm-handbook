@@ -1,0 +1,124 @@
+# The order of chapter 22.1 (mutual exclusion). Groups are read in order; entries in a group too.
+groups:
+  - title: What goes wrong
+    intro: >
+      Processes that share memory go wrong in a few typical ways. A [race condition](/race-condition/) lets
+      the result depend on the interleaving, and the cure is a [critical section](/critical-section/) that only
+      one process runs at a time. Exclusion brings its own failures: a [deadlock](/deadlock/) stops a group
+      of processes for ever, a [livelock](/livelock/) keeps them busy without progress, and
+      [starvation](/starvation/) leaves one process waiting while the others go on.
+    entries:
+      - race-condition
+      - critical-section
+      - deadlock
+      - livelock
+      - starvation
+
+  - title: The mutual exclusion problem
+    intro: >
+      The problem asks for an entry and an exit section around each critical section, with mutual exclusion
+      as the safety property and a progress property on top. The entries here fix the model, the
+      [mutex](/mutex/) interface that programs see, and the two progress properties that every lock in the
+      chapter is measured against: [deadlock freedom](/deadlock-freedom/) and
+      [starvation freedom](/starvation-freedom/), with bounded bypass and first-come, first-served as
+      stronger forms.
+    entries:
+      - mutual-exclusion-problem
+      - mutex
+      - deadlock-freedom
+      - starvation-freedom
+
+  - title: Two processes with reads and writes
+    intro: >
+      Two processes can share a critical section with three registers and no special instructions.
+      [Dekker's algorithm](/dekker-algorithm/) was the first solution; [Peterson's](/peterson-algorithm/) is
+      the short one that every later algorithm is compared with. Both need sequentially consistent memory, and
+      both fail on x86 without a fence.
+    entries:
+      - dekker-algorithm
+      - peterson-algorithm
+
+  - title: Many processes with reads and writes
+    intro: >
+      For $n$ processes, the [filter lock](/filter-lock/) and the [tournament lock](/tournament-lock/) stack
+      copies of Peterson's algorithm, and the [bakery algorithm](/lamport-bakery-algorithm/) serves processes in
+      ticket order. The older algorithms of Dijkstra, Knuth, and Eisenberg and McGuire show how fairness grew
+      step by step, from no bound on bypass to $n - 1$. The last entries are about cost: every deadlock-free
+      algorithm needs $n$ registers, and [Lamport's fast algorithm](/lamport-fast-mutex/) makes a process that
+      runs alone take a constant number of steps.
+    entries:
+      - filter-lock
+      - lamport-bakery-algorithm
+      - tournament-lock
+      - dijkstra-mutex-algorithm
+      - knuth-mutex-algorithm
+      - eisenberg-mcguire-algorithm
+      - kessels-algorithm
+      - szymanski-algorithm
+      - burns-lamport-algorithm
+      - mutual-exclusion-lower-bounds
+      - lamport-fast-mutex
+      - fischer-algorithm
+
+  - title: Spin locks from atomic instructions
+    intro: >
+      Real machines give atomic read-modify-write instructions, and one [test-and-set](/test-and-set/) bit
+      already makes a lock. The cost that matters on a multiprocessor is the number of remote memory references
+      ([RMRs](/rmr-complexity/)), not the number of steps. The [ticket lock](/ticket-lock/) adds FIFO order;
+      the queue locks of Anderson, of Mellor-Crummey and Scott, and of Craig, Landin and Hagersten let each
+      waiter spin on its own word, for $O(1)$ RMRs per passage.
+    entries:
+      - test-and-set
+      - spin-lock
+      - ticket-lock
+      - rmr-complexity
+      - anderson-lock
+      - mcs-lock
+      - clh-lock
+      - cohort-lock
+
+  - title: Semaphores, condition variables and monitors
+    intro: >
+      A process that waits for a long time should sleep, not spin. The [semaphore](/semaphore/) is the
+      oldest blocking primitive. A [condition variable](/condition-variable/) lets a process wait inside a
+      critical section for a predicate on the shared data, and a [monitor](/monitor/) packages data, lock and
+      conditions as one module. A [reentrant lock](/reentrant-lock/) lets its owner lock it again.
+    entries:
+      - semaphore
+      - condition-variable
+      - monitor
+      - reentrant-lock
+
+  - title: Classic synchronization problems
+    intro: >
+      These small problems are the standard tests for a set of primitives. Each one has a naive solution that
+      fails in a specific way: a lost wakeup, a deadlock or a starving writer. The
+      [readers-writer lock](/readers-writer-lock/) is the library form of the solutions to the
+      [readers-writers problem](/readers-writers-problem/).
+    entries:
+      - bounded-buffer-problem
+      - readers-writers-problem
+      - readers-writer-lock
+      - sleeping-barber-problem
+      - cigarette-smokers-problem
+
+  - title: Deadlock
+    intro: >
+      A deadlock needs all four [Coffman conditions](/coffman-conditions/), so there are three ways to handle
+      it: break one condition by design ([prevention](/deadlock-prevention/), most often by
+      [lock ordering](/lock-ordering/)), refuse requests that could lead to it ([avoidance](/banker-algorithm/)),
+      or let it happen and find it in a graph ([detection](/deadlock-detection/)). The
+      [dining philosophers](/dining-philosophers-problem/) close the group as the standard test case for all
+      three.
+    entries:
+      - resource-allocation-graph
+      - coffman-conditions
+      - wait-for-graph
+      - deadlock-prevention
+      - lock-ordering
+      - lock-coupling
+      - banker-algorithm
+      - deadlock-detection
+      - mutual-exclusion-deadlock-handling
+      - dining-philosophers-problem
+      - chandy-misra-algorithm

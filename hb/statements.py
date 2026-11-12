@@ -78,13 +78,35 @@ def _is_fence(b: list[str]) -> bool:
     return bool(re.match(r"^\s*(`{3,}|~{3,})", b[0]))
 
 
+def _attach(head: str, body: str) -> str:
+    """The head runs into the first paragraph; before a list, table, display or code it stands alone."""
+    first = body.lstrip().split("\n", 1)[0]
+    if not first.strip():
+        return head
+    if re.match(r"^(\$\$|\||`{3}|~{3}|<|>|:::|\\\[)", first) or LIST_ITEM.match(first.lstrip()):
+        return head + "\n\n" + body.lstrip()
+    return head + " " + body.lstrip()
+
+
 def _norm(t: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", t.lower())[:80]
 
 
+# a section heading that is itself a statement: "## Definition", "## Statement" (of a theorem entry), "## Theorem",
+# or "## Lemma 1 (the leaves)", "### Claim 2: termination", "## Theorem. Bucket bound"
+SEC_PLAIN = {"Definition": "Definition", "Definitions": "Definition", "Formal definition": "Definition",
+             "Statement": None, "Theorem": "Theorem", "The theorem": "Theorem"}
+SEC_LABEL = re.compile(
+    r"^(?P<kind>" + "|".join(KIND_ENV) + r")(?: (?P<id>\d+(?:\.\d+)*[a-z]?|[A-H]|[IVX]+))?"
+    r"(?:\s*\((?P<note>" + _NOTE + r")\)|[.:]\s+(?P<note2>[^\n]+?))?\.?$")
+HEADING = re.compile(r"^(#{2,6}) +(.+?)\s*$")
+_TITLE_KIND = [("conjecture", "Conjecture"), ("corollary", "Corollary"), ("lemma", "Lemma"),
+               ("proposition", "Proposition")]
+
+
 class Statements:
-    def __init__(self, slug: str):
-        self.slug = slug
+    def __init__(self, slug: str, name: str = "", kind: str = ""):
+        self.slug, self.name, self.node_kind = slug, name, kind
         self.items: list[Stmt] = []
         self.defs: dict[str, dict[tuple[str, str], int]] = {}    # doc -> (kind, sid) -> index
 
@@ -100,9 +122,88 @@ class Statements:
         self.items.append(st)
         return len(self.items) - 1, True
 
+    def _div(self, kind: str, sid: str, note: str, doc: str, body: str) -> str:
+        """A statement as a Div whose head is a marker, numbered later by `finalize`."""
+        st = Stmt(kind, sid, note.strip(), doc, _norm(body)[:80])
+        idx, _ = self._new(st)
+        if sid:
+            self.defs.setdefault(doc, {}).setdefault((kind, sid), idx)
+        env = KIND_ENV[kind]
+        cls = {"hbthm": "thm", "hbdefn": "defn", "hbrem": "rem"}[env]
+        head = f"{S}S{idx}{E}"
+        body = _attach(head, body)
+        return f'::: {{#{S}I{idx}{E} .stmt .{cls} latex-env="{env}"}}\n{body.rstrip()}\n:::'
+
+    def _section_kind(self, title: str):
+        """(kind, site label, note) when a section heading names a statement, else None."""
+        if title in SEC_PLAIN:
+            k = SEC_PLAIN[title]
+            if k is None:     # "Statement": the theorem of a theorem entry, the problem of any other entry
+                if self.node_kind != "theorem":
+                    return ("Definition", "", "")
+                low = self.name.lower()
+                k = next((v for w, v in _TITLE_KIND if w in low), "Theorem")
+            return (k, "", "")
+        m = SEC_LABEL.match(title)
+        if m:
+            return (m.group("kind"), m.group("id") or "", (m.group("note") or m.group("note2") or "").strip())
+        return None
+
+    def sections(self, text: str, doc: str) -> str:
+        """Sections whose heading names a statement become numbered statements, and the section *In plain words*
+        becomes a box. A section that holds labelled statements of its own keeps its heading."""
+        lines = text.split("\n")
+        fence, heads = None, []
+        for i, line in enumerate(lines):
+            f = re.match(r"^\s*(`{3,}|~{3,})", line)
+            if f:
+                fence = None if fence else f.group(1)
+                continue
+            if fence is None:
+                h = HEADING.match(line)
+                if h:
+                    heads.append((i, len(h.group(1)), h.group(2)))
+        out, pos = [], 0
+        for k, (i, lev, title) in enumerate(heads):
+            if i < pos:
+                continue
+            end = len(lines)
+            sub = None
+            for j, lev2, _ in heads[k + 1:]:
+                if lev2 <= lev:
+                    end = j
+                    break
+                if sub is None:
+                    sub = j
+            plain = title.lower() == "in plain words" and doc == "body"
+            kind = None if plain else self._section_kind(title)
+            if not plain and kind is None:
+                continue
+            stop = end if plain else (sub if sub is not None else end)
+            body = "\n".join(lines[i + 1:stop]).strip("\n")
+            if not body.strip() or re.search(r"^:::", body, re.M):
+                continue
+            if plain:
+                if re.search(r"^\s*(`{3,}|~{3,})|^\|", body, re.M):
+                    continue
+                new = ('::: {.plain latex-env="hbplain"}\n[In plain words]{.plainhead .html-only}\n\n'
+                       + body.strip() + "\n:::")
+            else:
+                if any(LABEL.match(b[0]) for b in _blocks(body) if not _is_fence(b)):
+                    continue
+                new = self._div(*kind, doc, body.strip())
+            out.append("\n".join(lines[pos:i]))
+            if sub is not None and not plain:     # the section goes on under subheadings: keep its heading
+                out.append(lines[i])
+            out.append("\n" + new + "\n")
+            pos = stop
+        out.append("\n".join(lines[pos:]))
+        return "\n".join(out)
+
     def mark(self, text: str, doc: str) -> str:
         """Wrap each statement of a part in a Div with a marker for its head; mark the end of each proof."""
         defs = self.defs.setdefault(doc, {})
+        text = self.sections(text, doc)
         blocks = _blocks(text)
         out: list[str] = []
         i = 0
@@ -151,7 +252,7 @@ class Statements:
             env = KIND_ENV[kind]
             text_ = "\n\n".join(body)
             cls = {"hbthm": "thm", "hbdefn": "defn", "hbrem": "rem"}[env]
-            out.append(f'::: {{#{S}I{idx}{E} .stmt .{cls} latex-env="{env}"}}\n{head} {text_}\n:::')
+            out.append(f'::: {{#{S}I{idx}{E} .stmt .{cls} latex-env="{env}"}}\n{_attach(head, text_)}\n:::')
             if proof:
                 out.append(proof)
             i = j
@@ -299,8 +400,10 @@ def numbering_note(vol, refs) -> str:
          "that continues the number of the entry")
     if ex:
         s += f", so that {ex[1]} {ex[0]} is item {ex[0].split('.')[-1]} of entry {'.'.join(ex[0].split('.')[:3])}"
-    s += (". Theorems, lemmas and the other claims are set in italics, definitions and examples in roman type, and "
-          "a proof ends with a square at the right of its last line. Exercises are numbered within the chapter, as "
+    s += (". The definition of the problem or structure of an entry, the statement of a theorem entry and its worked "
+          "examples are numbered the same way. Theorems, lemmas and the other claims are set in italics, definitions "
+          "and examples in roman type, and a proof ends with a square at the right of its last line. The idea of an "
+          "entry in everyday words stands in a light box, *In plain words*, before its definition. Exercises are numbered within the chapter, as "
           f"{ch.num}.1, and so are figures. A small grey number after a link gives the entry it points to. The "
           "appendix *Theorems and definitions* lists the main statements of the volume with their pages.\n")
     return s

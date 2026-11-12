@@ -1,0 +1,54 @@
+Cryptography is the study of algorithms that keep data secret and prove who sent it, even when someone works against them. A browser and a bank agree on a key over a network that anyone can read, and every later packet is encrypted and checked. A phone stores a password as a slow, salted hash, so a stolen file does not give the password away. A software update carries a signature that the device checks before it installs anything. Two people start a chat in a messaging app without ever meeting, and a key that leaks next year does not open the messages of this year. In each case the algorithm faces an adversary who knows how it works, sees much of what it sends, and may change it.
+
+This volume is about those algorithms, the attacks on them, and the assumptions under which they are safe. It starts with ciphers that share a secret key and with hash functions, goes on to public-key encryption, signatures and key exchange, treats the schemes meant to survive a quantum computer, and ends with protocols in which several parties compute together while some of them cheat.
+
+## Why cryptography gets a volume of its own
+
+An algorithm in most volumes is correct if it gives the right output. Here the right output is not enough; the algorithm must also give nothing else away. A few ideas recur in every chapter:
+
+- **Every claim names its model.** A security statement says who the adversary is and what it may do: passive or active, [chosen-plaintext](/chosen-plaintext-attack/) or [chosen-ciphertext](/chosen-ciphertext-attack/), semi-honest or malicious. It names the assumption it rests on, and whether the proof holds in the standard model, the [random oracle model](/random-oracle-model/) or the [ideal cipher model](/ideal-cipher-model/). A hardness result names its reduction, and says whether the reduction is classical or quantum.
+- **Security is a reduction.** Few schemes are proved secure outright. The [one-time pad](/one-time-pad/) is, by Shannon's theorem, but it needs a key as long as all the messages. Almost every other proof shows that an attacker on the scheme gives a solver for a problem believed hard, such as the [discrete logarithm problem](/discrete-logarithm-problem/) or [learning with errors](/learning-with-errors/).
+- **The attacker knows the algorithm.** [Kerckhoffs's principle](/kerckhoffs-principle/) puts all the secrecy in the key. Each chapter pairs constructions with attacks, from [frequency analysis](/frequency-analysis/) to the [birthday attack](/birthday-attack/), [differential cryptanalysis](/differential-cryptanalysis/), the [padding oracle attack](/padding-oracle-attack/) and the [Castryck-Decru attack](/castryck-decru-attack/). The attacks run only on toy parameters and on simulated parties.
+- **Details break schemes.** A reused [nonce](/nonce/) gives away the XOR of two plaintexts under a stream cipher and, in a [nonce reuse attack](/nonce-reuse-attack/), a signer's secret key. A [timing attack](/timing-attack/) reads a key from how long a computation takes. The entries say which inputs must be fresh and which checks must not be skipped.
+- **Code is for study only.** The programs use the Python standard library, are not constant time, and must not protect real data. Each entry names a reviewed library to use instead.
+- **Standards come with test vectors.** Where a FIPS, an SP, an RFC or a competition gives official test vectors, the entry cites them with a locator and its code checks against them. A few locators are marked for a later check.
+
+## How this volume relates to the others
+
+- **Volume 1, foundations**, has [polynomial time](/polynomial-time/), the [birthday paradox](/birthday-paradox/), the [union bound](/union-bound/) and [Boolean circuits](/boolean-circuit/), which the definitions and the generic attacks use throughout.
+- **Volume 10, number theory**, gives [modular exponentiation](/modular-exponentiation/), [cyclic groups](/cyclic-group/), the [Chinese remainder theorem](/chinese-remainder-theorem/), [integer factorization](/integer-factorization/) and the [LLL algorithm](/lll-algorithm/). Public-key schemes are built on its problems, and lattice attacks use its reduction algorithms.
+- **Volume 11, algebra**, has the [polynomial rings](/polynomial-ring/) and the [number-theoretic transform](/number-theoretic-transform/) behind lattice schemes, and [Gaussian elimination](/gaussian-elimination/), the first step of information set decoding and of the linear attacks on noise problems.
+- **Volume 17, randomized algorithms**, defines [computational indistinguishability](/computational-indistinguishability/) and the [pseudorandom generator](/pseudorandom-generator/), the base of every definition of secrecy here.
+- **Volume 21, distributed algorithms**, studies agreement among processes that may lie. Chapter 23.7 shares its fault models and its honest-majority bounds.
+
+## The chapters
+
+**Chapter 23.1, Symmetric ciphers**, covers the attacker models and perfect secrecy, classical ciphers and how they fall, the design of block ciphers by [Feistel networks](/feistel-network/) and [substitution-permutation networks](/substitution-permutation-network/), DES and the [Advanced Encryption Standard](/advanced-encryption-standard/), pseudorandom functions and permutations, modes of operation, stream ciphers such as [ChaCha20](/chacha20/), message authentication and [authenticated encryption](/authenticated-encryption/), the attacks on block ciphers, and a catalogue of other block ciphers.
+
+**Chapter 23.2, Hash functions**, covers what a [cryptographic hash function](/cryptographic-hash-function/) must do, the generic attacks, hash chains and [Merkle trees](/merkle-tree/), the [Merkle-Damgård construction](/merkle-damgard-construction/) and its length extension, the MD4 family, the [sponge construction](/sponge-construction/) and SHA-3, BLAKE and other designs, keyed hashing with [HMAC](/hmac/), time-memory tradeoffs, and password hashing up to [Argon2](/argon2/).
+
+**Chapter 23.3, Public key**, covers trapdoors and assumptions, [RSA](/rsa-cryptosystem/) and factoring, what a ciphertext must hide, from [IND-CPA](/ind-cpa-security/) to [IND-CCA](/ind-cca-security/), padding for RSA, [ElGamal](/elgamal-encryption/) and elliptic curves, key encapsulation and the [Fujisaki-Okamoto transform](/fujisaki-okamoto-transform/), homomorphic encryption, pairings and identity-based encryption, and attacks on implementations.
+
+**Chapter 23.4, Signatures**, covers what a [digital signature](/digital-signature/) is and when it is unforgeable, hash-and-sign with RSA, [ECDSA](/ecdsa/) and the danger of its nonces, [Schnorr signatures](/schnorr-signature/) with the forking lemma and Ed25519, BLS and threshold signatures, hash-based signatures from [Lamport](/lamport-signature/) to [SPHINCS+](/sphincs-plus/), and signatures with special properties such as blind and ring signatures.
+
+**Chapter 23.5, Key exchange**, covers [Diffie-Hellman](/diffie-hellman/) and its curves, the man-in-the-middle attack and the goals of authenticated key exchange, the station-to-station and SIGMA protocols, key derivation with [HKDF](/hkdf/), [X3DH](/x3dh/) and the [double ratchet](/double-ratchet/), key distribution through a trusted server, key predistribution, password-authenticated key exchange, and group key agreement.
+
+**Chapter 23.6, Post quantum**, covers the threat that a quantum computer poses to the schemes of Chapters 23.3 to 23.5, the lattice problems, the lattice schemes [CRYSTALS-Kyber](/crystals-kyber/) and [CRYSTALS-Dilithium](/crystals-dilithium/), standardized with changes in 2024 as ML-KEM (FIPS 203) and ML-DSA (FIPS 204), the attacks on lattice and noise problems, code-based encryption from [McEliece](/mceliece-cryptosystem/) and information set decoding, multivariate signatures, and isogenies.
+
+**Chapter 23.7, Protocols**, covers entity authentication, Kerberos and the TLS 1.3 handshake, commitments and coin flipping, [zero-knowledge proofs](/zero-knowledge-proof/) and identification, [Shamir's secret sharing](/shamir-secret-sharing/) and threshold cryptography, secure multiparty computation and its models, oblivious transfer, [garbled circuits](/yao-garbled-circuits/) and the GMW and BGW protocols, privacy protocols such as private set intersection and mix networks, and succinct proofs.
+
+## How to read this volume
+
+If this is your first course on cryptography, read these entries in this order. From Chapter 23.1: [perfect secrecy](/perfect-secrecy/), the one-time pad, the [block cipher](/block-cipher/), the [pseudorandom function](/pseudorandom-function/), [CTR mode](/ctr-mode/) and the [message authentication code](/message-authentication-code/). From Chapter 23.2: [collision resistance](/collision-resistance/), the birthday attack and HMAC. From Chapter 23.3: the RSA cryptosystem, IND-CPA security and ElGamal encryption. From Chapter 23.4: the digital signature and the Schnorr signature. From Chapter 23.5: Diffie-Hellman and the [man-in-the-middle attack](/man-in-the-middle-attack/). From Chapter 23.6: learning with errors. From Chapter 23.7: the [commitment scheme](/commitment-scheme/), the zero-knowledge proof and Shamir's secret sharing. Do the exercises marked ◦ and • at the end of these chapters. That is a complete first unit on cryptography.
+
+Chapters 23.1 and 23.2 come first, since the rest of the volume uses their primitives. Chapter 23.3 comes before Chapters 23.4 and 23.5, which use its groups and its assumptions. Chapter 23.6 assumes the goals of Chapters 23.3 to 23.5, and Chapter 23.7 draws on all of them. If you already know the basics, start with the opening page of each chapter. It names the groups in the chapter and the order to read them.
+
+Each entry stands on its own. Its facts box lists what it needs, with the number of the entry where each prerequisite is explained. Entries in other volumes are cited by number too.
+
+## What you need first
+
+You should be able to read a short program and follow a proof by reduction. From Volume 1 you need asymptotic notation, discrete probability and the birthday bound. From Volume 10 you need modular arithmetic, [modular inverses](/modular-inverse/), the [greatest common divisor](/greatest-common-divisor/) and fast exponentiation, and for Chapter 23.6 some lattice reduction. Linear algebra over finite fields helps throughout. Some feeling for how programs talk over a network helps in Chapters 23.5 and 23.7, but it is not required.
+
+## The exercises
+
+Each chapter ends with exercises in three bands. Exercises marked ◦ check that you read the entries closely; you should be able to do them in a few minutes. Exercises marked • ask you to use an idea in a new place; each takes some thought, and some need a short program. Exercises marked ★ are harder; some are results from research papers. Hints for many exercises are in the appendix *Hints to the exercises* at the end of the volume.

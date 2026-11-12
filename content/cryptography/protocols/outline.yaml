@@ -1,0 +1,124 @@
+# The order of chapter 23.7, Protocols. Groups are read in order; entries in a group too.
+groups:
+  - title: Authentication and key distribution
+    intro: >
+      [Entity authentication](/entity-authentication/) asks a verifier to become sure that a named
+      party is taking part now, and [challenge-response](/challenge-response-authentication/) is the
+      usual way to get there. A [key distribution center](/key-distribution-center/) shares one key
+      with each user and hands out session keys. The [Needham-Schroeder lineage](/needham-schroeder/)
+      shows how such protocols fail and how a model checker finds the failure, and
+      [Kerberos](/kerberos/) is the design that grew out of them.
+    entries:
+      - entity-authentication
+      - challenge-response-authentication
+      - key-distribution-center
+      - needham-schroeder
+      - kerberos
+
+  - title: Secure channels in use
+    intro: >
+      Two protocols carry most encrypted traffic today. The [TLS 1.3 handshake](/tls-handshake/)
+      builds a channel between a client and a server in one round trip. [Secure messaging](/secure-messaging/)
+      states what a messaging app must give when the server is not trusted, and the
+      [Signal protocol](/signal-protocol/) gives forward secrecy and recovery after a compromise
+      between peers who are rarely online together.
+    entries:
+      - tls-handshake
+      - secure-messaging
+      - signal-protocol
+
+  - title: Commitments and coin flipping
+    intro: >
+      A [commitment](/commitment-scheme/) fixes a value now and reveals it later, and it cannot be
+      perfectly hiding and perfectly binding at once. [Pedersen's scheme](/pedersen-commitment/) is
+      perfectly hiding, binding under the discrete logarithm assumption, and additively homomorphic.
+      [Fair coin flipping](/fair-coin-flipping/) is the first use of a commitment, and it shows that a
+      party who may abort can always bias the result.
+    entries:
+      - commitment-scheme
+      - pedersen-commitment
+      - fair-coin-flipping
+
+  - title: Zero knowledge and identification
+    intro: >
+      A [zero-knowledge proof](/zero-knowledge-proof/) convinces a verifier and gives it nothing it
+      could not produce alone. A [proof of knowledge](/proof-of-knowledge/) adds an extractor, and a
+      [sigma protocol](/sigma-protocol/) is the three-move form with both properties. The
+      [Schnorr](/schnorr-identification-protocol/) and [Feige-Fiat-Shamir](/feige-fiat-shamir-identification/)
+      schemes use them to prove identity without showing the key.
+    entries:
+      - zero-knowledge-proof
+      - proof-of-knowledge
+      - sigma-protocol
+      - schnorr-identification-protocol
+      - feige-fiat-shamir-identification
+
+  - title: Secret sharing and threshold cryptography
+    intro: >
+      [Secret sharing](/secret-sharing/) splits a secret so that only authorized sets of parties
+      can recover it. [Shamir's scheme](/shamir-secret-sharing/) does this with a polynomial, and
+      [verifiable secret sharing](/verifiable-secret-sharing/) lets each party check its share against
+      public commitments. [Threshold cryptography](/threshold-cryptography/) uses the shares to sign or
+      decrypt without ever putting the key together.
+    entries:
+      - secret-sharing
+      - shamir-secret-sharing
+      - verifiable-secret-sharing
+      - threshold-cryptography
+
+  - title: Secure computation and its models
+    intro: >
+      In [secure multiparty computation](/secure-multiparty-computation/) parties compute a function
+      of private inputs and learn only the output. [Yao's millionaires' problem](/yao-millionaires-problem/)
+      is the first example. Security is defined by simulation against a
+      [semi-honest](/semi-honest-model/) or a [malicious](/malicious-adversary-model/) adversary, and
+      [universal composability](/universal-composability/) asks that security survive any context.
+    entries:
+      - secure-multiparty-computation
+      - yao-millionaires-problem
+      - semi-honest-model
+      - malicious-adversary-model
+      - universal-composability
+
+  - title: Generic protocols
+    intro: >
+      [Oblivious transfer](/oblivious-transfer/) is complete for secure computation, and
+      [OT extension](/oblivious-transfer-extension/) makes millions of transfers from a few hundred
+      with only hashing. [Yao's garbled circuits](/yao-garbled-circuits/) compute any Boolean circuit
+      between two parties in a constant number of rounds, and [cut-and-choose](/cut-and-choose/) makes
+      them safe against a cheating garbler. The [GMW](/gmw-protocol/) and [BGW](/bgw-protocol/)
+      protocols work gate by gate on shares for any number of parties.
+    entries:
+      - oblivious-transfer
+      - oblivious-transfer-extension
+      - yao-garbled-circuits
+      - cut-and-choose
+      - gmw-protocol
+      - bgw-protocol
+
+  - title: Privacy protocols
+    intro: >
+      Some tasks are common enough to have their own protocols.
+      [Private set intersection](/private-set-intersection/) finds common items, and
+      [private information retrieval](/private-information-retrieval/) reads an item without saying
+      which. [Anonymous communication](/anonymous-communication/) hides who talks to whom, by the
+      [dining cryptographers protocol](/dining-cryptographers/) with information-theoretic security or
+      by a [mix network](/mix-network/) with one honest server.
+    entries:
+      - private-set-intersection
+      - private-information-retrieval
+      - anonymous-communication
+      - dining-cryptographers
+      - mix-network
+
+  - title: Succinct proofs and verifiable randomness
+    intro: >
+      A [zk-SNARK](/zk-snark/) proves a circuit statement with a few group elements and a pairing
+      check, after a trusted setup. A [zk-STARK](/zk-stark/) needs only a hash function and no
+      setup, at the price of larger proofs. A [verifiable random function](/verifiable-random-function/)
+      gives one output per input with a proof that anyone can check, and it picks leaders and
+      committees in some blockchains.
+    entries:
+      - zk-snark
+      - zk-stark
+      - verifiable-random-function

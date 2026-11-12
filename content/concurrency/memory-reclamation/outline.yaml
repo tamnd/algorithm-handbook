@@ -1,0 +1,90 @@
+# The order of chapter 22.3, Memory reclamation. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      A lock-free operation that unlinks a node cannot know whether another thread still holds a pointer
+      to it, so freeing at once causes a [use after free](/use-after-free/), and reusing the address causes
+      the [ABA problem](/aba-problem/). [Safe memory reclamation](/safe-memory-reclamation/) states the task
+      and the measures used for the rest of the chapter: the cost per read, the garbage, and robustness to
+      threads that stop. Almost every scheme follows the pattern of
+      [deferred reclamation](/deferred-reclamation/): retire now, free later in batches.
+    entries:
+      - use-after-free
+      - aba-problem
+      - safe-memory-reclamation
+      - deferred-reclamation
+
+  - title: Tags and type-stable pools
+    intro: >
+      The oldest remedies do not free memory at all. [Tagged pointers](/tagged-pointers/) put a counter next
+      to each pointer so that a stale compare-and-swap fails, and [type-stable memory](/type-stable-memory/)
+      keeps freed nodes as nodes of the same type, so a late read does no harm. Together they stop the ABA
+      problem, but memory cannot shrink and a $w$-bit tag fails after $2^w$ changes.
+    entries:
+      - tagged-pointers
+      - type-stable-memory
+
+  - title: Grace periods
+    intro: >
+      A [quiescent state](/quiescent-state/) is a moment when a thread holds no references to shared
+      nodes. A [grace period](/grace-period/) is an interval in which every thread that was reading at its
+      start has finished, and after one, every node removed before it can be freed.
+      [Read-copy-update](/read-copy-update/) turns this into an interface in which readers never wait.
+    entries:
+      - quiescent-state
+      - grace-period
+      - read-copy-update
+
+  - title: Epochs
+    intro: >
+      [Epoch-based reclamation](/epoch-based-reclamation/) detects grace periods with a global counter and
+      frees a node retired in epoch $r$ once the counter reaches $r + 2$. Reads of nodes cost nothing, but one
+      stalled thread stops all reclamation. [QSBR](/quiescent-state-based-reclamation/) moves the cost to
+      reports between operations, and [DEBRA](/debra/) makes each operation's work $O(1)$ and, in DEBRA+,
+      restarts stalled threads with signals.
+    entries:
+      - epoch-based-reclamation
+      - quiescent-state-based-reclamation
+      - debra
+
+  - title: Protecting pointers
+    intro: >
+      [Hazard pointers](/hazard-pointers/) publish each pointer before it is used and check that it is
+      still current, so a scan frees exactly the retired nodes that no slot names. The garbage stays at most
+      $nR$ even when threads stop. [Pass the buck](/pass-the-buck/) hands guarded values to the guards
+      themselves, and [drop the anchor](/drop-the-anchor/) publishes once every $K$ nodes instead of once
+      per node.
+    entries:
+      - hazard-pointers
+      - pass-the-buck
+      - drop-the-anchor
+
+  - title: Eras and intervals
+    intro: >
+      Give each node a birth era and a retire era, and a thread can protect a whole range of nodes by
+      publishing an era instead of a pointer. [Hazard eras](/hazard-eras/) publish one era per slot and
+      write again only when the clock moved; [interval-based reclamation](/interval-based-reclamation/)
+      publishes one interval per thread and keeps the interface of epochs.
+    entries:
+      - hazard-eras
+      - interval-based-reclamation
+
+  - title: Reference counts
+    intro: >
+      [Lock-free reference counting](/lock-free-reference-counting/) frees a node as soon as its last
+      reference goes, at the price of a fetch-and-add on the node for every read and no bound under a
+      stall. [Hyaline](/hyaline/) counts references to batches of retired nodes instead of to nodes, so
+      reads cost nothing and the last thread to leave frees the batch.
+    entries:
+      - lock-free-reference-counting
+      - hyaline
+
+  - title: Restarting readers
+    intro: >
+      Two schemes let threads read without protection and stop them before a stale value can do harm.
+      [Optimistic access](/optimistic-access/) checks a warning bit after each read, and
+      [neutralization-based reclamation](/neutralization-based-reclamation/) sends a signal that sends the
+      reader back to the root. Both need a data structure whose read phase can restart at any point.
+    entries:
+      - optimistic-access
+      - neutralization-based-reclamation

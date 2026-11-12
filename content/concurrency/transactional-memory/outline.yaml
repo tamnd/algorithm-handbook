@@ -1,0 +1,123 @@
+# The order of chapter 22.4, Transactional memory. Groups are read in order; entries in a group too.
+groups:
+  - title: Transactions and conflicts
+    intro: >
+      A [transaction](/transaction/) is a block of reads and writes that takes effect all at once or not
+      at all. These four entries give the vocabulary for the rest of the chapter: the
+      [read set and write set](/read-set-and-write-set/) that a transaction builds as it runs, the
+      [conflict](/transaction-conflict/) between two transactions that touch one word and at least one of
+      which writes it, and the [abort](/transaction-abort/) that throws a transaction's work away.
+    entries:
+      - transaction
+      - read-set-and-write-set
+      - transaction-conflict
+      - transaction-abort
+
+  - title: What a correct transactional memory promises
+    intro: >
+      Serializability of the committed transactions is not enough for memory transactions, because a
+      transaction that will later abort can still read an inconsistent state and crash or loop.
+      [Opacity](/opacity/) asks that every transaction, live and aborted ones included, see one serial
+      order that respects real time. [Weak atomicity](/weak-atomicity/) and
+      [strong atomicity](/strong-atomicity/) say what happens when plain loads and stores touch the
+      same data as a transaction.
+    entries:
+      - opacity
+      - weak-atomicity
+      - strong-atomicity
+
+  - title: Building blocks of software TM
+    intro: >
+      A [software transactional memory](/software-transactional-memory/) makes three choices: whether new
+      values wait in a [redo log](/redo-log/) or go in place behind an [undo log](/undo-log/), whether
+      conflicts are found at the access ([eager detection](/eager-conflict-detection/)) or at commit
+      ([lazy detection](/lazy-conflict-detection/)), and whether write locks are taken at the first write
+      or only at commit. Each pair of entries gives the data structure or the detection rule first, then
+      the policy built on it.
+    entries:
+      - software-transactional-memory
+      - redo-log
+      - lazy-versioning
+      - undo-log
+      - eager-versioning
+      - eager-conflict-detection
+      - encounter-time-locking
+      - lazy-conflict-detection
+      - commit-time-locking
+
+  - title: Validation and its hazards
+    intro: >
+      Most STMs keep reads invisible, so a reader must check later that what it read is still current.
+      [Validation](/transaction-validation/) after every read costs $r(r+1)/2$ checks for a writer that reads $r$ words; a
+      [global version clock](/global-version-clock/) cuts this to one check per read. Skipping the check
+      creates [zombie transactions](/zombie-transactions/), and a committed writer that has not finished
+      its write-back breaks [privatization](/privatization-safety/).
+    entries:
+      - transaction-validation
+      - global-version-clock
+      - zombie-transactions
+      - privatization-safety
+
+  - title: Software TM algorithms
+    intro: >
+      The first six entries run in historical order, from the static transactions of the
+      [Shavit-Touitou STM](/shavit-touitou-stm/) and the obstruction-free [DSTM](/dstm/) to the lock-based
+      word STMs that are used today: [TL2](/tl2/), [TinySTM](/tinystm/), [SwissTM](/swisstm/) and
+      [NOrec](/norec/). A [multi-version STM](/multi-version-stm/) keeps old values so that readers never
+      abort, and the [disjoint-access-parallel lower bound](/disjoint-access-parallel-stm-lower-bound/)
+      shows what no design can have all at once.
+    entries:
+      - shavit-touitou-stm
+      - dstm
+      - tl2
+      - tinystm
+      - swisstm
+      - norec
+      - multi-version-stm
+      - disjoint-access-parallel-stm-lower-bound
+
+  - title: Contention management
+    intro: >
+      At a conflict some transaction must wait or abort, and the
+      [contention manager](/contention-management/) decides which. The choice affects progress, never
+      safety. [Polite](/polite-contention-manager/) backs off, [Karma](/karma-contention-manager/) counts
+      the work done, and [Polka](/polka-contention-manager/) combines the two. Only
+      [Greedy](/greedy-contention-manager/) has a proved bound on the time to commit.
+    entries:
+      - contention-management
+      - polite-contention-manager
+      - karma-contention-manager
+      - polka-contention-manager
+      - greedy-contention-manager
+
+  - title: Transactions in hardware
+    intro: >
+      [Hardware transactional memory](/hardware-transactional-memory/) keeps tentative values in the cache
+      and finds conflicts with the coherence protocol. The design of [Herlihy and Moss](/herlihy-moss-htm/)
+      started the field. Most shipped processors give only [best-effort HTM](/best-effort-htm/), such as
+      [Intel TSX](/intel-tsx/), so software needs a fallback: a lock, as in
+      [lock elision](/transactional-lock-elision/), or an STM, as in
+      [hybrid TM](/hybrid-transactional-memory/).
+    entries:
+      - hardware-transactional-memory
+      - herlihy-moss-htm
+      - best-effort-htm
+      - intel-tsx
+      - transactional-lock-elision
+      - hybrid-transactional-memory
+
+  - title: Programming with transactions
+    intro: >
+      Transactions compose in ways that locks do not, but only with some help.
+      [Nesting](/nested-transactions/) and [open nesting](/open-nested-transactions/) say what an inner
+      transaction may do, [retry and orElse](/retry-and-orelse/) give blocking and choice, and
+      [irrevocability](/transaction-irrevocability/) admits actions that cannot be undone.
+      [Transactional boosting](/transactional-boosting/) wraps a concurrent object, and the
+      [STAMP suite](/stamp-benchmark-suite/) is the usual way to measure all of these.
+    entries:
+      - nested-transactions
+      - open-nested-transactions
+      - retry-and-orelse
+      - transaction-irrevocability
+      - transactional-boosting
+      - stamp-benchmark-suite

@@ -1,0 +1,131 @@
+# The order of chapter 23.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The quantum threat and the move to new schemes
+    intro: >
+      Shor's algorithm breaks RSA, Diffie-Hellman and elliptic curves at every key size, so the public-key
+      layer has to be replaced. These entries say what that means, why data sent today is already at risk,
+      how NIST ran the selection and rates parameter sets in five security categories, and how systems
+      change algorithms without breaking. The quantum random oracle model is the proof setting that most of
+      the later security claims use.
+    entries:
+      - post-quantum-cryptography
+      - harvest-now-decrypt-later
+      - nist-security-levels
+      - nist-pqc-standardization
+      - crypto-agility
+      - quantum-random-oracle-model
+
+  - title: Lattice problems
+    intro: >
+      Most post-quantum schemes rest on two lattice problems. [Learning with errors](/learning-with-errors/)
+      asks for a secret behind noisy linear equations mod $q$; the short integer solution problem asks for a
+      short vector in the kernel of a random matrix. The ring and module versions give the same problems
+      structure, so that keys shrink from $n^2$ to about $n$ numbers. The last two entries are the theorems
+      that tie average-case LWE and Ring-LWE to worst-case lattice problems; the main reductions are
+      quantum.
+    entries:
+      - lattice-based-cryptography
+      - learning-with-errors
+      - ring-learning-with-errors
+      - module-learning-with-errors
+      - learning-with-rounding
+      - short-integer-solution
+      - ring-short-integer-solution
+      - module-short-integer-solution
+      - ntru-problem
+      - regev-lwe-hardness
+      - ring-lwe-hardness
+
+  - title: Lattice encryption and key encapsulation
+    intro: >
+      Regev's scheme encrypts one bit with LWE and decrypts correctly while the sum of the errors stays
+      below $q/4$. The other entries scale that idea up: FrodoKEM keeps plain LWE, NewHope and Kyber move to
+      rings and modules, Saber replaces the errors by rounding, and NTRU and NTRU Prime use the older NTRU
+      problem. [ML-KEM](/crystals-kyber/) is the one NIST standardized.
+    entries:
+      - regev-encryption
+      - frodokem
+      - newhope
+      - crystals-kyber
+      - saber
+      - ntru-encrypt
+      - ntru-prime
+
+  - title: Lattice signatures
+    intro: >
+      There are two ways to sign with lattices. Fiat-Shamir with aborts masks the secret with a random
+      vector and restarts whenever the answer would leak it; ML-DSA is built this way. Hash-and-sign hashes
+      the message to a target and uses a trapdoor to find a short preimage, which is safe only if the
+      preimage comes from a Gaussian that does not depend on the trapdoor; Falcon is built this way.
+    entries:
+      - fiat-shamir-with-aborts
+      - crystals-dilithium
+      - gaussian-sampling-over-lattices
+      - trapdoor-sampling-lattices
+      - gpv-signature
+      - falcon
+
+  - title: Attacks on lattice and noise problems
+    intro: >
+      Parameters come from attacks, not from reductions. The knapsack schemes of the 1980s show lattice
+      reduction as a weapon; core-SVP turns the BKZ block size into a security estimate. BKW and Arora-Ge
+      solve LPN and LWE when the noise is small or the samples are many, and they explain why the schemes
+      use the noise and sample counts they do.
+    entries:
+      - merkle-hellman-knapsack
+      - core-svp-hardness
+      - learning-parity-with-noise
+      - bkw-algorithm
+      - arora-ge-algorithm
+
+  - title: Code-based encryption
+    intro: >
+      Decoding a random linear code is NP-hard in the worst case. McEliece's scheme of 1978 hides a binary
+      Goppa code behind a random-looking generator matrix; its parameters have grown since, but the scheme
+      itself is unbroken. The price is a public key of hundreds of kilobytes. BIKE and HQC use quasi-cyclic codes to cut the key to a few kilobytes, at the
+      cost of a decoder that sometimes fails.
+    entries:
+      - code-based-cryptography
+      - syndrome-decoding-problem
+      - mceliece-cryptosystem
+      - niederreiter-cryptosystem
+      - bike
+      - hqc
+
+  - title: Information set decoding
+    intro: >
+      The best attacks on code-based schemes guess a set of positions free of errors and solve a linear
+      system. Prange's algorithm is the base; Lee-Brickell and Stern allow a few errors in the guessed set
+      and pay less in total. The exponents of these algorithms set the parameters of Classic McEliece, BIKE
+      and HQC.
+    entries:
+      - information-set-decoding
+      - prange-algorithm
+      - lee-brickell-algorithm
+      - stern-algorithm
+
+  - title: Multivariate signatures and Picnic
+    intro: >
+      Multivariate schemes hide an easy system of quadratic equations over a small field behind linear
+      changes of variables. Oil and vinegar has stood since 1999; HFE and Rainbow are broken. Picnic signs
+      with nothing but a block cipher and a hash, by proving knowledge of the key with MPC-in-the-head, a
+      method that later multivariate and code-based candidates reuse.
+    entries:
+      - multivariate-cryptography
+      - multivariate-quadratic-problem
+      - unbalanced-oil-and-vinegar
+      - hidden-field-equations
+      - rainbow-signature
+      - picnic-signature
+
+  - title: Isogenies
+    intro: >
+      Isogeny schemes walk on graphs of supersingular elliptic curves and have very short keys: a CSIDH
+      public key is 64 bytes. SIDH and its KEM SIKE are broken: the Castryck-Decru attack of 2022 recovers a SIKEp434 key in
+      minutes on one core. CSIDH, which uses a group action, is not affected by that attack.
+    entries:
+      - isogeny-based-cryptography
+      - supersingular-isogeny-problem
+      - sidh
+      - castryck-decru-attack
+      - csidh

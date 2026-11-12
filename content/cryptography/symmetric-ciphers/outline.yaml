@@ -1,0 +1,183 @@
+# The order of chapter 23.1, Symmetric ciphers. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the attacker
+    intro: >
+      [Symmetric encryption](/symmetric-encryption/) lets two parties who share a key talk in secret.
+      Before any cipher comes the attacker: what it knows ([Kerckhoffs's principle](/kerckhoffs-principle/)),
+      what it sees, from ciphertext only to chosen plaintexts, and what counts as a break.
+      [Perfect secrecy](/perfect-secrecy/) is the strongest answer, and
+      [Shannon's theorem](/shannon-perfect-secrecy-theorem/) shows why it needs a key as long as the message.
+    entries:
+      - symmetric-encryption
+      - kerckhoffs-principle
+      - cryptanalysis
+      - ciphertext-only-attack
+      - known-plaintext-attack
+      - chosen-plaintext-attack
+      - perfect-secrecy
+      - one-time-pad
+      - shannon-perfect-secrecy-theorem
+
+  - title: Classical ciphers and how they fall
+    intro: >
+      Shifts, affine maps, letter permutations, digraph squares, transpositions, matrices, keywords and rotors.
+      Each cipher here keeps some statistic of the language, and each attack measures it:
+      [frequency analysis](/frequency-analysis/) for one alphabet, the
+      [index of coincidence](/index-of-coincidence/) and [Kasiski examination](/kasiski-examination/) for
+      several. [Cipher breaking](/cipher-breaking/) states the common method: model, key space, score, search.
+    entries:
+      - caesar-cipher
+      - affine-cipher
+      - substitution-cipher
+      - frequency-analysis
+      - cipher-breaking
+      - playfair-cipher
+      - columnar-transposition-cipher
+      - hill-cipher
+      - vigenere-cipher
+      - index-of-coincidence
+      - kasiski-examination
+      - enigma-machine
+
+  - title: Building a block cipher
+    intro: >
+      A [block cipher](/block-cipher/) is a keyed permutation of $n$-bit blocks that should look like a random
+      one. Shannon's [confusion and diffusion](/confusion-and-diffusion/) name the two jobs; the
+      [S-box](/s-box/) does the first, a linear layer the second, and the [key schedule](/key-schedule/) feeds
+      round keys. The two shapes that put them together are the [Feistel network](/feistel-network/) and the
+      [substitution-permutation network](/substitution-permutation-network/).
+    entries:
+      - block-cipher
+      - confusion-and-diffusion
+      - s-box
+      - key-schedule
+      - feistel-network
+      - substitution-permutation-network
+
+  - title: DES and AES
+    intro: >
+      The two standard ciphers, and the generic attacks that set their key lengths.
+      [DES](/data-encryption-standard/) fell to [exhaustive key search](/exhaustive-key-search/) with its 56-bit key;
+      [Triple DES](/triple-des/) bought time, limited by the meet-in-the-middle attack and its 64-bit block.
+      [AES](/advanced-encryption-standard/) replaced both.
+    entries:
+      - data-encryption-standard
+      - key-recovery
+      - exhaustive-key-search
+      - triple-des
+      - advanced-encryption-standard
+
+  - title: Pseudorandom functions and permutations
+    intro: >
+      The definitions that security proofs use. A [pseudorandom permutation](/pseudorandom-permutation/) is what a
+      block cipher should be; the [switching lemma](/prp-prf-switching-lemma/) makes it a
+      [pseudorandom function](/pseudorandom-function/) up to $q^2/2^{n+1}$, and the
+      [Luby-Rackoff theorem](/luby-rackoff-theorem/) goes back with Feistel rounds.
+      [Semantic security](/semantic-security/) is the goal for encryption, and the
+      [ideal cipher model](/ideal-cipher-model/) is the heuristic used when keys are public.
+    entries:
+      - pseudorandom-function
+      - pseudorandom-permutation
+      - prp-prf-switching-lemma
+      - semantic-security
+      - luby-rackoff-theorem
+      - ideal-cipher-model
+      - key-whitening
+
+  - title: Modes of operation
+    intro: >
+      A block cipher encrypts one block; a mode encrypts a message. The modes differ in what extra input they need,
+      an unpredictable [initialization vector](/initialization-vector/) or a unique [nonce](/nonce/), whether
+      they need [padding](/block-padding/), and whether they run in parallel. [ECB](/ecb-mode/) shows what
+      goes wrong without either, and [CTR](/ctr-mode/) is the mode most later designs build on.
+    entries:
+      - initialization-vector
+      - nonce
+      - block-padding
+      - pkcs7-padding
+      - ecb-mode
+      - cbc-mode
+      - cfb-mode
+      - ofb-mode
+      - ctr-mode
+      - xts-mode
+
+  - title: Stream ciphers
+    intro: >
+      A [stream cipher](/stream-cipher/) XORs the message with a keystream made from a key and a nonce.
+      The [LFSR](/lfsr/) is the old building block, linear and so weak alone; [RC4](/rc4/) and
+      [A5/1](/a5-1/) show how such designs break. [ChaCha20](/chacha20/) and the hardware ciphers of eSTREAM and
+      of mobile networks are the ones in use.
+    entries:
+      - stream-cipher
+      - lfsr
+      - rc4
+      - a5-1
+      - salsa20
+      - chacha20
+      - trivium
+      - grain
+      - snow-3g
+      - zuc
+
+  - title: Message authentication and authenticated encryption
+    intro: >
+      Encryption hides a message but does not stop anyone from changing it. A
+      [message authentication code](/message-authentication-code/) detects changes;
+      [authenticated encryption](/authenticated-encryption/) gives secrecy and integrity together, and
+      IND-CPA plus ciphertext integrity gives IND-CCA. [GCM](/gcm-mode/) and
+      [ChaCha20-Poly1305](/chacha20-poly1305/) are the AEAD schemes of TLS 1.3.
+    entries:
+      - message-authentication
+      - message-authentication-code
+      - cbc-mac
+      - cmac
+      - poly1305
+      - authenticated-encryption
+      - gcm-mode
+      - ccm-mode
+      - ccm-decryption-check
+      - eax-mode
+      - ocb-mode
+      - chacha20-poly1305
+      - ascon
+
+  - title: Attacks on block ciphers
+    intro: >
+      The statistical and structural attacks that every new design must resist.
+      [Differential](/differential-cryptanalysis/) and [linear cryptanalysis](/linear-cryptanalysis/) follow
+      differences and parities through the rounds; the boomerang and integral attacks extend them. The
+      [slide](/slide-attack/) and [related-key](/related-key-attack/) attacks go after the key schedule
+      and do not care how many rounds there are.
+    entries:
+      - differential-cryptanalysis
+      - linear-cryptanalysis
+      - boomerang-attack
+      - integral-cryptanalysis
+      - slide-attack
+      - related-key-attack
+
+  - title: More block ciphers
+    intro: >
+      Designs from the 1990s on: ciphers with 64-bit blocks such as [Blowfish](/blowfish/) and [IDEA](/idea/),
+      the AES finalists, national standards from Japan, Korea, China and Russia, and lightweight ciphers for
+      small hardware. Each shows a choice of structure, S-box or key schedule, and some show what a weak choice costs.
+    entries:
+      - blowfish
+      - tea
+      - xtea
+      - idea
+      - rc5
+      - rc6
+      - serpent
+      - twofish
+      - camellia
+      - aria
+      - sm4
+      - gost-28147-89
+      - kuznyechik
+      - skipjack
+      - present
+      - simon-cipher
+      - speck
+      - lightweight-cryptography

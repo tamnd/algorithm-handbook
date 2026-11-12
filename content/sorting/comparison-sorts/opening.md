@@ -1,4 +1,4 @@
-A comparison sort learns about its input only by asking questions of one kind: is this item smaller than that one? It never looks inside a key. This sounds like a strong restriction, but it is what makes a sort general. The same comparison sort can order integers, strings, dates, or records by any rule you give it, as long as the rule is a [total order](/total-order/). That is why the sort in nearly every standard library is a comparison sort.
+A comparison sort learns about its input only by asking questions of one kind: is this item smaller than that one? It never looks inside a key. This sounds like a strong restriction, but it is what makes a sort general. The same comparison sort can order integers, strings, dates, or records by any rule you give it, as long as the rule is a total order. That is why the sort in nearly every standard library is a comparison sort.
 
 This chapter is the longest of the volume. It holds the sorts every programmer should know, the variations that show why the standard ones are built as they are, and the theory that says how fast any comparison sort can be.
 

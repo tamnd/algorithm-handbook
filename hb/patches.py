@@ -56,6 +56,17 @@ PATCHES: dict[str, list[tuple[str, str]]] = {
         "| $-$0x1.ffffffffffffep-54 $= -2^{-53} + 2^{-105}$ |",
         "| $-\\texttt{0x1.ffffffffffffep-54} = -2^{-53} + 2^{-105}$ |",
     )],
+    "cryptography/symmetric-ciphers/exhaustive-key-search/node.md": [(
+        "returns $C = \\{$0xBEEF$\\}$.",
+        "returns $C = \\{\\texttt{0xBEEF}\\}$.",
+    )],
+    # a proof that links its entry by file name, and a formula in a source locator read as a Markdown link
+    "cryptography/public-key/rabin-cryptosystem/proofs/correctness.md": [(
+        "[node page](../node.md)", "[node page](/rabin-cryptosystem/)",
+    )],
+    "cryptography/hash-functions/miyaguchi-preneel-construction/node.md": [(
+        "H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i", "`H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i`",
+    )],
     # the end marker $ is a literal; the dollars around t = are mathematics
     "data-structures/string-structures/suffix-tree-from-suffix-array/node.md": [(
         "with the end marker $ smaller than every letter, $t = $ banana$ and $n = 7$:",

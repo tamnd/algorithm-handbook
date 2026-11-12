@@ -1,0 +1,140 @@
+# The order of chapter 23.3, Public key. Groups are read in order; entries in a group too.
+groups:
+  - title: Trapdoors and assumptions
+    intro: >
+      [Public-key cryptography](/public-key-cryptography/) splits a key into a public half and a
+      private half, and [public-key encryption](/public-key-encryption/) fixes the three algorithms
+      and what they must hide. Every scheme rests on a
+      [computational hardness assumption](/computational-hardness-assumption/): a
+      [one-way function](/one-way-function/), a [trapdoor](/trapdoor-one-way-function/) that makes it
+      easy to invert for the key holder, and a [hard-core predicate](/hard-core-predicate/) that
+      stays hidden. The [Merkle-Hellman knapsack](/merkle-hellman-knapsack-cryptosystem/) is the first
+      trapdoor that failed.
+    entries:
+      - public-key-cryptography
+      - public-key-encryption
+      - computational-hardness-assumption
+      - one-way-function
+      - trapdoor-one-way-function
+      - hard-core-predicate
+      - merkle-hellman-knapsack-cryptosystem
+
+  - title: RSA and factoring
+    intro: >
+      [RSA](/rsa-cryptosystem/) encrypts with $c = m^e \bmod N$ and decrypts with $d$, where
+      $ed \equiv 1 \pmod{\lambda(N)}$. The [RSA problem](/rsa-problem/) is no harder than factoring,
+      and no proof of the converse is known. [Rabin](/rabin-cryptosystem/) squares instead and is as
+      hard to invert as factoring. [Wiener's attack](/wiener-attack/) shows that a private exponent
+      below $N^{1/4}/3$ is not private.
+    entries:
+      - rsa-cryptosystem
+      - rsa-problem
+      - rabin-cryptosystem
+      - wiener-attack
+
+  - title: What a ciphertext must hide
+    intro: >
+      [IND-CPA](/ind-cpa-security/) asks that no efficient adversary tell which of two messages of
+      its choice was encrypted. It forces [probabilistic encryption](/probabilistic-encryption/).
+      A [chosen-ciphertext attack](/chosen-ciphertext-attack/) adds a decryption oracle, and
+      [IND-CCA2](/ind-cca-security/) is the notion that survives it; it equals
+      [non-malleability](/non-malleability/) under the same attack.
+    entries:
+      - ind-cpa-security
+      - probabilistic-encryption
+      - chosen-ciphertext-attack
+      - ind-cca-security
+      - non-malleability
+
+  - title: Padding RSA
+    intro: >
+      Textbook RSA is deterministic and malleable, so real systems pad the message first.
+      [PKCS #1 v1.5](/rsa-pkcs1-v1-5-encryption/) pads with random bytes but has no proof, and a
+      [padding oracle](/padding-oracle-attack/) breaks it. [OAEP](/rsa-oaep/) is IND-CCA2 under
+      the RSA assumption in the random oracle model.
+    entries:
+      - rsa-pkcs1-v1-5-encryption
+      - padding-oracle-attack
+      - rsa-oaep
+
+  - title: Encryption from discrete logarithms
+    intro: >
+      [CDH](/computational-diffie-hellman/) asks for $g^{xy}$ from $g^x$ and $g^y$;
+      [DDH](/decisional-diffie-hellman/) asks only to recognize it. [ElGamal](/elgamal-encryption/)
+      is IND-CPA exactly when DDH holds, in the standard model.
+      [Elliptic curves](/elliptic-curve-cryptography/) give the same schemes with shorter keys, and
+      [Cramer-Shoup](/cramer-shoup-cryptosystem/) adds a validity tag to reach IND-CCA2 under DDH
+      without random oracles.
+    entries:
+      - computational-diffie-hellman
+      - decisional-diffie-hellman
+      - elgamal-encryption
+      - elliptic-curve-cryptography
+      - cramer-shoup-cryptosystem
+
+  - title: KEMs and generic transforms
+    intro: >
+      A [key encapsulation mechanism](/key-encapsulation-mechanism/) sends a random key, and
+      [hybrid encryption](/hybrid-encryption/) uses that key for the data. [ECIES](/ecies/) is the
+      elliptic-curve instance. The [Fujisaki-Okamoto transform](/fujisaki-okamoto-transform/) turns
+      a weak scheme into an IND-CCA KEM in the random oracle model, and the
+      [Naor-Yung paradigm](/naor-yung-paradigm/) does it with zero-knowledge proofs and a common
+      reference string, without random oracles.
+    entries:
+      - key-encapsulation-mechanism
+      - hybrid-encryption
+      - ecies
+      - fujisaki-okamoto-transform
+      - naor-yung-paradigm
+
+  - title: Residuosity and homomorphic encryption
+    intro: >
+      The [quadratic residuosity problem](/quadratic-residuosity-problem/) gives
+      [Goldwasser-Micali](/goldwasser-micali-cryptosystem/), one bit per element of $\mathbb{Z}_N$,
+      and [Blum-Goldwasser](/blum-goldwasser-cryptosystem/) shortens it. Higher residues give
+      additive schemes: [Paillier](/paillier-cryptosystem/) under
+      [DCR](/decisional-composite-residuosity/), [Okamoto-Uchiyama](/okamoto-uchiyama-cryptosystem/)
+      and [Naccache-Stern](/naccache-stern-cryptosystem/). [Homomorphic encryption](/homomorphic-encryption/)
+      names the property, and [Gentry's construction](/gentry-fully-homomorphic-encryption/) extends
+      it to every circuit.
+    entries:
+      - quadratic-residuosity-problem
+      - goldwasser-micali-cryptosystem
+      - blum-goldwasser-cryptosystem
+      - decisional-composite-residuosity
+      - paillier-cryptosystem
+      - okamoto-uchiyama-cryptosystem
+      - naccache-stern-cryptosystem
+      - homomorphic-encryption
+      - gentry-fully-homomorphic-encryption
+
+  - title: Pairings and encryption to many readers
+    intro: >
+      A [bilinear pairing](/bilinear-pairing/) maps two curve points to a field element, and
+      [Miller's algorithm](/miller-algorithm/) computes it. The
+      [bilinear Diffie-Hellman assumption](/bilinear-diffie-hellman/) supports
+      [identity-based encryption](/identity-based-encryption/), first built in practice by
+      [Boneh and Franklin](/boneh-franklin-ibe/), and then
+      [attribute-based](/attribute-based-encryption/) and [functional encryption](/functional-encryption/).
+      [Broadcast encryption](/broadcast-encryption/) sends one ciphertext to all users outside a
+      revoked set.
+    entries:
+      - bilinear-pairing
+      - miller-algorithm
+      - bilinear-diffie-hellman
+      - identity-based-encryption
+      - boneh-franklin-ibe
+      - attribute-based-encryption
+      - functional-encryption
+      - broadcast-encryption
+
+  - title: Attacks on implementations
+    intro: >
+      A correct scheme can still leak through its running time or its errors. A
+      [timing attack](/timing-attack/) reads the private exponent from the time of decryption,
+      [blinding](/rsa-blinding/) hides the input of the secret operation, and the
+      [CRT fault attack](/rsa-fault-attack/) factors $N$ from one wrong signature with one gcd.
+    entries:
+      - timing-attack
+      - rsa-blinding
+      - rsa-fault-attack

@@ -76,6 +76,8 @@
 \widowpenalty=3000
 \clubpenalty=3000
 \raggedbottom
+% a page left blank before a chapter has no running head or folio
+\renewcommand\cleardoublepage{\clearpage\if@twoside\ifodd\c@page\else\hbox{}\thispagestyle{empty}\newpage\fi\fi}
 
 % KaTeX names that LaTeX lacks (spec handbook 01.5)
 \providecommand{\llbracket}{\lBrack}
@@ -108,7 +110,7 @@
 \renewcommand\thefigure{\hbchapnum.\arabic{figure}}   % Figure 4.1.2: the second figure of chapter 4.1
 
 \newcommand\hbchapter[3]{%
-  \cleardoublepage
+  \cleardoublepage\global\hb@freshtrue\global\hb@afterentryfalse
   \thispagestyle{hbplain}%
   \phantomsection\label{#3}%
   \gdef\hbchapnum{#1}\setcounter{figure}{0}%
@@ -124,7 +126,7 @@
   \@afterheading}
 
 \newcommand\hbintro[2]{% an unnumbered chapter: the introduction, the appendices
-  \cleardoublepage
+  \cleardoublepage\global\hb@freshtrue\global\hb@afterentryfalse
   \thispagestyle{hbplain}%
   \phantomsection\label{#2}%
   \xdef\hbchapnum{\hbvolnum.0}\setcounter{figure}{0}%
@@ -137,8 +139,16 @@
   \vspace{28pt}%
   \@afterheading}
 
+% Each entry starts a page (\hbentrypagetrue, the default; \hbentrypagefalse runs them on). The first entry after a group heading stays
+% under it, and a group heading that follows an entry starts a page of its own.
+\newif\ifhbentrypage \hbentrypagetrue
+\newif\ifhb@fresh \hb@freshtrue
+\newif\ifhb@afterentry \hb@afterentryfalse
 \newcommand\hbgroup[1]{%
-  \par\addvspace{20pt}\needspace{16\baselineskip}%
+  \par
+  \ifhbentrypage\ifhb@afterentry\clearpage\fi\fi
+  \global\hb@freshtrue\global\hb@afterentryfalse
+  \addvspace{20pt}\needspace{16\baselineskip}%
   \phantomsection\addcontentsline{toc}{section}{#1}%
   {\noindent\sffamily\bfseries\large\color{hbaccentdark}#1\par}%
   \nobreak\vspace{2pt}{\noindent\color{hbrule}\rule{\textwidth}{0.5pt}\par}\nobreak
@@ -146,7 +156,10 @@
 
 % \hbentry{number}{name}{label}{kind}{level}
 \newcommand\hbentry[5]{%
-  \par\addvspace{22pt}\needspace{9\baselineskip}%
+  \par
+  \ifhbentrypage\ifhb@fresh\else\clearpage\fi\fi
+  \global\hb@freshfalse\global\hb@afterentrytrue
+  \addvspace{22pt}\needspace{9\baselineskip}%
   \phantomsection\label{#3}%
   \addcontentsline{toc}{subsection}{\protect\numberline{#1}#2}%
   \markright{#1\quad #2}%
@@ -176,6 +189,16 @@
 \newenvironment{hbfacts}{\begin{hbfactsbox}\setlength{\parindent}{0pt}\setlength{\parskip}{1.5pt}%
   \everypar{\hangindent=6.2em\hangafter=1\relax}\raggedright}{\end{hbfactsbox}\aftergroup\hbnoindentnext}
 \newcommand\hbfk[1]{\makebox[6.2em][l]{\sffamily\bfseries\footnotesize\color{hbaccentdark}#1}}
+
+% "In plain words": the idea of an entry before its definition, in a light box with its label set on the frame
+\newtcolorbox{hbplainbox}{enhanced,breakable,colback=hbaccent!3!white,colframe=hbaccent!32,boxrule=0.5pt,arc=2.5pt,
+  left=9pt,right=9pt,top=9pt,bottom=6pt,before skip=12pt plus 2pt,after skip=10pt plus 2pt,
+  title={\MakeUppercase{In plain words}},fonttitle=\sffamily\bfseries\scriptsize\addfontfeatures{LetterSpace=6},
+  coltitle=hbaccentdark,attach boxed title to top left={xshift=8pt,yshift=-\tcboxedtitleheight/2},
+  boxed title style={colback=hbaccent!3!white,colframe=hbaccent!32,boxrule=0.5pt,arc=2pt,
+    left=4pt,right=4pt,top=1.5pt,bottom=1pt},fontupper=\normalsize}
+\newenvironment{hbplain}{\begin{hbplainbox}\setlength{\parindent}{0pt}\setlength{\parskip}{4pt plus 1pt}}%
+  {\end{hbplainbox}\aftergroup\hbnoindentnext}
 
 \makeatletter
 \newtcolorbox{hbproofbox}{enhanced,breakable,colback=white,colframe=white,boxrule=0pt,arc=0pt,

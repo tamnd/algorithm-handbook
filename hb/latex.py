@@ -80,6 +80,42 @@ def _prime_sub_sup(m: re.Match) -> str:
     return base + primes + sub + "{}"
 
 
+_AUX = ("main.aux", "main.toc", "main.out")
+
+
+def _aux_state(outdir: str) -> tuple:
+    state = []
+    for f in _AUX:
+        p = os.path.join(outdir, f)
+        state.append(open(p, "rb").read() if os.path.exists(p) else None)
+    return tuple(state)
+
+
+def run_tex(outdir: str, max_passes: int = 5):
+    """Run XeTeX one pass per tectonic process until the aux, toc and bookmark files are stable.
+
+    Within one process tectonic keeps XeTeX's cache of glyph boxes from pass to pass, keyed by font number.
+    Once the contents fill in, later passes load the fonts in another order, and a small font can get the
+    boxes of a large one: a line with a 7 pt cross-reference got the height of a 54 pt chapter number.
+    A fresh process for every pass has no such cache."""
+    for f in _AUX:
+        p = os.path.join(outdir, f)
+        if os.path.exists(p):
+            os.remove(p)
+    passes = 0
+    while True:
+        before = _aux_state(outdir)
+        r = subprocess.run(["tectonic", "-X", "compile", "--keep-logs", "--keep-intermediates", "-r", "0",
+                            "main.tex"], cwd=outdir, capture_output=True, text=True)
+        passes += 1
+        if r.returncode or _aux_state(outdir) == before or passes >= max_passes:
+            break
+    for f in os.listdir(outdir):   # the intermediates are not part of the build
+        if f.startswith("main.") and f not in ("main.tex", "main.pdf", "main.log", "main.epub"):
+            os.remove(os.path.join(outdir, f))
+    return r, passes
+
+
 def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str, pdf: bool = True) -> dict:
     os.makedirs(outdir, exist_ok=True)
     t0 = time.time()
@@ -97,9 +133,9 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     info = {"pandoc_s": round(t1 - t0, 1), "missing_glyphs": dict(sorted(fb.missing.items(), key=lambda x: -x[1]))}
     if pdf:
         t2 = time.time()
-        r = subprocess.run(["tectonic", "-X", "compile", "--keep-logs", "main.tex"], cwd=outdir,
-                           capture_output=True, text=True)
+        r, passes = run_tex(outdir)
         info["tectonic_s"] = round(time.time() - t2, 1)
+        info["passes"] = passes
         info["ok"] = r.returncode == 0
         if r.returncode:
             info["error"] = (r.stdout + r.stderr)[-6000:]

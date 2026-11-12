@@ -992,3 +992,178 @@ paths:
           - push-sum
           - peer-sampling-service
           - swim
+  - id: concurrent-algorithms
+    title: Concurrent algorithms
+    for: a student who has done a first course and wants the algorithms that let threads share memory safely and without waiting for one another.
+    intro: >
+      Mutual exclusion first, from the two-thread solutions to the queue locks of real machines, and the deadlock
+      that locks bring with them. Then the atomic instructions and the progress conditions that let a structure do
+      without locks, the stacks, queues and lists built that way, and the question of when memory that other threads
+      may still read can be freed. Last, transactions: a block of code that runs as if alone, in software or in the
+      hardware of the processor.
+    stages:
+      - title: Locks and mutual exclusion
+        steps:
+          - race-condition
+          - critical-section
+          - mutual-exclusion-problem
+          - peterson-algorithm
+          - filter-lock
+          - lamport-bakery-algorithm
+          - mutual-exclusion-lower-bounds
+          - test-and-set
+          - spin-lock
+          - ticket-lock
+          - mcs-lock
+          - clh-lock
+      - title: Synchronisation and deadlock
+        steps:
+          - semaphore
+          - monitor
+          - condition-variable
+          - bounded-buffer-problem
+          - readers-writer-lock
+          - dining-philosophers-problem
+          - deadlock
+          - coffman-conditions
+          - lock-ordering
+          - banker-algorithm
+          - deadlock-detection
+      - title: Atomic instructions and progress
+        steps:
+          - compare-and-swap
+          - fetch-and-add
+          - linearizability
+          - linearization-point
+          - lock-freedom
+          - wait-freedom
+          - consensus-number
+          - cas-has-infinite-consensus-number
+          - universal-construction
+      - title: Lock-free structures
+        steps:
+          - treiber-stack
+          - michael-scott-queue
+          - harris-linked-list
+          - logical-deletion
+          - elimination-backoff-stack
+          - chase-lev-deque
+          - lock-free-skip-list
+          - helping
+      - title: Freeing memory
+        steps:
+          - use-after-free
+          - aba-problem
+          - safe-memory-reclamation
+          - hazard-pointers
+          - epoch-based-reclamation
+          - read-copy-update
+          - quiescent-state-based-reclamation
+      - title: Transactional memory
+        steps:
+          - transaction
+          - read-set-and-write-set
+          - transaction-conflict
+          - software-transactional-memory
+          - opacity
+          - tl2
+          - norec
+          - contention-management
+          - hardware-transactional-memory
+          - transactional-lock-elision
+  - id: cryptography
+    title: Cryptography
+    for: a student who knows modular arithmetic and basic probability and wants to see how secrets are kept, data is authenticated and keys are agreed, and what each guarantee assumes.
+    intro: >
+      The old ciphers first, and why a key as long as the message is the only way to perfect secrecy. Then the
+      block and stream ciphers that encrypt with a short key, the modes that turn them into encryption of long
+      messages, and the hash functions and codes that detect tampering. Public keys follow: trapdoor functions,
+      the definitions of security against chosen plaintexts and chosen ciphertexts, signatures and the agreement
+      of a key over an open line. Last come the schemes meant to survive a quantum computer and the protocols in
+      which parties prove, commit and compute together. Every claim of security on the way names its adversary
+      and its assumption.
+    stages:
+      - title: Secrecy and the classical ciphers
+        steps:
+          - kerckhoffs-principle
+          - caesar-cipher
+          - substitution-cipher
+          - frequency-analysis
+          - vigenere-cipher
+          - one-time-pad
+          - perfect-secrecy
+          - shannon-perfect-secrecy-theorem
+      - title: Block ciphers, stream ciphers and modes
+        steps:
+          - symmetric-encryption
+          - block-cipher
+          - confusion-and-diffusion
+          - feistel-network
+          - substitution-permutation-network
+          - data-encryption-standard
+          - advanced-encryption-standard
+          - ecb-mode
+          - cbc-mode
+          - ctr-mode
+          - stream-cipher
+          - chacha20
+          - authenticated-encryption
+          - gcm-mode
+      - title: Hash functions and message authentication
+        steps:
+          - cryptographic-hash-function
+          - collision-resistance
+          - birthday-attack
+          - merkle-damgard-construction
+          - length-extension-attack
+          - sha-2
+          - sha-3
+          - message-authentication-code
+          - hmac
+          - password-hashing
+          - merkle-tree
+      - title: Public-key encryption
+        steps:
+          - one-way-function
+          - trapdoor-one-way-function
+          - public-key-encryption
+          - rsa-cryptosystem
+          - rsa-problem
+          - ind-cpa-security
+          - ind-cca-security
+          - elgamal-encryption
+          - rsa-oaep
+          - hybrid-encryption
+          - key-encapsulation-mechanism
+          - elliptic-curve-cryptography
+      - title: Signatures and key exchange
+        steps:
+          - digital-signature
+          - existential-unforgeability
+          - hash-and-sign-paradigm
+          - rsa-signature
+          - schnorr-signature
+          - ecdsa
+          - ed25519
+          - nonce-reuse-attack
+          - diffie-hellman
+          - man-in-the-middle-attack
+          - ecdh
+          - x25519
+          - authenticated-key-exchange
+          - perfect-forward-secrecy
+      - title: Post-quantum schemes and protocols
+        steps:
+          - post-quantum-cryptography
+          - learning-with-errors
+          - crystals-kyber
+          - crystals-dilithium
+          - hash-based-signatures
+          - lamport-signature
+          - sphincs-plus
+          - commitment-scheme
+          - zero-knowledge-proof
+          - secret-sharing
+          - shamir-secret-sharing
+          - secure-multiparty-computation
+          - tls-handshake

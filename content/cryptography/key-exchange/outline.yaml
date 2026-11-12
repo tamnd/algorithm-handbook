@@ -1,0 +1,120 @@
+# The order of chapter 23.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The problems
+    intro: >
+      Two parties want a fresh [session key](/session-key/) for one conversation. In key agreement both of them
+      contribute to it, in key transport one of them picks it and sends it, and in key distribution a whole
+      network of users needs keys, perhaps with the help of a trusted server. These four short entries fix the
+      words that the rest of the chapter uses.
+    entries:
+      - session-key
+      - key-agreement-problem
+      - key-distribution-problem
+      - key-transport-problem
+
+  - title: Diffie-Hellman, its curves and its forerunners
+    intro: >
+      In a cyclic group with generator $g$, Alice sends $g^x$, Bob sends $g^y$, and both compute $g^{xy}$. An
+      eavesdropper who sees only $g^x$ and $g^y$ faces the computational Diffie-Hellman problem, but an active
+      attacker in the middle breaks the exchange outright. Ephemeral exponents, erased after use, give forward
+      secrecy. The same exchange on elliptic curves, X25519 and X448, is what most systems run today, and Merkle's
+      puzzles and Shamir's three-pass protocol show the two other early ideas.
+    entries:
+      - diffie-hellman
+      - man-in-the-middle-attack
+      - perfect-forward-secrecy
+      - ecdh
+      - x25519
+      - x448
+      - merkle-puzzles
+      - shamir-three-pass-protocol
+
+  - title: Attacks and security goals
+    intro: >
+      A key exchange is secure only against a stated adversary. These entries name what an active attacker can
+      try: send elements of small order, leave two honest parties with the right key but the wrong peer, or use
+      a stolen long-term key to pose as someone else. They also name what a protocol should give in return,
+      starting with the Bellare-Rogaway and Canetti-Krawczyk models of
+      [authenticated key exchange](/authenticated-key-exchange/).
+    entries:
+      - small-subgroup-attack
+      - authenticated-key-exchange
+      - key-confirmation
+      - unknown-key-share-attack
+      - key-compromise-impersonation
+
+  - title: Authenticated Diffie-Hellman
+    intro: >
+      Two ways add authentication to Diffie-Hellman. The first signs the ephemeral values and adds a MAC over the
+      identities, as in station-to-station and SIGMA; IKEv2 runs this design. The second puts static
+      Diffie-Hellman keys into the key formula itself, as in MQV and HMQV, and needs only two messages, at the
+      price of weak forward secrecy only.
+    entries:
+      - station-to-station-protocol
+      - sigma-key-exchange
+      - ike-protocol
+      - mqv
+      - hmqv
+
+  - title: Key derivation, handshakes and ratchets
+    intro: >
+      A Diffie-Hellman value is not a uniform key, so [HKDF](/hkdf/) extracts and expands it. The Noise framework
+      builds whole handshakes from a few Diffie-Hellman tokens and one running key. Signal starts a conversation
+      with X3DH and then keeps deriving new keys with the double ratchet, which gives forward secrecy and healing
+      after a compromise. Hybrid key exchange adds a post-quantum KEM next to X25519.
+    entries:
+      - hkdf
+      - noise-protocol-framework
+      - key-ratchet
+      - x3dh
+      - double-ratchet
+      - hybrid-key-exchange
+
+  - title: Key distribution with a trusted server
+    intro: >
+      Before public keys were cheap, a server that shares a long-term key with every user handed out session
+      keys. The protocols of Needham and Schroeder, Denning and Sacco, Otway and Rees, Yahalom, and the Wide-Mouthed
+      Frog are short, and most of them were later found to have flaws: replays, type confusion and timestamp
+      bounces. They are the classic test cases for protocol analysis.
+    entries:
+      - needham-schroeder-protocol
+      - denning-sacco-protocol
+      - otway-rees-protocol
+      - yahalom-protocol
+      - wide-mouthed-frog-protocol
+
+  - title: Key predistribution
+    intro: >
+      A trusted authority can load each device with secret data before deployment, so that any two devices later
+      compute a common key with no messages at all. Blom's scheme stores $k + 1$ field elements per user and
+      resists any coalition of $k$ users, which is the least storage possible.
+    entries:
+      - key-predistribution-problem
+      - blom-scheme
+
+  - title: Password-authenticated key exchange
+    intro: >
+      Two parties who share only a low-entropy password must agree on a strong key, and an attacker must not be
+      able to test password guesses off line from a recorded run. EKE was the first answer. SPAKE2, J-PAKE and
+      CPace are balanced protocols; SRP and OPAQUE are augmented, so the server stores only a verifier and not the
+      password.
+    entries:
+      - password-authenticated-key-exchange
+      - encrypted-key-exchange
+      - secure-remote-password
+      - spake2
+      - j-pake
+      - cpace
+      - opaque
+
+  - title: Group key agreement
+    intro: >
+      For $n$ parties the cost in rounds, messages and exponentiations decides the design. The ring of
+      Ingemarsson, Tang and Wong needs $n - 1$ rounds, GDH passes a growing list along a chain, Burmester-Desmedt
+      needs two rounds, and a tree of Diffie-Hellman keys handles a join or a leave in $O(\log n)$ work.
+    entries:
+      - group-key-agreement-problem
+      - ingemarsson-tang-wong
+      - group-diffie-hellman
+      - burmester-desmedt
+      - tree-based-group-diffie-hellman

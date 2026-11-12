@@ -1,0 +1,138 @@
+# The order of chapter 23.2, Hash functions. Groups are read in order; entries in a group too.
+groups:
+  - title: What a hash function must do
+    intro: >
+      A [cryptographic hash function](/cryptographic-hash-function/) maps any message to a short digest, and
+      its security is a list of games an attacker should not win. These entries define the three classic
+      properties, from the weakest, [preimage resistance](/preimage-resistance/), to the strongest,
+      [collision resistance](/collision-resistance/), with the costs $2^n$, $2^n$ and $2^{n/2}$ that a random
+      function of $n$ output bits allows. The [random oracle model](/random-oracle-model/) closes the group: it
+      treats the hash as a random function, which is how many protocols are proved secure.
+    entries:
+      - cryptographic-hash-function
+      - preimage-resistance
+      - second-preimage-resistance
+      - collision-resistance
+      - avalanche-effect
+      - random-oracle-model
+  - title: Generic attacks
+    intro: >
+      Generic attacks treat the hash as a black box and set the bar that every design must clear. The
+      [birthday attack](/birthday-attack/) finds a collision in about $2^{n/2}$ calls, and
+      [Pollard's rho](/pollard-rho-collision-search/) does it with almost no memory. Preimages need about
+      $2^n$ calls. With $k$ lists in place of two, [Wagner's algorithm](/wagners-algorithm/) finds values
+      that XOR to zero much faster than the birthday bound.
+    entries:
+      - birthday-attack
+      - collision-finding
+      - preimage-finding
+      - pollard-rho-collision-search
+      - generalized-birthday-problem
+      - wagners-algorithm
+  - title: Chains and trees of hashes
+    intro: >
+      Two simple structures use a hash many times. A [hash chain](/hash-chain/) applies it over and over,
+      and its security rests on one-wayness; a [Merkle tree](/merkle-tree/) hashes pairs up to one root,
+      and an inclusion proof has at most $\lceil \log_2 n \rceil$ hashes. Both come back later, in tree
+      hashing, in BLAKE3 and in hash-based signatures.
+    entries:
+      - hash-chain
+      - merkle-tree
+  - title: Iterating a compression function
+    intro: >
+      Most hashes before SHA-3 iterate a fixed-size [compression function](/compression-function/) with the
+      [Merkle-Damgård construction](/merkle-damgard-construction/). The
+      [Merkle-Damgård theorem](/merkle-damgard-theorem/) proves that collision resistance carries over from
+      the compression function to the hash in the standard model. The iteration also has generic weaknesses
+      that a random function lacks: [length extension](/length-extension-attack/), long-message second
+      preimages and Joux's [multicollisions](/multicollision-attack/). The compression functions themselves
+      often come from a block cipher, as in [Davies-Meyer](/davies-meyer-construction/), with bounds in the
+      ideal cipher model.
+    entries:
+      - compression-function
+      - merkle-damgard-construction
+      - length-extension-attack
+      - second-preimage-finding
+      - merkle-damgard-theorem
+      - davies-meyer-construction
+      - miyaguchi-preneel-construction
+      - multicollision-attack
+      - indifferentiability-framework
+  - title: The MD4 family and its relatives
+    intro: >
+      [MD4](/md4/) set the pattern of a Davies-Meyer compression function on 32-bit words, and
+      [MD5](/md5/), [SHA-1](/sha-1/) and [SHA-2](/sha-2/) followed it. Differential attacks found practical
+      collisions for MD4, MD5 and SHA-1, and [chosen-prefix collisions](/chosen-prefix-collision/) turned
+      them into forged certificates and PGP keys. SHA-2 has no known attack on the full function.
+      RIPEMD-160, Tiger and Whirlpool are other Merkle-Damgård designs of the 1990s.
+    entries:
+      - md4
+      - md5
+      - sha-1
+      - sha-2
+      - ripemd-160
+      - tiger-hash
+      - whirlpool
+      - chosen-prefix-collision
+  - title: Sponges and SHA-3
+    intro: >
+      The [sponge construction](/sponge-construction/) replaces the compression function with a fixed
+      permutation and a state split into a rate $r$ and a capacity $c$; generic attacks cost about
+      $2^{c/2}$. [Keccak](/keccak/) is a sponge over a 1600-bit permutation, and NIST standardized it as
+      [SHA-3](/sha-3/). The same sponge gives [extendable-output functions](/extendable-output-function/)
+      such as [SHAKE](/shake/), whose output can be as long as you ask.
+    entries:
+      - sponge-construction
+      - keccak
+      - sha-3
+      - extendable-output-function
+      - shake
+  - title: Other designs and tree modes
+    intro: >
+      The SHA-3 competition produced five finalists. Keccak won; BLAKE, Grøstl, Skein and JH are here, BLAKE
+      through its faster successor [BLAKE2](/blake2/). [BLAKE3](/blake3/) and the
+      [tree modes](/tree-hashing/) split the message into chunks that hash in parallel, and rest their
+      proofs on indifferentiability.
+    entries:
+      - blake2
+      - groestl
+      - skein
+      - blake3
+      - tree-hashing
+      - jh-hash
+  - title: Keyed hashing
+    intro: >
+      A key turns a hash into a MAC or a pseudorandom function. [HMAC](/hmac/) hashes twice and is used in TLS,
+      SSH and IPsec; [NMAC](/nmac/) is the two-key form behind its proof, and [KMAC](/kmac/) is the
+      simpler keyed sponge. [SipHash](/siphash/) is a fast keyed function for hash tables, and
+      [xxHash](/xxhash/), which is not cryptographic, shows what a hash without security goals looks like.
+    entries:
+      - hmac
+      - nmac
+      - kmac
+      - siphash
+      - xxhash
+  - title: Precomputation attacks
+    intro: >
+      A [time-memory tradeoff](/time-memory-tradeoff/) pays about $N$ calls once to invert a fixed function
+      on $N$ points, and then inverts each target in far less time than a search. Hellman's tables reach
+      $T M^2 = N^2$, and [rainbow tables](/rainbow-table/) need about half the online work and
+      far fewer table lookups. A random salt per target
+      defeats both.
+    entries:
+      - time-memory-tradeoff
+      - hellman-time-memory-tradeoff
+      - rainbow-table
+  - title: Password hashing
+    intro: >
+      Passwords have little entropy, so [password hashing](/password-hashing/) adds a salt and makes each
+      guess slow. [PBKDF2](/pbkdf2/) and [bcrypt](/bcrypt/) cost time; a
+      [memory-hard function](/memory-hard-function/) such as [scrypt](/scrypt/) or [Argon2](/argon2/) also
+      costs memory, which cheap parallel hardware cannot avoid.
+    entries:
+      - password-hashing
+      - pbkdf2
+      - bcrypt
+      - memory-hard-function
+      - scrypt
+      - argon2

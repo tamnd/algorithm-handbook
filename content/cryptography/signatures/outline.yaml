@@ -1,0 +1,110 @@
+# The order of chapter 23.4, Signatures. Groups are read in order; entries in a group too.
+groups:
+  - title: What a signature is
+    intro: >
+      A signature scheme is three algorithms: key generation, signing and verification. These entries
+      give the idea, the formal syntax with its sizes and its variants (stateful, deterministic, unique),
+      and what a signature can and cannot prove in law.
+    entries:
+      - digital-signature
+      - signature-scheme
+      - non-repudiation
+
+  - title: Security notions and real forgeries
+    intro: >
+      A security claim names what the adversary sees and what it must produce. These entries build the
+      ladder from a key-only attack to an adaptive chosen-message attack, define existential and strong
+      unforgeability (EUF-CMA and SUF-CMA), and look at forgeries that happened in practice. None of the
+      real forgeries broke the hard problem.
+    entries:
+      - key-only-attack
+      - chosen-message-attack
+      - existential-unforgeability
+      - signature-forgery
+      - strong-unforgeability
+      - signature-malleability
+
+  - title: Hash-and-sign with RSA and Rabin
+    intro: >
+      Hash the message, then apply a trapdoor permutation to the hash. The [hash-and-sign
+      paradigm](/hash-and-sign-paradigm/) explains why the hash must resist collisions, and the RSA
+      entries show how the encoding decides the proof: none for decades for PKCS #1 v1.5, a loss of
+      about $q_s$ for full-domain hash, and a tight bound for PSS, all in the random oracle model.
+    entries:
+      - hash-and-sign-paradigm
+      - rsa-signature
+      - rsa-fdh
+      - rsa-pss
+      - rabin-signature
+
+  - title: Discrete-log signatures and their nonces
+    intro: >
+      ElGamal, DSA and ECDSA sign with a fresh secret nonce $k$ for each message. Their security
+      proofs need strong idealizations, and their weak spot is the nonce: a repeated or slightly biased
+      $k$ gives the secret key. The last two entries show the attack and the standard fix.
+    entries:
+      - elgamal-signature
+      - dsa
+      - ecdsa
+      - nonce-reuse-attack
+      - deterministic-nonce-generation
+
+  - title: Schnorr signatures and their proofs
+    intro: >
+      The [Fiat-Shamir heuristic](/fiat-shamir-heuristic/) turns an identification protocol into a
+      signature, and the [forking lemma](/forking-lemma/) proves the result EUF-CMA in the random oracle
+      model under discrete log, with a loss of about $q_h$. Ed25519 is the deployed form, and the linear
+      check of Schnorr signatures allows batch verification.
+    entries:
+      - fiat-shamir-heuristic
+      - schnorr-signature
+      - forking-lemma
+      - ed25519
+      - batch-verification
+
+  - title: Pairings and many signers
+    intro: >
+      BLS signatures are one group element, unique, and they multiply into aggregates. With many
+      signers the threat is the rogue key, a key chosen to cancel the honest ones. These entries
+      separate multisignatures (one key per signer) from threshold signatures (one shared key), and end
+      with adaptor signatures, which tie a signature to a secret.
+    entries:
+      - bls-signature
+      - aggregate-signature
+      - multisignature-problem
+      - musig
+      - threshold-signing-problem
+      - threshold-signature
+      - adaptor-signature
+
+  - title: Hash-based signatures
+    intro: >
+      Signatures from a hash function alone, which the known quantum algorithms do not break. One-time
+      schemes (Lamport, Winternitz) sit under a Merkle tree; LMS and XMSS keep a counter, and SLH-DSA
+      (SPHINCS+) removes it at the cost of larger signatures. Forward-secure signatures close the group,
+      because tree schemes give that property almost for free.
+    entries:
+      - hash-based-signatures
+      - lamport-signature
+      - winternitz-one-time-signature
+      - merkle-signature-scheme
+      - leighton-micali-signature
+      - xmss
+      - sphincs-plus
+      - forward-secure-signature
+
+  - title: Signatures with special properties
+    intro: >
+      Some uses need more than unforgeability: a signer that cannot see the message, a signer hidden in
+      a set, a signature that convinces only one verifier or needs the signer's help to check,
+      delegation, or signing and encryption in one step. Six of these entries work their examples in the
+      same toy group of order 1019 in $\mathbb{Z}_{2039}^*$, which is far too small to be secure.
+    entries:
+      - blind-signature
+      - chaum-blind-signature
+      - ring-signature
+      - group-signature
+      - designated-verifier-signature
+      - undeniable-signature
+      - proxy-signature
+      - signcryption

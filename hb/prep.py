@@ -60,6 +60,18 @@ def attr(s: str) -> str:
 # --------------------------------------------------------------------------- references
 
 
+# Slugs that the site gives to a narrow entry while other areas link them in a wider sense: /total-order/ is
+# Lamport's total order of events (Volume 21), but sorting, searching and heaps link it for the order relation.
+# Outside the area of the entry such a link keeps its text and loses its target.
+NARROW_SLUGS = {"total-order": "distributed",   # elsewhere: the order relation of sorting and searching
+                "tree-hashing": "cryptography"}   # elsewhere: canonical hashes of rooted trees (isomorphism)
+
+
+def narrow_ok(slug: str, node) -> bool:
+    top = NARROW_SLUGS.get(slug)
+    return top is None or node is None or node.top == top
+
+
 class Refs:
     """Turn a slug into a link with its number (spec handbook 07.1)."""
 
@@ -82,6 +94,10 @@ class Refs:
         return s
 
     def rewrite_body(self, md: str, node: Node, in_proof: bool = False) -> str:
+        for slug in NARROW_SLUGS:
+            if not narrow_ok(slug, node):
+                md = re.sub(r"\[([^\[\]]*)\]\(/" + slug + r"/(?:#[^)]*)?\)", r"\1", md)
+
         def repl(m):
             slug, frag = m.group(1), m.group(2) or ""
             if slug == node.slug and frag:
@@ -264,8 +280,11 @@ def clean_html(md: str) -> str:
 
 # `$j' $`: KaTeX on the site accepts a space before the closing dollar; pandoc does not, and prints the dollars
 # and the TeX between them as text. Two forms are repaired: a span after a space or punctuation (`the potential
-# $\Phi = $ the number`), and an argument list after a procedure name in capitals (`RANK$(b) - $ RANK$(a)$`).
-_MATH_TRAIL = re.compile(r"(?:(?<![\\$\w])|(?<=[A-Z0-9])(?=\$\())\$([^\s$][^$\n]{0,60}?)\s+\$(?![\w$])")
+# $\Phi = $ the number`), and an argument list after a procedure name (`RANK$(b) - $ RANK$(a)$`,
+# `UseHint$(h, r) = $ HighBits$(r + z)$`), where the closing dollar may also touch the next name
+# (`X25519$(a, $X25519$(b, 9))`).
+_MATH_TRAIL = re.compile(r"(?:(?<![\\$\w])\$([^\s$][^$\n]{0,60}?)\s+\$(?![\w$])"
+                         r"|(?<=\w)(?=\$\()\$([^\s$][^$\n]{0,60}?)\s+\$(?![\d$]))")
 
 
 def fix_math(md: str) -> str:
@@ -277,8 +296,9 @@ def fix_math(md: str) -> str:
             if ln[:m.start()].replace("\\$", "").count("$") % 2:
                 i = m.start() + 1          # this dollar closes a span: try the next one
                 continue
-            ln = ln[:m.start()] + "$" + m.group(1) + "$" + ln[m.end():]
-            i = m.start() + len(m.group(1)) + 2
+            g = m.group(1) if m.group(1) is not None else m.group(2)
+            ln = ln[:m.start()] + "$" + g + "$" + ln[m.end():]
+            i = m.start() + len(g) + 2
         return ln
     return "\n".join(line(x) for x in md.split("\n"))
 
@@ -419,7 +439,9 @@ def facts(node: Node, refs: Refs) -> str:
     if fm.get("properties"):
         rows.append(("Properties", md_plain(properties_text(fm["properties"]))))
     if fm.get("prereqs"):
-        rows.append(("Needs", ", ".join(refs.link(s) for s in fm["prereqs"])))
+        need = [s for s in fm["prereqs"] if narrow_ok(s, node)]
+        if need:
+            rows.append(("Needs", ", ".join(refs.link(s) for s in need)))
     h = fm.get("history")
     if isinstance(h, dict) and (h.get("year") or h.get("people")):
         who = ", ".join(h.get("people") or [])
@@ -496,7 +518,7 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
         "",
     ]
     body = clean_html(refs.rewrite_body(node.body, node))
-    st = Statements(node.slug)
+    st = Statements(node.slug, node.name, node.kind)
     body = st.mark(body, "body")
     pbodies = {p.id: st.mark(fix_math(shift_headings(refs.rewrite_body(p.body, node, in_proof=True), 4)), p.id) for p in node.proofs}
     body = st.refs(body, "body")

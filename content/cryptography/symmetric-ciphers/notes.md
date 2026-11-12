@@ -1,0 +1,19 @@
+## History
+
+Ciphers are old, but their systematic breaking came late. Giovan Battista Bellaso published the keyword cipher now named after Vigenère in 1553, and it resisted a general attack until Friedrich Kasiski published his examination in 1863. Charles Wheatstone's Playfair cipher dates from 1854, and Lester Hill put encryption into linear algebra in 1929. Auguste Kerckhoffs set out in 1883 that a military cipher must stay secure when the enemy knows the system. In 1922 William Friedman gave the index of coincidence, the first statistical test of a cipher's period. From late 1932 Marian Rejewski in the Polish Cipher Bureau used permutation theory to recover the wiring of the Army Enigma.
+
+Gilbert Vernam built a teleprinter cipher in 1917 that added a key tape to the message by exclusive or, and he patented it in 1919. Joseph Mauborgne saw that the key must be random and never repeated, which made it a one-time pad; Frank Miller had described the same idea in a code book of 1882. Claude Shannon proved in a report of 1945, published in 1949, that the pad is perfectly secret and that every perfectly secret cipher needs at least as many keys as messages. The same paper named confusion and diffusion and proposed product ciphers.
+
+Horst Feistel designed Lucifer at IBM in the early 1970s, and IBM turned it into DES, which the National Bureau of Standards published as FIPS 46 in 1977. Eli Biham and Adi Shamir published differential cryptanalysis in 1990 and 1991, and Mitsuru Matsui published linear cryptanalysis in 1993. The EFF machine found a DES key in 56 hours in July 1998. NIST ran an open competition from 1997, selected Rijndael by Joan Daemen and Vincent Rijmen on October 2, 2000, and published it as AES in FIPS 197 on November 26, 2001.
+
+The theory of pseudorandomness gave these designs a target. Goldreich, Goldwasser and Micali defined pseudorandom functions in 1984, with a journal version in 1986, and built them from any pseudorandom generator. Michael Luby and Charles Rackoff proved in 1988 that a Feistel network with 3 pseudorandom rounds is a pseudorandom permutation and with 4 rounds a strong one. Mihir Bellare and Chanathip Namprempre compared the ways to combine encryption and a MAC in 2000, and found that only encrypt-then-MAC is generically secure.
+
+Authenticated encryption followed. McGrew and Viega proposed GCM in 2004, and NIST standardized it in SP 800-38D in 2007. OCB3 is the version of RFC 7253 (2014); OCB2 was broken in 2018 and 2019. In stream ciphers, Rivest's RC4 of 1987 leaked in 1994 and was later prohibited in TLS by RFC 7465, while Daniel Bernstein's Salsa20 (2005) and ChaCha (2008) led to ChaCha20-Poly1305 in RFC 8439 (2018). NIST selected Ascon for lightweight use in February 2023 and standardized it in SP 800-232 in August 2025.
+
+## Further reading
+
+- Claude E. Shannon, *Communication theory of secrecy systems*, Bell System Technical Journal 28(4), 1949. The source of perfect secrecy, the unicity distance and the idea of confusion and diffusion.
+- David Kahn, *The Codebreakers*, revised edition, Scribner, 1996. The standard history of classical ciphers, from Caesar to Vernam and the machines of the world wars.
+- Jonathan Katz and Yehuda Lindell, *Introduction to Modern Cryptography*, third edition, CRC Press, 2020. A textbook that builds the definitions of this chapter, IND-CPA, PRFs and MACs, with full proofs.
+- Joan Daemen and Vincent Rijmen, *The Design of Rijndael*, Springer, 2002. The designers' account of AES and of the wide trail strategy that bounds its differential and linear trails.
+- Mihir Bellare and Chanathip Namprempre, *Authenticated encryption: relations among notions and analysis of the generic composition paradigm*, ASIACRYPT 2000, LNCS 1976, with a full version in Journal of Cryptology 21(4), 2008. The paper that settles how to combine a cipher and a MAC.

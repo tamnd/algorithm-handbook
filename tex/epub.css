@@ -18,6 +18,9 @@ h1, h2, h3, h4, h5, h6 { font-family: sans-serif; line-height: 1.25; color: #1F2
 h1 { font-size: 1.7em; margin: 1.5em 0 0.8em; border-bottom: 2px solid #2B59C3; padding-bottom: 0.2em; }
 h2 { font-size: 1.25em; margin: 1.8em 0 0.4em; color: #20448f; }
 h3 { font-size: 1.3em; margin: 2em 0 0.3em; border-bottom: 1px solid #2B59C3; }
+/* each entry starts a page; the first entry after a group heading stays under it */
+h3 { page-break-before: always; break-before: page; }
+h2 + h3 { page-break-before: auto; break-before: auto; }
 h4 { font-size: 1.05em; margin: 1.4em 0 0.3em; }
 h5, h6 { font-size: 1em; margin: 1em 0 0.2em; }
 span.num { color: #2B59C3; margin-right: 0.4em; }
@@ -56,6 +59,10 @@ th, td { border-bottom: 1px solid #D0D5DD; padding: 0.2em 0.5em; text-align: lef
 th { border-bottom: 1.5px solid #1F2328; }
 caption { font-size: 0.85em; color: #6B7280; }
 math { font-size: 1.05em; }
+div.plain { background: #F7F9FD; border: 1px solid #BFCBEA; border-radius: 4px; padding: 0.9em 1em 0.5em; margin: 1.4em 0 1em; position: relative; }
+div.plain p { text-indent: 0; margin: 0.35em 0; }
+div.plain p.plainhead, div.plain > p:first-child { margin: -1.65em 0 0.4em; }
+span.plainhead { display: inline-block; background: #F7F9FD; border: 1px solid #BFCBEA; border-radius: 3px; padding: 0.05em 0.5em; font-family: sans-serif; font-weight: bold; font-size: 0.72em; letter-spacing: 0.06em; text-transform: uppercase; color: #20448f; }
 div.stmt { margin: 0.7em 0; }
 div.stmt p { text-indent: 0; margin: 0.3em 0; }
 div.stmt.thm p, div.stmt.thm li { font-style: italic; }

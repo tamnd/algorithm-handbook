@@ -55,6 +55,16 @@ definitions, theorems and algorithms are numbered, and each volume has a list of
 section *Statements, algorithms and proofs* of Chapter 0.1 and the note on numbering in each volume introduction
 were written for it the same way.
 
+For edition 0.21.0, the site's release v0.21.0 opened Volume 22 *Concurrency*. Four agents shared it, one per
+chapter, the first also writing the volume introduction; a learning path *Concurrent algorithms* was added to
+Volume 0. The paragraphs that the section *Statements, algorithms and proofs* of Chapter 0.1 gained on the
+numbered definitions and the boxes *In plain words* were written the same way.
+
+For edition 0.22.0, the site's release v0.22.0 opened Volume 23 *Cryptography*. Seven agents shared it, one per
+chapter, the writer of Chapter 23.7 also writing the volume introduction; the coordinating agent added a learning
+path *Cryptography* to Volume 0. Edition 0.21.0 was built but not released, so its Volume 22 first appears in
+0.22.0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

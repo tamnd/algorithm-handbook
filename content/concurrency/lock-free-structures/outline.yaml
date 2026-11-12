@@ -1,0 +1,105 @@
+# The order of chapter 22.2, Lock-free structures. Groups are read in order; entries in a group too.
+groups:
+  - title: What correct means
+    intro: >
+      A concurrent object is judged on two counts: what its results may be, and who is sure to finish.
+      These entries fix the first. [Linearizability](/linearizability/) says that each operation seems to
+      take effect at one instant inside its call, and a linearization point is how a proof names that
+      instant.
+    entries:
+      - non-blocking-algorithm
+      - linearizability
+      - linearization-point
+
+  - title: Atomic primitives
+    intro: >
+      Lock-free code is built from a few atomic instructions. Compare-and-swap and load-linked/store-conditional
+      are the general ones; fetch-and-add never fails but is weaker. Double compare-and-swap is the two-word
+      form that most machines do not have.
+    entries:
+      - compare-and-swap
+      - load-linked-store-conditional
+      - fetch-and-add
+      - double-compare-and-swap
+
+  - title: Progress conditions
+    intro: >
+      Without locks, a process cannot be stopped by another that holds a lock, but it can still lose every
+      race. These entries rank the guarantees: obstruction-free, then lock-free, then wait-free, each
+      strictly stronger than the one before.
+    entries:
+      - lock-freedom
+      - wait-freedom
+      - obstruction-freedom
+
+  - title: Stacks and queues
+    intro: >
+      The two structures that every later design is measured against: the Treiber stack, one CAS on one
+      pointer, and the Michael-Scott queue, two pointers and a dummy node. Then two ideas that change the
+      shape of the problem: elimination, where a push and a pop cancel without touching the stack, and a
+      queue whose operations have no fixed linearization point.
+    entries:
+      - treiber-stack
+      - michael-scott-queue
+      - elimination-backoff-stack
+      - herlihy-wing-queue
+
+  - title: Ring buffers and work-stealing deques
+    intro: >
+      Array-based structures that allocate nothing after they start. Fixing who may call which operation
+      makes them cheap: one producer and one consumer need no CAS at all, and a deque with a single owner
+      needs a CAS only for its last item.
+    entries:
+      - lamport-spsc-queue
+      - vyukov-bounded-mpmc-queue
+      - chase-lev-deque
+      - arora-blumofe-plaxton-deque
+
+  - title: Lists, sets and maps
+    intro: >
+      Deleting from a linked list without locks needs one extra idea: mark the node first, unlink it after.
+      The Harris list puts the mark in the next pointer. Hash tables, skip lists and a priority queue are
+      then built from such lists.
+    entries:
+      - logical-deletion
+      - harris-linked-list
+      - michael-hash-table
+      - lock-free-skip-list
+      - lock-free-priority-queue
+      - split-ordered-list
+
+  - title: The consensus hierarchy
+    intro: >
+      Why CAS and not fetch-and-add or plain registers? The consensus number of an object is the largest
+      number of processes for which it solves wait-free consensus, and it decides which objects can be built
+      from which. Registers sit at 1, fetch-and-add and swap at 2, CAS at $\infty$.
+    entries:
+      - consensus-number
+      - read-modify-write
+      - registers-have-consensus-number-one
+      - cas-has-infinite-consensus-number
+
+  - title: Helping and universality
+    intro: >
+      Wait-freedom usually needs one process to finish the work of another. These entries give the helping
+      pattern, its most general use (a wait-free copy of any object), multi-word CAS from single-word CAS, a
+      wait-free queue and a lock-free search tree. Flat combining is the blocking contrast: one thread does
+      everyone's work under a lock.
+    entries:
+      - helping
+      - multi-word-cas
+      - universal-construction
+      - flat-combining
+      - kogan-petrank-queue
+      - non-blocking-bst
+
+  - title: Snapshots and counting
+    intro: >
+      Two problems where the answer is not a lock-free version of a sequential structure. An atomic snapshot
+      reads $n$ registers as if at one instant, wait-free, from registers alone. A counting network hands
+      out numbers with low contention and is quiescently consistent but not linearizable.
+    entries:
+      - atomic-snapshot
+      - afek-atomic-snapshot
+      - counting-network
+      - bitonic-counting-network
