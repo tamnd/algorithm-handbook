@@ -1,0 +1,75 @@
+# The order of chapter 24.5, Checksums. Groups are read in order; entries in a group too.
+groups:
+  - title: What a checksum is
+    intro: >
+      A [checksum](/checksum/) is a short value computed from data and sent or stored with it, so that a
+      receiver who recomputes it can tell when the data changed by accident. The simplest is one
+      [parity bit](/parity-bit/), which catches every odd number of flipped bits and no even number. The
+      [longitudinal redundancy check](/longitudinal-redundancy-check/) applies parity to each bit column of a
+      block, or replaces it with a byte sum, as in Modbus.
+    entries:
+      - checksum
+      - parity-bit
+      - longitudinal-redundancy-check
+  - title: Sums of words
+    intro: >
+      The next step is to add the words of the message. An [additive checksum](/additive-checksum/) modulo
+      $2^k$ misses an error exactly when the changes add to a multiple of $2^k$. Taking the sum modulo
+      $2^{16} - 1$ in [ones' complement arithmetic](/ones-complement-arithmetic/) gives the
+      [Internet checksum](/internet-checksum/) of IPv4, TCP and UDP, which does not depend on byte order and
+      can be [updated](/incremental-checksum-update/) when one field changes.
+    entries:
+      - additive-checksum
+      - ones-complement-arithmetic
+      - internet-checksum
+      - incremental-checksum-update
+  - title: Sums that see order
+    intro: >
+      A plain sum cannot tell $ab$ from $ba$. The [Fletcher checksum](/fletcher-checksum/) keeps a second sum
+      of the running sums, which weights each word by its distance from the end. [Adler-32](/adler-32/)
+      takes both sums modulo the prime 65521 and protects zlib streams. Because a window can slide one byte in
+      constant time, the same pair of sums is the [rolling checksum](/rolling-checksum/) of rsync.
+    entries:
+      - fletcher-checksum
+      - adler-32
+      - rolling-checksum
+  - title: Cyclic redundancy checks
+    intro: >
+      A CRC reads the message as a polynomial over GF(2) and sends the remainder of its division by a
+      generator $G$ of degree $r$. The group starts with the [arithmetic](/gf2-polynomial-arithmetic/) and the
+      [CRC](/cyclic-redundancy-check/) itself, with the Williams parameter model that fixes every standard
+      variant. An error $E$ is missed exactly when $G$ divides $E$; from that one fact come the
+      [guarantees](/crc-error-detection-guarantees/), the rules for [choosing $G$](/crc-generator-polynomial/),
+      the case of [CRC-32C](/crc32c/), and the [probability](/undetected-error-probability/) that random
+      noise slips through.
+    entries:
+      - gf2-polynomial-arithmetic
+      - cyclic-redundancy-check
+      - crc-generator-polynomial
+      - crc-error-detection-guarantees
+      - crc32c
+      - undetected-error-probability
+  - title: Fast CRC software
+    intro: >
+      Bit-at-a-time division is slow. A [table](/table-driven-crc/) of 256 remainders processes a byte per
+      lookup. [Slicing-by-8](/slicing-by-8/) uses eight tables to take eight bytes per step with short
+      dependency chains, and [CLMUL folding](/clmul-crc-folding/) uses carry-less multiply instructions to
+      fold four 128-bit blocks in parallel, with a Barrett reduction at the end.
+    entries:
+      - table-driven-crc
+      - slicing-by-8
+      - clmul-crc-folding
+  - title: Check digits
+    intro: >
+      Numbers that people copy and type, such as card numbers and ISBNs, carry one
+      [check digit](/check-digit-computation/) chosen to catch the errors people make: one wrong digit, and
+      two neighbors swapped. [Casting out nines](/casting-out-nines/) is the old check for arithmetic. The
+      [Luhn algorithm](/luhn-algorithm/) misses the swap of 09 and 90; the [Verhoeff](/verhoeff-algorithm/)
+      and [Damm](/damm-algorithm/) algorithms catch every single error and every adjacent swap, which no
+      weighted sum modulo 10 can do.
+    entries:
+      - check-digit-computation
+      - casting-out-nines
+      - luhn-algorithm
+      - verhoeff-algorithm
+      - damm-algorithm

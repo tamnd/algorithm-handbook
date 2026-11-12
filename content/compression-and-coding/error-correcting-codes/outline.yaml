@@ -1,0 +1,164 @@
+# The order of chapter 24.4, Error correcting codes. Groups are read in order; entries in a group too.
+groups:
+  - title: Distance and what it guarantees
+    intro: >
+      A block code is a set of words of length $n$, and its quality starts with one number, the
+      [minimum distance](/minimum-distance/) $d$ in the [Hamming metric](/hamming-distance/). A code of
+      distance $d$ detects every pattern of up to $d - 1$ errors, corrects up to $\lfloor (d-1)/2 \rfloor$,
+      and fills in up to $d - 1$ erasures. The last two entries put these guarantees to work as
+      [error detection](/error-detection/) with retransmission and as forward error correction.
+    entries:
+      - hamming-distance
+      - hamming-weight
+      - minimum-distance
+      - error-detection
+      - forward-error-correction
+  - title: Linear codes and syndromes
+    intro: >
+      Almost every code in use is a [linear code](/linear-code/): a subspace of dimension $k$ of
+      $\mathrm{GF}(q)^n$, written $[n, k, d]_q$. A generator matrix encodes it and a
+      [parity-check matrix](/parity-check-matrix/) $H$ tests it, and the [syndrome](/syndrome/) $H r^T$ of a
+      received word depends only on the error. The [Hamming code](/hamming-code/) and its dual, the simplex
+      code, are the first examples, and [syndrome decoding](/syndrome-decoding/) is the first general decoder.
+    entries:
+      - linear-code
+      - generator-matrix
+      - parity-check-matrix
+      - dual-code
+      - systematic-code
+      - syndrome
+      - hamming-code
+      - simplex-code
+      - standard-array
+      - syndrome-decoding
+  - title: Channels, capacity and decoding rules
+    intro: >
+      A channel model says what noise does to a symbol: the [binary symmetric channel](/binary-symmetric-channel/)
+      flips bits, the [binary erasure channel](/binary-erasure-channel/) loses them in plain sight, and the
+      [AWGN channel](/additive-white-gaussian-noise-channel/) adds Gaussian noise to real values. Each has a
+      [capacity](/channel-capacity/), $1 - h(p)$, $1 - \varepsilon$ and $\tfrac12 \log_2(1 + \mathrm{SNR})$,
+      and the [channel coding theorem](/channel-coding-theorem/) says that every rate below it is reachable.
+      The group ends with the two optimal decoding rules, for whole words and for single bits, and with
+      decoding on the erasure channel, which is linear algebra.
+    entries:
+      - binary-symmetric-channel
+      - repetition-code
+      - binary-erasure-channel
+      - additive-white-gaussian-noise-channel
+      - channel-capacity
+      - channel-coding-theorem
+      - maximum-likelihood-decoding
+      - symbol-by-symbol-map-decoding
+      - erasure-codes
+      - erasure-decoding
+  - title: Bounds and hardness
+    intro: >
+      These entries say how large a code of length $n$ and distance $d$ can be. The
+      [Hamming](/hamming-bound/), [Singleton](/singleton-bound/), [Plotkin](/plotkin-bound/),
+      [Elias](/elias-bound/) and [LP](/delsarte-lp-bound/) bounds hold for all codes, the
+      [Griesmer bound](/griesmer-bound/) only for linear codes, and the
+      [Gilbert-Varshamov bound](/gilbert-varshamov-bound/) says from below which codes exist. The group ends
+      with [list decoding](/list-decoding/) beyond half the distance and with the two NP-hard problems of the
+      field: decoding a general linear code and finding its minimum distance.
+    entries:
+      - hamming-bound
+      - singleton-bound
+      - gilbert-varshamov-bound
+      - plotkin-bound
+      - griesmer-bound
+      - elias-bound
+      - macwilliams-identity
+      - delsarte-lp-bound
+      - list-decoding
+      - nearest-codeword-problem
+      - minimum-distance-problem
+  - title: Algebraic codes
+    intro: >
+      Polynomials over finite fields give codes with a known distance and a structured decoder.
+      [Reed-Solomon codes](/reed-solomon-code/) meet the Singleton bound, [cyclic codes](/cyclic-code/) are
+      ideals of $\mathrm{GF}(q)[x]/(x^n - 1)$, and [BCH codes](/bch-code/) get their distance from consecutive
+      roots. The perfect Golay codes, Goppa codes, and the family of Hadamard and
+      [Reed-Muller codes](/reed-muller-code/) with their majority vote and local decoders complete the group.
+    entries:
+      - reed-solomon-code
+      - cyclic-code
+      - bch-code
+      - golay-code
+      - goppa-code
+      - hadamard-code
+      - reed-muller-code
+      - majority-logic-decoding
+      - locally-decodable-codes
+  - title: Decoding Reed-Solomon and BCH codes
+    intro: >
+      [Reed-Solomon decoding](/reed-solomon-decoding/) is a pipeline: syndromes, then an error locator, then
+      its roots, then the error values. The locator comes from a linear system in the
+      [Peterson-Gorenstein-Zierler](/peterson-gorenstein-zierler/) decoder or, faster, from the
+      [Berlekamp-Massey algorithm](/berlekamp-massey/); [Chien search](/chien-search/) and the
+      [Forney algorithm](/forney-algorithm/) finish the job. [Berlekamp-Welch](/berlekamp-welch/) works from the
+      received values directly, and [Guruswami-Sudan](/guruswami-sudan/) returns a list beyond half the distance.
+    entries:
+      - reed-solomon-decoding
+      - peterson-gorenstein-zierler
+      - lfsr-synthesis
+      - berlekamp-massey
+      - chien-search
+      - forney-algorithm
+      - berlekamp-welch
+      - guruswami-sudan
+  - title: Bursts and codes built from codes
+    intro: >
+      Real errors often come in [bursts](/burst-errors/), and a linear code that corrects every burst of length
+      $b$ needs at least $2b$ check symbols. [Interleaving](/interleaving/) spreads a burst over many codewords.
+      [Product codes](/product-codes/) and [concatenated codes](/concatenated-codes/) build long codes with
+      large distance from short codes with simple decoders.
+    entries:
+      - burst-errors
+      - interleaving
+      - product-codes
+      - concatenated-codes
+  - title: Convolutional and turbo codes
+    intro: >
+      A [convolutional code](/convolutional-code/) encodes a stream with a shift register, and its
+      [trellis](/trellis/) turns decoding into dynamic programming. The Viterbi algorithm finds the most likely
+      sequence and the [BCJR algorithm](/bcjr-algorithm/) the posterior of each bit. Two convolutional codes
+      and an interleaver make a [turbo code](/turbo-code/), whose iterative decoder came within 1 dB of
+      capacity in 1993.
+    entries:
+      - convolutional-code
+      - trellis
+      - maximum-likelihood-sequence-estimation
+      - bcjr-algorithm
+      - turbo-code
+      - turbo-decoding
+  - title: LDPC codes and message passing
+    intro: >
+      An [LDPC code](/ldpc-code/) has a sparse parity-check matrix, and its [Tanner graph](/tanner-graph/)
+      carries the messages of iterative decoders. [Belief propagation](/belief-propagation-decoding/) works
+      with soft values, [min-sum](/min-sum-decoding/) is its cheap form, and
+      [bit flipping](/bit-flipping-decoding/) uses hard decisions only. On good expanders a flipping decoder
+      provably corrects a constant fraction of errors in linear time.
+    entries:
+      - tanner-graph
+      - ldpc-code
+      - belief-propagation-decoding
+      - min-sum-decoding
+      - bit-flipping-decoding
+      - expander-codes
+  - title: Fountain, storage and polar codes
+    intro: >
+      The erasure channel is where modern codes are understood exactly. The [peeling decoder](/peeling-decoding/)
+      solves one check at a time, [LT](/lt-codes/) and [Raptor](/raptor-codes/) codes use it to make
+      [fountain codes](/fountain-codes/) with no fixed rate, and [regenerating codes](/regenerating-codes/)
+      cut the traffic of repairs in distributed storage. [Channel polarization](/channel-polarization-theorem/)
+      has a short exact proof on the same channel and gives [polar codes](/polar-code/), explicit
+      codes with a fast decoder and a proof that they reach the symmetric capacity of every binary-input memoryless channel.
+    entries:
+      - peeling-decoding
+      - fountain-codes
+      - lt-codes
+      - raptor-codes
+      - regenerating-codes
+      - channel-polarization-theorem
+      - polar-code
+      - successive-cancellation-decoding

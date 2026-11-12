@@ -1,0 +1,26 @@
+A checksum is a short value computed from a block of data and stored or sent with it. The receiver computes the value again; if it differs, the data was damaged on the way. Every Ethernet frame ends with a 32-bit CRC, every IPv4 header carries a 16-bit ones' complement sum, every zlib stream ends with Adler-32, and ext4 and iSCSI protect their blocks with CRC-32C. The last digit of a payment card number is a check digit, computed by the Luhn algorithm, so that a mistyped digit is caught at the till. A checksum does not correct anything. It only tells the receiver to ask again or to throw the data away.
+
+The chapter is about two questions for each method: what it costs, and which errors it is sure to catch. A check of $r$ bits takes only $2^r$ values, so some errors always go through. A good checksum makes sure they are not the likely ones: a single flipped bit, a short burst, two swapped digits. Some methods answer with a theorem, such as the rule that a CRC with generator $G$ misses an error $E$ exactly when $G$ divides $E$. Others answer with a count over all errors of a class. The exact check values matter too, because one algorithm comes in many variants. The entries name the parameters and the standard behind each value: Greg Cook's catalogue of CRCs, RFC 1071 and RFC 1624 for the Internet checksum, RFC 1950 for Adler-32, RFC 3720 for CRC-32C.
+
+None of these methods stops an attacker, who can compute the new checksum as easily as the sender. For that you need a [message authentication code](/message-authentication-code/); a [cryptographic hash function](/cryptographic-hash-function/) has no guarantee for a few flipped bits.
+
+## What the chapter covers
+
+The chapter is in six groups, read in order.
+
+1. **What a checksum is.** The [definition](/checksum/) and the families, the [parity bit](/parity-bit/), and the [longitudinal redundancy check](/longitudinal-redundancy-check/) of block parity and Modbus.
+2. **Sums of words.** The [additive checksum](/additive-checksum/), [ones' complement arithmetic](/ones-complement-arithmetic/), the [Internet checksum](/internet-checksum/) and its [incremental update](/incremental-checksum-update/) when a router changes one field.
+3. **Sums that see order.** The [Fletcher checksum](/fletcher-checksum/), [Adler-32](/adler-32/), and the [rolling checksum](/rolling-checksum/) that lets rsync find old blocks at any offset.
+4. **Cyclic redundancy checks.** [Polynomial arithmetic over GF(2)](/gf2-polynomial-arithmetic/), the [CRC](/cyclic-redundancy-check/) and its parameter model, the [generator polynomial](/crc-generator-polynomial/), the [guarantees](/crc-error-detection-guarantees/) for bursts and few errors, [CRC-32C](/crc32c/), and the [undetected error probability](/undetected-error-probability/) on a noisy channel.
+5. **Fast CRC software.** The [table-driven CRC](/table-driven-crc/), [slicing-by-8](/slicing-by-8/) and [CLMUL folding](/clmul-crc-folding/).
+6. **Check digits.** The [general problem](/check-digit-computation/) and ISBN, EAN, IBAN and ORCID, [casting out nines](/casting-out-nines/), and the [Luhn](/luhn-algorithm/), [Verhoeff](/verhoeff-algorithm/) and [Damm](/damm-algorithm/) algorithms.
+
+## A first reading
+
+For a first reading, take these thirteen entries in order: [checksum](/checksum/), [parity bit](/parity-bit/), [additive checksum](/additive-checksum/), [ones' complement arithmetic](/ones-complement-arithmetic/), [Internet checksum](/internet-checksum/), [Fletcher checksum](/fletcher-checksum/), [Adler-32](/adler-32/), [GF(2) polynomial arithmetic](/gf2-polynomial-arithmetic/), [cyclic redundancy check](/cyclic-redundancy-check/), [CRC error-detection guarantees](/crc-error-detection-guarantees/), [table-driven CRC](/table-driven-crc/), [check digit computation](/check-digit-computation/) and the [Luhn algorithm](/luhn-algorithm/). They give the definition, the two kinds of sum, the CRC with its theorem and its standard implementation, and the decimal case with the check digit you meet on every card.
+
+Skip at first the advanced entries: incremental update, slicing-by-8, CLMUL folding, and the Verhoeff and Damm algorithms. They are refinements of methods you will already know. The entry on the generator polynomial and the one on undetected error probability need more algebra; read them when you have to choose a CRC for a new protocol.
+
+## Before you start
+
+The chapter builds on [error detection](/error-detection/) and the [Hamming distance](/hamming-distance/) from coding theory, and on [burst errors](/burst-errors/) for the CRC guarantees. The undetected error probability uses the [binary symmetric channel](/binary-symmetric-channel/) and the [MacWilliams identity](/macwilliams-identity/). From number theory you need [congruences](/congruence/) and the [multiplicative order](/multiplicative-order/); from algebra, [polynomial long division](/polynomial-long-division/), [irreducible polynomials](/irreducible-polynomial/) and, for the Verhoeff algorithm, the [finite group](/finite-group/). The Internet checksum assumes [ones' complement](/ones-complement/) representation, and CLMUL folding uses [Barrett reduction](/barrett-reduction/). Costs are counted in the [word RAM](/word-ram/). You should be at ease with bit operations, hexadecimal and reading a byte string as a number.

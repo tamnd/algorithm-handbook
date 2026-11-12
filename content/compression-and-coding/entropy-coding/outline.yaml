@@ -1,0 +1,142 @@
+# The order of chapter 24.1, Entropy coding. Groups are read in order; entries in a group too.
+groups:
+  - title: Information and entropy
+    intro: >
+      An outcome of probability $p$ carries $\log_2(1/p)$ bits of [self-information](/self-information/), and
+      [Shannon entropy](/shannon-entropy/) is its mean. The [binary entropy function](/binary-entropy-function/)
+      $h(p)$ is the case of two outcomes; it also counts the $n$-bit strings with $k$ ones to within a factor
+      $n+1$. [Conditional entropy](/conditional-entropy/) measures what is left to learn about $X$ once $Y$ is
+      known, and the [entropy rate](/entropy-rate/) extends the measure to sources with memory.
+    entries:
+      - self-information
+      - shannon-entropy
+      - binary-entropy-function
+      - conditional-entropy
+      - entropy-rate
+  - title: Codes and the limits of compression
+    intro: >
+      A [lossless compressor](/lossless-compression/) maps each input to a bit string that a decoder can undo.
+      [Prefix codes](/prefix-code/) decode each codeword as soon as its last bit arrives, and the
+      [Kraft inequality](/kraft-inequality/) $\sum_i 2^{-\ell_i} \le 1$ says which lengths they can have; by
+      McMillan's theorem every [uniquely decodable code](/uniquely-decodable-code/) obeys it too. Counting shows
+      that no compressor shortens every input. The [source coding theorem](/source-coding-theorem/) then gives
+      the limit for a memoryless source, $H \le L^* < H + 1$, and the
+      [Slepian-Wolf theorem](/slepian-wolf-theorem/) extends it to two correlated sources coded apart.
+    entries:
+      - lossless-compression
+      - prefix-code
+      - variable-length-code
+      - uniquely-decodable-code
+      - kraft-inequality
+      - incompressibility-argument
+      - asymptotic-equipartition-property
+      - source-coding-theorem
+      - slepian-wolf-theorem
+  - title: Optimal prefix codes
+    intro: >
+      The [optimal prefix code](/optimal-prefix-code/) problem asks for codeword lengths of least mean length
+      for known weights. The top-down split of [Shannon-Fano coding](/shannon-fano-coding/) is not always
+      optimal; the bottom-up merge of [Huffman coding](/huffman-coding/) is, and it runs in $O(n \log n)$ time.
+      A [canonical Huffman code](/canonical-huffman-code/) is fixed by its lengths alone, which is how formats
+      such as DEFLATE store their codes, and [adaptive Huffman coding](/adaptive-huffman-coding/) updates the
+      tree as the counts change.
+    entries:
+      - optimal-prefix-code
+      - shannon-fano-coding
+      - huffman-coding
+      - canonical-huffman-code
+      - adaptive-huffman-coding
+  - title: Prefix codes under constraints
+    intro: >
+      Real decoders add rules that Huffman's algorithm ignores. A
+      [length-limited code](/length-limited-prefix-code/) caps every codeword at $L$ bits, and
+      [package-merge](/package-merge/) finds the best one in $O(nL)$ time. An
+      [alphabetic code](/optimal-alphabetic-code/) keeps the codewords in the order of the symbols, which
+      [Hu-Tucker](/hu-tucker-algorithm/) and [Garsia-Wachs](/garsia-wachs-algorithm/) achieve in
+      $O(n \log n)$ time. [Unequal letter costs](/unequal-letter-cost-coding/) change the price of the code
+      letters themselves, and [Tunstall coding](/tunstall-coding/) turns the problem around, with
+      variable-length words of the source mapped to fixed-length codewords.
+    entries:
+      - length-limited-prefix-code
+      - package-merge
+      - optimal-alphabetic-code
+      - hu-tucker-algorithm
+      - garsia-wachs-algorithm
+      - unequal-letter-cost-coding
+      - tunstall-coding
+  - title: Codes for the integers
+    intro: >
+      When the alphabet is all the integers, no table of codewords is possible, and the code is a rule.
+      [Unary coding](/unary-coding/) is the optimal code for $P(x) = 2^{-(x+1)}$. A
+      [universal code](/universal-code/) such as [Elias gamma](/elias-gamma-coding/), with
+      $2\lfloor \log_2 x \rfloor + 1$ bits, is within a constant factor of the best code for every decreasing
+      law at once; [delta](/elias-delta-coding/), [omega](/elias-omega-coding/) and
+      [Fibonacci](/fibonacci-coding/) codes trade a longer start for a slower growth. [Golomb](/golomb-coding/)
+      and [Rice](/rice-coding/) codes take a parameter and are optimal or close to optimal for geometric
+      laws. An [Exp-Golomb](/exp-golomb-coding/) code of order $k$ joins a gamma-like prefix to $k$ low bits;
+      order 0 is the code of the H.264 and HEVC headers.
+    entries:
+      - unary-coding
+      - universal-code
+      - elias-gamma-coding
+      - elias-delta-coding
+      - elias-omega-coding
+      - fibonacci-coding
+      - golomb-coding
+      - rice-coding
+      - exp-golomb-coding
+  - title: Coding lists of numbers
+    intro: >
+      Search engines, databases and genome files store long lists of numbers, and their codes are chosen for
+      decoding speed as much as for size. [Variable-byte encoding](/variable-byte-encoding/) keeps byte
+      boundaries, [PForDelta](/pfor-delta/) packs blocks at one bit width with exceptions, and
+      [interpolative coding](/interpolative-coding/) codes a sorted list by recursive halving.
+      [Enumerative coding](/enumerative-coding/) writes a bit string as its weight $k$ and its rank among the
+      $\binom{n}{k}$ strings of that weight, within $\log_2(n+1) + 2$ bits of $n\,h(k/n)$.
+      [Genomic data encoding](/genomic-data-encoding/) packs DNA at two bits per base.
+    entries:
+      - variable-byte-encoding
+      - pfor-delta
+      - interpolative-coding
+      - enumerative-coding
+      - genomic-data-encoding
+  - title: Interval coding
+    intro: >
+      A message of probability $P$ can be named by a number inside an interval of width $P$, which takes about
+      $\log_2(1/P)$ bits. [Shannon-Fano-Elias coding](/shannon-fano-elias-coding/) does this for single symbols
+      with less than $H + 2$ bits on average, and the [Gilbert-Moore code](/gilbert-moore-code/) uses it to
+      build an alphabetic code. [Arithmetic coding](/arithmetic-coding/) narrows one interval over the whole
+      message; with exact arithmetic it writes at most two bits more than the ideal length, and [range coding](/range-coding/) is the same idea with
+      bytes as the output unit.
+    entries:
+      - shannon-fano-elias-coding
+      - gilbert-moore-code
+      - arithmetic-coding
+      - range-coding
+  - title: Asymmetric numeral systems
+    intro: >
+      [Asymmetric numeral systems](/asymmetric-numeral-systems/) keep the coder's state in one integer and
+      add about $\log_2(1/p)$ bits to it per symbol. The decoder reads the symbols back in the reverse order.
+      [rANS](/rans-coding/) does the step in integer arithmetic and decodes a symbol with one
+      multiplication. [tANS](/tabled-asymmetric-numeral-systems/) puts the whole step in a table; Zstandard
+      codes its match and literal lengths and its offsets that way.
+    entries:
+      - asymmetric-numeral-systems
+      - rans-coding
+      - tabled-asymmetric-numeral-systems
+  - title: Modeling
+    intro: >
+      An interval coder spends what the model predicts, so the model decides the size of the output.
+      [Adaptive models](/adaptive-modeling/) learn the probabilities as they code, with no table sent ahead, and
+      [context models](/context-modeling/) condition them on the symbols just seen. [CABAC](/cabac/) codes video
+      syntax with binary contexts, [PPM](/prediction-by-partial-matching/) blends contexts of several lengths
+      with escape symbols, [context tree weighting](/context-tree-weighting/) mixes all context trees with a
+      proved bound on its regret, and [context mixing](/context-mixing/) combines many models with a learned
+      mixer.
+    entries:
+      - adaptive-modeling
+      - context-modeling
+      - cabac
+      - prediction-by-partial-matching
+      - context-tree-weighting
+      - context-mixing

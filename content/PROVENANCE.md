@@ -65,6 +65,10 @@ chapter, the writer of Chapter 23.7 also writing the volume introduction; the co
 path *Cryptography* to Volume 0. Edition 0.21.0 was built but not released, so its Volume 22 first appears in
 0.22.0.
 
+For edition 0.23.0, the site's release v0.23.0 wrote Volume 24 *Compression and coding*. Five agents shared it,
+one per chapter, the writer of Chapter 24.1 also writing the volume introduction; the coordinating agent added a
+learning path *Compression and coding* to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

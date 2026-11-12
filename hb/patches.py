@@ -67,6 +67,8 @@ PATCHES: dict[str, list[tuple[str, str]]] = {
     "cryptography/hash-functions/miyaguchi-preneel-construction/node.md": [(
         "H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i", "`H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i`",
     )],
+    # the end-of-word symbol </w>, written bare, is read as an HTML tag (dropped in the PDF, malformed in the EPUB)
+    "compression-and-coding/dictionary-compression/byte-pair-encoding/node.md": [("</w>", "&lt;/w&gt;")] * 10,
     # the end marker $ is a literal; the dollars around t = are mathematics
     "data-structures/string-structures/suffix-tree-from-suffix-array/node.md": [(
         "with the end marker $ smaller than every letter, $t = $ banana$ and $n = 7$:",

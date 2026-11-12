@@ -1,0 +1,105 @@
+# The order of the chapter on dictionary compression. Groups are read in order; entries in a group too.
+groups:
+  - title: Dictionaries and parses
+    intro: >
+      A dictionary coder cuts the text into phrases and writes a short code for each one. These entries set up
+      the model: a dictionary, a parse of the text into dictionary phrases, and the cost of the parse. A fixed
+      dictionary is agreed in advance; an adaptive one is built from the text as it is read, so the decoder
+      can rebuild it with no table sent.
+    entries:
+      - dictionary-based-compression
+      - static-dictionary-compression
+      - adaptive-dictionary-compression
+
+  - title: Copies and factors
+    intro: >
+      The LZ77 idea in its plainest form: a phrase is a copy of text seen before, written as a distance and a
+      length. These entries define the [back-reference](/back-reference/) and the Lempel-Ziv factor, compare
+      the ways of cutting a text into factors, and compute the factorization in linear time with a suffix
+      array.
+    entries:
+      - back-reference
+      - lempel-ziv-factor
+      - lempel-ziv-parsing
+      - lempel-ziv-factorization
+
+  - title: The LZ77 family
+    intro: >
+      The sliding-window coder of 1977 writes each phrase as a triple: a distance, a length and the next
+      symbol. LZSS drops the forced symbol and marks each item with a flag bit, so that a short match never
+      costs more than the literals it replaces. Nearly every format later in the chapter starts from LZSS.
+    entries:
+      - lz77
+      - lzss
+
+  - title: The LZ78 family
+    intro: >
+      Here the dictionary is an explicit list of earlier phrases, each one an earlier phrase plus one symbol,
+      kept in a trie. LZ78 writes a phrase index and a symbol; LZW starts with every single symbol in the
+      table and writes only indices, which is the coder of compress and GIF.
+    entries:
+      - lz78-parsing
+      - lz78
+      - lzw
+
+  - title: Finding and choosing matches
+    intro: >
+      A format fixes what the decoder reads; the encoder decides which matches to use. These entries cover
+      the search for matches with hash chains, the greedy and lazy rules of fast encoders, and the shortest
+      path view of [optimal parsing](/optimal-parsing/) that fixes the parse of least cost, in phrases or in
+      bits.
+    entries:
+      - match-finding
+      - greedy-parsing
+      - lazy-matching
+      - optimal-parsing
+      - optimal-lz-parsing
+
+  - title: Byte-aligned formats
+    intro: >
+      LZ4, Snappy and LZO write an LZ77 parse in whole bytes and use no entropy coder. They compress less
+      than the entropy-coded formats, and in exchange the decoder is a short loop of byte copies. Read them side by
+      side: the differences are in how a token packs a literal count, a length and a distance.
+    entries:
+      - lz4
+      - snappy
+      - lzo
+
+  - title: Entropy-coded formats
+    intro: >
+      These formats code the literals, lengths and distances of an LZ77 parse with Huffman codes, tabled ANS
+      or an adaptive range coder. [DEFLATE](/deflate/) comes first: the others extend it with larger windows,
+      repeated distances, context modeling and better entropy coders. The example encoder of each entry
+      writes valid streams but is simpler than the reference encoder, and often uses only part of the format.
+    entries:
+      - deflate
+      - lzx
+      - zstandard
+      - brotli
+      - lzma
+
+  - title: Grammars
+    intro: >
+      A grammar that derives exactly one string is another kind of dictionary: each rule names a phrase built
+      from smaller phrases. These entries define the [straight-line program](/straight-line-program-grammar/),
+      give the three classic ways to build one (byte pair encoding, Re-Pair and Sequitur), and show that
+      finding the smallest grammar is NP-hard.
+    entries:
+      - straight-line-program-grammar
+      - grammar-based-compression
+      - byte-pair-encoding
+      - re-pair
+      - sequitur
+      - smallest-grammar-problem
+      - smallest-grammar-np-hardness
+
+  - title: Measures and limits
+    intro: >
+      The number of phrases in a parse is also a measure of how repetitive a string is. These entries give the
+      longest previous factor array, the complexity of Lempel and Ziv, the theorem that LZ78 reaches the
+      entropy rate of an ergodic source, and LZ-End, a parse built for fast access to the text.
+    entries:
+      - longest-previous-factor
+      - lempel-ziv-complexity
+      - ziv-lempel-entropy-theorem
+      - lz-end

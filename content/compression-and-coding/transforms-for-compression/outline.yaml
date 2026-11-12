@@ -1,0 +1,94 @@
+# The order of chapter 24.3, Transforms for compression. Groups are read in order; entries in a group too.
+groups:
+  - title: Differences and runs
+    intro: >
+      The simplest transforms replace each value by something smaller that the decoder can undo.
+      [Delta encoding](/delta-encoding/) stores differences, [predictive coding](/predictive-coding/)
+      stores the error of a prediction, and [run-length encoding](/run-length-encoding/) stores a symbol
+      and a count. For geometric run lengths a Golomb code is optimal, which is the subject of
+      [run-length compression](/run-length-compression/).
+    entries:
+      - delta-encoding
+      - predictive-coding
+      - run-length-encoding
+      - run-length-compression
+  - title: Reversible transforms for text
+    intro: >
+      A [reversible text transform](/reversible-text-transform/) changes no information but makes the
+      statistics easier for a simple coder. The [Burrows-Wheeler transform](/burrows-wheeler-transform/)
+      sorts the rotations of a text so that equal contexts group equal symbols, and its
+      [inverse](/inverse-burrows-wheeler-transform/) undoes this in linear time with the LF mapping.
+      [Move-to-front](/move-to-front-transform/) and the other [locality recodings](/locality-recoding/)
+      turn the result into small numbers.
+    entries:
+      - reversible-text-transform
+      - burrows-wheeler-transform
+      - inverse-burrows-wheeler-transform
+      - move-to-front-transform
+      - locality-recoding
+      - bijective-burrows-wheeler-transform
+  - title: Lossy compression and quantization
+    intro: >
+      [Lossy compression](/lossy-compression/) trades rate for distortion, and rate-distortion theory
+      gives the best trade a source allows. [Scalar quantization](/scalar-quantization/) rounds one value
+      at a time; at high rate and with an ideal entropy coder it stays about
+      $\tfrac12 \log_2 (\pi e/6) \approx 0.254$ bit per sample above that bound. [Vector quantization](/vector-quantization/) rounds blocks and can close part of the gap.
+    entries:
+      - lossy-compression
+      - scalar-quantization
+      - vector-quantization
+  - title: Orthogonal transforms
+    intro: >
+      An [orthogonal transform](/orthogonal-transform/) keeps energy and squared error, so a coder may
+      quantize in the transform domain and measure the error there. A good transform puts most of the
+      energy into a few coefficients, which is [energy compaction](/energy-compaction/), and removes the
+      correlation between them, which is [signal decorrelation](/signal-decorrelation/).
+    entries:
+      - orthogonal-transform
+      - energy-compaction
+      - signal-decorrelation
+  - title: Transform coding and the Karhunen-Loève transform
+    intro: >
+      [Transform coding](/transform-coding/) is the pipeline of transform, quantizer and entropy coder, and
+      its coding gain is the ratio of the arithmetic to the geometric mean of the coefficient variances.
+      The [Karhunen-Loève transform](/karhunen-loeve-transform/) maximizes that gain over all orthogonal
+      transforms. The [Karhunen-Loève theorem](/karhunen-loeve-theorem/) is the same idea for a process
+      in continuous time.
+    entries:
+      - transform-coding
+      - karhunen-loeve-transform
+      - karhunen-loeve-theorem
+  - title: The DCT and JPEG
+    intro: >
+      The [discrete cosine transform](/discrete-cosine-transform/) is close to the KLT of a smooth source
+      and needs no data to design. [JPEG compression](/jpeg-compression/) applies it to $8 \times 8$ blocks,
+      quantizes with a table, orders the coefficients with the [zigzag scan](/zigzag-scan/) and codes runs
+      of zeros. [Lossy image compression](/lossy-image-compression/) sets out the problem and how it is
+      measured.
+    entries:
+      - lossy-image-compression
+      - discrete-cosine-transform
+      - zigzag-scan
+      - jpeg-compression
+  - title: Filter banks and subband coding
+    intro: >
+      A [filter bank](/filter-bank/) splits a signal into frequency bands and downsamples each one.
+      [Perfect reconstruction](/perfect-reconstruction/) is the condition under which the synthesis bank
+      cancels the aliasing and returns the input with a delay. [Subband coding](/subband-coding/) quantizes
+      the bands, and the [modified discrete cosine transform](/modified-discrete-cosine-transform/) is the
+      lapped filter bank of most audio coders.
+    entries:
+      - filter-bank
+      - perfect-reconstruction
+      - subband-coding
+      - modified-discrete-cosine-transform
+  - title: Embedded wavelet image coding
+    intro: >
+      [Bit-plane coding](/bit-plane-coding/) sends the coefficients one bit plane at a time, so that a cut
+      of the stream at any point is a coarser quantization. [SPIHT](/spiht/) adds sorting by significance
+      over trees of wavelet coefficients. [JPEG 2000](/jpeg-2000/) uses wavelets, a dead-zone quantizer and
+      bit-plane coding of code blocks with rate-distortion truncation.
+    entries:
+      - bit-plane-coding
+      - spiht
+      - jpeg-2000

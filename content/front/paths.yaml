@@ -1167,3 +1167,104 @@ paths:
           - shamir-secret-sharing
           - secure-multiparty-computation
           - tls-handshake
+  - id: compression-and-coding
+    title: Compression and coding
+    for: a student who knows basic probability and arithmetic modulo 2 and wants to see how data is made smaller, how errors are detected and how they are corrected, and what limits each method.
+    intro: >
+      Information first: the entropy of a source and why no code can beat it on average. Then the coders that come
+      close to it, from Huffman's code to arithmetic coding and asymmetric numeral systems, and the dictionary
+      methods of Lempel and Ziv that learn their model from the data, as DEFLATE and its successors do. The
+      transforms come next: runs and differences, the Burrows-Wheeler transform for text and the cosine transform
+      for images, where lossy coding begins. The second half turns to noisy channels: checksums and CRCs that
+      detect errors, then linear codes, the bounds that limit them, and the Reed-Solomon, LDPC and polar codes that
+      correct errors in practice. Each method on the way names its source model or its channel.
+    stages:
+      - title: Information and its limits
+        steps:
+          - self-information
+          - shannon-entropy
+          - binary-entropy-function
+          - lossless-compression
+          - prefix-code
+          - uniquely-decodable-code
+          - kraft-inequality
+          - source-coding-theorem
+          - incompressibility-argument
+      - title: Entropy coders
+        steps:
+          - huffman-coding
+          - optimal-prefix-code
+          - canonical-huffman-code
+          - unary-coding
+          - elias-gamma-coding
+          - golomb-coding
+          - rice-coding
+          - arithmetic-coding
+          - range-coding
+          - asymmetric-numeral-systems
+          - context-modeling
+          - prediction-by-partial-matching
+      - title: Dictionary compression
+        steps:
+          - dictionary-based-compression
+          - lempel-ziv-factorization
+          - lz77
+          - lzss
+          - lz78
+          - lzw
+          - match-finding
+          - lazy-matching
+          - deflate
+          - lz4
+          - zstandard
+          - grammar-based-compression
+          - re-pair
+          - ziv-lempel-entropy-theorem
+      - title: Transforms and lossy coding
+        steps:
+          - run-length-encoding
+          - delta-encoding
+          - move-to-front-transform
+          - burrows-wheeler-transform
+          - inverse-burrows-wheeler-transform
+          - lossy-compression
+          - scalar-quantization
+          - orthogonal-transform
+          - transform-coding
+          - discrete-cosine-transform
+          - jpeg-compression
+      - title: Detecting errors
+        steps:
+          - hamming-distance
+          - error-detection
+          - parity-bit
+          - checksum
+          - internet-checksum
+          - adler-32
+          - gf2-polynomial-arithmetic
+          - cyclic-redundancy-check
+          - table-driven-crc
+          - crc-error-detection-guarantees
+          - luhn-algorithm
+          - rolling-checksum
+      - title: Correcting errors
+        steps:
+          - hamming-weight
+          - linear-code
+          - generator-matrix
+          - parity-check-matrix
+          - minimum-distance
+          - syndrome-decoding
+          - hamming-code
+          - binary-symmetric-channel
+          - channel-capacity
+          - channel-coding-theorem
+          - hamming-bound
+          - singleton-bound
+          - reed-solomon-code
+          - reed-solomon-decoding
+          - berlekamp-massey
+          - convolutional-code
+          - ldpc-code
+          - belief-propagation-decoding
+          - polar-code
