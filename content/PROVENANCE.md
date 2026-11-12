@@ -69,6 +69,12 @@ For edition 0.23.0, the site's release v0.23.0 wrote Volume 24 *Compression and 
 one per chapter, the writer of Chapter 24.1 also writing the volume introduction; the coordinating agent added a
 learning path *Compression and coding* to Volume 0.
 
+For edition 0.24.0, the site's release v0.24.0 wrote Volume 25 *Machine learning* and Chapter 26.1 *Caching
+policies* of Volume 26 *Systems*. Eight agents shared them: one per chapter of Volume 25, the writer of Chapter
+25.1 also writing the volume introduction; one for Chapter 26.1 and the introduction of Volume 26; and one for the
+openings of Chapters 26.2 to 26.8, which have no entries yet. The coordinating agent added a learning path
+*Machine learning* to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all

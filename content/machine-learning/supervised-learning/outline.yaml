@@ -1,0 +1,175 @@
+# The order of chapter 25.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The learning problem
+    intro: >
+      Before any learner, the problem. A learner sees examples drawn from an unknown distribution and picks a
+      rule from a [hypothesis class](/hypothesis-class/); a [loss function](/loss-function/) scores its
+      predictions. These entries define classification and regression, the best rule that knowledge of the
+      distribution would give, the gap between training error and true error, and the plain rule of picking
+      the hypothesis with the least training loss.
+    entries:
+      - hypothesis-class
+      - loss-function
+      - classification
+      - regression
+      - multiclass-classification
+      - bayes-optimal-classifier
+      - generalization-error
+      - overfitting
+      - empirical-risk-minimization
+
+  - title: Losses and measures of error
+    intro: >
+      The 0-1 loss is what a classifier is judged by, but it is hard to minimize, so learners minimize a
+      convex surrogate instead. The first entries define the squared, cross-entropy, logistic and hinge
+      losses. The rest measure a learned rule: the bias-variance identity for squared loss, the confusion
+      matrix and the scores read from it, the ROC curve, and cross-validation, which estimates the error of a
+      learning procedure from the data alone.
+    entries:
+      - mean-squared-error
+      - cross-entropy-loss
+      - logistic-loss
+      - hinge-loss
+      - bias-variance-tradeoff
+      - confusion-matrix
+      - precision-and-recall
+      - roc-auc
+      - cross-validation
+
+  - title: Linear regression and regularization
+    intro: >
+      Least squares is the oldest learner in the chapter and the one with the cleanest algebra: the fit is a
+      projection, computed by a QR decomposition. Regularization adds a penalty on the weights; the squared
+      penalty of ridge regression shrinks them, and the absolute-value penalty of the lasso sets some to zero.
+      The group ends with models that change the loss or the shape of the fit: generalized linear models,
+      quantile regression, and isotonic regression with its linear-time pool adjacent violators algorithm.
+    entries:
+      - linear-regression
+      - ordinary-least-squares
+      - regularization
+      - ridge-regression
+      - lasso-regression
+      - elastic-net
+      - generalized-linear-model
+      - quantile-regression
+      - isotonic-regression
+      - pool-adjacent-violators
+
+  - title: Linear classifiers
+    intro: >
+      A linear classifier predicts the sign of $w \cdot x + b$. The [perceptron](/perceptron/) finds one on
+      separable data after at most $(R/\gamma)^2$ mistakes, and Winnow's multiplicative updates make few
+      mistakes when most features do not matter. Logistic and softmax regression fit probabilities by maximum
+      likelihood. The last entries reduce many classes to two, and extend linear scores to rankings and to
+      outputs made of many parts.
+    entries:
+      - linear-separability
+      - perceptron
+      - perceptron-convergence-theorem
+      - winnow
+      - logistic-regression
+      - softmax-regression
+      - one-vs-rest
+      - one-vs-one
+      - error-correcting-output-codes
+      - learning-to-rank
+      - structured-prediction
+
+  - title: Generative classifiers and nearest neighbors
+    intro: >
+      A generative classifier models how each class produces its inputs and classifies by Bayes' rule;
+      [naive Bayes](/naive-bayes-classifier/) and quadratic discriminant analysis are the two classic cases.
+      The nearest neighbor rule models nothing and votes among the closest training points. The Cover-Hart
+      theorem bounds its error, in the limit of infinite data, by twice the Bayes risk.
+    entries:
+      - naive-bayes-classifier
+      - quadratic-discriminant-analysis
+      - generative-vs-discriminative-models
+      - k-nearest-neighbors
+      - cover-hart-theorem
+
+  - title: Kernels and support vector machines
+    intro: >
+      A kernel computes an inner product in a feature space without building the features, so any method
+      that uses the data only through inner products can work in that space. Mercer's theorem and the
+      representer theorem say when this is valid and why the solution is a sum over the training points. The
+      [support vector machine](/support-vector-machine/) is the method built on it: a maximum-margin
+      separator found by a quadratic program, solved in practice by sequential minimal optimization.
+    entries:
+      - kernel-trick
+      - mercer-theorem
+      - representer-theorem
+      - kernel-ridge-regression
+      - support-vector-machine
+      - svm-training
+      - sequential-minimal-optimization
+      - support-vector-regression
+
+  - title: Decision trees
+    intro: >
+      A [decision tree](/decision-tree/) predicts by a path of tests from the root to a leaf. Finding a tree
+      with the fewest expected tests is NP-hard, so learners grow one greedily, choosing at each node the split that most
+      reduces an impurity such as entropy or the Gini index, and then prune it back. ID3, C4.5 and CART are
+      the classic learners; reduced-error and cost-complexity pruning are the two main ways to cut a tree
+      back.
+    entries:
+      - decision-tree
+      - information-gain
+      - gini-impurity
+      - decision-tree-learning
+      - decision-stump
+      - id3
+      - c4-5
+      - reduced-error-pruning
+      - cost-complexity-pruning
+      - cart
+
+  - title: PAC learning and the VC dimension
+    intro: >
+      How many examples are enough? The [PAC model](/pac-learning/) makes the question exact. For a finite
+      class, $\lceil \ln(|H|/\delta)/\varepsilon \rceil$ examples suffice in the realizable case; for an
+      infinite class the [VC dimension](/vc-dimension/) takes the place of $\ln |H|$, and the fundamental
+      theorem says that a binary class is learnable exactly when its VC dimension is finite. The no-free-lunch
+      theorem shows that some restriction of the class is needed.
+    entries:
+      - pac-learning
+      - occams-razor
+      - no-free-lunch-theorem-learning
+      - vc-dimension
+      - sauer-shelah-lemma
+      - agnostic-pac-learning
+      - rademacher-complexity
+      - fundamental-theorem-of-statistical-learning
+      - halfspace-learning
+
+  - title: Model selection, margins and noise
+    intro: >
+      Four ideas extend the PAC picture. Structural risk minimization and minimum description length choose
+      among classes of growing size by charging for complexity. The margin bound explains why a separator
+      with a large margin generalizes whatever the dimension. The statistical query model describes learners
+      that only estimate averages, and so tolerate label noise.
+    entries:
+      - structural-risk-minimization
+      - minimum-description-length
+      - margin-generalization-bound
+      - statistical-query-model
+
+  - title: Ensembles
+    intro: >
+      An ensemble combines many predictors. Bagging averages models fitted to bootstrap samples, which lowers
+      the variance; random forests and extremely randomized trees add randomness to the trees to make them
+      less alike. Boosting fits models one after another, each on the errors of the last; the weak
+      learnability theorem shows that a learner a little better than chance on every distribution can be boosted to any
+      accuracy.
+      Stacking learns how to combine the members.
+    entries:
+      - ensemble-learning
+      - bagging
+      - random-forest
+      - extremely-randomized-trees
+      - weak-learnability-equivalence
+      - boosting
+      - adaboost
+      - gradient-boosting
+      - xgboost
+      - stacking

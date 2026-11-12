@@ -1,0 +1,130 @@
+# The order of chapter 26.1, Caching policies. Groups are read in order; entries in a group too.
+groups:
+  - title: Caches and locality
+    intro: >
+      A [cache](/cache/) holds at most $k$ items copied from a larger, slower store, and its cost is counted in
+      misses or by the [hit ratio](/cache-hit-ratio/). Caches work because real request sequences have
+      [locality of reference](/locality-of-reference/); the [working set model](/working-set-model/) measures it
+      as the set of pages used in a recent window. The [three Cs](/three-cs-model/) sort misses by cause, and
+      [multilevel caching](/multilevel-caching/) stacks caches so that each level serves the misses of the one above.
+    entries:
+      - cache
+      - cache-hit-ratio
+      - locality-of-reference
+      - working-set-model
+      - three-cs-model
+      - multilevel-caching
+  - title: The optimum and the classic policies
+    intro: >
+      [Belady's MIN](/belady-optimal/) evicts the item whose next request is furthest away, and no policy has fewer
+      misses when sizes and costs are equal. The online policies guess the future from the past:
+      [FIFO](/fifo-replacement/) by load time, which gives [Belady's anomaly](/belady-anomaly/),
+      [LRU](/lru/) by last use, [LFU](/lfu/) by count, [MRU](/mru/) by the reverse of recency, and
+      [random replacement](/random-replacement/) by chance. [CLOCK](/clock/) approximates LRU with one bit per
+      frame, and a [set-associative cache](/set-associative-cache/) runs a small policy in each set of a hardware cache.
+    entries:
+      - belady-optimal
+      - fifo-replacement
+      - belady-anomaly
+      - lru
+      - lru-cache
+      - lfu
+      - mru
+      - random-replacement
+      - clock
+      - set-associative-cache
+  - title: Writes and prefetching
+    intro: >
+      A write can go to the store at once ([write-through](/write-through/)), skip the cache
+      ([write-around](/write-around/)), or wait in a dirty line until eviction ([write-back](/write-back/)).
+      The choice trades store traffic against the loss of dirty lines in a crash. [Prefetching](/prefetching/)
+      loads a block before it is requested, which turns a miss into a hit when the guess is right.
+    entries:
+      - write-through
+      - write-around
+      - write-back
+      - prefetching
+  - title: Stack algorithms and miss ratio curves
+    intro: >
+      The [reuse distance](/reuse-distance/) of a request counts the distinct items used since the last request
+      for the same item, and an LRU cache of $k$ items hits exactly the requests with distance below $k$.
+      Policies with the [inclusion property](/inclusion-property/) keep the caches of all sizes nested, so
+      [Mattson's algorithm](/mattson-stack-algorithm/) gives their [miss ratio curve](/miss-ratio-curve/) in one pass.
+      [Exact methods](/miss-ratio-curve-computation/) take $O(n \log m)$ time, and [SHARDS](/shards/) samples
+      items to estimate the LRU curve in far less memory.
+    entries:
+      - reuse-distance
+      - inclusion-property
+      - mattson-stack-algorithm
+      - miss-ratio-curve
+      - miss-ratio-curve-computation
+      - shards
+  - title: Worst case and average case
+    intro: >
+      Two cost models judge every policy in the chapter. The [competitive bound for LRU](/lru-competitiveness/)
+      compares LRU and FIFO with $k$ items against the offline optimum with $h \le k$ items, on the worst
+      sequence. The [independent reference model](/independent-reference-model/) draws each request from a fixed
+      distribution and gives exact average hit ratios.
+    entries:
+      - lru-competitiveness
+      - independent-reference-model
+  - title: Recency and frequency combined
+    intro: >
+      LRU is fooled by scans and LFU by stale counts. [LRU-K](/lru-k/) ranks pages by the time of their $K$-th last
+      reference, and [2Q](/two-q/) and [SLRU](/slru/) get much of its effect in $O(1)$ time with a probation
+      queue in front of a protected one. [MQ](/mq-cache/) keeps several queues by count for second-level
+      caches, and [LRFU](/lrfu/) moves between LRU and LFU with one parameter.
+    entries:
+      - lru-k
+      - two-q
+      - slru
+      - mq-cache
+      - lrfu
+  - title: Ghost lists and adaptive policies
+    intro: >
+      A [ghost list](/ghost-lists/) remembers the keys of recently evicted items without their data, so the
+      cache learns which evictions it regrets. [ARC](/arc/) uses two ghost lists to tune the split between items
+      seen once and items seen twice, and [CAR](/car/) is its clock form. [LIRS](/lirs/) ranks blocks by the
+      reuse distance at their last access, and [CLOCK-Pro](/clock-pro/) is its clock form.
+    entries:
+      - ghost-lists
+      - arc
+      - car
+      - lirs
+      - clock-pro
+  - title: Admission and quick demotion
+    intro: >
+      A [cache admission policy](/cache-admission-policy/) decides whether a missed object enters the cache at all.
+      [TinyLFU](/tinylfu/) admits a new object only if a small sketch estimates it more frequent than the victim,
+      and [W-TinyLFU](/w-tinylfu/) adds a small LRU window in front. [S3-FIFO](/s3-fifo/) and [SIEVE](/sieve/)
+      use FIFO queues only, and remove objects requested once soon after they arrive.
+    entries:
+      - cache-admission-policy
+      - tinylfu
+      - w-tinylfu
+      - s3-fifo
+      - sieve
+  - title: Sizes, costs and sampling
+    intro: >
+      With [objects of different sizes](/variable-size-caching/), Belady's rule is no longer optimal and the
+      offline problem is strongly NP-hard. [GreedyDual-Size](/greedy-dual/) ranks objects by cost per byte plus an
+      inflation value and stays $k$-competitive. [LFU-DA](/lfu-da/) and [GDSF](/gdsf/) add counts to that rank,
+      while [hyperbolic caching](/hyperbolic-caching/) and [LHD](/lhd/) rank a random sample of objects.
+    entries:
+      - variable-size-caching
+      - greedy-dual
+      - lfu-da
+      - gdsf
+      - hyperbolic-caching
+      - lhd
+  - title: Caches in front of a store
+    intro: >
+      An application cache must also stay close to the truth. [TTL expiration](/ttl-expiration/) bounds how
+      old a value can be, the [cache-aside pattern](/cache-aside-pattern/) fills the cache on a miss and deletes
+      the key on a write, and [cache invalidation](/cache-invalidation/) covers the races that remain. A
+      [cache stampede](/cache-stampede/) happens when many requests miss on one hot key at once.
+    entries:
+      - ttl-expiration
+      - cache-aside-pattern
+      - cache-invalidation
+      - cache-stampede

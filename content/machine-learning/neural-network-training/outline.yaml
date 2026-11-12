@@ -1,0 +1,134 @@
+# The order of chapter 25.4, Neural network training. Groups are read in order; entries in a group too.
+groups:
+  - title: Networks and their derivatives
+    intro: >
+      A network is a composition of affine maps and an [activation function](/activation-function/), most
+      often the [ReLU](/relu/) $\max(0, z)$. Written as a [computational graph](/computational-graph/), it can be
+      differentiated by [automatic differentiation](/automatic-differentiation/), and the reverse mode on a
+      network is [backpropagation](/backpropagation/): every partial derivative of the loss for at most about
+      three times the multiply-adds of one forward pass. [Gradient checking](/gradient-checking/) tests the
+      result against finite differences.
+    entries:
+      - activation-function
+      - relu
+      - computational-graph
+      - automatic-differentiation
+      - backpropagation
+      - gradient-checking
+  - title: Sequences and memory
+    intro: >
+      A recurrent network is unrolled over its $T$ time steps and differentiated as one deep network; that is
+      [backpropagation through time](/backpropagation-through-time/), with memory $\Theta(TH)$ for $H$ hidden
+      units. [Teacher forcing](/teacher-forcing/) feeds the true previous output during training, which makes
+      the loss the exact likelihood of an autoregressive model. [Gradient checkpointing](/gradient-checkpointing/)
+      trades memory for recomputation, down to $O(\sqrt n)$ stored states for a chain of $n$ layers at the cost
+      of about one extra forward pass.
+    entries:
+      - backpropagation-through-time
+      - teacher-forcing
+      - gradient-checkpointing
+  - title: Gradients that vanish or explode
+    intro: >
+      The gradient that reaches layer $k$ is a product of one Jacobian per later layer, so it can shrink or
+      grow geometrically with depth. The [vanishing](/vanishing-gradient-problem/) and the
+      [exploding gradient problem](/exploding-gradient-problem/) make this precise with bounds in terms of
+      $\sup |f'|$ and the largest singular values of the weights. [Xavier](/xavier-initialization/) and
+      [He initialization](/he-initialization/) choose the variance of the initial weights to keep the signal at
+      one scale, and [gradient clipping](/gradient-clipping/) caps the norm of a step that would be too long.
+    entries:
+      - vanishing-gradient-problem
+      - exploding-gradient-problem
+      - xavier-initialization
+      - he-initialization
+      - gradient-clipping
+  - title: Normalization layers
+    intro: >
+      [Batch normalization](/batch-normalization/) standardizes each feature over a mini-batch and
+      [layer normalization](/layer-normalization/) over the features of one example; both make the output
+      invariant to the scale of the weights before them. [Weight normalization](/weight-normalization/) gets
+      that invariance by writing $w = g\,v/\|v\|$. [Spectral normalization](/spectral-normalization/) divides a
+      weight matrix by its largest singular value, which makes the layer 1-Lipschitz; in practice one step of
+      power iteration per update estimates that value from below, so the bound holds only approximately. The
+      speed-ups that these layers give are measured, not proved.
+    entries:
+      - batch-normalization
+      - layer-normalization
+      - weight-normalization
+      - spectral-normalization
+  - title: Step sizes, decay and adaptive optimizers
+    intro: >
+      A [learning rate schedule](/learning-rate-schedule/) sets the step size over time, and
+      [weight decay](/weight-decay/) shrinks the weights at each step; with plain SGD, decay equals an L2
+      penalty, and with Adam it does not, which is the point of [AdamW](/adamw/). [AMSGrad](/amsgrad/) divides by a running
+      maximum of the second moments, which gives sublinear regret on online convex problems where Adam can
+      fail. [RAdam](/radam/) damps Adam's first steps, and
+      [Adafactor](/adafactor/) stores its second moments in $n + m$ numbers per $n \times m$ matrix.
+    entries:
+      - learning-rate-schedule
+      - weight-decay
+      - adamw
+      - amsgrad
+      - radam
+      - adafactor
+  - title: Large batches, curvature and flat minima
+    intro: >
+      [Gradient accumulation](/gradient-accumulation/) builds a large batch from small ones, and
+      [mixed precision training](/mixed-precision-training/) runs most of the arithmetic in 16 bits. With large
+      batches, [LARS](/layer-wise-adaptive-rate-scaling/) and [LAMB](/lamb/) scale the step of each layer to the
+      norm of its weights. [K-FAC](/kronecker-factored-approximate-curvature/) approximates the natural gradient
+      with two small matrices per layer, and [sharpness-aware minimization](/sharpness-aware-minimization/)
+      takes the gradient at a nearby worse point, at the price of a second gradient per step.
+    entries:
+      - gradient-accumulation
+      - mixed-precision-training
+      - layer-wise-adaptive-rate-scaling
+      - lamb
+      - kronecker-factored-approximate-curvature
+      - sharpness-aware-minimization
+  - title: Regularization
+    intro: >
+      [Early stopping](/early-stopping/) returns the weights with the best validation error; for gradient
+      descent on least squares from zero, with $\eta s \le 1$ for every eigenvalue $s$, it shrinks each eigendirection
+      within a factor of two of ridge regression with $\lambda = 1/(\eta t)$.
+      [Dropout](/dropout/) is an adaptive L2 penalty for a linear model and a heuristic for a deep one.
+      [Data augmentation](/data-augmentation/), [label smoothing](/label-smoothing/) and
+      [adversarial training](/adversarial-training/) change the inputs, the targets, or the inputs in the worst
+      direction.
+    entries:
+      - early-stopping
+      - dropout
+      - data-augmentation
+      - label-smoothing
+      - adversarial-training
+  - title: Losses and teachers
+    intro: >
+      The [focal loss](/focal-loss/) multiplies the cross-entropy by $(1 - p_t)^\gamma$ so that the many easy
+      examples stop dominating. [Knowledge distillation](/knowledge-distillation/) trains a small network on the
+      softened outputs of a large one. [Contrastive divergence](/contrastive-divergence/) trains a restricted
+      Boltzmann machine with a short Gibbs chain in place of exact model samples; its update is biased.
+    entries:
+      - focal-loss
+      - knowledge-distillation
+      - contrastive-divergence
+  - title: Sparse and very wide networks
+    intro: >
+      [Pruning](/neural-network-pruning/) removes the weights or units with the smallest saliency, and the
+      [lottery ticket hypothesis](/lottery-ticket-hypothesis/) is the observation that some sparse subnetworks
+      train well from their original initial weights. [Double descent](/double-descent/) describes test error
+      that falls again past the point where the model fits the training data. The
+      [neural tangent kernel](/neural-tangent-kernel/) explains one limit: at infinite width, gradient flow on
+      squared loss is kernel regression.
+    entries:
+      - neural-network-pruning
+      - lottery-ticket-hypothesis
+      - double-descent
+      - neural-tangent-kernel
+  - title: Searching over settings
+    intro: >
+      [Hyperparameter tuning](/hyperparameter-tuning/) treats a full training run as one evaluation of a noisy
+      black box; random search, successive halving and Hyperband are its standard tools.
+      [Neural architecture search](/neural-architecture-search/) applies the same idea to the structure of the
+      network itself, where random search remains a strong baseline.
+    entries:
+      - hyperparameter-tuning
+      - neural-architecture-search

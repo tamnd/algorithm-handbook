@@ -1268,3 +1268,117 @@ paths:
           - ldpc-code
           - belief-propagation-decoding
           - polar-code
+  - id: machine-learning
+    title: Machine learning
+    for: a student who knows linear algebra, basic probability and the gradient methods of optimization, and wants to see what can be learned from data, by which algorithms, and with which guarantees.
+    intro: >
+      Learning from examples first: a loss, a class of hypotheses, the risk on data not yet seen, and the bounds
+      of statistical learning theory that say how many examples suffice. Then the classical learners, linear
+      models, kernels, trees and ensembles, and the structure found without labels by clustering and by
+      dimensionality reduction. Neural networks come next, with backpropagation and the practice that makes their
+      training work. The last two stages turn to uncertainty and to action: inference in graphical models and
+      hidden Markov models, then bandits and Markov decision processes, from value iteration to Q-learning and
+      policy gradients. Each step names its model, and each guarantee says whether it holds for all inputs, with
+      high probability or only in the limit.
+    stages:
+      - title: Learning from examples
+        steps:
+          - loss-function
+          - empirical-risk-minimization
+          - generalization-error
+          - overfitting
+          - bias-variance-tradeoff
+          - regularization
+          - cross-validation
+          - pac-learning
+          - vc-dimension
+          - sauer-shelah-lemma
+          - fundamental-theorem-of-statistical-learning
+      - title: Linear models and kernels
+        steps:
+          - linear-regression
+          - ordinary-least-squares
+          - ridge-regression
+          - lasso-regression
+          - logistic-regression
+          - entry: stochastic-gradient-descent
+            why: the method that fits most of the models of this path.
+          - perceptron
+          - perceptron-convergence-theorem
+          - support-vector-machine
+          - kernel-trick
+          - k-nearest-neighbors
+          - naive-bayes-classifier
+      - title: Trees and ensembles
+        steps:
+          - decision-tree-learning
+          - information-gain
+          - cart
+          - bagging
+          - random-forest
+          - boosting
+          - adaboost
+          - gradient-boosting
+      - title: Structure without labels
+        steps:
+          - clustering-problem
+          - k-means-problem
+          - k-means
+          - k-means-plus-plus
+          - single-linkage-clustering
+          - dbscan
+          - gaussian-mixture-model
+          - expectation-maximization
+          - entry: singular-value-decomposition
+            why: the factorization behind principal components.
+          - principal-component-analysis
+          - johnson-lindenstrauss-lemma
+          - random-projection
+          - spectral-clustering
+          - t-sne
+      - title: Training neural networks
+        steps:
+          - activation-function
+          - computational-graph
+          - automatic-differentiation
+          - backpropagation
+          - vanishing-gradient-problem
+          - xavier-initialization
+          - batch-normalization
+          - dropout
+          - weight-decay
+          - learning-rate-schedule
+          - adamw
+          - early-stopping
+      - title: Probabilistic inference
+        steps:
+          - bayes-theorem
+          - bayesian-network
+          - d-separation
+          - variable-elimination
+          - belief-propagation
+          - hidden-markov-model
+          - forward-backward-algorithm
+          - viterbi-algorithm
+          - baum-welch-algorithm
+          - entry: gibbs-sampling
+            why: approximate inference when exact inference is too costly.
+          - particle-filter
+          - variational-inference
+      - title: Learning to act
+        steps:
+          - multi-armed-bandit
+          - ucb1
+          - thompson-sampling
+          - markov-decision-process
+          - bellman-optimality-equation
+          - value-iteration
+          - policy-iteration
+          - temporal-difference-learning
+          - q-learning
+          - tabular-q-learning-convergence
+          - dqn
+          - policy-gradient-theorem
+          - reinforce
+          - actor-critic
+          - ppo

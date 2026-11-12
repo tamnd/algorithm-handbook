@@ -1,0 +1,19 @@
+## History
+
+Karl Pearson posed the problem of the line and plane of closest fit to a cloud of points in 1901, and Harold Hotelling named and developed principal components in 1933. Charles Spearman had already explained test scores by one common factor in 1904, the start of factor analysis. The year 1936 brought three results that the chapter still uses: Eckart and Young showed that the truncated SVD gives the best low-rank approximation, Fisher found the discriminant direction, and Hotelling defined canonical correlations. Richard Bellman used the phrase "curse of dimensionality" in the preface of his 1957 book *Dynamic Programming*.
+
+Multidimensional scaling came from psychology. Young and Householder gave the condition for a distance matrix to be Euclidean in 1938, and Torgerson turned it into classical MDS in 1952. Shepard (1962) fitted distances to the rank order of the dissimilarities, Kruskal (1964) defined the stress and minimized it, Sammon published his mapping in 1969, and de Leeuw introduced the majorization algorithm SMACOF in 1977.
+
+Johnson and Lindenstrauss proved their lemma in 1984 while studying Lipschitz extensions, with no algorithm in view. Frankl and Maehara simplified the proof in 1988, Indyk and Motwani used it for nearest-neighbor search in 1998, and Dasgupta and Gupta gave the short proof now taught. Achlioptas (2003) showed that random signs suffice, and Ailon and Chazelle (2006) made the map fast with the Walsh-Hadamard transform. Alon (2003) gave a nearly matching lower bound, and Larsen and Nelson (2017) showed that every map needs $\Omega(\varepsilon^{-2}\log n)$ dimensions, for all but very small $\varepsilon$.
+
+Signal processing and neural networks gave other methods. Kohonen introduced the self-organizing map in 1982, and Hastie and Stuetzle defined principal curves in 1989. Jutten and Hérault separated mixed signals in 1991, Comon defined independent component analysis in 1994, and Hyvärinen and Oja published FastICA in 1997. Paatero and Tapper proposed positive matrix factorization in 1994, and Lee and Seung made NMF widely known in 1999. Baldi and Hornik showed in 1989 that a linear autoencoder learns the PCA subspace; Hinton and Salakhutdinov trained deep ones in 2006, and Kingma and Welling, and independently Rezende, Mohamed and Wierstra, introduced the variational autoencoder in 2014.
+
+Two papers in the same issue of Science in December 2000, Isomap by Tenenbaum, de Silva and Langford and LLE by Roweis and Saul, started modern manifold learning. Laplacian eigenmaps (Belkin and Niyogi, 2001), Hessian eigenmaps (Donoho and Grimes, 2003), LTSA (Zhang and Zha, 2004), semidefinite embedding (Weinberger and Saul, 2004) and diffusion maps (Coifman and Lafon, 2006) followed within six years. For visualization, Hinton and Roweis proposed SNE in 2002, van der Maaten and Hinton introduced t-SNE in 2008, and McInnes, Healy and Melville released UMAP in 2018.
+
+## Further reading
+
+- I. T. Jolliffe, *Principal Component Analysis*, second edition, Springer, 2002. The standard monograph on PCA, its variants and the choice of the number of components.
+- Ingwer Borg and Patrick J. F. Groenen, *Modern Multidimensional Scaling: Theory and Applications*, second edition, Springer, 2005. Classical MDS, stress, SMACOF and their uses.
+- Aapo Hyvärinen, Juha Karhunen and Erkki Oja, *Independent Component Analysis*, Wiley, 2001. The model, its identifiability, the contrasts and FastICA, by its authors.
+- John A. Lee and Michel Verleysen, *Nonlinear Dimensionality Reduction*, Springer, 2007. A survey of the distance-preserving and topology-preserving methods, with quality measures.
+- Jiří Matoušek, *Lectures on Discrete Geometry*, Graduate Texts in Mathematics 212, Springer, 2002. Its chapter on embedding finite metric spaces proves the Johnson-Lindenstrauss lemma and the lower bounds for embeddings.

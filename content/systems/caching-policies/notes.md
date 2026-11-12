@@ -1,0 +1,19 @@
+## History
+
+Replacement policies began with virtual memory. In 1966 László Belady compared replacement algorithms for a virtual-storage computer at IBM, with the rule that is optimal when the future is known as the yardstick; with Nelson and Shedler he reported in 1969 that FIFO can fault more with more memory. Fernando Corbató described the clock rule of Multics in a 1968 report on a paging experiment. Peter Denning gave the working set model in 1968, and Mattson, Gecsei, Slutz and Traiger defined stack algorithms in 1970 and showed how one pass over a trace gives the hit ratio of every cache size. Aho, Denning and Ullman (1971) and King (1971) analyzed policies under the independent reference model, and Coffman and Denning collected that theory in *Operating Systems Theory* (1973).
+
+Hardware caches brought their own questions. Alan Jay Smith's survey *Cache memories* (1982) fixed the vocabulary of write policies, prefetching and set associativity, and Mark Hill's three Cs, from his 1987 thesis and published with Smith in 1989, split misses by cause. The worst-case view came in 1985, when Sleator and Tarjan proved that LRU and FIFO are $k$-competitive and that no deterministic policy does better. Neal Young's GreedyDual extended the bound to costs, and Cao and Irani's GreedyDual-Size (1997) carried it to web objects of different sizes.
+
+Database buffers drove the next wave. O'Neil, O'Neil and Weikum proposed LRU-K in 1993, and Johnson and Shasha's 2Q (1994) and Karedla, Love and Wherry's SLRU (1994) got much of its effect in constant time. LIRS (Jiang and Zhang, 2002) and ARC (Megiddo and Modha, 2003) used the history of evicted pages; CAR (2004) and CLOCK-Pro (2005) gave them clock forms. PostgreSQL used ARC and then 2Q before it settled on a clock sweep, and ZFS uses a form of ARC.
+
+Large web caches and key-value stores changed the workloads again: many objects are requested only once. TinyLFU (Einziger, Friedman and Manes; journal version 2017) counted requests in a small sketch and turned the question into one of admission, and W-TinyLFU became the policy of the Caffeine library. S3-FIFO (Yang and others, SOSP 2023) used FIFO queues with quick demotion and reported the lowest mean miss ratio on 10 of 14 datasets of production traces, with more throughput than LRU across threads. SIEVE (Zhang and others, NSDI 2024) aimed at a hit ratio at least as good as LRU's with one queue and one bit per object. On the measurement side, SHARDS (Waldspurger and others, 2015) made miss ratio curves cheap enough to compute online.
+
+## Further reading
+
+- Allan Borodin and Ran El-Yaniv, *Online Computation and Competitive Analysis*, Cambridge University Press, 1998. Chapters 3 and 4 cover paging in the worst case, deterministic and randomized.
+- John L. Hennessy and David A. Patterson, *Computer Architecture: A Quantitative Approach*, sixth edition, Morgan Kaufmann, 2017. Appendix B and Chapter 2 cover hardware caches, the average memory access time, write policies and multilevel caches.
+- Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau, *Operating Systems: Three Easy Pieces*. Chapter 22 is a short and free account of replacement policies in virtual memory.
+- Abraham Silberschatz, Peter B. Galvin and Greg Gagne, *Operating System Concepts*, tenth edition, Wiley, 2018. Chapter 10 has the classic page reference strings and the textbook policies.
+- Edward G. Coffman Jr. and Peter J. Denning, *Operating Systems Theory*, Prentice-Hall, 1973. The independent reference model and the stack algorithms, with proofs.
+- Alan Jay Smith, Cache memories, *ACM Computing Surveys* 14(3), 1982. Still the best survey of the design choices in a hardware cache.
+- Juncheng Yang, Yazhuo Zhang, Ziyue Qiu, Yao Yue and K. V. Rashmi, FIFO queues are all you need for cache eviction, SOSP 2023. A readable study of modern traces and of why quick demotion works.

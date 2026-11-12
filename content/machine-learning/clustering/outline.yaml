@@ -1,0 +1,144 @@
+# The order of chapter 25.2, Clustering. Groups are read in order; entries in a group too.
+groups:
+  - title: Clustering problems and their limits
+    intro: >
+      A [clustering problem](/clustering-problem/) fixes an objective before any algorithm runs: the
+      [k-means cost](/k-means-problem/) $\sum_x \min_c \|x - c\|^2$, the [k-median cost](/k-median-problem/)
+      $\sum_x \min_c d(x, c)$, the largest radius of k-center, or the smallest gap of the
+      [maximum spacing clustering](/maximum-spacing-k-clustering/). Of these, only the spacing objective is solved exactly in polynomial time on every input, by Kruskal's
+      algorithm.
+      The hardness theorems and [Kleinberg's impossibility theorem](/kleinberg-impossibility-theorem/) say what no
+      algorithm can promise.
+    entries:
+      - clustering-problem
+      - hard-and-soft-clustering
+      - k-means-problem
+      - k-median-problem
+      - maximum-spacing-k-clustering
+      - maximum-spacing-optimality
+      - k-means-np-hardness
+      - k-center-hardness
+      - kleinberg-impossibility-theorem
+  - title: Lloyd's algorithm and its relatives
+    intro: >
+      [Lloyd's algorithm](/k-means/) alternates between assigning points to the nearest center and moving each
+      center to its cluster mean. Neither step raises the cost, but the fixed point can be far from the optimum.
+      [k-means++](/k-means-plus-plus/) seeding gives an expected factor $8(\ln k + 2)$, and the other entries trade
+      speed, medoids, kernels or soft memberships against the plain method.
+    entries:
+      - k-means
+      - k-means-plus-plus
+      - k-means-plus-plus-guarantee
+      - hartigan-wong-algorithm
+      - mini-batch-k-means
+      - bisecting-k-means
+      - kernel-k-means
+      - partitioning-around-medoids
+      - gaussian-mixture-model
+      - fuzzy-c-means
+  - title: Judging a clustering
+    intro: >
+      [Cluster validity](/cluster-validity/) has two kinds of criteria. External ones, such as the
+      [Rand index](/rand-index/) and [normalized mutual information](/normalized-mutual-information/), compare a
+      clustering with known classes; only the [adjusted Rand index](/adjusted-rand-index/) corrects for chance.
+      Internal ones, such as the [silhouette coefficient](/silhouette-coefficient/), use the data alone, and each
+      prefers the cluster shape that its formula rewards.
+    entries:
+      - cluster-validity
+      - cluster-purity
+      - rand-index
+      - adjusted-rand-index
+      - normalized-mutual-information
+      - silhouette-coefficient
+      - calinski-harabasz-index
+      - davies-bouldin-index
+      - dunn-index
+  - title: Choosing the number of clusters
+    intro: >
+      The k-means cost falls as $k$ grows and reaches 0 at $k = n$, so it cannot choose $k$ by itself. The
+      [elbow method](/elbow-method/) looks for a bend in the curve, and the [gap statistic](/gap-statistic/) compares
+      it with data drawn from a reference distribution. [X-means](/x-means/) and [G-means](/g-means/) split clusters
+      while a model criterion or a test of normality asks for it. None of the four has a guarantee on $k$.
+    entries:
+      - elbow-method
+      - gap-statistic
+      - x-means
+      - g-means
+  - title: Hierarchical clustering
+    intro: >
+      A hierarchy is a nested family of clusters, drawn as a [dendrogram](/dendrogram/); a monotone dendrogram is the
+      same thing as an [ultrametric](/ultrametric/). [Agglomerative clustering](/agglomerative-clustering/) merges
+      the two closest clusters under a [linkage criterion](/linkage-criterion/), naively in $\Theta(n^3)$ time.
+      [SLINK](/slink/) and the [nearest-neighbor chain](/nearest-neighbor-chain/) bring this to $O(n^2)$, and
+      [Dasgupta's cost](/dasgupta-cost/) gives a whole tree an objective.
+    entries:
+      - dendrogram
+      - ultrametric
+      - hierarchical-clustering-problem
+      - linkage-criterion
+      - agglomerative-clustering
+      - lance-williams-formula
+      - single-linkage-clustering
+      - slink
+      - complete-linkage-clustering
+      - ward-method
+      - nearest-neighbor-chain
+      - divisive-clustering
+      - dasgupta-cost
+  - title: Density-based clustering
+    intro: >
+      The [density-based clustering problem](/density-based-clustering-problem/) takes clusters to be dense regions
+      separated by sparse ones, of any shape and in any number, with the rest left as noise. [DBSCAN](/dbscan/) fixes
+      one radius $\varepsilon$ and a count; [OPTICS](/optics/) and [HDBSCAN](/hdbscan/) cover all radii at once.
+      [Mean shift](/mean-shift/) and [DENCLUE](/denclue/) climb a kernel density estimate and have no global
+      guarantee.
+    entries:
+      - density-based-clustering-problem
+      - dbscan
+      - optics
+      - hdbscan
+      - mean-shift
+      - denclue
+      - density-peak-clustering
+  - title: Graphs and spectra
+    intro: >
+      [Spectral clustering](/spectral-clustering/) runs k-means on the rows of the eigenvectors of a graph
+      Laplacian, and the [normalized cut](/normalized-cut/) is the objective that it relaxes. The relaxation is exact
+      when the graph has $k$ connected components and has no general guarantee otherwise. The
+      [eigengap heuristic](/eigengap-heuristic/) reads $k$ from the spectrum, and
+      [affinity propagation](/affinity-propagation/) passes messages until exemplars emerge.
+    entries:
+      - spectral-clustering
+      - normalized-cut
+      - eigengap-heuristic
+      - affinity-propagation
+  - title: Pairwise judgments and constraints
+    intro: >
+      In [correlation clustering](/correlation-clustering/) the data is a $+$ or $-$ label on each pair, and the
+      number of clusters is free. The randomized [pivot algorithm](/pivot-algorithm/) has expected ratio 3 on
+      complete graphs, and [consensus clustering](/consensus-clustering/) applies it to combine several clusterings.
+      [Constrained clustering](/constrained-clustering/) adds must-link and cannot-link pairs to an objective, and
+      with cannot-link pairs even feasibility is NP-complete.
+    entries:
+      - correlation-clustering
+      - pivot-algorithm
+      - consensus-clustering
+      - constrained-clustering
+      - cop-k-means
+  - title: Large and high-dimensional data
+    intro: >
+      When the data does not fit in memory, [BIRCH](/birch/) and the [BFR algorithm](/bfr-algorithm/) keep only the
+      sums $(N, \mathrm{LS}, \mathrm{SS})$ of small clusters, and [streaming k-median](/streaming-k-median/) keeps a
+      constant factor, for a fixed $\varepsilon$, with about $n^{\varepsilon}$ memory. In high dimension a cluster may live in a subset of the
+      attributes, the [subspace clustering problem](/subspace-clustering-problem/), or in a submatrix, the
+      [biclustering problem](/biclustering-problem/).
+    entries:
+      - clustering-feature-tree
+      - birch
+      - bfr-algorithm
+      - canopy-clustering
+      - cure
+      - streaming-k-median
+      - subspace-clustering-problem
+      - clique-subspace-clustering
+      - biclustering-problem

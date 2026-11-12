@@ -1,0 +1,190 @@
+# The order of chapter 25.6, Reinforcement learning. Groups are read in order; entries in a group too.
+groups:
+  - title: Decisions, rewards and values
+    intro: >
+      A [Markov decision process](/markov-decision-process/) has states, actions, transition probabilities,
+      rewards and a discount $\gamma$. A [policy](/policy/) chooses the actions, and its
+      [state values](/state-value-function/) and [action values](/action-value-function/) are expected
+      [discounted returns](/discounted-return/). The two Bellman equations tie these values together: the
+      [expectation equation](/bellman-expectation-equation/) is a linear system for one policy, and the
+      [optimality equation](/bellman-optimality-equation/) has the optimal values as its only solution.
+    entries:
+      - markov-decision-process
+      - discount-factor
+      - reward-function
+      - policy
+      - discounted-return
+      - state-value-function
+      - action-value-function
+      - advantage-function
+      - bellman-expectation-equation
+      - bellman-optimality-equation
+
+  - title: Planning with a known model
+    intro: >
+      When the transitions and rewards are known, finding an optimal policy is
+      [MDP planning](/mdp-planning/), a problem that linear programming solves in polynomial time. The
+      [contraction](/bellman-contraction/) of the Bellman operators makes
+      [value iteration](/value-iteration/) converge at the rate $\gamma^k$, and the
+      [policy improvement theorem](/policy-improvement-theorem/) makes
+      [policy iteration](/policy-iteration/) stop at an optimal policy after finitely many steps. The other
+      entries mix the two methods or write the problem as a linear program.
+    entries:
+      - mdp-planning
+      - policy-evaluation
+      - iterative-policy-evaluation
+      - bellman-contraction
+      - value-iteration
+      - policy-improvement-theorem
+      - policy-iteration
+      - modified-policy-iteration
+      - linear-programming-for-mdps
+
+  - title: Bandits
+    intro: >
+      A [multi-armed bandit](/multi-armed-bandit/) is an MDP with one state, and it isolates the
+      [tradeoff](/exploration-exploitation-tradeoff/) between using what you know and learning more. The
+      regret of a good stochastic bandit algorithm grows like $\log n$, which the
+      [Lai-Robbins bound](/lai-robbins-lower-bound/) shows is the best possible; against rewards chosen by an
+      adversary, [EXP3](/exp3/) gets $O(\sqrt{nK \log K})$. The [Gittins index](/gittins-index/) solves the
+      Bayesian discounted version exactly.
+    entries:
+      - multi-armed-bandit
+      - exploration-exploitation-tradeoff
+      - epsilon-greedy
+      - ucb1
+      - thompson-sampling
+      - lai-robbins-lower-bound
+      - exp3
+      - contextual-bandit
+      - gittins-index
+
+  - title: Learning values from experience
+    intro: >
+      With no model, the value of a fixed policy must be learned from sampled episodes.
+      [Monte Carlo evaluation](/monte-carlo-policy-evaluation/) averages whole returns;
+      [TD learning](/temporal-difference-learning/) moves each value toward one reward plus the estimate of
+      the next state, driven by the [TD error](/td-error/). The $n$-step and $\lambda$ methods lie between the
+      two. The last two entries give the theory of noisy fixed-point iterations that the convergence proofs of
+      this chapter use.
+    entries:
+      - monte-carlo-policy-evaluation
+      - td-error
+      - temporal-difference-learning
+      - n-step-td
+      - eligibility-traces
+      - td-lambda
+      - stochastic-approximation
+      - robbins-monro-conditions
+
+  - title: Control from experience
+    intro: >
+      [Reinforcement learning control](/rl-control/) asks for a good policy of an MDP that can only be
+      sampled. [SARSA](/sarsa/) learns the values of the policy it follows; [Q-learning](/q-learning/) learns
+      the optimal values whatever policy it follows, and in a finite MDP it
+      [converges](/tabular-q-learning-convergence/) to them with probability 1 under step-size and exploration
+      conditions. [Importance sampling](/importance-sampling-off-policy/) is the general tool for learning
+      about one policy from the actions of another.
+    entries:
+      - rl-control
+      - monte-carlo-control
+      - sarsa
+      - q-learning
+      - expected-sarsa
+      - double-q-learning
+      - watkins-q-lambda
+      - tabular-q-learning-convergence
+      - importance-sampling-off-policy
+
+  - title: Learning and using a model
+    intro: >
+      [Model-based reinforcement learning](/model-based-reinforcement-learning/) learns the transitions and
+      rewards and then plans with them. [Dyna-Q](/dyna-q/) mixes real steps with planning steps on a table
+      model, and [prioritized sweeping](/prioritized-sweeping/) orders those steps by the size of the change.
+      The [successor representation](/successor-representation/) keeps a middle ground, and
+      [MuZero](/muzero/) learns a model only of what search needs.
+    entries:
+      - model-based-reinforcement-learning
+      - dyna-q
+      - prioritized-sweeping
+      - successor-representation
+      - muzero
+
+  - title: Value function approximation
+    intro: >
+      Large state spaces need values computed from features. On-policy linear TD
+      [converges](/value-function-approximation/) to the fixed point of the projected Bellman equation, and
+      [LSTD](/least-squares-td/) solves for it directly. Off-policy updates, bootstrapping and approximation
+      together can diverge, the [deadly triad](/deadly-triad/); [gradient TD](/gradient-temporal-difference/)
+      repairs the linear case. [DQN](/dqn/) and its refinements use neural networks with no convergence
+      guarantee and keep the updates stable with replay and target networks.
+    entries:
+      - value-function-approximation
+      - least-squares-td
+      - deadly-triad
+      - gradient-temporal-difference
+      - fitted-q-iteration
+      - experience-replay
+      - dqn
+      - prioritized-experience-replay
+      - double-dqn
+      - dueling-network
+
+  - title: Policy gradient methods
+    intro: >
+      Instead of learning values and acting greedily, a policy gradient method adjusts the parameters of the
+      policy itself. The [policy gradient theorem](/policy-gradient-theorem/) gives the gradient of the
+      expected return as an expectation that can be sampled, [REINFORCE](/reinforce/) samples it with whole
+      returns, and [actor-critic](/actor-critic/) methods replace the return by a learned critic. The later
+      entries control the size of each step ([TRPO](/trpo/), [PPO](/ppo/)), handle continuous actions with a
+      [deterministic policy](/deterministic-policy-gradient/), or add an entropy bonus to the reward
+      ([soft actor-critic](/soft-actor-critic/)).
+    entries:
+      - policy-gradient-theorem
+      - reinforce
+      - actor-critic
+      - generalized-advantage-estimation
+      - a2c
+      - a3c
+      - natural-policy-gradient
+      - trpo
+      - ppo
+      - deterministic-policy-gradient
+      - ddpg
+      - td3
+      - maximum-entropy-rl
+      - soft-actor-critic
+
+  - title: Off-policy evaluation and offline learning
+    intro: >
+      Logged data often come from another policy, and sometimes no new data can be collected at all.
+      [Off-policy evaluation](/off-policy-evaluation/) estimates the value of a new policy from such logs.
+      [Retrace](/retrace/) and [V-trace](/v-trace/) cut the importance ratios of multi-step returns to keep
+      their variance bounded. [Offline reinforcement learning](/offline-reinforcement-learning/) learns a
+      policy from a fixed dataset, and [conservative Q-learning](/conservative-q-learning/) guards it against
+      actions the data never show.
+    entries:
+      - off-policy-evaluation
+      - retrace
+      - v-trace
+      - offline-reinforcement-learning
+      - conservative-q-learning
+
+  - title: Beyond one agent and a given reward
+    intro: >
+      The last group relaxes the assumptions of the MDP. A [POMDP](/pomdp/) hides the state, the
+      [options framework](/options-framework/) adds actions that last many steps, and a
+      [Markov game](/markov-game/) has several players. When no reward is given, an agent can learn from an
+      expert, by [imitation](/imitation-learning/) or by [inverse reinforcement learning](/inverse-reinforcement-learning/);
+      when a reward is given but sparse, [potential-based shaping](/potential-based-reward-shaping/) adds
+      guidance without changing the optimal policies.
+    entries:
+      - pomdp
+      - options-framework
+      - markov-game
+      - minimax-q
+      - multi-agent-reinforcement-learning
+      - potential-based-reward-shaping
+      - imitation-learning
+      - dagger
+      - inverse-reinforcement-learning

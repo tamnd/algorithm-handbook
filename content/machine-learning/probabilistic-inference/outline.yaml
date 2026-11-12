@@ -1,0 +1,173 @@
+# The order of chapter 25.5, Probabilistic inference. Groups are read in order; entries in a group too.
+groups:
+  - title: Bayesian reasoning and estimation
+    intro: >
+      [Bayes' theorem](/bayes-theorem/) turns a prior and a likelihood into a posterior, and
+      [Bayesian inference](/bayesian-inference/) applies it to unknown parameters. A
+      [conjugate prior](/conjugate-prior/) keeps the update in closed form, and the
+      [marginal likelihood](/marginal-likelihood/) scores a whole model. Point estimates come from
+      [maximum likelihood](/maximum-likelihood-estimation/) or the posterior mode, and
+      [expectation-maximization](/expectation-maximization/) handles data with hidden parts. The group ends
+      with two priors that have no fixed number of parameters: the Gaussian process over functions and the
+      Dirichlet process over distributions.
+    entries:
+      - bayes-theorem
+      - bayesian-inference
+      - conjugate-prior
+      - marginal-likelihood
+      - maximum-likelihood-estimation
+      - maximum-a-posteriori-estimation
+      - exponential-family-distribution
+      - expectation-maximization
+      - gaussian-process
+      - dirichlet-process
+  - title: Graphical models and independence
+    intro: >
+      A [graphical model](/graphical-model/) is a joint distribution that factorizes over a graph, so that
+      missing edges stand for [conditional independences](/conditional-independence/). A
+      [Bayesian network](/bayesian-network/) uses a DAG with one table per node, and
+      [d-separation](/d-separation/) reads its independences off the graph in linear time. A
+      [Markov random field](/markov-random-field/) uses an undirected graph and clique potentials, and a
+      [factor graph](/factor-graph/) shows either kind of factorization exactly.
+    entries:
+      - conditional-independence
+      - graphical-model
+      - markov-property
+      - conditional-probability-table
+      - bayesian-network
+      - d-separation
+      - d-separation-query
+      - bayes-ball
+      - markov-random-field
+      - markov-blanket
+      - factor-graph
+  - title: Inference problems and their hardness
+    intro: >
+      The two basic queries are [marginal inference](/marginal-inference/), a sum over all the other
+      variables, and [MAP inference](/map-inference/), a maximization. Both are hard in general:
+      [Cooper's theorem](/cooper-theorem/) makes exact inference NP-hard, and the
+      [Dagum-Luby theorem](/dagum-luby-theorem/) extends this to approximation with evidence. The
+      [partition function](/partition-function/) $Z$ is the same kind of sum, shown here on the
+      [Potts model](/potts-model/).
+    entries:
+      - marginal-inference
+      - map-inference
+      - cooper-theorem
+      - dagum-luby-theorem
+      - partition-function
+      - potts-model
+  - title: Exact inference
+    intro: >
+      [Variable elimination](/variable-elimination/) sums the variables out one at a time, at a cost
+      exponential only in the induced width of the [elimination ordering](/elimination-ordering/). On a tree,
+      [belief propagation](/belief-propagation/) gets every marginal with two messages per edge, and
+      [max-product](/max-product/) does the same for the most probable assignment. The
+      [junction tree algorithm](/junction-tree-algorithm/) runs the same messages on a tree of cliques, so it
+      is exact on any graph, at a cost set by the width.
+    entries:
+      - variable-elimination
+      - elimination-ordering
+      - partition-function-computation
+      - message-passing
+      - belief-propagation
+      - max-product
+      - junction-tree
+      - junction-tree-algorithm
+  - title: Loopy and Gaussian message passing
+    intro: >
+      [Loopy belief propagation](/loopy-belief-propagation/) runs the tree messages on a graph with cycles.
+      It has no convergence guarantee, and its fixed points are the stationary points of the
+      [Bethe free energy](/bethe-free-energy/). Better schedules, larger regions and tree weights give the
+      three variants of the group; the optimum of the tree-reweighted one is an upper bound on $\log Z$. For a
+      [Gaussian graphical model](/gaussian-graphical-model/), the messages are Gaussian, and a converged run
+      gives exact means.
+    entries:
+      - loopy-belief-propagation
+      - bethe-free-energy
+      - residual-belief-propagation
+      - generalized-belief-propagation
+      - tree-reweighted-belief-propagation
+      - gaussian-graphical-model
+      - gaussian-belief-propagation
+  - title: Hidden Markov models
+    intro: >
+      A [hidden Markov model](/hidden-markov-model/) is a Markov chain seen through noisy symbols. Its three
+      problems are evaluation, decoding and learning, solved by the [forward algorithm](/forward-algorithm/),
+      the [Viterbi algorithm](/viterbi-algorithm/) and the [Baum-Welch algorithm](/baum-welch-algorithm/),
+      all built on dynamic programs over time that take $O(TN^2)$ time for $T$ symbols and $N$ states. The last three entries widen the model: explicit
+      state durations, factored states in a [dynamic Bayesian network](/dynamic-bayesian-network/), and a
+      discriminative [conditional random field](/conditional-random-field/).
+    entries:
+      - hidden-markov-model
+      - hmm-evaluation
+      - forward-algorithm
+      - hmm-decoding
+      - viterbi-algorithm
+      - forward-backward-algorithm
+      - hmm-parameter-learning
+      - baum-welch-algorithm
+      - hidden-semi-markov-model
+      - dynamic-bayesian-network
+      - conditional-random-field
+  - title: Sampling
+    intro: >
+      [Ancestral sampling](/ancestral-sampling/) draws exact samples from a Bayesian network, parents first.
+      [Likelihood weighting](/likelihood-weighting/) clamps the evidence and weights each sample instead of
+      rejecting it. [Resampling](/resampling/) turns weighted particles into equally weighted ones, and
+      [annealed importance sampling](/annealed-importance-sampling/) reaches a hard target through a chain of
+      easier ones. [Probabilistic programming](/probabilistic-programming/) runs such generic engines on
+      any model written as a program.
+    entries:
+      - ancestral-sampling
+      - likelihood-weighting
+      - resampling
+      - annealed-importance-sampling
+      - probabilistic-programming
+  - title: State-space models and filtering
+    intro: >
+      A [state-space model](/state-space-model/) has a hidden state that moves by a Markov law and is seen
+      through noise. [Filtering](/filtering/) tracks the current state, and [smoothing](/smoothing/)
+      revisits past states with later data. For linear Gaussian models the Kalman filter and the
+      [Rauch-Tung-Striebel smoother](/rauch-tung-striebel-smoother/) are exact; the extended and unscented
+      filters approximate the nonlinear case, and the [particle filter](/particle-filter/) and
+      [sequential Monte Carlo](/sequential-monte-carlo/) handle any model by sampling.
+    entries:
+      - state-space-model
+      - filtering
+      - smoothing
+      - extended-kalman-filter
+      - unscented-kalman-filter
+      - rauch-tung-striebel-smoother
+      - particle-filter
+      - sequential-monte-carlo
+  - title: Variational inference
+    intro: >
+      The [evidence lower bound](/evidence-lower-bound/) is at most $\log p(x)$, with a gap equal to a KL
+      divergence, so [variational inference](/variational-inference/) fits an approximate posterior by
+      raising it. [Mean field](/mean-field-approximation/) is the factorized case.
+      [Expectation propagation](/expectation-propagation/) matches moments instead, and the stochastic
+      methods scale the bound to models without closed forms and to large data. The group ends with
+      [latent Dirichlet allocation](/latent-dirichlet-allocation/), a topic model fitted by these methods or
+      by Gibbs sampling.
+    entries:
+      - evidence-lower-bound
+      - variational-inference
+      - mean-field-approximation
+      - expectation-propagation
+      - black-box-variational-inference
+      - stochastic-variational-inference
+      - wake-sleep-algorithm
+      - latent-dirichlet-allocation
+  - title: Learning structure and causal models
+    intro: >
+      The [Chow-Liu algorithm](/chow-liu-algorithm/) finds the best tree-shaped network with a maximum
+      spanning tree, and [structure learning](/bayesian-network-structure-learning/) searches over DAGs in
+      general. A [structural causal model](/structural-causal-model/) reads the graph as mechanisms, so it can
+      answer questions about interventions. The [back-door criterion](/backdoor-criterion/) and the
+      [do-calculus](/do-calculus/) say when such an answer follows from observational data.
+    entries:
+      - chow-liu-algorithm
+      - bayesian-network-structure-learning
+      - structural-causal-model
+      - backdoor-criterion
+      - do-calculus

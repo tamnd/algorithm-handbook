@@ -1,0 +1,138 @@
+# The order of chapter 25.3, Dimensionality reduction. Groups are read in order; entries in a group too.
+groups:
+  - title: Data in high dimension
+    intro: >
+      A data set of $n$ points with $d$ features has a [covariance matrix](/covariance-matrix/), the object that
+      most linear methods work on. In high dimension distances concentrate and volume moves to the boundary, the
+      [curse of dimensionality](/curse-of-dimensionality/). The [manifold hypothesis](/manifold-hypothesis/) says
+      that real data lie near a set of much lower [intrinsic dimension](/intrinsic-dimension/), which can be
+      estimated from nearest-neighbor distances, and an [embedding](/embedding/) is a map that keeps some of the
+      geometry of that set.
+    entries:
+      - covariance-matrix
+      - curse-of-dimensionality
+      - embedding
+      - manifold-hypothesis
+      - intrinsic-dimension
+      - intrinsic-dimension-estimation
+  - title: Principal component analysis
+    intro: >
+      [PCA](/principal-component-analysis/) projects the data onto the top $k$ eigenvectors of the covariance
+      matrix. Among all $k$-dimensional linear subspaces this one keeps the most variance and has the least
+      squared [reconstruction error](/reconstruction-error/), which equals the sum of the discarded eigenvalues.
+      The [explained variance](/explained-variance/) and the [scree plot](/scree-plot/) help choose $k$, and
+      [whitening](/whitening/) rescales the components to unit variance.
+    entries:
+      - principal-component-analysis
+      - explained-variance
+      - reconstruction-error
+      - scree-plot
+      - whitening
+  - title: PCA at scale and beyond
+    intro: >
+      [Randomized PCA](/randomized-pca/) finds the top components from a random sketch, with an error bound in
+      expectation, and [incremental PCA](/incremental-pca/) updates them one block at a time.
+      [Sparse PCA](/sparse-pca/) asks for components with few nonzero loadings, an NP-hard problem;
+      [robust PCA](/robust-pca/) splits the data into a low-rank part and sparse corruptions; and
+      [kernel PCA](/kernel-pca/) runs PCA in the feature space of a kernel.
+    entries:
+      - randomized-pca
+      - incremental-pca
+      - sparse-pca
+      - robust-pca
+      - kernel-pca
+  - title: Latent variable models
+    intro: >
+      [Factor analysis](/factor-analysis/) and [probabilistic PCA](/probabilistic-pca/) explain the covariance by a
+      few Gaussian factors plus noise, $\Sigma = WW^\top + \Psi$, and fit it by maximum likelihood. An
+      [autoencoder](/autoencoder/) learns a nonlinear encoder and decoder by minimizing the reconstruction error;
+      the linear one spans the PCA subspace. The [variational autoencoder](/variational-autoencoder/) makes the
+      code a random variable and maximizes a lower bound on the likelihood.
+    entries:
+      - factor-analysis
+      - probabilistic-pca
+      - autoencoder
+      - variational-autoencoder
+  - title: Labels, pairs and selected features
+    intro: >
+      Some projections use more than the points. [Linear discriminant analysis](/linear-discriminant-analysis/)
+      uses class labels and finds at most $c - 1$ directions that separate $c$ classes.
+      [Canonical correlation analysis](/canonical-correlation-analysis/) takes two views of the same examples and
+      finds the most correlated pairs of directions. [Feature selection](/feature-selection/) keeps a subset of the
+      original features instead of forming combinations.
+    entries:
+      - linear-discriminant-analysis
+      - canonical-correlation-analysis
+      - feature-selection
+  - title: Sources and parts
+    intro: >
+      In [blind source separation](/blind-source-separation/) the data are unknown mixtures of independent
+      signals. [ICA](/independent-component-analysis/) recovers them, up to order and scale, when at most one is
+      Gaussian; [FastICA](/fastica/) is its fixed-point algorithm, and
+      [projection pursuit](/projection-pursuit/) searches for the least Gaussian directions.
+      [Nonnegative matrix factorization](/nonnegative-matrix-factorization/) writes the data as sums of
+      nonnegative parts, and [latent semantic analysis](/latent-semantic-analysis/) applies a truncated SVD to a
+      term-document matrix.
+    entries:
+      - blind-source-separation
+      - independent-component-analysis
+      - fastica
+      - projection-pursuit
+      - nonnegative-matrix-factorization
+      - latent-semantic-analysis
+  - title: Random projections
+    intro: >
+      The [Johnson-Lindenstrauss lemma](/johnson-lindenstrauss-lemma/) says that a random linear map to
+      $k = O(\varepsilon^{-2}\log n)$ dimensions keeps all pairwise distances of $n$ points within a factor
+      $1 \pm \varepsilon$, with positive probability. [Random projection](/random-projection/) applies it with a
+      dense matrix, [sparse random projection](/sparse-random-projection/) and the
+      [fast JL transform](/fast-johnson-lindenstrauss-transform/) make the map cheaper to apply, and
+      [JL optimality](/johnson-lindenstrauss-optimality/) shows that the order of $k$ cannot be improved.
+    entries:
+      - johnson-lindenstrauss-lemma
+      - random-projection
+      - sparse-random-projection
+      - fast-johnson-lindenstrauss-transform
+      - johnson-lindenstrauss-optimality
+  - title: Multidimensional scaling
+    intro: >
+      [Multidimensional scaling](/multidimensional-scaling/) starts from a table of dissimilarities instead of
+      coordinates and places points so that their distances match it. [Classical MDS](/classical-mds/) solves this
+      with one eigendecomposition of the double-centered squared distances. [SMACOF](/smacof/) minimizes the stress
+      by majorization, and [Sammon mapping](/sammon-mapping/) weights the errors on small distances more.
+    entries:
+      - multidimensional-scaling
+      - classical-mds
+      - smacof
+      - sammon-mapping
+  - title: Manifold learning
+    intro: >
+      [Manifold learning](/manifold-learning/) assumes the data lie on a curved low-dimensional manifold and builds
+      a neighbor graph to see it. [Isomap](/isomap/) keeps graph distances, [LLE](/locally-linear-embedding/) keeps
+      local linear weights, and [Laplacian eigenmaps](/laplacian-eigenmaps/) keep neighbors close; each ends in one
+      eigenproblem. The other entries change the local model: a linear map, a random walk, a local Hessian, local
+      tangent spaces, or a semidefinite program.
+    entries:
+      - manifold-learning
+      - isomap
+      - locally-linear-embedding
+      - laplacian-eigenmaps
+      - locality-preserving-projections
+      - diffusion-maps
+      - hessian-eigenmaps
+      - local-tangent-space-alignment
+      - semidefinite-embedding
+  - title: Neighbor embeddings and maps
+    intro: >
+      [SNE](/stochastic-neighbor-embedding/), [t-SNE](/t-sne/) and [UMAP](/umap/) turn neighborhoods into
+      probabilities or weights and move points in a 2D map to match them, by gradient descent on a nonconvex
+      objective with no guarantee about the result. [Trustworthiness and continuity](/trustworthiness-and-continuity/)
+      measure how well a map keeps neighbors. The [self-organizing map](/self-organizing-map/) fits a grid of
+      prototypes, and [principal curves](/principal-curves/) fit a smooth curve through the middle of the data.
+    entries:
+      - stochastic-neighbor-embedding
+      - t-sne
+      - umap
+      - trustworthiness-and-continuity
+      - self-organizing-map
+      - principal-curves

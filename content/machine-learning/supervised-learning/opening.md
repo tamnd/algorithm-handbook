@@ -1,0 +1,28 @@
+A supervised learner is given examples, each an input with its correct answer, and must produce a rule that gives the answer for inputs it has not seen. A spam filter learns from mail that people have marked. A credit model learns from past loans and whether they were repaid. A model of house prices learns from past sales. When the answer is one of a few classes, the task is [classification](/classification/); when it is a number, it is [regression](/regression/).
+
+Two questions run through the chapter. The first is the one of any algorithm: how to compute the rule, and at what cost. The second is new: will a rule that fits the examples also work on new inputs? The entries answer it with a precise model. The examples are drawn independently from a fixed but unknown distribution, a [loss function](/loss-function/) scores each prediction, and the goal is a small expected loss on a new draw from the same distribution. Every guarantee in the chapter is stated in this model, and each one says whether it holds for every sample, with high probability over the sample, or only in the limit of infinite data. Keep these three apart as you read.
+
+## What the chapter covers
+
+The chapter is in ten groups, read in order.
+
+1. **The learning problem.** [Hypothesis classes](/hypothesis-class/), losses, the [Bayes optimal classifier](/bayes-optimal-classifier/) that sets the floor on error, [overfitting](/overfitting/), and [empirical risk minimization](/empirical-risk-minimization/).
+2. **Losses and measures of error.** The surrogate losses that learners minimize, the [bias-variance decomposition](/bias-variance-tradeoff/), the scores read from a confusion matrix, the [ROC curve](/roc-auc/), and [cross-validation](/cross-validation/).
+3. **Linear regression and regularization.** [Ordinary least squares](/ordinary-least-squares/), [ridge regression](/ridge-regression/), the [lasso](/lasso-regression/) and their relatives, and isotonic regression by [pool adjacent violators](/pool-adjacent-violators/).
+4. **Linear classifiers.** The [perceptron](/perceptron/) and its mistake bound, Winnow, [logistic regression](/logistic-regression/), and the reductions from many classes to two.
+5. **Generative classifiers and nearest neighbors.** [Naive Bayes](/naive-bayes-classifier/), quadratic discriminant analysis, and the [$k$-nearest neighbor](/k-nearest-neighbors/) rule with the Cover-Hart bound on its error.
+6. **Kernels and support vector machines.** The [kernel trick](/kernel-trick/), the theorems behind it, and the [support vector machine](/support-vector-machine/) with its training algorithms.
+7. **Decision trees.** [Decision trees](/decision-tree/), the greedy learners [ID3](/id3/), C4.5 and [CART](/cart/), and two ways to prune.
+8. **PAC learning and the VC dimension.** The [PAC model](/pac-learning/), the [VC dimension](/vc-dimension/), and the [fundamental theorem](/fundamental-theorem-of-statistical-learning/) that ties the two together.
+9. **Model selection, margins and noise.** Structural risk minimization, minimum description length, the margin bound and the statistical query model.
+10. **Ensembles.** [Bagging](/bagging/), [random forests](/random-forest/), [boosting](/boosting/) with [AdaBoost](/adaboost/) and [gradient boosting](/gradient-boosting/), and stacking.
+
+Groups 3 to 7 hold the methods; groups 8 and 9 hold the theory that says how much data a method needs. The ensembles come last because boosting rests on a theorem from the PAC model.
+
+## A first reading
+
+For a first reading, take these fifteen entries in order: [loss function](/loss-function/), [classification](/classification/), [generalization error](/generalization-error/), [overfitting](/overfitting/), [empirical risk minimization](/empirical-risk-minimization/), [cross-validation](/cross-validation/), [ordinary least squares](/ordinary-least-squares/), [ridge regression](/ridge-regression/), [perceptron](/perceptron/), [logistic regression](/logistic-regression/), [$k$-nearest neighbors](/k-nearest-neighbors/), [decision tree learning](/decision-tree-learning/), [support vector machine](/support-vector-machine/), [PAC learning](/pac-learning/) and [AdaBoost](/adaboost/). Most are marked *Intro* or *Core*. On a first pass you can skip the entries marked *Advanced* and *Research*, and most of groups 8 and 9 beyond PAC learning and the VC dimension. Read the proof of the [perceptron convergence theorem](/perceptron-convergence-theorem/) even so: it is short, and it is the model for many mistake bounds.
+
+## Before you start
+
+You need probability from Volume 1: [expected value](/expected-value/), [variance](/variance/), [conditional expectation](/conditional-expectation/), the [union bound](/union-bound/) and [Hoeffding's inequality](/hoeffding-inequality/), which turns one fixed hypothesis into a bound with high probability. From Volume 12 you need the [least squares problem](/least-squares-problem/), the [QR decomposition](/qr-decomposition/), the [singular value decomposition](/singular-value-decomposition/) and [positive definite matrices](/positive-definite-matrix/). From Volume 15 you need [convex functions](/convex-function/), [gradient descent](/gradient-descent/), [subgradients](/subgradient/), the [KKT conditions](/kkt-conditions/) and [quadratic programming](/quadratic-programming/), which the support vector machine uses. The tree learners use [Shannon entropy](/shannon-entropy/) from Volume 24, and the generative classifiers use [Bayes' theorem](/bayes-theorem/) and [maximum likelihood estimation](/maximum-likelihood-estimation/) from Chapter 25.5. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

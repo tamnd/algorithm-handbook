@@ -1,0 +1,17 @@
+## History
+
+The k-means idea has several parents. Hugo Steinhaus posed the problem of dividing a body into parts around centers in 1956. Stuart Lloyd described the alternating method in a Bell Labs memo of 1957, which was published only in 1982. Edward Forgy gave the same method in 1965, and James MacQueen named it k-means in 1967. John Hartigan and Manchek Wong published their point-by-point method in 1979. The analysis came much later. Andrea Vattani showed in 2011 that Lloyd's method can take exponentially many steps even in the plane. David Arthur and Sergei Vassilvitskii proposed k-means++ seeding in 2007 and proved its $O(\log k)$ bound in expectation.
+
+Hierarchical methods came from taxonomy. Florek and his colleagues in Wrocław described single linkage in 1951, and Peter Sneath used it for bacteria in 1957. Sokal and Michener introduced average linkage in 1958, and Joe Ward the minimum variance method in 1963. Lance and Williams unified the update rules in 1967, the year Stephen Johnson tied hierarchies to ultrametrics. John Gower and Gavin Ross linked single linkage to minimum spanning trees in 1969, and Robin Sibson's SLINK of 1973 made it run in quadratic time and linear memory. Sanjoy Dasgupta gave the hierarchy an objective of its own in 2016.
+
+Density and graphs gave the next methods. Fukunaga and Hostetler described mean shift in 1975, and Comaniciu and Meer made it a tool for computer vision in 2002. Ester, Kriegel, Sander and Xu published DBSCAN in 1996, and Campello, Moulavi and Sander turned it into a hierarchy with HDBSCAN in 2013. Jianbo Shi and Jitendra Malik relaxed the normalized cut to an eigenvector problem in 2000, and Ng, Jordan and Weiss gave the common spectral algorithm in 2001. Frey and Dueck published affinity propagation in 2007.
+
+Statistics added models and scores. Dempster, Laird and Rubin set out the EM algorithm in 1977, the usual way to fit Gaussian mixtures. Joseph Dunn proposed fuzzy clustering in 1973, and James Bezdek developed fuzzy c-means in 1981. William Rand defined his index in 1971, and Hubert and Arabie corrected it for chance in 1985. Peter Rousseeuw introduced silhouettes in 1987, and with Leonard Kaufman wrote the book that made PAM standard. Jon Kleinberg proved his impossibility theorem in 2002, and Bansal, Blum and Chawla posed correlation clustering in 2004.
+
+## Further reading
+
+- Leonard Kaufman and Peter J. Rousseeuw, *Finding Groups in Data: An Introduction to Cluster Analysis*, Wiley, 1990. PAM, CLARA, the agglomerative and divisive methods and silhouettes, each with worked data.
+- Anil K. Jain, "Data clustering: 50 years beyond K-means", *Pattern Recognition Letters* 31(8), 2010. A short survey of the field, its methods and its open problems.
+- Ulrike von Luxburg, "A tutorial on spectral clustering", *Statistics and Computing* 17(4), 2007. The graph Laplacians, the cut relaxations and the random walk view, with proofs.
+- Daniel Müllner, "Modern hierarchical, agglomerative clustering algorithms", arXiv:1109.2378, 2011. The exact algorithms for agglomerative clustering, including the nearest-neighbor chain and their conditions.
+- Christopher D. Manning, Prabhakar Raghavan and Hinrich Schütze, *Introduction to Information Retrieval*, Cambridge University Press, 2008. Chapters 16 and 17 treat flat and hierarchical clustering of documents, with evaluation by purity, NMI and the Rand index.
