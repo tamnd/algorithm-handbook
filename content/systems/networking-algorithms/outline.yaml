@@ -1,0 +1,180 @@
+# The order of chapter 26.6, Networking algorithms. Groups are read in order; entries in a group too.
+groups:
+  - title: Reliable transfer and flow control
+    intro: >
+      [Reliable data transfer](/reliable-data-transfer/) asks for every message exactly once and in order over a
+      channel that loses, duplicates and reorders packets. [Stop-and-wait](/stop-and-wait/) and the
+      [alternating bit protocol](/alternating-bit-protocol/) solve it with one packet in flight, and the
+      [sliding window protocol](/sliding-window-protocol/), [Go-Back-N](/go-back-n/) and
+      [selective repeat](/selective-repeat/) keep the link busy; with $k$-bit numbers over FIFO channels they are
+      correct if and only if $w_s + w_r \le 2^k$. [Flow control](/flow-control/) and
+      [Nagle's algorithm](/nagle-algorithm/) limit what the sender puts into the window.
+    entries:
+      - reliable-data-transfer
+      - stop-and-wait
+      - alternating-bit-protocol
+      - sliding-window-protocol
+      - go-back-n
+      - selective-repeat
+      - flow-control
+      - nagle-algorithm
+  - title: Timeouts and backoff
+    intro: >
+      A sender that waits for an acknowledgement needs a timeout, and in the
+      [asynchronous model](/asynchronous-model/) no finite timeout is always safe.
+      [Round-trip time estimation](/round-trip-time-estimation/) states the trade-off,
+      [Jacobson's rule](/jacobson-rto-estimation/) sets the timeout to $\mathrm{SRTT} + 4\,\mathrm{RTTVAR}$, and
+      [Karn's algorithm](/karn-algorithm/) keeps ambiguous samples out. [Exponential backoff](/exponential-backoff/)
+      doubles the wait after each failure, and its jitter keeps clients that failed together from retrying together.
+    entries:
+      - round-trip-time-estimation
+      - jacobson-rto-estimation
+      - exponential-backoff
+      - karn-algorithm
+  - title: Congestion control
+    intro: >
+      [Congestion control](/congestion-control/) chooses sending rates from signals seen at the edge: losses,
+      delay and marks. [AIMD](/aimd/) converges to equal shares in the synchronous model of Chiu and Jain, and it is
+      the core of [slow start](/slow-start/), [fast retransmit and fast recovery](/fast-retransmit-fast-recovery/),
+      [TCP Tahoe](/tcp-tahoe/) and [TCP Reno](/tcp-reno/), whose rate follows
+      $\frac{\mathrm{MSS}}{\mathrm{RTT}}\sqrt{3/(2p)}$ in a periodic loss model. [CUBIC](/tcp-cubic/),
+      [Vegas](/tcp-vegas/) and [BBR](/bbr-congestion-control/) change the signal or the growth curve; their
+      behaviour is known from fluid models and measurement, not from worst-case proofs.
+    entries:
+      - congestion-control
+      - aimd
+      - slow-start
+      - fast-retransmit-fast-recovery
+      - tcp-tahoe
+      - tcp-reno
+      - tcp-cubic
+      - tcp-vegas
+      - bbr-congestion-control
+  - title: Queue management and fair rates
+    intro: >
+      With [active queue management](/active-queue-management/) a router drops or [marks](/ecn/) packets before its
+      buffer is full. [RED](/red-random-early-detection/) acts on an average queue length, [CoDel](/codel/) on the
+      sojourn time and [PIE](/pie-aqm/) through a controller on the delay; all three are heuristics with no worst-case
+      bound on the delay. The fair share that the senders should reach is defined by
+      [max-min fairness](/max-min-fairness/) or [proportional fairness](/proportional-fairness/), and
+      [network utility maximization](/network-utility-maximization/) treats both as optimization problems whose dual
+      prices are the congestion signals.
+    entries:
+      - active-queue-management
+      - ecn
+      - red-random-early-detection
+      - codel
+      - pie-aqm
+      - max-min-fairness
+      - proportional-fairness
+      - network-utility-maximization
+  - title: Routing protocols
+    intro: >
+      The [routing problem](/routing-problem/) asks every router for a next hop toward every destination.
+      [Distance-vector routing](/distance-vector-routing/) is the [Bellman-Ford](/bellman-ford/) iteration spread over
+      the routers and suffers from [counting to infinity](/count-to-infinity/), which
+      [split horizon with poison reverse](/split-horizon-poison-reverse/) cures only for loops of two routers.
+      [Link-state routing](/link-state-routing/) floods the topology and runs [Dijkstra](/dijkstra/) at every
+      router. [Path-vector routing](/path-vector-routing/), [BGP](/bgp/) and [hot-potato routing](/hot-potato-routing/)
+      route between networks under policy, and the [spanning tree protocol](/spanning-tree-protocol/) makes a
+      bridged network loop-free.
+    entries:
+      - routing-problem
+      - distance-vector-routing
+      - count-to-infinity
+      - split-horizon-poison-reverse
+      - link-state-routing
+      - path-vector-routing
+      - bgp
+      - hot-potato-routing
+      - spanning-tree-protocol
+  - title: Multicast, compact and overlay routing
+    intro: >
+      [Multicast routing](/multicast-routing/) is a [Steiner tree](/steiner-tree-problem/) problem, and
+      [network coding](/network-coding/) reaches the min-cut rate to every receiver that routing alone can miss.
+      [Compact routing](/compact-routing/) trades path length for table size, with stretch 3 in
+      $\tilde O(\sqrt n)$ space per node. [Overlay lookup](/overlay-lookup/), [Chord](/chord/) and
+      [Kademlia](/kademlia/) route to keys among the members of a peer-to-peer system in $O(\log n)$ hops with
+      high probability; they are distributed algorithms, placed here because Volume 21 has no entry for them.
+    entries:
+      - multicast-routing
+      - network-coding
+      - compact-routing
+      - overlay-lookup
+      - chord
+      - kademlia
+  - title: Shared channels and ad hoc networks
+    intro: >
+      [Medium access control](/medium-access-control/) shares one broadcast channel. [Slotted ALOHA](/slotted-aloha/)
+      reaches at most $(1 - 1/n)^{n-1} \to 1/e$ of the slots, [binary exponential backoff](/binary-exponential-backoff/)
+      and [CSMA/CD](/csma-cd/) run classic Ethernet, and [CSMA/CA](/csma-ca/) runs Wi-Fi.
+      [Ad hoc routing](/ad-hoc-routing/) and [AODV](/aodv/) find routes among mobile radios, and
+      [geographic routing](/geographic-routing/) and [GPSR](/gpsr/) forward by position, with face routing on a
+      [planar](/planar-graph/) subgraph when greedy forwarding gets stuck.
+    entries:
+      - medium-access-control
+      - slotted-aloha
+      - binary-exponential-backoff
+      - csma-cd
+      - csma-ca
+      - ad-hoc-routing
+      - aodv
+      - geographic-routing
+      - gpsr
+  - title: Forwarding lookup and classification
+    intro: >
+      A router forwards each packet by [longest prefix match](/longest-prefix-match/) on its destination, a search
+      in a [trie](/trie/) of prefixes. The [tree bitmap](/tree-bitmap/) needs at most $\lfloor W/s \rfloor + 2$ memory reads
+      per lookup. [Packet classification](/packet-classification/) matches several header fields against rules, and
+      no known method has both small space and small time in the worst case; [tuple space search](/tuple-space-search/)
+      uses hash tables and [HiCuts](/hicuts/) a decision tree that is tuned on real rule sets.
+    entries:
+      - longest-prefix-match
+      - tree-bitmap
+      - packet-classification
+      - tuple-space-search
+      - hicuts
+  - title: Packet and switch scheduling
+    intro: >
+      [Packet scheduling](/packet-scheduling/) chooses the next packet to send on a link.
+      [Generalized processor sharing](/generalized-processor-sharing/) is the fluid ideal, and
+      [fair queueing](/fair-queueing/), [weighted fair queueing](/weighted-fair-queueing/) and
+      [deficit round robin](/deficit-round-robin/) approximate it with proved bounds;
+      [proportional fair scheduling](/proportional-fair-scheduling/) does the same job on a fading radio channel.
+      [Switch scheduling](/switch-scheduling/) picks a matching in a crossbar in every slot: the
+      [Birkhoff-von Neumann decomposition](/birkhoff-von-neumann-decomposition/) shows that every admissible load can be
+      served, and [PIM](/parallel-iterative-matching/) and [iSLIP](/islip/) find maximal matchings fast enough for hardware.
+    entries:
+      - packet-scheduling
+      - generalized-processor-sharing
+      - fair-queueing
+      - weighted-fair-queueing
+      - deficit-round-robin
+      - proportional-fair-scheduling
+      - switch-scheduling
+      - birkhoff-von-neumann-decomposition
+      - parallel-iterative-matching
+      - islip
+  - title: Interconnection networks and throughput
+    intro: >
+      In the networks of parallel machines, [store-and-forward](/store-and-forward/),
+      [wormhole routing](/wormhole-routing/) and [virtual cut-through](/virtual-cut-through/) trade latency against
+      buffers, and [dimension-order routing](/dimension-order-routing/) avoids [deadlock](/deadlock/) by its order of
+      dimensions. [Permutation routing](/permutation-routing/), [Valiant's routing](/valiant-routing/),
+      [oblivious routing](/oblivious-routing/) and the [Beneš network](/benes-network-routing/) ask how fast any
+      permutation can be carried. [Maximum-throughput routing](/maximum-throughput-routing/),
+      [wireless link scheduling](/wireless-link-scheduling/) and [backpressure routing](/backpressure-routing/) keep
+      queues stable for every load inside the capacity region; backpressure routing is not the
+      [backpressure](/backpressure/) of rate limiting in Chapter 26.8.
+    entries:
+      - store-and-forward
+      - wormhole-routing
+      - virtual-cut-through
+      - dimension-order-routing
+      - permutation-routing
+      - valiant-routing
+      - oblivious-routing
+      - benes-network-routing
+      - maximum-throughput-routing
+      - wireless-link-scheduling
+      - backpressure-routing

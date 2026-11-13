@@ -11,10 +11,10 @@ opening, groups and a reading order for each chapter, summaries, exercises with 
 reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
 the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.24.0
+## Volumes in edition 0.25.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.24.0](https://github.com/tamnd/algorithm/releases/tag/v0.24.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.25.0](https://github.com/tamnd/algorithm/releases/tag/v0.25.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from; a larger third number (such as 0.20.1) marks a
 new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
@@ -47,7 +47,7 @@ new build of the same release. The books are on the
 | 23 | Cryptography | 390 | written |
 | 24 | Compression and coding | 220 | written |
 | 25 | Machine learning | 419 | written |
-| 26 | Systems | 53 | Chapter 26.1 written; openings only for 26.2–26.8 |
+| 26 | Systems | 442 | written |
 | 27–31 | Biology … Complexity | – | forthcoming: the site has only short pages so far |
 
 ## Building

@@ -1,0 +1,119 @@
+# The order of the chapter Load balancing and hashing. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the balancer
+    intro: >
+      The [load balancing problem](/load-balancing-problem/) sends each arriving request to one of $n$ servers
+      so that the busiest one stays close to the mean. A [load balancer](/load-balancer/) is the component
+      that does it: a front end, a pool, a policy and a view of health. It can choose once per flow at
+      [layer 4](/layer-4-load-balancing/) or once per request at [layer 7](/layer-7-load-balancing/), and
+      [DNS](/dns-load-balancing/) spreads clients before they reach any balancer.
+    entries:
+      - load-balancing-problem
+      - load-balancer
+      - layer-4-load-balancing
+      - layer-7-load-balancing
+      - dns-load-balancing
+  - title: Partitioning data by key
+    intro: >
+      When requests carry a key, the server is fixed by the data it holds. [Sharding](/sharding/) splits a
+      data set by key, [hash partitioning](/hash-partitioning/) spreads keys evenly but loses their order, and
+      [range partitioning](/range-partitioning/) keeps the order at the price of choosing split points. Even a
+      perfect hash spreads keys, not requests, which is the subject of [load skew](/load-skew/).
+    entries:
+      - sharding
+      - hash-partitioning
+      - range-partitioning
+      - load-skew
+  - title: Policies that ignore the load
+    intro: >
+      The cheapest policies read no load at all. [Random](/random-load-balancing/) and
+      [weighted random](/weighted-random-load-balancing/) choice need no shared state and balance only in
+      expectation; [round robin](/round-robin-load-balancing/) and [weighted round robin](/weighted-round-robin/)
+      keep a counter and balance the count of requests exactly in every arrival order.
+      [Source IP hash](/source-ip-hash/) picks the server from the client address, which gives affinity but
+      moves most clients when the server list changes.
+    entries:
+      - random-load-balancing
+      - weighted-random-load-balancing
+      - round-robin-load-balancing
+      - weighted-round-robin
+      - source-ip-hash
+  - title: Policies that read the load
+    intro: >
+      [Least connections](/least-connections/) sends each request to the backend with the fewest requests in
+      flight; it is join the shortest queue, optimal for identical exponential servers in a queueing model.
+      [Weighted least connections](/weighted-least-connections/) divides the count by a capacity weight, and
+      [least response time](/least-response-time/) multiplies it by a measured latency. These are heuristics
+      outside their models, and the entries state what their invariants give.
+    entries:
+      - least-connections
+      - weighted-least-connections
+      - least-response-time
+  - title: Random choices and the maximum load
+    intro: >
+      With $n$ requests on $n$ servers chosen at random, the busiest server has $(1 + o(1)) \ln n / \ln\ln n$
+      requests with high probability ([maximum load](/balls-into-bins-max-load/)). Looking at two servers and
+      taking the less loaded cuts this to $\ln\ln n / \ln 2 + O(1)$ ([two choices](/power-of-two-choices/), with
+      the proof for $d$ choices in [its own entry](/power-of-d-choices-theorem/)). [Peak EWMA](/peak-ewma/) is a
+      production policy built on the sampled choice.
+    entries:
+      - balls-into-bins-max-load
+      - power-of-two-choices
+      - power-of-d-choices-theorem
+      - peak-ewma
+  - title: Consistent hashing on a ring
+    intro: >
+      The [dynamic partitioning problem](/dynamic-partitioning-problem/) asks for a map from keys to servers
+      that stays balanced and moves few keys when servers come and go. [Consistent hashing](/consistent-hashing/)
+      puts keys and servers on a [hash ring](/hash-ring/), so a join moves an expected $1/(n+1)$ of the keys.
+      With one point per server the largest share is near $\ln n / n$; [virtual nodes](/virtual-nodes/) and the
+      [max load bound](/consistent-hashing-max-load-bound/) say how many points bring it near $1/n$.
+    entries:
+      - dynamic-partitioning-problem
+      - consistent-hashing
+      - hash-ring
+      - virtual-nodes
+      - consistent-hashing-max-load-bound
+  - title: What a consistent hash must guarantee
+    intro: >
+      Karger and his colleagues defined the properties that the rest of the chapter measures methods by. The
+      [balance property](/balance-property/) asks that every bucket get a fair share with high probability,
+      the [monotonicity property](/monotonicity-property/) that a new bucket take keys only from the old ones
+      and never shuffle the rest, and [spread and load](/spread-and-load/) bound the damage when clients see
+      different sets of buckets.
+    entries:
+      - balance-property
+      - monotonicity-property
+      - spread-and-load
+  - title: Other consistent hashes
+    intro: >
+      [Rendezvous hashing](/rendezvous-hashing/) gives each key to the server with the highest score, with no
+      ring, at $\Theta(n)$ per lookup; [CARP](/carp/) is its weighted form for web proxies.
+      [Jump consistent hash](/jump-consistent-hash/) needs no state at all but numbers its buckets.
+      [Maglev hashing](/maglev-hashing/) trades monotonicity for a table with exact balance and $O(1)$ lookups,
+      [multi-probe consistent hashing](/multi-probe-consistent-hashing/) uses $k$ probes instead of many points,
+      and [bounded loads](/bounded-load-consistent-hashing/) cap every server at $\lceil (1+\varepsilon) m/n \rceil$.
+    entries:
+      - rendezvous-hashing
+      - carp
+      - jump-consistent-hash
+      - maglev-hashing
+      - multi-probe-consistent-hashing
+      - bounded-load-consistent-hashing
+  - title: Running a pool
+    intro: >
+      A policy is only as good as its list of backends. [Health checking](/health-checking/) and
+      [service discovery](/service-discovery/) keep the list current, [connection draining](/connection-draining/)
+      and [failover](/failover/) take a backend out with and without warning, and
+      [load shedding](/load-shedding/) protects a server that has more work than it can do.
+      [Sticky sessions](/sticky-sessions/), [direct server return](/direct-server-return/) and
+      [ECMP hashing](/ecmp-hashing/) are the places where balancers meet sessions and the network.
+    entries:
+      - health-checking
+      - service-discovery
+      - connection-draining
+      - failover
+      - load-shedding
+      - sticky-sessions
+      - direct-server-return
+      - ecmp-hashing

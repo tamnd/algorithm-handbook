@@ -1,0 +1,190 @@
+# The order of chapter 26.5, Database algorithms. Groups are read in order; entries in a group too.
+groups:
+  - title: Relations, algebra and plans
+    intro: >
+      The [relational model](/relational-model/) stores data as finite relations, and
+      [relational algebra](/relational-algebra/) gives the operators that every query is built from. A
+      [query plan](/query-plan/) is a tree of those operators with an algorithm named for each one, and the
+      [iterator model](/iterator-model/) runs the tree by letting the root pull tuples one at a time.
+    entries:
+      - relational-model
+      - relational-algebra
+      - query-plan
+      - iterator-model
+  - title: Joins and aggregation
+    intro: >
+      A [join](/relational-join/) must read every page of both inputs, so $M + N$ page I/Os is a lower bound.
+      The nested-loop family works for any condition and costs about $\lceil M/(B-2) \rceil N$ in its block form;
+      [sort-merge join](/sort-merge-join/) and [Grace hash join](/grace-hash-join/) cost $3(M + N)$ for an
+      equi-join when memory is large enough, and [hybrid hash join](/hybrid-hash-join/) keeps part of the work
+      in memory. Semijoins and [Bloom joins](/bloom-join/) shrink an input before the join. Grouping is close
+      to joining: [hash aggregation](/hash-aggregation/) uses the same tables and the same partitions.
+    entries:
+      - relational-join
+      - nested-loop-join
+      - block-nested-loop-join
+      - index-nested-loop-join
+      - sort-merge-join
+      - hash-join
+      - grace-hash-join
+      - hybrid-hash-join
+      - semijoin
+      - bloom-join
+      - group-by-aggregation
+      - hash-aggregation
+  - title: Query optimization
+    intro: >
+      An optimizer estimates how many tuples each subplan returns, prices each plan with a
+      [cost model](/cost-model/), and searches for the cheapest. The estimates come from
+      [selectivities](/selectivity/) and [histograms](/histogram/) under assumptions of independence and
+      uniformity, and their errors grow with the number of joins. Even for the estimates the search is hard:
+      [join ordering](/join-ordering/) is NP-hard in general, and the
+      [System R dynamic program](/selinger-join-enumeration/) solves it exactly over left-deep plans in time
+      exponential in the number of relations. How good the chosen plan is on the real data is measured, not
+      proved.
+    entries:
+      - selectivity
+      - histogram
+      - cardinality-estimation
+      - cost-model
+      - query-optimization
+      - predicate-pushdown
+      - join-ordering
+      - selinger-join-enumeration
+  - title: Joins of many relations
+    intro: >
+      A plan of two-way joins can build an intermediate result far larger than the final output. For
+      [acyclic joins](/acyclic-join-evaluation/), [Yannakakis's algorithm](/yannakakis-algorithm/) first removes
+      every dangling tuple with semijoins and then evaluates a full join in time linear in input plus output. For any join,
+      the [AGM bound](/agm-bound/) gives the largest possible output from the sizes of the inputs, and
+      [generic join](/generic-join/) and [leapfrog triejoin](/leapfrog-triejoin/) run within it, up to
+      logarithmic and query-dependent factors.
+    entries:
+      - multiway-join
+      - acyclic-join-evaluation
+      - yannakakis-algorithm
+      - agm-bound
+      - generic-join
+      - leapfrog-triejoin
+  - title: Indexes and materialized views
+    intro: >
+      An index changes which pages a query must read. A [clustered index](/clustered-index/) puts the
+      matches of a range on consecutive pages, a [covering index](/covering-index/) answers a query without the
+      table, and [bitmap indexes](/bitmap-index/) and [zone maps](/zone-map/) serve analytic scans. A
+      [materialized view](/materialized-view/) stores a whole query result and must be
+      [maintained](/view-maintenance/) as the base tables change. Choosing which indexes and views to keep is
+      NP-hard, and the tools that choose them search over the optimizer's estimates.
+    entries:
+      - clustered-index
+      - covering-index
+      - bulk-loading-b-tree
+      - bitmap-index
+      - zone-map
+      - join-index
+      - index-selection
+      - learned-index
+      - database-cracking
+      - materialized-view
+      - view-maintenance
+      - incremental-view-maintenance
+      - view-selection
+  - title: Top-k and skyline queries
+    intro: >
+      Some queries want only the best answers. A [top-k query](/top-k-query/) combines the grades of an object
+      in several sorted lists, and [Fagin's algorithm](/fagin-algorithm/), the
+      [threshold algorithm](/threshold-algorithm/) and the [no-random-access algorithm](/no-random-access-algorithm/)
+      stop reading as soon as the answer is certain, in a cost model that counts sorted and random accesses.
+      A skyline query returns the tuples that no other tuple dominates, by a window scan in
+      [BNL](/bnl-skyline/) or after a presort in [SFS](/sort-filter-skyline/).
+    entries:
+      - top-k-query
+      - fagin-algorithm
+      - threshold-algorithm
+      - no-random-access-algorithm
+      - bnl-skyline
+      - sort-filter-skyline
+  - title: Transactions and concurrency control
+    intro: >
+      A transaction should behave as if it ran alone. In the schedule model of reads, writes and commits, this
+      is [serializability](/serializability/), and its testable form, conflict serializability, holds exactly
+      when the [conflict graph](/conflict-graph/) is acyclic. [Two-phase locking](/two-phase-locking/) is proved
+      to allow only conflict serializable schedules; [timestamp ordering](/timestamp-ordering/),
+      [optimistic validation](/optimistic-concurrency-control/) and
+      [multiversion concurrency control](/multiversion-concurrency-control/) reach serializability without
+      waiting for locks. [Snapshot isolation](/snapshot-isolation/) is weaker and allows write skew, and
+      [serializable snapshot isolation](/serializable-snapshot-isolation/) closes that gap.
+    entries:
+      - acid-properties
+      - serializability
+      - conflict-graph
+      - conflict-serializability
+      - view-serializability
+      - isolation-levels
+      - concurrency-control
+      - two-phase-locking
+      - strict-two-phase-locking
+      - wait-die-and-wound-wait
+      - phantom-problem
+      - predicate-locking
+      - timestamp-ordering
+      - thomas-write-rule
+      - optimistic-concurrency-control
+      - multiversion-concurrency-control
+      - snapshot-isolation
+      - serializable-snapshot-isolation
+  - title: Recovery
+    intro: >
+      A crash loses main memory and keeps the disk, and [recovery](/crash-recovery/) must leave the effects of
+      exactly the committed transactions. The [steal and force policies](/steal-and-force-policies/) of the
+      buffer decide whether undo, redo or both are needed. [Write-ahead logging](/write-ahead-logging/) makes
+      both possible, [checkpoints](/checkpointing/) bound how much log a restart reads, and
+      [group commit](/group-commit/) shares one log write among many commits. [Shadow paging](/shadow-paging/)
+      avoids the log, and [ARIES](/aries-recovery/) is the log-based method most systems follow.
+    entries:
+      - crash-recovery
+      - steal-and-force-policies
+      - write-ahead-logging
+      - checkpointing
+      - group-commit
+      - shadow-paging
+      - aries-recovery
+  - title: Dependencies and normal forms
+    intro: >
+      A [functional dependency](/functional-dependency/) says that some attributes fix others. The
+      [attribute closure](/attribute-closure-algorithm/) of a set takes linear time and decides whether
+      a dependency follows from others, and [Armstrong's axioms](/armstrongs-axioms/) derive exactly the implied
+      ones. On this base stand the normal forms: [BCNF decomposition](/bcnf-decomposition/) always gives a
+      lossless join but can lose dependencies, while [3NF synthesis](/third-normal-form-synthesis/) keeps both.
+      The [chase](/chase-algorithm/) tests a decomposition for a lossless join.
+    entries:
+      - first-normal-form
+      - functional-dependency
+      - normalization
+      - attribute-closure-problem
+      - attribute-closure-algorithm
+      - armstrongs-axioms
+      - dependency-implication-problem
+      - minimal-cover-problem
+      - boyce-codd-normal-form
+      - lossless-join-decomposition
+      - chase-algorithm
+      - bcnf-decomposition
+      - dependency-preserving-decomposition
+      - third-normal-form
+      - third-normal-form-synthesis
+  - title: Queries as logic
+    intro: >
+      Read as logic, a select-project-join query is a conjunctive query, and the
+      [Chandra–Merlin theorem](/chandra-merlin-theorem/) decides whether one such query is contained in another
+      by a homomorphism, an NP-complete test. [Datalog](/datalog/) adds recursion with Horn rules, whose
+      meaning is a least fixed point; [semi-naive evaluation](/semi-naive-evaluation/) computes it bottom up
+      with little repeated work, [magic sets](/magic-sets/) restrict it to the facts a query needs, and
+      [DRed](/dred-algorithm/) maintains it under updates.
+    entries:
+      - query-containment-problem
+      - chandra-merlin-theorem
+      - datalog
+      - datalog-evaluation
+      - semi-naive-evaluation
+      - magic-sets
+      - dred-algorithm

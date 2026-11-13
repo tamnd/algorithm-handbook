@@ -1,0 +1,142 @@
+# The order of chapter 26.4, Garbage collection. Groups are read in order; entries in a group too.
+groups:
+  - title: Garbage and reachability
+    intro: >
+      The [mutator](/mutator-and-collector/) runs the program and changes the heap; the collector frees what the
+      mutator can no longer reach. An object is live when a chain of pointers leads to it from the
+      [roots](/gc-roots/), and [garbage](/garbage/) otherwise. [Automatic memory reclamation](/automatic-memory-reclamation/)
+      states the problem: safety is required, completeness and promptness are desired, and throughput, pauses and
+      space are traded against each other.
+    entries:
+      - mutator-and-collector
+      - gc-roots
+      - heap-reachability
+      - garbage
+      - automatic-memory-reclamation
+
+  - title: Tracing collectors
+    intro: >
+      A [tracing collector](/tracing-garbage-collection/) finds the live objects by a graph search from the roots,
+      with the mutator stopped. [Mark-and-sweep](/mark-and-sweep/) costs time in the live data for the mark and in
+      the heap size for the sweep; [lazy sweeping](/lazy-sweeping/) moves the sweep out of the pause and
+      [Schorr-Waite marking](/schorr-waite-marking/) removes the mark stack. A [copying collector](/copying-collection/)
+      touches only the live data but keeps half the memory empty, and [Cheney's algorithm](/cheney-copying-collector/)
+      copies with no stack at all. The [space-time tradeoff](/gc-space-time-tradeoff/) says exactly what more memory buys.
+    entries:
+      - tracing-garbage-collection
+      - precise-garbage-collection
+      - stop-the-world-collection
+      - mark-and-sweep
+      - lazy-sweeping
+      - schorr-waite-marking
+      - copying-collection
+      - cheney-copying-collector
+      - gc-space-time-tradeoff
+
+  - title: Compaction
+    intro: >
+      [Heap compaction](/heap-compaction/) moves the live objects together so that the free space is one block and
+      allocation is a bump of a pointer. [Mark-compact](/mark-compact/) does it in place after marking.
+      [Two-finger compaction](/two-finger-compaction/) fills holes from the top in two passes but scrambles the order;
+      [Lisp 2 compaction](/lisp2-compaction/) keeps the order at the price of a forwarding word per object and three passes.
+    entries:
+      - heap-compaction
+      - mark-compact
+      - two-finger-compaction
+      - lisp2-compaction
+
+  - title: Collecting without type information
+    intro: >
+      A [conservative collector](/conservative-garbage-collection/) treats every word that could be a pointer as one,
+      so it keeps some garbage and must not move what such a word points to. The
+      [Boehm-Demers-Weiser collector](/boehm-gc/) does this for C and C++ with mark-sweep;
+      [mostly-copying collection](/mostly-copying-collection/) pins only the pages that ambiguous roots point into
+      and copies the rest.
+    entries:
+      - conservative-garbage-collection
+      - boehm-gc
+      - mostly-copying-collection
+
+  - title: Reference counting
+    intro: >
+      [Reference counting](/reference-counting/) frees an object when the count of pointers to it drops to zero, at
+      the write that removes the last one, but it never frees a dead cycle. [Deferred](/deferred-reference-counting/)
+      counting skips the roots, and [weighted](/weighted-reference-counting/) counting removes the messages on a copy
+      in a distributed heap. [Cycle collection](/cycle-collection/) is the garbage left over, and
+      [trial deletion](/trial-deletion/) finds it in time linear in the subgraph below the candidates.
+    entries:
+      - reference-counting
+      - deferred-reference-counting
+      - weighted-reference-counting
+      - cycle-collection
+      - trial-deletion
+
+  - title: Generations
+    intro: >
+      The [generational hypothesis](/generational-hypothesis/), that most objects die young, is a measured property
+      of programs, not a theorem. [Generational collection](/generational-garbage-collection/) bets on it: it copies a
+      small nursery often, with the old-to-young pointers that a [write barrier](/write-barrier/) records in a
+      [remembered set](/remembered-set/) or a [card table](/card-marking/) as extra roots. The
+      [pause-time model](/generational-collector-pause-tradeoff/) gives the cost of the nursery size and the tenuring
+      threshold, and the [train algorithm](/train-algorithm/) and [Beltway](/generational-collector-beltway/) collect
+      the old space in pieces.
+    entries:
+      - generational-hypothesis
+      - write-barrier
+      - generational-garbage-collection
+      - remembered-set
+      - card-marking
+      - generational-collector-pause-tradeoff
+      - train-algorithm
+      - generational-collector-beltway
+
+  - title: Tricolor marking and barriers
+    intro: >
+      [Tricolor marking](/tricolor-marking/) describes a mark phase with white, gray and black objects, and proves
+      that marking is safe if the weak tricolor invariant holds at the end. [Incremental collection](/incremental-garbage-collection/)
+      interleaves small slices of marking with the mutator. The [incremental update barrier](/incremental-update-barrier/)
+      keeps the strong invariant and needs a final rescan of the roots; [snapshot-at-the-beginning](/snapshot-at-the-beginning/)
+      keeps the weak one and needs none. A [read barrier](/read-barrier/) lets a collector move objects while the
+      mutator runs, as in [Baker's real-time collector](/baker-real-time-collector/).
+    entries:
+      - tricolor-marking
+      - incremental-garbage-collection
+      - incremental-update-barrier
+      - snapshot-at-the-beginning
+      - read-barrier
+      - baker-real-time-collector
+
+  - title: Parallel, concurrent and on-the-fly collection
+    intro: >
+      A [parallel collector](/parallel-garbage-collection/) splits one pause among several collector threads. A
+      [concurrent collector](/concurrent-garbage-collection/) marks on its own threads while the mutator runs, with a
+      short pause at the start and a remark at the end. An [on-the-fly collector](/on-the-fly-garbage-collection/)
+      replaces even those pauses by handshakes with each thread in turn.
+    entries:
+      - parallel-garbage-collection
+      - concurrent-garbage-collection
+      - on-the-fly-garbage-collection
+
+  - title: Production collectors
+    intro: >
+      These collectors combine the ideas above. [Garbage-First](/garbage-first-collector/) collects any set of regions
+      with remembered sets and picks the regions with the most garbage per cost. [Immix](/immix-collector/) marks lines
+      in blocks and bumps into free lines. [Shenandoah](/shenandoah-collector/), [ZGC](/z-garbage-collector/) and
+      [C4](/c4-collector/) move objects while the program runs, behind a read barrier. Their entries model the
+      mechanism; the pause times they report are measurements.
+    entries:
+      - garbage-first-collector
+      - immix-collector
+      - shenandoah-collector
+      - z-garbage-collector
+      - c4-collector
+
+  - title: Weak references and finalization
+    intro: >
+      A [weak reference](/weak-reference/) does not keep its target alive, and the collector clears it when the target
+      dies. An [ephemeron](/ephemeron/) keeps its value only while its key is reachable by another path.
+      [Finalization](/finalization/) runs program code for a dead object, which can bring it back to life.
+    entries:
+      - weak-reference
+      - ephemeron
+      - finalization

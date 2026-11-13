@@ -41,14 +41,14 @@
 
 16. • An [asymmetric TSP](/asymmetric-tsp/) instance has the costs below, where the row is the start of an arc and the column its end. The costs obey the directed triangle inequality.
 
-    | from \ to | $A$ | $B$ | $C$ | $D$ |
-    |---|---|---|---|---|
-    | $A$ | 0 | 1 | 7 | 8 |
-    | $B$ | 3 | 0 | 9 | 9 |
-    | $C$ | 4 | 5 | 0 | 1 |
-    | $D$ | 8 | 6 | 9 | 0 |
+| from \ to | $A$ | $B$ | $C$ | $D$ |
+|---|---|---|---|---|
+| $A$ | 0 | 1 | 7 | 8 |
+| $B$ | 3 | 0 | 9 | 9 |
+| $C$ | 4 | 5 | 0 | 1 |
+| $D$ | 8 | 6 | 9 | 0 |
 
-    Run the repeated cycle cover algorithm, taking the alphabetically first city of each cycle as its representative. Give each cycle cover, the total cost of the arcs and the bound $\lfloor \log_2 n \rfloor \cdot \text{OPT}$. Shortcut the circuit $A\,B\,A\,C\,D\,C\,A$ to a tour, and compare with OPT and with the reverse of the optimal tour.
+Run the repeated cycle cover algorithm, taking the alphabetically first city of each cycle as its representative. Give each cycle cover, the total cost of the arcs and the bound $\lfloor \log_2 n \rfloor \cdot \text{OPT}$. Shortcut the circuit $A\,B\,A\,C\,D\,C\,A$ to a tour, and compare with OPT and with the reverse of the optimal tour.
 
 17. • Put $n$ cities $0, 1, \ldots, n - 1$ on a one-way ring road, so that the cost from $i$ to $j$ is $(j - i) \bmod n$. Show that these costs obey the directed triangle inequality. Find OPT and the cost of the same tour driven in the opposite direction. What does this say about solving an asymmetric instance by any method that ignores direction?
 

@@ -1,0 +1,167 @@
+# The order of chapter 26.2, Scheduling. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its measures
+    intro: >
+      The [scheduling problem](/scheduling-problem/) assigns jobs to machines over time and minimizes one
+      objective, such as the makespan or the sum of completion times. Operating systems judge their schedulers
+      by the [scheduling metrics](/scheduling-metrics/): turnaround, waiting and response time per job, and
+      throughput and utilization for the run. [CPU scheduling](/cpu-scheduling/) states the problem a kernel
+      solves, [preemption](/preemption/) says when it may take the processor back, and a
+      [work-conserving](/work-conserving-scheduling/) scheduler never idles while work waits, so on one server
+      the order of service changes only who waits, not how much work is left.
+    entries:
+      - scheduling-problem
+      - scheduling-metrics
+      - cpu-scheduling
+      - preemption
+      - work-conserving-scheduling
+      - utilization
+
+  - title: Classic CPU policies
+    intro: >
+      These are the policies of every operating-systems course. [FCFS](/fcfs-scheduling/) runs jobs in arrival
+      order; [shortest-job-first](/shortest-job-first/) runs the shortest predicted burst and, when all jobs are
+      present at the start with known bursts, [minimizes the average waiting time](/sjf-optimality/). [Round robin](/round-robin/)
+      adds a timer, [priority scheduling](/priority-scheduling/) adds ranks, and [aging](/aging/) keeps low
+      ranks from starving. The multilevel queues combine them, and the
+      [multilevel feedback queue](/multilevel-feedback-queue/) learns from a job's past which queue it belongs in.
+    entries:
+      - fcfs-scheduling
+      - shortest-job-first
+      - sjf-optimality
+      - round-robin
+      - priority-scheduling
+      - aging
+      - multilevel-queue-scheduling
+      - multilevel-feedback-queue
+
+  - title: Proportional share and timers
+    intro: >
+      A proportional-share scheduler gives each client a set share of the processor. [Lottery
+      scheduling](/lottery-scheduling/) draws a ticket at random, so the shares are right in expectation;
+      [stride scheduling](/stride-scheduling/) gets them right to within one quantum between any two clients,
+      with no randomness. The [Completely Fair Scheduler](/completely-fair-scheduler/) of Linux follows the same
+      idea with a weighted virtual runtime. A [timing wheel](/timing-wheel/) holds the timers that end the
+      quanta and wake the sleepers.
+    entries:
+      - lottery-scheduling
+      - stride-scheduling
+      - completely-fair-scheduler
+      - timing-wheel
+
+  - title: Disk scheduling
+    intro: >
+      A hard disk serves a queue of requests for cylinders, and the order decides how far the head moves.
+      [Disk scheduling](/disk-scheduling/) states the problem and solves the static batch exactly.
+      [SSTF](/shortest-seek-time-first/) serves the nearest request, [SCAN](/scan-algorithm/) sweeps like an
+      elevator, [LOOK](/look/) turns at the last request, and the circular forms
+      [C-SCAN](/c-scan/) and [C-LOOK](/c-look/) serve in one direction only, to even out the waits.
+    entries:
+      - disk-scheduling
+      - shortest-seek-time-first
+      - scan-algorithm
+      - look
+      - c-scan
+      - c-look
+
+  - title: Real-time tasks and static tables
+    intro: >
+      In [real-time scheduling](/real-time-scheduling/) every job has a deadline, and the question, asked
+      before the system runs, is whether a deadline can ever be missed. The [periodic](/periodic-task-model/) and
+      [sporadic](/sporadic-task-model/) task models describe the work, and the pattern of releases repeats every
+      [hyperperiod](/hyperperiod/). A [cyclic executive](/cyclic-executive/) and a
+      [time-triggered](/time-triggered-scheduling/) system fix the whole schedule in a table built offline.
+      [Pinwheel scheduling](/pinwheel-scheduling/) asks when such a table exists for windows of given lengths.
+    entries:
+      - real-time-scheduling
+      - periodic-task-model
+      - sporadic-task-model
+      - hyperperiod
+      - cyclic-executive
+      - time-triggered-scheduling
+      - pinwheel-scheduling
+
+  - title: Fixed priorities
+    intro: >
+      Most real-time kernels give each task one priority. [Rate-monotonic](/rate-monotonic-scheduling/)
+      priorities rank tasks by period and are [optimal among fixed priorities](/rate-monotonic-optimality/) when
+      deadlines equal periods. The [Liu-Layland bound](/liu-layland-utilization-bound/)
+      $U \le n(2^{1/n} - 1)$ is a sufficient test; [response-time analysis](/response-time-analysis/) is
+      exact for deadlines at most the periods, with no jitter or blocking. [Deadline-monotonic](/deadline-monotonic-scheduling/)
+      priorities extend the optimality to such deadlines.
+    entries:
+      - fixed-priority-scheduling
+      - rate-monotonic-scheduling
+      - rate-monotonic-optimality
+      - liu-layland-utilization-bound
+      - response-time-analysis
+      - deadline-monotonic-scheduling
+
+  - title: Deadlines as priorities
+    intro: >
+      [Earliest deadline first](/earliest-deadline-first/) runs the job with the nearest deadline. On one
+      preemptive processor it meets every deadline whenever any schedule does ([proof](/edf-optimality/)), so
+      with implicit deadlines it can use the whole processor. [Least laxity first](/least-laxity-first/) is
+      also optimal there but switches more, and [schedulability analysis](/schedulability-analysis/) collects the
+      tests for both kinds of priority. Deadlines also drive [speed scaling](/speed-scaling/), where the
+      [YDS algorithm](/yds-algorithm/) finds the speeds of least energy.
+    entries:
+      - earliest-deadline-first
+      - edf-optimality
+      - least-laxity-first
+      - schedulability-analysis
+      - speed-scaling
+      - yds-algorithm
+
+  - title: Locks and servers
+    intro: >
+      Real tasks share locks and serve requests that do not come at a steady rate. A lock can make a
+      high-priority job wait for a low one, which is [priority inversion](/priority-inversion/); the
+      [inheritance](/priority-inheritance-protocol/) and [ceiling](/priority-ceiling-protocol/) protocols bound
+      that wait. A server task with a budget serves the irregular requests: the
+      [deferrable](/deferrable-server/) and [sporadic](/sporadic-server/) servers under fixed priorities, and
+      the [constant bandwidth server](/constant-bandwidth-server/) under EDF.
+    entries:
+      - priority-inversion
+      - priority-inheritance-protocol
+      - priority-ceiling-protocol
+      - deferrable-server
+      - sporadic-server
+      - constant-bandwidth-server
+
+  - title: One machine and flow shops
+    intro: >
+      The machine scheduling of operations research has exact rules for a few small cases. On
+      [one machine](/single-machine-scheduling/), [Smith's rule](/smiths-rule/) minimizes the
+      [weighted completion time](/weighted-completion-time/) and the
+      [Moore-Hodgson algorithm](/moore-hodgson-algorithm/) [minimizes the number of late jobs](/minimizing-late-jobs/).
+      With two machines in sequence, [Johnson's rule](/johnsons-rule/) minimizes the makespan of the
+      [two-machine flow shop](/two-machine-flow-shop/); with [three machines](/three-machine-flow-shop/) the
+      problem is strongly NP-hard.
+    entries:
+      - single-machine-scheduling
+      - weighted-completion-time
+      - smiths-rule
+      - minimizing-late-jobs
+      - moore-hodgson-algorithm
+      - two-machine-flow-shop
+      - johnsons-rule
+      - johnsons-rule-two-machine-flow-shop
+      - three-machine-flow-shop
+
+  - title: Projects, task graphs and clusters
+    intro: >
+      The [critical path method](/critical-path-method/) finds the least time of a project with precedence
+      arcs and no resource limits; [resource-constrained project scheduling](/resource-constrained-project-scheduling/)
+      adds the limits and becomes strongly NP-hard. [HEFT](/heft/) places a task graph on processors of
+      different speeds. A shared [cluster](/cluster-scheduling/) runs parallel jobs with
+      [gang scheduling](/gang-scheduling/) and [backfilling](/backfilling/), and divides several resources
+      among users by [dominant resource fairness](/dominant-resource-fairness/).
+    entries:
+      - critical-path-method
+      - resource-constrained-project-scheduling
+      - heft
+      - cluster-scheduling
+      - gang-scheduling
+      - backfilling
+      - dominant-resource-fairness

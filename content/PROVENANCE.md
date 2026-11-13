@@ -75,6 +75,11 @@ policies* of Volume 26 *Systems*. Eight agents shared them: one per chapter of V
 openings of Chapters 26.2 to 26.8, which have no entries yet. The coordinating agent added a learning path
 *Machine learning* to Volume 0.
 
+For edition 0.25.0, the site's release v0.25.0 wrote Chapters 26.2 to 26.8 of Volume 26 *Systems*. Seven agents
+shared them, one per chapter, the writer of Chapter 26.8 also rewriting the volume introduction to cover the whole
+volume; each chapter's opening, written from the site's short pages for 0.24.0, was replaced. The coordinating
+agent added a learning path *Systems* to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -86,4 +91,6 @@ openings of Chapters 26.2 to 26.8, which have no entries yet. The coordinating a
 ## Errors in the entries
 
 While writing, the agents noted claims in the entries that look wrong or inconsistent. The pages avoid those
-claims. The list is kept with the project's notes, to be reported to `tamnd/algorithm`.
+claims. The list is kept with the project's notes. Most of the errors found up to edition 0.24.0 were fixed in
+the site by pull requests to `tamnd/algorithm` in November 2026, after the site's release v0.25.0; the next
+edition built from a later release picks the fixes up.

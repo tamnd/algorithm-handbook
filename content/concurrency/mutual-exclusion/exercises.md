@@ -26,15 +26,15 @@
 
 14. • A system has three resource types with $(9, 6, 6)$ units and five processes. Use the [banker's algorithm](/banker-algorithm/).
 
-    | process | allocation | maximum claim |
-    |---|---|---|
-    | $P_0$ | 1 1 0 | 5 3 2 |
-    | $P_1$ | 2 0 1 | 3 2 2 |
-    | $P_2$ | 3 0 2 | 7 1 3 |
-    | $P_3$ | 1 1 1 | 2 2 2 |
-    | $P_4$ | 0 2 1 | 4 3 3 |
+| process | allocation | maximum claim |
+|---|---|---|
+| $P_0$ | 1 1 0 | 5 3 2 |
+| $P_1$ | 2 0 1 | 3 2 2 |
+| $P_2$ | 3 0 2 | 7 1 3 |
+| $P_3$ | 1 1 1 | 2 2 2 |
+| $P_4$ | 0 2 1 | 4 3 3 |
 
-    (a) Is the state safe? Give a safe sequence if it is. (b) $P_3$ requests $(0, 1, 1)$; is it granted? (c) Starting again from the table, $P_4$ requests $(0, 1, 1)$; is it granted?
+(a) Is the state safe? Give a safe sequence if it is. (b) $P_3$ requests $(0, 1, 1)$; is it granted? (c) Starting again from the table, $P_4$ requests $(0, 1, 1)$; is it granted?
 
 15. • Resource types $A$, $B$, $C$ have 2, 1 and 2 units. $P_0$ holds one $A$ and requests one $B$; $P_1$ holds the $B$ and requests one $A$ and one $C$; $P_2$ holds one $A$ and one $C$ and requests nothing; $P_3$ holds one $C$ and requests one $A$. (a) Find a cycle in the [resource allocation graph](/resource-allocation-graph/), and show by [deadlock detection](/deadlock-detection/) that no process is deadlocked. (b) Now $P_2$ also requests one $B$. Which processes are deadlocked? Which of them lie on no cycle?
 

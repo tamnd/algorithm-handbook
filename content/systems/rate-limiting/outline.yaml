@@ -1,0 +1,65 @@
+# The order of chapter 26.8, Rate limiting. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      A rate limit is a family of time intervals, each with a cap on the requests that may pass in it.
+      The first entry states the problem, the limits in use and what an online limiter can and cannot
+      achieve; the second fixes the interface that every limiter of the chapter offers, with the laws
+      it must keep.
+    entries:
+      - rate-limiting-problem
+      - rate-limiter
+
+  - title: Window counters
+    intro: >
+      The simplest limits count requests in windows of length $w$. The fixed window is exact for
+      aligned windows but lets $2n$ requests pass across an edge. The sliding log is exact for every
+      window and pays with $n$ timestamps per key; the sliding counter keeps three numbers and estimates
+      the sliding count from two fixed windows.
+    entries:
+      - fixed-window-counter
+      - sliding-window-log
+      - sliding-window-counter
+
+  - title: Token and leaky buckets
+    intro: >
+      A token bucket of rate $r$ and depth $b$ lets at most $r\tau + b$ units pass in any interval of
+      length $\tau$, and it refuses only what would break that bound. The leaky bucket meter is the same
+      test seen from the other side, and GCRA stores it as one timestamp. Burst tolerance measures the
+      $b$ of each of these limits, and of the window counters too.
+    entries:
+      - token-bucket
+      - leaky-bucket-meter
+      - burst-tolerance
+      - gcra
+
+  - title: Policing, shaping and marking
+    intro: >
+      In a network the same buckets act on packets. A policer drops or marks what does not conform; a
+      shaper delays it until it does, and the leaky bucket queue is the simplest shaper. The three-color
+      markers of RFC 2697 and RFC 2698 use two buckets to sort packets into green, yellow and red.
+    entries:
+      - traffic-policing
+      - leaky-bucket-queue
+      - traffic-shaping
+      - single-rate-three-color-marker
+      - two-rate-three-color-marker
+
+  - title: Overload and flow control
+    intro: >
+      A limit on one client does not protect a server from all of its clients together. Admission
+      control decides whether new work fits the capacity that is left, throttling slows work down
+      instead of refusing it, and backpressure lets a slow consumer stop a fast producer before any
+      buffer overflows.
+    entries:
+      - admission-control
+      - throttling
+      - backpressure
+
+  - title: One limit over many servers
+    intro: >
+      When requests for one key reach many servers, the limit is global but each decision is local.
+      The last entry shows what a static split, a delayed shared count and token leasing each
+      guarantee, and what they cost in messages and in unused capacity.
+    entries:
+      - distributed-rate-limiting

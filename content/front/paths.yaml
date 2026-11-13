@@ -1382,3 +1382,122 @@ paths:
           - reinforce
           - actor-critic
           - ppo
+  - id: systems
+    title: Systems
+    for: a student who knows the basic data structures, hashing and a little probability, and wants to see the algorithms inside operating systems, databases, networks and large services, and which of their properties are proved and which are only measured.
+    intro: >
+      Caching first: what to keep in a small fast memory, the offline optimum, the competitive ratio of LRU and
+      the policies that real caches use. Then the two resources an operating system shares, processor time and
+      memory: the scheduling rules and the real-time tests that say whether every deadline is met, the allocators
+      and their fragmentation, and the garbage collectors that free memory for a program. Databases come next,
+      with joins, query plans and the protocols that make transactions serializable and recoverable. The last
+      stages are about networks and services: routing, congestion control and fair queueing, then load balancing
+      by consistent hashing and the power of two choices, and rate limiting by token buckets. Each step says what
+      is proved, under which model, and what is only measured.
+    stages:
+      - title: Caching
+        steps:
+          - locality-of-reference
+          - cache-hit-ratio
+          - entry: belady-optimal
+            why: the offline optimum against which every policy of this stage is measured.
+          - lru
+          - lru-competitiveness
+          - fifo-replacement
+          - belady-anomaly
+          - mattson-stack-algorithm
+          - miss-ratio-curve
+          - arc
+          - clock
+          - tinylfu
+          - s3-fifo
+          - write-back
+      - title: Scheduling the processor
+        steps:
+          - scheduling-metrics
+          - fcfs-scheduling
+          - shortest-job-first
+          - sjf-optimality
+          - round-robin
+          - multilevel-feedback-queue
+          - lottery-scheduling
+          - stride-scheduling
+          - completely-fair-scheduler
+          - johnsons-rule
+          - dominant-resource-fairness
+      - title: Real-time scheduling
+        steps:
+          - periodic-task-model
+          - rate-monotonic-scheduling
+          - liu-layland-utilization-bound
+          - response-time-analysis
+          - earliest-deadline-first
+          - edf-optimality
+          - priority-inversion
+          - priority-inheritance-protocol
+          - priority-ceiling-protocol
+      - title: Memory allocation and garbage collection
+        steps:
+          - external-fragmentation
+          - first-fit-allocation
+          - best-fit-allocation
+          - segregated-free-lists
+          - buddy-system
+          - robson-bound
+          - slab-allocator
+          - heap-reachability
+          - mark-and-sweep
+          - reference-counting
+          - cheney-copying-collector
+          - mark-compact
+          - generational-garbage-collection
+          - entry: tricolor-marking
+            why: the invariant that every incremental and concurrent collector keeps.
+          - write-barrier
+      - title: Databases
+        steps:
+          - relational-algebra
+          - nested-loop-join
+          - sort-merge-join
+          - grace-hash-join
+          - agm-bound
+          - yannakakis-algorithm
+          - selinger-join-enumeration
+          - cardinality-estimation
+          - serializability
+          - conflict-serializability
+          - two-phase-locking
+          - multiversion-concurrency-control
+          - snapshot-isolation
+          - write-ahead-logging
+          - aries-recovery
+      - title: Networks
+        steps:
+          - distance-vector-routing
+          - count-to-infinity
+          - link-state-routing
+          - longest-prefix-match
+          - sliding-window-protocol
+          - round-trip-time-estimation
+          - aimd
+          - tcp-reno
+          - tcp-cubic
+          - bbr-congestion-control
+          - fair-queueing
+          - deficit-round-robin
+          - red-random-early-detection
+          - max-min-fairness
+      - title: Load balancing and rate limiting
+        steps:
+          - balls-into-bins-max-load
+          - power-of-two-choices
+          - consistent-hashing
+          - rendezvous-hashing
+          - jump-consistent-hash
+          - maglev-hashing
+          - bounded-load-consistent-hashing
+          - least-connections
+          - token-bucket
+          - leaky-bucket-meter
+          - gcra
+          - sliding-window-counter

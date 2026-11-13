@@ -1,0 +1,100 @@
+# The order of chapter 26.3, Memory allocation. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its costs
+    intro: >
+      An [allocator](/allocator/) answers each `malloc` at once with a block that meets no live block, and it
+      never moves a block it has handed out. It pays for this in two kinds of waste.
+      [External fragmentation](/external-fragmentation/) is free memory cut into pieces too small to use, and
+      [internal fragmentation](/internal-fragmentation/) is space lost inside a block by rounding.
+      [Memory compaction](/memory-compaction/) is what becomes possible when blocks may move after all; the
+      garbage-collected form is [heap compaction](/heap-compaction/), in the next chapter.
+    entries:
+      - allocator
+      - external-fragmentation
+      - internal-fragmentation
+      - memory-compaction
+  - title: Free lists and fits
+    intro: >
+      A [free list](/free-list/) threads the free blocks together through their own words.
+      [Coalescing](/coalescing/) merges a freed block with free neighbours, and [boundary tags](/boundary-tags/)
+      find those neighbours in $O(1)$ time. The [sequential fits](/sequential-fit/) choose a block by one scan
+      of the list: [first fit](/first-fit-allocation/), [next fit](/next-fit-allocation/),
+      [best fit](/best-fit-allocation/) and [worst fit](/worst-fit/), each in $O(F)$ time for $F$ free blocks.
+      A [bitmap allocator](/bitmap-allocator/) is first fit over one bit per unit, and
+      [deferred coalescing](/deferred-coalescing/) postpones the merges to save time.
+    entries:
+      - free-list
+      - coalescing
+      - boundary-tags
+      - sequential-fit
+      - first-fit-allocation
+      - next-fit-allocation
+      - best-fit-allocation
+      - worst-fit
+      - bitmap-allocator
+      - deferred-coalescing
+  - title: Size classes and buddy systems
+    intro: >
+      [Size classes](/size-classes/) round each request up to one of a few sizes: if each class is at most $r$
+      times the one below, a block wastes less than $(r-1)/r$ of itself. [Segregated free lists](/segregated-free-lists/)
+      keep one list per class. The [buddy system](/buddy-system/) uses power-of-two blocks whose buddy is
+      found by one exclusive or, with a [Fibonacci](/fibonacci-buddy-system/) form that rounds less and a
+      [lazy](/lazy-buddy-system/) form that merges less. [TLSF](/tlsf/) indexes two levels of classes with
+      bitmaps and serves `malloc` and `free` in $O(1)$ time in the worst case.
+    entries:
+      - size-classes
+      - segregated-free-lists
+      - buddy-system
+      - fibonacci-buddy-system
+      - lazy-buddy-system
+      - tlsf
+  - title: Pools and slabs
+    intro: >
+      When every block has the same size, any free block fits any request, so there is no external
+      fragmentation. A [memory pool](/memory-pool/) serves blocks of one size from a free list in $O(1)$ time.
+      The [slab allocator](/slab-allocator/) keeps one such cache per kernel object type, reuses freed objects
+      without building them again, and gives wholly free slabs back on demand.
+    entries:
+      - memory-pool
+      - slab-allocator
+  - title: Stacks, bump pointers and regions
+    intro: >
+      If objects die together, there is no need to free them one at a time.
+      [Stack allocation](/stack-allocation/) frees in last-in first-out order, and
+      [bump-pointer allocation](/bump-pointer-allocation/) only adds to a pointer. An
+      [arena](/arena-allocation/) frees everything at once, and [regions](/region-based-memory-management/)
+      let a type system prove that no pointer outlives its region. A garbage-collected runtime gives each thread
+      a [thread-local allocation buffer](/thread-local-allocation-buffer/) to bump in.
+    entries:
+      - stack-allocation
+      - bump-pointer-allocation
+      - arena-allocation
+      - region-based-memory-management
+      - thread-local-allocation-buffer
+  - title: Bounds on fragmentation
+    intro: >
+      [Online memory allocation](/online-memory-allocation/) states the problem in a worst-case model: at most
+      $M$ words live, block sizes from 1 to $n$. [Knuth's fifty-percent rule](/knuth-fifty-percent-rule/)
+      counts free blocks in a random steady state. [Robson's bound](/robson-bound/) shows that every allocator
+      that never moves blocks can be forced to use about $\tfrac12 M \log_2 n$ words, and
+      [offline dynamic storage allocation](/offline-dynamic-storage-allocation/), where all lifetimes are known, is
+      NP-hard but approximable within a constant factor.
+    entries:
+      - online-memory-allocation
+      - knuth-fifty-percent-rule
+      - robson-bound
+      - offline-dynamic-storage-allocation
+  - title: Allocators in practice
+    intro: >
+      [dlmalloc](/dlmalloc/) combines boundary tags, exact small bins and best-fit tree bins in one serial
+      heap. [tcmalloc](/tcmalloc/) and [jemalloc](/jemalloc/) add thread or CPU caches and several arenas.
+      [Hoard](/hoard-allocator/) bounds the memory of per-processor heaps by a proved invariant, the
+      [lock-free allocator](/lock-free-memory-allocator/) of Michael keeps its superblocks and drops the locks,
+      and [mimalloc](/mimalloc/) gives each page its own free lists.
+    entries:
+      - dlmalloc
+      - tcmalloc
+      - jemalloc
+      - hoard-allocator
+      - lock-free-memory-allocator
+      - mimalloc

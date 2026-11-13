@@ -63,6 +63,8 @@ def brace_scripts(tex: str) -> str:
     """Repair math that KaTeX accepts and XeTeX with unicode-math does not: `x_\\mathcal{R}` becomes
     `x_{\\mathcal{R}}`, and `\\not\\leadsto` becomes `\\centernot\\leadsto`."""
     tex = _BARE_SCRIPT.sub(r"\1{\2}", tex)
+    # amssymb's \triangle is a macro, not a math character: `Q_\triangle` gives "Missing { inserted"
+    tex = re.sub(r"(?<!\\)([_^])(\\triangle)(?![a-zA-Z])", r"\1{\2}", tex)
     # a prime, then a subscript, then a superscript: KaTeX allows it, TeX sees a double superscript
     tex = _PRIME_SUB_SUP.sub(_prime_sub_sup, tex)
     # unicode-math's \not looks for a negated character; ↝ has none and XeTeX dies ("bad native font flag")
@@ -127,6 +129,8 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     body = brace_scripts(body)
     # ⧺ (concatenation) is absent from Libertinus Math; in mathematics it is drawn as two overlapping plus signs
     body = re.sub(r"(?<!\}\{)⧺", lambda m: r"\mathbin{+\mkern-10mu+}", body)
+    # the outer joins ⟕ ⟖ ⟗ are absent from Libertinus Math; in mathematics they come from STIX Two Math
+    body = re.sub(r"(?<!\}\{)([⟕⟖⟗])", lambda m: r"\mathbin{\text{\hbfbC " + m.group(1) + "}}", body)
     open(os.path.join(outdir, "body.tex"), "w").write(body)
     open(os.path.join(outdir, "main.tex"), "w").write(main_tex(book, vol, edition, date))
     shutil.copy(os.path.join(ROOT, "tex", "handbook.sty"), outdir)
