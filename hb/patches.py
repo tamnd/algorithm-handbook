@@ -6,89 +6,9 @@ listed in the project notes (spec handbook 11) to be reported upstream; remove i
 """
 from __future__ import annotations
 
-_NOTE = ("^[The source of this paragraph lost its variables (each `$i`, `$d`, … was dropped, as if expanded by a "
-         "shell). The symbols were restored for this edition by the handbook's editor (AI-drafted) from the "
-         "surrounding proof; check them against the site.]")
-
-PATCHES: dict[str, list[tuple[str, str]]] = {
-    # every $x was expanded away; restored from the proof's own definitions (W, w, d, e, t, k)
-    "numerical/root-finding/brent-method/proofs/correctness.md": [(
-        "We claim that after $ passes of a run, at the next test of L6, $|d| \\le w 2^{-\\lceil i/2 \\rceil}$ and "
-        "$|e| \\le w 2^{-\\lfloor i/2 \\rfloor}$. This holds for  = 0$. An accepted step has |p| < |eq|$, so the new "
-        "$ is less than $|e|/2 \\le w 2^{-\\lfloor i/2 \\rfloor - 1} = w 2^{-\\lceil (i+1)/2 \\rceil}$, and the new $ "
-        "is the old $, at most  2^{-\\lceil i/2 \\rceil} = w 2^{-\\lfloor (i+1)/2 \\rfloor}$. A reset at L3 sets  = e "
-        "= b - a$, the move just made. If that move was a step $ with $|d| > t$, the reset sets both to the stored "
-        "$|d|$ and the claim still holds. If it was a minimum step of size $, the reset makes the old $ the "
-        "contrapoint, so  = t \\le 2t$, and L5 returns at once. This proves the claim. An interpolation pass needs "
-        "$|e| \\ge t \\ge \\delta/2$ at L6, so  2^{-\\lfloor i/2 \\rfloor} \\ge \\delta/2$, which gives "
-        "$\\lfloor i/2 \\rfloor \\le k + 1$ and  \\le 2k + 3$. So a run has at most k + 4$ passes;",
-        "We claim that after $i$ passes of a run, at the next test of L6, $|d| \\le w 2^{-\\lceil i/2 \\rceil}$ and "
-        "$|e| \\le w 2^{-\\lfloor i/2 \\rfloor}$. This holds for $i = 0$. An accepted step has $2|p| < |eq|$, so the "
-        "new $|d|$ is less than $|e|/2 \\le w 2^{-\\lfloor i/2 \\rfloor - 1} = w 2^{-\\lceil (i+1)/2 \\rceil}$, and the "
-        "new $|e|$ is the old $|d|$, at most $w 2^{-\\lceil i/2 \\rceil} = w 2^{-\\lfloor (i+1)/2 \\rfloor}$. A reset "
-        "at L3 sets $d = e = b - a$, the move just made. If that move was a step $d$ with $|d| > t$, the reset sets "
-        "both to the stored $|d|$ and the claim still holds. If it was a minimum step of size $t$, the reset makes "
-        "the old $b$ the contrapoint, so $W = t \\le 2t$, and L5 returns at once. This proves the claim. An "
-        "interpolation pass needs $|e| \\ge t \\ge \\delta/2$ at L6, so $w 2^{-\\lfloor i/2 \\rfloor} \\ge \\delta/2$, "
-        "which gives $\\lfloor i/2 \\rfloor \\le k + 1$ and $i \\le 2k + 3$. So a run has at most $2k + 4$ passes;",
-    ), (
-        "and both are bisections.",
-        "and both are bisections." + _NOTE,
-    )],
-    # a closing $ is missing
-    "foundations/asymptotic-analysis/geometric-series/node.md": [(
-        '"the sum is $O(\\text{largest term})" is valid',
-        '"the sum is $O(\\text{largest term})$" is valid',
-    )],
-    # a stray closing $ after the last value of each list
-    "strings/string-combinatorics/lyndon-schutzenberger-theorem/node.md": [
-        ("99, 186, 335$, and for", "99, 186, 335, and for"),
-        ("116, 312, 810$.", "116, 312, 810."),
-    ],
-    # hexadecimal literals between dollars: pandoc ends no span at a $ followed by a digit
-    "numerical/floating-point/double-double-arithmetic/node.md": [(
-        "$x = (-$0x1.45445899589ccp+2$, -$0x1.ff9da156eb005p-52$)$ and "
-        "$y = ($0x1.45445899589cdp+2$, -$0x1.fff91af117dcep-52$)$",
-        "$x = (-\\texttt{0x1.45445899589ccp+2}, -\\texttt{0x1.ff9da156eb005p-52})$ and "
-        "$y = (\\texttt{0x1.45445899589cdp+2}, -\\texttt{0x1.fff91af117dcep-52})$",
-    )],
-    "numerical/floating-point/fast-two-sum/node.md": [(
-        "| $-$0x1.ffffffffffffep-54 $= -2^{-53} + 2^{-105}$ |",
-        "| $-\\texttt{0x1.ffffffffffffep-54} = -2^{-53} + 2^{-105}$ |",
-    )],
-    "cryptography/symmetric-ciphers/exhaustive-key-search/node.md": [(
-        "returns $C = \\{$0xBEEF$\\}$.",
-        "returns $C = \\{\\texttt{0xBEEF}\\}$.",
-    )],
-    # a proof that links its entry by file name, and a formula in a source locator read as a Markdown link
-    "cryptography/public-key/rabin-cryptosystem/proofs/correctness.md": [(
-        "[node page](../node.md)", "[node page](/rabin-cryptosystem/)",
-    )],
-    "cryptography/hash-functions/miyaguchi-preneel-construction/node.md": [(
-        "H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i", "`H_i = W[H_(i-1)](m_i) XOR H_(i-1) XOR m_i`",
-    )],
-    # the end-of-word symbol </w>, written bare, is read as an HTML tag (dropped in the PDF, malformed in the EPUB)
-    "compression-and-coding/dictionary-compression/byte-pair-encoding/node.md": [("</w>", "&lt;/w&gt;")] * 10,
-    # the end marker $ is a literal; the dollars around t = are mathematics
-    "data-structures/string-structures/suffix-tree-from-suffix-array/node.md": [(
-        "with the end marker $ smaller than every letter, $t = $ banana$ and $n = 7$:",
-        "with the end marker \\$ smaller than every letter, $t =$ banana\\$ and $n = 7$:",
-    )],
-    # B-tree states written as [keys](children) read as Markdown links; set them as code
-    "data-structures/external-memory-structures/b-tree/node.md": [(t, "`" + t + "`") for t in (
-        "[8]([3 5] [12])",
-        "[8]([1 3 5] [9 12 15])",
-        "[3 8]([1] [5 7] [9 12 15])",
-        "[3 8]([1] [4 5 7] [9 12 15])",
-        "[3 8 12]([1] [4 5 7] [9 10] [15])",
-        "[3 8 10]([1] [4 5 7] [9] [15])",
-        "[4 8 10]([1] [5 7] [9] [15])",
-        "[4 7 10]([1] [5] [9] [15])",
-        "[4 7]([1] [5] [10 15])",
-        "[7]([1 5] [10 15])",
-        "[5]([1] [10 15])",
-    )],
-}
+# The eleven patches of earlier editions were fixed upstream (tamnd/algorithm #467) and are in the site from
+# release v0.26.0, so they were removed. Add a patch here only for damage the site still has.
+PATCHES: dict[str, list[tuple[str, str]]] = {}
 
 
 def apply(rel: str, text: str) -> str:

@@ -131,6 +131,8 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     body = re.sub(r"(?<!\}\{)⧺", lambda m: r"\mathbin{+\mkern-10mu+}", body)
     # the outer joins ⟕ ⟖ ⟗ are absent from Libertinus Math; in mathematics they come from STIX Two Math
     body = re.sub(r"(?<!\}\{)([⟕⟖⟗])", lambda m: r"\mathbin{\text{\hbfbC " + m.group(1) + "}}", body)
+    # so is the diamond operator ⋄ (\diamond, U+22C4)
+    body = re.sub(r"\\diamond(?![a-zA-Z])", lambda m: r"\mathbin{\text{\hbfbC ⋄}}", body)
     open(os.path.join(outdir, "body.tex"), "w").write(body)
     open(os.path.join(outdir, "main.tex"), "w").write(main_tex(book, vol, edition, date))
     shutil.copy(os.path.join(ROOT, "tex", "handbook.sty"), outdir)

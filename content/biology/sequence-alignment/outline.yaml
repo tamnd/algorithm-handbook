@@ -1,0 +1,166 @@
+# The order of chapter 27.1, Sequence alignment. Groups are read in order; entries in a group too.
+groups:
+  - title: Scoring an alignment
+    intro: >
+      An alignment is only as good as the numbers that score it. The [alignment score](/alignment-score/) adds a
+      [scoring matrix](/scoring-matrix/) value for each aligned pair and subtracts a [gap penalty](/gap-penalty/)
+      $g(L)$ for each gap, either [linear](/linear-gap-penalty/), $dL$, or [affine](/affine-gap-penalty/),
+      $d + (L-1)e$. A [substitution matrix](/substitution-matrix/) is a scoring matrix of log-odds scores; the
+      [PAM](/pam-matrix/) matrices come from a Markov model of evolution and the [BLOSUM](/blosum-matrix/)
+      matrices are counted from blocks of related proteins.
+    entries:
+      - alignment-score
+      - scoring-matrix
+      - gap-penalty
+      - linear-gap-penalty
+      - affine-gap-penalty
+      - substitution-matrix
+      - pam-matrix
+      - blosum-matrix
+
+  - title: Global alignment and the table
+    intro: >
+      [Pairwise sequence alignment](/pairwise-sequence-alignment/) asks for an alignment of largest score, and
+      the [alignment graph](/alignment-graph/) turns every form of it into a heaviest path in a grid DAG. The
+      [dot matrix plot](/dot-matrix-plot/) shows the same grid as a picture. [Needleman-Wunsch](/needleman-wunsch/)
+      solves [global alignment](/global-alignment/) exactly in $\Theta(mn)$ time, and
+      [Hirschberg's algorithm](/hirschberg-algorithm/) recovers the alignment in $O(\min(m, n))$ space.
+    entries:
+      - pairwise-sequence-alignment
+      - dot-matrix-plot
+      - alignment-graph
+      - global-alignment
+      - needleman-wunsch
+      - hirschberg-algorithm
+
+  - title: Local, semi-global and affine alignment
+    intro: >
+      Small changes to the same table give the other forms. A floor of zero and a maximum over all cells give
+      [Smith-Waterman](/smith-waterman/) for [local alignment](/local-alignment/); a zero border and a maximum
+      over the last row or column give the [semi-global DP](/semi-global-dp/) for overlap and fitting
+      alignment. Three tables give [Gotoh's algorithm](/gotoh-algorithm/) for
+      [affine gaps](/affine-gap-alignment/). A [band](/banded-alignment/) of $w$ diagonals cuts the time to
+      $O(wm)$, and the answer is exact only when an optimal path stays in the band.
+    entries:
+      - local-alignment
+      - smith-waterman
+      - semi-global-alignment
+      - semi-global-dp
+      - affine-gap-alignment
+      - gotoh-algorithm
+      - banded-alignment
+      - banded-smith-waterman
+
+  - title: When is a local score significant
+    intro: >
+      Any two sequences have some local alignment, so a score means little until it is compared with chance.
+      For ungapped [high-scoring segment pairs](/high-scoring-segment-pair/) of random sequences, the
+      [Karlin-Altschul statistics](/karlin-altschul-statistics/) prove that the number scoring at least $S$ is
+      about Poisson with mean $Kmn\,e^{-\lambda S}$. That mean is the [E-value](/e-value/), and the
+      [bit score](/bit-score/) is the scale on which $E = mn\,2^{-S'}$. For gapped scores, $\lambda$ and $K$
+      are fitted by simulation.
+    entries:
+      - high-scoring-segment-pair
+      - e-value
+      - bit-score
+      - karlin-altschul-statistics
+
+  - title: Searching a database
+    intro: >
+      [Database similarity search](/database-similarity-search/) is local alignment against millions of
+      sequences. Smith-Waterman on each one is exact but slow, so the standard tools use
+      [seed and extend](/seed-and-extend/): find short matches with an index, then extend only those.
+      [BLAST](/blast/) and [FASTA](/fasta-algorithm/) are the classic programs, [X-drop](/x-drop-extension/)
+      stops an extension that has gone bad, and [spaced seeds](/spaced-seed/) hit more true alignments at the
+      same cost. All of them are heuristics whose sensitivity is measured, not proved.
+    entries:
+      - database-similarity-search
+      - seed-and-extend
+      - blast
+      - fasta-algorithm
+      - x-drop-extension
+      - spaced-seed
+
+  - title: Indexes and read mapping
+    intro: >
+      A genome is aligned against again and again, so it pays to index it once. A [k-mer index](/kmer-index/)
+      lists where each word of length $k$ occurs, and [minimizers](/minimizer/) keep about $2/(w+1)$ of the words
+      while any two strings that share $w + k - 1$ letters still share one. [Maximal exact matches](/maximal-exact-match/) come from suffix
+      structures. [Read mapping](/read-mapping/) puts each sequencing read on the genome: [BLAT](/blat/) uses a
+      k-mer index, [Bowtie](/bowtie/) and [BWA](/bwa/) an FM-index. [Alignment-free
+      comparison](/alignment-free-comparison/) skips alignment and compares the k-mer contents.
+    entries:
+      - kmer-index
+      - minimizer
+      - alignment-free-comparison
+      - maximal-exact-match
+      - read-mapping
+      - blat
+      - bowtie
+      - bwa
+
+  - title: Chaining, genomes and graphs
+    intro: >
+      Long reads and whole genomes produce many seed matches, and the true alignment uses a few of them in
+      order. [Colinear chaining](/colinear-chaining/) finds the heaviest chain of fragments in
+      $\Theta(n \log n)$ time; [seed chaining](/seed-chaining/) adds gap costs. [Whole-genome
+      alignment](/whole-genome-alignment/) anchors, chains and extends, as [MUMmer](/mummer/) does with maximal
+      unique matches, and [minimap2](/minimap2/) chains minimizer hits for reads of any length.
+      [Sequence-to-graph alignment](/sequence-to-graph-alignment/) aligns a read to a graph of genomes.
+    entries:
+      - colinear-chaining
+      - seed-chaining
+      - whole-genome-alignment
+      - mummer
+      - minimap2
+      - sequence-to-graph-alignment
+
+  - title: Multiple alignment
+    intro: >
+      A [multiple sequence alignment](/multiple-sequence-alignment/) puts three or more sequences in one table,
+      and the usual objective is the [sum-of-pairs score](/sum-of-pairs-score/). The exact dynamic program for $k$ sequences
+      of length $n$ fills $(n + 1)^k$ cells, each from $2^k - 1$ predecessors, and the problem is [NP-hard](/msa-np-hardness/) when $k$ is part of
+      the input. The [center-star method](/center-star-method/) is within $2 - 2/k$ of the optimum for a
+      metric cost ([the bound](/center-star-approximation-bound/)). A [consensus sequence](/consensus-sequence/)
+      and a [sequence logo](/sequence-logo/) sum up an alignment for the reader.
+    entries:
+      - sum-of-pairs-score
+      - multiple-sequence-alignment
+      - consensus-sequence
+      - sequence-logo
+      - center-star-method
+      - center-star-approximation-bound
+      - msa-np-hardness
+
+  - title: Profiles and hidden Markov models
+    intro: >
+      A family alignment can be turned into a scoring scheme with one row per column. A [position-specific
+      scoring matrix](/position-specific-scoring-matrix/) holds log-odds scores per position, and
+      [profile alignment](/sequence-profile-alignment/) aligns a sequence or a profile to it. A [profile
+      HMM](/profile-hmm/) adds position-specific insert and delete states, and [HMMER](/hmmer/) searches
+      databases with it. A [pair HMM](/pair-hmm/) is the probabilistic form of affine-gap alignment of two
+      sequences.
+    entries:
+      - position-specific-scoring-matrix
+      - sequence-profile-alignment
+      - profile-hmm
+      - hmmer
+      - pair-hmm
+
+  - title: Multiple alignment in practice
+    intro: >
+      Practical aligners are heuristics judged on benchmarks. [Progressive alignment](/progressive-alignment/)
+      aligns along a guide tree and never removes a gap, as in [Clustal](/clustal/). [Iterative
+      refinement](/iterative-refinement-alignment/) realigns groups and keeps only improvements, as in
+      [MUSCLE](/muscle/) and [MAFFT](/mafft/). [T-Coffee](/t-coffee/) and [ProbCons](/probcons/) score pairs by
+      their consistency through third sequences, and [partial order alignment](/partial-order-alignment/) keeps
+      the alignment as a graph.
+    entries:
+      - progressive-alignment
+      - clustal
+      - iterative-refinement-alignment
+      - muscle
+      - mafft
+      - t-coffee
+      - probcons
+      - partial-order-alignment

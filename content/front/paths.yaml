@@ -1501,3 +1501,109 @@ paths:
           - leaky-bucket-meter
           - gcra
           - sliding-window-counter
+
+  - id: biology
+    title: Biology
+    for: a student who knows dynamic programming, graphs and a little probability, and wants to see the algorithms that compare sequences, assemble genomes, build evolutionary trees and predict the shapes of molecules, and how far each one rests on a model of biology.
+    intro: >
+      Alignment first: the scoring of a match, the dynamic programs of Needleman-Wunsch and Smith-Waterman, gap
+      penalties and Gotoh's algorithm, Hirschberg's linear space, and then the heuristics, seeds, BLAST and its
+      statistics, that make a search of a whole database fast. Multiple alignment follows, NP-hard in its exact
+      form and solved in practice by progressive methods. Genome assembly is next: reads, coverage and the
+      Lander-Waterman model, the shortest common superstring, overlap graphs and de Bruijn graphs, and the work of
+      simplifying them. Phylogenetics builds trees from distances, from parsimony and from likelihood under models
+      of substitution, and compares the trees it builds. The last stage predicts structure: RNA secondary structure
+      by the Nussinov and Zuker programs, protein structure and its measures, and the superposition of two
+      structures. Each step says which part is exact and which part is a model of biology.
+    stages:
+      - title: Aligning two sequences
+        steps:
+          - pairwise-sequence-alignment
+          - alignment-score
+          - scoring-matrix
+          - entry: needleman-wunsch
+            why: the global alignment dynamic program on which the rest of the stage builds.
+          - smith-waterman
+          - semi-global-alignment
+          - gap-penalty
+          - affine-gap-penalty
+          - gotoh-algorithm
+          - hirschberg-algorithm
+          - banded-alignment
+          - pam-matrix
+          - blosum-matrix
+      - title: Searching databases
+        steps:
+          - database-similarity-search
+          - kmer-index
+          - seed-and-extend
+          - spaced-seed
+          - x-drop-extension
+          - blast
+          - karlin-altschul-statistics
+          - e-value
+          - read-mapping
+          - minimizer
+      - title: Multiple alignment
+        steps:
+          - multiple-sequence-alignment
+          - sum-of-pairs-score
+          - msa-np-hardness
+          - center-star-method
+          - center-star-approximation-bound
+          - progressive-alignment
+          - clustal
+          - profile-hmm
+      - title: Assembling genomes
+        steps:
+          - genome-assembly-problem
+          - shotgun-sequencing
+          - sequencing-coverage
+          - lander-waterman-model
+          - shortest-common-superstring-np-hard
+          - greedy-shortest-common-superstring
+          - overlap-graph
+          - overlap-layout-consensus
+          - kmer
+          - entry: de-bruijn-assembly
+            why: the graph in which reads become a walk, and the reason repeats make assembly hard.
+          - genome-repeat
+          - tip-removal
+          - bubble-popping
+          - scaffolding
+          - n50
+      - title: Building trees
+        steps:
+          - phylogenetic-tree
+          - tree-metric
+          - four-point-condition
+          - upgma
+          - neighbor-joining
+          - small-parsimony
+          - fitch-algorithm
+          - sankoff-algorithm
+          - maximum-parsimony-np-hard
+          - substitution-model
+          - jukes-cantor-model
+          - entry: felsenstein-pruning
+            why: the dynamic program that makes the likelihood of a tree computable.
+          - maximum-likelihood-phylogeny
+          - nearest-neighbor-interchange
+          - phylogenetic-bootstrap
+          - robinson-foulds-distance
+          - perfect-phylogeny
+      - title: Predicting structure
+        steps:
+          - rna-secondary-structure
+          - nussinov-algorithm
+          - zuker-algorithm
+          - mccaskill-algorithm
+          - pseudoknot-np-hardness
+          - protein-structure-prediction
+          - levinthal-paradox
+          - hp-folding-np-completeness
+          - rmsd
+          - kabsch-algorithm
+          - structure-alignment
+          - comparative-modeling
+          - alphafold

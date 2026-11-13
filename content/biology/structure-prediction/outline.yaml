@@ -1,0 +1,143 @@
+# The order of chapter 27.4, Structure prediction. Groups are read in order; entries in a group too.
+groups:
+  - title: RNA secondary structure
+    intro: >
+      An [RNA secondary structure](/rna-secondary-structure/) is a set of nested base pairs, written in dot-bracket
+      notation; a [pseudoknot](/pseudoknot/) is a pair of crossing pairs, and the basic methods leave it out. The
+      [Nussinov algorithm](/nussinov-algorithm/) maximizes the number of pairs in $\Theta(n^3)$ time. The
+      [nearest-neighbor model](/nearest-neighbor-model/) gives each loop a free energy instead, and under it the
+      [Zuker algorithm](/zuker-algorithm/) finds a structure of minimum energy and the
+      [McCaskill algorithm](/mccaskill-algorithm/) sums the Boltzmann weights of all structures. Both are exact under
+      their model and cost $\Theta(n^3 + n^2 L^2)$ with interior loops of at most $L$ bases.
+    entries:
+      - rna-secondary-structure
+      - pseudoknot
+      - nussinov-algorithm
+      - nearest-neighbor-model
+      - rna-secondary-structure-prediction
+      - zuker-algorithm
+      - mccaskill-algorithm
+  - title: RNA families, design, pseudoknots and kinetics
+    intro: >
+      A [covariance model](/covariance-model/) is a stochastic grammar built on the consensus structure of a family,
+      and [RNA homology search](/rna-homology-search/) scans genomes with it. Folding and aligning several
+      sequences at once is the [Sankoff algorithm](/sankoff-rna-algorithm/), exact but $O(n^{3k})$ for $k$
+      sequences. [Inverse folding](/rna-inverse-folding/) looks for a sequence that folds into a given structure.
+      [Pseudoknot prediction](/rna-pseudoknot-prediction/) is polynomial only inside restricted classes, and in the
+      nearest-neighbor pseudoknot model it is [NP-complete](/pseudoknot-np-hardness/).
+      [Folding kinetics](/rna-folding-kinetics/) follows a structure in time as a Markov chain.
+    entries:
+      - covariance-model
+      - rna-homology-search
+      - simultaneous-alignment-and-folding
+      - sankoff-rna-algorithm
+      - rna-inverse-folding
+      - rna-pseudoknot-prediction
+      - pseudoknot-np-hardness
+      - rna-folding-kinetics
+  - title: Protein structure
+    intro: >
+      The [thermodynamic hypothesis](/thermodynamic-hypothesis/) says that a protein's native structure is the
+      state of lowest free energy, and the [hydrophobic effect](/hydrophobic-effect/) is a main force behind folding.
+      The [Levinthal paradox](/levinthal-paradox/) shows that a chain cannot find that state by random search. The
+      backbone is described by its [dihedral angles](/dihedral-angle/), whose allowed pairs make up the
+      [Ramachandran plot](/ramachandran-plot/). Hydrogen bonds define the
+      [secondary structure](/protein-secondary-structure/), side chains take a few [rotamers](/rotamer/), and a
+      [contact map](/contact-map/) records which residues are close.
+    entries:
+      - thermodynamic-hypothesis
+      - hydrophobic-effect
+      - levinthal-paradox
+      - dihedral-angle
+      - protein-secondary-structure
+      - ramachandran-plot
+      - rotamer
+      - contact-map
+  - title: Comparing structures
+    intro: >
+      [RMSD](/rmsd/) measures two structures with matched atoms after the best rigid motion, and
+      [optimal superposition](/optimal-superposition/) finds that motion. The [Kabsch algorithm](/kabsch-algorithm/)
+      (by SVD) and [quaternion superposition](/quaternion-superposition/) (by a $4 \times 4$ eigenproblem) do it
+      exactly in $\Theta(N)$ time. [GDT-TS](/gdt-ts/) and [TM-score](/tm-score/) count the residues that come close
+      and are less sensitive to a few outliers; their search over superpositions is heuristic. Without a given
+      correspondence, [structure alignment](/structure-alignment/) is a search problem, solved in practice by
+      [CE](/combinatorial-extension/) and [DALI](/dali/).
+    entries:
+      - rmsd
+      - optimal-superposition
+      - kabsch-algorithm
+      - quaternion-superposition
+      - gdt-ts
+      - tm-score
+      - structure-alignment
+      - combinatorial-extension
+      - dali
+  - title: Protein secondary structure prediction
+    intro: >
+      [Secondary structure prediction](/protein-secondary-structure-prediction/) labels each residue helix, strand
+      or coil, and is scored by the fraction $Q_3$ of correct labels. The
+      [Chou-Fasman method](/chou-fasman-method/) uses propensity tables and rules, the [GOR method](/gor-method/)
+      sums information values over a window of 17 residues, and [PSIPRED](/psipred/) feeds a sequence profile to two
+      neural networks. All three are classifiers measured on benchmarks.
+    entries:
+      - protein-secondary-structure-prediction
+      - chou-fasman-method
+      - gor-method
+      - psipred
+  - title: Energies and the folding problem
+    intro: >
+      [Protein structure prediction](/protein-structure-prediction/) asks for the coordinates of a chain from its
+      sequence. An [energy function](/energy-function/) scores conformations, and the
+      [shape of the energy surface](/energy-landscape/) explains why search works at all. The [HP model](/hp-model/) is the
+      simplest lattice model, and finding its optimum is
+      [NP-complete](/hp-folding-np-completeness/) on the square and cubic lattices.
+      [Ab initio folding](/ab-initio-protein-folding/) searches without a template:
+      [fragment assembly](/fragment-assembly/) and [Rosetta](/rosetta/) by Monte Carlo moves,
+      [molecular dynamics](/molecular-dynamics/) by integrating the equations of motion of a force field.
+    entries:
+      - protein-structure-prediction
+      - energy-function
+      - energy-landscape
+      - hp-model
+      - hp-folding-np-completeness
+      - ab-initio-protein-folding
+      - fragment-assembly
+      - molecular-dynamics
+      - rosetta
+  - title: Templates
+    intro: >
+      When a protein of known structure is related to the target, [comparative modeling](/comparative-modeling/)
+      copies its coordinates through an alignment, [MODELLER](/modeller/) satisfies the restraints taken from it,
+      and [loop modeling](/loop-modeling/) closes the gaps. When no related sequence is known,
+      [fold recognition](/protein-fold-recognition/) and [threading](/protein-threading/) fit the sequence onto a
+      library of folds; threading is exact by dynamic programming with singleton scores and NP-complete with pair
+      terms. [I-TASSER](/i-tasser/) combines threading with Monte Carlo assembly.
+    entries:
+      - comparative-modeling
+      - modeller
+      - loop-modeling
+      - protein-fold-recognition
+      - protein-threading
+      - i-tasser
+  - title: Side chains and design
+    intro: >
+      [Side-chain packing](/side-chain-packing/) picks one rotamer per residue on a fixed backbone so as to minimize
+      a pairwise energy; its decision version is NP-complete.
+      [Dead-end elimination](/dead-end-elimination/) removes rotamers that cannot be in an optimal assignment, and a
+      search finishes the job. [Protein design](/protein-design/) is the same problem with the amino acid as part
+      of the choice.
+    entries:
+      - side-chain-packing
+      - dead-end-elimination
+      - protein-design
+  - title: Contacts and learned prediction
+    intro: >
+      [Contact map prediction](/contact-map-prediction/) guesses from a multiple alignment which residues touch.
+      [Direct coupling analysis](/direct-coupling-analysis/) fits a Potts model to the alignment and separates
+      direct couplings from indirect correlations. [AlphaFold](/alphafold/) is a trained network that turns the sequence and its
+      alignment into coordinates and a per-residue confidence, pLDDT; its accuracy is measured on benchmarks such
+      as CASP, not proved.
+    entries:
+      - contact-map-prediction
+      - direct-coupling-analysis
+      - alphafold

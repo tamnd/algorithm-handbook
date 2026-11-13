@@ -1,0 +1,18 @@
+## History
+
+Assembly began with gel reads of a few hundred bases. Staden described a computer method for shotgun sequencing in 1979, and in 1980 he used the word contig for a set of overlapping reads. Sanger and colleagues sequenced bacteriophage lambda, about 48,500 bases, by the shotgun method in 1982. The theory came soon after. Gallant, Maier and Storer proved in 1980 that the shortest common superstring is NP-complete, and Lander and Waterman gave the expected number and length of islands in 1988, in a paper on mapping clones by fingerprints that became the standard model for read coverage.
+
+Two graphs of reads grew up in parallel. Sequencing by hybridization was proposed in 1988 and 1989 by Lysov and colleagues and by Drmanac and colleagues, and Pevzner showed in 1989 that reconstruction from the set of $l$-mers is an Eulerian path problem. Idury and Waterman applied the same idea to shotgun reads in 1995. On the overlap side, Kececioglu and Myers set out the overlap, layout and consensus steps as combinatorial problems in 1995. The same year Fleischmann and colleagues assembled the 1.8 Mbp genome of *Haemophilus influenzae* from whole-genome shotgun reads with the greedy TIGR Assembler. Weber and Myers argued in 1997 that the human genome could be done the same way, and the Celera assembler of Myers and colleagues (2000) used overlaps and paired reads to assemble the fruit fly.
+
+Short reads made the de Bruijn graph the method of choice. Pevzner, Tang and Waterman's EULER (2001) threaded reads through the graph to resolve repeats, the problem now called the Eulerian superpath problem. Velvet (Zerbino and Birney, 2008) removed tips and popped bubbles in short-read graphs, and SPAdes (Bankevich and colleagues, 2012) assembled single-cell data. Myers introduced the string graph in 2005, and Simpson and Durbin built it from the FM-index in 2010. Medvedev, Georgiou, Myers and Brudno showed in 2007 that several formal models of assembly are NP-hard, and Nagarajan and Pop studied the complexity of the problem under its parameters in 2009.
+
+Long reads brought the overlap graph back. Canu (2017), miniasm (2016) and Racon (2017) assemble and polish reads of tens of kilobases with high error rates. On the theory side, Bresler, Bresler and Tse (2013) tied the read length needed to the lengths of interleaved and triple repeats, and Tomescu and Medvedev (2017) characterized the safe contigs of a circular genome, those that every solution contains, as omnitigs.
+
+## Further reading
+
+- Dan Gusfield, *Algorithms on Strings, Trees, and Sequences*, Cambridge University Press, 1997. Superstrings, overlaps and the suffix tree methods for all-pairs overlap.
+- Veli Mäkinen, Djamal Belazzougui, Fabio Cunial and Alexandru I. Tomescu, *Genome-Scale Algorithm Design*, Cambridge University Press, 2015. Assembly graphs, safe contigs and the index structures they use.
+- Phillip E. C. Compeau, Pavel A. Pevzner and Glenn Tesler, How to apply de Bruijn graphs to genome assembly, *Nature Biotechnology* 29(11), 2011. A short account of why the Eulerian view replaced the Hamiltonian one.
+- Jason R. Miller, Sergey Koren and Granger Sutton, Assembly algorithms for next-generation sequencing data, *Genomics* 95(6), 2010. A survey of the greedy, overlap and de Bruijn assemblers of that time.
+- Niranjan Nagarajan and Mihai Pop, Sequence assembly demystified, *Nature Reviews Genetics* 14(3), 2013. The practical choices and their effect on the result.
+- Eugene W. Myers, The fragment assembly string graph, *Bioinformatics* 21(suppl 2), 2005. The string graph and its transitive reduction.

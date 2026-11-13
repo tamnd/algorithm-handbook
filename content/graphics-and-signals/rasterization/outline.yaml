@@ -1,0 +1,114 @@
+groups:
+  - title: Pixels and the pipeline
+    intro: >
+      A pixel is a point sample at its center, not a little square, and the whole chapter rests on that
+      convention. The pipeline fixes the order of the work: transform, clip, divide by $w$, map to the
+      viewport, rasterize, shade and test. The frame buffer is the memory the results go into.
+    entries:
+      - pixel
+      - graphics-pipeline
+      - viewport-transform
+      - frame-buffer
+  - title: Clipping
+    intro: >
+      A primitive must be cut to the window before it is drawn, or its pixels fall outside the buffer.
+      Cohen-Sutherland and Liang-Barsky clip a segment to a rectangle with at most four divisions, and
+      polygon window clipping cuts a polygon by the four sides in turn. The general problems of clipping
+      against any convex or simple polygon belong to [polygon clipping](/polygon-clipping/) in the geometry volume.
+    entries:
+      - line-clipping
+      - cohen-sutherland-line-clipping
+      - liang-barsky-line-clipping
+      - polygon-window-clipping
+  - title: Lines and curves
+    intro: >
+      The problem pages define the pixels of a segment, a circle or an ellipse as the nearest pixel per step
+      of the major axis, with a stated tie rule. The DDA reaches them in floating point and can drift;
+      Bresenham's algorithm and the midpoint algorithms reach them exactly with integer error terms.
+    entries:
+      - line-rasterization
+      - digital-differential-analyzer
+      - bresenham-line-algorithm
+      - circle-rasterization
+      - midpoint-circle-algorithm
+      - ellipse-rasterization
+      - midpoint-ellipse-algorithm
+  - title: Filling polygons and regions
+    intro: >
+      A fill rule says which points a polygon covers: an odd crossing count, or a nonzero winding number.
+      Scan conversion applies the rule to every pixel center, and the scanline fill does it row by row with
+      an active edge table. Region filling is a different problem: it recolors a connected set of pixels
+      that is given by its colors, not by an outline.
+    entries:
+      - even-odd-fill-rule
+      - nonzero-winding-rule
+      - polygon-scan-conversion
+      - scanline-polygon-fill
+      - active-edge-table
+      - region-filling
+  - title: Triangles
+    intro: >
+      The edge function $E(p) = Ax + By + C$ of each edge decides coverage by its sign, and with integer
+      subpixel coordinates it is exact. The top-left rule decides the case $E = 0$, so that triangles with
+      disjoint interiors cover each pixel center at most once. Pineda's loop tests every center of the
+      bounding box, and perspective-correct interpolation gives the attributes at the covered centers.
+    entries:
+      - edge-function
+      - triangle-rasterization
+      - top-left-fill-rule
+      - pineda-rasterization
+      - perspective-correct-interpolation
+  - title: Tiles, parallel renderers and conservative coverage
+    intro: >
+      Testing whole tiles against the edges skips most of the empty part of a bounding box. Sort-middle
+      renderers give each tile or region to its own rasterizer, at a cost set by the overlap factor.
+      Conservative rasterization shifts the same edge functions by half a pixel to find every pixel square
+      a triangle touches.
+    entries:
+      - tiled-rasterization
+      - sort-middle-rendering
+      - conservative-rasterization
+  - title: Shading
+    intro: >
+      Shading gives a color to each covered pixel. Gouraud shading lights the vertices and interpolates the
+      intensities, so it costs one addition per pixel and can miss a highlight inside a triangle. Phong
+      shading interpolates the normals and lights every pixel.
+    entries:
+      - polygon-shading
+      - gouraud-shading
+      - phong-shading
+  - title: Textures
+    intro: >
+      A texture lookup reads an image at the point that a pixel sees. Bilinear filtering blends the four
+      nearest texels; a mipmap stores prefiltered copies at halved sizes so that a large footprint costs
+      the same as a small one; anisotropic filtering takes several probes along an elongated footprint.
+    entries:
+      - texture-mapping
+      - bilinear-filtering
+      - mipmap
+      - anisotropic-filtering
+  - title: Blending, compositing and the stencil buffer
+    intro: >
+      Alpha blending mixes a new color with the stored one by an opacity. Porter and Duff gave twelve
+      operators on premultiplied colors, of which over is the common one. The stencil buffer keeps a small
+      counter per pixel, which can mask drawing or count a winding number modulo $2^s$.
+    entries:
+      - alpha-blending
+      - image-compositing
+      - porter-duff-compositing
+      - stencil-buffer
+  - title: Antialiasing
+    intro: >
+      A point sample per pixel makes jagged edges and crawling patterns. Supersampling takes more samples and
+      has a proved error bound against the box filter, and multisampling gives the same result on geometry
+      edges with one shading per pixel and triangle. Morphological and temporal antialiasing are heuristics
+      whose quality is measured, not proved. Wu's algorithm draws smooth lines
+      directly.
+    entries:
+      - antialiasing
+      - reconstruction-filter
+      - supersampling-antialiasing
+      - multisample-antialiasing
+      - morphological-antialiasing
+      - temporal-antialiasing
+      - wu-line-algorithm

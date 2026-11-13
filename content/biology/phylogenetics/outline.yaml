@@ -1,0 +1,202 @@
+# The order of chapter 27.3, Phylogenetics. Groups are read in order; entries in a group too.
+groups:
+  - title: Trees, splits and the space of trees
+    intro: >
+      A [phylogenetic tree](/phylogenetic-tree/) has its taxa at the leaves and ancestors inside. It may be
+      [rooted or unrooted](/rooted-and-unrooted-trees/); there are $(2n-5)!!$ unrooted binary trees on $n$ taxa,
+      and that number is why [tree reconstruction](/phylogenetic-tree-reconstruction/) is hard. A
+      [molecular clock](/molecular-clock/) makes the tree ultrametric and fixes the root; without one, a root
+      is chosen afterwards, for example by [midpoint rooting](/midpoint-rooting/). The tree is equally well
+      described by its [splits](/splits-of-a-tree/), its [rooted triplets](/rooted-triplet/) or its
+      [quartets](/quartet/), and most later methods work on one of these encodings.
+    entries:
+      - phylogenetic-tree
+      - rooted-and-unrooted-trees
+      - newick-format
+      - phylogenetic-tree-reconstruction
+      - molecular-clock
+      - tree-rooting
+      - midpoint-rooting
+      - splits-of-a-tree
+      - rooted-triplet
+      - quartet
+      - split-system
+
+  - title: Trees from distances
+    intro: >
+      A [tree metric](/tree-metric/) is a matrix of path lengths in a tree, and the
+      [four-point condition](/four-point-condition/) tells one apart in $O(n^4)$ checks. On exact data the tree
+      is unique and found in $O(n^2)$ time; with a clock the matrix is an ultrametric and [UPGMA](/upgma/)
+      recovers it. [Neighbor-joining](/neighbor-joining/) is exact on every tree metric and stays correct under
+      small errors. On noisy data the questions become least squares and minimum evolution; least squares and
+      balanced minimum evolution are NP-hard over all trees.
+    entries:
+      - tree-metric
+      - four-point-condition
+      - additive-tree-reconstruction
+      - four-point-method
+      - ultrametric-tree-reconstruction
+      - upgma
+      - ultrametric-tree-fitting-upgma-check
+      - wpgma
+      - neighbor-joining
+      - bionj
+      - least-squares-phylogeny
+      - fitch-margoliash
+      - minimum-evolution
+
+  - title: Parsimony and perfect phylogeny
+    intro: >
+      Parsimony scores a tree by the fewest changes it needs. On a fixed tree the score is exact and fast by
+      dynamic programming: [Fitch's algorithm](/fitch-algorithm/) for unit costs on binary trees,
+      [Hartigan's](/hartigan-algorithm/) for any degree, [Sankoff's](/sankoff-algorithm/) for any cost table.
+      Over all trees, [maximum parsimony](/maximum-parsimony/) is NP-hard. When no character needs to change
+      twice the data have a [perfect phylogeny](/perfect-phylogeny/), which for binary characters is decided
+      in linear time.
+    entries:
+      - small-parsimony
+      - fitch-algorithm
+      - hartigan-algorithm
+      - sankoff-algorithm
+      - wagner-parsimony
+      - camin-sokal-parsimony
+      - dollo-parsimony
+      - maximum-parsimony
+      - parsimony-informative-site
+      - maximum-parsimony-np-hard
+      - perfect-phylogeny
+      - four-gamete-condition
+      - gusfield-perfect-phylogeny
+      - character-compatibility
+
+  - title: Searching the space of trees
+    intro: >
+      Since the best tree is NP-hard to find for parsimony and likelihood alike, programs build a tree by
+      [stepwise addition](/stepwise-addition/) and improve it by local moves:
+      [NNI](/nearest-neighbor-interchange/), [SPR](/subtree-prune-and-regraft/) and
+      [TBR](/tree-bisection-and-reconnection/), with $O(n)$, $O(n^2)$ and $O(n^3)$ neighbors. The
+      [parsimony ratchet](/parsimony-ratchet/) helps the search leave local optima. The
+      [bootstrap](/phylogenetic-bootstrap/) measures how well the data support each split of the result.
+    entries:
+      - nearest-neighbor-interchange
+      - subtree-prune-and-regraft
+      - tree-bisection-and-reconnection
+      - stepwise-addition
+      - parsimony-ratchet
+      - phylogenetic-bootstrap
+
+  - title: Substitution models and likelihood
+    intro: >
+      A [substitution model](/substitution-model/) is a continuous-time Markov chain on the states of one site,
+      from [Jukes-Cantor](/jukes-cantor-model/) with no free parameter to [GTR](/gtr-model/) with eight, plus
+      [rate variation among sites](/rate-heterogeneity/). With it, the [likelihood](/phylogenetic-likelihood/)
+      of a tree is computed exactly by [Felsenstein's pruning algorithm](/felsenstein-pruning/), while the
+      [maximum likelihood tree](/maximum-likelihood-phylogeny/) is NP-hard to find. The model also explains
+      [long-branch attraction](/long-branch-attraction/), and [Bayesian inference](/bayesian-phylogenetic-inference/)
+      samples trees from the posterior by MCMC.
+    entries:
+      - substitution-model
+      - jukes-cantor-model
+      - felsenstein-81-model
+      - kimura-two-parameter-model
+      - hky-model
+      - gtr-model
+      - phylogenetic-likelihood
+      - rate-heterogeneity
+      - felsenstein-pruning
+      - maximum-likelihood-phylogeny
+      - ml-tree-np-hard
+      - ancestral-sequence-reconstruction
+      - phylogenetic-placement
+      - long-branch-attraction
+      - bayesian-phylogenetic-inference
+
+  - title: Time, speciation and traits
+    intro: >
+      A branch length is rate times time, and only the product is seen. A
+      [relaxed clock](/relaxed-molecular-clock/) lets the rate vary, and
+      [divergence time estimation](/divergence-time-estimation/) needs calibrations to give absolute ages.
+      The [Yule model](/yule-model/) and the [birth-death process](/birth-death-process/) are random models of
+      the tree itself. On a known tree, [phylogenetic diversity](/phylogenetic-diversity/) measures how much
+      of the tree a set of taxa keeps, and [independent contrasts](/phylogenetic-independent-contrasts/)
+      correct trait comparisons for shared descent.
+    entries:
+      - relaxed-molecular-clock
+      - divergence-time-estimation
+      - yule-model
+      - birth-death-process
+      - phylogenetic-diversity
+      - phylogenetic-diversity-maximization
+      - phylogenetic-independent-contrasts
+
+  - title: Comparing trees
+    intro: >
+      The [Robinson-Foulds distance](/robinson-foulds-distance/) counts the splits two trees do not share, and
+      [Day's algorithm](/day-algorithm/) computes it in linear time. Distances by moves are harder: the NNI, SPR
+      and TBR distances are NP-hard, and the rooted SPR distance is the size of a
+      [maximum agreement forest](/maximum-agreement-forest/) minus one. A
+      [maximum agreement subtree](/maximum-agreement-subtree/) keeps the most taxa on which two trees agree.
+    entries:
+      - robinson-foulds-distance
+      - day-algorithm
+      - tree-comparison
+      - maximum-agreement-subtree
+      - maximum-agreement-forest
+      - spr-distance
+      - rspr-maf-equivalence
+
+  - title: Combining trees
+    intro: >
+      A [consensus tree](/consensus-tree/) summarizes many trees on the same taxa: the
+      [strict](/strict-consensus/) rule keeps the splits in every tree, the
+      [majority rule](/majority-rule-consensus/) those in more than half. A [supertree](/supertree/) joins trees
+      on overlapping taxa. Built from triplets or quartets, the problem is easy when they all fit one tree and
+      NP-hard otherwise, and [Quartet MaxCut](/quartet-max-cut/) is a heuristic for the general case.
+    entries:
+      - consensus-tree
+      - strict-consensus
+      - majority-rule-consensus
+      - adams-consensus
+      - supertree
+      - maximum-rooted-triplet-consistency
+      - maximum-quartet-consistency
+      - quartet-max-cut
+
+  - title: Gene trees and species trees
+    intro: >
+      A gene has its own tree, and it need not be the tree of the species. Traced backward, gene copies merge
+      by the [Kingman coalescent](/kingman-coalescent/), and inside a species tree by the
+      [multispecies coalescent](/multispecies-coalescent/); [incomplete lineage sorting](/incomplete-lineage-sorting/)
+      then makes gene trees disagree. [ASTRAL](/astral/) is statistically consistent under that model when it is given
+      true gene trees.
+      Duplications, losses and [horizontal transfer](/horizontal-gene-transfer/) are the other causes, handled
+      by [reconciliation](/tree-reconciliation/).
+    entries:
+      - coalescent-theory
+      - kingman-coalescent
+      - incomplete-lineage-sorting
+      - multispecies-coalescent
+      - species-tree-estimation
+      - astral
+      - tree-reconciliation
+      - lca-reconciliation
+      - duplication-loss-model
+      - horizontal-gene-transfer
+
+  - title: Networks
+    intro: >
+      When lineages merge by hybridization, recombination or transfer, a tree is not enough. A
+      [phylogenetic network](/phylogenetic-network/) is a rooted acyclic graph with reticulations;
+      [inferring one](/phylogenetic-network-inference/) with the fewest reticulations is NP-hard but
+      fixed-parameter tractable. Split networks, from [split decomposition](/split-decomposition/) or
+      [NeighborNet](/neighbor-net/), draw conflict in the data without claiming a history. The
+      [ancestral recombination graph](/ancestral-recombination-graph/) records the history of recombining
+      sequences.
+    entries:
+      - phylogenetic-network
+      - split-decomposition
+      - split-network-construction
+      - neighbor-net
+      - phylogenetic-network-inference
+      - ancestral-recombination-graph
+      - ancestral-recombination-graph-inference

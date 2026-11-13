@@ -1,0 +1,96 @@
+# The order of chapter 27.2, Genome assembly. Groups are read in order; entries in a group too.
+groups:
+  - title: Reads, coverage and repeats
+    intro: >
+      [Shotgun sequencing](/shotgun-sequencing/) cuts a genome into reads at random places, and a
+      [k-mer](/kmer/) is the unit most assemblers count. [Coverage](/sequencing-coverage/) $c = NL/G$ sets how
+      much of the genome the reads see, and the [Lander-Waterman model](/lander-waterman-model/) turns it into
+      expected numbers of gaps and islands. [Repeats](/genome-repeat/) decide whether the reads determine the
+      genome at all, and the [assembly problem](/genome-assembly-problem/) and the
+      [NP-hardness of the shortest common superstring](/shortest-common-superstring-np-hard/) show why the
+      shortest answer is not the right target.
+    entries:
+      - shotgun-sequencing
+      - kmer
+      - sequencing-coverage
+      - lander-waterman-model
+      - genome-repeat
+      - genome-assembly-problem
+      - shortest-common-superstring-np-hard
+
+  - title: Contigs and how to judge them
+    intro: >
+      An assembler outputs [contigs](/contig/), and the safe ones are those that every genome consistent with
+      the reads contains. A [unitig](/unitig/) is the simplest safe contig, a maximal path whose inner vertices
+      have one way in and one way out. [N50](/n50/) measures contiguity only, so
+      [quality assessment](/assembly-quality-assessment/) adds error rates, completeness and misjoin counts.
+    entries:
+      - contig
+      - unitig
+      - n50
+      - assembly-quality-assessment
+
+  - title: Counting k-mers and correcting reads
+    intro: >
+      [K-mer counting](/kmer-counting/) builds the table that later steps read, with a hash table in $O(M)$
+      expected time for $M$ k-mers. The [k-mer spectrum](/kmer-spectrum/) is the histogram of those counts; its
+      peak estimates the genome size and its low tail the error rate. [Read error correction](/read-error-correction/)
+      uses the same counts to fix reads before assembly.
+    entries:
+      - kmer-counting
+      - kmer-spectrum
+      - read-error-correction
+
+  - title: Overlap-based assembly
+    intro: >
+      [Overlap detection](/overlap-detection/) finds pairs of reads whose ends match, and the
+      [overlap graph](/overlap-graph/) records them. [Greedy merging](/greedy-shortest-common-superstring/)
+      joins the largest overlaps first. The [string graph](/string-graph/) removes the transitive edges, the
+      [overlap-layout-consensus](/overlap-layout-consensus/) pipeline lays reads along its paths, and
+      [consensus calling](/consensus-sequence-calling/) picks one base per column.
+    entries:
+      - overlap-detection
+      - overlap-graph
+      - greedy-shortest-common-superstring
+      - string-graph
+      - overlap-layout-consensus
+      - consensus-sequence-calling
+
+  - title: de Bruijn graph assembly
+    intro: >
+      [Sequencing by hybridization](/sequencing-by-hybridization/) first turned reconstruction from short words
+      into an Eulerian path problem. The [de Bruijn assembler](/de-bruijn-assembly/) does the same with the
+      k-mers of reads and outputs unitigs. [Graph simplification](/assembly-graph-simplification/) removes the
+      marks of errors, chiefly by [tip removal](/tip-removal/) and [bubble popping](/bubble-popping/), and the
+      [Eulerian superpath problem](/eulerian-superpath-problem/) puts the reads back as paths in the graph.
+    entries:
+      - sequencing-by-hybridization
+      - de-bruijn-assembly
+      - assembly-graph-simplification
+      - tip-removal
+      - bubble-popping
+      - eulerian-superpath-problem
+
+  - title: Pairs, repeats and scaffolds
+    intro: >
+      [Paired-end reads](/paired-end-reads/) carry two ends at a known distance. That distance is what
+      [repeat resolution](/repeat-resolution/) uses to pass through repeats longer than one read. A
+      [scaffold](/scaffold/) orders and orients contigs with gaps of estimated size, and
+      [scaffolding](/scaffolding/) is NP-complete in general. [Gap filling](/gap-filling/) looks for a walk of
+      the right length between two contigs.
+    entries:
+      - paired-end-reads
+      - repeat-resolution
+      - scaffold
+      - scaffolding
+      - gap-filling
+
+  - title: Using other data
+    intro: >
+      A related genome or a second read type can settle what one read set leaves open.
+      [Reference-guided assembly](/reference-guided-assembly/) maps reads to a close relative and fixes the
+      differences. [Hybrid assembly](/hybrid-assembly/) combines long reads, which bridge repeats, with
+      accurate short reads, which fix the bases.
+    entries:
+      - reference-guided-assembly
+      - hybrid-assembly

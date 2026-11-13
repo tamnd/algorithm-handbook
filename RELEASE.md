@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.25.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.26.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.25.0](https://github.com/tamnd/algorithm/releases/tag/v0.25.0)
-(`595050f399a3231f2360b82fc3a677e72b9323c1`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.26.0](https://github.com/tamnd/algorithm/releases/tag/v0.26.0)
+(`f1e874c8c2165fa636d4556fa3534cadaf5df795`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,334 |
+| 0 | Guide and Index | the whole set | 1,402 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -30,33 +30,40 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 22 | Concurrency | 155 | 2,240 |
 | 23 | Cryptography | 390 | 3,136 |
 | 24 | Compression and coding | 220 | 1,741 |
-| 25 | Machine learning | 419 | 2,978 |
+| 25 | Machine learning | 419 | 2,982 |
 | 26 | Systems | 442 | 3,209 |
-| | **All** | **7,096** | **47,968** |
+| 27 | Biology | 254 | 1,611 |
+| 28 | Graphics and signals | 82 | 569 |
+| | **All** | **7,432** | **50,220** |
 
-- **Volume 26, Systems, is now complete**, in eight chapters and 442 entries. To *Caching policies* (26.1) this
-  edition adds scheduling (the classical CPU scheduling rules and their optimality, fair-share and proportional
-  schedulers, flow shops and Johnson's rule, and real-time scheduling: rate-monotonic and earliest-deadline-first,
-  the Liu-Layland bound, response-time analysis and the priority protocols), memory allocation (sequential fits,
-  segregated lists, the buddy system, slab and arena allocators, fragmentation and Robson's bounds), garbage
-  collection (marking, sweeping, copying and compaction, reference counting, generational, incremental and
-  concurrent collectors, barriers and the tricolor invariant), database algorithms (joins and the AGM bound, query
-  optimization, normal forms and dependencies, concurrency control and isolation levels, logging and recovery),
-  networking algorithms (routing protocols, reliable transfer, TCP congestion control, fair queueing and active
-  queue management, packet classification and switch scheduling), load balancing and hashing (balls into bins,
-  the power of two choices, consistent, rendezvous, jump and Maglev hashing, and the policies of load balancers)
-  and rate limiting (token and leaky buckets, GCRA, window counters, traffic shaping and policing). Each page
-  says what is proved, under which model, and what is only measured. The volume introduction is rewritten for the
-  whole volume, and the opening of each new chapter replaces the short one of 0.24.0.
-- **Volume 0, Guide and Index**, covers the whole set of 7,096 entries and has a new learning path,
-  *Systems*.
-- **Volumes 1 to 25** have the same entries under the same numbers as in 0.24.0; their cross-references to the
-  new entries of Volume 26 (the scheduling rules, the buddy system, two-phase locking, consistent hashing, the
-  token bucket and others) now give entry numbers. The tables of Exercises 18.3.16 and 22.1.14, which printed as
-  plain text, are now set as tables.
-- Volumes 27 to 31 are forthcoming; Volume 0 lists their chapters.
+- **New in this edition: Volume 27, Biology**, in four chapters: sequence alignment (scoring matrices and gap
+  penalties, the dynamic programs of Needleman-Wunsch, Smith-Waterman and Gotoh, Hirschberg's linear space, banded
+  alignment, seeds, BLAST and the Karlin-Altschul statistics, read mapping with minimizers and the FM-index,
+  multiple alignment, its NP-hardness and the progressive methods, profile hidden Markov models), genome assembly
+  (shotgun sequencing and the Lander-Waterman model, the shortest common superstring, overlap and string graphs,
+  de Bruijn graphs and their simplification, scaffolding and the measures of an assembly), phylogenetics (tree
+  metrics and the four-point condition, UPGMA and neighbor joining, small and large parsimony, substitution models
+  and Felsenstein's pruning algorithm, tree search and the bootstrap, consensus and the distances between trees,
+  perfect phylogeny, the coalescent, reconciliation and phylogenetic networks) and structure prediction (RNA
+  secondary structure by the Nussinov, Zuker and McCaskill algorithms and the hardness of pseudoknots, protein
+  secondary and tertiary structure, the HP model, threading and comparative modeling, side-chain packing,
+  superposition by the Kabsch algorithm, RMSD and TM-score). Each page says which part of a method is exact and
+  which part is a model of biology.
+- **New: Volume 28, Graphics and signals**, with two chapters written: *Rasterization* (47 entries: lines by
+  Bresenham's, the DDA and Wu's algorithms, circles and ellipses, triangles by edge functions and fill rules,
+  polygon scan conversion, clipping by Cohen-Sutherland, Liang-Barsky and Sutherland-Hodgman, perspective-correct
+  interpolation, shading, texture mapping and mipmaps, antialiasing and compositing) and *Visibility* (35 entries:
+  the z-buffer and its hierarchy, the painter's, Newell-Newell-Sancha and Warnock algorithms, BSP trees, hidden
+  lines, culling, portals and potentially visible sets, shadow volumes and shadow maps, and the art gallery
+  theorems). Chapters 28.2, 28.4, 28.5 and 28.6 have an opening only, until the site writes their entries.
+- **Volume 0, Guide and Index**, covers the whole set of 7,432 entries and has a new learning path,
+  *Biology*.
+- **Volumes 1 to 26** have the same entries under the same numbers as in 0.25.0, with the corrections that the
+  site's release v0.26.0 made to them; their cross-references to entries of Volumes 27 and 28 (Needleman-Wunsch,
+  the de Bruijn graph, neighbor joining, Bresenham's algorithm, the z-buffer and others) now give entry numbers.
+- Volumes 29 to 31 are forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.25.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.26.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

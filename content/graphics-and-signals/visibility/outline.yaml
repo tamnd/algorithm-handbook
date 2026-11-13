@@ -1,0 +1,115 @@
+# The order of chapter 28.3, Visibility. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its two precisions
+    intro: >
+      [Hidden-surface removal](/hidden-surface-removal/) finds, for each point of the image, the nearest surface
+      along the ray from the eye. [Object space and image space](/object-space-vs-image-space/) name the two ways
+      to answer: exactly on the geometry, with a cost per polygon or per output piece, or at a finite set of
+      samples, with a cost per pixel. [Visibility coherence](/visibility-coherence/) is the reason most methods
+      run faster than the worst case on real scenes.
+    entries:
+      - hidden-surface-removal
+      - object-space-vs-image-space
+      - visibility-coherence
+  - title: Culling by facing and by frustum
+    intro: >
+      [Visibility culling](/visibility-culling/) removes objects before the exact test, and it names the
+      contract: exact, conservative, aggressive or approximate. [Back-face culling](/back-face-culling/) drops
+      the faces of a closed oriented solid that point away from the eye, with one dot product per face.
+      [Frustum culling](/frustum-culling/) drops the objects whose bounding boxes lie outside one plane of the
+      view volume. Both tests are local and conservative.
+    entries:
+      - visibility-culling
+      - back-face-culling
+      - frustum-culling
+  - title: List priority
+    intro: >
+      The [painter's algorithm](/painters-algorithm/) draws polygons from far to near, so that near ones
+      overwrite far ones; it is correct only when a valid depth order exists. The
+      [Newell-Newell-Sancha algorithm](/newell-newell-sancha-algorithm/) tests and splits polygons until the order
+      is valid. [BSP tree visibility](/bsp-tree-visibility/) builds the order once, in object space, and reads a
+      correct order for any eye position by one traversal of a [BSP tree](/bsp-tree/).
+    entries:
+      - painters-algorithm
+      - newell-newell-sancha-algorithm
+      - bsp-tree-visibility
+  - title: Image-space methods
+    intro: >
+      The [z-buffer](/z-buffer/) keeps one depth per pixel and needs no sorting at all, at a cost of
+      $\Theta(WH + n + P)$; its finite depth precision causes [z-fighting](/z-fighting/). The
+      [Warnock algorithm](/warnock-algorithm/) divides the screen until each area is simple, and the
+      [Watkins scanline algorithm](/watkins-scanline-algorithm/) resolves depth along spans of one scanline.
+      The [early depth test](/early-depth-test/) moves the depth test before shading. The
+      [A-buffer](/a-buffer/) and [depth peeling](/depth-peeling/) keep more than one surface per pixel, for
+      transparency and antialiasing.
+    entries:
+      - z-buffer
+      - z-fighting
+      - warnock-algorithm
+      - watkins-scanline-algorithm
+      - early-depth-test
+      - a-buffer
+      - depth-peeling
+  - title: Culling against occluders
+    intro: >
+      An [occlusion query](/occlusion-query/) counts the samples of a bounding box that pass the depth test, and
+      a count of zero proves the object hidden. The [hierarchical z-buffer](/hierarchical-z-buffer/) answers the
+      same question with a max pyramid of depths. [Occlusion culling](/occlusion-culling/) combines such tests
+      with a near-to-far traversal and fuses many small occluders. In indoor scenes,
+      [portal culling](/portal-culling/) walks from cell to cell through doors, and a
+      [potentially visible set](/potentially-visible-set/) stores, for each cell, the cells that might be seen
+      from somewhere inside it.
+    entries:
+      - occlusion-query
+      - hierarchical-z-buffer
+      - occlusion-culling
+      - portal-culling
+      - potentially-visible-set
+  - title: Hidden lines
+    intro: >
+      [Hidden-line removal](/hidden-line-removal/) draws only the visible parts of the edges of a scene, so its
+      output is a set of segments and not an image. The [silhouette edge](/silhouette-edge/) separates a front
+      face from a back face, and only there can visibility change along an edge. The
+      [Roberts algorithm](/roberts-hidden-line-algorithm/) clips each edge against each convex solid, and the
+      [Appel algorithm](/appel-hidden-line-algorithm/) propagates a quantitative invisibility count along edges.
+    entries:
+      - hidden-line-removal
+      - silhouette-edge
+      - roberts-hidden-line-algorithm
+      - appel-hidden-line-algorithm
+  - title: Shadows
+    intro: >
+      [Shadow determination](/shadow-determination/) is visibility from the light: a point is lit when the
+      segment to the light meets no other surface. [Shadow mapping](/shadow-mapping/) renders a depth image
+      from the light and compares depths per pixel, and the
+      [shadow volume algorithm](/shadow-volume-algorithm/) extrudes silhouettes into closed volumes and counts
+      crossings in the [stencil buffer](/stencil-buffer/).
+    entries:
+      - shadow-determination
+      - shadow-mapping
+      - shadow-volume-algorithm
+  - title: Visibility in the plane and on terrain
+    intro: >
+      The [visibility polygon](/visibility-polygon/) of a point in a [simple polygon](/simple-polygon/) is the
+      set of points it sees; it is star-shaped, and the
+      [Lee algorithm](/lee-visibility-polygon-algorithm/) computes it in $\Theta(n)$ time with one stack. The
+      [weak visibility polygon](/weak-visibility-polygon/) of an edge is the set of points seen from some point
+      of the edge. [Terrain visibility](/terrain-visibility/) asks the same questions on a height field, where
+      the answers are viewsheds and horizons.
+    entries:
+      - visibility-polygon
+      - lee-visibility-polygon-algorithm
+      - weak-visibility-polygon
+      - terrain-visibility
+  - title: Guards
+    intro: >
+      [Chvátal's art gallery theorem](/chvatal-art-gallery-theorem/) says that $\lfloor n/3 \rfloor$ guards
+      always suffice for a simple polygon with $n$ vertices, and sometimes are needed. The
+      [orthogonal art gallery theorem](/orthogonal-art-gallery-theorem/) lowers the bound to
+      $\lfloor n/4 \rfloor$ when all angles are right angles. [Minimum guard NP-hardness](/minimum-guard-np-hardness/)
+      shows that finding the least number of guards for a given polygon is NP-hard. The general problem is the
+      [art gallery problem](/art-gallery-problem/) of Volume 13.
+    entries:
+      - chvatal-art-gallery-theorem
+      - orthogonal-art-gallery-theorem
+      - minimum-guard-np-hardness
