@@ -1607,3 +1607,174 @@ paths:
           - structure-alignment
           - comparative-modeling
           - alphafold
+
+  - id: graphics-and-signals
+    title: Graphics and signals
+    for: a student who knows linear algebra, a little calculus and probability, and the discrete Fourier transform, and wants to see how pictures are drawn, how light is simulated, and how images and signals are filtered and measured.
+    intro: >
+      Rasterization first: the pixel and the frame buffer, lines and triangles turned into pixels, clipping,
+      filling by a rule, interpolation that respects perspective, and the sampling and filtering that keep the
+      result free of jagged edges. Visibility follows: which surface is in front, decided per pixel by the depth
+      buffer or per object by sorting and partitioning, and the culling that skips what cannot be seen. Curves
+      and surfaces give the shapes themselves, from Bezier curves and de Casteljau's algorithm through B-splines
+      and NURBS to subdivision surfaces and the meshes extracted from implicit ones. Ray tracing simulates light:
+      the intersection tests, the hierarchies that make them fast, the rendering equation, and the Monte Carlo
+      estimators that solve it. The last two stages treat the image and the signal as data: filtering, edges,
+      segmentation and features for images, and sampling, filters, spectra and sparse recovery for signals. Each
+      step says which part is proved and which part is judged by eye or by measurement.
+    stages:
+      - title: Drawing pixels
+        steps:
+          - pixel
+          - frame-buffer
+          - graphics-pipeline
+          - viewport-transform
+          - line-rasterization
+          - entry: bresenham-line-algorithm
+            why: the line drawn with integer additions alone, and the model for every incremental rasterizer.
+          - midpoint-circle-algorithm
+          - line-clipping
+          - cohen-sutherland-line-clipping
+          - liang-barsky-line-clipping
+          - polygon-window-clipping
+          - triangle-rasterization
+          - edge-function
+          - top-left-fill-rule
+          - scanline-polygon-fill
+          - nonzero-winding-rule
+          - perspective-correct-interpolation
+          - texture-mapping
+          - mipmap
+          - antialiasing
+          - supersampling-antialiasing
+          - porter-duff-compositing
+      - title: Hiding surfaces
+        steps:
+          - hidden-surface-removal
+          - object-space-vs-image-space
+          - back-face-culling
+          - painters-algorithm
+          - entry: z-buffer
+            why: the per-pixel depth test that made visibility a matter of memory rather than sorting.
+          - z-fighting
+          - bsp-tree-visibility
+          - warnock-algorithm
+          - frustum-culling
+          - occlusion-culling
+          - hierarchical-z-buffer
+          - shadow-mapping
+          - shadow-volume-algorithm
+          - visibility-polygon
+          - chvatal-art-gallery-theorem
+      - title: Curves and surfaces
+        steps:
+          - parametric-curve
+          - control-points
+          - bernstein-polynomials
+          - bezier-curve
+          - entry: de-casteljau-algorithm
+            why: evaluation by repeated linear interpolation, stable and the source of subdivision and the convex hull property.
+          - convex-hull-property
+          - parametric-continuity
+          - hermite-spline
+          - catmull-rom-spline
+          - natural-cubic-spline
+          - knot-vector
+          - b-spline
+          - cox-de-boor-recursion
+          - de-boor-algorithm
+          - boehm-knot-insertion
+          - rational-bezier-curve
+          - nurbs
+          - tensor-product-surface
+          - bezier-patch
+          - subdivision-surface
+          - catmull-clark-subdivision
+          - loop-subdivision
+          - implicit-surface
+          - marching-cubes
+          - polygon-mesh
+          - quadric-error-metrics
+          - ramer-douglas-peucker
+      - title: Tracing rays
+        steps:
+          - ray-casting
+          - primary-ray-generation
+          - pinhole-camera-model
+          - ray-object-intersection
+          - ray-sphere-intersection
+          - moller-trumbore
+          - slab-method
+          - axis-aligned-bounding-box
+          - bounding-volume-hierarchy
+          - entry: surface-area-heuristic
+            why: the cost model that decides how a hierarchy is split, and so how fast every ray is answered.
+          - bvh-traversal
+          - whitted-ray-tracing
+          - brdf
+          - rendering-equation
+          - path-tracing
+          - russian-roulette
+          - next-event-estimation
+          - multiple-importance-sampling
+          - bidirectional-path-tracing
+          - photon-mapping
+          - signed-distance-function
+          - sphere-tracing
+      - title: Processing images
+        steps:
+          - digital-image
+          - image-histogram
+          - histogram-equalization
+          - linear-filtering
+          - separable-filter
+          - gaussian-filter
+          - integral-image
+          - bilateral-filter
+          - median-filter
+          - edge-detection
+          - sobel-operator
+          - entry: canny-edge-detector
+            why: edges found by smoothing, gradients, thinning and two thresholds, each step chosen for a stated goal.
+          - hough-transform
+          - otsu-thresholding
+          - mathematical-morphology
+          - connected-component-labeling
+          - distance-transform
+          - watershed-segmentation
+          - image-pyramid
+          - harris-corner-detector
+          - sift
+          - optical-flow
+          - lucas-kanade-method
+          - seam-carving
+          - floyd-steinberg-dithering
+          - structural-similarity-index
+      - title: Processing signals
+        steps:
+          - sampling-theorem
+          - aliasing
+          - linear-time-invariant-system
+          - impulse-response
+          - discrete-convolution
+          - z-transform
+          - transfer-function
+          - frequency-response
+          - fir-filter
+          - iir-filter
+          - window-functions
+          - parks-mcclellan-algorithm
+          - butterworth-filter
+          - bilinear-transform
+          - overlap-add-method
+          - spectral-leakage
+          - periodogram
+          - welch-method
+          - short-time-fourier-transform
+          - discrete-wavelet-transform
+          - wiener-filter
+          - lms-algorithm
+          - entry: kalman-filter
+            why: the recursive estimator that is optimal for a linear model with Gaussian noise, and the template for the rest.
+          - compressed-sensing
+          - orthogonal-matching-pursuit

@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.26.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.27.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.26.0](https://github.com/tamnd/algorithm/releases/tag/v0.26.0)
-(`f1e874c8c2165fa636d4556fa3534cadaf5df795`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.27.0](https://github.com/tamnd/algorithm/releases/tag/v0.27.0)
+(`e29daf043be6ff6e6c7828656128b6fd5b6f033f`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,402 |
+| 0 | Guide and Index | the whole set | 1,459 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -33,37 +33,37 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 25 | Machine learning | 419 | 2,982 |
 | 26 | Systems | 442 | 3,209 |
 | 27 | Biology | 254 | 1,611 |
-| 28 | Graphics and signals | 82 | 569 |
-| | **All** | **7,432** | **50,220** |
+| 28 | Graphics and signals | 401 | 2,745 |
+| | **All** | **7,751** | **52,453** |
 
-- **New in this edition: Volume 27, Biology**, in four chapters: sequence alignment (scoring matrices and gap
-  penalties, the dynamic programs of Needleman-Wunsch, Smith-Waterman and Gotoh, Hirschberg's linear space, banded
-  alignment, seeds, BLAST and the Karlin-Altschul statistics, read mapping with minimizers and the FM-index,
-  multiple alignment, its NP-hardness and the progressive methods, profile hidden Markov models), genome assembly
-  (shotgun sequencing and the Lander-Waterman model, the shortest common superstring, overlap and string graphs,
-  de Bruijn graphs and their simplification, scaffolding and the measures of an assembly), phylogenetics (tree
-  metrics and the four-point condition, UPGMA and neighbor joining, small and large parsimony, substitution models
-  and Felsenstein's pruning algorithm, tree search and the bootstrap, consensus and the distances between trees,
-  perfect phylogeny, the coalescent, reconciliation and phylogenetic networks) and structure prediction (RNA
-  secondary structure by the Nussinov, Zuker and McCaskill algorithms and the hardness of pseudoknots, protein
-  secondary and tertiary structure, the HP model, threading and comparative modeling, side-chain packing,
-  superposition by the Kabsch algorithm, RMSD and TM-score). Each page says which part of a method is exact and
-  which part is a model of biology.
-- **New: Volume 28, Graphics and signals**, with two chapters written: *Rasterization* (47 entries: lines by
-  Bresenham's, the DDA and Wu's algorithms, circles and ellipses, triangles by edge functions and fill rules,
-  polygon scan conversion, clipping by Cohen-Sutherland, Liang-Barsky and Sutherland-Hodgman, perspective-correct
-  interpolation, shading, texture mapping and mipmaps, antialiasing and compositing) and *Visibility* (35 entries:
-  the z-buffer and its hierarchy, the painter's, Newell-Newell-Sancha and Warnock algorithms, BSP trees, hidden
-  lines, culling, portals and potentially visible sets, shadow volumes and shadow maps, and the art gallery
-  theorems). Chapters 28.2, 28.4, 28.5 and 28.6 have an opening only, until the site writes their entries.
-- **Volume 0, Guide and Index**, covers the whole set of 7,432 entries and has a new learning path,
-  *Biology*.
-- **Volumes 1 to 26** have the same entries under the same numbers as in 0.25.0, with the corrections that the
-  site's release v0.26.0 made to them; their cross-references to entries of Volumes 27 and 28 (Needleman-Wunsch,
-  the de Bruijn graph, neighbor joining, Bresenham's algorithm, the z-buffer and others) now give entry numbers.
+- **Volume 28, Graphics and signals, is now complete**, in six chapters and 401 entries. To Rasterization (28.1)
+  and Visibility (28.3) this edition adds *Curves and surfaces* (72 entries: Bernstein polynomials, Bezier curves
+  and de Casteljau's algorithm, Hermite, Catmull-Rom and natural cubic splines, B-splines by the Cox-de Boor
+  recursion and de Boor's algorithm, knot insertion, NURBS, tensor-product and triangular patches, subdivision
+  surfaces by Chaikin, Catmull-Clark, Doo-Sabin, Loop and the butterfly scheme, implicit surfaces and marching
+  cubes, surface reconstruction, mesh and curve simplification), *Ray tracing* (71 entries: ray-object
+  intersection by the slab method and the Möller-Trumbore and watertight tests, bounding volume hierarchies, the
+  surface area heuristic and kd-trees, the rendering equation, BRDFs and microfacets, Whitted and path tracing,
+  Russian roulette, next-event estimation and multiple importance sampling, bidirectional and Metropolis light
+  transport, photon mapping, radiosity, participating media, ReSTIR and sphere tracing), *Image processing* (97
+  entries: histograms and contrast, linear, separable, bilateral and guided filters, edges by Sobel, Canny and the
+  Laplacian of Gaussian, the Hough transform, thresholding by Otsu's method, morphology, connected components and
+  distance transforms, segmentation by watershed, mean shift, graph cuts and superpixels, pyramids, corners, SIFT
+  and Viola-Jones, optical flow, deconvolution, denoising and inpainting, seam carving, dithering and the
+  measures of quality) and *Signal processing* (79 entries: sampling and aliasing, linear time-invariant systems,
+  convolution and the z-transform, FIR and IIR filters and their design by windows, Parks-McClellan and the
+  bilinear transform, overlap-add and overlap-save, spectral estimation by the periodogram, Welch's method and
+  parametric models, MUSIC and ESPRIT, the short-time Fourier and wavelet transforms, Wiener, LMS, RLS and
+  Kalman filtering, and compressed sensing). The volume introduction is rewritten for the whole volume, and the
+  opening of each new chapter replaces the short one of 0.26.0.
+- **Volume 0, Guide and Index**, covers the whole set of 7,751 entries and has a new learning path,
+  *Graphics and signals*.
+- **Volumes 1 to 27** have the same entries under the same numbers as in 0.26.0; their cross-references to the
+  new entries of Volume 28 (de Casteljau's algorithm, the bounding volume hierarchy, the Canny edge detector, the
+  Kalman filter and others) now give entry numbers.
 - Volumes 29 to 31 are forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.26.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.27.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

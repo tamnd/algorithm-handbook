@@ -82,6 +82,11 @@ def _prime_sub_sup(m: re.Match) -> str:
     return base + primes + sub + "{}"
 
 
+def _math_hats(m: re.Match) -> str:
+    s = m.group(0)
+    return re.sub(r"([A-Za-z])\u0302", r"\\hat{\1}", s) if "\u0302" in s else s
+
+
 _AUX = ("main.aux", "main.toc", "main.out")
 
 
@@ -133,6 +138,8 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     body = re.sub(r"(?<!\}\{)([⟕⟖⟗])", lambda m: r"\mathbin{\text{\hbfbC " + m.group(1) + "}}", body)
     # so is the diamond operator ⋄ (\diamond, U+22C4)
     body = re.sub(r"\\diamond(?![a-zA-Z])", lambda m: r"\mathbin{\text{\hbfbC ⋄}}", body)
+    # a combining circumflex (U+0302) after a letter in mathematics, as in N̂, has no glyph there: it is \hat
+    body = re.sub(r"\\\((.*?)\\\)|\\\[(.*?)\\\]", _math_hats, body, flags=re.S)
     open(os.path.join(outdir, "body.tex"), "w").write(body)
     open(os.path.join(outdir, "main.tex"), "w").write(main_tex(book, vol, edition, date))
     shutil.copy(os.path.join(ROOT, "tex", "handbook.sty"), outdir)

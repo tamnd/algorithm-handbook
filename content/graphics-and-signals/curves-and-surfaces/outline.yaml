@@ -1,0 +1,161 @@
+# The order of chapter 28.2, Curves and surfaces. Groups are read in order; entries in a group too.
+groups:
+  - title: Curves as maps
+    intro: >
+      A [parametric curve](/parametric-curve/) is a continuous map from an interval into the plane or space.
+      The entries here fix the language of the chapter: how smoothly two pieces join ($C^k$ for the
+      parametrization, $G^k$ for the shape), the arc length and the unit-speed parametrization, the Frenet
+      frame with its curvature and torsion, and the offset at a fixed distance along the normals.
+    entries:
+      - parametric-curve
+      - parametric-continuity
+      - arc-length-parametrization
+      - frenet-frame
+      - offset-curve
+
+  - title: Bézier curves
+    intro: >
+      The Bernstein polynomials of degree $n$ are nonnegative on $[0, 1]$ and sum to 1, so a Bézier curve is
+      a moving weighted average of its $n + 1$ control points. That gives the convex hull and variation
+      diminishing properties. The [de Casteljau algorithm](/de-casteljau-algorithm/) evaluates the curve by
+      repeated linear interpolation and splits it at the same time. Rational curves add a weight to each
+      point and represent conics exactly.
+    entries:
+      - bernstein-polynomials
+      - bezier-curve
+      - control-points
+      - convex-hull-property
+      - variation-diminishing-property
+      - curve-evaluation
+      - de-casteljau-algorithm
+      - rational-bezier-curve
+      - bernstein-approximation-theorem
+
+  - title: Interpolating splines
+    intro: >
+      A curve through given points is fixed only after a parameter value is chosen for each point. A
+      [Hermite spline](/hermite-spline/) takes a position and a tangent at each end of each cubic segment;
+      Catmull-Rom and Kochanek-Bartels set the tangents from the neighbouring points, and the natural cubic
+      spline solves a tridiagonal system to make the curve $C^2$. Their interpolation theory, from the
+      [cubic Hermite spline](/cubic-hermite-spline/) to [cubic spline interpolation](/cubic-spline-interpolation/),
+      is in the numerical volume.
+    entries:
+      - hermite-spline
+      - curve-interpolation
+      - catmull-rom-spline
+      - kochanek-bartels-spline
+      - natural-cubic-spline
+
+  - title: B-splines and NURBS
+    intro: >
+      A knot vector and a degree $p$ define B-splines: nonnegative piecewise polynomials, each nonzero on at
+      most $p + 1$ knot spans. The Cox-de Boor recursion computes them, the Curry-Schoenberg theorem says
+      they are a basis of the spline space, and the Schoenberg-Whitney theorem says when interpolation with
+      them is possible. [De Boor's algorithm](/de-boor-algorithm/) evaluates a B-spline curve the way de
+      Casteljau evaluates a Bézier curve, and NURBS are its rational form.
+    entries:
+      - spline
+      - knot-vector
+      - b-spline
+      - cox-de-boor-recursion
+      - partition-of-unity
+      - curry-schoenberg-theorem
+      - schoenberg-whitney-theorem
+      - de-boor-algorithm
+      - nurbs
+
+  - title: Knot insertion and curve subdivision
+    intro: >
+      The same curve has many control polygons, and finer ones lie closer to it. Knot insertion by Boehm's
+      formula and the Oslo algorithm gives the control points on a finer knot vector exactly. On uniform knots
+      the refinement becomes a fixed averaging rule: Chaikin's corner cutting for quadratics, the
+      Lane-Riesenfeld algorithm for any degree. The four-point scheme refines in the same way but keeps the
+      old points, so its limit passes through them.
+    entries:
+      - curve-from-control-polygon
+      - knot-refinement
+      - boehm-knot-insertion
+      - oslo-algorithm
+      - chaikin-corner-cutting
+      - lane-riesenfeld-algorithm
+      - four-point-scheme
+
+  - title: Fitting, intersecting and offsetting curves
+    intro: >
+      Three tasks that CAD systems run all the time. Least-squares fitting finds the control points of a
+      B-spline with fixed knots from many data points by a banded linear system. Intersection finds the
+      parameter pairs where two curves meet, by subdivision or by [Bézier clipping](/bezier-clipping/).
+      Offsetting approximates the offset of a curve within a tolerance in a fixed class of curves.
+    entries:
+      - b-spline-fitting
+      - curve-intersection
+      - bezier-clipping
+      - curve-offsetting
+
+  - title: Surfaces and patches
+    intro: >
+      A [parametric surface](/parametric-surface/) is a map from a plane domain into space. Its two
+      fundamental forms give lengths, areas and the normal curvature in each direction, and from them the
+      Gaussian and mean curvature. Surfaces of revolution, ruled surfaces and sweeps are built from curves;
+      implicit surfaces are level sets. Tensor-product, Bézier, triangular and Coons patches are the pieces of
+      CAD models, and tessellation turns them into a [polygon mesh](/polygon-mesh/) within a tolerance.
+    entries:
+      - parametric-surface
+      - fundamental-forms
+      - surface-curvature
+      - surface-of-revolution
+      - ruled-surface
+      - sweep-surface
+      - implicit-surface
+      - tensor-product-surface
+      - bezier-patch
+      - bezier-triangle
+      - coons-patch
+      - polygon-mesh
+      - surface-tessellation
+
+  - title: Subdivision surfaces
+    intro: >
+      Tensor-product splines need a rectangular grid of control points. Subdivision works on a mesh of any
+      topology: each step splits the faces and places every new point by a fixed weighted average of old
+      ones. Catmull-Clark and Doo-Sabin generalize bicubic and biquadratic B-splines, Loop generalizes a box
+      spline on triangles, butterfly interpolates the old vertices, and $\sqrt 3$ subdivision triples the
+      number of faces per step instead of quadrupling it.
+    entries:
+      - surface-from-control-mesh
+      - subdivision-surface
+      - catmull-clark-subdivision
+      - doo-sabin-subdivision
+      - loop-subdivision
+      - butterfly-subdivision
+      - sqrt3-subdivision
+
+  - title: Meshes from data
+    intro: >
+      Two kinds of data give meshes. Samples of a scalar field on a grid give a level set, which marching
+      squares, marching cubes, marching tetrahedra and dual contouring extract cell by cell. Points scanned
+      from an object give a surface by [surface reconstruction](/surface-reconstruction/), and here guarantees
+      hold only under sampling conditions; ball pivoting and the Poisson method are the two standard
+      algorithms.
+    entries:
+      - isosurface-extraction
+      - marching-squares
+      - marching-cubes
+      - marching-tetrahedra
+      - dual-contouring
+      - surface-reconstruction
+      - ball-pivoting-algorithm
+      - poisson-surface-reconstruction
+
+  - title: Simplification
+    intro: >
+      A polyline or a mesh often has far more points than its shape needs. Ramer-Douglas-Peucker keeps the
+      point farthest from a chord and recurses, Visvalingam-Whyatt removes the point of least triangle area
+      first, and quadric error metrics collapse the mesh edges that change the surface least. All three are
+      greedy: none of them promises the smallest output.
+    entries:
+      - curve-simplification
+      - ramer-douglas-peucker
+      - visvalingam-whyatt
+      - mesh-simplification
+      - quadric-error-metrics

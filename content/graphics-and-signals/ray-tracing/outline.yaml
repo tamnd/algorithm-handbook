@@ -1,0 +1,149 @@
+# The order of chapter 28.4, Ray tracing. Groups are read in order; entries in a group too.
+groups:
+  - title: Cameras, rays and ray casting
+    intro: >
+      A camera model says which ray each image sample sees. The [pinhole camera](/pinhole-camera-model/)
+      sends every ray through one point; the [thin lens](/thin-lens-camera/) spreads them over a disk and
+      gives [depth of field](/depth-of-field/). The two ray queries, [closest hit](/closest-hit-query/) and
+      [any hit](/any-hit-query/), are the problems that the rest of the chapter answers fast, and
+      [ray casting](/ray-casting/) is the first renderer built on them.
+    entries:
+      - pinhole-camera-model
+      - thin-lens-camera
+      - depth-of-field
+      - primary-ray-generation
+      - ray-object-intersection
+      - closest-hit-query
+      - any-hit-query
+      - ray-casting
+  - title: Intersecting one primitive
+    intro: >
+      Each test substitutes the ray $o + t d$ into the shape and solves for $t$: a linear equation for a
+      [plane](/ray-plane-intersection/), a quadratic for a [sphere](/ray-sphere-intersection/), three
+      intervals for an [axis-aligned box](/slab-method/), and a $3 \times 3$ system for a triangle. The
+      triangle tests differ in floating point: [Möller-Trumbore](/moller-trumbore/) can let a ray leak
+      through a shared edge, and the [watertight test](/watertight-ray-triangle-intersection/) cannot.
+    entries:
+      - ray-plane-intersection
+      - ray-sphere-intersection
+      - bounding-volume
+      - axis-aligned-bounding-box
+      - slab-method
+      - moller-trumbore
+      - plucker-ray-triangle-test
+      - watertight-ray-triangle-intersection
+  - title: Surfaces given by a function
+    intro: >
+      A surface can be the zero set of a function with no closed-form intersection. [Ray marching](/ray-marching/)
+      samples the function at fixed steps and can miss thin features. A
+      [signed distance function](/signed-distance-function/) is 1-Lipschitz, and [sphere tracing](/sphere-tracing/)
+      uses that to take steps that never pass the first hit.
+    entries:
+      - signed-distance-function
+      - ray-marching
+      - sphere-tracing
+  - title: Acceleration structures
+    intro: >
+      A [bounding volume hierarchy](/bounding-volume-hierarchy/) lets a ray skip every subtree whose box it
+      misses. The worst case of a query stays $O(n)$; what a good tree buys is measured, not proved. The
+      [surface area heuristic](/surface-area-heuristic/) is the cost model that builders minimize, greedily,
+      under the assumption of uniform random lines. Then come the builders, the update by refitting, the
+      structures that split space instead of objects, and instancing.
+    entries:
+      - bounding-volume-hierarchy
+      - bvh-traversal
+      - surface-area-heuristic
+      - bvh-construction
+      - spatial-splits
+      - lbvh-construction
+      - bvh-refitting
+      - bounding-interval-hierarchy
+      - kd-tree-traversal
+      - amanatides-woo-traversal
+      - object-instancing
+  - title: Coherence and rays with width
+    intro: >
+      Neighboring rays visit the same nodes. [Ray packets](/ray-packet-tracing/) share each node fetch among
+      the rays of a group. Beams and cones go further and replace a ray by a volume of rays, and
+      [ray differentials](/ray-differentials/) carry only the first-order size of the pixel's footprint, which
+      is what texture filtering needs.
+    entries:
+      - ray-coherence
+      - ray-packet-tracing
+      - beam-tracing
+      - cone-tracing
+      - ray-differentials
+  - title: Light at a surface
+    intro: >
+      The [BRDF](/brdf/) says how a surface reflects, and its integral against the cosine is the
+      [albedo](/albedo/), at most 1 for a physical surface. Lambert's matte surface, Snell's law, the Fresnel
+      equations and the microfacet model are the materials of the chapter. The [BSDF](/bsdf/) adds
+      transmission, the [BSSRDF](/bssrdf/) light that leaves at another point, and
+      [Helmholtz reciprocity](/helmholtz-reciprocity/) is the symmetry that lets light be traced either way.
+    entries:
+      - brdf
+      - albedo
+      - lambertian-reflectance
+      - snells-law
+      - fresnel-equations
+      - bsdf
+      - microfacet-brdf
+      - helmholtz-reciprocity
+      - bssrdf
+  - title: Recursive and distributed ray tracing
+    intro: >
+      [Whitted ray tracing](/whitted-ray-tracing/) follows mirror, refraction and shadow rays to a fixed depth.
+      It is deterministic and it leaves out all diffuse interreflection. [Distributed ray tracing](/distributed-ray-tracing/)
+      replaces each ray by jittered samples over the pixel, lens, time, light and gloss lobe, which makes the
+      image a Monte Carlo estimate. [Ambient occlusion](/ambient-occlusion/) is the simplest such estimate.
+    entries:
+      - whitted-ray-tracing
+      - distributed-ray-tracing
+      - ambient-occlusion
+  - title: The rendering equation and path tracing
+    intro: >
+      The [rendering equation](/rendering-equation/) is an integral equation whose Neumann series sums the
+      light by bounces. [Path tracing](/path-tracing/) estimates it with one random path per sample and
+      [Russian roulette](/russian-roulette/) to stop, and stays unbiased. The rest of the group lowers the
+      variance without adding bias: light samples, multiple importance sampling, paths from the lights or from
+      both ends, guiding and Markov chains over paths.
+    entries:
+      - rendering-equation
+      - global-illumination
+      - path-integral-formulation
+      - russian-roulette
+      - path-tracing
+      - next-event-estimation
+      - multiple-importance-sampling
+      - light-tracing
+      - bidirectional-path-tracing
+      - path-guiding
+      - metropolis-light-transport
+      - spectral-rendering
+  - title: Participating media
+    intro: >
+      In fog, smoke and skin, light scatters along the ray and not only at surfaces.
+      [Delta tracking](/delta-tracking/) samples the distance to the next real collision in a medium of varying
+      density with a constant majorant, and [volumetric path tracing](/volumetric-path-tracing/) builds an
+      unbiased estimator on it.
+    entries:
+      - participating-media
+      - delta-tracking
+      - volumetric-path-tracing
+  - title: Caching, density estimation and reuse
+    intro: >
+      These methods share work between pixels, and most of them pay for it with bias. [Radiosity](/radiosity/) solves the
+      Lambertian case as a linear system, with no noise. [Photon mapping](/photon-mapping/) blurs light over a
+      disk and is biased and not consistent for a fixed radius; its progressive form shrinks the radius and is
+      consistent. Instant radiosity, vertex connection and merging and [ReSTIR](/restir/) each state which
+      of their parts add bias.
+    entries:
+      - radiosity
+      - irradiance-caching
+      - photon-map
+      - photon-mapping
+      - final-gathering
+      - progressive-photon-mapping
+      - instant-radiosity
+      - vertex-connection-and-merging
+      - restir

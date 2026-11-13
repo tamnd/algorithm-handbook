@@ -1,0 +1,179 @@
+# The order of chapter 28.6, Signal processing. Groups are read in order; entries in a group too.
+groups:
+  - title: Convolution, correlation and the frequency domain
+    intro: >
+      [Discrete convolution](/discrete-convolution/) is the output of a linear shift-invariant filter, and
+      [circular convolution](/circular-convolution/) is the form that the DFT turns into a product.
+      [Cross-correlation](/cross-correlation/) and [autocorrelation](/autocorrelation/) measure how a signal
+      matches a shifted copy. The [discrete-time Fourier transform](/discrete-time-fourier-transform/) and the
+      [z-transform](/z-transform/) describe a sequence by frequency, Parseval's theorem keeps its energy, and the
+      [power spectral density](/power-spectral-density/) spreads the power of a stationary process over frequency.
+    entries:
+      - discrete-convolution
+      - circular-convolution
+      - cross-correlation
+      - autocorrelation
+      - discrete-time-fourier-transform
+      - z-transform
+      - parsevals-theorem
+      - gibbs-phenomenon
+      - power-spectral-density
+  - title: Sampling and reconstruction
+    intro: >
+      After sampling at rate $f_s$, the frequencies $f$ and $f + k f_s$ give the same samples, which is
+      [aliasing](/aliasing/). The [sampling theorem](/sampling-theorem/) says that a signal with no frequencies
+      at or above $B$ is fixed by its samples when $f_s > 2B$, and [sinc interpolation](/sinc-interpolation/)
+      rebuilds it. [Signal reconstruction](/signal-reconstruction/) is the general problem, for other signal
+      classes and for samples with error.
+    entries:
+      - aliasing
+      - sampling-theorem
+      - nyquist-rate
+      - signal-reconstruction
+      - sinc-interpolation
+  - title: Linear time-invariant systems
+    intro: >
+      A [linear time-invariant system](/linear-time-invariant-system/) is fixed by its
+      [impulse response](/impulse-response/), and its output is a convolution. The
+      [frequency response](/frequency-response/) gives the gain and phase at each frequency, and the
+      [transfer function](/transfer-function/) gives poles and zeros. [BIBO stability](/bibo-stability/) holds
+      exactly when the impulse response is absolutely summable, and a [minimum-phase](/minimum-phase/) system
+      has a causal stable inverse.
+    entries:
+      - linear-time-invariant-system
+      - impulse-response
+      - frequency-response
+      - transfer-function
+      - bibo-stability
+      - minimum-phase
+  - title: Digital filters and their design
+    intro: >
+      [Digital filtering](/digital-filtering/) computes the output of a filter on a stream. An
+      [FIR filter](/fir-filter/) costs $\Theta(M)$ per sample for $M + 1$ taps, and the
+      [overlap-add](/overlap-add-method/) and [overlap-save](/overlap-save-method/) methods bring this to
+      $O(\log M)$ with FFTs. An [IIR filter](/iir-filter/) feeds back its outputs and is stable only when its poles
+      lie inside the unit circle. [Digital filter design](/digital-filter-design/) meets a specification: by an
+      analog [Butterworth filter](/butterworth-filter/) and the [bilinear transform](/bilinear-transform/), or by
+      the minimax FIR filter of [Parks-McClellan](/parks-mcclellan-algorithm/). The
+      [Savitzky-Golay](/savitzky-golay-filter/) and [median](/median-filter/) filters smooth: the first is a
+      linear FIR filter, the second is not linear.
+    entries:
+      - digital-filtering
+      - fir-filter
+      - overlap-add-method
+      - overlap-save-method
+      - iir-filter
+      - digital-filter-design
+      - butterworth-filter
+      - bilinear-transform
+      - parks-mcclellan-algorithm
+      - savitzky-golay-filter
+      - median-filter
+  - title: Multirate processing and wavelets
+    intro: >
+      [Sample-rate conversion](/sample-rate-conversion/) changes the rate of a signal without aliases or images.
+      [Polyphase decomposition](/polyphase-decomposition/) splits a filter into its phases so that the filter runs
+      at the low rate, and [polyphase resampling](/polyphase-resampling/) changes the rate by $L/M$ that way. The
+      [discrete wavelet transform](/discrete-wavelet-transform/) is the same kind of filter bank, iterated on the
+      low band, starting from the [Haar wavelet](/haar-wavelet/); the [lifting scheme](/lifting-scheme/) factors
+      one level into in-place steps.
+    entries:
+      - sample-rate-conversion
+      - polyphase-decomposition
+      - polyphase-resampling
+      - haar-wavelet
+      - discrete-wavelet-transform
+      - lifting-scheme
+  - title: Spectra and sensor arrays
+    intro: >
+      [Spectral estimation](/spectral-estimation/) finds the power spectral density of a process from a finite
+      record. A finite block causes [spectral leakage](/spectral-leakage/), which
+      [window functions](/window-functions/) trade against resolution. The [periodogram](/periodogram/) is fast
+      but its variance does not shrink with the record, and [Welch's method](/welch-method/) averages segments
+      to lower it; the [Wiener-Khinchin theorem](/wiener-khinchin-theorem/) ties the spectrum to the
+      autocorrelation. [Beamforming](/beamforming/) applies the same ideas in space, and
+      [MUSIC](/music-algorithm/) and [ESPRIT](/esprit/) find frequencies or directions from the subspaces of a
+      covariance matrix.
+    entries:
+      - spectral-estimation
+      - spectral-leakage
+      - window-functions
+      - periodogram
+      - welch-method
+      - wiener-khinchin-theorem
+      - beamforming
+      - delay-and-sum-beamforming
+      - music-algorithm
+      - esprit
+  - title: Time-frequency analysis
+    intro: >
+      [Time-frequency analysis](/time-frequency-analysis/) maps how the spectrum changes over time. The
+      [short-time Fourier transform](/short-time-fourier-transform/) takes DFTs of windowed frames, and the
+      [uncertainty principle](/time-frequency-uncertainty/) bounds how sharp it can be in time and frequency at
+      once. The [continuous wavelet transform](/continuous-wavelet-transform/) uses scaled copies of one wavelet.
+      The [Hilbert transform](/hilbert-transform/) gives the [analytic signal](/analytic-signal/), with its
+      envelope and instantaneous phase, and [empirical mode decomposition](/empirical-mode-decomposition/) is a
+      heuristic built on it.
+    entries:
+      - time-frequency-analysis
+      - short-time-fourier-transform
+      - time-frequency-uncertainty
+      - continuous-wavelet-transform
+      - hilbert-transform
+      - analytic-signal
+      - empirical-mode-decomposition
+  - title: Linear prediction, models and pitch
+    intro: >
+      [Linear prediction](/linear-prediction/) predicts each sample from the $p$ before it; the coefficients
+      solve Toeplitz normal equations, and [linear predictive coding](/linear-predictive-coding/) uses them as an
+      all-pole model of speech. [Burg's method](/burg-method/) fits the same model from forward and backward
+      errors, and [Prony's method](/prony-method/) fits a sum of exponentials. The [cepstrum](/cepstrum/) turns
+      echoes and pitch periods into peaks, and [pitch detection](/pitch-detection/) with
+      [YIN](/yin-algorithm/) estimates the period of a voice frame by frame.
+    entries:
+      - linear-prediction
+      - linear-predictive-coding
+      - burg-method
+      - prony-method
+      - cepstrum
+      - pitch-detection
+      - yin-algorithm
+  - title: Detection, estimation and adaptive filters
+    intro: >
+      [Signal detection](/signal-detection/) decides whether a known signal is present, and the
+      [matched filter](/matched-filter/) maximizes the output signal-to-noise ratio in white noise.
+      [Signal denoising](/signal-denoising/) estimates a signal under noise: the [Wiener filter](/wiener-filter/)
+      is the linear estimator with least mean-square error, and [spectral subtraction](/spectral-subtraction/) is
+      a simpler rule on short-time spectra. [Adaptive filtering](/adaptive-filtering/) tracks unknown statistics
+      with [LMS](/lms-algorithm/) at $O(M)$ per sample or [RLS](/rls-algorithm/) at $O(M^2)$.
+      [State estimation](/state-estimation/) and the [Kalman filter](/kalman-filter/) estimate the hidden state
+      of a linear dynamical system.
+    entries:
+      - signal-detection
+      - matched-filter
+      - signal-denoising
+      - wiener-filter
+      - spectral-subtraction
+      - adaptive-filtering
+      - lms-algorithm
+      - rls-algorithm
+      - state-estimation
+      - kalman-filter
+  - title: Sparse recovery and phase retrieval
+    intro: >
+      [Sparse signal recovery](/sparse-signal-recovery/) finds a sparse vector from fewer measurements than
+      unknowns; it is NP-hard in general and easy for good matrices. [Basis pursuit](/basis-pursuit/) minimizes
+      the $\ell_1$ norm, [orthogonal matching pursuit](/orthogonal-matching-pursuit/) picks columns greedily, and
+      [iterative shrinkage-thresholding](/iterative-shrinkage-thresholding/) alternates gradient steps and soft
+      thresholds. The [restricted isometry property](/restricted-isometry-property/) is the condition behind
+      [compressed sensing](/compressed-sensing/). [Phase retrieval](/phase-retrieval/) recovers a signal from
+      Fourier magnitudes, and the [Griffin-Lim algorithm](/griffin-lim-algorithm/) does so for STFT magnitudes.
+    entries:
+      - sparse-signal-recovery
+      - basis-pursuit
+      - orthogonal-matching-pursuit
+      - iterative-shrinkage-thresholding
+      - restricted-isometry-property
+      - compressed-sensing
+      - phase-retrieval
+      - griffin-lim-algorithm

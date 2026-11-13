@@ -86,6 +86,11 @@ writer of Chapter 27.1 also writing the volume introduction; one for Chapter 28.
 28; one for Chapter 28.3; and one for the openings of Chapters 28.2 and 28.4 to 28.6, which have no entries yet.
 The coordinating agent added a learning path *Biology* to Volume 0.
 
+For edition 0.27.0, the site's release v0.27.0 wrote Chapters 28.2, 28.4, 28.5 and 28.6 of Volume 28 *Graphics and
+signals*. Four agents shared them, one per chapter, the writer of Chapter 28.6 also rewriting the volume introduction
+to cover the whole volume; each chapter's opening, written from the site's short pages for 0.26.0, was replaced. The
+coordinating agent added a learning path *Graphics and signals* to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -98,5 +103,5 @@ The coordinating agent added a learning path *Biology* to Volume 0.
 
 While writing, the agents noted claims in the entries that look wrong or inconsistent. The pages avoid those
 claims. The list is kept with the project's notes. Most of the errors found up to edition 0.24.0 were fixed in
-the site by pull requests to `tamnd/algorithm` in November 2026; the site's release v0.26.0, and so edition
-0.26.0, has the fixes.
+the site by pull requests to `tamnd/algorithm` in November 2026; the site's releases from v0.26.0, and so
+the editions from 0.26.0, have the fixes.

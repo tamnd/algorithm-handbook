@@ -1,0 +1,174 @@
+groups:
+  - title: Images, histograms and contrast
+    intro: >
+      A digital image is a grid of quantized samples with conventions that give the numbers a meaning: the
+      gamma curve, the color space, the noise model and the blur of the optics. PSNR measures how far one
+      image is from another. The histogram counts the gray levels, and the point operations that read it,
+      contrast stretching, histogram equalization and CLAHE, remap each level without looking at its
+      neighbors.
+    entries:
+      - digital-image
+      - gamma-correction
+      - color-spaces
+      - image-noise
+      - point-spread-function
+      - psnr
+      - image-histogram
+      - contrast-enhancement
+      - contrast-stretching
+      - histogram-equalization
+      - clahe
+  - title: Thresholds, halftones and palettes
+    intro: >
+      These entries reduce the number of output values. Thresholding makes a binary image, and Otsu's
+      method finds the exact best global threshold under its criterion in $\Theta(N + L)$ time. Halftoning
+      approximates the local mean with fewer levels, by a tiled threshold matrix or by diffusing the error. Color
+      quantization picks a palette of $k$ colors, a k-means problem that median cut and octrees solve
+      heuristically.
+    entries:
+      - image-thresholding
+      - otsu-thresholding
+      - halftoning
+      - ordered-dithering
+      - floyd-steinberg-dithering
+      - color-quantization
+      - median-cut
+      - octree-color-quantization
+  - title: Linear filters
+    intro: >
+      A linear filter is a convolution with a kernel. A separable kernel costs $2k$ instead of $k^2$ per
+      pixel, and a box costs $O(1)$ per pixel for any size, by running sums or by an
+      [integral image](/integral-image/) built from two-dimensional prefix sums. The Gaussian is the
+      standard smoothing kernel, and unsharp masking sharpens by adding back what it removes.
+    entries:
+      - linear-filtering
+      - separable-filter
+      - image-smoothing
+      - box-blur
+      - integral-image
+      - gaussian-filter
+      - image-sharpening
+      - unsharp-masking
+  - title: Edges and lines
+    intro: >
+      An edge is a place of steep change. The small gradient operators of Roberts, Prewitt, Sobel and Scharr
+      estimate the derivative; non-maximum suppression thins the response and hysteresis links it, and the
+      three together with Gaussian smoothing make Canny's detector. The Laplacian of Gaussian finds edges as
+      zero crossings. The Hough transform collects edge pixels into lines by voting. The detectors here have
+      scales and thresholds that are chosen, not derived.
+    entries:
+      - edge-detection
+      - roberts-cross-operator
+      - prewitt-operator
+      - sobel-operator
+      - scharr-operator
+      - non-maximum-suppression
+      - hysteresis-thresholding
+      - canny-edge-detector
+      - laplacian-of-gaussian
+      - line-detection
+      - hough-transform
+  - title: Mathematical morphology
+    intro: >
+      Morphology compares an image with a small probe shape, the structuring element, by minima and maxima
+      instead of weighted sums. Erosion and dilation are the two basic operators; opening and closing are
+      their compositions, and they are idempotent. The hit-or-miss transform matches an exact local pattern.
+    entries:
+      - structuring-element
+      - morphological-dilation
+      - morphological-erosion
+      - mathematical-morphology
+      - morphological-opening
+      - morphological-closing
+      - morphological-filtering
+      - hit-or-miss-transform
+  - title: Regions, distances and shape
+    intro: >
+      Labeling the connected regions of a binary image is the connected components problem on the pixel grid,
+      solved in two raster passes with a union-find forest. A distance transform gives each pixel its
+      distance to the nearest feature pixel: approximately by chamfer weights, exactly for the Euclidean
+      metric by a lower envelope of parabolas. Skeletons and moments describe the shape of a region.
+    entries:
+      - image-labeling
+      - connected-component-labeling
+      - distance-transform
+      - chamfer-distance
+      - felzenszwalb-distance-transform
+      - image-skeletonization
+      - zhang-suen-thinning
+      - image-moments
+  - title: Segmentation
+    intro: >
+      Segmentation splits an image into regions. Region growing and the watershed flood the image from seeds
+      or minima; the graph method of Felzenszwalb and Huttenlocher is Kruskal's algorithm with a merge
+      predicate; mean shift and SLIC cluster pixels in position and color; GrabCut alternates mixture models
+      with a minimum cut; active contours move a curve to an edge. Their parameters set the result, and their
+      quality is measured against human segmentations.
+    entries:
+      - image-segmentation
+      - region-growing
+      - watershed-segmentation
+      - felzenszwalb-segmentation
+      - mean-shift-segmentation
+      - slic-superpixels
+      - grabcut
+      - active-contours
+  - title: Pyramids, features and detection
+    intro: >
+      A pyramid holds the image at halved resolutions in about $\tfrac43$ of its size, and the Laplacian
+      pyramid rebuilds it exactly in exact arithmetic. Features are points that can be found again: Harris corners, and SIFT
+      keypoints at the extrema of a difference of Gaussians. Template matching and normalized
+      cross-correlation find a known patch; Haar-like features on an integral image drive the Viola-Jones
+      face detector, whose accuracy is measured on test sets.
+    entries:
+      - image-pyramid
+      - gaussian-pyramid
+      - laplacian-pyramid
+      - feature-detection
+      - corner-detection
+      - harris-corner-detector
+      - sift
+      - template-matching
+      - normalized-cross-correlation
+      - haar-features
+      - viola-jones-detector
+      - face-detection
+  - title: Geometry and motion
+    intro: >
+      Resampling computes values on a new grid, and warping uses it to move an image by a transform.
+      Registration finds the transform that aligns two images; phase correlation finds a pure shift from the
+      FFTs of the two images. Optical flow estimates the motion at each pixel, locally by Lucas-Kanade and globally by
+      Horn-Schunck. Seam carving resizes an image by removing paths of low energy found by dynamic
+      programming.
+    entries:
+      - image-resampling
+      - image-warping
+      - image-registration
+      - phase-correlation
+      - optical-flow
+      - lucas-kanade-method
+      - horn-schunck-method
+      - content-aware-resizing
+      - seam-carving
+  - title: Restoration, editing and quality
+    intro: >
+      Image quality measures score a result against a reference, by error as PSNR does or by structure as
+      SSIM does, and their agreement with viewers is measured. Denoising filters keep edges by weighting
+      neighbors by similarity, by diffusion that stops at edges, or by minimizing total variation.
+      Deconvolution undoes a known blur, super-resolution combines low-resolution views, and inpainting and
+      Poisson editing fill or paste regions.
+    entries:
+      - image-quality-assessment
+      - structural-similarity-index
+      - image-denoising
+      - bilateral-filter
+      - guided-filter
+      - non-local-means
+      - anisotropic-diffusion
+      - total-variation-denoising
+      - image-deblurring
+      - richardson-lucy-deconvolution
+      - super-resolution
+      - image-inpainting
+      - criminisi-inpainting
+      - poisson-image-editing
