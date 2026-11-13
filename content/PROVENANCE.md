@@ -91,6 +91,10 @@ signals*. Four agents shared them, one per chapter, the writer of Chapter 28.6 a
 to cover the whole volume; each chapter's opening, written from the site's short pages for 0.26.0, was replaced. The
 coordinating agent added a learning path *Graphics and signals* to Volume 0.
 
+For edition 0.28.0, the site's release v0.28.0 wrote Volume 29 *Games and search*. Four agents shared it, one per
+chapter, the writer of Chapter 29.1 also writing the volume introduction. The coordinating agent added a learning
+path *Games and search* to Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -104,4 +108,5 @@ coordinating agent added a learning path *Graphics and signals* to Volume 0.
 While writing, the agents noted claims in the entries that look wrong or inconsistent. The pages avoid those
 claims. The list is kept with the project's notes. Most of the errors found up to edition 0.24.0 were fixed in
 the site by pull requests to `tamnd/algorithm` in November 2026; the site's releases from v0.26.0, and so
-the editions from 0.26.0, have the fixes.
+the editions from 0.26.0, have the fixes. The errors found in Volumes 27 to 29 were fixed after the site's
+release v0.28.0, so the entries of this edition do not yet have those fixes.

@@ -1,0 +1,87 @@
+groups:
+  - title: Puzzles with a formula
+    intro: >
+      These puzzles have a small state space or a structure that a recurrence captures, so the answer is
+      a formula with a proof. The Tower of Hanoi takes $2^n - 1$ moves, and no solution is shorter. With four
+      pegs the Frame-Stewart recurrence is optimal, as Bousch proved in 2014; with five or more pegs its
+      optimality is only a conjecture. Josephus is a recurrence, the water jugs are a gcd test, and the
+      river crossing is a breadth-first search over a few dozen states.
+    entries:
+      - tower-of-hanoi
+      - frame-stewart-algorithm
+      - josephus-problem
+      - water-jug-problem
+      - missionaries-and-cannibals
+  - title: Weighing and asking
+    intro: >
+      Each weighing or question has a fixed number of answers, so $w$ of them separate at most that
+      number to the power $w$ cases. This information bound is the lower bound, and a balanced decision
+      tree meets it or comes close: 12 coins in 3 weighings, $\lceil \log_2 n \rceil$ yes or no questions,
+      and 5 guesses in the worst case for Mastermind.
+    entries:
+      - twenty-questions-problem
+      - counterfeit-coin-problem
+      - mastermind-problem
+  - title: Parity and permutation puzzles
+    intro: >
+      A move permutes the pieces, and an invariant such as the parity of a permutation, a position class
+      or a vector over GF(2) splits the positions into classes that no move can join. The invariant
+      decides solvability in polynomial time. The shortest solution needs search, breadth-first for small
+      boards and IDA* with pattern databases for the 15-puzzle and larger.
+    entries:
+      - sliding-tile-puzzle
+      - sliding-puzzle-solvability
+      - burnt-pancake-problem
+      - peg-solitaire
+      - lights-out-puzzle
+  - title: Rubik's cube
+    intro: >
+      The cube group has about $4.3 \cdot 10^{19}$ elements. Kociemba's two-phase algorithm finds a first
+      solution of at most 30 moves through a subgroup and then shortens it. God's number, the largest
+      distance in the half-turn metric, is 20; the proof in 2010 split the group into cosets and solved
+      them by computer.
+    entries:
+      - rubiks-cube-problem
+      - kociemba-algorithm
+      - gods-number
+  - title: Tours, tilings and squares
+    intro: >
+      A knight's tour is a Hamiltonian path in the knight's graph, and Schwenk's theorem says which
+      boards have a closed one. Warnsdorff's rule is a greedy heuristic that usually finds a tour and can
+      fail. Domino tilings are perfect matchings, polynomial to decide and, on planar regions, to count;
+      tiling by polyominoes is NP-complete even for one tromino. Magic squares are built by formula, and
+      completing a partial Latin square is NP-complete.
+    entries:
+      - knights-tour-problem
+      - warnsdorff-rule
+      - domino-tiling-problem
+      - polyomino-tiling-problem
+      - jigsaw-puzzle-problem
+      - magic-square-problem
+      - latin-square-completion
+  - title: Pencil puzzles
+    intro: >
+      Each of these puzzles, on boards of unbounded size, is NP-complete, and most proofs build wires and
+      gates out of small patterns of clues. A solved board is a short certificate. Solvers model the board
+      as a constraint problem and use propagation with backtracking, exact cover or a SAT solver; a board
+      of fixed size is a finite problem.
+    entries:
+      - sudoku
+      - kakuro-problem
+      - nonogram-problem
+      - slitherlink-problem
+      - nurikabe-problem
+      - hashiwokakero-problem
+      - numberlink-problem
+      - minesweeper-consistency
+      - crossword-filling-problem
+  - title: Motion puzzles and Tetris
+    intro: >
+      Offline Tetris, with the whole sequence of pieces known, is NP-complete. Sokoban and Rush Hour are
+      PSPACE-complete on boards of unbounded size, so unless NP = PSPACE a solution is not a short
+      certificate, and some Sokoban levels need exponentially many moves. Small boards are solved by
+      breadth-first search over the states.
+    entries:
+      - tetris-problem
+      - sokoban-problem
+      - rush-hour-problem

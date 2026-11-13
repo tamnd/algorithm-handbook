@@ -1,0 +1,100 @@
+groups:
+  - title: State spaces and heuristics
+    intro: >
+      A search problem is a start state, a successor function with action costs and a goal test, and the
+      graph they define is usually far too large to write down. A heuristic $h$ estimates the cost from a
+      state to a goal. It is admissible if it never overestimates that cost, and consistent if
+      $h(u) \le c(u, v) + h(v)$ for every action and $h = 0$ at goals; consistency implies admissibility,
+      and the converse fails.
+    entries:
+      - state-space
+      - state-space-search
+      - heuristic-function
+      - admissible-heuristic
+      - consistent-heuristic
+  - title: A* and its theory
+    intro: >
+      A* expands states in order of $f = g + h$ from an open list. It is optimal as a tree search with an
+      admissible $h$, and as a graph search without reopening when $h$ is consistent; with an admissible
+      but inconsistent $h$ the graph search must reopen states. With a consistent $h$ no algorithm of the
+      class that Dechter and Pearl define can skip a state with $g^* + h < C^*$. Dominance, pathmax and
+      the effective branching factor are the tools for comparing heuristics.
+    entries:
+      - open-list
+      - a-star-search
+      - duplicate-detection
+      - a-star-optimality
+      - optimal-efficiency-of-a-star
+      - heuristic-dominance
+      - effective-branching-factor
+      - pathmax
+  - title: Building heuristics
+    intro: >
+      The exact cost of a relaxed problem, one with some constraints on the actions dropped, is a
+      consistent heuristic, and so an admissible one. Pattern databases store the exact
+      costs of an abstraction in a table. Disjoint patterns that count only their own moves can be added;
+      other tables can only be combined by taking the maximum.
+    entries:
+      - relaxation-heuristic
+      - pattern-database
+  - title: Memory-bounded search
+    intro: >
+      A* stores every state it generates, and on large puzzles memory runs out before time does. IDA* and
+      RBFS use space linear in the depth and pay with repeated work; SMA* uses all the memory it is given
+      and is optimal when an optimal path fits in it. Fringe search keeps the order of IDA* without a heap,
+      and partial expansion stops A* from storing children it will never expand.
+    entries:
+      - memory-bounded-heuristic-search
+      - iterative-deepening-a-star
+      - recursive-best-first-search
+      - simplified-memory-bounded-a-star
+      - fringe-search
+      - partial-expansion-a-star
+  - title: Suboptimal and anytime search
+    intro: >
+      When an optimal path costs too much to find, the search can give up a known factor or all guarantees.
+      [Weighted A*](/weighted-a-star/) returns a path within $w C^*$; ARA* lowers $w$ and reuses its work,
+      with a proved bound after each call. Greedy best-first search, beam search and limited discrepancy
+      search have no bound on the cost; beam-stack search turns a beam into a complete and optimal anytime
+      method for unit costs and a consistent $h$.
+    entries:
+      - greedy-best-first-search
+      - weighted-a-star
+      - anytime-repairing-a-star
+      - beam-search
+      - beam-stack-search
+      - limited-discrepancy-search
+  - title: Bidirectional and grid pathfinding
+    intro: >
+      MM runs a search from each end and orders both by $\max(f, 2g)$, so that neither expands a state with
+      $g > C^*/2$. On grid maps, jump point search prunes symmetric paths and stays optimal on uniform
+      8-connected grids, HPA* plans on an abstract graph of clusters and gives up optimality for speed,
+      and Theta* allows any-angle paths that are no longer than grid paths but not always shortest in
+      the plane.
+    entries:
+      - bidirectional-heuristic-search
+      - jump-point-search
+      - hierarchical-pathfinding-a-star
+      - theta-star
+  - title: Incremental and real-time search
+    intro: >
+      An agent that moves through a world it only partly knows must plan again and again. LPA* repairs
+      the values of its last search after costs change, D* and D* Lite search backward from the goal so
+      that the values stay valid as the robot moves. RTA* and LRTA* look only one step ahead and learn
+      values as they go; LRTA* with an admissible $h$ keeps lower bounds and converges to optimal
+      walks over repeated trials.
+    entries:
+      - lifelong-planning-a-star
+      - d-star
+      - d-star-lite
+      - real-time-a-star
+      - learning-real-time-a-star
+  - title: Multi-agent pathfinding
+    intro: >
+      Several agents share one graph and must not meet in a vertex or swap along an edge. Deciding whether
+      a plan exists takes polynomial time under the usual rules, but optimal plans are NP-hard to find.
+      Conflict-based search plans each agent alone with A* and branches on collisions; it is optimal
+      for the sum of costs and complete on solvable instances.
+    entries:
+      - multi-agent-pathfinding
+      - conflict-based-search

@@ -1,0 +1,158 @@
+groups:
+  - title: Planning tasks
+    intro: >
+      A classical planning task gives a deterministic, fully observable world, a set of actions and a goal,
+      and asks for a sequence of actions that reaches the goal. [STRIPS](/strips/) is the standard way to
+      write one down: a state is a set of facts, and an action has a precondition, an add list and a delete
+      list. The other entries say what this model takes for granted, and why describing action in logic is
+      harder than it looks.
+    entries:
+      - classical-planning
+      - closed-world-assumption
+      - strips
+      - blocks-world
+      - frame-problem
+      - qualification-problem
+      - ramification-problem
+
+  - title: Languages and grounding
+    intro: >
+      Real domains are written with parameters: one schema for "stack $x$ on $y$" instead of one action per
+      pair of blocks. [PDDL](/pddl/) is the standard language for such schemas, and grounding turns them into
+      the propositional actions that planners search over. Conditional effects add expressive power, and the
+      [SAS+](/sas-plus/) representation regroups facts into a few variables with finite domains.
+    entries:
+      - action-schema
+      - grounding
+      - pddl
+      - conditional-effects
+      - sas-plus
+      - international-planning-competition
+
+  - title: Searching the state space
+    intro: >
+      A STRIPS task describes a graph with up to $2^{|F|}$ states, and a plan is a path in it. Forward search
+      starts at the initial state; backward search starts at the goal and works back by goal regression.
+      Means-ends analysis, the method of the first STRIPS system, works on one goal at a time, and the
+      [Sussman anomaly](/sussman-anomaly/) shows why that fails. Macro-operators shorten the search by
+      adding action sequences as single steps.
+    entries:
+      - state-space-planning
+      - forward-state-space-search
+      - goal-regression
+      - backward-state-space-search
+      - means-ends-analysis
+      - sussman-anomaly
+      - macro-operators
+
+  - title: How hard planning is
+    intro: >
+      Deciding whether a propositional STRIPS task has a plan is PSPACE-complete, and some tasks need plans
+      of exponential length. With a bound $k$ on the plan length written in unary, the question becomes
+      NP-complete; with $k$ in binary it stays PSPACE-complete. Optimal planning asks for the cheapest plan
+      and inherits these bounds.
+    entries:
+      - strips-plan-existence-pspace-complete
+      - bounded-plan-existence-np-complete
+      - optimal-planning
+
+  - title: Planning graphs and SAT
+    intro: >
+      A planning graph alternates layers of facts and actions and over-approximates what can be reached in
+      $k$ parallel steps. Mutex relations record pairs that cannot hold together. Graphplan searches the graph
+      backward for a parallel plan, and SATPLAN writes the same bounded question as a propositional formula
+      for a SAT solver.
+    entries:
+      - planning-graph
+      - mutex-relation
+      - graphplan
+      - satplan
+
+  - title: Heuristics from relaxations
+    intro: >
+      Ignoring delete lists gives a task that is easy to solve but whose optimal cost $h^+$ is NP-hard to
+      compute. The heuristics here estimate it: [h-max](/h-max-heuristic/) is admissible, while
+      [h-add](/h-add-heuristic/) and the [relaxed plan heuristic](/relaxed-plan-heuristic/) of FF are not.
+      HSP and FF are the planners built on them. Landmarks and the causal graph give heuristics of other
+      kinds.
+    entries:
+      - delete-relaxation
+      - h-max-heuristic
+      - h-add-heuristic
+      - hsp-planner
+      - relaxed-planning-graph
+      - relaxed-plan-heuristic
+      - enforced-hill-climbing
+      - fast-forward-planner
+      - landmark-heuristic
+      - causal-graph-heuristic
+
+  - title: Plan-space planning
+    intro: >
+      A partial-order plan fixes only the orderings it needs. Causal links record which step supplies which
+      precondition, and a step that may undo a link is a threat. Plan-space planners repair open preconditions
+      and threats until every linearization is a plan. POP, SNLP, TWEAK and UCPOP differ in how they count
+      threats and what actions they allow.
+    entries:
+      - partial-order-plan
+      - causal-link
+      - least-commitment-principle
+      - plan-space-planning
+      - pop-partial-order-planning
+      - snlp
+      - tweak
+      - ucpop
+
+  - title: Hierarchies and time
+    intro: >
+      An HTN planner is given tasks to carry out instead of facts to make true, and methods that say how to
+      break a compound task into smaller ones. This makes the model more expressive than STRIPS and, in
+      general, undecidable. Temporal planning adds durations and concurrency.
+    entries:
+      - task-network
+      - hierarchical-task-network
+      - htn-planning
+      - htn-decomposition
+      - temporal-planning
+
+  - title: Execution and uncertainty
+    intro: >
+      Plans run in a world that may not match the model. Execution monitoring checks a running plan, and
+      replanning finds a new one. When actions are nondeterministic or the state is hidden, plans become
+      policies over states or beliefs: strong and strong cyclic plans, the Bellman equation of a stochastic
+      shortest path problem, RTDP, conformant and contingent plans, and POMDPs. Plan recognition runs
+      planning in reverse, to infer the goal of an observed agent.
+    entries:
+      - execution-monitoring
+      - replanning
+      - planning-as-model-checking
+      - bellman-equation
+      - stochastic-shortest-path
+      - real-time-dynamic-programming
+      - belief-space
+      - conformant-planning
+      - contingent-planning
+      - pomdp-planning
+      - point-based-value-iteration
+      - plan-recognition
+
+  - title: Motion planning
+    intro: >
+      A robot moves through continuous space. In configuration space the robot becomes a point and the
+      obstacles grow. Exact methods decompose the free space into cells; potential fields and bug algorithms
+      act on local information; sampling methods such as the [probabilistic roadmap](/probabilistic-roadmap/)
+      and the [rapidly-exploring random tree](/rapidly-exploring-random-tree/) are probabilistically complete,
+      and RRT* is asymptotically optimal with probability one.
+    entries:
+      - configuration-space
+      - motion-planning
+      - bug-algorithms
+      - piano-movers-problem
+      - cell-decomposition
+      - potential-field-method
+      - probabilistic-roadmap
+      - rapidly-exploring-random-tree
+      - rrt-connect
+      - rrt-star
+      - rrt-star-asymptotic-optimality
+      - kinodynamic-planning

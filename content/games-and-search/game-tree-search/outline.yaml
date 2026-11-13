@@ -1,0 +1,146 @@
+groups:
+  - title: Games and their trees
+    intro: >
+      The model of most of the chapter: two players who move in turn, see everything, meet no chance, and
+      want opposite things. These entries define the game tree, the branching factor that sets its size,
+      the labels win, loss and draw, and the problem of computing the value of the root. Zermelo's theorem
+      says that such a finite game has a value with perfect play.
+    entries:
+      - game-tree
+      - branching-factor
+      - perfect-information-game
+      - zero-sum-game
+      - winning-losing-states
+      - zermelo-theorem
+      - game-tree-evaluation
+
+  - title: Minimax and alpha-beta
+    intro: >
+      [Minimax](/minimax/) computes the value from the leaves up and reads every leaf. [Negamax](/negamax/)
+      writes it as one rule. [Alpha-beta pruning](/alpha-beta-pruning/) returns the same value and skips the
+      subtrees that cannot change it; the [Knuth-Moore theorem](/knuth-moore-theorem/) says how much it can
+      skip: $b^{\lceil d/2 \rceil} + b^{\lfloor d/2 \rfloor} - 1$ leaves with the best move first everywhere,
+      all $b^d$ for some leaf values. The last two entries turn a value into a line of play and a move.
+    entries:
+      - minimax
+      - negamax
+      - pruning
+      - alpha-beta-pruning
+      - knuth-moore-theorem
+      - principal-variation
+      - best-move-selection
+
+  - title: Searching to a fixed depth
+    intro: >
+      A real game tree is too deep to search to the end. The program stops at a depth and scores the
+      positions there with an evaluation function, which is an estimate, not a value. The horizon effect is
+      the error this makes; quiescence search and search extensions push the horizon back where the
+      position is not quiet. Their worth is measured in play, not proved.
+    entries:
+      - evaluation-function
+      - horizon-effect
+      - quiescence-search
+      - search-extensions
+
+  - title: Move ordering and memory
+    intro: >
+      Alpha-beta is only as good as the order of its moves. Bitboards make move generation cheap; the
+      killer and history heuristics guess good moves from cutoffs elsewhere in the tree; the transposition
+      table remembers positions reached by other move orders, with the best move and a bound on the value.
+      None of them changes the value of a correct search, only its size.
+    entries:
+      - bitboard
+      - move-ordering
+      - killer-heuristic
+      - history-heuristic
+      - transposition-table
+
+  - title: Narrow windows and best-first search
+    intro: >
+      A search with a small window cuts off more. Aspiration search guesses the window at the root, SCOUT
+      and principal variation search test the later moves with a null window, and MTD(f) finds the value
+      by null-window searches alone, with a transposition table to keep the work. SSS* is a best-first
+      search that never reads a leaf alpha-beta skips, and it can be written as such a sequence of tests.
+    entries:
+      - aspiration-search
+      - scout-search
+      - principal-variation-search
+      - mtdf
+      - sss-star
+
+  - title: Forward pruning and parallel search
+    intro: >
+      Null-move pruning, futility pruning and late move reductions skip or shorten moves that look bad.
+      Unlike alpha-beta cutoffs they can change the result; they are kept because they win games in
+      measured play. The parallel searches split the tree among processors and pay for it with work that a
+      sequential search would have cut off.
+    entries:
+      - null-move-pruning
+      - futility-pruning
+      - late-move-reductions
+      - parallel-alpha-beta
+      - young-brothers-wait
+
+  - title: Proving and solving games
+    intro: >
+      To solve a position is to prove its value, not to estimate it. Proof-number search and df-pn grow the
+      part of an AND-OR tree that is cheapest to prove. Retrograde analysis labels every position of a game
+      graph from the end backward, cycles included, and its tables are the endgame tablebases. Opening books
+      store the other end of the game. A solved game is one whose value is known, at one of three strengths.
+    entries:
+      - proof-number-search
+      - df-pn
+      - games-on-graphs
+      - retrograde-analysis
+      - endgame-tablebase
+      - endgame-solving
+      - opening-book
+      - solved-game
+
+  - title: Chance and sampling
+    intro: >
+      Dice add chance nodes, and expectiminimax averages over them. When no good evaluation function exists,
+      a program can estimate a position by playing it out at random. Rollouts improve a base policy this
+      way; Monte Carlo tree search grows a tree from playouts, and UCT chooses the move to sample by a bandit
+      rule. UCT converges to the minimax move only in the limit of many playouts; RAVE is a heuristic that
+      speeds up the early estimates.
+    entries:
+      - stochastic-game
+      - expectiminimax
+      - rollout-algorithm
+      - monte-carlo-tree-search
+      - uct
+      - rapid-action-value-estimation
+
+  - title: Mixed strategies and hidden information
+    intro: >
+      When the players move at once or hide what they know, a pure strategy can be exploited, and the right
+      play is random. The minimax theorem gives a two-player zero-sum game a value in mixed strategies, and
+      one linear program finds it. Nash proved that every finite game has an equilibrium; computing one is
+      PPAD-complete already for two players in general. Counterfactual regret minimization plays a large
+      two-player zero-sum game against itself, and its average strategy approaches an equilibrium.
+    entries:
+      - minimax-theorem
+      - nash-equilibrium
+      - nash-existence-theorem
+      - nash-equilibrium-computation
+      - imperfect-information-game
+      - counterfactual-regret-minimization
+
+  - title: Combinatorial games
+    intro: >
+      Some games are solved by a formula, not a search. Nim is won by the XOR of the heaps (Bouton), and under
+      normal play every finite impartial game is a Nim heap in disguise, of the size given by the mex rule (Sprague and
+      Grundy). Combinatorial game theory extends the sums to games where the players have different moves.
+      The last entries are about existence and hardness: strategy stealing proves that the first player wins
+      Hex without saying how, and generalized geography is PSPACE-complete.
+    entries:
+      - mex-function
+      - nim
+      - boutons-theorem
+      - grundy-number
+      - sprague-grundy-theorem
+      - combinatorial-game-theory
+      - strategy-stealing-argument
+      - hex-game
+      - generalized-geography

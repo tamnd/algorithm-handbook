@@ -1778,3 +1778,183 @@ paths:
             why: the recursive estimator that is optimal for a linear model with Gaussian noise, and the template for the rest.
           - compressed-sensing
           - orthogonal-matching-pursuit
+  - id: games-and-search
+    title: Games and search
+    for: a student who knows graph search, recursion and a little probability, and wants to see how programs play games, find shortest paths with heuristics, plan sequences of actions and solve puzzles, and which of their guarantees are proved and which are only measured in play.
+    intro: >
+      Games first: the game tree, winning and losing positions, Zermelo's theorem, and the minimax value that a
+      program computes. Combinatorial games follow, Nim and Bouton's theorem, Grundy numbers and the Sprague-Grundy
+      theorem, with strategy stealing for Hex. The search of large game trees comes next: alpha-beta pruning and the
+      Knuth-Moore analysis of its best case, the move ordering and transposition tables that bring a search near that
+      best case, and the selective methods of game engines, which are judged by playing strength and can change the
+      result. Monte Carlo tree search and UCT, which converge only in the limit, close the first part, with games of
+      chance and imperfect information and the minimax theorem. Heuristic search is next: A* and the conditions under
+      which it is optimal, admissible and consistent heuristics and where they come from, the memory-bounded and
+      suboptimal variants, and search that repairs its plan as the map changes. Planning treats actions as data:
+      STRIPS and the complexity of plan existence, the delete relaxation behind the heuristics of HSP and FF,
+      Graphplan, partial-order and hierarchical planning, planning under uncertainty, and motion planning by sampling.
+      The last stage is puzzles, where invariants decide solvability and hardness results speak of the generalized
+      puzzle, not the one in the box.
+    stages:
+      - title: Games and their values
+        steps:
+          - game-tree
+          - perfect-information-game
+          - zero-sum-game
+          - winning-losing-states
+          - zermelo-theorem
+          - entry: minimax
+            why: the value that every later game search computes or approximates.
+          - negamax
+          - games-on-graphs
+          - retrograde-analysis
+          - solved-game
+      - title: Combinatorial games
+        steps:
+          - nim
+          - boutons-theorem
+          - mex-function
+          - grundy-number
+          - entry: sprague-grundy-theorem
+            why: every impartial game under normal play is equivalent to a single Nim heap, so sums of games reduce to XOR.
+          - combinatorial-game-theory
+          - strategy-stealing-argument
+          - hex-game
+          - generalized-geography
+      - title: Searching game trees
+        steps:
+          - branching-factor
+          - game-tree-evaluation
+          - pruning
+          - entry: alpha-beta-pruning
+            why: minimax with the same value and, under perfect move ordering, about the square root of the leaves.
+          - knuth-moore-theorem
+          - move-ordering
+          - transposition-table
+          - killer-heuristic
+          - history-heuristic
+          - principal-variation
+          - aspiration-search
+          - principal-variation-search
+          - scout-search
+          - mtdf
+          - sss-star
+          - evaluation-function
+          - horizon-effect
+          - quiescence-search
+          - null-move-pruning
+          - late-move-reductions
+          - proof-number-search
+          - df-pn
+          - endgame-tablebase
+      - title: Sampling, chance and hidden information
+        steps:
+          - rollout-algorithm
+          - entry: monte-carlo-tree-search
+            why: the method that replaced evaluation functions by random play-outs, with a bandit rule to choose where to search.
+          - uct
+          - rapid-action-value-estimation
+          - expectiminimax
+          - stochastic-game
+          - imperfect-information-game
+          - minimax-theorem
+          - nash-equilibrium
+          - nash-existence-theorem
+          - nash-equilibrium-computation
+          - counterfactual-regret-minimization
+      - title: Heuristic search
+        steps:
+          - state-space
+          - state-space-search
+          - heuristic-function
+          - greedy-best-first-search
+          - entry: a-star-search
+            why: best-first search on g + h, optimal when the heuristic never overestimates.
+          - admissible-heuristic
+          - consistent-heuristic
+          - a-star-optimality
+          - optimal-efficiency-of-a-star
+          - heuristic-dominance
+          - effective-branching-factor
+          - relaxation-heuristic
+          - pattern-database
+          - iterative-deepening-a-star
+          - recursive-best-first-search
+          - simplified-memory-bounded-a-star
+          - weighted-a-star
+          - anytime-repairing-a-star
+          - beam-search
+          - bidirectional-heuristic-search
+          - lifelong-planning-a-star
+          - d-star-lite
+          - learning-real-time-a-star
+          - jump-point-search
+          - theta-star
+          - multi-agent-pathfinding
+          - conflict-based-search
+      - title: Planning
+        steps:
+          - classical-planning
+          - entry: strips
+            why: the action language of preconditions, add lists and delete lists on which the rest of classical planning is built.
+          - pddl
+          - sas-plus
+          - strips-plan-existence-pspace-complete
+          - bounded-plan-existence-np-complete
+          - forward-state-space-search
+          - backward-state-space-search
+          - delete-relaxation
+          - h-max-heuristic
+          - h-add-heuristic
+          - relaxed-plan-heuristic
+          - fast-forward-planner
+          - landmark-heuristic
+          - planning-graph
+          - graphplan
+          - satplan
+          - partial-order-plan
+          - causal-link
+          - sussman-anomaly
+          - pop-partial-order-planning
+          - htn-planning
+          - belief-space
+          - bellman-equation
+          - stochastic-shortest-path
+          - real-time-dynamic-programming
+          - pomdp-planning
+          - replanning
+      - title: Motion planning
+        steps:
+          - motion-planning
+          - configuration-space
+          - piano-movers-problem
+          - cell-decomposition
+          - potential-field-method
+          - bug-algorithms
+          - probabilistic-roadmap
+          - entry: rapidly-exploring-random-tree
+            why: grows a tree toward random samples, probabilistically complete in high-dimensional configuration spaces.
+          - rrt-connect
+          - rrt-star
+          - rrt-star-asymptotic-optimality
+          - kinodynamic-planning
+      - title: Puzzles
+        steps:
+          - tower-of-hanoi
+          - frame-stewart-algorithm
+          - josephus-problem
+          - water-jug-problem
+          - entry: sliding-puzzle-solvability
+            why: a parity invariant decides in linear time which half of the positions can be reached.
+          - sliding-tile-puzzle
+          - burnt-pancake-problem
+          - lights-out-puzzle
+          - rubiks-cube-problem
+          - kociemba-algorithm
+          - gods-number
+          - knights-tour-problem
+          - warnsdorff-rule
+          - sudoku
+          - minesweeper-consistency
+          - sokoban-problem
+          - rush-hour-problem
