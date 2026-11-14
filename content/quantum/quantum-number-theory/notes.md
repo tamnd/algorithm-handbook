@@ -1,0 +1,20 @@
+## History
+
+The classical half of the chapter is old. Lagrange proved in 1768 that the continued fraction of $\sqrt D$ always solves Pell's equation, and Gauss introduced the composition of binary quadratic forms in 1801. Miller showed in 1976 that factoring reduces to finding a multiple of the order of a random element. Shanks described the infrastructure of real quadratic fields in 1972, and the subexponential class group methods of Hafner and McCurley (1989) and Buchmann (1990) need the generalized Riemann hypothesis for their bounds.
+
+Bernstein and Vazirani defined the class BQP in 1993. Simon's algorithm of 1994 showed an exponential separation for an oracle problem, and in the same year Shor gave polynomial-time quantum algorithms for factoring and discrete logarithms, published in full in 1997. Kitaev described order finding as phase estimation in 1995, and Griffiths and Niu showed in 1996 that the final Fourier transform can be done one qubit at a time with classical control. Vedral, Barenco and Ekert gave the first full circuits for modular exponentiation in 1996, Beauregard cut the count to $2n + 3$ qubits in 2003, and Proos and Zalka adapted the method to elliptic curves in 2003.
+
+Experiments have stayed small. Vandersypen and coworkers factored 15 on a nuclear magnetic resonance machine in 2001 with a circuit simplified by knowledge of the answer, and later work warned that such compiled circuits prove nothing about factoring. The cost estimates moved instead. Fowler and coworkers in 2012 put RSA-2048 at about a billion physical qubits; Gidney and Ekerå in 2021 at 20 million qubits and 8 hours, with the short logarithm reduction of Ekerå and Håstad (2017); and Gidney in 2025 at under a million qubits, all under stated hardware assumptions.
+
+For number fields, Hallgren solved Pell's equation and the principal ideal problem of real quadratic fields in 2002, after Cheung and Mosca had noted in 2001 that a quantum decomposition of abelian groups gives class numbers under the generalized Riemann hypothesis. Hallgren, and independently Schmidt and Vollmer, reached fields of constant degree in 2005. Eisenträger, Hallgren, Kitaev and Song computed the unit group in any degree in 2014, and Biasse and Song extended this to the class group and the principal ideal problem in 2016.
+
+Two newer lines of work cut the size of each run and test the limits of the method. Regev gave in 2023 a factoring algorithm with about $\sqrt n$ runs of $O(n^{3/2}\log n)$ gates. On lattices, Laarhoven, Mosca and van de Pol put Grover search into sieves in 2013, and Chailloux and Loyer lowered the exponent to $0.2570$ with a quantum walk in 2021; no polynomial-time quantum algorithm for lattice problems is known.
+
+## Further reading
+
+- Peter W. Shor, "Polynomial-time algorithms for prime factorization and discrete logarithms on a quantum computer", *SIAM Journal on Computing* 26 (1997), 1484–1509. The original algorithms, with the analysis of the continued fraction step and of the discrete logarithm.
+- Michael A. Nielsen and Isaac L. Chuang, *Quantum Computation and Quantum Information*, Cambridge University Press, 2000. Chapter 5 derives order finding, factoring and discrete logarithms from phase estimation, with full proofs.
+- Andrew M. Childs and Wim van Dam, "Quantum algorithms for algebraic problems", *Reviews of Modern Physics* 82 (2010), 1–52. A survey of the hidden subgroup framework, Pell's equation, class groups and the open problems.
+- Sean Hallgren, "Polynomial-time quantum algorithms for Pell's equation and the principal ideal problem", *Journal of the ACM* 54 (2007). Period finding with an irrational period, the technique behind the last group of the chapter.
+- Craig Gidney and Martin Ekerå, "How to factor 2048 bit RSA integers in 8 hours using 20 million noisy qubits", *Quantum* 5 (2021), 433. A full cost estimate that states each assumption about the hardware.
+- Oded Regev, "An efficient quantum factoring algorithm", *Journal of the ACM*, 2025. The multidimensional version of Shor's algorithm and the heuristic it rests on.

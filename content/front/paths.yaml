@@ -1958,3 +1958,189 @@ paths:
           - minesweeper-consistency
           - sokoban-problem
           - rush-hour-problem
+  - id: quantum
+    title: Quantum
+    for: a student who knows linear algebra over the complex numbers, modular arithmetic and a little probability, and wants to see what a quantum computer computes, which of its speedups are proved and in which model, and how factoring, search and the simulation of physics are done on one.
+    intro: >
+      The path starts with the model: qubits, the tensor product, unitary gates and measurement by the Born rule,
+      and the circuit model with a universal gate set, in which every later cost is counted. Entanglement and the
+      no-cloning theorem come next, with teleportation, mixed states and the measures of distance between states.
+      The oracle problems of Deutsch and Jozsa, Bernstein and Vazirani and Simon show the first separations, all in
+      the query model, and lead to the quantum Fourier transform and phase estimation. Search follows: Grover's
+      algorithm, amplitude amplification and the matching Omega(sqrt N) lower bound, which is a bound on queries, not
+      on gates, then counting, minimum finding and the walk-based algorithms for element distinctness and triangle
+      finding. Shor's algorithm reduces factoring to order finding, and the same idea solves discrete logarithms and
+      Pell's equation; polynomial time on a quantum computer says nothing proved about classical hardness, and the
+      qubit counts of resource estimates depend on a hardware model. Simulation of physics is the next stage, from
+      Trotter product formulas and their error bounds to block encodings and qubitization, and then its uses in
+      chemistry and many-body physics, where variational methods are only measured. The path ends with error
+      correction, the stabilizer formalism and the threshold theorem, which holds under its own noise model.
+    stages:
+      - title: States, gates and measurement
+        steps:
+          - qubit
+          - quantum-superposition
+          - bloch-sphere
+          - tensor-product
+          - quantum-state
+          - unitary-operator
+          - quantum-gate
+          - pauli-gates
+          - hadamard-gate
+          - phase-and-t-gates
+          - cnot-gate
+          - toffoli-gate
+          - quantum-measurement
+          - born-rule
+          - entry: quantum-circuit-model
+            why: the model in which every later cost, of queries or of gates, is counted.
+          - universal-gate-set
+          - solovay-kitaev-theorem
+          - reversible-computation
+          - ancilla-qubits
+          - uncomputation
+      - title: Entanglement and quantum information
+        steps:
+          - entanglement
+          - bell-states
+          - bell-theorem
+          - chsh-inequality
+          - no-cloning-theorem
+          - no-deleting-theorem
+          - no-communication-theorem
+          - quantum-teleportation
+          - superdense-coding
+          - density-matrix
+          - mixed-state
+          - partial-trace
+          - quantum-channel
+          - kraus-operators
+          - trace-distance
+          - fidelity
+          - von-neumann-entropy
+          - entanglement-entropy
+          - state-discrimination-problem
+          - swap-test
+          - quantum-state-tomography
+      - title: Oracles and the first separations
+        steps:
+          - quantum-oracle
+          - quantum-parallelism
+          - quantum-interference
+          - phase-kickback
+          - deutsch-jozsa-problem
+          - deutsch-jozsa-algorithm
+          - bernstein-vazirani-problem
+          - bernstein-vazirani-algorithm
+          - simon-problem
+          - simon-algorithm
+          - fourier-sampling
+          - quantum-fourier-transform
+          - hadamard-test
+          - phase-estimation-problem
+          - entry: quantum-phase-estimation
+            why: the subroutine behind order finding, quantum counting and the estimation of energies.
+      - title: Search
+        steps:
+          - unstructured-search
+          - grover-search
+          - grover-diffusion-operator
+          - amplitude-amplification
+          - entry: grover-optimality
+            why: Omega(sqrt N) queries are needed, so the quadratic speedup of search is the best possible in the query model.
+          - bbht-search
+          - fixed-point-quantum-search
+          - quantum-counting
+          - counting-marked-items
+          - minimum-finding
+          - durr-hoyer-minimum-finding
+          - grover-adaptive-search
+          - quantum-ordered-search
+          - hoyer-neerbek-shi-ordered-search
+          - brassard-hoyer-tapp-collision
+          - ambainis-element-distinctness
+          - k-distinctness
+          - belovs-k-distinctness
+          - quantum-walk-search
+          - spatial-search
+          - triangle-finding
+          - magniez-santha-szegedy-triangle
+      - title: Factoring and discrete logarithms
+        steps:
+          - order-finding
+          - quantum-modular-exponentiation
+          - continued-fraction-post-processing
+          - factoring-to-order-finding
+          - entry: shor-algorithm
+            why: factoring in polynomial time on a quantum computer, the result that breaks RSA once such a computer is large enough.
+          - factoring-in-bqp
+          - quantum-discrete-logarithm
+          - discrete-logarithm-in-bqp
+          - quantum-elliptic-curve-discrete-log
+          - short-discrete-logarithm
+          - ekera-hastad-algorithm
+          - regev-factoring-algorithm
+          - quantum-resource-estimation-factoring
+          - quantum-gcd
+          - quantum-modular-inversion
+          - pell-equation
+          - hallgren-pell-algorithm
+          - unit-group
+          - principal-ideal-problem
+          - quantum-principal-ideal-algorithm
+          - ideal-class-group
+          - quantum-class-group-algorithm
+      - title: Simulating Hamiltonians
+        steps:
+          - feynman-quantum-simulation
+          - universal-quantum-simulator
+          - hamiltonian-simulation
+          - digital-quantum-simulation
+          - pauli-string-decomposition
+          - entry: lie-trotter-product-formula
+            why: the first simulation algorithm, with an error bound in the norm of a commutator.
+          - trotter-suzuki-product-formulas
+          - higher-order-trotter-suzuki
+          - commutator-scaling
+          - qdrift
+          - multi-product-formulas
+          - no-fast-forwarding-theorem
+          - lieb-robinson-bound
+          - sparse-hamiltonian-simulation
+          - linear-combination-of-unitaries
+          - truncated-taylor-series-simulation
+          - block-encoding
+          - quantum-signal-processing
+          - qubitization
+          - quantum-eigenvalue-transformation
+          - optimal-hamiltonian-simulation
+          - interaction-picture-simulation
+          - time-dependent-hamiltonian-simulation
+      - title: Chemistry and many-body physics
+        steps:
+          - second-quantization
+          - fermion-to-qubit-mapping
+          - jordan-wigner-transformation
+          - bravyi-kitaev-transformation
+          - quantum-chemistry-simulation
+          - ground-state-preparation
+          - ground-state-energy-estimation
+          - variational-method
+          - variational-quantum-eigensolver
+          - quantum-imaginary-time-evolution
+          - gibbs-state-preparation
+          - quantum-metropolis-sampling
+          - open-quantum-system-simulation
+          - quantum-many-body-simulation
+          - analog-quantum-simulation
+      - title: Errors and their correction
+        steps:
+          - quantum-error-correction
+          - shor-code
+          - stabilizer-formalism
+          - steane-code
+          - clifford-group
+          - entry: gottesman-knill-theorem
+            why: circuits of Clifford gates alone are simulated classically in polynomial time, so a speedup needs a gate outside the group.
+          - entry: quantum-threshold-theorem
+            why: below a constant error rate, under its noise model, any circuit can be run reliably with polylogarithmic overhead.

@@ -22,7 +22,7 @@ Several other volumes hold material that this one builds on or touches.
 - **Volume 18, approximation**, proves Graham's [list scheduling bound](/list-scheduling-bound/) for tasks of any length. The greedy bound of Chapter 20.1 is its special case for unit tasks.
 - **Volume 21, distributed algorithms**, studies machines that share no memory and no clock, where messages may be slow or lost. Its [CONGEST model](/congest-model/) counts synchronous rounds of small messages on a network, much as Chapter 20.5 counts rounds of shuffles; the rest of that volume puts failures and asynchrony at the centre.
 - **Volume 22, concurrency**, covers locks, [race conditions](/race-condition/) and lock-free data structures, including the [Chase-Lev deque](/chase-lev-deque/) that work-stealing runtimes use. This volume assumes that the runtime provides such structures and analyses the algorithms built on top of it.
-- **Volume 31, complexity**, defines the class [NC](/nc/) of problems with polylogarithmic span and polynomial work, and the P-complete problems that are believed to have no such algorithm.
+- **Volume 38, complexity**, defines the class [NC](/nc/) of problems with polylogarithmic span and polynomial work, and the P-complete problems that are believed to have no such algorithm.
 
 ## The chapters
 

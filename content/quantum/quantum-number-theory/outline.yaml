@@ -1,0 +1,91 @@
+groups:
+  - title: Order finding and its classical steps
+    intro: >
+      The quantum core of the chapter finds the order $r$ of $a$ modulo $N$ from one measured integer.
+      [Order finding](/order-finding/) builds the periodic state, the inverse Fourier transform turns the
+      period into peaks, and [continued fractions](/continued-fraction-post-processing/) turn a peak into
+      $r$. [Miller's reduction](/factoring-to-order-finding/) then turns an even order into a factor of $N$
+      with probability at least $1/2$ per random base.
+    entries:
+      - order-finding
+      - continued-fraction-post-processing
+      - factoring-to-order-finding
+
+  - title: Reversible arithmetic
+    intro: >
+      A quantum circuit can compute only reversible functions, so the arithmetic of number theory has to
+      be rebuilt with Toffoli and CNOT gates and with ancillas that are cleaned at the end.
+      [Modular exponentiation](/quantum-modular-exponentiation/) is the costly step of order finding.
+      The [binary GCD](/quantum-gcd/) and [modular inversion](/quantum-modular-inversion/) circuits run a
+      fixed number of rounds, because a circuit cannot stop early on some inputs, and they are the costly
+      steps of elliptic curve point addition.
+    entries:
+      - quantum-modular-exponentiation
+      - quantum-gcd
+      - quantum-modular-inversion
+
+  - title: Shor's factoring algorithm and its cost
+    intro: >
+      [Shor's algorithm](/shor-algorithm/) puts the pieces together and factors an $n$-bit integer with
+      $O(n^3)$ gates per run and an expected constant number of runs. The proof that factoring lies in
+      the class of problems solved in quantum polynomial time with bounded error is a separate entry. The
+      third entry follows the cost from logical gates down to physical qubits and hours, which is an
+      estimate under a stated hardware model and not a theorem.
+    entries:
+      - shor-algorithm
+      - factoring-in-bqp
+      - quantum-resource-estimation-factoring
+
+  - title: Discrete logarithms
+    intro: >
+      The same Fourier sampling solves $g^x = h$ in a cyclic group of known order, with two exponent
+      registers and fewer than 2.775 runs on average. Over $\mathbb{Z}_p^*$ this breaks Diffie-Hellman and
+      DSA. Over an elliptic curve the group operation is point addition, built from the reversible
+      inversion of the previous group, and the circuit for a 256-bit curve needs fewer logical qubits than
+      one for 2048-bit RSA.
+    entries:
+      - quantum-discrete-logarithm
+      - discrete-logarithm-in-bqp
+      - quantum-elliptic-curve-discrete-log
+
+  - title: Shorter circuits for factoring
+    intro: >
+      Two lines of work cut the size of each run. A [short discrete logarithm](/short-discrete-logarithm/)
+      needs exponents only as long as the secret, and RSA factoring reduces to one of about
+      $\frac{1}{2}\log_2 N$ bits; the [Ekerå-Håstad algorithm](/ekera-hastad-algorithm/) solves it with
+      several short runs and a lattice step. [Regev's algorithm](/regev-factoring-algorithm/) uses about
+      $\sqrt n$ small bases and $\sqrt n + 4$ runs of $O(n^{3/2}\log n)$ gates, under a heuristic
+      assumption.
+    entries:
+      - short-discrete-logarithm
+      - ekera-hastad-algorithm
+      - regev-factoring-algorithm
+
+  - title: Problems in number fields
+    intro: >
+      These four entries state the classical problems that the last group solves. The
+      [Pell equation](/pell-equation/) $x^2 - Dy^2 = 1$ has a fundamental solution that can have about
+      $\sqrt D$ digits, and its logarithm, the regulator, is the size to compute. The
+      [unit group](/unit-group/), the [class group](/ideal-class-group/) and the
+      [principal ideal problem](/principal-ideal-problem/) extend it to any number field. The best known
+      classical methods for them are subexponential, and most of those bounds assume the generalized
+      Riemann hypothesis.
+    entries:
+      - pell-equation
+      - unit-group
+      - ideal-class-group
+      - principal-ideal-problem
+
+  - title: Quantum algorithms for number fields and lattices
+    intro: >
+      [Hallgren's algorithm](/hallgren-pell-algorithm/) finds the regulator by period finding with an
+      irrational period, and the same idea gives the [class group](/quantum-class-group-algorithm/) and
+      the [principal ideal algorithm](/quantum-principal-ideal-algorithm/), now in any degree. The last
+      algorithm breaks some schemes that hide a short generator, but not Ring-LWE. For general lattices
+      the best known quantum method is [quantum sieving](/quantum-sieving/), which only lowers the
+      constant in an exponential running time.
+    entries:
+      - hallgren-pell-algorithm
+      - quantum-class-group-algorithm
+      - quantum-principal-ideal-algorithm
+      - quantum-sieving

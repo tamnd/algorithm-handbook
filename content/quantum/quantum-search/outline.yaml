@@ -1,0 +1,96 @@
+groups:
+  - title: Unstructured search and its limits
+    intro: >
+      The problem: find one of $M$ marked items among $N$ through an oracle, with no order to use.
+      [Grover's algorithm](/grover-search/) alternates the oracle with the
+      [diffusion operator](/grover-diffusion-operator/), turns the state by $2\theta$ per query with
+      $\sin\theta = \sqrt{M/N}$, and needs about $\frac{\pi}{4}\sqrt{N/M}$ queries. The
+      [optimality theorem](/grover-optimality/) shows that no quantum algorithm needs fewer than
+      $\Omega(\sqrt{N/M})$ queries, a bound in the query model and not on time.
+    entries:
+      - unstructured-search
+      - grover-diffusion-operator
+      - grover-search
+      - grover-optimality
+
+  - title: Amplification and an unknown number of solutions
+    intro: >
+      [Amplitude amplification](/amplitude-amplification/) replaces the uniform state by the output of any
+      quantum algorithm $A$ that succeeds with probability $a$, and finds a success with $O(1/\sqrt a)$
+      calls of $A$ and $A^{-1}$. The count of rounds depends on $a$. [BBHT search](/bbht-search/) copes
+      with an unknown $M$ by random counts on a growing range, and
+      [fixed-point search](/fixed-point-quantum-search/) by phases that never overshoot.
+    entries:
+      - amplitude-amplification
+      - bbht-search
+      - fixed-point-quantum-search
+
+  - title: Counting marked items
+    intro: >
+      [Counting](/counting-marked-items/) asks for $M$ itself, exactly or within a relative error.
+      [Quantum counting](/quantum-counting/) runs phase estimation on the Grover iteration, whose
+      eigenphases $\pm 2\theta$ hold $M$; its error falls as $1/P$ after $P - 1$ queries, where sampling
+      needs about $P^2$ samples for the same error.
+    entries:
+      - counting-marked-items
+      - quantum-counting
+
+  - title: Minimum finding and optimization
+    intro: >
+      [Minimum finding](/minimum-finding/) searches repeatedly for an item below the current threshold.
+      [Dürr and Høyer](/durr-hoyer-minimum-finding/) bound the expected work by $O(\sqrt N)$ queries
+      with BBHT search inside, and [Grover adaptive search](/grover-adaptive-search/) runs the same loop
+      on a cost function such as a QUBO objective. Its guarantee holds with a budget of order $\sqrt N$;
+      with the patience rules used in practice it is measured, not proved.
+    entries:
+      - minimum-finding
+      - durr-hoyer-minimum-finding
+      - grover-adaptive-search
+
+  - title: Quantum walks
+    intro: >
+      When the items sit on a graph and the search may only move along edges,
+      [spatial search](/spatial-search/) asks how much of the square-root gain survives: all of it on
+      grids of dimension 3 and up, all but a logarithmic factor in dimension 2, none on a cycle.
+      [Quantum walk search](/quantum-walk-search/) turns a classical Markov chain with spectral gap
+      $\delta$ and marked fraction $\varepsilon$ into a search with
+      $O(S + \frac{1}{\sqrt\varepsilon}(\frac{U}{\sqrt\delta} + C))$ cost.
+    entries:
+      - spatial-search
+      - quantum-walk-search
+
+  - title: Collisions and distinctness
+    intro: >
+      A table of $k$ values and a Grover search for a match give the
+      [Brassard-Høyer-Tapp collision algorithm](/brassard-hoyer-tapp-collision/), with
+      $O((N/r)^{1/3})$ queries for an $r$-to-one function. [Ambainis's walk](/ambainis-element-distinctness/)
+      keeps the table in a walk on subsets and decides [k-distinctness](/k-distinctness/) with
+      $O(N^{k/(k+1)})$ queries, $N^{2/3}$ for element distinctness;
+      [Belovs's learning graphs](/belovs-k-distinctness/) lower the exponent for $k \ge 3$.
+    entries:
+      - brassard-hoyer-tapp-collision
+      - k-distinctness
+      - ambainis-element-distinctness
+      - belovs-k-distinctness
+
+  - title: Triangles
+    intro: >
+      [Triangle finding](/triangle-finding/) in an $n$-vertex graph given by its adjacency matrix needs
+      $\Theta(n^2)$ classical queries and $O(n^{3/2})$ with Grover search over triples.
+      [Magniez, Santha and Szegedy](/magniez-santha-szegedy-triangle/) nest one walk inside another
+      for $\tilde O(n^{13/10})$; later methods reach $\tilde O(n^{5/4})$, and the best lower bound is
+      $\Omega(n)$.
+    entries:
+      - triangle-finding
+      - magniez-santha-szegedy-triangle
+
+  - title: Ordered search
+    intro: >
+      With the items sorted, [ordered search](/quantum-ordered-search/) needs $\Theta(\log N)$ queries
+      on a quantum computer too, and only the constant changes. The exact algorithm of
+      [Høyer, Neerbek and Shi](/hoyer-neerbek-shi-ordered-search/) uses about $\log_3 N$ queries
+      against $\lceil \lg N \rceil$ for binary search, and no exact algorithm can go below
+      $\frac{1}{\pi}(\ln N - 1)$.
+    entries:
+      - quantum-ordered-search
+      - hoyer-neerbek-shi-ordered-search

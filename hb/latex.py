@@ -136,7 +136,9 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     body = re.sub(r"(?<!\}\{)⧺", lambda m: r"\mathbin{+\mkern-10mu+}", body)
     # the outer joins ⟕ ⟖ ⟗ are absent from Libertinus Math; in mathematics they come from STIX Two Math
     body = re.sub(r"(?<!\}\{)([⟕⟖⟗])", lambda m: r"\mathbin{\text{\hbfbC " + m.group(1) + "}}", body)
-    # so is the diamond operator ⋄ (\diamond, U+22C4)
+    # so is the diamond operator ⋄ (\diamond, U+22C4); as a bare subscript (the diamond norm, `\|X\|_\diamond`)
+    # the replacement needs braces, or TeX stops with "Missing { inserted"
+    body = re.sub(r"(?<!\\)([_^])\s*\\diamond(?![a-zA-Z])", lambda m: m.group(1) + r"{\text{\hbfbC ⋄}}", body)
     body = re.sub(r"\\diamond(?![a-zA-Z])", lambda m: r"\mathbin{\text{\hbfbC ⋄}}", body)
     # a combining circumflex (U+0302) after a letter in mathematics, as in N̂, has no glyph there: it is \hat
     body = re.sub(r"\\\((.*?)\\\)|\\\[(.*?)\\\]", _math_hats, body, flags=re.S)

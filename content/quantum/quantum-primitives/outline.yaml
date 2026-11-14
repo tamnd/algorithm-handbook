@@ -1,0 +1,158 @@
+groups:
+  - title: Qubits, states and measurement
+    intro: >
+      The objects that a quantum algorithm works on. A [qubit](/qubit/) is a unit vector in
+      $\mathbb{C}^2$; $n$ qubits hold a [state](/quantum-state/) of $2^n$ complex amplitudes, built with the
+      [tensor product](/tensor-product/). The [Born rule](/born-rule/) turns amplitudes into probabilities,
+      and a [measurement](/quantum-measurement/) returns one outcome and changes the state. The last entries
+      give the words for the two features that classical probability lacks: amplitudes that can cancel,
+      and states of several qubits that are not products.
+    entries:
+      - qubit
+      - quantum-state
+      - born-rule
+      - quantum-measurement
+      - tensor-product
+      - quantum-superposition
+      - bloch-sphere
+      - entanglement
+
+  - title: Gates and circuits
+    intro: >
+      Between preparation and measurement a computation applies [unitary](/unitary-operator/)
+      [gates](/quantum-gate/) to one, two or three qubits at a time. The entries define the gates that the
+      rest of the volume uses, from the [Pauli gates](/pauli-gates/) and [Hadamard gate](/hadamard-gate/) to
+      [CNOT](/cnot-gate/) and [Toffoli](/toffoli-gate/), and show how paths [interfere](/quantum-interference/).
+      Then comes the cost model: the [circuit model](/quantum-circuit-model/), classical logic run
+      [reversibly](/reversible-computation/), workspace in [ancilla qubits](/ancilla-qubits/) that must be
+      [cleaned up](/uncomputation/), and the [quantum Turing machine](/quantum-turing-machine/), which has the
+      same power as uniform circuits.
+    entries:
+      - unitary-operator
+      - quantum-gate
+      - pauli-gates
+      - hadamard-gate
+      - phase-and-t-gates
+      - cnot-gate
+      - toffoli-gate
+      - quantum-interference
+      - quantum-circuit-model
+      - reversible-computation
+      - ancilla-qubits
+      - uncomputation
+      - quantum-turing-machine
+
+  - title: Entanglement as a resource
+    intro: >
+      The four [Bell states](/bell-states/) are the standard entangled pairs. A pair shared in advance lets
+      Alice [teleport](/quantum-teleportation/) a qubit with two classical bits, or send two classical bits
+      with one qubit by [superdense coding](/superdense-coding/). The [no-cloning](/no-cloning-theorem/) and
+      [no-deleting](/no-deleting-theorem/) theorems say what no circuit can do with an unknown state.
+      [Bell's theorem](/bell-theorem/) and the [CHSH inequality](/chsh-inequality/) show that the
+      correlations of a Bell pair have no local classical explanation: a classical strategy wins the CHSH
+      game with probability at most $3/4$, a quantum one with $\cos^2(\pi/8) \approx 0.854$.
+    entries:
+      - bell-states
+      - no-cloning-theorem
+      - no-deleting-theorem
+      - quantum-teleportation
+      - superdense-coding
+      - bell-theorem
+      - chsh-inequality
+
+  - title: Oracles and the first separations
+    intro: >
+      A [quantum oracle](/quantum-oracle/) gives a circuit access to a function $f$, and each use costs one
+      query. [Quantum parallelism](/quantum-parallelism/) evaluates $f$ on every input at once but lets you
+      read only one value; [phase kickback](/phase-kickback/) moves $f(x)$ into a phase where interference
+      can use it. Three promise problems then show the gaps in the query model. The
+      [Deutsch-Jozsa algorithm](/deutsch-jozsa-algorithm/) needs one query and no error, against
+      $2^{n-1} + 1$ for a deterministic classical algorithm; the
+      [Bernstein-Vazirani algorithm](/bernstein-vazirani-algorithm/) needs one query against $n$ even for
+      bounded-error classical algorithms; [Simon's algorithm](/simon-algorithm/) needs $O(n)$ queries against
+      $\Omega(2^{n/2})$. The group ends with [quantum RAM](/quantum-random-access-memory/), the hardware an
+      oracle for a stored table would need.
+    entries:
+      - quantum-oracle
+      - quantum-parallelism
+      - phase-kickback
+      - deutsch-jozsa-problem
+      - deutsch-jozsa-algorithm
+      - bernstein-vazirani-problem
+      - bernstein-vazirani-algorithm
+      - simon-problem
+      - simon-algorithm
+      - quantum-random-access-memory
+
+  - title: Fourier transform and phase estimation
+    intro: >
+      Two one-ancilla circuits come first: the [Hadamard test](/hadamard-test/) estimates
+      $\mathrm{Re}\langle\psi|U|\psi\rangle$ and the [swap test](/swap-test/) estimates
+      $|\langle\psi|\phi\rangle|^2$. The [quantum Fourier transform](/quantum-fourier-transform/) on $n$
+      qubits uses $O(n^2)$ gates, against $O(n 2^n)$ operations for the classical FFT on $2^n$ numbers,
+      but its output can only be sampled. [Fourier sampling](/fourier-sampling/) is the step that Simon's and
+      Shor's algorithms share. [Phase estimation](/quantum-phase-estimation/) combines kickback and the
+      inverse transform to read an eigenvalue $e^{2\pi i\varphi}$ of a unitary to $t$ bits, and it is the
+      core of order finding and of much of Volume 30.
+    entries:
+      - hadamard-test
+      - swap-test
+      - quantum-fourier-transform
+      - fourier-sampling
+      - phase-estimation-problem
+      - quantum-phase-estimation
+
+  - title: Mixed states, channels and distances
+    intro: >
+      A [density matrix](/density-matrix/) describes a [mixed state](/mixed-state/): a qubit you know only
+      through probabilities, or one half of an entangled pair, whose state is the
+      [partial trace](/partial-trace/) of the whole. Noise and every other physical process is a
+      [quantum channel](/quantum-channel/), written with [Kraus operators](/kraus-operators/); the
+      [no-communication theorem](/no-communication-theorem/) says that no channel on Alice's side changes
+      Bob's partial trace. [Trace distance](/trace-distance/) and [fidelity](/fidelity/) measure how far two
+      states are apart, and [von Neumann entropy](/von-neumann-entropy/) and
+      [entanglement entropy](/entanglement-entropy/) measure mixedness and entanglement. The last two entries
+      ask how well a measurement can tell states apart and how many copies it takes to learn one.
+    entries:
+      - density-matrix
+      - mixed-state
+      - partial-trace
+      - quantum-channel
+      - kraus-operators
+      - no-communication-theorem
+      - trace-distance
+      - fidelity
+      - von-neumann-entropy
+      - entanglement-entropy
+      - state-discrimination-problem
+      - quantum-state-tomography
+
+  - title: Gate sets and stabilizers
+    intro: >
+      A [universal gate set](/universal-gate-set/) is a finite set of gates whose circuits approximate any
+      unitary, and the [Solovay-Kitaev theorem](/solovay-kitaev-theorem/) says the approximation costs only
+      $O(\log^c(1/\varepsilon))$ gates. The [Clifford group](/clifford-group/), generated by $H$, $S$ and CNOT,
+      is not universal: the [stabilizer formalism](/stabilizer-formalism/) describes its states by a few Pauli
+      operators, and the [Gottesman-Knill theorem](/gottesman-knill-theorem/) simulates Clifford circuits
+      with Pauli measurements in classical polynomial time. Adding the $T$ gate restores universality.
+    entries:
+      - universal-gate-set
+      - solovay-kitaev-theorem
+      - clifford-group
+      - stabilizer-formalism
+      - gottesman-knill-theorem
+
+  - title: Error correction and fault tolerance
+    intro: >
+      [Quantum error correction](/quantum-error-correction/) protects a state without reading it: it measures
+      only the error syndrome. The [Shor code](/shor-code/) stores one qubit in nine and the
+      [Steane code](/steane-code/) in seven, built from the classical [Hamming code](/hamming-code/). The
+      [threshold theorem](/quantum-threshold-theorem/) says that under a local stochastic noise model, in
+      which each component fails with probability below a constant threshold, an ideal circuit can be run to
+      any accuracy with a polylogarithmic overhead. The theorem gives a constant; the numbers quoted
+      for real hardware are estimates.
+    entries:
+      - quantum-error-correction
+      - shor-code
+      - steane-code
+      - quantum-threshold-theorem

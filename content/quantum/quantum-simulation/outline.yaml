@@ -1,0 +1,112 @@
+groups:
+  - title: The simulation problem
+    intro: >
+      Feynman's observation that a classical computer seems to need exponential resources to follow a
+      quantum system, and the two answers to it: a device whose own Hamiltonian copies the target, or a
+      gate-based computer that compiles $e^{-iHt}$ into a circuit. [Hamiltonian simulation](/hamiltonian-simulation/)
+      states the problem with an access model, a time and an error in a stated norm. Most methods take the
+      Hamiltonian as a weighted sum of Pauli strings, so the group ends with that decomposition.
+    entries:
+      - feynman-quantum-simulation
+      - analog-quantum-simulation
+      - digital-quantum-simulation
+      - hamiltonian-simulation
+      - pauli-string-decomposition
+
+  - title: Product formulas
+    intro: >
+      Split $H$ into terms whose exponentials are easy and apply them one after another in short steps. The
+      [Lie-Trotter formula](/lie-trotter-product-formula/) has error at most $t^2\|[A, B]\|/(2r)$, Lloyd turned it
+      into the first universal simulator, and Suzuki's symmetric and recursive formulas raise the order.
+      Commutator bounds show how loose the norm bounds are, and qDRIFT samples the terms instead of
+      cycling through them.
+    entries:
+      - lie-trotter-product-formula
+      - universal-quantum-simulator
+      - trotter-suzuki-product-formulas
+      - higher-order-trotter-suzuki
+      - commutator-scaling
+      - qdrift
+
+  - title: Sums of unitaries and block encodings
+    intro: >
+      A [linear combination of unitaries](/linear-combination-of-unitaries/) applies a weighted sum of
+      circuits with an index register and amplitude amplification. With it a truncated Taylor series makes
+      the cost grow only like $\log(1/\epsilon)/\log\log(1/\epsilon)$ in the error, the interaction picture pays
+      only for the small part of $H$, and multi-product formulas cancel the low error terms of product
+      formulas. A block encoding is
+      the common interface: $H/\alpha$ in the corner of a unitary.
+    entries:
+      - linear-combination-of-unitaries
+      - truncated-taylor-series-simulation
+      - interaction-picture-simulation
+      - multi-product-formulas
+      - block-encoding
+
+  - title: Polynomials of a Hamiltonian
+    intro: >
+      [Quantum signal processing](/quantum-signal-processing/) makes a polynomial of one number from a
+      sequence of single-qubit rotations. Qubitization lifts it to every eigenvalue of a block-encoded $H$ at
+      once, and the eigenvalue transformation applies any bounded polynomial of the right parity. For
+      simulation the polynomial approximates $e^{-ixt}$, which gives the optimal query count in the sparse
+      model.
+    entries:
+      - quantum-signal-processing
+      - qubitization
+      - quantum-eigenvalue-transformation
+      - sparse-hamiltonian-simulation
+      - optimal-hamiltonian-simulation
+
+  - title: Other dynamics and limits
+    intro: >
+      Three variations of the problem: a Hamiltonian that changes with time, a system that loses energy to
+      its environment, and a Hamiltonian given only as copies of a density matrix. Then two limits: the
+      [no-fast-forwarding theorem](/no-fast-forwarding-theorem/) says that time linear in $t$ is needed in
+      the query model, and the Lieb-Robinson bound says that local dynamics spread at a finite speed.
+    entries:
+      - time-dependent-hamiltonian-simulation
+      - open-quantum-system-simulation
+      - density-matrix-exponentiation
+      - no-fast-forwarding-theorem
+      - lieb-robinson-bound
+
+  - title: Fermions as qubits
+    intro: >
+      Electrons are fermions, and their states are described by occupation numbers and by creation and
+      annihilation operators that anticommute. A fermion-to-qubit mapping turns these operators into Pauli
+      sums. The [Jordan-Wigner transformation](/jordan-wigner-transformation/) is the simplest, with strings
+      of length up to $n$; Bravyi-Kitaev cuts the length to $O(\log n)$.
+    entries:
+      - second-quantization
+      - fermion-to-qubit-mapping
+      - jordan-wigner-transformation
+      - bravyi-kitaev-transformation
+
+  - title: Ground and thermal states
+    intro: >
+      Many questions ask for the lowest energy or the state at a temperature rather than for dynamics. The
+      [variational method](/variational-method/) gives upper bounds, and VQE runs it with a quantum circuit and
+      a classical optimizer, as a heuristic. Ground energy and ground state come with proved costs under a
+      guiding state and a gap, and are hard in general. Imaginary-time evolution, Gibbs state preparation and
+      quantum Metropolis sampling aim at the same states by other routes.
+    entries:
+      - variational-method
+      - variational-quantum-eigensolver
+      - ground-state-energy-estimation
+      - ground-state-preparation
+      - quantum-imaginary-time-evolution
+      - gibbs-state-preparation
+      - quantum-metropolis-sampling
+
+  - title: Applications
+    intro: >
+      The methods applied to the systems that motivate them: spin and fermion lattices, molecules, quantum
+      field theories on a lattice and the scattering of particles. The last entry runs the problem backwards:
+      [Hamiltonian learning](/hamiltonian-learning/) recovers the coefficients of an unknown $H$ from its
+      dynamics or its thermal states.
+    entries:
+      - quantum-many-body-simulation
+      - quantum-chemistry-simulation
+      - quantum-field-theory-simulation
+      - quantum-scattering-simulation
+      - hamiltonian-learning
