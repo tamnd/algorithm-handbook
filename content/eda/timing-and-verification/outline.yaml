@@ -1,0 +1,117 @@
+# The order of chapter 32.7, Timing, verification and test. Groups are read in order; entries in a group too.
+groups:
+  - title: Interconnect delay
+    intro: >
+      A wire on a chip is a distributed resistor with capacitance to ground, and its delay grows with the
+      square of its length. The [RC tree](/rc-tree/) is the standard model of a net, and the
+      [Elmore delay](/elmore-delay/) is its first moment: a closed form that is an upper bound on the
+      50 percent delay for RC trees, not the exact delay. [Asymptotic waveform evaluation](/asymptotic-waveform-evaluation/)
+      matches more moments and can give unstable models; [PRIMA](/prima/) projects on a Krylov subspace and keeps the model passive.
+    entries:
+      - rc-tree
+      - elmore-delay
+      - asymptotic-waveform-evaluation
+      - prima
+
+  - title: Static timing analysis
+    intro: >
+      The [timing graph](/timing-graph/) cuts the circuit open at its registers into a DAG of pins. Arrival times
+      go forward, required times go backward, and their difference is the slack; the
+      [setup and hold constraints](/setup-and-hold-constraints/) bound the longest and the shortest paths.
+      [Static timing analysis](/static-timing-analysis/) does this in $\Theta(V + E)$ time with no vectors, and it is
+      pessimistic because it counts [false paths](/false-path/). [Statistical timing](/statistical-static-timing-analysis/)
+      replaces the numbers by random variables, with an approximate max.
+    entries:
+      - timing-graph
+      - arrival-and-required-time
+      - setup-and-hold-constraints
+      - nonlinear-delay-model
+      - static-timing-analysis
+      - false-path
+      - statistical-static-timing-analysis
+
+  - title: Clock networks
+    intro: >
+      The clock must reach every register at nearly the same time. The [H-tree](/h-tree-clock/) does this by symmetry
+      on a regular grid; [clock tree synthesis](/clock-tree-synthesis/) builds a tree for sinks placed anywhere.
+      [Means and medians](/method-of-means-and-medians/) builds a topology, [Tsay's merge](/tsay-zero-skew/) gives exact
+      zero Elmore skew for a given topology, and [DME](/deferred-merge-embedding/) also saves wire. Skew can be
+      useful too: [clock skew scheduling](/clock-skew-scheduling/) chooses the arrival times to shorten the period.
+    entries:
+      - h-tree-clock
+      - clock-tree-synthesis
+      - method-of-means-and-medians
+      - tsay-zero-skew
+      - deferred-merge-embedding
+      - clock-skew-scheduling
+
+  - title: Buffering and sizing
+    intro: >
+      [Logical effort](/logical-effort/) explains by hand how fast a chain of gates can be. [Van Ginneken's algorithm](/van-ginneken-buffer-insertion/)
+      places buffers on a routing tree by dynamic programming over lists of non-dominated (load, required time) pairs.
+      [Gate sizing](/gate-sizing/) with discrete sizes is NP-hard, but with continuous sizes under the Elmore delay
+      it is a geometric program: [TILOS](/tilos/) is a greedy heuristic for it, and
+      [Lagrangian relaxation](/lagrangian-relaxation-gate-sizing/) is exact at the optimal multipliers,
+      though the convergence of its multiplier updates is measured, not proved.
+    entries:
+      - logical-effort
+      - van-ginneken-buffer-insertion
+      - gate-sizing
+      - tilos
+      - lagrangian-relaxation-gate-sizing
+
+  - title: Physical verification
+    intro: >
+      Before a layout goes to the mask shop, it is checked twice. [Design rule checking](/design-rule-checking/) finds
+      shapes that are too thin or too close, and [layout versus schematic](/layout-versus-schematic/) checks that the
+      [extracted](/circuit-extraction/) netlist is the intended circuit. [Corner stitching](/corner-stitching/) is a
+      layout database for the area queries behind these tools, and [Gemini](/gemini-netlist-comparison/) is the
+      classic netlist comparison by label refinement.
+    entries:
+      - circuit-extraction
+      - corner-stitching
+      - design-rule-checking
+      - layout-versus-schematic
+      - gemini-netlist-comparison
+
+  - title: Extraction and manufacturability
+    intro: >
+      [Parasitic extraction](/parasitic-extraction/) turns the wires into the resistors and capacitors that timing needs.
+      Field solvers are accurate and slow; the [floating random walk](/floating-random-walk-capacitance/) is an unbiased
+      Monte Carlo estimate with error falling as $1/\sqrt N$. The last two entries change the layout so that it can be
+      printed: [multiple patterning](/multiple-patterning-decomposition/) splits a layer onto masks by graph coloring,
+      and [optical proximity correction](/optical-proximity-correction/) bends the mask shapes against diffraction.
+    entries:
+      - parasitic-extraction
+      - floating-random-walk-capacitance
+      - multiple-patterning-decomposition
+      - optical-proximity-correction
+
+  - title: Faults and test generation
+    intro: >
+      A test checks a made chip for defects, modelled as [stuck-at faults](/stuck-at-fault-model/). Deciding whether
+      a fault can be detected is NP-complete, and [fault collapsing](/fault-collapsing/) first shrinks the list by
+      equivalence and dominance. [Test generation](/automatic-test-pattern-generation/) searches for a vector:
+      the [D-algorithm](/d-algorithm/) over five values, [PODEM](/podem/) over the primary inputs only, with
+      [SCOAP](/scoap/) measures to guide it, and [SAT-based ATPG](/sat-based-atpg/) by handing a miter to a SAT solver.
+    entries:
+      - stuck-at-fault-model
+      - fault-collapsing
+      - automatic-test-pattern-generation
+      - d-algorithm
+      - scoap
+      - podem
+      - sat-based-atpg
+
+  - title: Fault simulation and design for test
+    intro: >
+      [Fault simulation](/fault-simulation/) finds which faults a set of vectors detects, and so measures fault
+      coverage; [concurrent fault simulation](/concurrent-fault-simulation/) keeps only the faulty values that differ
+      from the good ones. [Scan design](/scan-design/) makes the registers controllable and observable, so that test
+      generation needs only combinational logic, and [built-in self-test](/built-in-self-test/) puts a pattern generator
+      and a signature register on the chip.
+    entries:
+      - fault-simulation
+      - concurrent-fault-simulation
+      - scan-design
+      - built-in-self-test

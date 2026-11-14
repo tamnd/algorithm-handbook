@@ -1,0 +1,113 @@
+# The order of chapter 32.5, Partitioning, floorplanning and placement. Groups are read in order; entries in a group too.
+groups:
+  - title: Wirelength and net models
+    intro: >
+      Every method in the chapter scores a layout by an estimate of its wire length. The
+      [half-perimeter wirelength](/half-perimeter-wirelength/) of a net is the half perimeter of the
+      bounding box of its pins, exact for two and three pins and a lower bound on the Steiner length in
+      general. The clique model makes the estimate quadratic, and the log-sum-exp model makes it smooth,
+      convex and within $2\gamma \ln p$ per axis of the half perimeter.
+    entries:
+      - half-perimeter-wirelength
+      - clique-net-model
+      - log-sum-exp-wirelength
+
+  - title: Netlist partitioning
+    intro: >
+      A netlist is a [hypergraph](/hypergraph/), and the first task is to cut it into balanced parts with
+      few nets crossing. Balanced bisection is NP-hard, so the entries give heuristics, lower bounds from
+      the Laplacian, and the empirical law that ties the number of terminals of a block to its size. The
+      multilevel methods coarsen, partition the small graph and refine on the way back; they are the
+      methods in use, and their quality is measured.
+    entries:
+      - hypergraph-partitioning
+      - ratio-cut
+      - rents-rule
+      - spectral-partitioning
+      - multilevel-graph-partitioning
+      - multilevel-hypergraph-partitioning
+
+  - title: Floorplans and their structure
+    intro: >
+      A floorplan divides a chip into rectangular rooms, one for each large block. The constraint graphs
+      turn the left-of and below relations into longest-path problems that give the coordinates. Slicing
+      floorplans are those made by repeated cuts. Mosaic floorplans are counted by the Baxter numbers,
+      which grow like $8^n$, against $(3 + 2\sqrt2)^n$ for slicing floorplans.
+    entries:
+      - floorplanning
+      - floorplan-constraint-graphs
+      - slicing-floorplan
+      - mosaic-floorplan
+      - mosaic-floorplan-baxter-theorem
+
+  - title: Slicing floorplans
+    intro: >
+      A slicing floorplan is a binary tree of cuts, written as a postfix word. The normalized Polish
+      expression gives each slicing floorplan exactly one word. Shape functions record the
+      width-height trade-offs of a subtree, and Stockmeyer's algorithm combines them to size the whole
+      floorplan optimally in $O(nd)$ time. Wong and Liu search the words by simulated annealing with three
+      moves.
+    entries:
+      - normalized-polish-expression
+      - shape-function
+      - stockmeyer-floorplan-sizing
+      - wong-liu-floorplanning
+
+  - title: Packing representations
+    intro: >
+      General floorplans need other codes. A sequence pair is two permutations that fix, for every pair of
+      blocks, whether one is left of or below the other; every packing has one. The B*-tree and the O-tree
+      encode compact packings as ordered trees and pack in linear time. All three are searched by
+      annealing.
+    entries:
+      - sequence-pair
+      - b-star-tree-floorplan
+      - o-tree-floorplan
+
+  - title: The placement problem
+    intro: >
+      Placement puts millions of standard cells into rows so that the wires are short and no two cells
+      overlap. The problem is NP-hard even in simple forms, so it is solved in stages. Global placement
+      allows overlap and spreads the cells, legalization moves them onto sites, and detailed placement
+      improves the legal result by local moves.
+    entries:
+      - placement-problem
+      - placement-legalization
+      - detailed-placement
+
+  - title: Min-cut and annealing placement
+    intro: >
+      The older placers work top-down or by random moves. [Min-cut placement](/min-cut-placement/)
+      bisects the netlist and the chip together. Terminal propagation lets each cut see the pins that lie
+      outside its region. Annealing placement moves and swaps cells under the Metropolis rule. TimberWolf used it in
+      the 1980s; it gives good results and is slow.
+    entries:
+      - min-cut-placement
+      - terminal-propagation
+      - simulated-annealing-placement
+
+  - title: Analytical global placement
+    intro: >
+      Modern placers minimize a smooth wirelength with a penalty for density. Quadratic placement solves
+      a sparse positive definite system, and force-directed methods add spreading forces to it. Nonlinear
+      placers use the log-sum-exp model, and electrostatic placement treats cells as charges and solves a
+      Poisson equation for the density penalty. SimPL alternates a lower bound from the quadratic system
+      with an upper bound from a rough legalization. All of these are heuristics.
+    entries:
+      - quadratic-placement
+      - force-directed-placement
+      - analytical-placement
+      - electrostatics-based-placement
+      - simpl-placement
+
+  - title: Legalization, detailed placement and timing
+    intro: >
+      Tetris places cells greedily in order of $x$. Abacus also places them in order but re-solves a
+      small quadratic program on each row, which is exact for a fixed order. Independent set matching
+      moves a set of unrelated cells by an assignment problem. Timing-driven placement weights the
+      critical nets or bounds their length.
+    entries:
+      - tetris-legalization
+      - abacus-legalization
+      - independent-set-matching
+      - timing-driven-placement

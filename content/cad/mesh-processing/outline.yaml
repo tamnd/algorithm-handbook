@@ -1,0 +1,92 @@
+# The order of chapter 31.5, Mesh processing and repair. Groups are read in order; entries in a group too.
+groups:
+  - title: Meshes as data
+    intro: >
+      A mesh file is an [indexed face set](/indexed-face-set/): an array of points and a list of faces
+      given by point indices. A [manifold mesh](/manifold-mesh/) is one where each edge has one or two
+      faces and each vertex has one fan, and only then is $\chi = V - E + F = 2 - 2g - b$ a statement
+      about the shape. The [corner table](/corner-table/) answers every neighbour query with two integer arrays.
+    entries:
+      - indexed-face-set
+      - manifold-mesh
+      - corner-table
+
+  - title: Cleaning and repair
+    intro: >
+      Real meshes arrive as soups with duplicate points, flipped faces, holes and overlaps. Each local step
+      fixes one condition: welding merges near points, a traversal orients the faces, and a cubic dynamic
+      program fills one hole. The [mesh repair problem](/mesh-repair-problem/) has no unique answer, and the
+      volumetric method trades the input faces for a guarantee that the result is closed.
+    entries:
+      - vertex-welding
+      - consistent-mesh-orientation
+      - mesh-repair-problem
+      - hole-filling
+      - liepa-hole-filling
+      - volumetric-mesh-repair
+
+  - title: Intersections, inside tests and Booleans
+    intro: >
+      The [triangle-triangle test](/triangle-triangle-intersection/) is a few signs of ORIENT3D, and it is
+      only reliable with exact predicates. On it rest the search for self-intersections, the winding number
+      that says what is inside, and exact [mesh Boolean operations](/mesh-boolean-operations/), whose output
+      can have $\Theta(nm)$ triangles.
+    entries:
+      - triangle-triangle-intersection
+      - mesh-self-intersection
+      - generalized-winding-number
+      - mesh-boolean-operations
+      - mesh-arrangements
+
+  - title: Smoothing and fairing
+    intro: >
+      Smoothing is filtering a signal on the mesh graph. Each eigenmode of frequency $k$ is multiplied by
+      $1 - \lambda k$ in a [Laplacian smoothing](/laplacian-smoothing/) step, so a closed mesh shrinks.
+      Taubin's second step undoes the shrinking, the [cotangent Laplacian](/cotangent-laplacian/) makes the
+      operator depend on the shape and not on the sampling, and implicit steps remove the limit on the step size.
+    entries:
+      - laplacian-smoothing
+      - taubin-smoothing
+      - cotangent-laplacian
+      - implicit-fairing
+
+  - title: Discrete curvature
+    intro: >
+      The angle defect $2\pi - \Theta_i$ at a vertex is the discrete Gaussian curvature. Its sum over a
+      closed mesh is exactly $2\pi\chi$, an identity that holds for every triangulation and not only in the limit.
+    entries:
+      - discrete-gaussian-curvature
+      - discrete-gauss-bonnet-theorem
+
+  - title: Geodesics
+    intro: >
+      A shortest path on a polyhedral surface crosses faces in straight lines and never passes through a vertex
+      whose angle sum is below $2\pi$. Exact methods unfold faces along intervals of edges in $O(n^2 \log n)$
+      time; the heat method is approximate and costs two sparse solves.
+    entries:
+      - discrete-geodesic-problem
+      - mmp-geodesic-algorithm
+      - heat-method
+
+  - title: Parameterization
+    intro: >
+      A [mesh parameterization](/mesh-parameterization/) flattens a disk-shaped mesh onto the plane. Tutte's
+      map with a convex boundary and positive weights is proved one to one, conformal maps keep angles as well
+      as the curvature allows, and angle-based flattening solves for the angles first.
+    entries:
+      - mesh-parameterization
+      - tutte-embedding
+      - floater-mean-value-coordinates
+      - least-squares-conformal-maps
+      - angle-based-flattening
+
+  - title: Remeshing, segmentation and comparison
+    intro: >
+      [Isotropic remeshing](/isotropic-remeshing/) makes edges of one length by local splits, collapses,
+      flips and moves; mixed-integer quadrangulation builds quads from a rounded parameterization. Segmentation
+      splits the faces into meaningful parts, and Metro measures how far a new mesh is from the old one.
+    entries:
+      - isotropic-remeshing
+      - mixed-integer-quadrangulation
+      - mesh-segmentation
+      - metro-mesh-comparison

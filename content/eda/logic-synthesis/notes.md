@@ -1,0 +1,19 @@
+## History
+
+Two-level minimization began with switching theory. Quine (1952) showed that a shortest normal formula is a sum of prime implicants, and in 1955 gave the consensus method for listing them. Veitch (1952) and Karnaugh (1953) drew the truth table as a map in which adjacent cells differ in one variable. McCluskey (1956) gave the tabular method of merging minterms and the prime implicant table, and Petrick solved that table algebraically in the same year. Chandra and Markowsky (1978) showed that the number of primes can grow almost as fast as $3^n$, which is one reason exact methods stop at small functions.
+
+The heuristic line came from IBM and Berkeley. Brayton, Hachtel, McMullen and Sangiovanni-Vincentelli described Espresso in their 1984 book, built on the unate recursive paradigm, and Rudell and Sangiovanni-Vincentelli extended it to multiple-valued variables in 1987. Brayton and McMullen (1982) introduced kernels and proved that common multi-cube divisors come from kernel intersections, and the MIS system of Brayton, Rudell, Sangiovanni-Vincentelli and Wang (1987) made algebraic extraction the core of multi-level synthesis. Ashenhurst (1957) and Curtis (1962) had already studied functional decomposition by counting columns of a chart.
+
+Technology mapping as a covering problem is due to Keutzer (1987), whose program DAGON used tree matching and dynamic programming from code generation. For FPGAs, Cong and Ding (1992, 1994) showed with FlowMap that a mapping of least depth can be found in polynomial time, and Farrahi and Sarrafzadeh (1994) showed that the fewest lookup tables is NP-hard. Cut enumeration in the late 1990s, and priority cuts in 2007 by Mishchenko, Cho, Chatterjee and Brayton, turned depth mapping into a fast dynamic program over cuts.
+
+Kuehlmann, Paruthi, Krohm and Ganai (2002) gave the hashed and-inverter graph in its current form for equivalence checking. SAT sweeping followed (Kuehlmann 2004, and the functionally reduced AIGs of Mishchenko, Chatterjee, Jiang and Brayton in 2005), and Mishchenko, Chatterjee and Brayton (2006) showed that synthesis itself can work on the AIG by balancing and DAG-aware rewriting. Amarù, Gaillardon and De Micheli proposed majority-inverter graphs in 2014. Kojevnikov, Kulikov and Yaroslavtsev (2009) used SAT solvers to find smallest circuits, and SAT encodings are now the usual method of exact synthesis.
+
+For sequential and high-level synthesis, Leiserson, Rose and Saxe presented retiming in 1983, and the journal paper of Leiserson and Saxe (1991) gave the period and register algorithms. Paulin and Knight published force-directed scheduling in 1989, using time frames that go back to the critical path method of Kelley and Walker (1959).
+
+## Further reading
+
+- Giovanni De Micheli, *Synthesis and Optimization of Digital Circuits*, McGraw-Hill, 1994. The standard textbook, covering two-level and multi-level synthesis, mapping, sequential synthesis and high-level synthesis.
+- Robert K. Brayton, Gary D. Hachtel, Curtis T. McMullen and Alberto L. Sangiovanni-Vincentelli, *Logic Minimization Algorithms for VLSI Synthesis*, Kluwer, 1984. The book of Espresso and the unate recursive paradigm.
+- Robert K. Brayton, Gary D. Hachtel and Alberto L. Sangiovanni-Vincentelli, "Multilevel logic synthesis", *Proceedings of the IEEE* 78(2), 1990. A survey of Boolean networks, kernels, extraction and don't-cares.
+- Jason Cong and Yuzheng Ding, "FlowMap: an optimal technology mapping algorithm for delay optimization in lookup-table based FPGA designs", *IEEE Transactions on Computer-Aided Design* 13(1), 1994. The depth-optimal mapping and its max-flow test.
+- Charles E. Leiserson and James B. Saxe, "Retiming synchronous circuitry", *Algorithmica* 6, 1991. The retiming model, the least period algorithm and the register minimization by min-cost flow.

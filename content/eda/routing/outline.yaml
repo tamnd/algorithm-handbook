@@ -1,0 +1,95 @@
+groups:
+  - title: Maze routing
+    intro: >
+      A maze router connects two points on a grid of free and blocked cells. [Lee's algorithm](/lee-maze-routing/)
+      is breadth-first search on the grid: it finds a shortest path for one net whenever one exists, and labels
+      $\Theta(MN)$ cells in the worst case. [Hadlock's algorithm](/hadlock-algorithm/) keeps the guarantee and
+      orders the search by detour number. [Soukup's algorithm](/soukup-algorithm/) and the
+      [line-probe routers](/line-probe-routing/) trade the shortest path for speed, and the probe router of
+      Hightower can fail to find a path that exists.
+    entries:
+      - lee-maze-routing
+      - hadlock-algorithm
+      - soukup-algorithm
+      - line-probe-routing
+
+  - title: Rectilinear trees for one net
+    intro: >
+      A net with more than two pins is connected by a tree in the Manhattan metric. The
+      [rectilinear minimum spanning tree](/rectilinear-minimum-spanning-tree/) is computed in $O(n \log n)$
+      time; the rectilinear Steiner minimal tree is NP-hard, but [Hanan's theorem](/hanan-theorem/) puts its
+      extra points on a grid of at most $n^2$ points, and [Hwang's theorem](/hwang-rectilinear-steiner-ratio/)
+      bounds the spanning tree by $\frac32$ times it. [Iterated 1-Steiner](/iterated-one-steiner/) and
+      [FLUTE](/flute/) are the heuristics used in practice; FLUTE is optimal up to degree 9.
+    entries:
+      - rectilinear-minimum-spanning-tree
+      - hanan-theorem
+      - hwang-rectilinear-steiner-ratio
+      - iterated-one-steiner
+      - flute
+
+  - title: Trees with short source paths
+    intro: >
+      For delay, a net needs short paths from its source to every sink, not only a short tree. A
+      [rectilinear Steiner arborescence](/rectilinear-steiner-arborescence/) makes every path a shortest one.
+      The [bounded-radius bounded-cost tree](/bounded-radius-bounded-cost-tree/) and the
+      [Prim-Dijkstra tradeoff](/prim-dijkstra-tradeoff/) move between the minimum spanning tree and the
+      shortest-path tree with one parameter.
+    entries:
+      - rectilinear-steiner-arborescence
+      - bounded-radius-bounded-cost-tree
+      - prim-dijkstra-tradeoff
+
+  - title: Global routing
+    intro: >
+      [Global routing](/global-routing/) assigns each net a path or tree in a coarse grid of tiles whose edges
+      have capacities, and measures overflow, wirelength and vias. The problem is NP-hard, so routers combine
+      fast [pattern routing](/pattern-routing/), [rip-up and reroute](/rip-up-and-reroute/) and
+      [negotiated congestion](/negotiated-congestion-routing/), which are judged by measured benchmark results.
+      [Multicommodity flow](/multicommodity-flow-global-routing/) gives a fractional solution with a proved
+      bound, and [layer assignment](/layer-assignment/) maps the two-dimensional result onto metal layers.
+    entries:
+      - global-routing
+      - pattern-routing
+      - rip-up-and-reroute
+      - negotiated-congestion-routing
+      - multicommodity-flow-global-routing
+      - layer-assignment
+
+  - title: Detailed routing and the channel model
+    intro: >
+      [Detailed routing](/detailed-routing/) fixes the exact tracks and vias inside each region. The classic
+      region is a channel with pins on two sides. Its [density](/channel-density/) $d$ is a lower bound on the
+      number of tracks, the [vertical constraint graph](/vertical-constraint-graph/) records which nets must lie
+      above which, and the [NP-completeness results](/channel-routing-np-completeness/) show that the minimum
+      track count is hard to find with or without doglegs.
+    entries:
+      - detailed-routing
+      - channel-density
+      - channel-routing-problem
+      - vertical-constraint-graph
+      - channel-routing-np-completeness
+
+  - title: Channel routers
+    intro: >
+      The [left-edge algorithm](/left-edge-algorithm/) packs intervals into tracks and uses exactly $d$ tracks
+      when there are no vertical constraints. [Dogleg routing](/dogleg-channel-routing/) splits nets at pin
+      columns to break constraint chains, the [greedy router](/greedy-channel-router/) sweeps column by column
+      and always completes, and the [Yoshimura-Kuh algorithm](/yoshimura-kuh-algorithm/) merges nets into tracks so that
+      the longest constraint path stays short. Their track counts beyond $d$ are measured, not proved.
+    entries:
+      - left-edge-algorithm
+      - dogleg-channel-routing
+      - greedy-channel-router
+      - yoshimura-kuh-algorithm
+
+  - title: Other routing regions
+    intro: >
+      A [switchbox](/switchbox-routing/) has pins on four sides and is harder than a channel.
+      [River routing](/river-routing/) connects two rows of pins in order on one layer, and a cut condition
+      decides it in polynomial time. [Escape routing](/escape-routing/) brings the pins of a dense array out to
+      its boundary, which is a maximum-flow problem in the unordered one-layer case.
+    entries:
+      - switchbox-routing
+      - river-routing
+      - escape-routing

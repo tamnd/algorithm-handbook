@@ -11,10 +11,10 @@ opening, groups and a reading order for each chapter, summaries, exercises with 
 reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
 the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.29.0
+## Volumes in edition 0.30.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.29.0](https://github.com/tamnd/algorithm/releases/tag/v0.29.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.30.0](https://github.com/tamnd/algorithm/releases/tag/v0.30.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from; a larger third number (such as 0.20.1) marks a
 new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
@@ -52,7 +52,9 @@ new build of the same release. The books are on the
 | 28 | Graphics and signals | 401 | written |
 | 29 | Games and search | 209 | written |
 | 30 | Quantum | 152 | written |
-| 31–38 | CAD, Statistics and inference, Compilers and program analysis, Information retrieval and AI reasoning, Control, Robotics, Computer vision, Complexity | – | forthcoming: the site has only short pages so far |
+| 31 | CAD | 125 | Chapters 31.1, 31.3, 31.5 and 31.8 written; openings for the other six |
+| 32 | Electronic design automation | 148 | Chapters 32.2, 32.5, 32.6 and 32.7 written; openings for the other six |
+| 33–39 | Statistics and inference, Compilers and program analysis, Information retrieval and AI reasoning, Control, Robotics, Computer vision, Complexity | – | forthcoming: the site has only short pages so far |
 
 ## Building
 

@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.29.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.30.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.29.0](https://github.com/tamnd/algorithm/releases/tag/v0.29.0)
-(`1b4668b1b67228b41adf402d55964388835c05b4`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.30.0](https://github.com/tamnd/algorithm/releases/tag/v0.30.0)
+(`6ccf9a13ccfb8f2c88cabedad23c314bf0b6cdb7`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,542 |
+| 0 | Guide and Index | the whole set | 1,594 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -34,41 +34,52 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 26 | Systems | 442 | 3,209 |
 | 27 | Biology | 254 | 1,611 |
 | 28 | Graphics and signals | 401 | 2,745 |
-| 29 | Games and search | 209 | 1,610 |
+| 29 | Games and search | 209 | 1,612 |
 | 30 | Quantum | 152 | 1,582 |
-| | **All** | **8,112** | **55,730** |
+| 31 | CAD | 125 | 980 |
+| 32 | Electronic design automation | 148 | 1,103 |
+| | **All** | **8,385** | **57,867** |
 
-- **New in this edition: Volume 30, Quantum**, in four chapters: *Quantum primitives* (65 entries: qubits, the
-  Bloch sphere, tensor products, unitary gates, measurement and the Born rule, the circuit model, universal gate sets
-  and the Solovay-Kitaev theorem, reversible computation and uncomputation, entanglement, Bell's theorem and the CHSH
-  inequality, the no-cloning theorem, teleportation and superdense coding, the oracle problems of Deutsch and Jozsa,
-  Bernstein and Vazirani and Simon, the quantum Fourier transform and phase estimation, density matrices, channels,
-  trace distance, fidelity and entropy, the stabilizer formalism and the Gottesman-Knill theorem, and error
-  correction with the Shor and Steane codes and the threshold theorem), *Quantum search* (22 entries: Grover's
-  algorithm and its optimality in the query model, amplitude amplification, search with an unknown number of
-  solutions, fixed-point search, quantum counting, minimum finding and Grover adaptive search, quantum walk and
-  spatial search, collision finding, element distinctness and k-distinctness, triangle finding and ordered search),
-  *Quantum number theory* (23 entries: order finding, modular exponentiation and continued fractions, Shor's
-  algorithm and the reduction of factoring to order finding, discrete logarithms in finite fields and on elliptic
-  curves, short discrete logarithms and the Ekerå-Håstad algorithm, Regev's factoring algorithm, resource estimates
-  for factoring, Hallgren's algorithm for Pell's equation, unit groups, class groups and the principal ideal
-  problem) and *Quantum simulation* (42 entries: Feynman's proposal and Lloyd's universal simulator, Lie-Trotter and
-  Trotter-Suzuki product formulas and their commutator bounds, qDRIFT and multi-product formulas, linear combinations
-  of unitaries, truncated Taylor series, block encodings, quantum signal processing, qubitization and the quantum
-  eigenvalue transformation, optimal and sparse Hamiltonian simulation, the no-fast-forwarding theorem and
-  Lieb-Robinson bounds, the Jordan-Wigner and Bravyi-Kitaev mappings, ground-state and Gibbs-state preparation,
-  energy estimation, variational eigensolvers and imaginary-time evolution, and simulation in chemistry, many-body
-  physics and field theory). Every page uses the same qubit order, and says which results are proved, in the query
-  or the gate model, and which costs are only estimated for a hardware model.
-- **Volume 0, Guide and Index**, covers the whole set of 8,112 entries and has a new learning path, *Quantum*.
-- **Volumes 1 to 29** have the same entries under the same numbers as in 0.28.0. The entries of Volumes 27 and 28
-  and of Chapter 29.2 have the corrections that the site made in its release v0.29.0. Cross-references from earlier
-  volumes to entries of Volume 30 now give entry numbers. The site has added seven areas before Complexity, which is
-  now Volume 38; the learner pages that named it as Volume 31 now say Volume 38.
-- Volumes 31 to 38 (CAD, Statistics and inference, Compilers and program analysis, Information retrieval and AI
+- **New in this edition: Volume 31, CAD**, with four of its ten chapters written: *Solid modeling* (35 entries:
+  r-sets and regularized set operations, boundary representations with the winged-edge and radial-edge structures,
+  Euler operators and the Euler-Poincaré formula, constructive solid geometry, set membership classification and
+  boundary evaluation, Booleans on solids, surface-surface intersection by marching and by subdivision, offsets and
+  blends, the robustness problem, exact geometric computation and simulation of simplicity, mass properties, and
+  feature recognition and persistent naming), *Geometric constraint solving* (24 entries: constraint graphs, local
+  propagation, graph-constructive solvers and the Fudos-Hoffmann and Owen methods, degrees-of-freedom analysis and
+  decomposition-recombination plans, the root identification problem, and rigidity: Maxwell's count, Laman's and
+  Tay's theorems, Henneberg constructions, the pebble game and global rigidity), *Mesh processing and repair* (32
+  entries: mesh data structures, cleaning and hole filling, intersections, winding numbers and mesh Booleans,
+  smoothing and fairing, discrete curvature, geodesics, parameterization, remeshing, segmentation and mesh
+  comparison) and *CAM and additive manufacturing* (34 entries: slicing, build orientation and supports, cutter
+  location and gouge detection, pocket and surface toolpaths, NC verification by z-maps and dexels, tolerance
+  stack-up, nesting, and topology optimization). The other six chapters have openings that say what they will
+  cover and what to read meanwhile.
+- **New in this edition: Volume 32, Electronic design automation**, with four of its ten chapters written: *Logic
+  synthesis and technology mapping* (40 entries: two-level minimization exactly and by Espresso, Boolean networks
+  and algebraic division, kernels, technology mapping by tree covering and by cuts, FlowMap, and-inverter graphs and
+  SAT sweeping, retiming, state assignment and high-level synthesis), *Partitioning, floorplanning and placement*
+  (36 entries: Kernighan-Lin, Fiduccia-Mattheyses and multilevel partitioning, ratio cuts and spectral methods,
+  Rent's rule, slicing floorplans, sequence pairs, B*-trees and O-trees, placement by simulated annealing, by
+  quadratic and analytic methods and by electrostatics, and legalization), *Routing* (30 entries: Lee's and
+  Hadlock's maze routers, rectilinear Steiner trees, trees with short source paths, global routing with rip-up and
+  reroute and negotiated congestion, channel routing by the left-edge algorithm and its successors, and switchbox,
+  river and escape routing) and *Timing, verification and test* (42 entries: Elmore delay and moment matching,
+  static and statistical timing analysis, clock trees, buffering and gate sizing, design rule checking, extraction
+  and lithography corrections, the stuck-at model, test generation by the D-algorithm, PODEM and SAT, fault
+  simulation, scan and built-in self-test). The other six chapters have openings. The pages of both volumes say which
+  problems are NP-hard, which algorithms are exact, and which heuristics are judged only by measured results.
+- **Volume 0, Guide and Index**, covers the whole set of 8,385 entries. The guide now says that the site has 39
+  areas, and lists the chapters of Volumes 31 and 32 with their state. It has no learning paths for the two new
+  volumes yet; they will come when the volumes are complete.
+- **Volumes 1 to 30** have the same entries under the same numbers as in 0.29.0. The entries of Volumes 29 and 30
+  have the corrections that the site made in its release v0.30.0. Cross-references from earlier volumes to entries of
+  Volumes 31 and 32 now give entry numbers. The site has added one area, Electronic design automation, before Complexity, which is now Volume 39;
+  the learner pages that named it as Volume 38 now say Volume 39.
+- Volumes 33 to 39 (Statistics and inference, Compilers and program analysis, Information retrieval and AI
   reasoning, Control, Robotics, Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.29.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.30.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

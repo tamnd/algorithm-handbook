@@ -1,0 +1,117 @@
+groups:
+  - title: Two-level forms and cubes
+    intro: >
+      A [sum of products](/sum-of-products/) is an OR of cubes, and a cube that is 1 only where the
+      function is 1 is an [implicant](/implicant/). [Don't-care conditions](/dont-care-condition/)
+      give points where the output may be either value. Quine's theorem says that some minimum sum of
+      products uses only [prime implicants](/prime-implicant/), so every later method starts from primes.
+      [Unate functions](/unate-function/) are the easy case that the recursive methods aim for.
+    entries:
+      - sum-of-products
+      - implicant
+      - dont-care-condition
+      - prime-implicant
+      - unate-function
+
+  - title: Exact two-level minimization
+    intro: >
+      [Two-level minimization](/two-level-logic-minimization/) asks for a cover with the fewest cubes
+      or literals. It splits into listing the primes and choosing a cheapest set of them, a
+      [set cover](/set-cover/) problem. The [Karnaugh map](/karnaugh-map/) does both by eye for up to
+      four variables, and with effort for five or six, [Quine-McCluskey](/quine-mccluskey/) does the first step by merging
+      minterms, and [Petrick's method](/petricks-method/) solves the covering table exactly, at a cost
+      that can grow exponentially.
+    entries:
+      - two-level-logic-minimization
+      - karnaugh-map
+      - quine-mccluskey
+      - petricks-method
+
+  - title: Heuristic two-level minimization
+    intro: >
+      The [unate recursive paradigm](/unate-recursive-paradigm/) splits a cover by Shannon expansion
+      until each part is unate, where tautology and complement are easy. [Espresso](/espresso/) builds
+      its EXPAND, IRREDUNDANT and REDUCE steps on it. Its result is a cover of primes with no redundant
+      cube, which is not always a minimum cover.
+    entries:
+      - unate-recursive-paradigm
+      - espresso
+
+  - title: Multi-level networks and algebraic methods
+    intro: >
+      A [Boolean network](/boolean-network/) is a DAG of nodes, each with a local sum of products, and
+      [multi-level synthesis](/multi-level-logic-synthesis/) makes its literal count small. The
+      algebraic model treats expressions as polynomials: [algebraic division](/algebraic-division/),
+      [kernels](/algebraic-kernel/) and [kernel extraction](/kernel-extraction/) find shared divisors,
+      and each step keeps every function. [Observability don't-cares](/observability-dont-care/) and
+      [Ashenhurst-Curtis decomposition](/ashenhurst-curtis-decomposition/) use Boolean facts that the
+      algebraic model ignores.
+    entries:
+      - boolean-network
+      - multi-level-logic-synthesis
+      - algebraic-division
+      - algebraic-kernel
+      - kernel-extraction
+      - observability-dont-care
+      - ashenhurst-curtis-decomposition
+
+  - title: Technology mapping and cuts
+    intro: >
+      [Technology mapping](/technology-mapping/) covers a network with library gates or lookup tables.
+      [Tree covering](/tree-covering-technology-mapping/) is optimal for each tree by dynamic
+      programming, and [Boolean matching](/boolean-matching/) compares functions up to input
+      permutation and negation. For FPGAs, every lookup table is a [$k$-feasible cut](/k-feasible-cut/),
+      [cut enumeration](/cut-enumeration/) lists the cuts, [FlowMap](/flowmap/) finds a mapping of least
+      depth in polynomial time, and [priority cuts](/priority-cuts/) keep only a few cuts per node.
+    entries:
+      - technology-mapping
+      - tree-covering-technology-mapping
+      - boolean-matching
+      - k-feasible-cut
+      - cut-enumeration
+      - lut-mapping
+      - flowmap
+      - priority-cuts
+
+  - title: And-inverter graphs
+    intro: >
+      An [and-inverter graph](/and-inverter-graph/) uses only two-input ANDs and inverted edges, with
+      structural hashing so that no two nodes have the same fanins. [Balancing](/aig-balancing/) lowers
+      its depth, [rewriting](/aig-rewriting/) swaps small cuts for precomputed smaller structures, and
+      [SAT sweeping](/sat-sweeping/) merges nodes that a solver proves equal.
+      [Majority-inverter graphs](/majority-inverter-graph/) use a three-input majority node, and
+      [exact synthesis](/exact-synthesis/) finds provably smallest circuits for small functions.
+    entries:
+      - and-inverter-graph
+      - aig-balancing
+      - aig-rewriting
+      - sat-sweeping
+      - majority-inverter-graph
+      - exact-synthesis
+
+  - title: Sequential synthesis
+    intro: >
+      [State assignment](/state-assignment/) picks binary codes for the states of a machine, and the
+      codes change the size of the logic a lot. [Minimizing an incompletely specified
+      machine](/incompletely-specified-fsm-minimization/) is NP-hard, unlike DFA minimization, and its
+      exact method is a [binate covering problem](/binate-covering-problem/).
+      [Retiming](/retiming/) moves registers across gates for the least clock period, and
+      [minimum-area retiming](/minimum-area-retiming/) for the fewest registers; both are exact.
+    entries:
+      - state-assignment
+      - binate-covering-problem
+      - incompletely-specified-fsm-minimization
+      - retiming
+      - minimum-area-retiming
+
+  - title: High-level synthesis
+    intro: >
+      [High-level synthesis](/high-level-synthesis/) turns a data flow graph into a datapath and a
+      controller by scheduling, allocation and binding. [ASAP and ALAP
+      scheduling](/asap-alap-scheduling/) give each operation its time frame in linear time, and
+      [force-directed scheduling](/force-directed-scheduling/) places operations inside their frames to
+      balance the use of each unit type, a heuristic with no proved bound.
+    entries:
+      - high-level-synthesis
+      - asap-alap-scheduling
+      - force-directed-scheduling

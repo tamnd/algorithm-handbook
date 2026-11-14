@@ -1,0 +1,33 @@
+1. Here $|\cos \theta| = 4/5$, so the cusp height is $0.1 \cdot 0.8 = 0.08$ mm. Slicing at the middle of each layer halves it to $0.04$ mm.
+
+3. The vertical facets allow any thickness, so the layers are $0.3$ thick up to $1.2$: boundaries $0.3, 0.6, 0.9, 1.2$. The facets above $1.2$ do not meet the open slab $(0.9, 1.2)$. From $1.2$ on, $0.3 \cdot \tfrac12 > 0.1$ fails and $0.2 \cdot \tfrac12 = 0.1$ is a tie that the test $t^2 n_z^2 \le c^2 \|n\|^2$ accepts, so the boundaries are $1.4, 1.6, 1.8$. That is 7 layers against 18.
+
+5. The ball centre is $p + rn = (0, 3, 4)$ and its tip is $(0, 3, -1)$. The unit vector $u = (0, 1, 0)$ is the direction of $n$ in the plane normal to $a$, so the flat tip is $p + Ru = (0, 5, 0)$. The torus tip is $p + r_c n + (R - r_c) u - r_c a = (0, 4.6, -0.2)$.
+
+8. $I \setminus J = [0, 2] \cup [6, 8]$, $I \cup J = [0, 10]$ and $I \cap J = [2, 3] \cup [5, 6] \cup [8, 9]$. One merge of the four sorted endpoint lists gives all three in $O(m_1 + m_2)$.
+
+9. $T_{\mathrm{WC}} = 0.03 + 0.04 + 0.12 = 0.19$ and $T_{\mathrm{RSS}} = \sqrt{0.0009 + 0.0016 + 0.0144} = 0.13$. The gap lies in $[-0.04, 0.34]$ in the worst case and in $[0.02, 0.28]$ under RSS, so only the statistical model keeps the range positive.
+
+12. The floor is flat, so $\kappa_{\max} = 0 < \tfrac15$. The centre $(0, 5)$ is at distance $\sqrt{10} < 5$ from the top corner $(3, 4)$ of the wall, so the ball cuts the wall. For a centre $(0, y)$ with $y > 4$ the condition $9 + (y - 4)^2 \ge 25$ gives $y \ge 8$, a lift of 3. A ball of radius $r$ touching at $p$ is at horizontal distance 3 from the wall, so $r \le 3$; a larger ball would also need $9 + (r - 4)^2 \ge r^2$, that is $r \le \tfrac{25}{8}$, which fails for $r > 4$.
+
+13. The tool centres fill $[1, 7] \times [1, 5]$. Each corner leaves $1 - \pi/4$ uncut, so $4 - \pi$ in all, and the opening has area $44 + \pi$. The bound is $L \ge (44 + \pi - \pi)/2 = 22$. The offset loops are rectangles $6 \times 4$ and $4 \times 2$, of lengths 20 and 12. At distance 3 the offset collapses to the segment from $(3, 3)$ to $(5, 3)$. The medial axis has the four corner bisectors and that segment, 5 arcs, which is $2n - 3$ for $n = 4$.
+
+14. Measure $x$ along the bisector from the corner. A point there is at distance $x/2$ from the walls. The first loop covers it while $x/2 \le 2r$, so up to $x = 8$. The second loop has its corner at $x = 2(r + s)$, and the tool there reaches back to $2(r + s) - r$. No island means $2(r + s) - r \le 8$, that is $s \le 3 = r(1 + \sin 30°)$. For $s = 3.5$ the corner of the second loop is at $x = 11$, and the points with $8 < x < 9$ stay uncut.
+
+17. The centre is $(6t, 0, 4 - 3t)$, so the axis has slope $-\tfrac12$ in $x$. At $(0, 0)$ minimize $4 - c/2 - \sqrt{4 - c^2}$ over the centre position $c$: the minimum is $4 - \sqrt5 \approx 1.764$. In the same way $(2, 0)$ gets $3 - \sqrt5 \approx 0.764$, $(6, 0)$ gets $-1$, $(7, 0)$ gets $1 - \sqrt3 \approx -0.732$ from the last position, and $(2, 1)$ gets $3 - \sqrt{15}/2 \approx 1.064$. On the inner part of the move the cut lies $\sqrt{r^2 - \delta^2}\,\sqrt{1 + m^2}$ below the axis, for a lateral offset $\delta$ and slope $m$. When the ball is right above $(2, 0)$ its bottom is at 1, but a later position, lower and close by, cuts deeper.
+
+20. The part of the mold that fills the hole can leave only through the opening at $x = 0$, and only straight along $-x$: a $y$ or $z$ component pushes it into a side wall of the hole, and a positive $x$ component into the floor. So one half moves along $-x$ and the other along $+x$, and $d = \pm(1, 0, 0)$. These directions work, because every face of the part is visible from $+x$ or from $-x$, or is parallel to the $x$ axis.
+
+22. The pieces go to $(0, 0)$, $(0, 2)$, $(4, 0)$, $(0, 3)$ and $(3, 0)$; the last one fills the hole $[3, 4] \times [0, 2]$. The height is 4, which equals the area bound $24/6$, so it is optimal. Without holes the last piece goes on top at height 4 and the height becomes 6.
+
+24. The least height over all directions is the width of the body. For the regular tetrahedron of edge 1 the width is the distance between two opposite edges, $1/\sqrt2 \approx 0.707$, along the direction that joins their midpoints. Standing on a face gives the height $\sqrt{2/3} \approx 0.816$.
+
+25. Put the contact point at $(0, -3)$, so the ball centre is $(0, -2)$ and the slot corner is at $a = 2$ across and $D - r = 2$ above the centre, at distance $R = 2\sqrt2$. The axis must keep the corner at distance at least $r$, so the tilt is at most $\arccos(r/R) - \operatorname{atan2}(D - r, a) = \arccos(1/(2\sqrt2)) - 45° \approx 24.30°$. The rays from the contact point leave the slot up to $\arctan(2/3) \approx 33.69°$, so the tool cone is narrower.
+
+26. Work in polar angle $\varphi$ about the centre and take the farthest point of all the rotated squares in each direction. In the quarter $0° \le \varphi \le 90°$ the boundary is the edge of the final square for $\varphi \le 22.5°$, the edge $x = 1$ of the first square for $22.5° \le \varphi \le 45°$, and the arc of radius $\sqrt2$ that the corner traces for $45° \le \varphi \le 90°$. The two edge pieces give triangles of area $\tfrac12 (1 - \tan 22.5°) = (2 - \sqrt2)/2$ each, and the arc gives a sector of area $\pi/4$. Four quarters give $8 + \pi - 4\sqrt2 \approx 5.485$.
+
+27. With a multiplier, $c_i / T_i^2 = \lambda$, so $T_i \propto \sqrt{c_i}$: $T = (0.1, 0.2, 0.3)$ and the cost is $(\sum \sqrt{c_i})^2 / T = 60$. Under RSS the condition is $c_i / T_i^2 = 2\lambda T_i$, so $T_i \propto c_i^{1/3}$: $T_i = 0.6\,(1, 2, 3)/\sqrt{14} \approx (0.160, 0.321, 0.481)$ and the cost is $14^{3/2}/0.6 \approx 87.31$.
+
+28. At $t = (1, 1)$ the square fills the notch $[1, 2]^2$ and touches $A$ only on its boundary. Every nearby translation makes the closed square meet the closed polygon $A$, so $t$ is an interior point of $A \oplus (-B)$. With $u > 0$ the square enters the right arm, with $u < 0$ the left arm, and with $u = 0$, $v < 0$ the base. So the feasible translations near $t$ are $u = 0$, $0 \le v < \tfrac12$, a segment inside the no-fit polygon.
+
+29. For $p = 1$ the condition $1/(k_1 x_1^2) = 1/(k_2 x_2^2)$ gives $x_1 = 2 x_2$, so $x = (2, 1)$ and $c = \tfrac34 f^2$, and both sensitivities are $f^2/4$. For general $p$ the condition $p/(k_i x_i^{p+1})$ equal gives $x_i \propto k_i^{-1/(p+1)}$, so for $p = 3$, $x = (3(2 - \sqrt2), 3(\sqrt2 - 1)) \approx (1.757, 1.243)$. Each term $1/x_i^p$ is convex for $x_i > 0$, so this small problem is convex for every $p > 0$ and the optimum is global. The SIMP entry claims only a local optimum for $p > 1$ on general meshes, and this example does not contradict that.

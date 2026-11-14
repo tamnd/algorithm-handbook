@@ -99,6 +99,13 @@ For edition 0.29.0, the site's release v0.29.0 wrote Volume 30 *Quantum*. Four a
 the writer of Chapter 30.1 also writing the volume introduction. The coordinating agent added a learning path
 *Quantum* to Volume 0.
 
+For edition 0.30.0, the site's release v0.30.0 wrote four chapters of Volume 31 *CAD* (31.1, 31.3, 31.5 and 31.8)
+and four of Volume 32 *Electronic design automation* (32.2, 32.5, 32.6 and 32.7); the other chapters of both
+volumes have only short pages so far. The site also added seven areas before Complexity, which is now Volume 39.
+Ten agents shared the work: one per written chapter, the writers of Chapters 31.1 and 32.2 also writing the
+volume introductions, and two for the openings of the twelve chapters that have no entries yet. Volume 0 gains no
+learning path for the two volumes until they are complete.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -113,5 +120,6 @@ While writing, the agents noted claims in the entries that look wrong or inconsi
 claims. The list is kept with the project's notes. Most of the errors found up to edition 0.24.0 were fixed in
 the site by pull requests to `tamnd/algorithm` in November 2026; the site's releases from v0.26.0, and so
 the editions from 0.26.0, have the fixes. The errors found in Volumes 27 and 28 and in Chapter 29.2 were fixed in
-the site's release v0.29.0, and this edition has those fixes. The other errors found in Volume 29, and those found
-in Volume 30, were fixed after the site's release v0.29.0, so the entries of this edition do not yet have them.
+the site's release v0.29.0, and those found in the rest of Volume 29 and in Volume 30 in its release v0.30.0; this
+edition has all those fixes. The errors found in Volumes 31 and 32 were fixed after the site's release v0.30.0, so
+the entries of this edition do not yet have them.

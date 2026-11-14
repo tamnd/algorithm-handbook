@@ -1,0 +1,114 @@
+# The order of chapter 31.8, CAM and additive manufacturing. Groups are read in order; entries in a group too.
+groups:
+  - title: Slicing and layers
+    intro: >
+      A printer builds a part as a stack of thin layers, so the first step is to cut the triangle mesh by
+      horizontal planes and link the cut segments into closed contours. The
+      [slicing problem](/slicing-for-additive-manufacturing/) and the
+      [sweep that solves it](/triangle-mesh-slicing/) in $O(n \log k + k + m)$ expected time come first. A sloped
+      wall then shows steps of height $t |\cos \theta|$, which [adaptive slicing](/adaptive-slicing/) keeps under
+      a bound by varying $t$, and the [infill pattern](/infill-pattern/) fills each layer inside its walls.
+    entries:
+      - slicing-for-additive-manufacturing
+      - triangle-mesh-slicing
+      - staircase-effect
+      - adaptive-slicing
+      - infill-pattern
+
+  - title: Build orientation and supports
+    intro: >
+      The direction in which a part is built sets its height, its steps and the overhangs that need support.
+      [Build orientation](/build-orientation/) weighs these goals against each other. Facets that face down more
+      steeply than a set angle need [support structures](/support-structure-generation/), and
+      [tree supports](/tree-support/) merge the support columns into branches to save material. The quality of
+      supports is measured on test parts, not proved.
+    entries:
+      - build-orientation
+      - support-structure-generation
+      - tree-support
+
+  - title: Toolpaths and cutter positions
+    intro: >
+      A milling machine moves a rotating tool along a path. [Toolpath planning](/toolpath-planning/) states the
+      problem, and [cutter location data](/cutter-location-data/) turns a contact point on the surface into a
+      position of the tool for ball, flat and torus cutters. A ball of radius $r$ leaves ridges of height
+      about $w^2/(8r)$ between passes $w$ apart, the [scallop height](/scallop-height/). A tool that cuts into
+      the part is a gouge, found by [gouge detection](/gouge-detection/) or avoided by building the path with
+      an [inverse tool offset](/inverse-tool-offset/).
+    entries:
+      - toolpath-planning
+      - cutter-location-data
+      - scallop-height
+      - gouge-detection
+      - inverse-tool-offset
+
+  - title: Pocket machining
+    intro: >
+      A pocket is a planar region cleared to a fixed depth. The tool centre must stay in the inward offset
+      $P_r$, so the region it can clear is the morphological opening of the pocket
+      ([pocket machining](/pocket-machining/)). The entries give four ways to cover it: offset loops, zigzag
+      lines, offsets read from the [medial axis](/medial-axis/), and one connected spiral.
+    entries:
+      - pocket-machining
+      - contour-parallel-toolpath
+      - direction-parallel-toolpath
+      - voronoi-pocket-machining
+      - fermat-spiral-toolpath
+
+  - title: Surface finishing paths
+    intro: >
+      A free-form surface is finished with a ball cutter along passes laid on the surface. The passes can
+      follow the parameter lines, the cuts of the surface by parallel planes, or curves placed so that the
+      scallop height between neighbours is constant. The three methods trade a simple construction against
+      an even finish.
+    entries:
+      - iso-parametric-toolpath
+      - iso-planar-toolpath
+      - iso-scallop-toolpath
+
+  - title: Simulation and verification
+    intro: >
+      Before a program runs on a machine, a simulation removes the [swept volume](/swept-volume/) of each move
+      from the stock and checks the result. [NC verification](/nc-verification/) states the task. The
+      [z-map model](/z-map-model/) keeps one height per grid line and suits three-axis work, and the
+      [dexel representation](/dexel-representation/) keeps lists of intervals per ray, so it can show
+      undercuts.
+    entries:
+      - swept-volume
+      - nc-verification
+      - z-map-model
+      - dexel-representation
+
+  - title: Checks on the design
+    intro: >
+      Some questions about a part can be asked before any path exists. The
+      [accessibility cone](/accessibility-cone/) of a point is the set of directions from which a tool or a
+      ray reaches it, and a common direction for many faces is a linear program. The same cones decide
+      [mold parting directions](/mold-parting-direction/). [Tolerance stack-up](/tolerance-stack-up/) asks how
+      the variations of the parts add up in an assembly.
+    entries:
+      - accessibility-cone
+      - mold-parting-direction
+      - tolerance-stack-up
+
+  - title: Nesting
+    intro: >
+      Cutting parts from sheet stock means placing polygons in a strip with no overlap and little waste.
+      The [nesting problem](/nesting-problem/) is strongly NP-hard. The [no-fit polygon](/no-fit-polygon/)
+      $A \oplus (-B)$ turns the overlap test into a point location, and
+      [bottom-left fill](/bottom-left-fill/) is the placement rule that most heuristics build on.
+    entries:
+      - nesting-problem
+      - no-fit-polygon
+      - bottom-left-fill
+
+  - title: Topology optimization
+    intro: >
+      [Topology optimization](/topology-optimization/) decides where material goes in a design domain so that
+      the part is as stiff as possible for its weight. The 0/1 problem is ill-posed, so the methods relax it.
+      The [SIMP method](/simp-method/) gives each element a density with stiffness $x^p E_0$, and the
+      [level set method](/level-set-topology-optimization/) moves a sharp boundary. Both find local optima.
+    entries:
+      - topology-optimization
+      - simp-method
+      - level-set-topology-optimization

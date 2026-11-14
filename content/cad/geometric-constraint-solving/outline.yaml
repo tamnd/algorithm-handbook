@@ -1,0 +1,82 @@
+groups:
+  - title: Constraints and the solving problem
+    intro: >
+      A sketch is a set of entities, such as points, lines and circles, and constraints between them that do
+      not change under rigid motions. The constraint graph records which entity each constraint touches and how
+      many degrees of freedom it removes, and its density $\rho(S) = w(E(S)) - w(S)$ predicts, for generic
+      values, whether a part is well-, under- or over-constrained. The problem entry states what a solver must
+      return and how hard the general case is: realization with given distances is NP-complete on a line and
+      complete for the existential theory of the reals in the plane.
+    entries:
+      - geometric-constraint
+      - geometric-constraint-graph
+      - geometric-constraint-problem
+  - title: First solvers
+    intro: >
+      Local propagation solves one constraint at a time as soon as only one of its unknowns is left, in time
+      linear in the size of the system, and stops on the first cycle of constraints. Variational geometry
+      writes all dimensions as one system of equations and solves it with Newton's method from the draft,
+      which finds one solution near the drawing. Ruler-and-compass constructibility marks the scope of exact
+      step-by-step solvers: coordinates reached by a tower of quadratic field extensions.
+    entries:
+      - local-propagation-solving
+      - variational-geometry
+      - ruler-and-compass-constructibility
+  - title: Rigidity of frameworks
+    intro: >
+      Points joined by distance constraints form a bar-and-joint framework, and the theory of rigidity says
+      when such a system has only finitely many solutions. Infinitesimal rigidity is a rank condition,
+      $\operatorname{rank} R(G, p) = dn - d(d + 1)/2$, and it implies rigidity. At generic positions rigidity
+      and infinitesimal rigidity agree and depend on the graph alone, and Maxwell's rule
+      $m - (dn - D) = s - f$ links the number of bars to self-stresses and motions. The entry on well-constrained
+      systems separates the structural notion, read off the counts, from the exact one at given values.
+    entries:
+      - bar-and-joint-framework
+      - infinitesimal-rigidity
+      - generic-rigidity
+      - maxwell-counting-rule
+      - well-constrained-system
+  - title: Laman's theorem and its algorithms
+    intro: >
+      In the plane, a graph with $2n - 3$ edges is generically minimally rigid exactly when every $k \ge 2$
+      vertices span at most $2k - 3$ edges. Henneberg's two moves build every such graph from one edge, and the
+      pebble game tests the counts in $O(nm)$ time, $O(n^2)$ for a graph with $2n - 3$ edges. No count of this
+      kind is known for bar-and-joint frameworks in space.
+    entries:
+      - laman-theorem
+      - henneberg-construction
+      - pebble-game-rigidity
+  - title: Decomposition solvers in the plane
+    intro: >
+      Graph-constructive solvers analyse the constraint graph first and then place the points by a sequence of
+      ruler-and-compass steps. The Fudos-Hoffmann reduction merges three rigid clusters that pairwise share a
+      point, in $O(m(n + m))$ time, which is $O(n^2)$ on a Laman graph, and Owen's method splits at separation
+      pairs; both handle the same class of graphs. Each step has two solutions, so a sketch with $n$ points has
+      up to $2^{n-2}$ placements up to proper motion, and the root identification problem asks which one the
+      user meant.
+    entries:
+      - constructive-constraint-solving
+      - fudos-hoffmann-reduction
+      - owen-triconnected-decomposition
+      - root-identification-problem
+  - title: Bodies, assemblies and decomposition plans
+    intro: >
+      Degrees of freedom analysis counts the freedoms of general entities and finds over-constrained sets with
+      network flows. For rigid bodies joined by bars in general position, Tay's theorem gives an exact test in
+      every dimension: $D = d(d + 1)/2$ edge-disjoint spanning trees. Assemblies of parts in space use these
+      counts, which are necessary but not sufficient when mates share freedoms, and a DR-plan organizes any
+      decomposition as a tree of rigid subsystems solved from the leaves up.
+    entries:
+      - degrees-of-freedom-analysis
+      - tay-theorem
+      - assembly-constraint-solving
+      - dr-plan
+  - title: Global rigidity
+    intro: >
+      A rigid system can have several distant solutions; global rigidity asks that the lengths fix the shape
+      up to congruence. Hendrickson's conditions, $(d + 1)$-connectivity and redundant rigidity, are necessary
+      in every dimension, and the Jackson-Jordán theorem proves them sufficient for generic frameworks in the
+      plane. In space they are not sufficient, as $K_{5,5}$ shows.
+    entries:
+      - global-rigidity
+      - jackson-jordan-theorem

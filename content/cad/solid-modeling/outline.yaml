@@ -1,0 +1,98 @@
+# The order of chapter 31.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Solids and their representations
+    intro: >
+      A solid is a set of points, and a modeler stores it in one of a few finite forms. These entries define
+      the sets a modeler accepts, the regularized operations that keep them closed, and the four classic
+      representations: CSG trees, boundaries, voxels and implicit functions. The last entry asks when a
+      boundary can be turned back into a tree.
+    entries:
+      - r-set
+      - regularized-set-operations
+      - manifold-solid
+      - constructive-solid-geometry
+      - boundary-representation
+      - spatial-occupancy-enumeration
+      - function-representation
+      - brep-to-csg-conversion
+
+  - title: Boundary data structures and their topology
+    intro: >
+      A boundary representation needs a data structure for its faces, edges and vertices and a rule that says
+      which counts are possible. The [winged edge](/winged-edge-data-structure/) stores a 2-manifold with one
+      record per edge, and the radial edge also stores non-manifold edges. The Euler-Poincaré formula
+      $V - E + F - R = 2(S - H)$ constrains the counts, and the Euler operators change them one step at a time.
+    entries:
+      - winged-edge-data-structure
+      - radial-edge-data-structure
+      - euler-poincare-formula
+      - euler-operators
+
+  - title: Classification and Boolean operations
+    intro: >
+      Every Boolean operation rests on one question: is this point, segment or face inside, on or outside
+      the solid? Set membership classification answers it for a CSG tree, ray casting answers it along a
+      line, and boundary evaluation and the B-rep Boolean algorithms use it to build the boundary of the
+      result. Vertex neighborhood classification handles the cases where two boundaries touch.
+    entries:
+      - set-membership-classification
+      - csg-ray-casting
+      - boundary-evaluation
+      - solid-boolean-operations
+      - vertex-neighborhood-classification
+
+  - title: Curved faces and their intersections
+    intro: >
+      Real parts have curved faces, stored as patches cut by trimming curves. The new edges of a Boolean
+      operation are the curves where two faces meet, and computing them is the hardest numerical step in
+      a modeler. Marching traces a curve from a start point and can miss small loops; subdivision finds
+      every piece but stops at a tolerance.
+    entries:
+      - trimmed-surface
+      - surface-surface-intersection
+      - marching-surface-intersection
+      - subdivision-surface-intersection
+
+  - title: Offsets and blends
+    intro: >
+      Offsetting moves a surface along its normal or grows a solid by a ball, and blending rounds the sharp
+      edges of a part. The entries go from the offset of one surface to the rolling-ball fillet, and from
+      there to the offset of a whole solid, with the method of Rossignac and Requicha that works on a CSG
+      tree.
+    entries:
+      - offset-surface
+      - blending-surface
+      - rolling-ball-blend
+      - solid-offsetting
+      - rossignac-requicha-offsetting
+
+  - title: Robustness
+    intro: >
+      The algorithms above are proved with exact real numbers, and they run with floating point. These
+      entries show how rounded predicates make a modeler contradict itself, how exact computation of signs
+      removes the problem, and how simulation of simplicity removes the degenerate cases that exact signs
+      expose.
+    entries:
+      - geometric-robustness-problem
+      - exact-geometric-computation
+      - simulation-of-simplicity
+
+  - title: Mass properties
+    intro: >
+      Volume, center of mass and the inertia tensor are integrals over the solid. The general entry compares
+      the methods for each representation, and Mirtich's algorithm computes them exactly for a polyhedron in
+      linear time by turning volume integrals into sums over faces.
+    entries:
+      - mass-properties-of-solids
+      - mirtich-polyhedral-mass-properties
+
+  - title: Features and naming
+    intro: >
+      Designers think in holes, slots and pockets, not in faces. These entries cover modeling with features,
+      finding features in a plain boundary, the graph method of Joshi and Chang, and the problem of naming a
+      face so that a later step still finds it after the model is rebuilt.
+    entries:
+      - feature-based-modeling
+      - feature-recognition
+      - attributed-adjacency-graph
+      - persistent-naming-problem

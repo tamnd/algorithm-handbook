@@ -33,7 +33,7 @@ If this is your first course, read these entries in this order: [the approximati
 
 If you already know the basic algorithms, start with the opening page of each chapter, which names its groups and the order to read them. The entries marked *Advanced* and *Research* are the place to go deeper; most of Chapter 18.6 is at that level.
 
-Each entry stands on its own. Its facts box lists what it needs, with the number of the entry where each prerequisite is explained. Entries in other volumes are cited by number too, as the [LP relaxation](/lp-relaxation/) in Volume 15 and the [harmonic series](/harmonic-series/) in Volume 1 are; the number is printed with the link. Some prerequisites, such as NP-hardness, polynomial-time reductions and the PCP theorem, belong to Volume 38, which is not yet written; their definitions are in any textbook on computational complexity.
+Each entry stands on its own. Its facts box lists what it needs, with the number of the entry where each prerequisite is explained. Entries in other volumes are cited by number too, as the [LP relaxation](/lp-relaxation/) in Volume 15 and the [harmonic series](/harmonic-series/) in Volume 1 are; the number is printed with the link. Some prerequisites, such as NP-hardness, polynomial-time reductions and the PCP theorem, belong to Volume 39, which is not yet written; their definitions are in any textbook on computational complexity.
 
 ## What you need first
 

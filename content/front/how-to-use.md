@@ -2,7 +2,7 @@ The handbook is a set of volumes with one numbering. Each volume can be read fro
 
 ## Volumes, chapters and entries
 
-The set follows the areas of the site. Volume 1 is Foundations, Volume 4 is Sorting, Volume 7 is Graphs, and so on up to Volume 38, Complexity. This volume, the guide, is Volume 0. A volume has one chapter for each sub-area of its area: Chapter 4.1 is *Comparison sorts*, the first chapter of Volume 4.
+The set follows the areas of the site. Volume 1 is Foundations, Volume 4 is Sorting, Volume 7 is Graphs, and so on up to Volume 39, Complexity. This volume, the guide, is Volume 0. A volume has one chapter for each sub-area of its area: Chapter 4.1 is *Comparison sorts*, the first chapter of Volume 4.
 
 An entry is one topic: an algorithm, a data structure, a problem, a theorem, a definition, a concept, a technique, a model of computation or an abstract type. Its number has three parts, volume, chapter and place in the chapter. Entry 4.1.12, say, is the twelfth entry of the first chapter of Volume 4. Every cross-reference in the set gives this number in small grey type after the name of the entry, so you can tell at a glance which volume a reference points to. When it points into another volume, the link goes to the entry's page on the site.
 
