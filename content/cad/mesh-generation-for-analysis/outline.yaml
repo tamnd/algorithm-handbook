@@ -1,0 +1,120 @@
+# The order of chapter 31.6, Mesh generation for analysis. Groups are read in order; entries in a group too.
+groups:
+  - title: Element quality and size
+    intro: >
+      A finite element solver cares about the shape of each element and the size of the elements
+      near each point. The [mesh quality measures](/mesh-quality-measures/) rate one element, the
+      [radius-edge ratio](/radius-edge-ratio/) is the measure that Delaunay refinement can bound, and the
+      [sliver tetrahedron](/sliver-tetrahedron/) shows what that bound misses in three dimensions. A
+      [mesh sizing function](/mesh-sizing-function/) that is $L$-Lipschitz fixes how fast the size may change.
+    entries:
+      - mesh-quality-measures
+      - radius-edge-ratio
+      - sliver-tetrahedron
+      - scaled-jacobian
+      - maximum-angle-condition
+      - mesh-sizing-function
+
+  - title: Structured grids
+    intro: >
+      A structured grid is the image of a lattice under a map, so the connectivity is implicit and only the
+      points are stored. [Transfinite interpolation](/transfinite-interpolation-grid/) builds the map from the
+      four boundary curves in one formula, and [elliptic grid generation](/elliptic-grid-generation/) smooths it
+      by solving a Laplace system. The continuous elliptic map is one to one in the plane; the discrete grid
+      still has to be checked cell by cell.
+    entries:
+      - structured-grid-generation
+      - transfinite-interpolation-grid
+      - elliptic-grid-generation
+
+  - title: Fronts, trees and lattices
+    intro: >
+      These methods fill a domain without solving a global problem. [Advancing front](/advancing-front-mesh-generation/)
+      grows elements inward from the boundary and has no quality bound. The
+      [quadtree](/quadtree-mesh-generation/) method of Bern, Eppstein and Gilbert proves an angle bound
+      and a size bound, and [isosurface stuffing](/isosurface-stuffing/) proves dihedral angles between
+      $10.78°$ and $164.74°$ for a smooth surface. [DistMesh](/distmesh/) is a short force-balance heuristic.
+    entries:
+      - advancing-front-mesh-generation
+      - quadtree-mesh-generation
+      - octree-mesh-generation
+      - isosurface-stuffing
+      - distmesh
+
+  - title: Delaunay tetrahedral meshing
+    intro: >
+      The planar [Delaunay refinement](/delaunay-refinement/) of Volume 13 extends to three dimensions with
+      two new problems. Some polyhedra have no tetrahedralization without extra points, so
+      [boundary recovery](/boundary-recovery/) inserts them, and the radius-edge bound of
+      [tetrahedral Delaunay refinement](/tetrahedral-delaunay-refinement/) lets slivers through.
+      [Sliver exudation](/sliver-exudation/) removes them with weights, with a proved but tiny angle constant.
+    entries:
+      - constrained-delaunay-tetrahedralization
+      - boundary-recovery
+      - tetrahedral-delaunay-refinement
+      - sliver-exudation
+      - optimal-delaunay-triangulation
+
+  - title: Surfaces and sharp features
+    intro: >
+      A volume mesh needs a surface mesh first. [Parametric surface meshing](/parametric-surface-meshing/)
+      meshes each patch in its parameter plane under the metric of the surface. The
+      [restricted Delaunay triangulation](/restricted-delaunay-triangulation/) gives a surface mesh with a
+      proved topology once the sample is dense enough, and [protecting balls](/protecting-balls/) let
+      Delaunay refinement handle sharp edges and small angles.
+    entries:
+      - parametric-surface-meshing
+      - restricted-delaunay-triangulation
+      - delaunay-surface-meshing
+      - protecting-balls
+
+  - title: Stretched and curved elements
+    intro: >
+      Thin boundary layers and directional solutions need long thin elements, which the quality measures of
+      the first group would reject. [Boundary layer meshes](/boundary-layer-mesh-generation/) stack prisms
+      with geometric growth, [anisotropic adaptation](/anisotropic-mesh-adaptation/) measures edges in a
+      metric $M$ built from the Hessian, and [high-order meshes](/high-order-mesh-generation/) curve the
+      elements to the geometry and must keep $\det J > 0$.
+    entries:
+      - boundary-layer-mesh-generation
+      - anisotropic-mesh-adaptation
+      - high-order-mesh-generation
+
+  - title: Quadrilaterals
+    intro: >
+      An all-quad mesh of a polygon needs an even number of boundary edges. [Paving](/paving/) and
+      [Q-Morph](/q-morph/) are advancing-front heuristics, and [Blossom-Quad](/blossom-quad/) pairs the
+      triangles of a triangle mesh by a minimum-cost perfect matching. None of them has a quality bound.
+    entries:
+      - paving
+      - q-morph
+      - blossom-quad
+
+  - title: Hexahedra
+    intro: >
+      [Hexahedral mesh generation](/hexahedral-mesh-generation/) has no general method with a quality bound.
+      The [spatial twist continuum](/spatial-twist-continuum/) describes a hex mesh by its dual sheets, and
+      the [existence theorem](/hexahedral-mesh-existence-theorem/) says that a ball with an even number of
+      boundary quads has a hex mesh, which may be of poor quality. The practical methods sweep, decompose,
+      map to a polycube or follow a frame field.
+    entries:
+      - hexahedral-mesh-generation
+      - spatial-twist-continuum
+      - hexahedral-mesh-existence-theorem
+      - whisker-weaving
+      - plastering
+      - hexahedral-sweeping
+      - medial-axis-decomposition-meshing
+      - polycube-hex-meshing
+      - frame-field-hex-meshing
+
+  - title: Mesh improvement
+    intro: >
+      Every generator leaves some bad elements. [Optimization-based smoothing](/optimization-based-mesh-smoothing/)
+      moves one vertex to maximize its worst element and never inverts one, [mesh untangling](/mesh-untangling/)
+      first makes all elements positive, and [topological improvement](/topological-tetrahedral-mesh-improvement/)
+      changes the connectivity by flips and edge removal.
+    entries:
+      - optimization-based-mesh-smoothing
+      - mesh-untangling
+      - topological-tetrahedral-mesh-improvement

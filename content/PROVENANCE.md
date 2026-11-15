@@ -115,6 +115,11 @@ automation* (32.1, 32.3, 32.4, 32.8, 32.9 and 32.10), so the volume is complete.
 per new chapter, the writer of Chapter 32.1 also rewriting the volume introduction, and one for a learning path
 *Electronic design automation* in Volume 0.
 
+For edition 0.33.0, the site's release v0.33.0 wrote the other six chapters of Volume 31 *CAD* (31.2, 31.4, 31.6,
+31.7, 31.9 and 31.10), so the volume is complete, and added 55 entries to its four older chapters. Nine agents
+shared the work: one per new chapter, two that brought the four older chapters up to date, and one that rewrote
+the volume introduction and wrote a learning path *CAD* for Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -131,5 +136,6 @@ the site by pull requests to `tamnd/algorithm` in November 2026; the site's rele
 the editions from 0.26.0, have the fixes. The errors found in Volumes 27 and 28 and in Chapter 29.2 were fixed in
 the site's release v0.29.0, those found in the rest of Volume 29 and in Volume 30 in its release v0.30.0, and
 those found in the written chapters of Volumes 31 and 32 in its release v0.31.0; this edition has all those fixes.
-The errors found in Volume 33, and those found in the six new chapters of Volume 32, were fixed after the site's
-release v0.33.0, so the entries of this edition do not yet have them.
+The errors found in Volume 33 were fixed in the site's release v0.34.0, and those found in the six new chapters of
+Volume 32 in its release v0.35.0; the errors found in Volume 31 for this edition were fixed after that. All of them
+came after the site's release v0.33.0, so the entries of this edition do not yet have them.

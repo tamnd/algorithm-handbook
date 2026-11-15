@@ -1,0 +1,77 @@
+# The order of chapter 31.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The isogeometric idea
+    intro: >
+      Isogeometric analysis takes the [NURBS](/nurbs/) basis of the CAD model as the finite element basis,
+      so the geometry stays exact as the mesh is refined. These entries give the method, the extraction
+      operators that let an ordinary finite element code use it, the order of refinement that keeps the
+      basis smooth, the quadrature rules and the error bound $h^{l-k}$ for refined NURBS spaces. The group
+      ends with collocation, which skips quadrature altogether.
+    entries:
+      - isogeometric-analysis
+      - bezier-extraction
+      - k-refinement
+      - isogeometric-quadrature
+      - nurbs-approximation-estimates
+      - isogeometric-collocation
+
+  - title: T-splines
+    intro: >
+      A tensor product spline refines whole rows and columns of control points at once. A T-spline lets a
+      row of control points stop at a T-junction, so refinement is local and patches can be joined
+      without gaps. General T-splines can have linearly dependent blending functions, which rules them out
+      as a basis for analysis. The analysis-suitable class fixes this, and these entries define it, prove
+      its linear independence and refine inside it.
+    entries:
+      - t-spline
+      - analysis-suitable-t-spline
+      - t-spline-linear-independence
+      - t-spline-local-refinement
+
+  - title: Hierarchical and locally refined splines
+    intro: >
+      Other spline spaces refine locally while keeping a tensor product structure in each basis function.
+      Hierarchical B-splines stack nested levels and pick functions by refinement regions; truncation
+      restores the partition of unity. LR B-splines insert mesh lines one at a time, and PHT-splines are
+      $C^1$ bicubic splines on a hierarchical T-mesh with a dimension formula.
+    entries:
+      - hierarchical-b-spline
+      - truncated-hierarchical-b-spline
+      - lr-b-spline
+      - pht-spline
+
+  - title: Volumes, trims and immersed methods
+    intro: >
+      A CAD solid is a boundary made of [trimmed surfaces](/trimmed-surface/), while volume analysis needs
+      a map of the whole solid. One route builds that map, a spline volume with a positive Jacobian, and
+      it has no general solution. The other routes avoid it: analyze the trimmed patches directly, or put
+      the part in a background grid and integrate only over the material, with a stabilization for the
+      small cut cells.
+    entries:
+      - volumetric-spline-parameterization
+      - trimmed-isogeometric-analysis
+      - finite-cell-method
+      - cut-finite-element-method
+      - immersogeometric-analysis
+
+  - title: Shells, boundary elements and shape optimization
+    intro: >
+      Some problems need only the CAD surface. Thin shells use the $C^1$ smoothness of splines or of
+      subdivision surfaces to discretize bending with displacement unknowns only. Boundary element methods
+      use the spline basis of the boundary for integral equations. Shape optimization moves the control
+      points of the model and gets exact derivatives from the spline map.
+    entries:
+      - isogeometric-kirchhoff-love-shell
+      - subdivision-shell-elements
+      - isogeometric-boundary-element-method
+      - isogeometric-shape-optimization
+
+  - title: Preparing CAD models for analysis
+    intro: >
+      The classical route meshes the CAD model, and first simplifies it. Defeaturing removes small holes,
+      fillets and chamfers; its effect is small for global quantities and can be large for local stresses.
+      Mid-surface extraction turns a thin solid into a surface with a thickness, for the shell elements of
+      the previous group.
+    entries:
+      - defeaturing
+      - midsurface-extraction

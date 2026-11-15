@@ -5,11 +5,15 @@ groups:
       A mesh file is an [indexed face set](/indexed-face-set/): an array of points and a list of faces
       given by point indices. A [manifold mesh](/manifold-mesh/) is one where each edge has one or two
       faces and each vertex has one fan, and only then is $\chi = V - E + F = 2 - 2g - b$ a statement
-      about the shape. The [corner table](/corner-table/) answers every neighbour query with two integer arrays.
+      about the shape. The [corner table](/corner-table/) answers every neighbour query with two integer arrays,
+      [Edgebreaker](/edgebreaker/) codes the connectivity of a genus 0 mesh in exactly $2t - 1$ bits for $t$
+      triangles, and a [progressive mesh](/progressive-mesh/) stores a coarse mesh and the vertex splits that refine it.
     entries:
       - indexed-face-set
       - manifold-mesh
       - corner-table
+      - edgebreaker
+      - progressive-mesh
 
   - title: Cleaning and repair
     intro: >
@@ -44,19 +48,39 @@ groups:
       $1 - \lambda k$ in a [Laplacian smoothing](/laplacian-smoothing/) step, so a closed mesh shrinks.
       Taubin's second step undoes the shrinking, the [cotangent Laplacian](/cotangent-laplacian/) makes the
       operator depend on the shape and not on the sampling, and implicit steps remove the limit on the step size.
+      [Manifold harmonics](/manifold-harmonics/) compute the eigenmodes themselves, from $C\phi = \lambda M\phi$,
+      so that a filter can act on each frequency by name.
     entries:
       - laplacian-smoothing
       - taubin-smoothing
       - cotangent-laplacian
       - implicit-fairing
+      - manifold-harmonics
 
   - title: Discrete curvature
     intro: >
       The angle defect $2\pi - \Theta_i$ at a vertex is the discrete Gaussian curvature. Its sum over a
       closed mesh is exactly $2\pi\chi$, an identity that holds for every triangulation and not only in the limit.
+      The cotangent formula gives the [mean curvature normal](/discrete-mean-curvature/) as the area gradient per
+      unit area, and [curvature tensor estimation](/curvature-tensor-estimation/) adds the principal directions.
+      These two are estimates: they are exact only in special cases and can stay biased under refinement.
     entries:
       - discrete-gaussian-curvature
       - discrete-gauss-bonnet-theorem
+      - discrete-mean-curvature
+      - curvature-tensor-estimation
+
+  - title: Surface deformation
+    intro: >
+      Editing moves a few handle vertices and asks the rest of the surface to follow while keeping its details.
+      [Laplacian surface editing](/laplacian-surface-editing/) keeps the differential coordinates in one
+      sparse least squares solve, with a linearized similarity at each vertex that turns details correctly
+      only for small angles. [As-rigid-as-possible
+      deformation](/as-rigid-as-possible-deformation/) alternates best-fit rotations and a fixed linear solve;
+      the energy never rises, but the result is only a local minimum.
+    entries:
+      - laplacian-surface-editing
+      - as-rigid-as-possible-deformation
 
   - title: Geodesics
     intro: >
@@ -70,23 +94,45 @@ groups:
 
   - title: Parameterization
     intro: >
-      A [mesh parameterization](/mesh-parameterization/) flattens a disk-shaped mesh onto the plane. Tutte's
+      A [mesh parameterization](/mesh-parameterization/) flattens a disk-shaped mesh onto the plane, and a
+      closed surface is first opened along a [cut graph](/cut-graph/) with $2g$ independent cycles. Tutte's
       map with a convex boundary and positive weights is proved one to one, conformal maps keep angles as well
-      as the curvature allows, and angle-based flattening solves for the angles first.
+      as the curvature allows, and angle-based flattening solves for the angles first. ARAP trades angles for
+      lengths and reaches a local minimum, boundary first flattening controls the outline with linear solves,
+      and discrete conformal equivalence solves a convex problem whose solution is unique when it exists.
     entries:
       - mesh-parameterization
+      - cut-graph
       - tutte-embedding
       - floater-mean-value-coordinates
       - least-squares-conformal-maps
       - angle-based-flattening
+      - arap-parameterization
+      - boundary-first-flattening
+      - discrete-conformal-equivalence
 
-  - title: Remeshing, segmentation and comparison
+  - title: Direction fields and remeshing
     intro: >
       [Isotropic remeshing](/isotropic-remeshing/) makes edges of one length by local splits, collapses,
-      flips and moves; mixed-integer quadrangulation builds quads from a rounded parameterization. Segmentation
-      splits the faces into meaningful parts, and Metro measures how far a new mesh is from the old one.
+      flips and moves. Quad meshes start from a [cross field](/cross-field/), whose singular indices are
+      multiples of $\frac14$ that sum to $\chi$. [Globally optimal direction fields](/globally-optimal-direction-fields/)
+      solve a relaxed problem exactly with one generalized eigenvector, and mixed-integer quadrangulation
+      builds quads from a rounded parameterization aligned to the field.
     entries:
       - isotropic-remeshing
+      - cross-field
+      - globally-optimal-direction-fields
       - mixed-integer-quadrangulation
+
+  - title: Segmentation, approximation and comparison
+    intro: >
+      Segmentation splits the faces into meaningful parts. The [shape diameter function](/shape-diameter-function/)
+      gives each face a thickness that, as measured, changes little with the pose, and [variational shape
+      approximation](/variational-shape-approximation/) grows planar proxies by a Lloyd iteration that never
+      raises its error but stops at a local minimum. [Metro](/metro-mesh-comparison/) measures how far a new
+      mesh is from the old one.
+    entries:
       - mesh-segmentation
+      - shape-diameter-function
+      - variational-shape-approximation
       - metro-mesh-comparison

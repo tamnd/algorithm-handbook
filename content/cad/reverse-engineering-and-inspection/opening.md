@@ -1,20 +1,42 @@
-An old casting with no drawings is scanned, and a CAD model must be rebuilt from millions of points: that is reverse engineering. A machined part is probed on a coordinate measuring machine, and the points must be compared with the CAD model to decide whether a hole lies within its tolerance zone: that is inspection. Tolerancing says how far each feature may vary and how the variations of many parts add up in an assembly.
+A pump housing made forty years ago has no drawing, and a spare must be machined. A laser scanner returns two million points on its surface, but a designer needs a solid with planes, cylinders and exact hole sizes, not a cloud of points. A new batch of the same housing comes off the machine, and a coordinate measuring machine touches 40 points on one face to decide whether the face is flat to within 0.05 mm. The drawing says how far each face may vary, and an engineer must know whether ten parts, each within its limits, still fit together. This chapter is about the algorithms behind these three tasks: reverse engineering, inspection and tolerancing.
 
-The fitting problems differ in what distance they minimize. Algebraic distance fitting is a linear least squares problem but is biased for points far from the curve. Geometric fitting minimizes true distances, which is nonlinear and solved by iterations that need a good start. Form error is defined by the minimum zone, the thinnest zone of the ideal form that holds the points, so a least-squares reference feature gives a zone at least as wide. Tolerance analysis can be worst case, statistical or by Monte Carlo sampling, which has sampling error. Scan segmentation is judged by measured results.
+The same few problems recur, and the pages keep their guarantees apart. A least-squares fit is exact for its own objective, the sum of squared distances. An algebraic fit minimizes the value of an equation instead of the distance and is biased under noise: on a short arc the simplest algebraic circle fit returns a radius that is too small. Form error, as the standards define it, is a minimax quantity, the width of the thinnest zone that holds the points, and a least-squares fit only bounds it from above. Registration of points to a model by iterative closest points converges to a local minimum, and segmentation by random sampling succeeds with a probability that the method states. In tolerance analysis a worst-case sum bounds every assembly, while root sum of squares and Monte Carlo estimate the fraction of assemblies that fail.
 
-## What the chapter will cover
+## What the chapter covers
 
-The entries of this chapter are being written. They will cover:
+The chapter is in seven groups, read in order.
 
-1. **Fitting.** Algebraic distance fitting, Taubin's gradient-weighted fitting, circle fitting, least-squares fitting of spheres, cylinders, cones and tori, constrained fitting, parameter correction and squared distance minimization.
-2. **From scans to CAD models.** Reverse engineering of geometric models, segmentation into surface primitives, variable-order surface fitting, slippage analysis and B-rep reconstruction from segmented scans.
-3. **Inspection.** CAD-based inspection, localization of measured points to the model, CMM probe path planning and Hammersley sampling.
-4. **Form error.** Form error evaluation, minimum zone flatness and cylindricity, and the least-squares reference feature.
-5. **Tolerance specification.** Geometric dimensioning and tolerancing, the datum reference frame, Requicha's tolerance zone theory, the small displacement torsor and tolerance maps.
-6. **Tolerance analysis and allocation.** The direct linearization method, the Jacobian-torsor model, Monte Carlo tolerance analysis and tolerance allocation.
+1. **Fitting primitives to points.** The problem of [reverse engineering](/reverse-engineering-of-geometric-models/) and the fits of one region: [algebraic distance fitting](/algebraic-distance-fitting/), [circle fitting](/circle-fitting/), [Taubin fitting](/taubin-fitting/), [geometric primitive fitting](/geometric-primitive-fitting/) of spheres, cylinders, cones and tori, and [constrained primitive fitting](/constrained-primitive-fitting/), which keeps faces parallel and radii equal.
+2. **Fitting free-form curves and surfaces.** [Parameter correction](/parameter-correction/) and [squared distance minimization](/squared-distance-minimization/) for B-spline curves and surfaces.
+3. **Segmentation and B-rep reconstruction.** [Segmentation into primitives](/primitive-segmentation/), the [variable-order surface fitting](/variable-order-surface-fitting/) of Besl and Jain, [slippage analysis](/slippage-analysis/), and [B-rep reconstruction](/brep-reconstruction-from-scans/), which closes the fitted faces into a solid.
+4. **Specifying tolerances.** [Geometric dimensioning and tolerancing](/geometric-dimensioning-and-tolerancing/), the [datum reference frame](/datum-reference-frame/), [Requicha's tolerance zones](/requicha-tolerance-zone-theory/), the [small displacement torsor](/small-displacement-torsor/) and the [Tolerance-Map](/tolerance-map/).
+5. **Measuring a part against its model.** [CAD-based inspection](/cad-based-inspection/), the [localization](/inspection-localization/) of measured points in the model frame, [Hammersley sampling](/hammersley-sampling-for-cmm/) and [CMM probe path planning](/cmm-probe-path-planning/).
+6. **Form error.** [Form error evaluation](/form-error-evaluation/), the [least-squares reference feature](/least-squares-reference-feature/), [minimum-zone flatness](/minimum-zone-flatness/) and [minimum-zone cylindricity](/minimum-zone-cylindricity/).
+7. **Tolerance analysis and allocation.** The [direct linearization method](/direct-linearization-method/), the [Jacobian-torsor model](/jacobian-torsor-model/), [Monte Carlo tolerance analysis](/monte-carlo-tolerance-analysis/) and [tolerance allocation](/tolerance-allocation/).
 
-## What to read meanwhile
+Some neighbors live in other chapters. The worst-case and root-sum-of-squares rules for a chain of dimensions are in [tolerance stack-up](/tolerance-stack-up/), in chapter 31.8 on CAM and additive manufacturing, and the [3-2-1 locating principle](/three-two-one-locating-principle/) is in chapter 31.9 on process planning. [Mesh segmentation](/mesh-segmentation/) and the [Metro mesh comparison](/metro-mesh-comparison/) are in chapter 31.5 on mesh processing. Registration by iterative closest points, RANSAC, normal estimation and outlier removal belong to the computer vision volume, which has only short stub pages so far; the entries here state what they use of them.
 
-The fitting tools are in Volume 12: the [least squares problem](/least-squares-problem/), the [singular value decomposition](/singular-value-decomposition/) and the [eigenvalue problem](/eigenvalue-problem/); the normal of the best-fit plane is the direction of least variance in [principal component analysis](/principal-component-analysis/) (Volume 25). The [Kabsch algorithm](/kabsch-algorithm/) (Volume 27) gives the best rotation between matched point sets, a step of localization. Volume 13 solves the form-error problems in the plane: the [minimum-width annulus](/minimum-width-annulus/) measures roundness, and the [width](/polygon-width/) of a point set, found with [rotating calipers](/rotating-calipers/), measures straightness; the [Hausdorff distance](/hausdorff-distance/) compares shapes.
+## A first reading
 
-For surfaces, read [B-spline fitting](/b-spline-fitting/) and [surface reconstruction](/surface-reconstruction/) in Volume 28, and [mesh segmentation](/mesh-segmentation/) and [Metro mesh comparison](/metro-mesh-comparison/) in the chapter on mesh processing. [Tolerance stack-up analysis](/tolerance-stack-up/), in the chapter on CAM and additive manufacturing, gives the worst-case and root-sum-of-squares rules. Hammersley points are a finite form of the [Halton sequence](/halton-sequence/), and [Monte Carlo integration](/monte-carlo-integration/) explains the error of sampling (both Volume 12).
+Read these in order:
+
+1. Reverse engineering of geometric models
+2. Algebraic distance fitting and circle fitting
+3. Geometric primitive fitting
+4. Segmentation into primitives
+5. B-rep reconstruction from scans
+6. Geometric dimensioning and tolerancing
+7. The datum reference frame
+8. Inspection localization
+9. Form error evaluation and the least-squares reference feature
+10. Minimum-zone flatness
+11. Monte Carlo tolerance analysis
+12. Tolerance allocation
+
+Skip at first Taubin fitting, squared distance minimization, variable-order surface fitting, slippage analysis, the Tolerance-Map, the Jacobian-torsor model and minimum-zone cylindricity. Each refines a method of the first reading, and each reads more easily once the plain least-squares fit, the minimax zone and the worst-case sum are clear. Read the small displacement torsor before the Tolerance-Map and the Jacobian-torsor model, since both are built on it.
+
+## Before you start
+
+The fits rest on Volume 12: the [least-squares problem](/least-squares-problem/), the [singular value decomposition](/singular-value-decomposition/), the [generalized eigenvalue problem](/generalized-eigenvalue-problem/), [Newton's method for systems](/newton-method-for-systems/) and [interval arithmetic](/interval-arithmetic/). Monte Carlo tolerance analysis uses [Monte Carlo integration](/monte-carlo-integration/), and Hammersley points are a finite form of the [Halton sequence](/halton-sequence/), both also in Volume 12. A line or plane fitted by orthogonal distance is [errors-in-variables regression](/errors-in-variables-regression/), and [least median of squares](/least-median-of-squares/) is a fit that tolerates outliers (Volume 33). The orthogonal fit is also [principal component analysis](/principal-component-analysis/) in Volume 25, and the best rotation between matched points is the [Kabsch algorithm](/kabsch-algorithm/) in Volume 27.
+
+Form error is computational geometry from Volume 13: the [3D convex hull](/convex-hull-3d/), the [width](/polygon-width/) of a point set by [rotating calipers](/rotating-calipers/), the [minimum-width annulus](/minimum-width-annulus/) for roundness and the [Minkowski sum](/minkowski-sum/) for Tolerance-Maps. Minimax fits and allocation use [linear programming](/linear-programming-problem/) and [Lagrange multipliers](/lagrange-multiplier/), and probe paths use the [traveling salesman problem](/traveling-salesman-problem/), all in Volume 15. Free-form fitting needs [B-spline fitting](/b-spline-fitting/) and [surface curvature](/surface-curvature/) from Volume 28. Within Volume 31 the chapter assumes the [boundary representation](/boundary-representation/), [r-sets](/r-set/) and [solid offsetting](/solid-offsetting/) of chapter 31.1, [point projection onto a surface](/point-projection-onto-a-surface/) from chapter 31.2, and [vector loop closure](/vector-loop-closure/) from chapter 31.4.

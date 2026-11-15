@@ -1,0 +1,114 @@
+# The order of chapter 31.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Four-bar and slider-crank linkages
+    intro: >
+      The four-bar linkage and the slider-crank are the two smallest mechanisms with one degree of freedom,
+      and most of the chapter is about them. The [Grashof condition](/grashof-condition/) $s + l \le p + q$
+      decides which links can turn fully, the [vector loop](/vector-loop-closure/) gives every
+      position as the root of a quadratic, and the [transmission angle](/transmission-angle/) says how well
+      the coupler pushes the output.
+    entries:
+      - four-bar-linkage
+      - grashof-condition
+      - slider-crank-mechanism
+      - vector-loop-closure
+      - transmission-angle
+
+  - title: Velocities by instant centers
+    intro: >
+      Each pair of links in plane motion has a point where their relative velocity is zero. A mechanism with
+      $n$ links has $n(n-1)/2$ such points, and the
+      [Aronhold-Kennedy theorem](/aronhold-kennedy-theorem/) puts any three of them on one line, which finds
+      the rest from the joints. A velocity ratio is then a ratio of two distances.
+    entries:
+      - instant-center-of-velocity
+      - aronhold-kennedy-theorem
+
+  - title: What linkages trace
+    intro: >
+      A point on the coupler of a four-bar traces a curve of degree six, and three different four-bars trace
+      the same curve. Six-bars come in two kinds, Watt and Stephenson. The
+      [Peaucellier-Lipkin linkage](/peaucellier-lipkin-linkage/) draws an exact straight line, and
+      [Kempe's theorem](/kempe-universality-theorem/) says that linkages draw every bounded algebraic curve.
+    entries:
+      - coupler-curve
+      - roberts-chebyshev-theorem
+      - watt-and-stephenson-six-bar
+      - peaucellier-lipkin-linkage
+      - kempe-universality-theorem
+
+  - title: Synthesis tasks and precision points
+    intro: >
+      Synthesis runs the other way: from a wanted motion to the link lengths. The three tasks are function,
+      path and motion generation. A linkage meets the task exactly only at a few precision points, the
+      [Freudenstein equation](/freudenstein-equation/) turns three of them into a linear system, and
+      [Chebyshev spacing](/chebyshev-spacing/) places them to keep the error between them small.
+    entries:
+      - kinematic-synthesis
+      - function-generation
+      - path-generation
+      - motion-generation
+      - freudenstein-equation
+      - chebyshev-spacing
+
+  - title: Exact and numerical synthesis
+    intro: >
+      With more precision points the equations become nonlinear. The standard-form dyad equation is linear
+      in the link vectors once the rotations are chosen, Burmester theory gives at most four dyads for five
+      positions, and the nine-point path problem has 1442 solution curves, found by
+      [homotopy continuation](/homotopy-continuation/). When the task is a whole curve rather than a few
+      points, optimization finds a local optimum.
+    entries:
+      - standard-form-dyad-synthesis
+      - burmester-theory
+      - nine-point-path-synthesis
+      - optimization-based-linkage-synthesis
+
+  - title: Cams
+    intro: >
+      A cam gives the follower any motion the designer writes down. The motion law sets the peak velocity,
+      acceleration and jerk, the [pressure angle](/cam-pressure-angle/) sets the size of the cam, and the
+      profile is the envelope of the follower in the frame of the cam.
+    entries:
+      - cam-follower-motion-laws
+      - cam-pressure-angle
+      - cam-profile-synthesis
+
+  - title: Gears and gear trains
+    intro: >
+      Gear teeth keep a constant speed ratio exactly when their common normal passes through a fixed pitch
+      point. The involute meets this law at every center distance. The contact ratio and the undercut limit
+      $z \ge 2k/\sin^2\varphi$ size the teeth, a rack cuts them as an envelope, and the
+      [Willis formula](/willis-formula/) gives the speeds of planetary trains.
+    entries:
+      - fundamental-law-of-gearing
+      - involute-gear-tooth
+      - gear-contact-ratio
+      - gear-undercutting
+      - gear-generation-by-enveloping
+      - willis-formula
+
+  - title: Assembly sequences and their representations
+    intro: >
+      An assembly plan says in which order the parts are joined. The [liaison graph](/liaison-graph/) records
+      which parts touch, the AND/OR graph holds every two-handed plan in one
+      [hypergraph](/hypergraph/), and the De Fazio-Whitney diagram holds every linear one. Design for
+      assembly works one step earlier and removes parts.
+    entries:
+      - liaison-graph
+      - assembly-sequence-planning
+      - and-or-graph-of-assembly-plans
+      - de-fazio-whitney-precedence-method
+      - design-for-assembly
+
+  - title: Geometric assembly and disassembly planning
+    intro: >
+      Whether a set of parts can leave the rest is a question about motions. For one translation, blocking
+      graphs and their [strongly connected components](/strongly-connected-components/) answer it in
+      polynomial time. For richer motions partitioning is NP-complete in the plane, so every planner here is
+      exact only for its motion model.
+    entries:
+      - assembly-partitioning
+      - non-directional-blocking-graph
+      - motion-space-assembly-planning
+      - disassembly-sequence-planning

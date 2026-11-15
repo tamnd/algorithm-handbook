@@ -1,0 +1,103 @@
+# The order of chapter 31.9, Manufacturing process planning. Groups are read in order; entries in a group too.
+groups:
+  - title: Process plans
+    intro: >
+      A process plan says how a part is made: which operations, on which machines, with which tools and in
+      which setups. [Computer-aided process planning](/computer-aided-process-planning/) builds the plan by
+      adapting the plan of a similar part or by reasoning from the features, which come from
+      [feature recognition](/feature-recognition/). [Manufacturability analysis](/manufacturability-analysis/)
+      checks a design against the limits of a process before any plan is made. Both are rule systems, so
+      their quality is judged on parts, not proved.
+    entries:
+      - computer-aided-process-planning
+      - manufacturability-analysis
+
+  - title: Setups and operation order
+    intro: >
+      A machined part is cut in a few orientations, and in each one the operations come in some order.
+      [Setup planning](/setup-planning/) groups the features into setups, a [set cover](/set-cover/) over the
+      tool directions with tolerance pairs that must share a setup. [Operation sequencing](/operation-sequencing/)
+      orders the operations under precedence to save tool and setup changes, a traveling salesman problem with
+      precedence that is NP-hard in general and solvable by dynamic programming over downsets when the
+      precedence has small width.
+    entries:
+      - setup-planning
+      - operation-sequencing
+
+  - title: Holding the part
+    intro: >
+      A fixture puts the part in a known position and keeps it there while it is cut. The
+      [3-2-1 principle](/three-two-one-locating-principle/) uses six locators, and the
+      [kinematic analysis](/kinematic-fixture-analysis/) of Asada and By turns "the part is located" into
+      $\operatorname{rank} J = 6$ for the locator matrix $J$. Six frictionless contacts never hold a part, so
+      [fixture planning](/fixture-planning/) adds clamps for form closure, with at least 4 contacts in the plane
+      and 7 in space. The [Brost-Goldberg algorithm](/modular-fixture-design/) lists every planar fixture of
+      three locators and a clamp on a lattice plate.
+    entries:
+      - three-two-one-locating-principle
+      - kinematic-fixture-analysis
+      - fixture-planning
+      - modular-fixture-design
+
+  - title: Cutting conditions
+    intro: >
+      The speed of a cut trades machine time against tool wear. [Taylor's law](/taylor-tool-life-equation/)
+      $V T^n = C$ is a fit to tool life tests, and from it Gilbert's formula gives the tool life of least cost.
+      [Cutting parameter optimization](/cutting-parameter-optimization/) adds the feed, the depth and limits on
+      power, force and finish; with power-law models one pass is a [geometric program](/geometric-programming/).
+    entries:
+      - taylor-tool-life-equation
+      - cutting-parameter-optimization
+
+  - title: Bends and blanks
+    intro: >
+      A sheet metal part starts as a flat blank. The [K-factor](/k-factor/) places the neutral axis in a bend,
+      and the [bend allowance](/bend-allowance/) $\theta(R + Kt)$ gives its length; both rest on a measured
+      constant. [Flat pattern development](/flat-pattern-development/) unfolds the part along a
+      [spanning tree](/spanning-tree/) of its faces, and [springback compensation](/springback-compensation/)
+      bends the tool past the target so the part springs back to it.
+    entries:
+      - k-factor
+      - bend-allowance
+      - flat-pattern-development
+      - springback-compensation
+
+  - title: Cutting and bending order
+    intro: >
+      The blank is cut from the sheet and then bent, and both steps need an order.
+      [Cutting sequence planning](/cutting-sequence-planning/) orders the contours and picks their pierce
+      points, a generalized traveling salesman problem with holes before outlines.
+      [Bend sequence planning](/bend-sequence-planning/) orders the bends so that nothing hits the tools, over
+      $2^n$ sets of done bends instead of $n!$ orders, and [A* bend sequencing](/a-star-bend-sequencing/)
+      searches these sets with a consistent heuristic, so its plan is optimal for its cost model.
+    entries:
+      - cutting-sequence-planning
+      - bend-sequence-planning
+      - a-star-bend-sequencing
+
+  - title: Molds
+    intro: >
+      A molded part must leave its mold. Once the [parting direction](/mold-parting-direction/) is chosen,
+      [draft angle analysis](/draft-angle-analysis/) finds faces too close to the pull direction,
+      [undercut detection](/undercut-detection/) finds regions blocked both ways, and
+      [parting line generation](/parting-line-generation/) traces where the two halves meet in $O(N)$ time.
+      [Gate location](/gate-location-optimization/) and [conformal cooling](/conformal-cooling-design/) shape
+      the flow of melt and of heat; they are judged by simulation.
+    entries:
+      - draft-angle-analysis
+      - undercut-detection
+      - parting-line-generation
+      - gate-location-optimization
+      - conformal-cooling-design
+
+  - title: Casting
+    intro: >
+      A casting shrinks as it freezes, and the last region to freeze needs liquid metal from a riser.
+      [Chvorinov's rule](/chvorinov-rule/) $t = B (V/A)^n$ ranks sections by their modulus $V/A$, the
+      [modulus method](/riser-design-modulus-method/) sizes risers to freeze after what they feed, and
+      [hot spot detection](/casting-hot-spot-detection/) finds the last regions to freeze as maxima of a
+      [distance transform](/distance-transform/), a proxy for the modulus.
+    entries:
+      - chvorinov-rule
+      - riser-design-modulus-method
+      - casting-hot-spot-detection

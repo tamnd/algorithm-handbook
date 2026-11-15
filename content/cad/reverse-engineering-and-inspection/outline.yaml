@@ -1,0 +1,87 @@
+# The order of chapter 31.10, Reverse engineering, inspection and tolerancing. Groups are read in order; entries in a group too.
+groups:
+  - title: Fitting primitives to points
+    intro: >
+      [Reverse engineering](/reverse-engineering-of-geometric-models/) turns measured points into a CAD model,
+      and its central step is fitting one simple surface to one region of points. An algebraic fit minimizes
+      the value of the implicit equation, a linear problem with a closed form but a biased answer. Taubin's
+      normalization corrects the bias to first order, and the geometric fit minimizes true orthogonal
+      distances by iteration from an algebraic start.
+    entries:
+      - reverse-engineering-of-geometric-models
+      - algebraic-distance-fitting
+      - circle-fitting
+      - taubin-fitting
+      - geometric-primitive-fitting
+      - constrained-primitive-fitting
+
+  - title: Fitting free-form curves and surfaces
+    intro: >
+      Where no primitive fits, a region gets a B-spline curve or surface. Both methods alternate between
+      projecting the points onto the current curve and solving a linear least-squares problem for the control
+      points. [Parameter correction](/parameter-correction/) converges linearly, and squared distance
+      minimization adds curvature to the error model and converges faster in the reported tests.
+    entries:
+      - parameter-correction
+      - squared-distance-minimization
+
+  - title: Segmentation and B-rep reconstruction
+    intro: >
+      Before fitting, the points must be cut into regions that each follow one surface, and the fit and the
+      region depend on each other. Exact segmentation with few regions is NP-hard already for lines in the
+      plane, so the methods are heuristics: curvature signs and region growing, slippable motions, and
+      sampling. The last step intersects the fitted faces and closes them into a valid solid.
+    entries:
+      - primitive-segmentation
+      - variable-order-surface-fitting
+      - slippage-analysis
+      - brep-reconstruction-from-scans
+
+  - title: Specifying tolerances
+    intro: >
+      [GD&T](/geometric-dimensioning-and-tolerancing/) states how far a feature may deviate, as a zone in a
+      [datum reference frame](/datum-reference-frame/). Requicha's theory makes a zone an exact set between
+      two offsets of the nominal solid. The small displacement torsor and the Tolerance-Map replace a feature
+      by the small rigid motions it may make, a few numbers that can be added along an assembly.
+    entries:
+      - geometric-dimensioning-and-tolerancing
+      - datum-reference-frame
+      - requicha-tolerance-zone-theory
+      - small-displacement-torsor
+      - tolerance-map
+
+  - title: Measuring a part against its model
+    intro: >
+      A coordinate measuring machine probes points chosen on the CAD model, and the points must then be
+      placed in the model frame before deviations mean anything. Localization by least squares has a closed
+      form for matched points; with unknown matches it iterates and finds a local minimum only. Hammersley
+      points spread the probes evenly, and the probe path is a traveling salesman problem.
+    entries:
+      - cad-based-inspection
+      - inspection-localization
+      - hammersley-sampling-for-cmm
+      - cmm-probe-path-planning
+
+  - title: Form error
+    intro: >
+      Form error is the width of the thinnest zone of the ideal shape that holds all measured points, a
+      minimax problem. A least-squares reference feature is easy to compute and gives a zone that is never
+      thinner, so it can only overstate the error. Minimum-zone flatness is exact by a convex hull, while
+      cylindricity is usually solved by a sequence of linear programs that reaches a local optimum only.
+    entries:
+      - form-error-evaluation
+      - least-squares-reference-feature
+      - minimum-zone-flatness
+      - minimum-zone-cylindricity
+
+  - title: Tolerance analysis and allocation
+    intro: >
+      Analysis asks how part tolerances add up in an assembly, and allocation chooses the part tolerances
+      that meet an assembly limit at the least cost. Worst-case sums bound every assembly, while root sum of
+      squares and Monte Carlo estimate the fraction that fail, two different questions. The linearized
+      methods are exact only to first order, and a Monte Carlo rate has a sampling error.
+    entries:
+      - direct-linearization-method
+      - jacobian-torsor-model
+      - monte-carlo-tolerance-analysis
+      - tolerance-allocation

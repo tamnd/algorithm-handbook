@@ -5,14 +5,18 @@ groups:
       A printer builds a part as a stack of thin layers, so the first step is to cut the triangle mesh by
       horizontal planes and link the cut segments into closed contours. The
       [slicing problem](/slicing-for-additive-manufacturing/) and the
-      [sweep that solves it](/triangle-mesh-slicing/) in $O(n \log k + k + m)$ expected time come first. A sloped
-      wall then shows steps of height $t |\cos \theta|$, which [adaptive slicing](/adaptive-slicing/) keeps under
-      a bound by varying $t$, and the [infill pattern](/infill-pattern/) fills each layer inside its walls.
+      [sweep that solves it](/triangle-mesh-slicing/) in $O(n \log k + k + m)$ expected time come first, and
+      [direct slicing](/direct-slicing/) cuts the exact CAD model instead, with exact conics for quadric solids.
+      A sloped wall shows steps of height $t |\cos \theta|$, which [adaptive slicing](/adaptive-slicing/) keeps
+      under a bound by varying $t$ and [curved layers](/curved-layer-printing/) avoid by following the surface;
+      the [infill pattern](/infill-pattern/) fills each layer inside its walls.
     entries:
       - slicing-for-additive-manufacturing
       - triangle-mesh-slicing
+      - direct-slicing
       - staircase-effect
       - adaptive-slicing
+      - curved-layer-printing
       - infill-pattern
 
   - title: Build orientation and supports
@@ -20,12 +24,15 @@ groups:
       The direction in which a part is built sets its height, its steps and the overhangs that need support.
       [Build orientation](/build-orientation/) weighs these goals against each other. Facets that face down more
       steeply than a set angle need [support structures](/support-structure-generation/), and
-      [tree supports](/tree-support/) merge the support columns into branches to save material. The quality of
-      supports is measured on test parts, not proved.
+      [tree supports](/tree-support/) merge the support columns into branches to save material, with savings
+      measured on test parts. A printer that can turn the part may instead split it into pieces that print
+      without support, a [decomposition](/multi-axis-printing-decomposition/) whose plans are proved to print
+      but which is found by a heuristic search.
     entries:
       - build-orientation
       - support-structure-generation
       - tree-support
+      - multi-axis-printing-decomposition
 
   - title: Toolpaths and cutter positions
     intro: >
@@ -42,52 +49,78 @@ groups:
       - gouge-detection
       - inverse-tool-offset
 
-  - title: Pocket machining
+  - title: Pocket machining and roughing
     intro: >
       A pocket is a planar region cleared to a fixed depth. The tool centre must stay in the inward offset
       $P_r$, so the region it can clear is the morphological opening of the pocket
-      ([pocket machining](/pocket-machining/)). The entries give four ways to cover it: offset loops, zigzag
-      lines, offsets read from the [medial axis](/medial-axis/), and one connected spiral.
+      ([pocket machining](/pocket-machining/)), and four paths cover it: offset loops, zigzag lines, offsets
+      read from the [medial axis](/medial-axis/), and one connected spiral. In corners these paths make the
+      tool wrap far around its edge, so [trochoidal milling](/trochoidal-milling/) and
+      [constant engagement toolpaths](/constant-engagement-toolpath/) bound the engagement angle instead; one
+      step of them is exact geometry, while the gains of whole paths are measured.
     entries:
       - pocket-machining
       - contour-parallel-toolpath
       - direction-parallel-toolpath
       - voronoi-pocket-machining
       - fermat-spiral-toolpath
+      - trochoidal-milling
+      - constant-engagement-toolpath
 
   - title: Surface finishing paths
     intro: >
       A free-form surface is finished with a ball cutter along passes laid on the surface. The passes can
       follow the parameter lines, the cuts of the surface by parallel planes, or curves placed so that the
-      scallop height between neighbours is constant. The three methods trade a simple construction against
-      an even finish.
+      scallop height between neighbours is constant, a trade between a simple construction and an even finish.
+      Where two surfaces meet in a concave edge, [pencil cuts](/pencil-cut-machining/) trace the ball centre
+      along the intersection of the two offsets.
     entries:
       - iso-parametric-toolpath
       - iso-planar-toolpath
       - iso-scallop-toolpath
+      - pencil-cut-machining
 
-  - title: Simulation and verification
+  - title: Five-axis machining
+    intro: >
+      Two rotary axes let the tool tilt, given by a lead and a tilt angle at each contact point
+      ([five-axis tool orientation](/five-axis-tool-orientation/)). A flat or torus end tilted to match the
+      curvature cuts much wider strips than a ball, and the [principal axis method](/principal-axis-method/)
+      sets the tilt in closed form, exactly for a concave cylinder and locally elsewhere. The
+      [accessibility cone](/accessibility-cone/) of a point bounds the directions that reach it, a
+      [collision-free orientation](/collision-free-tool-orientation/) is a shortest path over sampled candidates,
+      and [flank milling](/flank-milling/) cuts with the side of the tool, exactly on developable surfaces,
+      while on a twisted ruling no cylinder or cone touches along the whole line.
+    entries:
+      - five-axis-tool-orientation
+      - principal-axis-method
+      - accessibility-cone
+      - collision-free-tool-orientation
+      - flank-milling
+
+  - title: Simulation, verification and machine motion
     intro: >
       Before a program runs on a machine, a simulation removes the [swept volume](/swept-volume/) of each move
-      from the stock and checks the result. [NC verification](/nc-verification/) states the task. The
+      from the stock and checks the result. [NC verification](/nc-verification/) states the task; the
       [z-map model](/z-map-model/) keeps one height per grid line and suits three-axis work, and the
       [dexel representation](/dexel-representation/) keeps lists of intervals per ray, so it can show
-      undercuts.
+      undercuts. On the machine, [feedrate scheduling](/feedrate-scheduling/) sets the speed along the path
+      within velocity and acceleration limits, and a [parametric interpolator](/parametric-cnc-interpolator/)
+      turns that speed into parameter steps on a spline.
     entries:
       - swept-volume
       - nc-verification
       - z-map-model
       - dexel-representation
+      - feedrate-scheduling
+      - parametric-cnc-interpolator
 
   - title: Checks on the design
     intro: >
-      Some questions about a part can be asked before any path exists. The
-      [accessibility cone](/accessibility-cone/) of a point is the set of directions from which a tool or a
-      ray reaches it, and a common direction for many faces is a linear program. The same cones decide
-      [mold parting directions](/mold-parting-direction/). [Tolerance stack-up](/tolerance-stack-up/) asks how
-      the variations of the parts add up in an assembly.
+      Some questions about a part can be asked before any path exists. The accessibility cones of the
+      five-axis group also decide [mold parting directions](/mold-parting-direction/): a common direction
+      from which a set of faces is visible exists exactly when a linear program is feasible.
+      [Tolerance stack-up](/tolerance-stack-up/) asks how the variations of the parts add up in an assembly.
     entries:
-      - accessibility-cone
       - mold-parting-direction
       - tolerance-stack-up
 
@@ -105,10 +138,17 @@ groups:
   - title: Topology optimization
     intro: >
       [Topology optimization](/topology-optimization/) decides where material goes in a design domain so that
-      the part is as stiff as possible for its weight. The 0/1 problem is ill-posed, so the methods relax it.
-      The [SIMP method](/simp-method/) gives each element a density with stiffness $x^p E_0$, and the
-      [level set method](/level-set-topology-optimization/) moves a sharp boundary. Both find local optima.
+      the part is as stiff as possible for its weight. The 0/1 problem is ill-posed, so most methods relax it:
+      the [homogenization method](/homogenization-method/) allows porous composites and ends with gray
+      designs, and the [SIMP method](/simp-method/) gives each element a density with stiffness $x^p E_0$,
+      given a length scale and freed of checkerboards by a [density filter](/density-filtering/). [BESO](/beso-method/) keeps every
+      element 0 or 1 with a greedy update that has no convergence proof, and the
+      [level set method](/level-set-topology-optimization/) moves a sharp boundary; SIMP and the level set
+      method find local optima.
     entries:
       - topology-optimization
+      - homogenization-method
       - simp-method
+      - density-filtering
+      - beso-method
       - level-set-topology-optimization

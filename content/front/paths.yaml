@@ -2662,3 +2662,329 @@ paths:
           - entry: qubit-mapping
             why: NP-complete in its standard forms, so mappers such as SABRE are judged by measured SWAP counts and depth.
           - sabre-qubit-mapping
+  - id: cad
+    title: CAD
+    for: a student who knows Bézier curves and B-splines, Delaunay triangulations, Newton's method and linear least squares, and wants to follow a mechanical part from its first sketch to its measurement, and to see which steps of the work are exact, which are exact only for a model or for generic data, and which are heuristics judged by measured results.
+    intro: >
+      The path follows the life of a part. A solid is a set, and its trees of operations and boundary representations
+      are proved correct on exact real numbers; with floating point their tests can disagree, so the path meets exact
+      geometric computation, which makes every predicate exact, and tolerant modeling, which accepts small gaps. Curved
+      faces are intersected and projected by Newton's method, which converges fast but only from a good start, by
+      marching, which can miss a small loop, and by subdivision, which finds every piece but only to a tolerance;
+      implicitization by resultants is exact. Sketches are constraint systems: solving them is NP-hard, and Laman's
+      count and the theorems on global rigidity hold for almost every placement, not for every one. Mechanism synthesis
+      at precision points is exact, Burmester's theory and Freudenstein's equation among it, while synthesis by
+      optimization finds local optima; assembly partitioning is NP-complete in general and polynomial for one
+      translation. Meshes come next: repair and Booleans rest on exact arrangements or on winding numbers, geodesics
+      are exact by MMP and approximate by the heat method, and meshes for analysis carry proved angle bounds for
+      Delaunay refinement and isosurface stuffing, but none for advancing front, paving and most hexahedral meshers,
+      whose quality is measured. Isogeometric analysis has proved rates under stated assumptions. Toolpaths, support
+      structures and process plans are judged by measured time and error; nesting and setup planning are NP-hard;
+      the K-factor, Chvorinov's rule and Taylor's tool life are empirical laws with fitted constants. Inspection ends
+      the path: minimum zone flatness is exact, minimum zone cylindricity and point-cloud alignment reach local optima,
+      and Monte Carlo tolerance analysis has a sampling error that falls as one over the square root of the samples.
+    stages:
+      - title: Solids and their representations
+        intro: >
+          A solid is a regular closed set, and a model is a finite description of it: a CSG tree, a boundary
+          representation, or an exact Nef complex. The Euler-Poincaré formula checks the counts of a boundary. Booleans
+          are exact on the real RAM, but rounded tests can contradict each other, so modelers either compute every
+          predicate exactly or store a tolerance with each edge and vertex and accept that the result is right only up
+          to it.
+        steps:
+          - real-ram
+          - floating-point-arithmetic
+          - orientation-test
+          - euler-formula
+          - entry: r-set
+            why: Requicha's definition of a solid as a bounded, closed, regular, semianalytic set, so that every model in the volume describes a set with an interior and a boundary.
+          - regularized-set-operations
+          - constructive-solid-geometry
+          - set-membership-classification
+          - boundary-representation
+          - winged-edge-data-structure
+          - entry: euler-poincare-formula
+            why: an exact identity for the counts of vertices, edges, faces, loops, shells and holes, which a valid boundary must satisfy but which does not prove it valid.
+          - boundary-evaluation
+          - solid-boolean-operations
+          - entry: geometric-robustness-problem
+            why: rounded geometric tests can disagree with each other, so a correct algorithm can return an impossible topology.
+          - entry: exact-geometric-computation
+            why: makes every predicate exact, with filters and adaptive precision, so the combinatorial output is always correct.
+          - entry: tolerant-modeling
+            why: stores a tolerance with each vertex and edge, so a gap smaller than it counts as closed; the model is valid only up to that tolerance.
+          - nef-polyhedron
+          - solid-offsetting
+      - title: Freeform surfaces, intersections and fairing
+        intro: >
+          The faces of a part are trimmed spline surfaces. Projection and intersection use Newton's method, which
+          converges quadratically near a regular solution but finds the nearest point only from a good start, marching,
+          which can miss a small loop, and subdivision, which finds every piece to a tolerance. Tests such as the
+          Sederberg-Meyers condition rule loops out, and interval methods enclose every root. Fairing and continuity
+          checks show defects; no energy defines fairness, so a fair surface is fair only in the sense of its energy.
+        steps:
+          - bezier-curve
+          - b-spline
+          - nurbs
+          - parametric-surface
+          - fundamental-forms
+          - surface-curvature
+          - newton-method-for-systems
+          - trimmed-surface
+          - point-projection-onto-a-surface
+          - entry: newton-point-inversion
+            why: converges quadratically near a nondegenerate foot point, but returns the nearest point only if the start grid is fine enough, which the method cannot check.
+          - surface-surface-intersection
+          - entry: marching-surface-intersection
+            why: traces each branch from a start point by stepping and Newton correction; without a start point on a branch, such as a small closed loop, the branch is missed.
+          - entry: lattice-evaluation-intersection
+            why: misses any loop of the intersection that fits inside one cell of the lattice.
+          - entry: sederberg-meyers-loop-detection
+            why: a tangent-cone condition that proves two patches can meet in no closed loop, so marching from boundary points finds every branch.
+          - entry: tangential-surface-intersection
+            why: where the surfaces touch, the Newton matrix is singular and marching fails, so these cases need their own methods.
+          - interval-arithmetic
+          - entry: interval-projected-polyhedron
+            why: returns boxes smaller than a given tolerance that hold every root, with outward rounding, so no root is lost.
+          - resultant
+          - entry: implicitization
+            why: exact by resultants, but a bicubic patch has an implicit equation of degree up to 18.
+          - entry: energy-based-surface-fairing
+            why: minimizes a bending energy; since no energy defines fairness, the result is fair only in the sense of the energy chosen.
+      - title: Sketches and geometric constraints
+        intro: >
+          A sketch is a set of points and lines tied by distances, angles and incidences. Solving such a system is
+          NP-hard already for distances on a line, so the theory looks at rigidity. Laman's theorem and the pebble game
+          decide rigidity in the plane for generic placements; in space counting fails. Global rigidity has an exact
+          generic characterization by stress matrices. Solvers decompose the constraint graph into small rigid pieces,
+          and then must still choose among exponentially many solutions.
+        steps:
+          - geometric-constraint
+          - geometric-constraint-graph
+          - entry: geometric-constraint-problem
+            why: NP-hard already for distances in one dimension, so complete solvers are exponential in the worst case.
+          - distance-geometry-problem
+          - rigidity-matrix
+          - infinitesimal-rigidity
+          - entry: asimow-roth-theorem
+            why: at a regular placement, rigidity equals infinitesimal rigidity, a rank test on the rigidity matrix; at special placements the two can differ.
+          - generic-rigidity
+          - entry: laman-theorem
+            why: an exact count for minimal rigidity in the plane, valid for generic placements only.
+          - entry: pebble-game-rigidity
+            why: tests Laman's condition exactly in O(n^2) time for a graph with 2n - 3 edges.
+          - entry: double-banana-graph
+            why: passes every subset count in space and still flexes, so Laman's count has no direct analogue in three dimensions.
+          - global-rigidity
+          - entry: gortler-healy-thurston-theorem
+            why: with Connelly's theorem, a generic framework on n >= d + 2 points is globally rigid exactly when it has an equilibrium stress matrix of rank n - d - 1.
+          - entry: fudos-hoffmann-reduction
+            why: solves triangle-decomposable systems in the plane exactly; a well-constrained system that is not triangle-decomposable stops with several clusters.
+          - entry: root-identification-problem
+            why: a well-constrained sketch can have exponentially many solutions, and the choice of the intended one is a heuristic, usually keeping the orientations of the draft.
+      - title: Mechanisms and assemblies
+        intro: >
+          Linkages, cams and gears move the parts. Position analysis of a four-bar is exact by vector loops, and the
+          Grashof condition is an exact test of full rotation. Synthesis at precision points is exact: one linear solve
+          for three-point function generation and at most four cranks for five positions. Synthesis by optimization
+          gives a design, not a certificate. Assembly planning searches over subassemblies; partitioning is NP-complete
+          in general, and polynomial for one translation.
+        steps:
+          - four-bar-linkage
+          - vector-loop-closure
+          - entry: grashof-condition
+            why: an exact test, s + l <= p + q, for whether some link of a four-bar turns fully.
+          - entry: freudenstein-equation
+            why: linear in its three constants, so three-point function generation needs one 3 by 3 linear solve.
+          - entry: chebyshev-spacing
+            why: minimizes the node factor of the error bound, not the error itself.
+          - entry: burmester-theory
+            why: an exact theory that gives at most four Burmester points for five positions.
+          - entry: roberts-chebyshev-theorem
+            why: every four-bar coupler curve is traced by two other four-bars, its cognates.
+          - entry: nine-point-path-synthesis
+            why: the count of 1442 solutions came from numerical homotopy continuation, strong evidence but not a proof.
+          - entry: optimization-based-linkage-synthesis
+            why: finds local optima and gives a design, not a certificate that a better one does not exist.
+          - fundamental-law-of-gearing
+          - liaison-graph
+          - and-or-graph-of-assembly-plans
+          - assembly-sequence-planning
+          - entry: assembly-partitioning
+            why: NP-complete in the plane for general motions, after Kavraki, Latombe and Wilson.
+          - entry: non-directional-blocking-graph
+            why: decides in polynomial time whether a subassembly can be removed by one translation.
+      - title: Meshes, repair and geometry processing
+        intro: >
+          A part leaves the modeler as a triangle mesh, often with gaps, flipped faces and self-intersections. Repair
+          closes and orients it; exact arrangements give Booleans that hold on any input, and the generalized winding
+          number decides inside and outside even when the mesh is broken, with a value that degrades smoothly. On
+          the mesh, the cotangent Laplacian gives curvature, smoothing and geodesics: exact by the MMP algorithm,
+          approximate by the heat method. Parameterizations flatten pieces of the surface.
+        steps:
+          - polygon-mesh
+          - manifold-mesh
+          - entry: mesh-repair-problem
+            why: ill-posed, since the input does not say what shape it should have been; a repair is right only relative to a target and a measure of change, and the usual pipelines have no global guarantee.
+          - mesh-self-intersection
+          - entry: generalized-winding-number
+            why: is 1 inside and 0 outside a closed mesh and degrades smoothly on a broken one, so the inside of a damaged mesh can still be decided by thresholding.
+          - mesh-boolean-operations
+          - mesh-arrangements
+          - cotangent-laplacian
+          - entry: laplacian-smoothing
+            why: removes noise but also shrinks the mesh.
+          - discrete-geodesic-problem
+          - entry: mmp-geodesic-algorithm
+            why: computes exact geodesic distance on a polyhedral surface in O(n^2 log n) time.
+          - entry: heat-method
+            why: approximates geodesic distance with two sparse linear solves, faster than exact methods but not exact.
+          - mesh-parameterization
+          - entry: tutte-embedding
+            why: with the boundary fixed on a strictly convex polygon and positive weights, one sparse linear solve gives a one-to-one map with no flipped triangle.
+          - least-squares-conformal-maps
+          - metro-mesh-comparison
+      - title: Meshes for analysis
+        intro: >
+          A solver needs elements of good shape, rated by quality measures. Delaunay refinement has proved angle bounds
+          in the plane and proved radius-edge bounds in space when the input angles are not too small, but slivers pass
+          the radius-edge test and need exudation, whose proved bound is tiny and whose measured angles are larger.
+          Quadtree meshing and isosurface stuffing have proved bounds. Advancing front, paving and frame-field
+          hexahedral meshers have no quality bound, and sweeping is proved valid only for affine layers, so their
+          quality is measured.
+        steps:
+          - delaunay-triangulation
+          - constrained-delaunay-triangulation
+          - mesh-quality-measures
+          - delaunay-refinement
+          - entry: ruppert-algorithm
+            why: with input angles of at least 60 degrees, no output angle is below arcsin(1/(2B)), about 20.7 degrees for B = sqrt 2, and for B > sqrt 2 the size is within a constant factor of the optimum.
+          - entry: quadtree-mesh-generation
+            why: proved aspect ratio at most 4 and size within a constant factor of the optimum.
+          - entry: tetrahedral-delaunay-refinement
+            why: bounds the radius-edge ratio by B for B >= 2 when the input angles are at least 90 degrees, but slivers can remain.
+          - sliver-tetrahedron
+          - entry: sliver-exudation
+            why: removes slivers with a proved angle bound that is tiny; measured angles are about 5 degrees.
+          - entry: isosurface-stuffing
+            why: proved dihedral angles between about 10.78 and 164.74 degrees, shown with computer assistance.
+          - entry: advancing-front-mesh-generation
+            why: builds elements from the boundary inward with good quality in practice and no proved guarantee.
+          - entry: paving
+            why: an all-quadrilateral heuristic with good boundary elements, judged by measured quality.
+          - entry: hexahedral-mesh-existence-theorem
+            why: an even number of boundary quads on a ball is enough for a hexahedral mesh, but the theorem is topological and says nothing of element quality.
+          - hexahedral-sweeping
+          - frame-field-hex-meshing
+          - optimization-based-mesh-smoothing
+      - title: Analysis on the design
+        intro: >
+          Isogeometric analysis runs the finite element method on the splines of the design. Its approximation rates
+          are proved on shape-regular meshes for a range of Sobolev orders. Local refinement needs T-splines or
+          hierarchical splines; T-spline blending functions can be linearly dependent, and analysis-suitable T-meshes
+          are the class where independence is proved. Trimmed and cut geometries need stabilization, and volume
+          parameterization of a B-rep is the main gap between design and analysis.
+        steps:
+          - finite-element-method
+          - gaussian-quadrature
+          - entry: isogeometric-analysis
+            why: uses the basis of the CAD model as the finite element basis, so the geometry stays exact under refinement.
+          - bezier-extraction
+          - k-refinement
+          - entry: nurbs-approximation-estimates
+            why: proves the rate h^(l - k) on shape-regular meshes for 0 <= k <= l <= p + 1, under those assumptions only.
+          - hierarchical-b-spline
+          - t-spline
+          - entry: t-spline-linear-independence
+            why: general T-splines can be linearly dependent, as Buffa and coauthors showed with 40 functions spanning a space of dimension 39.
+          - entry: analysis-suitable-t-spline
+            why: the class of T-meshes whose blending functions are proved linearly independent.
+          - entry: trimmed-isogeometric-analysis
+            why: small cut elements need stabilization, and boundary conditions are imposed weakly.
+          - entry: cut-finite-element-method
+            why: needs a ghost penalty to stay stable on small cut elements.
+          - defeaturing
+          - volumetric-spline-parameterization
+      - title: Machining and printing
+        intro: >
+          A printer slices the part into layers and adds supports under overhangs; a milling machine follows a toolpath
+          of cutter locations. Slicing a mesh is exact computational geometry with a proved running time, but layer
+          heights, supports, toolpaths and tool orientations are judged by measured build time, surface error and
+          material. Nesting is NP-hard in the strong sense and is solved by heuristics, and topology optimization by SIMP
+          finds a local optimum of a penalized problem.
+        steps:
+          - slicing-for-additive-manufacturing
+          - entry: triangle-mesh-slicing
+            why: cuts a mesh by k planes in O(n log k + k + m) expected time, where m is the output size.
+          - build-orientation
+          - support-structure-generation
+          - toolpath-planning
+          - contour-parallel-toolpath
+          - pocket-machining
+          - scallop-height
+          - gouge-detection
+          - five-axis-tool-orientation
+          - nc-verification
+          - entry: nesting-problem
+            why: NP-hard in the strong sense, so practical nesting is heuristic and judged by measured material use.
+          - topology-optimization
+          - entry: simp-method
+            why: finds a local optimum of a penalized problem, not the global optimum of the 0/1 problem.
+      - title: Process planning
+        intro: >
+          A process plan chooses setups, orders operations and fixes the part. Setup planning has set cover at its core
+          and is NP-hard, and operation sequencing is a traveling salesman problem with precedence. A* bend sequencing is
+          exact for its cost model with an admissible heuristic, in exponential worst-case time. Fixture analysis for
+          frictionless point locators is an exact rank test. The K-factor, Chvorinov's rule and Taylor's tool life are
+          empirical laws whose constants are fitted to measurements.
+        steps:
+          - set-cover
+          - traveling-salesman-problem
+          - a-star-search
+          - computer-aided-process-planning
+          - entry: setup-planning
+            why: its core is set cover, so it is NP-hard and planners use heuristics or small exact searches.
+          - operation-sequencing
+          - entry: three-two-one-locating-principle
+            why: three, two and one locators remove all six degrees of freedom; for frictionless point contacts the position is determined exactly when the locator Jacobian has full rank 6.
+          - kinematic-fixture-analysis
+          - fixture-planning
+          - bend-sequence-planning
+          - entry: a-star-bend-sequencing
+            why: exact for its cost model with an admissible heuristic, but exponential in the number of bends in the worst case.
+          - entry: k-factor
+            why: a measured value of about 0.3 to 0.5, not derived from theory, which sets the bend allowance.
+          - entry: chvorinov-rule
+            why: an empirical law; the exponent is near 2 and the mold constant is fitted.
+          - entry: taylor-tool-life-equation
+            why: an empirical law, V T^n = C, a fit to data whose constants a shop measures for its own tool and work material.
+      - title: Inspection, reverse engineering and tolerancing
+        intro: >
+          A measuring machine probes the part, and the points are aligned to the model and fitted with planes, circles
+          and cylinders. Alignment is exact in closed form when point pairs are known and a local minimum when they are
+          not. The minimum zone is the definition of a form tolerance: exact for flatness through the convex hull, a
+          local optimum for cylindricity, and never beaten by the least-squares feature. Algebraic fits are biased under
+          noise. Worst-case stack-up gives the exact range of an assembly dimension; root sum of squares rests on
+          independence and normality, and Monte Carlo estimates carry sampling error.
+        steps:
+          - least-squares-problem
+          - kabsch-algorithm
+          - convex-hull-3d
+          - geometric-dimensioning-and-tolerancing
+          - form-error-evaluation
+          - entry: minimum-zone-flatness
+            why: exact, by testing the face-vertex and edge-edge pairs of the convex hull of the measured points.
+          - entry: minimum-zone-cylindricity
+            why: a nonconvex problem whose solvers find a local minimum with no global guarantee.
+          - entry: least-squares-reference-feature
+            why: exact for its own objective, but its zone is never narrower than the minimum zone, so it can report a larger form error than the part has.
+          - entry: inspection-localization
+            why: closed form when point pairs are known; without them, iterative alignment reaches only a local minimum.
+          - entry: algebraic-distance-fitting
+            why: a linear problem, exact on noise-free data but biased under noise.
+          - geometric-primitive-fitting
+          - reverse-engineering-of-geometric-models
+          - entry: tolerance-stack-up
+            why: the worst case sum is the exact range; the root sum of squares assumes independent, normal variations.
+          - entry: monte-carlo-tolerance-analysis
+            why: estimates the fraction of good assemblies with an error that falls as one over the square root of the number of samples.

@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.32.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.33.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.32.0](https://github.com/tamnd/algorithm/releases/tag/v0.32.0)
-(`f8d4d6a217e3fb7d9058c9137d66c70534fa4ab1`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.33.0](https://github.com/tamnd/algorithm/releases/tag/v0.33.0)
+(`087d0ac163dde33af2a0b0ddc2f6bd8568885f09`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,718 |
+| 0 | Guide and Index | the whole set | 1,777 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -17,8 +17,8 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 9 | Automata and parsing | 270 | 1,604 |
 | 10 | Number theory | 238 | 1,438 |
 | 11 | Algebra | 328 | 2,122 |
-| 12 | Numerical | 465 | 3,024 |
-| 13 | Geometry | 280 | 1,794 |
+| 12 | Numerical | 465 | 3,026 |
+| 13 | Geometry | 280 | 1,796 |
 | 14 | Combinatorics | 174 | 877 |
 | 15 | Optimization | 301 | 1,764 |
 | 16 | Logic and constraints | 325 | 2,106 |
@@ -33,46 +33,59 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 25 | Machine learning | 419 | 2,982 |
 | 26 | Systems | 442 | 3,209 |
 | 27 | Biology | 254 | 1,611 |
-| 28 | Graphics and signals | 401 | 2,745 |
+| 28 | Graphics and signals | 401 | 2,747 |
 | 29 | Games and search | 209 | 1,612 |
 | 30 | Quantum | 152 | 1,582 |
-| 31 | CAD | 125 | 980 |
+| 31 | CAD | 374 | 3,026 |
 | 32 | Electronic design automation | 358 | 2,690 |
 | 33 | Statistics and inference | 276 | 2,168 |
-| | **All** | **8,871** | **61,746** |
+| | **All** | **9,120** | **63,857** |
 
-- **Volume 32, Electronic design automation, is now complete**: the six chapters that were openings only in 0.31.0
-  are written, and the volume has 358 entries in ten chapters. The new chapters are *High-level synthesis and
-  scheduling* (33 entries: control data flow graphs, Kahn process networks and synchronous dataflow, scheduling a
-  block under resource and latency limits, allocation and binding of units and registers, branches and loops with
-  speculation and modulo scheduling, the iteration bound, folding and unfolding for signal processing, state
-  assignment and decomposition of controllers, and interface synthesis and hardware-software partitioning), *Logic and circuit simulation* (36 entries: multi-valued logic and delay
-  models, event-driven and compiled logic simulators, hazards and switch-level simulation, modified nodal analysis
-  and device models, sparse LU factorization, the DC operating point with gmin and source stepping, transient
-  analysis with companion models and TR-BDF2, small-signal AC, sensitivity and noise analysis, periodic steady
-  state by shooting and harmonic balance, and timing and mixed-mode simulation), *Hardware verification* (28 entries: coverage
-  of simulation, constrained random stimulus, assertions, combinational equivalence checking and debugging,
-  sequential equivalence, symbolic simulation and symbolic trajectory evaluation, verification of arithmetic circuits and processors, and clock
-  domain crossings with synchronizers), *Power, reliability and manufacturability* (41 entries: switching activity
-  and its estimation, clock and power gating, multiple threshold voltages and other ways to reduce power, power grid
-  analysis and vectorless verification, coupling noise, electromigration, aging, soft errors and thermal models,
-  critical area and yield models, and dummy fill, imaging models and inverse lithography), *Test and diagnosis* (37 entries: fault coverage and defect
-  level, fault models for defects and delay, test generation and compaction, fault simulation, testability measures
-  and random-pattern test, scan test and test compression, board, core and memory test, and diagnosis of failing
-  chips) and *FPGA, analog and emerging technologies* (35 entries: FPGA architecture, technology mapping into lookup
-  tables, packing, placement and routing of FPGAs, analog sizing and symbolic analysis, analog layout,
-  three-dimensional integration, and reversible circuits and qubit mapping). As in the rest of the volume, the
-  pages say which methods are exact, which come with a proved bound, and which are judged by measured results on
-  benchmarks. The introduction of the volume now covers all ten chapters.
-- **Volume 0, Guide and Index**, covers the whole set of 8,871 entries. It has a new learning path, *Electronic
-  design automation*, in eight stages.
-- **Volumes 1 to 31 and 33** have the same entries under the same numbers as in 0.31.0. Cross-references from
-  other volumes to the new entries of Volume 32 now give entry numbers.
+- **Volume 31, CAD, is now complete**: the six chapters that were openings only in 0.32.0 are written, and the
+  volume has 374 entries in ten chapters. The new chapters are *Surface interrogation and design* (34 entries: point
+  projection and inversion, distances and intersections of curves and surfaces with implicitization, lattice
+  evaluation, the interval projected polyhedron algorithm and loop detection, curvature combs, isophotes, reflection
+  lines, silhouettes and lines of curvature, continuity between patches with Gregory, n-sided and vertex blend
+  patches, skinning and Gordon surfaces, fairing, developable surfaces, geodesics, offset trimming and Pythagorean
+  hodograph curves), *Mechanism and assembly design* (40 entries: four-bar and slider-crank linkages with the Grashof
+  condition, instant centers and coupler curves, six-bar and straight-line linkages and Kempe's universality
+  theorem, function, path and motion generation with Freudenstein's equation and Burmester theory, cams, involute
+  gears and planetary trains, and assembly and disassembly sequence planning with liaison graphs, AND/OR graphs and
+  blocking graphs), *Mesh generation for analysis* (41 entries: quality measures and slivers, structured, elliptic
+  and transfinite grids, advancing front, quadtree and octree meshing, constrained Delaunay tetrahedralization and
+  Delaunay refinement, sliver exudation, surface meshing with restricted Delaunay triangulations and protecting
+  balls, boundary layers, anisotropic adaptation and curved high-order meshes, quadrilateral meshing by paving,
+  Q-Morph and Blossom-Quad, hexahedral meshing by whisker weaving, plastering, sweeping, polycubes and frame fields,
+  and smoothing, untangling and improvement), *Isogeometric analysis and CAD-CAE integration* (25 entries: Bézier
+  extraction, k-refinement, quadrature and collocation, T-splines and analysis-suitable T-splines, hierarchical,
+  truncated and locally refined splines, volumetric parameterization, trimmed and immersed analysis with the finite
+  cell and cut finite element methods, shells, boundary elements, shape optimization, defeaturing and mid-surface
+  extraction), *Manufacturing process planning* (25 entries: computer-aided process planning and manufacturability,
+  setups and operation sequences, locating and fixture planning with the Brost-Goldberg algorithm, tool life and
+  cutting parameters, sheet metal with bend allowance, flat patterns, springback and bend sequences, molding with
+  draft, undercuts, parting lines, gates and conformal cooling, and casting with Chvorinov's rule, risers and hot
+  spots) and *Reverse engineering, inspection and tolerancing* (29 entries: algebraic and geometric fitting of
+  circles, spheres, cylinders, cones and tori, parameter correction and squared distance minimization,
+  segmentation and slippage analysis, B-rep reconstruction from scans, geometric dimensioning and tolerancing with
+  datum frames, tolerance zones, the small displacement torsor and tolerance maps, localization, sampling and probe
+  paths for inspection, minimum zone form error, and tolerance analysis and allocation). The four chapters written
+  in 0.30.0 have 55 more entries: 31.1 *Solid modeling* adds offsets, Minkowski sums and medial surfaces, healing
+  and tolerant modeling, Nef polyhedra and selective geometric complexes, direct modeling and persistent naming, and
+  feature recognition; 31.3 *Geometric constraint solving* adds infinitesimal and global rigidity and distance
+  geometry; 31.5 *Mesh processing and repair* adds mesh compression, curvature estimation, surface deformation,
+  conformal parameterization, direction fields and segmentation; and 31.8 *CAM and additive manufacturing* adds
+  slicing of exact models and curved layers, trochoidal and five-axis machining, feedrate scheduling and more
+  topology optimization. As in the rest of the volume, the pages say which methods are exact, which come with a
+  proved bound, and which are judged by measured results on test parts. The introduction of the volume now covers
+  all ten chapters.
+- **Volume 0, Guide and Index**, covers the whole set of 9,120 entries. It has a new learning path, *CAD*, in ten
+  stages.
+- **Volumes 1 to 30, 32 and 33** have the same entries under the same numbers as in 0.32.0. Cross-references from
+  other volumes to the new entries of Volume 31 now give entry numbers.
 - Volumes 34 to 39 (Compilers and program analysis, Information retrieval and AI reasoning, Control, Robotics,
-  Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters. Chapters 31.2, 31.4, 31.6, 31.7, 31.9
-  and 31.10 of Volume 31 are still openings only.
+  Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.32.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.33.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

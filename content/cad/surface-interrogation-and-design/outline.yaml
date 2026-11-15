@@ -1,0 +1,85 @@
+# The order of chapter 31.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Points and distances
+    intro: >
+      The simplest question about a surface is which of its points lies closest to a given point. The answer
+      is a stationary point of a squared distance, found by Newton steps from a good start. The same
+      equations, with two surfaces in place of one, give the minimum distance between them.
+    entries:
+      - point-projection-onto-a-surface
+      - newton-point-inversion
+      - minimum-distance-between-surfaces
+
+  - title: Intersections
+    intro: >
+      These entries find the curve or the points where a surface meets a curve, a plane or another surface.
+      Some methods are exact algebra, such as implicitization and Levin's method for two quadrics. Others
+      sample a lattice, cut boxes with convex hulls, or prove that no closed loop is left. The last entry
+      treats surfaces that touch, where the usual methods fail.
+    entries:
+      - curve-surface-intersection
+      - algebraic-surface-intersection
+      - implicitization
+      - levin-quadric-intersection
+      - lattice-evaluation-intersection
+      - interval-projected-polyhedron
+      - sederberg-meyers-loop-detection
+      - tangential-surface-intersection
+
+  - title: Seeing the shape
+    intro: >
+      A designer judges a surface by curves drawn on it. Curvature combs show the curvature of a curve as a
+      row of teeth. Isophotes, reflection lines and silhouettes show how light falls on the surface. Lines of
+      curvature and umbilic points show where the principal directions turn.
+    entries:
+      - curvature-comb
+      - isophote
+      - reflection-lines
+      - silhouette-curve-of-a-surface
+      - lines-of-curvature
+      - umbilic-point
+
+  - title: Joining patches
+    intro: >
+      A car body is many patches, and each join must be smooth. These entries give the condition for a
+      common tangent plane, the corner condition on twists, and the rational Gregory patch, which joins smoothly
+      even when the corner data disagree. The last three build patches over regions with three or more sides.
+    entries:
+      - tangent-plane-continuity
+      - twist-compatibility
+      - gregory-patch
+      - n-sided-patch
+      - generalized-bezier-patch
+      - vertex-blend
+
+  - title: Surfaces through curves
+    intro: >
+      Often the designer draws curves and wants a surface through them. Skinning passes one surface through a
+      row of section curves. A Gordon surface passes through a whole network of curves in two directions.
+    entries:
+      - surface-skinning
+      - gordon-surface
+
+  - title: Fairing
+    intro: >
+      A fair surface has no bumps or wiggles that the designer did not ask for. Fairness has no single
+      definition, so each method minimizes a model of it. The three entries use a quadratic energy, the jumps
+      of the third derivative at knots, and the variation of the principal curvatures.
+    entries:
+      - energy-based-surface-fairing
+      - knot-removal-fairing
+      - minimum-variation-surface
+
+  - title: Developable surfaces, geodesics and special curves
+    intro: >
+      Sheet metal and paper bend without stretching, so they form developable surfaces. These entries test and
+      approximate such surfaces and trace geodesics, the straightest curves on a surface. The last three treat
+      plane curves whose offsets must be clean: the trimming of offset loops, and the Pythagorean hodograph
+      curves, whose arc length is a polynomial.
+    entries:
+      - developable-surface
+      - developable-surface-approximation
+      - geodesics-on-parametric-surfaces
+      - offset-trimming
+      - pythagorean-hodograph-curve
+      - ph-quintic-hermite-interpolation

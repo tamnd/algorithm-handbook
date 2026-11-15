@@ -3,9 +3,9 @@ groups:
   - title: Solids and their representations
     intro: >
       A solid is a set of points, and a modeler stores it in one of a few finite forms. These entries define
-      the sets a modeler accepts, the regularized operations that keep them closed, and the four classic
-      representations: CSG trees, boundaries, voxels and implicit functions. The last entry asks when a
-      boundary can be turned back into a tree.
+      the sets a modeler accepts, the regularized operations that keep them closed, and the classic
+      representations: CSG trees, boundaries, voxels, sweeps of a profile and implicit functions. The last
+      entry asks when a boundary can be turned back into a tree.
     entries:
       - r-set
       - regularized-set-operations
@@ -13,6 +13,7 @@ groups:
       - constructive-solid-geometry
       - boundary-representation
       - spatial-occupancy-enumeration
+      - sweep-representation
       - function-representation
       - brep-to-csg-conversion
 
@@ -53,29 +54,45 @@ groups:
       - marching-surface-intersection
       - subdivision-surface-intersection
 
-  - title: Offsets and blends
+  - title: Offsets, blends, sums and medial surfaces
     intro: >
       Offsetting moves a surface along its normal or grows a solid by a ball, and blending rounds the sharp
       edges of a part. The entries go from the offset of one surface to the rolling-ball fillet, and from
-      there to the offset of a whole solid, with the method of Rossignac and Requicha that works on a CSG
-      tree.
+      there to the offset of a whole solid and the method of Rossignac and Requicha for a CSG tree. Growing
+      by a ball is a Minkowski sum, and the sum of two polyhedra comes next. The medial surface, the centers
+      of the largest balls inside a solid, closes the group.
     entries:
       - offset-surface
       - blending-surface
       - rolling-ball-blend
       - solid-offsetting
       - rossignac-requicha-offsetting
+      - minkowski-sum-of-polyhedra
+      - medial-surface-of-a-solid
 
-  - title: Robustness
+  - title: Robustness, tolerances and healing
     intro: >
       The algorithms above are proved with exact real numbers, and they run with floating point. These
       entries show how rounded predicates make a modeler contradict itself, how exact computation of signs
       removes the problem, and how simulation of simplicity removes the degenerate cases that exact signs
-      expose.
+      expose. The last two deal with models whose faces do not quite meet: healing closes the gaps, and
+      tolerant modeling stores a tolerance with each vertex and edge so that the gaps count as closed.
     entries:
       - geometric-robustness-problem
       - exact-geometric-computation
       - simulation-of-simplicity
+      - brep-healing
+      - tolerant-modeling
+
+  - title: Sets that are not regular
+    intro: >
+      Regularization throws away dangling faces, edges and points, and some applications need them. A
+      [Nef polyhedron](/nef-polyhedron/) is built from half-spaces and keeps every such piece, closed under
+      Booleans, interior, closure and boundary. The selective geometric complex does the same on a cell
+      complex cut out by the operands alone.
+    entries:
+      - nef-polyhedron
+      - selective-geometric-complex
 
   - title: Mass properties
     intro: >
@@ -86,13 +103,28 @@ groups:
       - mass-properties-of-solids
       - mirtich-polyhedral-mass-properties
 
-  - title: Features and naming
+  - title: Features, editing and naming
     intro: >
-      Designers think in holes, slots and pockets, not in faces. These entries cover modeling with features,
-      finding features in a plain boundary, the graph method of Joshi and Chang, and the problem of naming a
-      face so that a later step still finds it after the model is rebuilt.
+      Designers think in holes, slots and pockets, not in faces. These entries cover modeling with a history
+      of features, editing the faces of a model that has no history, and the problem of naming a face so that
+      a later step still finds it after the model is rebuilt. Generic naming is proved to answer it when the edit
+      keeps the labeled topology of the boundary.
     entries:
       - feature-based-modeling
+      - direct-modeling
+      - persistent-naming-problem
+      - generic-naming-scheme
+
+  - title: Feature recognition
+    intro: >
+      Recognition finds the features in a plain boundary. The graph method of Joshi and Chang matches
+      templates of faces and works on isolated features. When features overlap, faces are split or lost, and
+      the same removal volume has several readings. Hint-based recognition, volume decomposition and the
+      alternating sum of volumes work with volumes instead of faces and handle many of these cases.
+    entries:
       - feature-recognition
       - attributed-adjacency-graph
-      - persistent-naming-problem
+      - feature-interaction
+      - hint-based-feature-recognition
+      - volume-decomposition-feature-recognition
+      - alternating-sum-of-volumes

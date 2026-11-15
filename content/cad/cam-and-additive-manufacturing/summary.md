@@ -1,37 +1,35 @@
 ## What to remember
 
-- [Triangle mesh slicing](/triangle-mesh-slicing/) of $n$ triangles by $k$ planes, with $m$ output segments, takes $O(n \log k + k + m)$ expected time against the lower bound $\Omega(n \log k + k + m)$. The only predicate compares $z$ values, so the contours have the exact topology. A triangle is cut by the plane at $Z$ when $z_{\min} < Z \le z_{\max}$.
-- A layer of thickness $t$ leaves a cusp of height $t |\cos \theta|$, where $\theta$ is the angle between the facet normal and the build axis ([staircase effect](/staircase-effect/)). [Adaptive slicing](/adaptive-slicing/) tests $t^2 n_z^2 \le c^2 \|n\|^2$ exactly; its greedy choice does not always give the fewest layers.
-- A ball of radius $r$ with passes $w$ apart leaves a [scallop](/scallop-height/) of height $r - \sqrt{r^2 - w^2/4} \approx w^2/(8r)$ on a plane. A ball gouges locally where the part is concave with curvature above $1/r$, but [gouge detection](/gouge-detection/) also needs a global distance test.
-- In a [pocket](/pocket-machining/) the tool centre stays in the inward offset $P_r$, so the tool clears only the opening; a convex pocket keeps $r^2 (\sum_i \cot(\alpha_i/2) - \pi)$ uncut in its corners. [Contour-parallel](/contour-parallel-toolpath/) loops with stepover $s \le r$ clear exactly the opening, and a corner of angle $\alpha$ leaves islands when $s > r(1 + \sin(\alpha/2))$.
-- A [z-map](/z-map-model/) costs $O(c)$ per move for the $c$ grid lines under the tool and cannot show undercuts. A [dexel](/dexel-representation/) Boolean costs $O(m_1 + m_2)$ per ray and is exact on rational endpoints. A sampled simulation cannot prove a path free of gouges.
-- A direction from which a set of faces is visible exists exactly when 0 is not in the convex hull of their normals; a linear program finds it ([accessibility cone](/accessibility-cone/)).
-- The [nesting problem](/nesting-problem/) is strongly NP-hard. The [no-fit polygon](/no-fit-polygon/) $A \oplus (-B)$ of two convex polygons has at most $n + m$ edges and takes $O(n + m)$ time.
-- 0/1 [topology optimization](/topology-optimization/) is ill-posed; the relaxation with linear stiffness is convex and gives a lower bound. [SIMP](/simp-method/) with $p > 1$ and the [level set method](/level-set-topology-optimization/) find local optima.
+- [Triangle mesh slicing](/triangle-mesh-slicing/) of $n$ triangles by $k$ planes with $m$ output segments takes $O(n \log k + k + m)$ expected time, matching the lower bound, with exact topology from exact $z$ comparisons. [Direct slicing](/direct-slicing/) of a CSG solid of quadrics gives exact conics, since the section commutes with the Booleans; NURBS sections are only computed to a tolerance.
+- A layer of thickness $t$ leaves a cusp of height $t |\cos \theta|$ ([staircase effect](/staircase-effect/)). [Adaptive slicing](/adaptive-slicing/) bounds it, not always with the fewest layers, and [curved layers](/curved-layer-printing/) of thickness $\Delta c / |\nabla \phi|$ avoid it on the surface they follow; their gains are measured.
+- A ball of radius $r$ with passes $w$ apart leaves a [scallop](/scallop-height/) of about $w^2/(8r)$. [Gouge detection](/gouge-detection/) needs a local curvature test and a global distance test.
+- In a [pocket](/pocket-machining/) the tool clears only the opening; [contour-parallel](/contour-parallel-toolpath/) loops leave islands in a corner of angle $\alpha$ when $s > r(1 + \sin(\alpha/2))$. A straight cut of depth $a$ engages $\arccos(1 - a/R)$; [trochoidal](/trochoidal-milling/) and [constant engagement](/constant-engagement-toolpath/) paths bound it, exactly per step, with measured gains per path.
+- A flat end of radius $R$ at lead $\lambda$ cuts like a ball of radius $R/\sin\lambda$ ([five-axis orientation](/five-axis-tool-orientation/)). The [principal axis method](/principal-axis-method/) is exact on a concave cylinder, [collision-free orientation](/collision-free-tool-orientation/) is optimal over its sampled candidates only, and [flank milling](/flank-milling/) is exact on developable surfaces.
+- A [z-map](/z-map-model/) cannot show undercuts; a [dexel](/dexel-representation/) Boolean is exact on rational endpoints. Sampled simulation cannot prove a path free of gouges.
+- With $b = v^2$ the speed and acceleration limits are linear, and the forward and backward scan of [feedrate scheduling](/feedrate-scheduling/) is time optimal in $O(n)$; jerk limits break convexity. A second order [interpolator](/parametric-cnc-interpolator/) step errs by $O(L^3)$.
+- A direction that sees a set of faces exists exactly when 0 is not in the convex hull of their normals ([accessibility cone](/accessibility-cone/)). [Nesting](/nesting-problem/) is strongly NP-hard; a convex [no-fit polygon](/no-fit-polygon/) has at most $n + m$ edges.
+- 0/1 [topology optimization](/topology-optimization/) is ill-posed. [Homogenization](/homogenization-method/) relaxes it and leaves gray designs, [SIMP](/simp-method/) and [level sets](/level-set-topology-optimization/) find local optima, and a [density filter](/density-filtering/) puts $W^{\mathsf T}$ in the chain rule. [BESO](/beso-method/) is optimal for parallel bars of equal area, arbitrarily worse otherwise, with no convergence proof.
 
 | Method | Model | Time | Guarantee |
 |---|---|---|---|
 | Triangle mesh slicing | exact $z$ comparisons | $O(n \log k + k + m)$ expected | exact topology |
-| Adaptive slicing, greedy | exact squared test | $O(Lrn)$ | cusp $\le c$; not fewest layers |
-| Tree support | real | $O(n^2 \log n)$ | heuristic; savings measured |
+| Direct slicing, quadrics | exact rationals | $O(tn)$ | exact conics; polygon within tol |
+| Multi-axis decomposition | voxels | $O(mwhn \log n)$ | plans print; search heuristic |
 | Contour-parallel pocket | real | $O(Kn^2)$, convex pocket | clears the opening for $s \le r$ |
 | Direction-parallel pocket | real | $O(Kn \log n + In^3)$ | retractions $\le 5\,\mathrm{OPT} + 6h$ |
-| Voronoi pocket | real | $O(n^2 + Kn \log n)$ | offsets read from the medial axis |
-| Inverse tool offset | sampled heights | $O(nk)$ | no gouge at the samples |
-| Z-map | floating point | $O(c)$ per move | three axes; no undercuts |
-| Dexel | rational endpoints | $O(m_1 + m_2)$ per ray | exact Boolean per ray |
-| No-fit polygon, convex | real | $O(n + m)$ | at most $n + m$ edges |
-| Bottom-left fill, rectangles | real | $O(n^2)$ | $3\,\mathrm{OPT}$ for decreasing widths |
-| Mold, one direction | real | $O(n \log n)$ | exact decision |
+| Collision-free orientation | exact box test | $O(mkn + mk^2)$ | optimal on the candidates |
+| Z-map | floating point | $O(c)$ per move | three axes |
+| Dexel | rational endpoints | $O(m_1 + m_2)$ per ray | exact per ray |
+| Feedrate scan | speed, acceleration | $O(n)$ | time optimal |
 | SIMP | finite elements | $O(kn(h^2 + r^2))$ | local optimum |
-| Level set | finite elements | $O(kn(h^2 + n))$ | local optimum; not monotone |
+| BESO | finite elements | $O(k(s + n \log n))$ | 0/1; no convergence proof |
 
-: The main methods. For slicing, $L$ counts layers and $r$ allowed thicknesses. For pockets, $n$ counts boundary edges, $K$ offset loops, $I$ islands and $h$ holes. For the optimizers, $k$ counts iterations, $n$ elements, $h$ elements across the short side and $r$ the filter radius.
+: The main methods. $t$ counts CSG leaves; for pockets $n$ counts edges, $K$ loops, $I$ islands, $h$ holes; for orientation $m$ counts points, $k$ candidates, $n$ obstacles; for decomposition $m$ rounds, $w$ beam width, $h$ layers; for optimizers $k$ iterations, $n$ elements, $h$ elements across, $r$ filter radius, $s$ a solve.
 
 ## Choosing a method
 
-For printing, slice with the sweep. Use adaptive slicing when the finish of sloped walls matters more than build time. Fix the build orientation before the supports, since it decides the overhangs. Tree supports save material over pillars in measurements.
+For printing, slice with the sweep, or slice the CAD model when the mesh error matters. Use adaptive slicing when sloped walls matter more than build time, and curved layers for thin shells on a printer that can tilt. Fix the orientation before the supports; on a robot arm, try a support-free decomposition.
 
-For milling, clear pockets with contour-parallel loops to cut along the walls with few retractions, and with zigzag lines when the pocket is simple. Keep the stepover at most $r$ or check the corners for islands. Finish with iso-parametric passes when the parametrization is even, and with iso-planar or iso-scallop passes when it is not. Simulate every program: a z-map for three axes, dexels when the tool tilts.
+For milling, rough with contour-parallel loops, or trochoidal or constant engagement paths when corners would overload the tool. Finish with iso-parametric passes on even parametrizations and iso-planar or iso-scallop passes otherwise, then pencil-cut concave edges. On five axes, tilt by the principal axis rule and check collisions over candidate tilts; flank-mill nearly developable ruled surfaces. Schedule the feed by the forward and backward scan, and simulate every program: a z-map for three axes, dexels when the tool tilts.
 
-For nesting, compute the no-fit polygons once and run bottom-left fill inside a search over piece orders. In topology optimization, SIMP with a filter is the usual default; the level set method keeps a sharp boundary.
+For nesting, compute no-fit polygons once and run bottom-left fill inside a search over piece orders. In topology optimization, SIMP with a density filter is the usual default; BESO gives 0/1 designs, level sets a sharp boundary, and homogenization graded lattices.
