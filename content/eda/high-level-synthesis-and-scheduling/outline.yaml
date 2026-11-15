@@ -1,0 +1,101 @@
+# The order of chapter 32.1, High-level synthesis and scheduling. Groups are read in order; entries in a group too.
+groups:
+  - title: Models of behaviour
+    intro: >
+      High-level synthesis needs a precise model of what the design computes. The
+      [control data flow graph](/control-data-flow-graph/) holds operations, data edges and branches, and the
+      [finite state machine with datapath](/finite-state-machine-with-datapath/) is the register-transfer form the
+      tools produce. For streams, [Kahn process networks](/kahn-process-network/) give determinate output, and
+      [synchronous dataflow](/synchronous-dataflow/) fixes the token rates, so a periodic schedule and its buffers
+      can be found before run time.
+    entries:
+      - control-data-flow-graph
+      - finite-state-machine-with-datapath
+      - kahn-process-network
+      - synchronous-dataflow
+      - sdf-static-scheduling
+
+  - title: Scheduling a block
+    intro: >
+      Scheduling puts each operation of a block into a control step. With a limit on units the least latency is
+      NP-hard, and with a limit on latency so is the least number of units; list schedules are heuristics with a
+      proved bound, and the [ILP formulation](/ilp-scheduling-formulation/) is exact but can be slow.
+      [Operation chaining](/operation-chaining/) and [module selection](/module-selection/) trade clock period
+      and area against steps, and [SDC scheduling](/sdc-scheduling/) solves the timing rows exactly as a linear
+      program with integer optima.
+    entries:
+      - resource-constrained-scheduling
+      - latency-constrained-scheduling
+      - ilp-scheduling-formulation
+      - operation-chaining
+      - module-selection
+      - sdc-scheduling
+
+  - title: Allocation and binding
+    intro: >
+      After scheduling, binding assigns operations to unit instances and values to registers. Both are clique
+      partitions of a [compatibility graph](/resource-compatibility-graph/). For straight-line code the register
+      count equals the largest number of live values and the left-edge algorithm reaches it; with loops or with
+      interconnect cost the problems are NP-hard, and [Tseng-Siewiorek](/tseng-siewiorek-clique-partitioning/)
+      and [weighted bipartite matching](/weighted-bipartite-matching-binding/) are heuristics.
+    entries:
+      - resource-compatibility-graph
+      - resource-binding
+      - register-binding
+      - tseng-siewiorek-clique-partitioning
+      - weighted-bipartite-matching-binding
+      - interconnect-binding
+
+  - title: Branches and loops
+    intro: >
+      Real code has branches and loops. [Path-based scheduling](/path-based-scheduling/) is exact on each path
+      but the merge across paths is NP-hard, and [speculative code motion](/speculative-code-motion/) moves
+      operations across branches to shorten the schedule. [SDC modulo scheduling](/sdc-modulo-scheduling/)
+      pipelines a loop at an initiation interval no less than $\max(\mathrm{ResMII}, \mathrm{RecMII})$, and
+      [memory partitioning](/memory-partitioning-for-hls/) splits arrays into banks so the accesses of one
+      iteration do not collide.
+    entries:
+      - path-based-scheduling
+      - speculative-code-motion
+      - sdc-modulo-scheduling
+      - memory-partitioning-for-hls
+
+  - title: Loop transformations for signal processing
+    intro: >
+      A recursive data flow graph of a filter cannot run faster than its [iteration bound](/iteration-bound/)
+      $T_\infty = \max_C t(C)/w(C)$, the largest ratio of loop time to loop delays.
+      [Folding](/dsp-folding/) shares one unit among several operations and computes the registers each edge
+      needs, and [unfolding](/dsp-unfolding/) processes $J$ samples per iteration, which with retiming can reach
+      the bound.
+    entries:
+      - iteration-bound
+      - dsp-folding
+      - dsp-unfolding
+
+  - title: Controllers
+    intro: >
+      The controller is a finite state machine, and its cost depends on how it is split and encoded.
+      [Partition pairs](/partition-pair/) say exactly when a machine splits, which
+      [FSM decomposition](/fsm-decomposition/) uses. [KISS](/kiss-symbolic-minimization/) and
+      [NOVA](/nova-state-encoding/) encode states to satisfy face constraints for two-level logic, and
+      [MUSTANG](/mustang-state-assignment/) targets multi-level logic; all three are heuristics with no optimality
+      proof.
+    entries:
+      - partition-pair
+      - fsm-decomposition
+      - kiss-symbolic-minimization
+      - nova-state-encoding
+      - mustang-state-assignment
+
+  - title: Interfaces and the system level
+    intro: >
+      A design is a set of blocks that talk to each other and to software. [Bitwidth analysis](/bitwidth-analysis/)
+      narrows the datapath with sound ranges, [interface synthesis](/interface-synthesis/) can build protocol
+      converters by solving a safety game, and [latency-insensitive design](/latency-insensitive-design/) lets long
+      wires take extra registers without changing behaviour. [Hardware-software partitioning](/hardware-software-partitioning/)
+      decides which tasks become hardware at all.
+    entries:
+      - bitwidth-analysis
+      - interface-synthesis
+      - latency-insensitive-design
+      - hardware-software-partitioning

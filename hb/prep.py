@@ -125,7 +125,8 @@ class Refs:
         if in_proof:   # a proof page sits at /slug/proofs/id/: ../ is the entry, ../other/ (or other/) a sibling proof
             md = re.sub(r"\]\((?:\.\./)?([a-z0-9-]+)/\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
             md = re.sub(r"\]\(\.\./([a-z0-9-]+)\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
-            md = re.sub(r"\]\(\.\./\)", "](" + self.target(node.slug) + ")", md)
+            # ../ is the entry, and so is ../node.md, its source file
+            md = re.sub(r"\]\(\.\./(?:node\.md)?\)", "](" + self.target(node.slug) + ")", md)
         md = re.sub(r"\]\((?:\./)?impl/[^)]*\)", f"]({SITE}/{node.slug}/#code-tabs)", md)
         return md
 

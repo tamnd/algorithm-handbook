@@ -1,0 +1,104 @@
+groups:
+  - title: Coverage of simulation
+    intro: >
+      Simulation shows only the cases it runs, so a team needs a number that says how much it has run.
+      [Code coverage](/code-coverage-metrics/) counts lines, branches, conditions and toggles, and
+      [FSM coverage](/fsm-coverage/) counts the states and arcs of the controllers. Both are measured on the
+      design itself. [Functional coverage](/functional-coverage/) counts bins that the team writes from the
+      specification, and [observability-based coverage](/observability-based-coverage/) counts a site only
+      when a wrong value there would have reached an output.
+    entries:
+      - code-coverage-metrics
+      - fsm-coverage
+      - functional-coverage
+      - observability-based-coverage
+
+  - title: Generating stimulus
+    intro: >
+      A testbench draws random inputs that satisfy constraints. Finding even one solution is NP-hard in
+      general, and the law of the draws depends on how the solver works. The
+      [BDD generator](/bdd-constrained-random-generation/) gives an exact uniform or weighted law once the BDD
+      is built. [Coverage-directed generation](/coverage-directed-test-generation/) tunes the generator
+      settings from the coverage report, and its gains are measured, not proved.
+    entries:
+      - constrained-random-stimulus-generation
+      - bdd-constrained-random-generation
+      - coverage-directed-test-generation
+
+  - title: Assertions
+    intro: >
+      An assertion states a temporal property of the design in PSL or SVA, and the same text drives
+      simulation, emulation and formal tools. [Checker synthesis](/assertion-checker-synthesis/) compiles the
+      common fragment into a small circuit that raises a flag in the cycle where a run refutes the
+      assertion.
+    entries:
+      - assertion-based-verification
+      - assertion-checker-synthesis
+
+  - title: Combinational equivalence and debugging
+    intro: >
+      Two combinational circuits are equivalent when their [miter](/miter-circuit/) can never output 1. The
+      question is coNP-complete, but designs that synthesis derived from each other share many internal
+      nodes, and [cutpoints](/cutpoint-equivalence-checking/) split the check at those nodes. When a check
+      fails, [SAT-based debugging](/sat-based-design-debugging/) finds the few gates whose change explains
+      all failing tests.
+    entries:
+      - miter-circuit
+      - cutpoint-equivalence-checking
+      - sat-based-design-debugging
+
+  - title: Sequential equivalence
+    intro: >
+      Designs with registers are equivalent when no reachable state of their
+      [product machine](/product-machine/) makes the outputs differ, a question that is PSPACE-complete for
+      netlists. [Latch mapping](/latch-mapping/) reduces it to combinational checks when the registers match
+      one to one, and [signal correspondence](/signal-correspondence/) proves it by induction when they do
+      not; both are sound and not complete. [Safe replaceability](/safe-replaceability/) is the notion for
+      designs with no reset state.
+    entries:
+      - product-machine
+      - sequential-equivalence-checking
+      - latch-mapping
+      - signal-correspondence
+      - safe-replaceability
+
+  - title: Symbolic state exploration
+    intro: >
+      These methods run a circuit on Boolean variables in place of values. [Symbolic
+      simulation](/symbolic-simulation/) is exact for a fixed number of cycles. The
+      [partitioned relation](/partitioned-transition-relation/) and
+      [Coudert-Madre image computation](/transition-function-image-computation/) are the two exact ways to
+      compute the image step of reachability. [STE](/symbolic-trajectory-evaluation/) and its
+      [generalized form](/generalized-symbolic-trajectory-evaluation/) put X on every node the property does
+      not need, which makes them sound but not complete.
+    entries:
+      - symbolic-simulation
+      - partitioned-transition-relation
+      - transition-function-image-computation
+      - symbolic-trajectory-evaluation
+      - generalized-symbolic-trajectory-evaluation
+
+  - title: Arithmetic and processors
+    intro: >
+      A multiplier has no small BDD under any variable order, so arithmetic needs other representations.
+      [Taylor expansion diagrams](/taylor-expansion-diagram/) are canonical for word-level polynomials, and
+      [algebraic rewriting](/algebraic-arithmetic-circuit-verification/) reduces a specification by the gate
+      polynomials to 0 exactly when the circuit is correct. For processors,
+      [Burch-Dill flushing](/burch-dill-flushing/) leaves the datapath uninterpreted, and
+      [positive equality](/positive-equality/) makes the resulting EUF formulas small.
+    entries:
+      - taylor-expansion-diagram
+      - algebraic-arithmetic-circuit-verification
+      - burch-dill-flushing
+      - positive-equality
+
+  - title: Clock domain crossings
+    intro: >
+      A signal that crosses into an unrelated clock domain can make a flip-flop metastable.
+      [Synchronizer MTBF](/synchronizer-mtbf/) is the formula for how often that leads to a failure, exact
+      under its model and with parameters fitted to measurements.
+      [CDC verification](/clock-domain-crossing-verification/) checks the structure around each crossing:
+      synchronizers, Gray-coded pointers, handshakes and no reconvergence.
+    entries:
+      - synchronizer-mtbf
+      - clock-domain-crossing-verification

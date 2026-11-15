@@ -1,0 +1,55 @@
+1. ◦ A loop body reads `if (p) { if (q) A else B } else C; D; if (r) E else F; G`, where A to G are blocks of straight-line code. How many paths from entry to exit does its [control data flow graph](/control-data-flow-graph/) have? List them, and say how many there would be if the body held $k$ such two-way branches in sequence, none nested.
+
+2. ◦ A [synchronous dataflow](/synchronous-dataflow/) chain has actors A, B and C. On the edge A→B, A produces 3 tokens per firing and B consumes 2; on B→C, B produces 1 and C consumes 3. Solve the balance equations for the least repetition vector. Then give the largest number of tokens on each edge during one period for the schedules AABBBC and ABABBC, and say which one has the smaller total buffer.
+
+3. ◦ A data flow graph has nodes A, B and C with times $t(A) = 2$, $t(B) = 3$ and $t(C) = 1$, and edges A→B with no delay, B→A with 2 delays, A→C with no delay and C→A with 1 delay. Compute the [iteration bound](/iteration-bound/) and the clock period of the graph as given. Find a retiming that reaches the bound, and give the iteration bound of the graph [unfolded](/dsp-unfolding/) by 2.
+
+4. ◦ A schedule of straight-line code has seven values, held in the steps a: 1 to 3, b: 1, c: 2 to 4, d: 3 to 5, e: 4 to 6, f: 5 and g: 6. Two values can share a register when no step holds both. Give the number of live values in each step, run the [left-edge algorithm](/left-edge-algorithm/) with the values sorted by first step and then by name, and list the registers. Is the count optimal?
+
+5. ◦ A chain of three dependent operations, a multiply of 5 ns and two additions of 2 ns each, is scheduled with [operation chaining](/operation-chaining/). Each step also pays a register overhead of $\delta = 1$ ns. For the clock periods $T = 11$, $8$ and $6$ ns, give the least number of steps for the chain and the total time, steps times $T$.
+
+6. ◦ In `y = a * b - c`, the inputs `a` and `b` are 6-bit unsigned integers and `c` is an 8-bit unsigned integer. Use interval [bitwidth analysis](/bitwidth-analysis/) to find the range of `a * b` and of `y`, and the fewest bits for each: unsigned for the product, two's complement for `y`.
+
+7. ◦ A pipelined loop reads `A[i]`, `A[i+2]` and `A[i+3]` in every iteration. With cyclic [memory partitioning](/memory-partitioning-for-hls/), element $x$ goes to bank $x \bmod N$. Give the least $N$ that makes the three reads conflict-free when each bank has one port, and when each bank has two ports.
+
+8. ◦ In a [latency-insensitive design](/latency-insensitive-design/), five shells form the ring A→B→C→D→E→A, with one relay station on C→D and one on D→E. A sixth channel B→A has one relay station. Each shell starts with one valid token and each relay station starts empty, so a cycle through $S$ shells and $R$ relay stations allows the throughput $S/(S+R)$. Give the throughput of each cycle and of the system.
+
+9. ◦ Four states get the 2-bit codes s0 = 00, s1 = 01, s2 = 11 and s3 = 10. For each of the face constraints $\{s_0, s_1\}$, $\{s_0, s_2\}$ and $\{s_1, s_2, s_3\}$ from [KISS symbolic minimization](/kiss-symbolic-minimization/), give the smallest face of the 2-cube that holds the codes of the group and say whether the constraint is met.
+
+10. ◦ A graph of unit-delay operations has the chain a→b→c→d, the chain e→f and two free operations g and h. Two identical units are available. Give the lower bound $\max(\mathrm{CP}, \lceil V/a \rceil)$ on the latency. Run [list scheduling](/list-scheduling/), which in each step starts the ready operations of highest priority, first with the priority list h, g, f, e, d, c, b, a and then with priority by height, the number of operations on the longest path from the operation to the end. Give both latencies.
+
+11. • An in-tree of unit-delay operations has the edges a→p, b→p, c→p, p→r, e→d, d→q and q→r. Two units are available. Compute $\max(\mathrm{CP}, \lceil V/a \rceil)$. Run [Hu's algorithm](/hu-algorithm/), breaking ties by name, and prove that its latency is the optimum of this [resource-constrained scheduling](/resource-constrained-scheduling/) problem even though it is above the bound.
+
+12. • In an [SDC schedule](/sdc-scheduling/), $v_0$ is a multiply with a latency of 2 steps, and $v_1 = v_0 + c$, $v_2 = v_1 + d$, $v_3 = v_1 - e$ and $v_4 = v_2 + v_3$ are additions and subtractions with a combinational delay of 3 ns each, at clock period 6 ns. Write the difference constraints, including the chaining row that keeps three chained additions out of one step, and give the least schedule and its number of steps. Then add the ordering rows for one adder with the order $v_1, v_2, v_3, v_4$, give the new schedule, and say whether it is optimal for one adder.
+
+13. • A scheduled graph has seven multiplies. In step 1, $m_1$ runs always. In step 2, $m_2$ runs in the then branch of a condition, $m_3$ in the else branch and $m_4$ always. In step 3, $m_5$ and $m_7$ run in the then branch and $m_6$ in the else branch. Draw the conflict graph of each step for [resource binding](/resource-binding/), where two operations conflict when they run in the same step and are not mutually exclusive. Give the least number of multipliers and a binding, and the number without the use of exclusivity.
+
+14. • [Weighted bipartite matching binding](/weighted-bipartite-matching-binding/) gets four values (held in steps, source unit, read ports): a in step 1 from U0, read by p1 and p2; b in steps 2 to 3 from U1, read by p0; c in steps 3 to 4 from U0, read by p0 and p2; d in steps 3 to 4 from U0, read by p1 and p2. Run the binder, which adds fresh registers only when the free ones are too few, and give its cost $\sum_r (|\mathrm{Src}(r)| + |\mathrm{Dst}(r)|)$. Then find a binding with the same number of registers and the least cost.
+
+15. • One two-port adder executes the additions R1+R2, R2+R3, R3+R4, R4+R5, R5+R1 and R1+R3, one per step. How many register-to-port connections does it need if each left operand goes to port 1 and each right operand to port 2? Using [interconnect binding](/interconnect-binding/), give the least number when operands may be swapped, and a pair of port sets that reaches it.
+
+16. • Fold a graph by $N = 2$ with the [folding transformation](/dsp-folding/). It has edges X→A with no delay, A→B with no delay, B→C with 1 delay and C→A with 1 delay. The folding orders are 0 for X, A and B and 1 for C. X has no pipelining and A, B and C sit on units with one pipeline stage. Compute $D_F(e) = N w(e) - P_U + v - u$ for every edge. Find a retiming with $r(U) - r(V) \le \lfloor D_F(e)/N \rfloor$ that makes all folded delays nonnegative, and give the new delays.
+
+17. • Unfold by $J = 2$ the graph with edges A→B with 1 delay and B→A with 2 delays, and times $t(A) = 2$, $t(B) = 1$. List the edges of the unfolded graph with their delays, check the total number of delays, and compare the iteration bound of the unfolded graph with that of the original.
+
+18. • Five tasks have (software time, hardware time, hardware area): P $(8, 2, 4)$, Q $(5, 1, 3)$, R $(6, 2, 2)$, S $(4, 1, 1)$ and T $(7, 3, 5)$. The total time is the sum over tasks, with no communication cost. Solve [hardware-software partitioning](/hardware-software-partitioning/) exactly for the area budgets 5 and 9, and compare with the greedy rule that takes tasks by gain per unit area while they fit.
+
+19. • The graph $m_1, m_2 \to a_1 \to m_3$ has two multiplies feeding an addition that feeds a third multiply. For [module selection](/module-selection/), the library has a fast multiplier F with delay 1 and area 6, a slow multiplier S with delay 2 and area 2, and an adder with delay 1 and area 1. Units are not pipelined and can be reused in later steps. Give the least total area for the latency bounds 3, 4, 5, 6 and 7.
+
+20. • A loop computes three products $m_1, m_2, m_3$ on one pipelined multiplier with latency 2, and the sums $a_1 = \mathit{acc} + m_1$, $a_2 = a_1 + m_2$, $a_3 = a_2 + m_3$ on one adder with latency 1, where $\mathit{acc}$ is the $a_3$ of the previous iteration. Compute ResMII and RecMII. Give a schedule at the initiation interval they bound, as [SDC modulo scheduling](/sdc-modulo-scheduling/) would seek it, and check the modulo resource table.
+
+21. • An SDF cycle has the edge A→B, where A produces 2 tokens and B consumes 3, and the edge B→A, where B produces 3 tokens and A consumes 2, with $d$ initial tokens on B→A and none on A→B. Give the repetition vector, and find with the [static scheduler](/sdf-static-scheduling/) the least $d$ for which one period completes, with its schedule.
+
+22. • A machine has the states 0, 1, 2 and 3 and two inputs. On input 0 it swaps 0 with 1 and 2 with 3; on input 1 it moves 0→2, 1→3, 2→1 and 3→0. Find every partition of the states with the substitution property, in the sense of [partition pairs](/partition-pair/). Does the machine have a serial decomposition, and does it have a parallel one?
+
+23. • A [compatibility graph](/resource-compatibility-graph/) has the vertices a to f and the edges ab, ac, bd, ce, de and ef. Run [Tseng-Siewiorek clique partitioning](/tseng-siewiorek-clique-partitioning/) with its key (most common neighbours, then fewest deleted edges, then smallest pair) and give its groups. Find a partition into fewer cliques.
+
+24. ★ A [latency-constrained scheduling](/latency-constrained-scheduling/) problem has seven unit-delay operations of one type, with a, b and c feeding d and d feeding e, f and g, and the latency bound 4. Give the ASAP and ALAP steps of every operation and the best window bound $\max \lceil W[j_1, j_2]/(j_2 - j_1) \rceil$ over all windows. Prove that the optimum is larger than this bound.
+
+25. ★ A mod 12 counter with an enable input stays on input 0 and moves from $s$ to $s + 1 \bmod 12$ on input 1. Find all its partitions with the substitution property. List the pairs that give a parallel [FSM decomposition](/fsm-decomposition/), and give the number of flip-flops of each, against 4 for the counter itself.
+
+26. ★ A loop has edges A→B with 1 delay and B→A with 1 delay, and times $t(A) = 3$, $t(B) = 1$. Compute its iteration bound. Prove that no retiming gives a clock period below 3. Unfold by 2 and show that the unfolded graph runs at 2 time units per sample, the iteration bound.
+
+27. ★ For the SDF cycle of Exercise 21 with general rates, A producing $p$ tokens on A→B and consuming $p$ on B→A, B consuming $c$ on A→B and producing $c$ on B→A, and $d$ initial tokens on B→A, prove that one period completes if and only if $d \ge p + c - \gcd(p, c)$.
+
+28. ★ Four tasks have (software time, hardware time): P $(6, 2)$, Q $(5, 4)$, R $(7, 3)$ and S $(3, 5)$, and two tasks placed on different sides pay a communication cost: 3 for P and Q, 2 for Q and R, 1 for R and S, and 2 for P and R. There is no area budget. Build the network of Stone's minimum cut method for this hardware-software partition, find the minimum cut and the best partition, and prove that it is optimal. Then explain why adding an area budget makes the problem NP-hard.

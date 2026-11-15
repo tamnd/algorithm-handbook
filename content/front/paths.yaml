@@ -2379,3 +2379,286 @@ paths:
           - difference-in-differences
           - instrumental-variables-estimation
           - local-average-treatment-effect
+
+  - id: electronic-design-automation
+    title: Electronic design automation
+    for: a student who knows graphs and shortest paths, Boolean functions, basic linear algebra and a little numerical analysis, and has met NP-completeness, and wants to follow a chip from a behavioural description to a tested layout, and to see which steps of the flow are solved exactly, which rest on models or bounds, and which are heuristics judged only by measured results.
+    intro: >
+      The path follows the design flow. High-level synthesis schedules and binds the operations of a data flow
+      graph; scheduling under resource limits is NP-hard, so its exact methods are integer programs and its fast
+      ones are heuristics, while difference constraints give integral schedules in polynomial time when resources
+      are left out. Logic synthesis minimizes two-level and multi-level logic, maps it to cells or lookup tables and
+      moves registers by retiming; Quine-McCluskey, FlowMap and minimum-period retiming are exact, Espresso and AIG
+      rewriting are heuristics. Simulation covers event-driven logic simulation and the Newton, sparse LU and implicit
+      integration steps of circuit simulation, whose answers are only as good as the device models. Verification
+      checks equivalence and properties with BDDs and SAT: model checking is complete for finite models, bounded model
+      checking only up to its bound, and signal correspondence is sound but not complete. Physical design comes next.
+      Partitioning, floorplanning, placement and routing are NP-hard in their usual forms, so apart from exact results
+      such as Hanan's theorem, the 3/2 Steiner ratio, Stockmeyer's sizing of a slicing floorplan and the left-edge
+      algorithm without vertical constraints, their methods are measured on benchmarks. Timing rests on delay models:
+      static timing analysis is exact for its model but pessimistic, Elmore delay is a model and an upper bound on the
+      50 percent delay of an RC tree, and buffering and sizing are optimal only under that model. Power estimates rest
+      on probability models of switching, and the yield, electromigration and mismatch models are empirical fits. Test
+      generation is complete for single stuck-at faults, and the defect level and aliasing formulas are exact only in
+      their models. The path ends with FPGA, analog, 3D and quantum design, where the same methods return.
+    stages:
+      - title: High-level synthesis and scheduling
+        intro: >
+          A behavioural description becomes a control and data flow graph, and a schedule and a binding turn it into
+          a controller and a datapath. ASAP and ALAP schedules come from longest paths; scheduling with resource
+          limits is NP-hard, solved exactly by integer programming in exponential worst-case time or quickly by
+          heuristics. Register binding on intervals and the iteration bound of a recursive graph are exact results.
+        steps:
+          - directed-acyclic-graph
+          - control-data-flow-graph
+          - finite-state-machine-with-datapath
+          - high-level-synthesis
+          - dag-longest-path
+          - entry: asap-alap-scheduling
+            why: the earliest and latest step of each operation, by longest paths in the DAG, which bound every schedule and give each operation its mobility.
+          - entry: resource-constrained-scheduling
+            why: NP-hard in general, so the fast schedulers for it are heuristics judged by the latencies they reach on benchmarks.
+          - force-directed-scheduling
+          - binary-integer-programming
+          - entry: ilp-scheduling-formulation
+            why: gives an optimal schedule, at the price of an integer program whose solution time can grow exponentially with the design.
+          - difference-constraints
+          - total-unimodularity
+          - entry: sdc-scheduling
+            why: timing and latency rules as difference constraints give an integral LP optimum in polynomial time; resource limits enter through a heuristic order, so the schedule can be longer than the best.
+          - resource-compatibility-graph
+          - entry: register-binding
+            why: for straight-line code the left-edge algorithm reaches the fewest registers, the largest number of values live in one step; with values live around a loop the problem is NP-complete.
+          - entry: iteration-bound
+            why: no schedule of a recursive data flow graph has a shorter sample period than its largest ratio of loop delay to loop registers, and retiming with unfolding reaches it.
+      - title: Logic synthesis and technology mapping
+        intro: >
+          Two-level minimization is NP-hard, solved exactly by prime implicants and a covering step and in practice by
+          the heuristic Espresso. Multi-level synthesis works on Boolean networks and and-inverter graphs by algebraic
+          division and rewriting, both measured by the literals or nodes they save. Technology mapping is optimal on
+          trees and, for depth with lookup tables, on general networks by FlowMap. Retiming moves registers to the
+          least clock period in polynomial time.
+        steps:
+          - boolean-circuit
+          - boolean-function
+          - sum-of-products
+          - prime-implicant
+          - dont-care-condition
+          - entry: two-level-logic-minimization
+            why: NP-hard from a truth table and Sigma_2^p-complete from a sum of products, so exact minimizers take exponential time in the worst case.
+          - set-cover
+          - entry: quine-mccluskey
+            why: exact, all prime implicants and then a minimum cover, in time exponential in the number of variables.
+          - shannon-expansion
+          - unate-recursive-paradigm
+          - entry: espresso
+            why: a heuristic whose covers are prime and irredundant but not proved minimum; its quality is known from measured results on benchmark functions.
+          - boolean-network
+          - kernel-extraction
+          - entry: and-inverter-graph
+            why: two-input AND nodes with inverted edges, kept free of duplicates by structural hashing, the form on which modern synthesis and equivalence checking work.
+          - aig-rewriting
+          - technology-mapping
+          - entry: tree-covering-technology-mapping
+            why: optimal on each tree of the subject graph by dynamic programming, but cutting the graph into trees gives up optimality for the whole network.
+          - k-feasible-cut
+          - entry: flowmap
+            why: a k-LUT mapping of least depth in polynomial time, by a max-flow test at each node; it minimizes depth, not the number of LUTs.
+          - entry: retiming
+            why: a retiming of least clock period in polynomial time, by binary search over the period and Bellman-Ford on difference constraints.
+      - title: Simulation and verification
+        intro: >
+          Logic simulation evaluates a design for given inputs, and circuit simulation solves Kirchhoff's laws with
+          nonlinear device models by Newton's method, sparse LU and implicit integration; Newton's method converges
+          only from a good start, which the continuation methods try to supply. Verification proves what simulation
+          only samples. Combinational equivalence is coNP-complete and sequential equivalence PSPACE-complete for
+          netlists. Model checking is complete for finite models, bounded model checking finds counterexamples only up
+          to its bound, and simulation-based verification is judged by the coverage it measures.
+        steps:
+          - logic-simulation
+          - event-driven-logic-simulation
+          - kirchhoff-circuit-laws
+          - modified-nodal-analysis
+          - entry: newton-method-for-systems
+            why: the iteration behind every DC and transient solve; it converges fast near a solution but needs a good start.
+          - dc-operating-point-analysis
+          - sparse-linear-systems
+          - backward-differentiation-formulas
+          - companion-model
+          - transient-circuit-analysis
+          - miter-circuit
+          - entry: reduced-ordered-bdd
+            why: canonical for a fixed variable order, so equivalence is a pointer test, but its size can be exponential and depends on the order.
+          - sat
+          - cdcl
+          - tseitin-transformation
+          - sat-sweeping
+          - cutpoint-equivalence-checking
+          - entry: sequential-equivalence-checking
+            why: reduces to reachability on the product machine and is PSPACE-complete for circuits given as netlists.
+          - entry: signal-correspondence
+            why: sound but not complete, it proves equivalence by an inductive invariant and misses an equivalence that depends on unreachable states.
+          - entry: symbolic-model-checking
+            why: complete for finite models, by fixed points over BDDs of state sets, though those BDDs can grow exponentially.
+          - entry: bounded-model-checking
+            why: finds every counterexample up to length k, and proves nothing beyond that bound unless k reaches a completeness threshold.
+          - entry: ic3-pdr
+            why: proves invariants of finite systems by one-step SAT queries, without unrolling, and also finds counterexamples.
+          - assertion-based-verification
+          - constrained-random-stimulus-generation
+      - title: Partitioning, floorplanning and placement
+        intro: >
+          Balanced hypergraph partitioning, floorplanning and placement are NP-hard, and their methods, from
+          Fiduccia-Mattheyses refinement and multilevel schemes to annealing over floorplan codes and analytical
+          placement, are judged by measured cut sizes, areas and wire lengths on benchmarks. The exact results are
+          narrower, such as the least-area sizing of a given slicing floorplan, and the convex objectives that analytical
+          placers minimize exactly but that only stand in for wire length.
+        steps:
+          - hypergraph-partitioning
+          - kernighan-lin
+          - entry: fiduccia-mattheyses
+            why: one pass of single-vertex moves with bucket gains in time linear in the pins; it finds a local minimum, not the least cut.
+          - multilevel-hypergraph-partitioning
+          - entry: rents-rule
+            why: an empirical law fitted to real circuits, used to predict terminal counts, cut sizes and wire length.
+          - floorplanning
+          - slicing-floorplan
+          - normalized-polish-expression
+          - entry: stockmeyer-floorplan-sizing
+            why: the least-area realization of a given slicing floorplan, found exactly by merging shape lists; choosing the floorplan is the hard part.
+          - simulated-annealing
+          - entry: wong-liu-floorplanning
+            why: annealing over normalized Polish expressions, with no bound on the result; it is judged by measured area and wire length.
+          - sequence-pair
+          - placement-problem
+          - entry: half-perimeter-wirelength
+            why: the cost most placers optimize, a lower bound on every rectilinear tree of a net and equal to the shortest one for two or three pins.
+          - entry: quadratic-placement
+            why: its convex quadratic is minimized exactly by a sparse solve, but it stands in for wire length and clusters cells, so the placement is judged after spreading.
+          - conjugate-gradient-method
+          - electrostatics-based-placement
+          - placement-legalization
+          - abacus-legalization
+      - title: Routing
+        intro: >
+          Maze routing finds a shortest path for one connection on a grid whenever one exists. Steiner trees for nets
+          are NP-hard to find, but Hanan's theorem limits the search to a finite grid and the rectilinear spanning tree
+          is within 3/2 of the optimum. Global routing with capacities is solved by negotiation, with no proof of
+          success, or by multicommodity flow within a proved factor of the fractional optimum before rounding. Channel
+          routing is NP-complete, and the left-edge algorithm is optimal only without vertical constraints.
+        steps:
+          - entry: lee-maze-routing
+            why: breadth-first search on the grid, which finds a shortest path whenever one exists.
+          - rectilinear-steiner-tree-problem
+          - entry: hanan-theorem
+            why: some rectilinear Steiner minimal tree lies on the grid of lines through the pins, which makes the problem finite.
+          - rectilinear-minimum-spanning-tree
+          - entry: hwang-rectilinear-steiner-ratio
+            why: the rectilinear MST is at most 3/2 times the Steiner minimal tree, and the bound is tight.
+          - iterated-one-steiner
+          - entry: flute
+            why: optimal trees from tables for nets of up to nine pins; larger nets are split, and for them the result is a heuristic with no proved ratio.
+          - global-routing
+          - rip-up-and-reroute
+          - entry: negotiated-congestion-routing
+            why: there is no general proof that it reaches a legal routing; its success is measured on benchmarks.
+          - entry: multicommodity-flow-global-routing
+            why: the fractional routing is within a factor 1 + epsilon of its optimum and gives a lower bound; rounding to one route per net loses that guarantee.
+          - detailed-routing
+          - channel-routing-problem
+          - channel-density
+          - vertical-constraint-graph
+          - entry: left-edge-algorithm
+            why: meets the density lower bound on tracks when the vertical constraint graph has no edges.
+          - channel-routing-np-completeness
+          - greedy-channel-router
+      - title: Timing, power, reliability and manufacturability
+        intro: >
+          Static timing analysis is exact for its delay model in one linear pass, but counts false paths and so is
+          pessimistic. Wire delay comes from RC models, of which Elmore delay is the simplest and an upper bound on the
+          50 percent delay of an RC tree; clock tree, buffering and sizing algorithms are at best optimal under such models, not for the silicon.
+          Power estimates rest on probabilistic models of switching. Electromigration, yield and defect models are
+          empirical fits to measured data, and the layout checks at the end are exact for the rules they are given.
+        steps:
+          - timing-graph
+          - arrival-and-required-time
+          - entry: static-timing-analysis
+            why: exact for its delay model in time linear in the timing graph, with no input vectors, but pessimistic since it counts paths no vector sensitizes.
+          - false-path
+          - rc-tree
+          - entry: elmore-delay
+            why: a model, the first moment of the impulse response; on an RC tree it is an upper bound on the 50 percent delay, not the delay itself.
+          - entry: statistical-static-timing-analysis
+            why: rests on a model of variation, often linear in Gaussian sources, with an approximate statistical max.
+          - clock-tree-synthesis
+          - entry: deferred-merge-embedding
+            why: zero skew with least wire length for a given topology under linear delay; under the Elmore delay it keeps zero skew but its wire length is only heuristic.
+          - entry: van-ginneken-buffer-insertion
+            why: the best source slack for a fixed routing tree under the Elmore model, by dynamic programming over load and required-time pairs.
+          - gate-sizing
+          - lagrangian-relaxation
+          - entry: lagrangian-relaxation-gate-sizing
+            why: exact for continuous sizes under the Elmore delay; a library of discrete sizes needs rounding.
+          - dynamic-power-dissipation
+          - switching-activity
+          - entry: signal-probability-propagation
+            why: exact without reconvergent fanout and under independent inputs; with reconvergence the gate formulas only approximate.
+          - power-grid-analysis
+          - entry: black-equation
+            why: an empirical model of electromigration lifetime whose constants are fitted to accelerated tests of one wire technology.
+          - critical-area
+          - entry: poisson-yield-model
+            why: assumes defects fall independently and uniformly, an assumption real wafers break.
+          - entry: negative-binomial-yield-model
+            why: adds a clustering parameter fitted to wafer data, so it matches clustered defects better but is still an empirical fit.
+          - design-rule-checking
+          - optical-proximity-correction
+      - title: Test and diagnosis
+        intro: >
+          Test generation for a single stuck-at fault is NP-complete, yet the D-algorithm, PODEM and SAT-based ATPG are
+          complete: given time, each finds a test or proves the fault redundant. Fault simulation measures coverage, and
+          the Williams-Brown formula turns coverage and yield into a defect level that is exact only in its model. Scan
+          and built-in self-test make large circuits testable, with aliasing probabilities that hold under a model of
+          random errors. Diagnosis reasons back from failing outputs to the faults that could explain them.
+        steps:
+          - stuck-at-fault-model
+          - automatic-test-pattern-generation
+          - d-algorithm
+          - entry: podem
+            why: complete, it finds a test or proves the fault redundant, with a search tree of at most 2^(n+1) - 1 nodes for n inputs.
+          - sat-based-atpg
+          - fault-simulation
+          - fault-coverage
+          - entry: williams-brown-defect-level
+            why: exact in a model where faults are equally likely and independent, so its error comes from those assumptions.
+          - scan-design
+          - linear-feedback-shift-register
+          - built-in-self-test
+          - multiple-input-signature-register
+          - entry: signature-aliasing-probability
+            why: tends to 2^(-k) for a k-bit register, under a model of independent random bit errors.
+          - effect-cause-diagnosis
+      - title: FPGA, analog and emerging technologies
+        intro: >
+          FPGA tools pack, place and route on a fixed fabric, with annealing placers measured by wire length and
+          minimum channel width. Analog sizing becomes a convex geometric program whose global optimum is only as good
+          as the fitted device equations, and matching rests on Pelgrom's empirical model. 3D integration and qubit
+          mapping bring the partitioning and routing problems back in new forms, still NP-hard and still measured.
+        steps:
+          - island-style-fpga
+          - fpga-logic-cluster
+          - fpga-packing
+          - fpga-timing-driven-annealing-placement
+          - routing-resource-graph
+          - minimum-channel-width
+          - analog-circuit-sizing
+          - geometric-programming
+          - entry: geometric-programming-circuit-sizing
+            why: an interior-point method finds the global optimum of the posynomial model, which is built on fitted device equations, so the design must still be simulated.
+          - entry: pelgrom-mismatch-model
+            why: an empirical model in which mismatch falls as one over the square root of gate area, with constants measured for each process.
+          - common-centroid-layout
+          - three-dimensional-integrated-circuit
+          - entry: qubit-mapping
+            why: NP-complete in its standard forms, so mappers such as SABRE are judged by measured SWAP counts and depth.
+          - sabre-qubit-mapping

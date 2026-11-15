@@ -1,0 +1,106 @@
+# The order of chapter 32.9, Test and diagnosis. Groups are read in order; entries in a group too.
+groups:
+  - title: Coverage and test quality
+    intro: >
+      A test set is judged against a fault list. [Fault coverage](/fault-coverage/) is the fraction of
+      modelled faults it detects, and a [redundant fault](/redundant-fault/) is one that no input can detect.
+      The [Williams-Brown defect level](/williams-brown-defect-level/) turns yield and coverage into the
+      fraction of bad chips shipped under a random-defect model, and an [N-detect test](/n-detect-test/)
+      detects each fault several times to catch defects the model leaves out.
+    entries:
+      - fault-coverage
+      - redundant-fault
+      - williams-brown-defect-level
+      - n-detect-test
+
+  - title: Fault models for defects and delay
+    intro: >
+      The [stuck-at model](/stuck-at-fault-model/) of chapter 32.7 misses shorts, leaks and slow gates.
+      The [bridging fault model](/bridging-fault-model/) and [IDDQ testing](/iddq-testing/) target shorts,
+      the [transition fault model](/transition-fault-model/) and the [path delay fault model](/path-delay-fault-model/)
+      target timing, and a [robust test](/robust-path-delay-test/) detects a slow path whatever the other delays.
+      [Cell-aware test](/cell-aware-test/) goes inside the library cell. Each model is complete only for its own faults.
+    entries:
+      - bridging-fault-model
+      - iddq-testing
+      - transition-fault-model
+      - path-delay-fault-model
+      - robust-path-delay-test
+      - cell-aware-test
+
+  - title: Test generation and compaction
+    intro: >
+      These methods speed up the complete search of [PODEM](/podem/) and keep test sets short.
+      The [FAN algorithm](/fan-algorithm/) prunes the search, and [static learning](/static-learning/) and
+      [recursive learning](/recursive-learning/) find implications that plain implication misses.
+      [Time-frame expansion](/time-frame-expansion/) reduces a sequential circuit to a combinational one, and
+      [dynamic](/dynamic-test-compaction/) and [static](/static-test-compaction/) compaction cut the number of patterns.
+    entries:
+      - fan-algorithm
+      - static-learning
+      - recursive-learning
+      - time-frame-expansion
+      - dynamic-test-compaction
+      - static-test-compaction
+
+  - title: Fault simulation
+    intro: >
+      [Fault simulation](/fault-simulation/) finds the faults that a test set detects. [Parallel fault simulation](/parallel-fault-simulation/)
+      packs faulty circuits into the bits of a word and [PPSFP](/ppsfp/) packs patterns instead.
+      [Deductive fault simulation](/deductive-fault-simulation/) carries fault lists through the gates, and
+      [critical path tracing](/critical-path-tracing/) traces back from the outputs. On combinational logic with single stuck-at faults all four give the same answer; they differ in cost.
+    entries:
+      - parallel-fault-simulation
+      - deductive-fault-simulation
+      - ppsfp
+      - critical-path-tracing
+
+  - title: Testability and random-pattern test
+    intro: >
+      [Built-in self-test](/built-in-self-test/) applies random patterns and compresses the responses.
+      The [COP measure](/cop-testability-measure/) estimates how often random patterns set and observe each line.
+      [Test point insertion](/test-point-insertion/) and [weighted random patterns](/weighted-random-pattern-testing/)
+      raise the chance of detecting the hard faults. The [MISR](/multiple-input-signature-register/) compresses the
+      responses, and the [aliasing probability](/signature-aliasing-probability/) says how often it hides an error under a random-error model.
+    entries:
+      - cop-testability-measure
+      - test-point-insertion
+      - weighted-random-pattern-testing
+      - multiple-input-signature-register
+      - signature-aliasing-probability
+
+  - title: Scan test and compression
+    intro: >
+      [Scan design](/scan-design/) makes every flip-flop readable and writable. [Scan chain ordering](/scan-chain-ordering/)
+      keeps the scan wires short, and [launch-on-capture and launch-on-shift](/launch-on-capture-and-launch-on-shift/) apply
+      delay tests through the chain. [Broadcast scan](/broadcast-scan/), [LFSR reseeding](/lfsr-reseeding/) and
+      [embedded deterministic test](/embedded-deterministic-test/) feed many chains from few tester pins, and
+      [X-Compact](/x-compact/) compresses the outputs even when some of them are unknown.
+    entries:
+      - scan-chain-ordering
+      - launch-on-capture-and-launch-on-shift
+      - broadcast-scan
+      - lfsr-reseeding
+      - embedded-deterministic-test
+      - x-compact
+
+  - title: Board, core and memory test
+    intro: >
+      [Boundary scan](/boundary-scan/) puts a scan cell at each chip pin to test the wires of a board.
+      The [SoC test wrapper and TAM design](/soc-test-wrapper-and-tam-design/) does the same for cores inside a chip and shares the test wires among them.
+      Memories have their own faults: a [coupling fault](/memory-coupling-fault/) links two cells, and a
+      [march test](/march-test/) detects these faults in a number of operations linear in the size.
+    entries:
+      - boundary-scan
+      - soc-test-wrapper-and-tam-design
+      - memory-coupling-fault
+      - march-test
+
+  - title: Diagnosis
+    intro: >
+      When a chip fails, diagnosis names the faults that could explain it. A [fault dictionary](/fault-dictionary/)
+      stores the responses of all modelled faults in advance, and [effect-cause diagnosis](/effect-cause-diagnosis/)
+      reasons back from the observed failure with no table. Both give a ranked or ambiguous set of candidates, not a proof of the defect.
+    entries:
+      - fault-dictionary
+      - effect-cause-diagnosis

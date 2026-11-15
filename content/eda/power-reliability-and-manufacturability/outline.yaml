@@ -1,0 +1,118 @@
+# The order of chapter 32.8, Power, reliability and manufacturability. Groups are read in order; entries in a group too.
+groups:
+  - title: Power and switching activity
+    intro: >
+      A CMOS gate spends energy each time it charges its load, which gives the
+      [dynamic power](/dynamic-power-dissipation/) $\alpha_{0 \to 1} C V^2 f$, and it draws
+      [leakage power](/leakage-power/) that grows exponentially as the threshold voltage falls.
+      The unknown in the first formula is the [switching activity](/switching-activity/), and
+      [glitch power](/glitch-power/) is the part of it that a zero-delay count misses.
+    entries:
+      - dynamic-power-dissipation
+      - leakage-power
+      - switching-activity
+      - glitch-power
+
+  - title: Estimating activity
+    intro: >
+      [Signal probabilities](/signal-probability-propagation/) and [transition densities](/transition-density/)
+      are propagated gate by gate in linear time; they are exact for independent inputs without reconvergent
+      fanout, and otherwise only approximate, not bounds. [BDDs](/bdd-switching-activity-estimation/) give
+      the exact zero-delay or gate-delay activity when they stay small, [Monte Carlo
+      estimation](/monte-carlo-power-estimation/) stops at an asymptotic confidence interval, and
+      [RTL macromodels](/rtl-power-macromodeling/) are regression fits made once per block.
+    entries:
+      - signal-probability-propagation
+      - transition-density
+      - bdd-switching-activity-estimation
+      - monte-carlo-power-estimation
+      - rtl-power-macromodeling
+
+  - title: Reducing power
+    intro: >
+      Most savings come from not switching. [Clock gating](/clock-gating/) stops the clock of idle registers,
+      [operand isolation](/operand-isolation/) freezes the inputs of unused units, and
+      [bus-invert coding](/bus-invert-coding/) caps the toggles of a bus at $\lceil n/2 \rceil$.
+      [Power gating](/power-gating/) cuts idle blocks from the supply, and
+      [multiple threshold voltages](/multi-threshold-voltage-assignment/) and
+      [clustered voltage scaling](/clustered-voltage-scaling/) spend timing slack on leakage and on a lower supply.
+    entries:
+      - clock-gating
+      - operand-isolation
+      - bus-invert-coding
+      - power-gating
+      - multi-threshold-voltage-assignment
+      - clustered-voltage-scaling
+
+  - title: Power grids
+    intro: >
+      [Power grid analysis](/power-grid-analysis/) solves $Gx = i$ for the voltage drops, with $G$ a symmetric
+      positive definite M-matrix of millions of rows. The [multigrid-like solver](/multigrid-power-grid-analysis/)
+      solves a coarse grid once, [random walks](/random-walk-power-grid-analysis/) give unbiased estimates at
+      single nodes, and [vectorless verification](/vectorless-power-grid-verification/) bounds the worst drop
+      over all currents allowed by linear constraints. [Decoupling capacitance](/decoupling-capacitance-allocation/)
+      limits transient droop but cannot fix a DC drop.
+    entries:
+      - power-grid-analysis
+      - multigrid-power-grid-analysis
+      - random-walk-power-grid-analysis
+      - vectorless-power-grid-verification
+      - decoupling-capacitance-allocation
+
+  - title: Coupling noise
+    intro: >
+      A switching neighbor injects current into a victim wire through the coupling capacitance. The
+      [crosstalk noise](/crosstalk-noise/) entry gives the charge-sharing and driven-victim formulas, the
+      [Miller coupling factor](/miller-coupling-factor/) folds coupling into a grounded capacitance for delay,
+      and the [Devgan metric](/devgan-noise-metric/) is a linear-time upper bound on the noise peak of an RC tree.
+    entries:
+      - crosstalk-noise
+      - miller-coupling-factor
+      - devgan-noise-metric
+
+  - title: Reliability and temperature
+    intro: >
+      A chip also has to survive. [Black's equation](/black-equation/) and the [Blech length](/blech-length/)
+      describe electromigration in wires, the [reaction-diffusion model](/nbti-reaction-diffusion-model/) gives the
+      power law of NBTI threshold shift, [soft error masking](/soft-error-masking/) counts the particle pulses that
+      never reach a latch, and a [compact thermal model](/compact-thermal-model/) turns a power map into
+      temperatures. The lifetime, aging and thermal numbers come from fitted models, not exact laws.
+    entries:
+      - black-equation
+      - blech-length
+      - nbti-reaction-diffusion-model
+      - soft-error-masking
+      - compact-thermal-model
+
+  - title: Yield
+    intro: >
+      [Critical area](/critical-area/) measures where a spot defect of a given size kills the chip, and
+      [Voronoi extraction](/voronoi-critical-area-extraction/) computes it for all sizes at once. The
+      [Poisson](/poisson-yield-model/), [Murphy](/murphy-yield-model/) and
+      [negative binomial](/negative-binomial-yield-model/) models turn the mean fault count into a yield,
+      [redundant vias](/redundant-via-insertion/) remove one common fault, and
+      [design centering](/design-centering/) with [simplicial approximation](/simplicial-approximation/)
+      treats parametric yield as a geometric problem.
+    entries:
+      - critical-area
+      - voronoi-critical-area-extraction
+      - poisson-yield-model
+      - murphy-yield-model
+      - negative-binomial-yield-model
+      - redundant-via-insertion
+      - design-centering
+      - simplicial-approximation
+
+  - title: Fill and lithography
+    intro: >
+      Polishing needs even metal density, so the [dummy fill problem](/dummy-fill-problem/) adds shapes within
+      window bounds, and [LP fill](/lp-density-fill/) solves it as a linear program over fixed dissections.
+      The [Hopkins model](/hopkins-imaging-model/) gives the aerial image as a bilinear form of the mask spectrum,
+      the [sum of coherent systems](/sum-of-coherent-systems/) truncates its eigendecomposition, and
+      [inverse lithography](/inverse-lithography-technology/) runs gradient descent on a nonconvex cost through it.
+    entries:
+      - dummy-fill-problem
+      - lp-density-fill
+      - hopkins-imaging-model
+      - sum-of-coherent-systems
+      - inverse-lithography-technology

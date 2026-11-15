@@ -1,0 +1,131 @@
+groups:
+  - title: FPGA architecture
+    intro: >
+      An [island-style FPGA](/island-style-fpga/) is a grid of logic blocks between routing channels of $W$
+      tracks, with programmable switches where the channels meet. A [logic cluster](/fpga-logic-cluster/) of
+      $N$ lookup tables with $I$ inputs is legal when $|C| \le N$ and its external nets number at most $I$.
+      A [switch block](/fpga-switch-block/) with flexibility 3 has $6W$ switches inside the array, and the
+      [universal switch block](/universal-switch-block/) is the proof that $6W$ switches can route every
+      requirement the side widths allow, while the planar pattern with the same count cannot. The
+      [routing resource graph](/routing-resource-graph/) writes the whole fabric as a graph that routers
+      search, and the [minimum channel width](/minimum-channel-width/) is the usual measure of a router; a
+      heuristic router gives only an upper bound on it.
+    entries:
+      - island-style-fpga
+      - fpga-logic-cluster
+      - fpga-switch-block
+      - universal-switch-block
+      - routing-resource-graph
+      - minimum-channel-width
+
+  - title: Technology mapping into lookup tables
+    intro: >
+      Three mappers that cover a network with $K$-input lookup tables. The general problem, cuts and
+      FlowMap are in Chapter 32.2, which this group builds on. [Chortle-crf](/chortle-crf/) packs the fanins
+      of each gate into tables by first-fit decreasing bin packing; the sources state that it uses the
+      fewest tables on a fanout-free tree when $K \le 5$, and on networks with fanout it is a heuristic. [CutMap](/cutmap/) keeps FlowMap's optimal depth and picks cuts of least cost below a
+      required time, and [DAOmap](/daomap/) does the same with enumerated cuts and an area flow that
+      charges duplication. The depth is proved; the area savings are measured on benchmarks.
+    entries:
+      - chortle-crf
+      - cutmap
+      - daomap
+
+  - title: Packing into clusters
+    intro: >
+      [FPGA packing](/fpga-packing/) groups the mapped lookup tables into clusters. Fewest clusters is
+      NP-hard in the strong sense, NP-complete already for $N = 3$, and a maximum matching for $N = 2$.
+      [T-VPack](/t-vpack/) grows one cluster at a time by an attraction that mixes criticality and shared
+      nets, and [AAPack](/aapack/) replaces its counting checks by a trial placement and route inside the
+      block, so it handles real architectures. Both are greedy, and neither is optimal.
+    entries:
+      - fpga-packing
+      - t-vpack
+      - aapack
+
+  - title: FPGA placement and routing
+    intro: >
+      [Timing-driven annealing placement](/fpga-timing-driven-annealing-placement/) is the VPR placer:
+      swaps of blocks by simulated annealing with an adaptive schedule, a range limit and a cost that mixes
+      wirelength and criticality. [HeAP](/heap-fpga-placement/) brings the analytical SimPL loop to FPGAs
+      with blocks of several types. Routing on the array is mostly negotiated congestion, treated in
+      Chapter 32.6; [SAT-based FPGA routing](/sat-based-fpga-routing/) does the detailed step exactly for a
+      fixed global routing, so that an unsatisfiable formula proves that no track assignment exists for
+      that global routing. Placers and the congestion router are judged by measured results.
+    entries:
+      - fpga-timing-driven-annealing-placement
+      - heap-fpga-placement
+      - sat-based-fpga-routing
+
+  - title: Analog sizing
+    intro: >
+      The [Pelgrom model](/pelgrom-mismatch-model/) $\sigma^2(\Delta P) = A_P^2/(WL) + S_P^2 D^2$ says that
+      matching costs area; its constants are fitted to measurements. [Analog circuit
+      sizing](/analog-circuit-sizing/) chooses widths, lengths and currents to meet gain, bandwidth and
+      matching at the least power or area. [Geometric programming](/geometric-programming-circuit-sizing/)
+      solves it to the global optimum of a posynomial model, and [annealing](/annealing-analog-sizing/)
+      searches a simulated or AWE-evaluated circuit with no optimality proof.
+    entries:
+      - pelgrom-mismatch-model
+      - analog-circuit-sizing
+      - geometric-programming-circuit-sizing
+      - annealing-analog-sizing
+
+  - title: Symbolic analysis
+    intro: >
+      [Symbolic analysis](/symbolic-circuit-analysis/) gives a transfer function with the element values
+      kept as symbols, read off the nodal matrix by Cramer's rule. The number of terms grows fast, as a
+      Fibonacci number for a ladder. [Determinant decision diagrams](/determinant-decision-diagram/) share
+      the minors of the expansion in a zero-suppressed graph, and [approximate symbolic
+      analysis](/approximate-symbolic-analysis/) drops small terms at a nominal point, with an error bound
+      that holds only near that point.
+    entries:
+      - symbolic-circuit-analysis
+      - determinant-decision-diagram
+      - approximate-symbolic-analysis
+
+  - title: Analog layout
+    intro: >
+      The [symmetry constraint](/analog-symmetry-constraint/) asks matched pairs to mirror each other about
+      an axis. A [common-centroid layout](/common-centroid-layout/) cancels every linear gradient exactly
+      when the centroids of the devices coincide, and leaves a quadratic residual. Placers keep symmetry by
+      construction: a [symmetric-feasible sequence pair](/symmetric-feasible-sequence-pair/) obeys a test
+      and a repair in $O(n)$ time, and an [ASF-B*-tree](/asf-b-star-tree/) packs the right half of a group
+      and mirrors it. The representations are those of Chapter 32.5; the annealing over them has no
+      optimality proof.
+    entries:
+      - analog-symmetry-constraint
+      - common-centroid-layout
+      - symmetric-feasible-sequence-pair
+      - asf-b-star-tree
+
+  - title: Three-dimensional integration
+    intro: >
+      A [3D IC](/three-dimensional-integrated-circuit/) stacks tiers joined by
+      [through-silicon vias](/through-silicon-via/), which are large and carry a keep-out zone, or by small
+      monolithic vias. [Tier partitioning](/tier-partitioning/) assigns cells to tiers with balanced area and
+      few crossings, and is NP-hard already for two tiers. [Shrunk-2D](/shrunk-2d/) places a two-tier
+      design with a 2D tool on cells shrunk by $1/\sqrt{2}$ and splits each bin by min-cut, and
+      [thermal-driven 3D floorplanning](/thermal-driven-3d-floorplanning/) anneals the layer of each block
+      with a thermal term in the cost.
+    entries:
+      - three-dimensional-integrated-circuit
+      - through-silicon-via
+      - tier-partitioning
+      - shrunk-2d
+      - thermal-driven-3d-floorplanning
+
+  - title: Reversible circuits and qubit mapping
+    intro: >
+      [Reversible logic synthesis](/reversible-logic-synthesis/) builds a permutation of bit vectors from
+      Toffoli gates; exact search scales to 3 and some 4-bit functions only. The
+      [transformation-based method](/transformation-based-reversible-synthesis/) always ends, with at most
+      $(n - 1)2^n + 1$ gates. [Qubit mapping](/qubit-mapping/) places logical qubits on a coupling graph and
+      adds SWAP gates; it is NP-complete, and exact methods handle small devices only.
+      [SABRE](/sabre-qubit-mapping/) is the heuristic that scales, with a lookahead score and forward and
+      backward passes.
+    entries:
+      - reversible-logic-synthesis
+      - transformation-based-reversible-synthesis
+      - qubit-mapping
+      - sabre-qubit-mapping

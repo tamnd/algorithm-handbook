@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.31.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.32.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.31.0](https://github.com/tamnd/algorithm/releases/tag/v0.31.0)
-(`2fee836256011b570948813cd7da43bef0d8c42e`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.32.0](https://github.com/tamnd/algorithm/releases/tag/v0.32.0)
+(`f8d4d6a217e3fb7d9058c9137d66c70534fa4ab1`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,664 |
+| 0 | Guide and Index | the whole set | 1,718 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -37,50 +37,42 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 29 | Games and search | 209 | 1,612 |
 | 30 | Quantum | 152 | 1,582 |
 | 31 | CAD | 125 | 980 |
-| 32 | Electronic design automation | 148 | 1,103 |
+| 32 | Electronic design automation | 358 | 2,690 |
 | 33 | Statistics and inference | 276 | 2,168 |
-| | **All** | **8,661** | **60,105** |
+| | **All** | **8,871** | **61,746** |
 
-- **New in this edition: Volume 33, Statistics and inference**, with all eight of its chapters written: *Point
-  estimation* (33 entries: bias, variance and mean squared error, one-pass and parallel variance by Welford's method,
-  likelihood and Fisher information, sufficiency and the Rao-Blackwell and Lehmann-Scheffé theorems, consistency and
-  asymptotic normality of the maximum likelihood estimator, the delta method, estimating equations and the
-  generalized method of moments, shrinkage and the James-Stein estimator, and survey sampling with the
-  Horvitz-Thompson estimator), *Hypothesis testing and intervals* (45 entries: errors and p-values, confidence sets
-  and their duality with tests, tests on normal means, intervals for proportions, the Neyman-Pearson lemma, the
-  likelihood ratio test and Wilks' theorem, family-wise error control by Bonferroni, Holm and Hochberg, and the false
-  discovery rate, q-values and e-values), *Nonparametric, resampling and robust methods* (44 entries: the empirical
-  distribution, the bootstrap and the jackknife, rank and permutation tests, the influence function and the breakdown
-  point, M-estimators, trimmed means and the median of absolute deviations, robust regression by least median of
-  squares and others, robust multivariate estimation and the Tukey median, kernel smoothing, and conformal
-  prediction), *Regression and diagnostics* (31 entries: least squares and the F-test, model selection, leverage and
-  influence, tests of the error assumptions such as Breusch-Pagan, heteroskedasticity-consistent errors, correlated
-  errors and mixed models, iteratively reweighted least squares, quasi-likelihood and generalized estimating
-  equations, and inference after selection), *Bayesian statistics* (29 entries: posterior summaries and credible
-  intervals, priors and the Bernstein-von Mises theorem, hierarchical models, Bayes factors and the Lindley paradox,
-  sparse priors, marginal likelihoods, approximate Bayesian computation, and posterior predictive checks and
-  simulation-based calibration), *Time series and sequential analysis* (35 entries: stationary and ARMA processes,
-  fitting by the Yule-Walker equations, the innovations algorithm and the Whittle likelihood, trends and seasons,
-  vector autoregressions, unit-root tests and cointegration, the sequential probability ratio test and group
-  sequential trials, change-point detection by CUSUM and PELT, and anytime-valid inference with confidence
-  sequences), *Causal inference and design of experiments* (41 entries: potential outcomes, randomized experiments,
-  factorial and fractional designs, optimal design and the Fedorov exchange algorithm, propensity scores and
-  matching, doubly robust and double machine learning estimators, instrumental variables, regression discontinuity
-  and synthetic control, and causal graphs and their discovery) and *Survival analysis* (18 entries: censoring, the
-  Kaplan-Meier and Nelson-Aalen estimators, the log-rank test, the Cox model, accelerated failure time models, and
-  competing risks with the Fine-Gray model). The pages say which guarantees are exact, which are asymptotic, and
-  which are only measured by simulation.
-- **Volume 0, Guide and Index**, covers the whole set of 8,661 entries. It has a new learning path, *Statistics and
-  inference*, in seven stages.
-- **Volumes 1 to 32** have the same entries under the same numbers as in 0.30.0. The entries of the written chapters
-  of Volumes 31 and 32 have the corrections that the site made in its release v0.31.0. Cross-references from earlier
-  volumes to entries of Volume 33 now give entry numbers. In the EPUB of Volume 24, a formula that showed as TeX
-  source is now rendered.
+- **Volume 32, Electronic design automation, is now complete**: the six chapters that were openings only in 0.31.0
+  are written, and the volume has 358 entries in ten chapters. The new chapters are *High-level synthesis and
+  scheduling* (33 entries: control data flow graphs, Kahn process networks and synchronous dataflow, scheduling a
+  block under resource and latency limits, allocation and binding of units and registers, branches and loops with
+  speculation and modulo scheduling, the iteration bound, folding and unfolding for signal processing, state
+  assignment and decomposition of controllers, and interface synthesis and hardware-software partitioning), *Logic and circuit simulation* (36 entries: multi-valued logic and delay
+  models, event-driven and compiled logic simulators, hazards and switch-level simulation, modified nodal analysis
+  and device models, sparse LU factorization, the DC operating point with gmin and source stepping, transient
+  analysis with companion models and TR-BDF2, small-signal AC, sensitivity and noise analysis, periodic steady
+  state by shooting and harmonic balance, and timing and mixed-mode simulation), *Hardware verification* (28 entries: coverage
+  of simulation, constrained random stimulus, assertions, combinational equivalence checking and debugging,
+  sequential equivalence, symbolic simulation and symbolic trajectory evaluation, verification of arithmetic circuits and processors, and clock
+  domain crossings with synchronizers), *Power, reliability and manufacturability* (41 entries: switching activity
+  and its estimation, clock and power gating, multiple threshold voltages and other ways to reduce power, power grid
+  analysis and vectorless verification, coupling noise, electromigration, aging, soft errors and thermal models,
+  critical area and yield models, and dummy fill, imaging models and inverse lithography), *Test and diagnosis* (37 entries: fault coverage and defect
+  level, fault models for defects and delay, test generation and compaction, fault simulation, testability measures
+  and random-pattern test, scan test and test compression, board, core and memory test, and diagnosis of failing
+  chips) and *FPGA, analog and emerging technologies* (35 entries: FPGA architecture, technology mapping into lookup
+  tables, packing, placement and routing of FPGAs, analog sizing and symbolic analysis, analog layout,
+  three-dimensional integration, and reversible circuits and qubit mapping). As in the rest of the volume, the
+  pages say which methods are exact, which come with a proved bound, and which are judged by measured results on
+  benchmarks. The introduction of the volume now covers all ten chapters.
+- **Volume 0, Guide and Index**, covers the whole set of 8,871 entries. It has a new learning path, *Electronic
+  design automation*, in eight stages.
+- **Volumes 1 to 31 and 33** have the same entries under the same numbers as in 0.31.0. Cross-references from
+  other volumes to the new entries of Volume 32 now give entry numbers.
 - Volumes 34 to 39 (Compilers and program analysis, Information retrieval and AI reasoning, Control, Robotics,
-  Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters. The remaining chapters of Volumes 31
-  and 32 are still openings only.
+  Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters. Chapters 31.2, 31.4, 31.6, 31.7, 31.9
+  and 31.10 of Volume 31 are still openings only.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.31.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.32.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

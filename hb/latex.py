@@ -67,8 +67,16 @@ def brace_scripts(tex: str) -> str:
     tex = re.sub(r"(?<!\\)([_^])(\\triangle)(?![a-zA-Z])", r"\1{\2}", tex)
     # a prime, then a subscript, then a superscript: KaTeX allows it, TeX sees a double superscript
     tex = _PRIME_SUB_SUP.sub(_prime_sub_sup, tex)
+    # unicode-math sets \mathrm in the text font, which has no math Greek: `\mathrm{k\Omega}` (a unit) loses its Ω.
+    # The Greek letter goes outside, upright from the math font (\symup; \mathup is the text font too).
+    tex = _MATHRM_GREEK.sub(lambda m: (r"\mathrm{" + m[1] + "}" if m[1] else "") + r"\symup{" + "\\" + m[2] + "}", tex)
     # unicode-math's \not looks for a negated character; ↝ has none and XeTeX dies ("bad native font flag")
     return tex.replace(r"\not\leadsto", r"\centernot\leadsto")
+
+
+_GREEK = ("alpha beta gamma delta epsilon varepsilon zeta eta theta vartheta iota kappa lambda mu nu xi pi rho sigma "
+          "tau upsilon phi varphi chi psi omega Gamma Delta Theta Lambda Xi Pi Sigma Upsilon Phi Psi Omega").split()
+_MATHRM_GREEK = re.compile(r"\\mathrm\{([^{}\\]*)\\(" + "|".join(_GREEK) + r")\s*\}")
 
 
 _PRIME_SUB_SUP = re.compile(r"(\\[a-zA-Z]+|[A-Za-z0-9)\]}])('+)(_(?:\{[^{}]*\}|\\?[A-Za-z0-9]+))(?=\^)")

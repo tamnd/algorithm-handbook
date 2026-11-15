@@ -1,0 +1,119 @@
+# The order of chapter 32.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Values and delays
+    intro: >
+      A logic simulator computes the values of the nets of a design over time for given input stimuli.
+      Two choices fix what it can show: the delay model, where transport delay passes every pulse and
+      inertial delay swallows short ones, and the value system, where X and Z stand for unknown and
+      undriven nets. Values beyond 0 and 1 are sound but pessimistic on reconvergent fanout.
+    entries:
+      - logic-simulation
+      - inertial-and-transport-delay
+      - multi-valued-logic-simulation
+
+  - title: Logic simulators
+    intro: >
+      Compiled-code and cycle-based simulators levelize the logic once and evaluate every gate in a fixed
+      order, with no timing inside a cycle. The event-driven simulator evaluates only the gates whose
+      inputs changed and is exact for its delay model. The delta cycle orders zero-delay events of VHDL
+      and Verilog at one simulation time.
+    entries:
+      - compiled-code-logic-simulation
+      - cycle-based-simulation
+      - event-driven-logic-simulation
+      - delta-cycle
+
+  - title: Hazards and transistor-level logic
+    intro: >
+      Ternary simulation runs a circuit in 0, 1 and X to find the static hazards and critical races that
+      hold for every gate and wire delay. Switch-level simulation models MOS transistors as switches with
+      strengths and nodes as stores of charge. It cuts the transistor netlist into channel-connected
+      components, the unit that the timing simulators of the last group also evaluate.
+    entries:
+      - ternary-simulation
+      - channel-connected-component
+      - switch-level-simulation
+
+  - title: Circuit equations and device models
+    intro: >
+      Circuit simulation starts from Kirchhoff's laws on the circuit graph and the laws of the elements.
+      Modified nodal analysis writes them as equations in the node voltages and a few branch currents,
+      with a fixed stamp for each element. The Shichman-Hodges model gives the MOSFET drain current.
+      Tellegen's theorem and the sparse tableau are the general forms behind sensitivity and the
+      first sparse simulators.
+    entries:
+      - kirchhoff-circuit-laws
+      - modified-nodal-analysis
+      - shichman-hodges-model
+      - tellegen-theorem
+      - sparse-tableau-analysis
+
+  - title: Sparse linear solvers
+    intro: >
+      Every Newton step of a circuit simulator solves a sparse linear system, and its cost is set by the
+      fill-in of the LU factors. Markowitz pivoting picks pivots that limit fill subject to a size
+      threshold. Gilbert-Peierls LU runs in time proportional to the arithmetic, and KLU adds a block
+      triangular form and fill-reducing orders for circuit matrices.
+    entries:
+      - markowitz-pivoting
+      - gilbert-peierls-lu
+      - klu-solver
+
+  - title: DC operating point
+    intro: >
+      The DC operating point solves the nonlinear resistive equations with capacitors open and inductors
+      shorted. Newton's method converges only from a good start, so simulators add aids: junction
+      voltage limiting damps the exponential of a diode, and gmin stepping and source stepping follow a
+      continuation path that is smooth for monotone circuits.
+    entries:
+      - dc-operating-point-analysis
+      - gmin-stepping
+      - source-stepping
+      - junction-voltage-limiting
+
+  - title: Transient analysis
+    intro: >
+      A companion model replaces each capacitor and inductor, at one step of an implicit formula, by a
+      conductance and a current source. Transient analysis repeats such resistive solves over time, with
+      steps chosen from local truncation error estimates, so the error is controlled but not bounded.
+      TR-BDF2 is a second-order L-stable integrator that avoids the ringing of the trapezoidal rule, and
+      pseudo-transient analysis turns time stepping back on the DC problem.
+    entries:
+      - companion-model
+      - transient-circuit-analysis
+      - tr-bdf2
+      - pseudo-transient-analysis
+
+  - title: Small-signal analysis
+    intro: >
+      Linearized at the operating point, the circuit becomes a complex linear system at each frequency.
+      AC analysis solves it exactly, adjoint sensitivity gets the derivatives of one output for all
+      parameters from one transposed solve, and noise analysis uses the same adjoint to sum the noise of
+      every source. Padé via Lanczos reduces a large linear network to a few poles.
+    entries:
+      - ac-small-signal-analysis
+      - adjoint-sensitivity-analysis
+      - circuit-noise-analysis
+      - pade-via-lanczos
+
+  - title: Periodic steady state
+    intro: >
+      Oscillators, mixers and power converters need the periodic steady state, which plain transient
+      analysis reaches only after many periods. Harmonic balance solves for a truncated Fourier series,
+      and the shooting-Newton method solves for an initial state that returns after one period. Phase
+      noise analysis then uses the periodic solution to compute the spectrum of a noisy oscillator.
+    entries:
+      - harmonic-balance-analysis
+      - shooting-newton-steady-state
+      - phase-noise-analysis
+
+  - title: Fast and mixed simulation
+    intro: >
+      Large digital circuits are too big for the direct method. Timing simulation makes one relaxation
+      sweep per time step over the transistor netlist, iterated timing analysis repeats the sweeps until
+      they converge, and mixed-mode simulation couples a circuit solver to an event-driven logic
+      simulator.
+    entries:
+      - timing-simulation
+      - iterated-timing-analysis
+      - mixed-mode-simulation

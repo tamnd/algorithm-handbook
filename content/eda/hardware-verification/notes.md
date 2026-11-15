@@ -1,0 +1,20 @@
+## History
+
+Equivalence checking grew out of logic synthesis. Berman and Trevillyan (1989) compared circuits by finding internal points that are equal, and Brand (1993) used test generation to prove such points equivalent. Kuehlmann and Krohm (1997) combined BDDs, structural hashing and cutpoints, and removed the false negatives that cuts create. Burch and Singhal (1998) mapped latches by their functions instead of their names. For sequential designs, Pixley (1992) defined equivalence on the product machine from the reset states, and Singhal and Pixley (1994) introduced safe replaceability. Van Eijk (1998, 2000) gave signal correspondence as a fixed point of induction, and Bjesse and Claessen (2000) recast it with SAT.
+
+Symbolic methods began with Bryant's ordered BDDs in 1986. Carter, Joyner and Brand (1979) had already simulated with symbols, and the COSMOS simulator of Bryant and colleagues (1987) did it at the switch level. Coudert, Berthet and Madre (1989) computed reachable states with BDDs, and Coudert and Madre (1990) gave the constrain and range operators for images. Burch, Clarke and Long (1991) partitioned the transition relation, and Ranjan and colleagues (1995) ordered the parts for early quantification. Bryant (1991) showed that ternary simulation with X is sound, and Seger and Bryant (1995) built symbolic trajectory evaluation on it. Yang and Seger extended it to assertion graphs in papers from 2001 to 2003.
+
+Arithmetic and processors needed other ideas. Burch and Dill (1994) verified pipeline control by flushing and uninterpreted functions, and Hosabettu and colleagues (1998) split the proof into steps. Bryant, German and Velev (2001) used positive equality to make such checks scale. Ciesielski and colleagues introduced Taylor expansion diagrams in 2001 and 2002 and developed them up to 2006. Lv, Kalla and Enescu (2013) verified Galois-field multipliers with Gröbner bases. Ritirc, Biere and Kauers (2017) and Kaufmann, Biere and Kauers (2019) made algebraic rewriting work on large integer multipliers.
+
+Simulation-based verification developed alongside. Chilenski and Miller (1994) defined MC/DC for avionics software. Ho and Horowitz (1996) measured coverage of state machines, Devadas, Ghosh and Keutzer (1996) asked that errors propagate to outputs, and Fallah and colleagues (1998) gave the OCCOM computation. Tasiran and Keutzer (2001) surveyed the metrics. Yuan and colleagues (1999) generated constrained random stimulus from BDDs, and Fine and Ziv (2003) used Bayesian networks to steer tests toward coverage holes. Assertions were standardized as PSL in IEEE 1850-2005 and as SVA in IEEE 1800. Smith, Veneris, Ali and Viglas (2005) turned debugging into SAT.
+
+Metastability was observed long before tools checked it. Chaney and Molnar (1973) showed that a flip-flop can stay undecided for an unbounded time. Veendrick (1980) measured the exponential law of resolution. Cummings (2002) described the Gray-coded asynchronous FIFO used in practice, and Ginosar (2011) wrote a tutorial on synchronizers and their MTBF.
+
+## Further reading
+
+- A. Kuehlmann and C. A. J. van Eijk, "Combinational and sequential equivalence checking", in *Logic Synthesis and Verification* (2002), surveys miters, cutpoints and signal correspondence.
+- J. Yuan, C. Pixley and A. Aziz, *Constraint-Based Verification* (2006), treats constraints, BDD generation and assertions as one subject.
+- C.-J. H. Seger and R. E. Bryant, "Formal verification by symbolic evaluation of partially-ordered trajectories" (1995), is the source of STE and its lattice.
+- J. R. Burch and D. L. Dill, "Automatic verification of pipelined microprocessor control" (1994), is short and still the clearest account of flushing.
+- S. Tasiran and K. Keutzer, "Coverage metrics for functional validation of hardware designs" (2001), compares the coverage metrics of the chapter.
+- R. Ginosar, "Metastability and synchronizers, a tutorial" (2011), explains the MTBF formula and how its constants are measured.
