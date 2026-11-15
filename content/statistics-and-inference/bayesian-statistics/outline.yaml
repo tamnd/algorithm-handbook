@@ -1,0 +1,91 @@
+# The order of chapter 33.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Summaries of the posterior
+    intro: >
+      A posterior is a whole distribution, and these entries say how to report it. An interval comes from
+      its quantiles or from its highest density, a single number from a loss function, and a forecast from
+      averaging the model over the posterior. Read the [credible interval](/credible-interval/) first: it
+      sets apart a statement about the parameter given the data from a statement about repeated samples.
+    entries:
+      - credible-interval
+      - highest-posterior-density-interval
+      - bayes-estimator
+      - posterior-predictive-distribution
+
+  - title: Priors, and when they stop mattering
+    intro: >
+      A prior can be chosen to say little. These entries show which priors with infinite mass still give a
+      proper posterior, how Jeffreys and Bernardo built priors from the model alone, and why the choice fades
+      as the sample grows. The [Bernstein-von Mises theorem](/bernstein-von-mises-theorem/) states the
+      conditions under which it fades, and its failures show where it does not.
+    entries:
+      - improper-prior
+      - jeffreys-prior
+      - reference-prior
+      - bernstein-von-mises-theorem
+
+  - title: Models with structure
+    intro: >
+      Conjugate regression gives every posterior in closed form. De Finetti's theorem explains why a prior
+      over a parameter is a natural model for exchangeable data, and the hierarchical model applies the same
+      idea to groups, which then borrow strength from each other. Empirical Bayes estimates the top level
+      from the data instead of giving it a prior.
+    entries:
+      - bayesian-linear-regression
+      - de-finetti-theorem
+      - hierarchical-bayesian-model
+      - empirical-bayes
+
+  - title: Testing and comparing models
+    intro: >
+      The Bayes factor compares two models by how well each predicted the data. These entries give it, a
+      shortcut for nested models, the limit in which it and a significance test disagree, and the averaging
+      of predictions over models instead of the choice of one.
+    entries:
+      - bayes-factor
+      - savage-dickey-density-ratio
+      - lindley-paradox
+      - bayesian-model-averaging
+
+  - title: Sparse priors
+    intro: >
+      When most coefficients are expected to be zero, the prior can say so. The spike-and-slab prior puts a
+      point mass at zero and gives each coefficient a probability of inclusion. The horseshoe gets a similar
+      posterior mean from a continuous prior with heavy tails.
+    entries:
+      - spike-and-slab-prior
+      - horseshoe-prior
+
+  - title: Computing marginal likelihoods and marginals
+    intro: >
+      Most posteriors and marginal likelihoods have no closed form. The Laplace approximation replaces the
+      posterior by a normal law at its mode, and INLA nests two of them for latent Gaussian models. Bridge
+      sampling and nested sampling estimate marginal likelihoods from random draws, which the Bayes factor
+      needs.
+    entries:
+      - laplace-approximation
+      - integrated-nested-laplace-approximation
+      - bridge-sampling
+      - nested-sampling
+
+  - title: Inference without a likelihood
+    intro: >
+      Some models can be simulated but their likelihood cannot be computed. Approximate Bayesian computation
+      keeps the parameters whose simulated data look like the observed data. Read the technique first, then
+      the rejection algorithm, then the sequential version that wastes fewer simulations.
+    entries:
+      - approximate-bayesian-computation
+      - abc-rejection-sampling
+      - abc-sequential-monte-carlo
+
+  - title: Checking models and computations
+    intro: >
+      A fitted model can be wrong, and a correct model can be computed wrongly. The posterior predictive
+      check compares the data with data the model predicts. WAIC and PSIS-LOO estimate how well the model
+      predicts new data. Simulation-based calibration checks the computation itself, with the model assumed
+      true.
+    entries:
+      - posterior-predictive-check
+      - widely-applicable-information-criterion
+      - pareto-smoothed-importance-sampling-loo
+      - simulation-based-calibration

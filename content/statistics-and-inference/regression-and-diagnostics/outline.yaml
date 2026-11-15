@@ -1,0 +1,98 @@
+# The order of the chapter on regression and diagnostics. Groups are read in order; entries in a group too.
+groups:
+  - title: Fit and the F-test
+    intro: >
+      A least squares fit leaves a residual sum of squares, and most of this chapter starts from it. The
+      coefficient of determination compares it with the total spread, the F-test compares the residual sums
+      of two nested models, and the variance inflation factor shows how collinearity inflates the variance
+      of one coefficient. The deviance plays the part of the residual sum of squares for a
+      [generalized linear model](/generalized-linear-model/).
+    entries:
+      - coefficient-of-determination
+      - regression-f-test
+      - variance-inflation-factor
+      - deviance-statistic
+
+  - title: Choosing among models
+    intro: >
+      A larger model always fits the same data at least as well, so a fair choice must pay for each
+      parameter. AIC pays 2 per parameter and estimates how well a model will predict new data; BIC pays
+      $\log n$ and approximates the posterior probability of a model. Stepwise regression searches the
+      subsets greedily, and leaps and bounds finds the best subset of each size exactly.
+    entries:
+      - akaike-information-criterion
+      - bayesian-information-criterion
+      - stepwise-regression
+      - leaps-and-bounds
+
+  - title: Points that pull the fit
+    intro: >
+      The hat matrix maps the responses to the fitted values, and its diagonal holds the leverages. A
+      residual divided by an estimate of its own standard deviation is a studentized residual, and Cook's
+      distance combines residual and leverage into a measure of influence. All of them come from one fit,
+      without refitting.
+    entries:
+      - hat-matrix
+      - leverage-statistics
+      - studentized-residual
+      - cooks-distance
+
+  - title: Checking the error assumptions
+    intro: >
+      The exact t and F laws need errors that are normal, uncorrelated and of equal variance, and the
+      Gauss-Markov theorem needs the last two. A Q-Q plot checks the normality of the residuals, the
+      Box-Cox transformation looks for a scale on which the assumptions hold better, and the Durbin-Watson
+      test checks time-ordered residuals for first-order correlation.
+    entries:
+      - q-q-plot
+      - gauss-markov-theorem
+      - box-cox-transformation
+      - durbin-watson-test
+
+  - title: Unequal variances
+    intro: >
+      When the error variance changes from row to row, least squares stays unbiased but its usual standard
+      errors estimate the wrong quantity. The Breusch-Pagan test looks for the problem. Sandwich standard
+      errors keep the fit and repair the variance, and weighted least squares changes the fit and is best
+      when the variances are known.
+    entries:
+      - heteroscedasticity
+      - breusch-pagan-test
+      - heteroscedasticity-consistent-standard-errors
+      - weighted-least-squares
+
+  - title: Correlated errors and random effects
+    intro: >
+      Generalized least squares whitens the errors by a known covariance. A linear mixed model builds that
+      covariance from random effects, Henderson's equations give the fixed effects and the predictions of
+      the random effects without inverting the $n \times n$ covariance, and REML estimates the variance
+      components. Cluster-robust standard errors keep least squares and need only independence between
+      groups.
+    entries:
+      - generalized-least-squares
+      - linear-mixed-model
+      - cluster-robust-standard-errors
+      - henderson-mixed-model-equations
+      - restricted-maximum-likelihood
+
+  - title: Beyond least squares
+    intro: >
+      Iteratively reweighted least squares fits generalized linear models and robust M-estimators by a
+      loop of weighted fits. Quasi-likelihood keeps the same equations when only the mean and the variance
+      function are specified, and generalized estimating equations extend them to correlated responses. The
+      errors-in-variables model drops the assumption that the predictors are measured exactly.
+    entries:
+      - iteratively-reweighted-least-squares
+      - quasi-likelihood
+      - generalized-estimating-equations
+      - errors-in-variables-regression
+
+  - title: Inference after selection
+    intro: >
+      Tests and intervals for a model chosen from the same data do not have their usual laws. Post-selection
+      inference gives three exact remedies: fresh data, simultaneous intervals over all models, or
+      conditioning on the selection. The polyhedral lemma makes the conditional route exact for the lasso
+      and for forward stepwise regression under normal errors with known variance.
+    entries:
+      - post-selection-inference
+      - polyhedral-lemma

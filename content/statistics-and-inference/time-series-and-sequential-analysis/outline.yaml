@@ -1,0 +1,101 @@
+groups:
+  - title: Stationary processes and linear models
+    intro: >
+      A stationary series has a constant mean and an autocovariance $\gamma(h)$ that depends only on the lag.
+      These entries define it and build the linear models on top of it: the autoregression, the moving
+      average and their mix, the ARMA model, with the partial autocorrelation that tells them apart. The
+      Wold decomposition explains why these models are enough for any stationary series with no
+      deterministic part.
+    entries:
+      - stationary-process
+      - autoregressive-model
+      - moving-average-model
+      - arma-model
+      - partial-autocorrelation-function
+      - wold-decomposition-theorem
+
+  - title: Fitting a linear model
+    intro: >
+      Three computations turn autocovariances or data into model parameters. The Yule-Walker equations fit
+      an autoregression by solving a Toeplitz system with the Levinson-Durbin recursion. The innovations
+      algorithm gives the exact Gaussian likelihood of any stationary model, and the Whittle likelihood
+      approximates it in the frequency domain with one fast Fourier transform.
+    entries:
+      - yule-walker-equations
+      - innovations-algorithm
+      - whittle-likelihood
+
+  - title: Trends, seasons and model building
+    intro: >
+      Real series drift and repeat. ARIMA models difference a series until it looks stationary, and
+      Holt-Winters smoothing and STL handle trend and season directly. The Box-Jenkins method is the
+      loop of identifying, fitting and checking a model, and the Ljung-Box test is its check on the
+      residuals. GARCH models the variance, which can change over time even when the mean does not.
+    entries:
+      - arima-model
+      - holt-winters-method
+      - stl-decomposition
+      - ljung-box-test
+      - box-jenkins-method
+      - garch-model
+
+  - title: Several series at once
+    intro: >
+      A vector autoregression lets each series depend on the past of all of them. Granger causality asks
+      whether the past of one series improves the forecast of another, which is a question about
+      prediction, not about cause and effect.
+    entries:
+      - vector-autoregression
+      - granger-causality
+
+  - title: Unit roots and cointegration
+    intro: >
+      A random walk is not stationary, and regressions between random walks give spurious results. The
+      Dickey-Fuller test takes a unit root as its null and the KPSS test takes stationarity, so they are
+      used together. Two series with unit roots are cointegrated when a linear combination of them is
+      stationary; the Engle-Granger and Johansen tests look for such combinations, and their critical
+      values are nonstandard.
+    entries:
+      - augmented-dickey-fuller-test
+      - kpss-test
+      - cointegration
+      - engle-granger-test
+      - johansen-test
+
+  - title: Sequential tests and group sequential trials
+    intro: >
+      A sequential test reads data one at a time and stops when the evidence is strong enough. Wald's
+      SPRT does this for two simple hypotheses, and no test with the same error rates has a smaller
+      expected sample size. Clinical trials
+      look at their data only a few times, and group sequential designs, with O'Brien-Fleming boundaries
+      or an alpha spending function, keep the overall type I error at $\alpha$ across those looks.
+    entries:
+      - sequential-probability-ratio-test
+      - group-sequential-design
+      - obrien-fleming-boundary
+      - alpha-spending-function
+
+  - title: Change points
+    intro: >
+      A change point is a time at which the distribution of a series changes. Offline, the whole series
+      is split into segments by an exact dynamic program, by its pruned form PELT, or by greedy binary
+      segmentation. Online, CUSUM raises an alarm soon after a change with few false alarms, and the
+      Bayesian online detector keeps a posterior over the time since the last change.
+    entries:
+      - change-point-detection
+      - binary-segmentation
+      - pelt-algorithm
+      - cusum
+      - bayesian-online-changepoint-detection
+
+  - title: Anytime-valid inference
+    intro: >
+      A test martingale is the wealth of a bettor against the null hypothesis. Ville's inequality bounds
+      the chance that it ever reaches $1/\alpha$ by $\alpha$, so tests, p-values and confidence sequences
+      built from it stay valid when the analyst looks after every observation and stops at will. The
+      mixture SPRT is the test used for continuously monitored online experiments.
+    entries:
+      - test-martingale
+      - ville-inequality
+      - confidence-sequence
+      - mixture-sequential-probability-ratio-test

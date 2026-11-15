@@ -1,0 +1,63 @@
+# The order of chapter 33.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Event times and censoring
+    intro: >
+      A survival analysis studies the time $T$ until an event, and the data rarely show every $T$. The
+      survival function and the hazard are two descriptions of the same distribution, one as a probability
+      and one as a rate among those still at risk. Censoring says what the data do show, and the
+      assumption of independent censoring is what lets the later estimators use it.
+    entries:
+      - survival-function
+      - censoring
+      - hazard-function
+  - title: Estimating a survival curve
+    intro: >
+      With right-censored data, the Kaplan-Meier estimator multiplies the conditional survival
+      fractions at the event times, and the Nelson-Aalen estimator adds the hazard increments. Both are
+      a sort and a pass over the risk sets. Greenwood's formula gives the variance of the Kaplan-Meier
+      curve, and the Turnbull estimator extends the nonparametric maximum likelihood estimate to
+      interval-censored times, where it has no closed form and is found by an EM algorithm.
+    entries:
+      - kaplan-meier-estimator
+      - nelson-aalen-estimator
+      - greenwood-formula
+      - turnbull-estimator
+  - title: Comparing groups
+    intro: >
+      The log-rank test compares the observed and expected numbers of events in each group, one
+      $2 \times 2$ table per event time, and refers the result to a chi-squared law with one degree of
+      freedom. It is most sensitive to proportional hazards, and weighted versions shift the weight to
+      early or late times.
+    entries:
+      - log-rank-test
+  - title: The Cox model
+    intro: >
+      The Cox model lets covariates multiply an unspecified baseline hazard by $e^{\beta^{\mathsf T}x}$.
+      The partial likelihood estimates $\beta$ without the baseline, the Breslow estimator then recovers
+      the baseline cumulative hazard, and the Schoenfeld residuals check the assumption of proportional
+      hazards on which all of it rests.
+    entries:
+      - cox-proportional-hazards-model
+      - cox-partial-likelihood
+      - breslow-estimator
+      - schoenfeld-residuals
+  - title: Other models and prediction
+    intro: >
+      The accelerated failure time model lets covariates stretch time instead of scaling the hazard, and
+      the Weibull model is the case that is both. A frailty model adds an unobserved factor shared within
+      a cluster, which explains why marginal hazard ratios drift towards 1. Harrell's C measures how well
+      any of these models ranks subjects by risk.
+    entries:
+      - accelerated-failure-time-model
+      - frailty-model
+      - harrell-c-index
+  - title: Competing risks
+    intro: >
+      When one kind of event prevents the others, the cumulative incidence of each cause replaces one
+      minus the Kaplan-Meier curve. The Aalen-Johansen estimator computes it, and more generally the
+      transition probabilities of a multistate process. The Fine-Gray model puts covariates on the
+      cumulative incidence of one cause through its subdistribution hazard.
+    entries:
+      - competing-risks
+      - aalen-johansen-estimator
+      - fine-gray-model

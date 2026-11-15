@@ -2144,3 +2144,238 @@ paths:
             why: circuits of Clifford gates alone are simulated classically in polynomial time, so a speedup needs a gate outside the group.
           - entry: quantum-threshold-theorem
             why: below a constant error rate, under its noise model, any circuit can be run reliably with polylogarithmic overhead.
+  - id: statistics-and-inference
+    title: Statistics and inference
+    for: a student who knows probability (random variables, expectation, variance, the law of large numbers and the central limit theorem), some linear algebra and least squares, and wants to see how data become estimates, tests and intervals, and which of their guarantees are exact in finite samples, which hold only as the sample grows, and which rest on assumptions that the data cannot check.
+    intro: >
+      The path starts with estimators judged by their sampling distributions: bias, variance and mean squared error,
+      the likelihood and maximum likelihood, and the Cramer-Rao bound and the Rao-Blackwell theorem, which hold for
+      every sample size, against consistency and asymptotic normality, which hold only in the limit. Tests and
+      intervals come next. A p-value is the probability, computed under the null hypothesis, of a statistic at least
+      as extreme as the one observed; it is not the probability that the null is true. Some tests are exact, such as
+      the binomial test, and the t-test under normal data; many are asymptotic, such as the chi-squared,
+      Wald and likelihood ratio tests. Multiple testing closes the stage. Resampling, ranks and robust estimation
+      follow: the permutation test and conformal prediction are exact under exchangeability, the bootstrap only
+      asymptotically. Regression gives the Gauss-Markov theorem and the exact F-test under their assumptions, the
+      sandwich standard errors that are only asymptotic, and generalized linear models; survival analysis adds
+      censoring and the Cox model, which assumes proportional hazards. The Bayesian stage reads the posterior as the
+      answer, with Markov chain Monte Carlo to compute it, whose draws reach the posterior only in the limit. Time
+      series assume stationarity, and sequential tests built on Ville's inequality stay valid at any stopping time.
+      The path ends with experiments and causal effects, identified by randomization or else only under unconfoundedness
+      and the other assumptions each design names.
+    stages:
+      - title: Estimators and likelihood
+        intro: >
+          An estimator is a random variable, and everything said about it is a statement about its sampling
+          distribution. Unbiasedness, the Cramer-Rao bound and the Rao-Blackwell theorem are exact for each n;
+          consistency, Slutsky's theorem, the asymptotic normality of the MLE and the delta method are limits.
+        steps:
+          - random-variable
+          - variance
+          - law-of-large-numbers
+          - central-limit-theorem
+          - entry: estimator
+            why: a rule computed from the sample, judged by the distribution of its values over repeated samples.
+          - sampling-distribution
+          - estimator-bias
+          - sample-variance
+          - standard-error
+          - mean-squared-error
+          - entry: welford-algorithm
+            why: the mean and variance in one stable pass, without the cancellation of the textbook formula.
+          - consistent-estimator
+          - likelihood-function
+          - maximum-likelihood-estimation
+          - kullback-leibler-divergence
+          - score-function
+          - fisher-information-matrix
+          - entry: cramer-rao-bound
+            why: under regularity conditions, a lower bound on the variance of every unbiased estimator at every sample size.
+          - sufficient-statistic
+          - rao-blackwell-theorem
+          - slutsky-theorem
+          - entry: asymptotic-normality-of-mle
+            why: the MLE is approximately normal with the inverse Fisher information as variance, a limit as n grows, not a finite-sample law.
+          - delta-method
+      - title: Tests and intervals
+        intro: >
+          A test bounds the chance of rejecting a true null, and an interval covers the parameter with a stated
+          probability over repeated samples, not with that probability for the one interval computed. Each test
+          below is marked by whether its null law is exact or only asymptotic, and under which model.
+        steps:
+          - statistical-hypothesis-test
+          - type-i-and-type-ii-errors
+          - entry: p-value
+            why: the probability under the null of a statistic at least as extreme as the one observed, not the probability that the null is true.
+          - statistical-power
+          - binomial-distribution
+          - entry: binomial-test
+            why: an exact test for every n, from the binomial law itself.
+          - z-test
+          - entry: student-t-test
+            why: exact under normal independent data; for other data its level holds only as n grows.
+          - confidence-interval
+          - t-confidence-interval
+          - pivotal-quantity
+          - entry: clopper-pearson-interval
+            why: coverage at least the nominal level for every n and p, at the price of being conservative.
+          - wilson-score-interval
+          - chi-squared-goodness-of-fit-test
+          - neyman-pearson-lemma
+          - likelihood-ratio-test
+          - entry: wilks-theorem
+            why: twice the log likelihood ratio is asymptotically chi-squared under regularity, for nested models with the true value inside the parameter space.
+          - wald-test
+          - multiple-comparisons-problem
+          - family-wise-error-rate
+          - union-bound
+          - entry: bonferroni-correction
+            why: the union bound keeps the family-wise error rate at most alpha under any dependence.
+          - false-discovery-rate
+          - entry: benjamini-hochberg-procedure
+            why: controls the false discovery rate at q when the null p-values are independent; under arbitrary dependence it needs a correction.
+      - title: Resampling, ranks and robustness
+        intro: >
+          Methods that assume little about the law of the data. The DKW inequality and the rank and permutation tests
+          give finite-sample guarantees, the latter two under exchangeability of the data under the null; the
+          bootstrap is justified only asymptotically. Robust estimators trade some efficiency for a bounded influence of
+          bad points.
+        steps:
+          - order-statistic
+          - median
+          - quantile
+          - empirical-distribution-function
+          - entry: dkw-inequality
+            why: a bound on the uniform distance between the empirical and the true distribution function that holds for every n.
+          - kolmogorov-smirnov-test
+          - entry: permutation-test
+            why: exact level for any sample size when the data are exchangeable under the null.
+          - wilcoxon-signed-rank-test
+          - entry: bootstrap-method
+            why: resamples the data to approximate a sampling distribution, a method justified as n grows, not for a fixed small n.
+          - bootstrap-percentile-interval
+          - prediction-interval
+          - entry: conformal-prediction
+            why: prediction sets with coverage at least 1 - alpha in finite samples, assuming only exchangeable data.
+          - split-conformal-prediction
+          - huber-contamination-model
+          - breakdown-point
+          - influence-function
+          - m-estimator
+          - huber-m-estimator
+      - title: Regression and survival
+        intro: >
+          The linear model with its exact results under stated assumptions, Gauss-Markov for uncorrelated errors of
+          equal variance and the F-test for normal errors, then the diagnostics and the asymptotic standard errors
+          that relax them, and generalized linear models fitted by iteratively reweighted least squares. Inference after
+          a data-driven choice of model needs its own theory. Survival data add censoring; the Kaplan-Meier estimator
+          assumes censoring independent of the event, and the Cox model assumes proportional hazards.
+        steps:
+          - least-squares-problem
+          - linear-regression
+          - qr-decomposition
+          - ordinary-least-squares
+          - entry: gauss-markov-theorem
+            why: in a linear model with uncorrelated errors of equal variance, OLS has the least variance among linear unbiased estimators, for every n.
+          - regression-f-test
+          - heteroscedasticity
+          - entry: heteroscedasticity-consistent-standard-errors
+            why: the sandwich standard errors, valid without equal variances but only asymptotically.
+          - weighted-least-squares
+          - generalized-linear-model
+          - fisher-scoring
+          - iteratively-reweighted-least-squares
+          - akaike-information-criterion
+          - entry: post-selection-inference
+            why: p-values and intervals computed after the data chose the model lose their stated level unless the selection is accounted for.
+          - survival-function
+          - censoring
+          - hazard-function
+          - kaplan-meier-estimator
+          - log-rank-test
+          - entry: cox-proportional-hazards-model
+            why: regression on the hazard under the assumption that hazard ratios are constant in time.
+          - cox-partial-likelihood
+          - schoenfeld-residuals
+      - title: Bayesian inference
+        intro: >
+          The posterior is the answer, and estimators and intervals are read from it. Decision theory ties it to the
+          earlier stages, through Bayes estimators and the James-Stein estimator. Markov chain Monte Carlo computes
+          posteriors that have no closed form; its draws come from the posterior only in the limit, and diagnostics can
+          show that a run has not converged, never that it has.
+        steps:
+          - statistical-decision-theory
+          - bayes-theorem
+          - bayesian-inference
+          - conjugate-prior
+          - credible-interval
+          - posterior-predictive-distribution
+          - bayes-estimator
+          - entry: james-stein-estimator
+            why: for three or more normal means, shrinkage has lower total squared error than the sample means at every parameter value.
+          - marginal-likelihood
+          - empirical-bayes
+          - bayes-factor
+          - entry: lindley-paradox
+            why: with a large sample, a small p-value and a Bayes factor in favour of the null can come from the same data.
+          - entry: metropolis-hastings
+            why: a Markov chain whose stationary distribution is the posterior; its states approach that law only as the run grows.
+          - gibbs-sampling
+          - effective-sample-size
+          - gelman-rubin-diagnostic
+          - entry: de-finetti-theorem
+            why: an infinite exchangeable sequence is a mixture of independent identically distributed ones, the basis of a prior.
+          - hierarchical-bayesian-model
+          - entry: bernstein-von-mises-theorem
+            why: in regular parametric models the posterior approaches a normal law centred at the MLE, a limit result, so credible and confidence intervals agree only asymptotically.
+      - title: Time series and sequential analysis
+        intro: >
+          Dependent data. The ARMA models assume a stationary process, and tests of a unit root have nonstandard
+          asymptotic laws. Sequential analysis looks at the data as they arrive: Wald's test, CUSUM, group sequential
+          designs that spend alpha over planned looks, and the test martingales whose guarantee, by Ville's inequality,
+          holds at every stopping time.
+        steps:
+          - entry: stationary-process
+            why: the assumption, a law unchanged by shifts in time, on which the models of this stage rest.
+          - autoregressive-model
+          - moving-average-model
+          - arma-model
+          - arima-model
+          - ljung-box-test
+          - augmented-dickey-fuller-test
+          - change-point-detection
+          - entry: sequential-probability-ratio-test
+            why: stops when the likelihood ratio leaves an interval, and for two simple hypotheses no test with its error rates has a smaller expected sample size.
+          - cusum
+          - group-sequential-design
+          - martingale
+          - e-variable
+          - test-martingale
+          - entry: ville-inequality
+            why: a nonnegative supermartingale started at 1 ever reaches 1 / alpha with probability at most alpha, so the test stays valid under optional stopping.
+          - confidence-sequence
+      - title: Experiments and causal effects
+        intro: >
+          Causal effects as contrasts of potential outcomes. Randomization identifies the average treatment effect by
+          design; without it, each method identifies the effect only under its own assumptions, unconfoundedness and
+          overlap for weighting and matching, parallel trends for difference in differences, exclusion and monotonicity
+          for instruments. Sensitivity analysis asks how much hidden bias would change the answer.
+        steps:
+          - potential-outcomes-framework
+          - sutva
+          - average-treatment-effect
+          - entry: randomized-experiment
+            why: random assignment makes the difference in means unbiased for the average treatment effect, with no model of the outcome.
+          - simpsons-paradox
+          - entry: ignorability
+            why: unconfoundedness given the covariates, the assumption behind every method of this stage that does not randomize.
+          - propensity-score
+          - horvitz-thompson-estimator
+          - inverse-probability-weighting
+          - propensity-score-matching
+          - entry: augmented-inverse-probability-weighting
+            why: consistent if either the outcome model or the propensity model is correct, and its standard errors are asymptotic.
+          - rosenbaum-sensitivity-analysis
+          - difference-in-differences
+          - instrumental-variables-estimation
+          - local-average-treatment-effect

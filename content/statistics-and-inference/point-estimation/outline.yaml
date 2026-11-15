@@ -1,0 +1,103 @@
+# The order of chapter 33.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Estimators and their errors
+    intro: >
+      An estimator is a rule that turns data into a guess, and its quality is a property of the rule, not of
+      one guess. These entries define the rule, its sampling distribution, its bias and its standard error,
+      and the sample variance with divisor $n - 1$. The last entry asks what happens as $n$ grows: a
+      consistent estimator converges in probability to its target.
+    entries:
+      - estimator
+      - sampling-distribution
+      - estimator-bias
+      - sample-variance
+      - standard-error
+      - consistent-estimator
+
+  - title: Computing the variance in one pass and in parallel
+    intro: >
+      The textbook formula $\sum x_i^2 - n\bar x^2$ cancels badly when the mean is large compared with the
+      spread. Welford's algorithm updates a count, a mean and a sum of squared deviations one value at a
+      time, and the Chan-Golub-LeVeque merge combines two such summaries exactly, so the sample variance can
+      be computed by any tree of merges with $\Theta(\log n)$ depth.
+    entries:
+      - welford-algorithm
+      - chan-parallel-variance
+
+  - title: Likelihood and information
+    intro: >
+      The likelihood reads the model as a function of the parameter with the data held fixed. Its logarithm
+      compares models through the [Kullback-Leibler divergence](/kullback-leibler-divergence/), and its
+      derivative, the score, has mean zero and variance equal to the Fisher information under regularity
+      conditions. Fisher scoring uses that information as the step matrix of a Newton-type method for the
+      [maximum likelihood estimate](/maximum-likelihood-estimation/).
+    entries:
+      - likelihood-function
+      - kullback-leibler-divergence
+      - score-function
+      - fisher-scoring
+
+  - title: Sufficiency and the best unbiased estimator
+    intro: >
+      A sufficient statistic keeps everything the data say about the parameter, and the factorization
+      theorem finds one by reading the likelihood. Among unbiased estimators, the Cramér-Rao bound limits
+      the variance under regularity conditions, conditioning on a sufficient statistic never hurts, and
+      completeness makes the result unique. Together these give the minimum variance unbiased estimator in
+      most textbook models.
+    entries:
+      - sufficient-statistic
+      - fisher-neyman-factorization-theorem
+      - minimum-variance-unbiased-estimator
+      - cramer-rao-bound
+      - rao-blackwell-theorem
+      - complete-statistic
+      - lehmann-scheffe-theorem
+
+  - title: Large-sample theory
+    intro: >
+      Most estimators have no exact sampling distribution, so their standard errors come from limit
+      theorems. Slutsky's theorem lets a consistent estimate replace an unknown constant, the delta method
+      carries a normal limit through a smooth function, and the maximum likelihood estimator is
+      asymptotically normal with variance $I(\theta_0)^{-1}/n$ under stated conditions. All three are
+      statements about the limit, not about a fixed $n$.
+    entries:
+      - slutsky-theorem
+      - delta-method
+      - asymptotic-normality-of-mle
+
+  - title: Estimating equations
+    intro: >
+      Many estimators are roots of a sum of estimating functions, one per observation. The method of moments
+      matches as many moments as there are parameters, M-estimators cover the mean, the median, least
+      squares and the MLE, with the sandwich covariance $A^{-1}BA^{-\mathsf T}/n$, and the generalized method
+      of moments combines more conditions than parameters. Empirical likelihood builds a likelihood ratio
+      from the same conditions without a parametric model.
+    entries:
+      - method-of-moments
+      - m-estimator
+      - generalized-method-of-moments
+      - empirical-likelihood
+
+  - title: Decision theory and shrinkage
+    intro: >
+      Statistical decision theory compares estimators by their risk, the expected loss, as a function of the
+      parameter. An admissible estimator is one that no other estimator beats everywhere. The James-Stein
+      estimator shows that the sample mean of $p \ge 3$ normal means is not admissible under total squared
+      error.
+    entries:
+      - statistical-decision-theory
+      - admissible-estimator
+      - james-stein-estimator
+
+  - title: Sampling designs and missing data
+    intro: >
+      Two kinds of incomplete observation need their own estimators. In a probability sample, the
+      Horvitz-Thompson estimator weights each unit by $1/\pi_i$ and is unbiased for every design with all
+      $\pi_i > 0$. When values are missing, the mechanism decides what can be estimated, and multiple
+      imputation, built one column at a time by chained equations, carries the uncertainty of the missing
+      values into the standard errors under missing at random.
+    entries:
+      - horvitz-thompson-estimator
+      - missing-data-mechanism
+      - multiple-imputation
+      - multiple-imputation-by-chained-equations

@@ -1,0 +1,107 @@
+# The order of chapter 33.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The causal question
+    intro: >
+      A causal effect compares the outcome a unit would have under treatment with the outcome it would
+      have under control, and only one of the two is ever seen. These entries set up that model, the
+      assumption that makes each unit's outcomes well defined, the averages we can hope to estimate, and
+      the reason a randomized experiment estimates them. Simpson's paradox shows what goes wrong without it.
+    entries:
+      - potential-outcomes-framework
+      - sutva
+      - average-treatment-effect
+      - randomized-experiment
+      - simpsons-paradox
+
+  - title: Analysing a comparative experiment
+    intro: >
+      Once the treatments have been assigned by chance, the data still have to be analysed. The F test
+      of one-way ANOVA asks whether any group differs, and the methods of Scheffé and Tukey say which ones
+      do with a joint error rate. Blocks, Latin squares and incomplete blocks remove nuisance variation by
+      design, two-way ANOVA handles two factors at once, and CUPED removes variation with a covariate
+      measured before the experiment.
+    entries:
+      - one-way-anova
+      - scheffe-method
+      - tukey-hsd
+      - randomized-block-design
+      - latin-square-design
+      - balanced-incomplete-block-design
+      - two-way-anova
+      - cuped
+
+  - title: Designs for many factors
+    intro: >
+      With several factors the question is which runs to make. A full factorial runs every combination;
+      a fraction runs a subset chosen so that main effects are confused only with high-order interactions.
+      Orthogonal arrays and Plackett-Burman designs are the combinatorial objects behind these fractions,
+      and response surface methodology uses them in a sequence that climbs toward an optimum.
+    entries:
+      - factorial-design
+      - fractional-factorial-design
+      - orthogonal-array
+      - plackett-burman-design
+      - response-surface-methodology
+
+  - title: Optimal design
+    intro: >
+      For a regression model the runs can be chosen to make the information matrix as large as possible
+      in some sense. The determinant gives D-optimality. The Kiefer-Wolfowitz theorem gives a check that a
+      design is D-optimal, and the Fedorov exchange algorithm finds good exact designs by local search.
+    entries:
+      - optimal-experimental-design
+      - kiefer-wolfowitz-equivalence-theorem
+      - fedorov-exchange-algorithm
+
+  - title: Adjusting for measured confounders
+    intro: >
+      Without randomization, a comparison of treated and untreated units is causal only if all the
+      common causes of treatment and outcome are measured. Ignorability states this, and the propensity
+      score reduces the adjustment to one number. Weighting and matching are the two ways to use it, and
+      Rosenbaum's analysis asks how large a hidden bias would have to be to change the conclusion.
+    entries:
+      - ignorability
+      - propensity-score
+      - inverse-probability-weighting
+      - propensity-score-matching
+      - rosenbaum-sensitivity-analysis
+
+  - title: Doubly robust and machine-learning estimators
+    intro: >
+      Augmented weighting combines an outcome model with a propensity model and stays consistent if
+      either one is right. Its score is also insensitive to small errors in both, which lets flexible
+      learners estimate them. Double machine learning and targeted maximum likelihood are the two main
+      ways to use this.
+    entries:
+      - augmented-inverse-probability-weighting
+      - double-machine-learning
+      - targeted-maximum-likelihood-estimation
+
+  - title: Natural experiments
+    intro: >
+      When confounders are not measured, some designs still identify an effect under assumptions of a
+      different kind. Difference in differences and synthetic control use the time path of untreated
+      units. Instrumental variables use a variable that moves the treatment but not the outcome directly,
+      and the LATE theorem says whose effect they then estimate. Regression discontinuity uses a cutoff
+      in a score.
+    entries:
+      - difference-in-differences
+      - synthetic-control-method
+      - instrumental-variables-estimation
+      - two-stage-least-squares
+      - local-average-treatment-effect
+      - regression-discontinuity-design
+
+  - title: Mechanisms and causal graphs
+    intro: >
+      The last group uses causal graphs. Mediation analysis splits an effect into the part through a
+      mediator and the rest, and the front-door criterion uses a mediator to identify an effect despite
+      hidden confounding. The PC, FCI, GES and LiNGAM algorithms try to learn the graph itself from data,
+      each under its own assumptions.
+    entries:
+      - mediation-analysis
+      - front-door-criterion
+      - pc-algorithm
+      - fci-algorithm
+      - greedy-equivalence-search
+      - lingam

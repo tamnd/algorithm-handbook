@@ -1,0 +1,114 @@
+# The order of chapter 33.3. Groups are read in order; entries in a group too.
+groups:
+  - title: The empirical distribution
+    intro: >
+      Every method of the chapter starts from the sample itself. The empirical distribution function puts
+      mass $1/n$ on each point, the Glivenko-Cantelli theorem says it converges to the true distribution
+      function uniformly, and the DKW inequality says how fast, with a constant that holds for every $n$.
+      Two goodness-of-fit tests measure the distance between it and a model.
+    entries:
+      - empirical-distribution-function
+      - glivenko-cantelli-theorem
+      - dkw-inequality
+      - kolmogorov-smirnov-test
+      - anderson-darling-test
+
+  - title: Resampling
+    intro: >
+      The [bootstrap](/bootstrap-method/) recomputes a statistic on samples drawn from the data, and the
+      jackknife on samples with one point left out. Three interval methods turn bootstrap replicates into
+      confidence intervals of increasing accuracy. The last two entries adapt resampling to dependent data
+      and to statistics, such as the maximum, where the plain bootstrap fails. Every guarantee here is
+      asymptotic.
+    entries:
+      - bootstrap-method
+      - jackknife-resampling
+      - parametric-bootstrap
+      - bootstrap-percentile-interval
+      - bootstrap-t-interval
+      - bca-bootstrap-interval
+      - block-bootstrap
+      - subsampling-inference
+
+  - title: Rank and permutation tests
+    intro: >
+      These tests get their null distribution by counting: signs, ranks or rearrangements of labels that are
+      equally likely under the null. So their level is exact at every sample size, given exchangeability.
+      The sign test and the permutation test come first; the rank tests for one, two, $k$ and blocked samples
+      follow, then rank correlation and the U-statistics that unify several of them.
+    entries:
+      - sign-test
+      - permutation-test
+      - wilcoxon-signed-rank-test
+      - mann-whitney-u-test
+      - kruskal-wallis-test
+      - friedman-test
+      - spearman-rank-correlation
+      - u-statistic
+
+  - title: Measuring robustness
+    intro: >
+      Three ways to say how much bad data an estimator survives. The contamination model mixes the model with
+      an arbitrary law, the breakdown point counts how many points can be replaced before the estimate runs to
+      infinity, and the influence function measures the effect of one infinitesimal outlier.
+    entries:
+      - huber-contamination-model
+      - breakdown-point
+      - influence-function
+
+  - title: Robust location and scale
+    intro: >
+      Estimators of a centre and a spread that tolerate outliers. The MAD and the trimmed mean are computed
+      by selection. The Huber and biweight M-estimators solve an equation by reweighting, and the
+      Hodges-Lehmann estimator inverts the Wilcoxon test. They trade breakdown point against efficiency at
+      the normal law in different ways.
+    entries:
+      - median-absolute-deviation
+      - trimmed-mean
+      - huber-m-estimator
+      - tukey-biweight
+      - hodges-lehmann-estimator
+
+  - title: Robust regression
+    intro: >
+      Lines and planes that bad points cannot carry away. Theil-Sen and the repeated median take medians of
+      slopes. Least median of squares and least trimmed squares fit the best part of the data and reach
+      breakdown point near one half, and the MM-estimator adds high efficiency at the normal law.
+    entries:
+      - theil-sen-estimator
+      - repeated-median-regression
+      - least-median-of-squares
+      - least-trimmed-squares
+      - mm-estimator
+
+  - title: Robust multivariate estimation
+    intro: >
+      In several dimensions there is no single order. The minimum covariance determinant picks the tightest
+      subset, halfspace depth orders points from the centre outward and the Tukey median is the deepest
+      point. The filter estimates a mean in high dimension with an error that does not grow with the
+      dimension.
+    entries:
+      - minimum-covariance-determinant
+      - halfspace-depth
+      - tukey-median
+      - robust-mean-estimation-filter
+
+  - title: Smoothing
+    intro: >
+      Kernel methods estimate a density or a regression function without a parametric form. The bandwidth
+      sets the trade between bias and variance, and choosing it is a problem of its own. Local polynomials
+      remove the boundary bias of the kernel average.
+    entries:
+      - kernel-density-estimation
+      - kde-bandwidth-selection
+      - nadaraya-watson-estimator
+      - local-polynomial-regression
+
+  - title: Conformal prediction
+    intro: >
+      Prediction sets with coverage at least $1 - \alpha$ in finite samples, for any predictor, when the
+      data are exchangeable. The full method ranks a score among all the data; the split method spends part
+      of the data and is cheap.
+    entries:
+      - conformal-prediction
+      - split-conformal-prediction

@@ -92,6 +92,11 @@ def check_content(book: Book) -> list[str]:
         prose = re.sub(r"\]\(/[a-z0-9-]+/[^)]*\)", "]", prose)
         if f.endswith(".yaml"):
             prose = re.sub(r"\b[a-z0-9]+(?:-[a-z0-9]+)+\b", " ", prose)
+        # terms of art are not the words of the list: a (uniformly) most powerful test, and in statistics the
+        # leverage h_ii of an observation
+        prose = re.sub(r"\bmost powerful\b", " ", prose, flags=re.I)
+        if parts[0] == "statistics-and-inference":
+            prose = re.sub(r"\bleverages?\b", " ", prose, flags=re.I)
         for w in sorted(set(re.findall(BANNED, prose, flags=re.I))):
             probs.append(f"{rel}: style: '{w}' (see the writing standard in prompts/area.md)")
         if re.search(r"[A-Za-z)]!(\s|$)", prose):

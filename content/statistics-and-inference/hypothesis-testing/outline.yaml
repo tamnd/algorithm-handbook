@@ -1,0 +1,107 @@
+# The order of the chapter on hypothesis testing and intervals. Groups are read in order; entries in a group too.
+groups:
+  - title: Tests, errors and p-values
+    intro: >
+      A test is a rule that rejects a null hypothesis, and its size bounds the chance of rejecting a true one.
+      These entries define the test, its two kinds of error, the p-value and the power function. The last entry
+      measures how large an effect is, which a p-value alone does not tell.
+    entries:
+      - statistical-hypothesis-test
+      - type-i-and-type-ii-errors
+      - p-value
+      - statistical-power
+      - effect-size
+
+  - title: Confidence sets
+    intro: >
+      A confidence interval is a random set that covers the true parameter with probability at least
+      $1 - \alpha$ over repeated samples. A pivot, a function of the data and the parameter with a known law,
+      gives exact intervals. Duality turns every family of level-$\alpha$ tests into a confidence set and back.
+    entries:
+      - confidence-interval
+      - pivotal-quantity
+      - test-interval-duality
+
+  - title: Normal means
+    intro: >
+      For normal data the classical tests have exact null laws: the z statistic is $N(0, 1)$ when $\sigma$ is
+      known and the t statistic is $t_{n-1}$ when it is not. These entries give the tests, the t interval and the
+      prediction interval, Welch's approximate test for unequal variances, sample sizes, a test of the normality
+      the others assume, and Fieller's exact set for a ratio of two means.
+    entries:
+      - z-test
+      - student-t-test
+      - t-confidence-interval
+      - prediction-interval
+      - welch-t-test
+      - sample-size-determination
+      - shapiro-wilk-test
+      - fieller-theorem
+
+  - title: Counts and proportions
+    intro: >
+      Counts are discrete, so exact tests attain only some sizes and have size at most $\alpha$. The binomial
+      test and the Clopper-Pearson interval use the binomial law directly; the Wilson interval inverts the
+      large-sample z-test. McNemar's test and Fisher's exact test reduce paired and two-by-two data to a
+      binomial or a hypergeometric count, and the chi-squared tests handle many cells with an asymptotic law.
+    entries:
+      - binomial-test
+      - clopper-pearson-interval
+      - wilson-score-interval
+      - mcnemar-test
+      - fisher-exact-test
+      - chi-squared-goodness-of-fit-test
+      - chi-squared-test-of-independence
+
+  - title: Optimal tests
+    intro: >
+      For a simple null against a simple alternative, the [Neyman-Pearson lemma](/neyman-pearson-lemma/) says
+      that rejecting for a large likelihood ratio gives the largest power at a given size. When the ratio is monotone in one statistic,
+      the same test is best against every one-sided alternative at once. For two-sided problems no such test
+      exists in general.
+    entries:
+      - neyman-pearson-lemma
+      - uniformly-most-powerful-test
+      - karlin-rubin-theorem
+
+  - title: Large-sample likelihood tests
+    intro: >
+      The likelihood ratio, Wald and score tests compare the full and the restricted fit in three ways. Under
+      regularity conditions all three statistics tend to $\chi^2_r$ under the null, with $r$ the number of
+      constraints; in finite samples they differ, and only the limit is proved.
+    entries:
+      - likelihood-ratio-test
+      - wilks-theorem
+      - wald-test
+      - score-test
+
+  - title: Many tests and the family-wise error rate
+    intro: >
+      When one analysis tests many hypotheses, false rejections pile up. These entries control the probability
+      of any false rejection: Bonferroni and Holm under any dependence, Hochberg under the Simes condition,
+      closed testing as the general principle, and Westfall-Young by permutation. Fisher's method answers the
+      different question of whether any null is false.
+    entries:
+      - multiple-comparisons-problem
+      - family-wise-error-rate
+      - bonferroni-correction
+      - holm-bonferroni-method
+      - hochberg-procedure
+      - closed-testing-principle
+      - westfall-young-procedure
+      - fisher-combined-probability-test
+
+  - title: False discovery rate and e-values
+    intro: >
+      The false discovery rate is the expected share of false rejections among the rejections. The
+      Benjamini-Hochberg procedure controls it under independence or positive dependence, Benjamini-Yekutieli
+      under any dependence, and Storey's method adapts to the share of true nulls. The local fdr, knockoffs and
+      e-values close the chapter.
+    entries:
+      - false-discovery-rate
+      - benjamini-hochberg-procedure
+      - benjamini-yekutieli-procedure
+      - storey-q-value
+      - local-false-discovery-rate
+      - knockoff-filter
+      - e-variable
