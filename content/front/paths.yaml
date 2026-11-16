@@ -3294,3 +3294,296 @@ paths:
           - reactive-synthesis
           - entry: pnueli-rosner-theorem
             why: deciding whether an LTL specification has a reactive implementation is 2EXPTIME-complete.
+  - id: information-retrieval-and-ai-reasoning
+    title: Information retrieval and AI reasoning
+    for: a student who knows sorting, binary search, heaps and hash tables, graph search and shortest paths, basic probability, propositional logic and SAT, and has met NP-completeness and the polynomial hierarchy, and wants to see how a search engine indexes, ranks and is evaluated, and how a reasoner derives, withdraws and revises conclusions from stored knowledge, and to see which results are proved and under which conditions, which problems are NP-hard or harder, and which methods are judged only by measured results.
+    intro: >
+      The path answers a query against a large body of stored knowledge in two ways. The first half ranks documents:
+      an inverted index is built once and then serves every query, posting lists are intersected and compressed with
+      proved bounds, and ranking functions score what the lists return. Here the line between proof and measurement is
+      sharp. Intersection costs, Elias-Fano space, the safety of WAND and the optimality of the probability ranking
+      principle under its hypotheses are theorems, while whether BM25, a smoothed language model or a learned ranker
+      finds the documents people want is decided only on test collections, with the effectiveness measures and the
+      significance tests of the evaluation stage. Rank aggregation by Kemeny's rule is NP-hard, and greedy
+      diversification and recommendation by matrix factorization rest on approximation bounds and recovery theorems
+      whose conditions real data seldom meets exactly. The second half derives consequences. Description logics trade
+      expressive power for cost: subsumption is polynomial in EL, PSPACE-complete in ALC without a TBox and
+      EXPTIME-complete with a general one, while DL-Lite answers queries by rewriting them into SQL. Logic programs are
+      exact under each semantics: Horn programs and the well-founded model take polynomial time, stable models are
+      NP-complete, and disjunctive programs, default logic and circumscription sit at the second level of the
+      polynomial hierarchy. Argumentation and belief revision are characterized by representation theorems, with
+      grounded semantics polynomial and sceptical preferred acceptance complete for the second level. The path ends
+      with qualitative temporal and spatial calculi, where full Allen interval networks are NP-complete, algebraic
+      closure decides the maximal tractable subclasses, and temporal networks with bounded durations are solved by
+      shortest paths. Solvers for the hard problems are judged by measured run time on benchmark sets.
+    stages:
+      - title: Inverted indexes and Boolean query processing
+        intro: >
+          An inverted index maps each term to the sorted list of documents that contain it, so a Boolean query becomes
+          the intersection of a few posting lists. The proved results are bounds: merging costs the sum of the lengths,
+          galloping search costs about the smaller length times the log of the ratio, and the adaptive algorithm is
+          optimal against a lower bound that depends on how the lists interleave. Gap codes, variable-byte codes and
+          Elias-Fano have proved space bounds, Elias-Fano at most ceil(lg(u/n)) + 2 bits per id for n ids below u, while which
+          code or document order makes a real index smallest and fastest is measured. Zipf's law is an empirical fit,
+          not a theorem.
+        steps:
+          - term-document-incidence-matrix
+          - posting-list
+          - inverted-index
+          - entry: zipfs-law
+            why: a fitted law of term frequencies that explains why a few posting lists are huge and most are tiny, measured on collections, not derived.
+          - posting-list-intersection
+          - merge-based-list-intersection
+          - skip-pointers
+          - exponential-search
+          - entry: adaptive-set-intersection
+            why: intersection whose cost depends on how the lists interleave, proved optimal against an adversary lower bound for that measure.
+          - phrase-query
+          - trie
+          - wildcard-query
+          - postings-gap-encoding
+          - variable-byte-encoding
+          - entry: elias-fano-encoding
+            why: n sorted ids below u in at most n times the ceiling of lg(u/n), plus 2n + 1 bits, with constant-time access by position and fast successor search, a proved bound.
+          - partitioned-elias-fano
+          - k-way-merge
+          - blocked-sort-based-indexing
+      - title: Ranking models and top-k query processing
+        intro: >
+          Ranking scores each document for a query and returns the best k. The probability ranking principle is a
+          theorem: sorting by probability of relevance maximizes expected utility when relevance of each document is
+          independent of the others shown and the probabilities are exact. The binary independence model derives an
+          idf weight from stated assumptions, but BM25 adds tuned saturation and length factors, and its usual
+          parameters, like the smoothing of query likelihood, were set by measurement on test collections. Top-k
+          evaluation is exact: WAND and block-max WAND skip documents that provably cannot enter the top k, so they
+          return the same answer as exhaustive scoring, and how much they skip is measured.
+        steps:
+          - boolean-retrieval-model
+          - cosine-similarity
+          - tf-idf
+          - vector-space-model
+          - entry: probability-ranking-principle
+            why: ranking by probability of relevance is optimal under independence, exact probabilities and a utility that adds a decreasing weight per relevant document, and fails when results overlap.
+          - binary-independence-model
+          - entry: bm25
+            why: the idf part is derived from the binary independence model, the saturation and length parts are heuristics, and the parameters were fixed by measurement.
+          - ranked-retrieval
+          - query-likelihood-model
+          - dirichlet-prior-smoothing
+          - relevance-feedback
+          - top-k-selection
+          - term-at-a-time-evaluation
+          - document-at-a-time-evaluation
+          - entry: wand
+            why: skips documents whose score upper bound cannot reach the current k-th score, proved safe, with the speedup measured on query logs.
+          - block-max-wand
+      - title: Evaluating retrieval
+        intro: >
+          Retrieval quality is not a mathematical property of a ranking function, so it is measured. A test collection
+          fixes documents, queries and relevance judgments, and the measures turn a ranking into a number:
+          precision at k, average precision, reciprocal rank, nDCG, rank-biased precision and expected reciprocal rank,
+          each a model of a user that can be stated exactly and is itself an assumption. Pooling judges only the top
+          documents of the systems compared, which biases scores against new systems. The significance tests are
+          exact under their stated sampling assumptions. Interleaving compares two rankers online, and team draft is
+          proved fair when clicks depend only on positions.
+        steps:
+          - precision-and-recall
+          - test-collection
+          - precision-at-k
+          - mean-average-precision
+          - mean-reciprocal-rank
+          - entry: normalized-discounted-cumulative-gain
+            why: graded gains discounted by rank and normalized by the ideal ranking, the measure that the learning-to-rank methods of the next stage optimize.
+          - rank-biased-precision
+          - expected-reciprocal-rank
+          - pooling
+          - sign-test
+          - interleaved-evaluation
+          - entry: team-draft-interleaving
+            why: each position goes to each ranker with probability one half, so random clicks give an expected outcome of zero, a proved property; its sensitivity is measured.
+      - title: Learning to rank, fusion and dense retrieval
+        intro: >
+          Learning to rank fits a scoring function to judged or clicked data. Pairwise and listwise losses are
+          surrogates: LambdaRank's lambdas are not the gradient of nDCG, and that following them raises nDCG is an
+          experimental finding, as is the strength of LambdaMART. Unbiased learning to rank is exactly unbiased when the
+          propensities are true and positive, and biased by a fixed amount when they are wrong. Fusing several rankings
+          is a voting problem: Kemeny's rule, the ranking with the least total Kendall tau distance, is NP-hard already
+          for four lists, while reciprocal rank fusion is a simple rule whose constant was set in a pilot study. Dense
+          retrieval reduces ranking to maximum inner product search, and its quality is measured.
+        steps:
+          - learning-to-rank
+          - ranknet
+          - entry: lambdarank
+            why: gradients defined directly by the change of nDCG when two documents swap, not derived from a cost, so its effect is measured, not proved.
+          - lambdamart
+          - position-bias
+          - inverse-probability-weighting
+          - entry: unbiased-learning-to-rank
+            why: clicks reweighted by inverse examination propensities give an unbiased estimate of a ranking metric when the propensities are true and positive, with a bias that more data does not remove when they are wrong.
+          - kendall-tau-distance
+          - rank-aggregation
+          - reciprocal-rank-fusion
+          - feedback-arc-set-problem
+          - entry: kemeny-rank-aggregation
+            why: the consensus ranking with the least total Kendall tau distance, NP-hard already for four lists by a reduction from feedback arc set, with exact solvers for small inputs.
+          - maximum-inner-product-search
+          - dual-encoder-retrieval
+      - title: Web search and recommendation
+        intro: >
+          At web scale the ranking uses links, clicks and duplicates. PageRank is the stationary distribution of a
+          random surfer and power iteration computes it with a proved error bound, while its value as a ranking signal
+          is measured. MinHash estimates Jaccard similarity without bias, so near-duplicate detection has proved error
+          rates. Click models are fitted by maximum likelihood and compared by measured log-likelihood. Diversification
+          for several query intents is NP-hard, and the greedy IA-Select gets a factor of 1 - 1/e because the
+          objective is submodular. Exact matrix completion is a theorem with conditions on rank, incoherence and random
+          sampling, while alternating least squares only reaches a local minimum and recommenders are compared by
+          measured accuracy.
+        steps:
+          - web-crawling
+          - pagerank
+          - hits-algorithm
+          - jaccard-similarity
+          - minhash
+          - click-model
+          - cascade-click-model
+          - search-result-diversification
+          - submodular-function
+          - entry: ia-select
+            why: diversification over query intents is NP-hard by a reduction from maximum coverage, and the greedy choice is within 1 - 1/e of the best because the objective is submodular.
+          - recommendation-problem
+          - rating-matrix
+          - collaborative-filtering
+          - matrix-factorization-recommendation
+          - entry: exact-matrix-completion-theorem
+            why: a low-rank incoherent matrix is recovered exactly with high probability from enough uniformly sampled entries by nuclear norm minimization, conditions that real ratings data does not meet.
+          - entry: alternating-least-squares
+            why: each half step solves least squares exactly, so the cost never increases, but the result is a local minimum and depends on the start.
+      - title: Knowledge representation and description logics
+        intro: >
+          A description logic describes classes and relations in a fragment of first-order logic chosen for its
+          decision problems, and the fragments trade expressive power for cost. Subsumption is polynomial in EL even
+          with a general TBox, PSPACE-complete in ALC without a TBox and EXPTIME-complete with a general one; the
+          tableau algorithm is sound, complete and terminating with blocking, though its general-TBox form is not
+          worst-case optimal. DL-Lite rewrites queries into first-order queries, with AC0 data complexity. The open
+          world assumption separates these logics from databases. Knowledge compilation pays once for a form, such as
+          d-DNNF, in which chosen queries take polynomial time. The situation calculus states the effects of actions
+          and answers the frame problem with successor state axioms.
+        steps:
+          - description-logic
+          - alc-description-logic
+          - tbox-and-abox
+          - concept-satisfiability
+          - concept-subsumption
+          - entry: alc-tableau-algorithm
+            why: sound, complete and terminating for ALC, in polynomial space without a TBox and double exponential time with a general TBox, where the problem is EXPTIME-complete.
+          - alc-pspace-completeness
+          - alc-general-tbox-exptime
+          - el-description-logic
+          - entry: el-classification
+            why: completion rules compute every subsumption between concept names of an EL TBox in polynomial time, the reason large medical ontologies use EL.
+          - closed-world-assumption
+          - open-world-assumption
+          - dl-lite
+          - perfectref-rewriting
+          - knowledge-compilation
+          - d-dnnf
+          - frame-problem
+          - situation-calculus
+          - successor-state-axioms
+      - title: Rules, logic programs and nonmonotonic reasoning
+        intro: >
+          Rules derive new facts from stored ones. Horn programs have a least model computed in linear time by forward
+          chaining, and SLD resolution is sound and complete for them. Negation as failure makes reasoning
+          nonmonotonic. SLDNF is sound for Clark's completion and complete only under conditions; the well-founded
+          model takes polynomial time; deciding whether a program has a stable model is NP-complete, and with
+          disjunctive heads the problem is complete for the second level of the polynomial hierarchy. Default logic
+          and circumscription are also at that level. Answer set solvers use CDCL with loop formulas, are exact, and
+          are judged by measured run time; the speed of Rete is likewise a measured result on particular programs.
+        steps:
+          - horn-sat
+          - production-system
+          - forward-chaining
+          - entry: rete-algorithm
+            why: keeps partial matches between cycles so a small change costs little, an advantage measured on real programs, while one change can cost time exponential in the length of a rule.
+          - logic-programming
+          - sld-resolution
+          - negation-as-failure
+          - sldnf-resolution
+          - clark-completion
+          - stratified-logic-program
+          - gelfond-lifschitz-reduct
+          - stable-model-semantics
+          - entry: stable-model-np-completeness
+            why: deciding whether a normal program has a stable model is NP-complete, by a reduction from 3-SAT, so answer set solvers search.
+          - well-founded-semantics
+          - loop-formulas
+          - answer-set-programming
+          - cdcl
+          - conflict-driven-answer-set-solving
+          - disjunctive-asp-sigma2-completeness
+          - nonmonotonic-reasoning
+          - default-logic
+          - entry: default-logic-complexity
+            why: credulous reasoning in propositional default logic is complete for the second level of the polynomial hierarchy, one level above SAT.
+          - circumscription
+      - title: Argumentation and belief revision
+        intro: >
+          Abstract argumentation decides which arguments survive their attackers. The grounded extension is a least
+          fixed point computed in polynomial time; credulous acceptance under preferred semantics is NP-complete and
+          sceptical acceptance is complete for the second level of the polynomial hierarchy. Belief revision changes a
+          belief set to admit new information. The AGM postulates are characterized exactly by representation
+          theorems: a revision satisfies them if and only if it is given by a system of spheres, and in the finite
+          propositional case by a faithful total preorder on worlds. Gardenfors proved that no nontrivial revision
+          satisfies the Ramsey test. Ordinal conditional functions grade beliefs and give System Z, whose rational
+          closure answers default queries with a polynomial number of SAT calls.
+        steps:
+          - abstract-argumentation-framework
+          - admissible-set
+          - complete-extension
+          - entry: grounded-extension
+            why: the least fixed point of the defence function, unique and computed in polynomial time, the sceptical baseline of every other semantics.
+          - preferred-extension
+          - stable-extension-argumentation
+          - entry: preferred-semantics-complexity
+            why: credulous acceptance is NP-complete and sceptical acceptance is complete for the second level of the polynomial hierarchy, because maximality must be refuted.
+          - belief-revision
+          - agm-postulates
+          - grove-spheres
+          - entry: katsuno-mendelzon-revision
+            why: in a finite propositional language an operator satisfies the revision postulates if and only if it selects the minimal models of the input under a faithful total preorder.
+          - gardenfors-impossibility-theorem
+          - ordinal-conditional-functions
+          - system-p
+          - rational-closure
+          - system-z
+      - title: Qualitative temporal and spatial reasoning
+        intro: >
+          Qualitative calculi reason about intervals and regions by relations, not coordinates. A network is a
+          constraint problem over a finite set of relations, and algebraic closure is the main tool. For the full
+          Allen interval algebra consistency is NP-complete; the ORD-Horn subclass is tractable and maximal among
+          classes with all basic relations, and the tractable subclasses of the interval algebra and of RCC8 are known
+          exactly, which are proved classifications. Point algebra networks are solved in linear time by strongly
+          connected components. Metric constraints on time differences form simple temporal problems solved by
+          shortest paths; disjunctive ones are NP-complete, and dynamic controllability with uncertain durations is
+          decided in polynomial time.
+        steps:
+          - path-consistency
+          - qualitative-constraint-network
+          - allens-interval-algebra
+          - composition-table
+          - algebraic-closure
+          - entry: interval-algebra-np-completeness
+            why: consistency of networks over the full interval algebra is NP-complete, by a reduction from 3-SAT, so path consistency alone cannot decide it.
+          - point-algebra
+          - ord-horn-subclass
+          - entry: nebel-burckert-theorem
+            why: algebraic closure decides consistency over the 868 ORD-Horn relations, and adding any other relation makes the problem NP-complete.
+          - region-connection-calculus-rcc8
+          - rcc8-tractable-subclasses
+          - difference-constraints
+          - entry: simple-temporal-problem
+            why: consistent exactly when the distance graph has no negative cycle, so Bellman-Ford decides it and Floyd-Warshall gives the minimal network.
+          - disjunctive-temporal-problem
+          - simple-temporal-network-with-uncertainty
+          - entry: morris-dynamic-controllability
+            why: dynamic controllability of a network with uncertain durations is decided in polynomial time, by Morris's O(N^4) cutoff algorithm after the pseudo-polynomial first method.

@@ -11,10 +11,10 @@ opening, groups and a reading order for each chapter, summaries, exercises with 
 reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
 the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.34.0
+## Volumes in edition 0.35.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.34.0](https://github.com/tamnd/algorithm/releases/tag/v0.34.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.35.0](https://github.com/tamnd/algorithm/releases/tag/v0.35.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from; a larger third number (such as 0.20.1) marks a
 new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
@@ -56,7 +56,8 @@ new build of the same release. The books are on the
 | 32 | Electronic design automation | 358 | written |
 | 33 | Statistics and inference | 276 | written |
 | 34 | Compilers and program analysis | 273 | written |
-| 35–39 | Information retrieval and AI reasoning, Control, Robotics, Computer vision, Complexity | – | forthcoming: the site has only short pages so far |
+| 35 | Information retrieval and AI reasoning | 278 | written |
+| 36–39 | Control, Robotics, Computer vision, Complexity | – | forthcoming: the site has only short pages so far |
 
 ## Building
 

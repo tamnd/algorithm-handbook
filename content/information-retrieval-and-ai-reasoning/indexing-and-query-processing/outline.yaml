@@ -1,0 +1,113 @@
+# The order of chapter 35.1 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: Documents, terms and lists
+    intro: >
+      A collection is a set of documents, and each document is a bag of terms. The
+      [term-document incidence matrix](/term-document-incidence-matrix/) records which term is in which
+      document, and almost all of it is zero, so an index keeps only the ones, as a
+      [posting list](/posting-list/) for each term. Zipf's and Heaps' laws are empirical fits that say how
+      long the lists are and how large the vocabulary grows.
+    entries:
+      - term-document-incidence-matrix
+      - posting-list
+      - zipfs-law
+      - heaps-law
+
+  - title: From text to terms
+    intro: >
+      Before indexing, the text is cut into tokens and the tokens are mapped to terms. Stop-word removal drops
+      the most frequent words, and stemming maps the forms of a word to one stem. The Porter stemmer is the
+      standard rule-based stemmer for English.
+    entries:
+      - stop-word-removal
+      - stemming
+      - porter-stemmer
+
+  - title: Boolean queries and list intersection
+    intro: >
+      An AND query is the intersection of posting lists. The merge is linear in the sum of the lengths;
+      skip pointers, galloping and the recursive method of Baeza-Yates jump over parts of the longer list and
+      have proved bounds that adapt to the input. Signature files are the older alternative to the inverted
+      index for such queries.
+    entries:
+      - posting-list-intersection
+      - merge-based-list-intersection
+      - skip-pointers
+      - small-versus-small-intersection
+      - baeza-yates-intersection
+      - adaptive-set-intersection
+      - signature-file
+
+  - title: Phrases and positions
+    intro: >
+      A phrase query asks for words next to each other in a given order. It needs the position of each
+      occurrence, which a positional index stores. Positional intersection merges the document lists and then
+      the position lists inside each common document, for phrases and for proximity queries.
+    entries:
+      - phrase-query
+      - positional-index
+      - positional-intersection
+
+  - title: Wildcards and the dictionary
+    intro: >
+      A wildcard query such as `re*ed` names a set of terms by a pattern. The permuterm index rotates each
+      term so that the pattern becomes a prefix search, and the k-gram index finds candidate terms by their
+      short substrings and then filters them. Front coding stores the sorted dictionary with shared prefixes
+      removed.
+    entries:
+      - wildcard-query
+      - permuterm-index
+      - k-gram-index
+      - front-coding
+
+  - title: Compressing posting lists
+    intro: >
+      A posting list is stored as gaps between docids, which are small for frequent terms. Simple-9 packs
+      gaps into 32-bit words, and partitioned Elias-Fano splits a list into chunks with a dynamic program.
+      Renumbering the documents makes the gaps smaller; finding the best order is hard, so the methods are
+      heuristics whose gains are measured.
+    entries:
+      - postings-gap-encoding
+      - simple-9
+      - partitioned-elias-fano
+      - document-identifier-reassignment
+      - recursive-graph-bisection-reordering
+
+  - title: Building and updating the index
+    intro: >
+      An index too large for memory is built in blocks: blocked sort-based indexing sorts pairs, and
+      single-pass in-memory indexing builds the lists directly with a dictionary for each block. A large index
+      is split across machines by document or by term. New documents arrive all the time, and logarithmic
+      merging and geometric partitioning keep the cost of merges small at the price of more indexes to read.
+    entries:
+      - blocked-sort-based-indexing
+      - single-pass-in-memory-indexing
+      - index-partitioning
+      - dynamic-index-maintenance
+      - logarithmic-merging
+      - geometric-partitioning
+
+  - title: Ranked retrieval and safe pruning
+    intro: >
+      A ranked query returns the $k$ documents of highest score. Term-at-a-time and document-at-a-time
+      evaluation read every posting of the query terms. MaxScore, WAND and block-max WAND skip documents that
+      cannot enter the top $k$; they return the exact top $k$ when their score upper bounds are true bounds,
+      and their speedups are measured.
+    entries:
+      - ranked-retrieval
+      - term-at-a-time-evaluation
+      - document-at-a-time-evaluation
+      - maxscore
+      - wand
+      - block-max-wand
+
+  - title: Approximate methods
+    intro: >
+      Some methods trade exactness for speed. A tiered index with the approximate stop rule, an
+      impact-ordered index with a budget of postings, and static index pruning can all miss documents of the
+      true top $k$. The tiered and impact-ordered indexes also have a safe stop rule; static pruning has none,
+      and its quality is measured on test queries.
+    entries:
+      - tiered-index
+      - impact-ordered-index
+      - static-index-pruning

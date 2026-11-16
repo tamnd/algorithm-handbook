@@ -1,0 +1,20 @@
+## History
+
+Description logics grew out of the network and frame systems of the 1970s. Quillian proposed semantic networks as a model of human memory in 1968, and Minsky's "A framework for representing knowledge" (1974) introduced frames with slots and defaults. Woods (1975) and Brachman (1983, "What IS-A is and isn't") pointed out that these systems had no agreed meaning for their links. KL-ONE, described by Brachman and Schmolze in 1985, answered with concepts and roles that have a set-theoretic semantics, and became the ancestor of all later description logics. Brachman and Levesque (1984) then showed that a small change to a tractable language can make subsumption intractable, which made complexity a central topic.
+
+Schmidt-Schauß and Smolka (1991) defined ALC and proved that its satisfiability is PSPACE-complete, with the first tableau algorithm for a description logic. In the same year Schild showed that ALC is a notational variant of the multimodal logic K, which brought Ladner's PSPACE result and the EXPTIME results for propositional dynamic logic into the field. Through the 1990s Horrocks and others built optimized tableau reasoners for very expressive logics, with blocking for general TBoxes and inverse roles. Horrocks, Kutz and Sattler (2006) defined SROIQ, which became OWL 2 DL, and Kazakov (2008) showed that it is N2EXPTIME-complete. Motik, Shearer and Horrocks (2009) introduced the hypertableau calculus of HermiT.
+
+The opposite direction looked for logics with polynomial reasoning. Baader, Brandt and Lutz (2005) showed that EL and its extension EL++ have polynomial subsumption with general TBoxes, which suited medical ontologies such as SNOMED CT. Calvanese, De Giacomo, Lembo, Lenzerini and Rosati (2007) introduced the DL-Lite family, with query answering by rewriting into first-order queries. Both lines became profiles of OWL 2, as OWL 2 EL and OWL 2 QL.
+
+Reasoning about action began with McCarthy and Hayes (1969), who introduced the situation calculus and named the frame problem. Reiter (1991) combined earlier proposals into successor state axioms and proved the regression theorem, and his book of 2001 gave the full theory of basic action theories. Kowalski and Sergot (1986) introduced the event calculus as a logic program, and Shanahan's book of 1997 restated it with circumscription.
+
+Knowledge compilation took shape in the 1990s, with Selman and Kautz's Horn approximations. Darwiche introduced decomposable negation normal form at the end of the decade and published its full account in 2001. In another paper of 2001 he added determinism and showed that d-DNNF supports model counting in linear time. Darwiche and Marquis published the knowledge compilation map in 2002. Darwiche (2011) introduced sentential decision diagrams.
+
+## Further reading
+
+- Franz Baader, Ian Horrocks, Carsten Lutz and Uli Sattler, *An Introduction to Description Logic*, Cambridge University Press, 2017. The standard textbook: ALC, tableaux, complexity, EL, DL-Lite and query answering.
+- Franz Baader, Diego Calvanese, Deborah McGuinness, Daniele Nardi and Peter Patel-Schneider (eds.), *The Description Logic Handbook: Theory, Implementation and Applications*, second edition, Cambridge University Press, 2007. Survey chapters on the theory, reasoners and applications.
+- Raymond Reiter, *Knowledge in Action: Logical Foundations for Specifying and Implementing Dynamical Systems*, MIT Press, 2001. The situation calculus, successor state axioms, regression and progression.
+- Murray Shanahan, *Solving the Frame Problem: A Mathematical Investigation of the Common Sense Law of Inertia*, MIT Press, 1997. The history of the frame problem and the circumscriptive event calculus.
+- Frank van Harmelen, Vladimir Lifschitz and Bruce Porter (eds.), *Handbook of Knowledge Representation*, Elsevier, 2008. Chapters on description logics, the situation calculus, the event calculus and knowledge compilation.
+- Adnan Darwiche and Pierre Marquis, "A knowledge compilation map", *Journal of Artificial Intelligence Research* 17, 2002, pages 229 to 264. The queries, transformations and succinctness of the target languages.

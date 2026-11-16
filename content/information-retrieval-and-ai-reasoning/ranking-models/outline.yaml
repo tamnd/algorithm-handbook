@@ -1,0 +1,93 @@
+# The order of chapter 35.2, Ranking models. Groups are read in order; entries in a group too.
+groups:
+  - title: Boolean and vector space retrieval
+    intro: >
+      The first models treat a document as a set of terms or as a vector of term weights. The
+      [Boolean model](/boolean-retrieval-model/) answers yes or no, and the vector space model gives a graded
+      score by the angle between the query and the document. [tf-idf](/tf-idf/) supplies the weights, and
+      pivoted normalization corrects the bias of the cosine against long documents.
+    entries:
+      - boolean-retrieval-model
+      - tf-idf
+      - vector-space-model
+      - pivoted-length-normalization
+
+  - title: Relevance feedback
+    intro: >
+      A first ranking can be used to build a better query. With judged documents the query moves toward the
+      relevant ones and away from the others; without judgments the top documents are taken as relevant. These
+      entries show both, and the risk that the query drifts away from what the user meant.
+    entries:
+      - relevance-feedback
+      - rocchio-algorithm
+      - pseudo-relevance-feedback
+
+  - title: Probabilistic relevance models
+    intro: >
+      The [probability ranking principle](/probability-ranking-principle/) says when sorting by the
+      probability of relevance is the best one can do. The binary independence model estimates that
+      probability from term occurrences, and the two-Poisson model adds term counts. BM25 is a cheap
+      approximation of that model with two tuned parameters, BM25F extends it to fields, and divergence from
+      randomness builds weights from the same ideas in another way.
+    entries:
+      - probability-ranking-principle
+      - binary-independence-model
+      - two-poisson-model
+      - bm25
+      - bm25f
+      - divergence-from-randomness
+
+  - title: Language models for retrieval
+    intro: >
+      A second family scores a document by the probability that a model of the document generates the query.
+      Without smoothing, one missing query term gives the probability 0, so the document model is mixed with a
+      model of the whole collection. The relevance model then uses the top documents to estimate a better query
+      model, which is pseudo-relevance feedback in this framework.
+    entries:
+      - query-likelihood-model
+      - jelinek-mercer-smoothing
+      - dirichlet-prior-smoothing
+      - relevance-model-rm3
+
+  - title: Rank fusion
+    intro: >
+      Several systems, or several query variants, give several ranked lists. These entries merge them into
+      one, by positions, by scores, by a random walk or by an optimal consensus. The consensus of Kemeny is
+      NP-hard to find, so the cheap rules are what systems run, and only some of them carry a proved
+      approximation factor.
+    entries:
+      - rank-aggregation
+      - borda-count
+      - combmnz
+      - reciprocal-rank-fusion
+      - markov-chain-rank-aggregation
+      - kemeny-rank-aggregation
+
+  - title: Learning to rank
+    intro: >
+      When each query-document pair has many features, a scoring function can be learned from judged examples.
+      The pairwise methods learn from pairs of documents with different labels; LambdaRank and LambdaMART weight
+      the pairs by how much they matter to nDCG, and ListNet uses a loss on the whole list. The last entry
+      learns from clicks, which are biased by position.
+    entries:
+      - ranking-svm
+      - rankboost
+      - ranknet
+      - lambdarank
+      - lambdamart
+      - listnet
+      - unbiased-learning-to-rank
+
+  - title: Neural retrieval
+    intro: >
+      Neural encoders turn text into vectors. A dual encoder encodes the query and the document apart, so the
+      document side is computed once; a cross-encoder reads them together and is used only to rerank a short
+      list. Late interaction and learned sparse vectors sit between the two. Retrieval-augmented generation
+      puts a retriever in front of a text generator.
+    entries:
+      - dual-encoder-retrieval
+      - dense-passage-retrieval
+      - splade
+      - colbert
+      - cross-encoder-reranking
+      - retrieval-augmented-generation

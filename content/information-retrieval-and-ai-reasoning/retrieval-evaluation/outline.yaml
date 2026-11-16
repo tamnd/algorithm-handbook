@@ -1,0 +1,66 @@
+# The order of chapter 35.3 Retrieval evaluation. Groups are read in order; entries in a group too.
+groups:
+  - title: Test collections and the Cranfield method
+    intro: >
+      A test collection fixes a set of documents, a set of topics and judgments of which documents are
+      relevant to each topic. The Cranfield method scores every system on the same collection, so that
+      results can be compared and repeated. Every metric of the chapter is computed on such a collection.
+    entries:
+      - test-collection
+      - cranfield-paradigm
+
+  - title: Binary metrics at a cutoff
+    intro: >
+      These metrics need only a yes or no judgment for each document and look at the top of the ranking.
+      [Precision at k](/precision-at-k/) counts relevant documents in the top $k$, R-precision sets
+      $k = R$, and reciprocal rank looks only at the first relevant document.
+    entries:
+      - precision-at-k
+      - r-precision
+      - mean-reciprocal-rank
+
+  - title: Average precision and the precision-recall curve
+    intro: >
+      Average precision takes the precision at the rank of each relevant document and divides the sum by $R$.
+      It is the area under the step curve of precision against recall. The interpolated curve replaces that
+      step curve by its smallest non-increasing envelope and reads it at fixed recall levels.
+    entries:
+      - mean-average-precision
+      - interpolated-precision-recall-curve
+
+  - title: Graded relevance and user models
+    intro: >
+      With grades of relevance, a metric needs a gain for each grade and a weight for each rank.
+      nDCG uses a logarithmic discount, rank-biased precision a geometric one, and expected reciprocal rank
+      a cascade user who stops when satisfied. The C/W/L framework writes such metrics as one user model,
+      and alpha-nDCG adds a penalty for redundant subtopics.
+    entries:
+      - normalized-discounted-cumulative-gain
+      - rank-biased-precision
+      - expected-reciprocal-rank
+      - cwl-framework
+      - alpha-ndcg
+
+  - title: Incomplete judgments
+    intro: >
+      Large collections cannot be judged in full. Pooling judges only the top documents of the runs that
+      took part, and counts the rest as not relevant, which biases the scores of runs outside the pool.
+      Bpref ignores unjudged documents, inferred AP estimates AP from a random sample of the pool, and
+      minimal test collections judge only the documents that decide which of two runs is better.
+    entries:
+      - pooling
+      - bpref
+      - inferred-average-precision
+      - minimal-test-collection
+
+  - title: Online evaluation by interleaving
+    intro: >
+      Interleaving merges the rankings of two systems into one list for real users and credits each click
+      to one of the two. Balanced interleaving can favor one ranking under random clicks, team-draft
+      interleaving is fair but can miss a real difference, and probabilistic interleaving credits clicks by
+      their posterior. A [sign test](/sign-test/) over many queries decides which system wins.
+    entries:
+      - interleaved-evaluation
+      - balanced-interleaving
+      - team-draft-interleaving
+      - probabilistic-interleaving

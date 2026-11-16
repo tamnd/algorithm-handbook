@@ -1,0 +1,96 @@
+# The order of chapter 35.8, Qualitative temporal and spatial reasoning. Groups are read in order; entries in a group too.
+groups:
+  - title: Calculi and networks
+    intro: >
+      A [qualitative constraint calculus](/qualitative-constraint-calculus/) fixes a finite set of jointly
+      exhaustive and pairwise disjoint base relations, and a relation is a set of them. Its
+      [composition table](/composition-table/) says which base relations can hold between $x$ and $z$ once those
+      between $x$, $y$ and $y$, $z$ are known. A [qualitative constraint network](/qualitative-constraint-network/)
+      puts a relation on every pair of variables, and the [point algebra](/point-algebra/), with $<$, $=$ and $>$,
+      is the smallest calculus that shows all of these ideas.
+    entries:
+      - qualitative-constraint-calculus
+      - composition-table
+      - qualitative-constraint-network
+      - point-algebra
+
+  - title: Propagation
+    intro: >
+      [Algebraic closure](/algebraic-closure/) intersects each label with the composition through every third node
+      until nothing changes, in $O(|B| n^3)$ time. It never removes a solution, but in general it decides nothing.
+      For the point algebra it does decide consistency, and a strongly connected components pass finds a solution
+      in linear time.
+    entries:
+      - algebraic-closure
+      - allen-constraint-propagation
+      - point-algebra-consistency
+
+  - title: Intervals, hardness and tractable classes
+    intro: >
+      Consistency of networks over all $2^{13}$ relations of [Allen's interval algebra](/allens-interval-algebra/)
+      is [NP-complete](/interval-algebra-np-completeness/). On the [ORD-Horn subclass](/ord-horn-subclass/) of 868
+      relations closure does decide consistency, and adding any other relation makes the problem NP-complete again:
+      this is the [Nebel-Bürckert theorem](/nebel-burckert-theorem/). Krokhin, Jeavons and Jonsson later found all
+      18 maximal tractable subalgebras, and ORD-Horn is the only one that contains all 13 base relations.
+    entries:
+      - interval-algebra-np-completeness
+      - ord-horn-subclass
+      - nebel-burckert-theorem
+      - interval-algebra-tractable-subclasses
+
+  - title: Topology of regions
+    intro: >
+      The [nine-intersection model](/nine-intersection-model/) classifies two simple regions by which of their
+      interiors, boundaries and exteriors meet, and only 8 of its 512 matrices occur. These are the base relations
+      of [RCC8](/region-connection-calculus-rcc8/), whose consistency problem is NP-complete; [RCC5](/rcc5/) drops
+      the difference between touching and being apart. Three [maximal tractable classes](/rcc8-tractable-subclasses/)
+      of RCC8 contain all base relations.
+    entries:
+      - nine-intersection-model
+      - region-connection-calculus-rcc8
+      - rcc5
+      - rcc8-tractable-subclasses
+
+  - title: Directions and orientation
+    intro: >
+      Product calculi apply a one-dimensional calculus to each axis. The [rectangle algebra](/rectangle-algebra/)
+      has $13 \times 13$ base relations and the [cardinal direction calculus](/cardinal-direction-calculus/) for
+      points has $3 \times 3$. The [double-cross calculus](/double-cross-calculus/) is ternary and relative to the
+      direction of travel, and there even networks of base relations are NP-hard.
+    entries:
+      - rectangle-algebra
+      - cardinal-direction-calculus
+      - double-cross-calculus
+
+  - title: Metric time with disjunctions
+    intro: >
+      A [temporal constraint satisfaction problem](/temporal-constraint-satisfaction-problem/) bounds each
+      difference $X_j - X_i$ by a union of intervals, and a [disjunctive temporal problem](/disjunctive-temporal-problem/)
+      allows a disjunction of difference constraints on any variables. Both are NP-complete. Both are solved by
+      choosing one disjunct per constraint and testing the resulting
+      [simple temporal problem](/simple-temporal-problem/) for a negative cycle.
+    entries:
+      - temporal-constraint-satisfaction-problem
+      - disjunctive-temporal-problem
+
+  - title: Durations that nature chooses
+    intro: >
+      In a [simple temporal network with uncertainty](/simple-temporal-network-with-uncertainty/) some durations
+      are contingent: the agent learns them only when they end. Strong, dynamic and weak controllability ask how
+      much the agent may observe before it acts. [Dynamic controllability](/dynamic-controllability/) is decided in
+      polynomial time, and [Morris's algorithm](/morris-dynamic-controllability/) does it with Bellman-Ford and
+      Dijkstra on a labelled distance graph.
+    entries:
+      - simple-temporal-network-with-uncertainty
+      - dynamic-controllability
+      - morris-dynamic-controllability
+
+  - title: Qualitative physics
+    intro: >
+      [QSIM](/qsim/) simulates a qualitative differential equation: each variable is known only by its place among a
+      few landmarks and its direction of change, and the result is a tree of possible behaviors. It is sound but
+      not complete. [Qualitative process theory](/qualitative-process-theory/) writes models as processes that act on
+      quantities and finds which processes are active.
+    entries:
+      - qsim
+      - qualitative-process-theory

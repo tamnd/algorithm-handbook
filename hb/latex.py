@@ -70,7 +70,9 @@ def brace_scripts(tex: str) -> str:
     # unicode-math sets \mathrm in the text font, which has no math Greek: `\mathrm{k\Omega}` (a unit) loses its Ω.
     # The Greek letter goes outside, upright from the math font (\symup; \mathup is the text font too).
     tex = _MATHRM_GREEK.sub(lambda m: (r"\mathrm{" + m[1] + "}" if m[1] else "") + r"\symup{" + "\\" + m[2] + "}", tex)
-    # unicode-math's \not looks for a negated character; ↝ has none and XeTeX dies ("bad native font flag")
+    # unicode-math's \not looks for a negated character; ↝ has none and XeTeX dies ("bad native font flag"),
+    # and before a group, as in the negated "|~" \not\mathrel{|\!\sim}, it gives "Missing { inserted"
+    tex = re.sub(r"\\not\s*\\mathrel\{([^{}]*)\}", lambda m: r"\centernot{\mathrel{" + m[1] + "}}", tex)
     return tex.replace(r"\not\leadsto", r"\centernot\leadsto")
 
 

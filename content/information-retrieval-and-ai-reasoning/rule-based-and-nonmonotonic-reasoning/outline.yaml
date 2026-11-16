@@ -1,0 +1,113 @@
+# The order of chapter 35.6, Rule-based and nonmonotonic reasoning. Groups are read in order; entries in a group too.
+groups:
+  - title: Production systems
+    intro: >
+      A [production system](/production-system/) keeps facts in a working memory and fires if-then rules on them
+      in a match, select, act cycle. [Forward chaining](/forward-chaining/) runs from the facts to their
+      consequences, [backward chaining](/backward-chaining/) from a goal to the facts that support it, and a
+      [conflict resolution strategy](/conflict-resolution-strategy/) picks one rule when several match. Rete and
+      TREAT keep the matches up to date as facts come and go, and certainty factors were the way the early expert
+      systems weighed uncertain rules.
+    entries:
+      - production-system
+      - forward-chaining
+      - backward-chaining
+      - conflict-resolution-strategy
+      - rete-algorithm
+      - treat-algorithm
+      - certainty-factors
+
+  - title: Negation as failure and stable models
+    intro: >
+      In [nonmonotonic reasoning](/nonmonotonic-reasoning/) a new premise can withdraw a conclusion. Logic programs
+      show this through [negation as failure](/negation-as-failure/): $\mathit{not}\ p$ holds when $p$ cannot be
+      derived. The [Clark completion](/clark-completion/) reads the rules as definitions, and the
+      [Gelfond-Lifschitz reduct](/gelfond-lifschitz-reduct/) turns a guess $M$ into a definite program whose least
+      model must be $M$ again. Stratified programs have one natural model, and every reading agrees on them.
+    entries:
+      - nonmonotonic-reasoning
+      - negation-as-failure
+      - clark-completion
+      - gelfond-lifschitz-reduct
+      - stable-model-semantics
+      - stratified-logic-program
+
+  - title: The well-founded model
+    intro: >
+      The [well-founded semantics](/well-founded-semantics/) gives every normal program one three-valued model,
+      computed in polynomial time. The [alternating fixpoint](/alternating-fixpoint/) finds it by applying the
+      reduct operator twice in turns, and SLG resolution answers queries about it top down with tables. Atoms on
+      odd or even loops through negation stay undefined.
+    entries:
+      - well-founded-semantics
+      - alternating-fixpoint
+      - slg-resolution
+
+  - title: Theorems about stable models
+    intro: >
+      Five results explain what stable models are and what they cost. On tight programs they are the models of
+      the completion, by [Fages' theorem](/fages-theorem/), and loop formulas repair the completion for all finite
+      programs. Splitting sets allow a program to be solved in layers, strong equivalence says when one part can
+      replace another, and existence of a stable model is NP-complete.
+    entries:
+      - fages-theorem
+      - loop-formulas
+      - splitting-set-theorem
+      - strong-equivalence
+      - stable-model-np-completeness
+
+  - title: Answer set programming
+    intro: >
+      [Answer set programming](/answer-set-programming/) writes a search problem as a program whose stable models
+      are its solutions: rules generate candidates, define auxiliary atoms and test with constraints. A grounder
+      removes the variables, and a solver searches, first with the smodels propagators and now with conflict-driven
+      learning. Disjunctive heads take the existence question from NP to $\Sigma_2^p$.
+    entries:
+      - answer-set-programming
+      - choice-rule
+      - answer-set-grounding
+      - smodels-algorithm
+      - conflict-driven-answer-set-solving
+      - disjunctive-logic-program
+      - disjunctive-asp-sigma2-completeness
+
+  - title: Nonmonotonic logics
+    intro: >
+      [Circumscription](/circumscription/) keeps only the models with the fewest abnormal objects, and
+      [default logic](/default-logic/) adds rules of the form "if $\alpha$ and $\beta$ is consistent, conclude
+      $\gamma$", whose fixed points are extensions. Autoepistemic logic reasons about its own beliefs. The Yale
+      shooting problem shows that plain minimization of change gives unintended models, and the main reasoning
+      tasks of these logics sit one level above NP.
+    entries:
+      - circumscription
+      - yale-shooting-problem
+      - default-logic
+      - default-extension
+      - autoepistemic-logic
+      - default-logic-complexity
+
+  - title: Conditionals and ranked worlds
+    intro: >
+      A conditional $\alpha \mathrel{|\!\sim} \beta$ reads "if $\alpha$, normally $\beta$". [System P](/system-p/)
+      collects the rules that every reasonable consequence relation obeys. Rational closure adds Rational
+      Monotonicity, and System Z computes the same relation by ranking the rules by tolerance with a polynomial
+      number of SAT calls.
+    entries:
+      - system-p
+      - rational-closure
+      - system-z
+
+  - title: Abduction, diagnosis and truth maintenance
+    intro: >
+      [Abduction](/abductive-reasoning/) looks for hypotheses that explain an observation, and abductive logic
+      programs do the same under stable models. [Consistency-based diagnosis](/consistency-based-diagnosis/) finds
+      the components whose failure explains a misbehaving system: the diagnoses are the minimal hitting sets of the
+      conflicts, which the HS-tree builds. Truth maintenance systems record why each belief is held, one context at a
+      time or all contexts at once.
+    entries:
+      - abductive-reasoning
+      - abductive-logic-programming
+      - consistency-based-diagnosis
+      - reiter-hs-tree
+      - justification-based-truth-maintenance
+      - assumption-based-truth-maintenance

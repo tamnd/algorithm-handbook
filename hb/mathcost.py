@@ -55,6 +55,19 @@ def _group(toks: list[str], i: int) -> tuple[list[str], int]:
     return [toks[i]], i + 1
 
 
+def _tower(toks: list[str], i: int) -> tuple[list[str], int]:
+    """The exponent that starts at toks[i] in a tower such as 2^2^O(n), read from the right: an operand with
+    the bracketed argument that follows it (O(n)), then '^' and the rest of the tower, braced."""
+    g, i = _group(toks, i)
+    if i < len(toks) and toks[i] == "(" and len(g) == 1 and g[0][0].isalpha():
+        h, i = _group(toks, i)
+        g = g + ["("] + h + [")"]
+    if i < len(toks) and toks[i] == "^":
+        h, i = _tower(toks, i + 1)
+        g = g + ["^", "{"] + h + ["}"]
+    return g, i
+
+
 def _conv(toks: list[str]) -> str:
     out: list[str] = []
     i = 0
@@ -64,7 +77,10 @@ def _conv(toks: list[str]) -> str:
             out.append(" ")
             i += 1
         elif t in "^_":
-            g, i = _group(toks, i + 1)
+            g, j = _group(toks, i + 1)
+            if t == "^" and j < len(toks) and toks[j] == "^":  # 2^2^O(n): a tower
+                g, j = _tower(toks, i + 1)
+            i = j
             out.append(t + "{" + _conv(g) + "}")
         elif t in SUPERS:
             out.append("^{" + SUPERS[t] + "}")

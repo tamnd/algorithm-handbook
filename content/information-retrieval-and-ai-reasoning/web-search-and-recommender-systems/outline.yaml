@@ -1,0 +1,140 @@
+# The order of chapter 35.4, Web search and recommender systems. Groups are read in order; entries in a group too.
+groups:
+  - title: Crawling the web
+    intro: >
+      A search engine can index only what its crawler has fetched. [Web crawling](/web-crawling/) is a graph
+      traversal from seed URLs under rules of politeness, freshness and coverage; the
+      [URL frontier](/url-frontier/) holds the URLs still to fetch and keeps each host's gap, and the
+      [bow-tie](/bow-tie-web-structure/) describes the graph the crawl explores. The later entries decide when to
+      fetch a page again, which links to follow first for one topic, and which fetched pages are copies of others.
+    entries:
+      - web-crawling
+      - url-frontier
+      - bow-tie-web-structure
+      - crawl-revisit-policy
+      - focused-crawling
+      - near-duplicate-document-detection
+
+  - title: Links, anchors and spam
+    intro: >
+      A link is a short description of its target written by someone else, and a vote for it.
+      [Anchor text indexing](/anchor-text-indexing/) uses the description, and link analysis uses the vote. Votes
+      can be forged: [link spam](/link-spam/) builds farms of pages that raise one target's PageRank.
+      [TrustRank](/trustrank/) spreads trust from hand-checked good pages instead, and [SALSA](/salsa-algorithm/)
+      replaces the mutual reinforcement of HITS by two random walks.
+    entries:
+      - anchor-text-indexing
+      - link-spam
+      - trustrank
+      - salsa-algorithm
+
+  - title: Around the query
+    intro: >
+      A search engine helps before and after it ranks. [Query auto-completion](/query-auto-completion/) suggests
+      whole queries from a prefix, most simply by [most popular completion](/most-popular-completion/) in a
+      scored trie; [noisy channel spelling correction](/noisy-channel-spelling-correction/) repairs a mistyped
+      word with a language model and an error model; and
+      [query-biased snippets](/query-biased-snippet/) show the user why a result matched.
+    entries:
+      - query-auto-completion
+      - most-popular-completion
+      - noisy-channel-spelling-correction
+      - query-biased-snippet
+
+  - title: Searching many engines
+    intro: >
+      When the documents sit behind several independent search engines, a broker must choose which engines to
+      ask and merge their lists. [Federated search](/federated-search/) states the three steps, and
+      [CORI](/cori-resource-selection/) is the classic method for the first: it ranks whole collections by a
+      tf-idf style belief computed from their document frequencies.
+    entries:
+      - federated-search
+      - cori-resource-selection
+
+  - title: Diversifying the results
+    intro: >
+      For an ambiguous query, ten results about one meaning fail the users who meant another.
+      [Search result diversification](/search-result-diversification/) trades relevance against coverage of the
+      query's intents. [Maximal marginal relevance](/maximal-marginal-relevance/) penalizes similarity to the
+      results already chosen; [IA-Select](/ia-select/) and [xQuAD](/xquad/) model the intents explicitly and pick
+      greedily, and the greedy choice for IA-Select's submodular objective comes within $1 - 1/e$ of the best.
+    entries:
+      - search-result-diversification
+      - maximal-marginal-relevance
+      - ia-select
+      - xquad
+
+  - title: Learning from clicks
+    intro: >
+      Clicks are plentiful but biased: [position bias](/position-bias/) makes users click high results whatever
+      their relevance. A [click model](/click-model/) separates examination from attraction. The
+      [cascade model](/cascade-click-model/), the [position-based model](/position-based-click-model/) and the
+      [DBN model](/dbn-click-model/) make different assumptions about how users scan a list, and each is a
+      fitted model whose quality is measured on logs, not a fact about users.
+    entries:
+      - position-bias
+      - click-model
+      - cascade-click-model
+      - position-based-click-model
+      - dbn-click-model
+
+  - title: The recommendation problem
+    intro: >
+      A [recommender](/recommendation-problem/) predicts which items a user will like from a partly filled
+      [rating matrix](/rating-matrix/). [Collaborative filtering](/collaborative-filtering/) uses only the
+      interactions, [content-based filtering](/content-based-filtering/) only item features, and a
+      [hybrid](/hybrid-recommender/) combines the two, chiefly to soften the
+      [cold-start problem](/cold-start-problem/) of new users and items.
+    entries:
+      - recommendation-problem
+      - rating-matrix
+      - collaborative-filtering
+      - content-based-filtering
+      - cold-start-problem
+      - hybrid-recommender
+
+  - title: Neighborhood methods
+    intro: >
+      The oldest collaborative methods predict from similar users or similar items.
+      [User-based filtering](/user-based-collaborative-filtering/) weights other users by their correlation with
+      the target user; [item-based filtering](/item-based-collaborative-filtering/) precomputes item
+      similarities, which change more slowly; [Slope One](/slope-one/) averages rating differences between items;
+      and [SLIM](/sparse-linear-method/) learns the item-item weights by a sparse regression.
+    entries:
+      - user-based-collaborative-filtering
+      - item-based-collaborative-filtering
+      - slope-one
+      - sparse-linear-method
+
+  - title: Latent factor models
+    intro: >
+      [Matrix factorization](/matrix-factorization-recommendation/) gives each user and each item a short vector
+      and predicts a rating by their dot product. The fit is nonconvex; SGD and
+      [alternating least squares](/alternating-least-squares/) reach a local optimum. The other entries add a
+      probabilistic reading, implicit signals, feature interactions, and the theory of
+      [matrix completion](/matrix-completion/), where exact recovery holds with high probability under
+      incoherence and enough random samples.
+    entries:
+      - matrix-factorization-recommendation
+      - alternating-least-squares
+      - probabilistic-matrix-factorization
+      - svd-plus-plus
+      - factorization-machine
+      - matrix-completion
+      - exact-matrix-completion-theorem
+
+  - title: Implicit feedback, ranking and sequences
+    intro: >
+      Most data are clicks, plays and purchases, with no negative examples.
+      [Implicit feedback](/implicit-feedback/) changes the loss: [weighted ALS](/implicit-feedback-als/) treats
+      every blank as a weak zero, and [Bayesian personalized ranking](/bayesian-personalized-ranking/) ranks seen
+      items above unseen ones. The last entries replace the dot product by a network, or read the order of a
+      user's actions, as in [session-based recommendation](/session-based-recommendation/).
+    entries:
+      - implicit-feedback
+      - implicit-feedback-als
+      - bayesian-personalized-ranking
+      - neural-collaborative-filtering
+      - session-based-recommendation
+      - gru4rec
+      - sasrec

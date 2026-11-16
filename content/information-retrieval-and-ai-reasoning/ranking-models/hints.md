@@ -1,0 +1,25 @@
+2. The idf values are $\log_{10}(8/4) = 0.301$ for "sorted", $\log_{10}(8/3) = 0.426$ for "array" and $\log_{10}(8/2) = 0.602$ for "search". So $d_1$ scores $0.301 + 0.426 + 0.602 = 1.329$ and $d_2$ scores $2 \cdot 0.301 + 0.426 = 1.028$. The second "sorted" adds 0.301, less than the 0.602 of the rarer term "search" that $d_2$ lacks.
+
+4. The unsmoothed estimate is $1/9 = 0.1111$. The term occurs twice in the 79 tokens, so $p(\text{search} \mid C) = 2/79 = 0.0253$. Jelinek-Mercer gives $0.5 \cdot 1/9 + 0.5 \cdot 2/79 = 0.0682$, and Dirichlet gives $(1 + 10 \cdot 2/79)/(9 + 10) = 0.0660$. Document 4 holds neither "array" nor "search", so its unsmoothed query likelihood is 0 and its log score is $-\infty$, the same as a document that holds no query term at all.
+
+6. With $k = 60$, $x$ gets $1/61 + 1/63 = 0.032266$ and $y$ gets $2/62 = 0.032258$, so $x$ is first by a margin of less than $10^{-5}$. With $k = 0$, $x$ gets $1 + 1/3 = 1.333$ and $y$ gets $1$, so $x$ is first by a wide margin. A larger $k$ flattens the weights, which is why RRF moves toward an average of positions as $k$ grows.
+
+10. "key" has df 2 and idf $\ln 3.6 = 1.2809$; "table" has df 1 and idf $\ln 6 = 1.7918$. For $d_6$, with 10 tokens, the tf part of each term is $2.2/(1 + 1.2 \cdot 1.0095) = 0.9948$, so the score is $0.9948 \cdot 3.0727 = 3.0569$. For $d_1$, with 9 tokens, the tf part of "key" is $2.2/(1 + 1.2 \cdot 0.9335) = 1.0376$, and the score is $1.3291$. No other document holds either term, so the order is $d_6, d_1$.
+
+13. The centroid of the relevant documents is $(0.6, 0.4, 0.4, 0)$, and the non-relevant centroid is $(0, 0.6, 0, 0.8)$. Then $q + 0.75 \cdot (0.6, 0.4, 0.4, 0) - 0.15 \cdot (0, 0.6, 0, 0.8) = (1.45, 0.21, 0.30, -0.12)$, and clipping gives $(1.45, 0.21, 0.30, 0)$. The second term gains less than the third because the rejected document also holds it.
+
+14. With 3, 2, 1, 0 points by position, Borda gives $b$ 7, $a$ 6, $c$ 4, $d$ 1, so $b, a, c, d$. Item $b$ beats $a$ and $c$ by 2 to 1 and $d$ by 3 to 0, so it is the Condorcet winner. Checking all 24 rankings, $b, a, c, d$ is the unique Kemeny ranking, with total distance 4. The input lists cost 5, 5 and 6.
+
+16. Item $b$ beats every other item by majority, so with no teleport the walk never leaves $b$ once it gets there, and the stationary distribution puts all its mass on $b$. With $\varepsilon = 0.15$ and the teleport mixed in as $(1 - \varepsilon) M + \varepsilon/4$, the stationary distribution is $(120/667, 20/29, 40/483, 1/21) \approx (0.180, 0.690, 0.083, 0.048)$ for $a, b, c, d$, which gives the order $b, a, c, d$.
+
+17. The DCG is $0 + 3/\log_2 3 + 1/2 = 2.3928$ and the ideal DCG is $3 + 1/\log_2 3 = 3.6309$, so nDCG $= 0.6590$. The swap weights are $3 \cdot (1 - 0.6309)/3.6309 = 0.3049$ for ranks 1 and 2, $2 \cdot (0.6309 - 0.5)/3.6309 = 0.0721$ for ranks 2 and 3, and $1 \cdot (1 - 0.5)/3.6309 = 0.1377$ for ranks 1 and 3. The pair at ranks 1 and 2 gets the largest push: it holds the best document just below a document of label 0 at the top.
+
+21. Divide the tf part by $k_1$: $\mathrm{tf}(1 + 1/k_1)/(\mathrm{tf}/k_1 + B(d)) \to \mathrm{tf}/B(d)$ as $k_1 \to \infty$, which is linear tf-idf with a pivoted length normalizer of slope $b$ and pivot avgdl. As $k_1 \to 0$ the part tends to 1 for every $\mathrm{tf} \ge 1$, which is the binary independence model with no relevance information.
+
+22. Compare two adjacent positions $i$ and $i + 1$ holding $u$ and $v$. The other positions contribute the same in both orders, and the two positions contribute, after factoring out the probability that no earlier document is relevant, $p_u/i + (1 - p_u) p_v/(i + 1)$ in one order and $p_v/i + (1 - p_v) p_u/(i + 1)$ in the other. The difference is $(p_u - p_v)(1/i - 1/(i + 1))$, so putting the larger $p$ first never hurts, and an exchange argument finishes the proof. For the copies, $A, B, C$ gives $0.5 + 0.5 \cdot 0.4/3 = 0.5667$ and $A, C, B$ gives $0.5 + 0.5 \cdot 0.4/2 = 0.6$: the copy $B$ adds nothing once $A$ has failed.
+
+23. Footrule aggregation is an assignment of items to positions, so it can be solved exactly; on four items a check of all 24 rankings is enough. The minimum total footrule is 8, reached by $a, b, c, d$ and by $b, a, c, d$. Their Kendall costs are 5 and 4, against the Kemeny cost 4, so the worse of the two is within the factor $5/4$, well inside the bound 2.
+
+24. A misordered pair adds $1/1000$ to rloss under the uniform distribution, so rloss $< 1/1000$ means rloss $= 0$. The bound gives $\exp(-0.02\, T) < 1/1000$, that is $T > 50 \ln 1000 = 345.4$, so 346 rounds suffice.
+
+25. The order changes only when the query direction crosses a line $\langle u, x - y \rangle = 0$ for two items $x$ and $y$. The six differences give only five distinct lines, because $a - c = (1, -1)$ and $b - d = (2, -2)$ are parallel. Five lines through the origin cut the circle of directions into 10 arcs, and any two arcs lie on opposite sides of some line, so they give different orders. The count is 10, below the bound $4 \cdot 3 = 12$.

@@ -1,0 +1,84 @@
+# The order of chapter 35.7, Argumentation and belief revision. Groups are read in order; entries in a group too.
+groups:
+  - title: Abstract frameworks and Dung's semantics
+    intro: >
+      An [abstract argumentation framework](/abstract-argumentation-framework/) is a
+      [directed graph](/directed-graph/) whose nodes are arguments and whose edges are attacks. A semantics picks
+      the sets of arguments that can be held together. Admissible sets defend themselves, complete extensions also
+      take in everything they defend, the grounded extension is the least complete one, preferred extensions are
+      the maximal admissible ones, and stable extensions attack everything they leave out.
+    entries:
+      - abstract-argumentation-framework
+      - admissible-set
+      - complete-extension
+      - grounded-extension
+      - preferred-extension
+      - stable-extension-argumentation
+
+  - title: Computing extensions and their cost
+    intro: >
+      The grounded extension needs no search: a [counting algorithm](/grounded-extension-algorithm/) finds it in
+      linear time. Labellings describe the same extensions with the labels in, out and undec, and semi-stable
+      semantics repairs stable semantics when no stable extension exists. The other semantics need search:
+      credulous preferred acceptance is NP-complete and sceptical preferred acceptance is complete for the second
+      level of the polynomial hierarchy, so practical solvers call a SAT solver, often in a loop.
+    entries:
+      - grounded-extension-algorithm
+      - argument-labelling
+      - semi-stable-extension
+      - argument-acceptance-problem
+      - preferred-semantics-complexity
+      - argumentation-sat-encoding
+
+  - title: Structured and value-based argumentation
+    intro: >
+      In applications the arguments are built from rules, and the attacks come from their parts.
+      [Assumption-based argumentation](/assumption-based-argumentation/) attacks assumptions, ASPIC+ adds
+      defeasible rules and preferences, and defeasible logic programming answers queries with dialectical trees.
+      Value-based frameworks keep the arguments abstract but let an audience decide which attacks succeed.
+    entries:
+      - assumption-based-argumentation
+      - aspic-plus
+      - defeasible-logic-programming
+      - value-based-argumentation
+
+  - title: The AGM theory of belief change
+    intro: >
+      [Belief revision](/belief-revision/) asks how a rational agent should change a belief set when new
+      information arrives. The AGM postulates constrain expansion, contraction and revision, the Levi and Harper
+      identities turn contraction into revision and back, and partial meet contraction and epistemic entrenchment
+      give constructions. The representation theorems show that these constructions give exactly the operators
+      that satisfy the postulates.
+    entries:
+      - belief-revision
+      - agm-postulates
+      - levi-identity
+      - partial-meet-contraction
+      - epistemic-entrenchment
+      - agm-representation-theorem
+
+  - title: Revision on possible worlds
+    intro: >
+      On a finite language a belief set is a set of worlds, and an AGM revision is a choice of the most plausible
+      worlds. Grove's spheres and the faithful preorders of Katsuno and Mendelzon state this precisely, and
+      [Dalal's operator](/dalal-revision/) is the concrete case where plausibility is Hamming distance. The
+      impossibility theorem of Gärdenfors shows what this picture cannot hold: Ramsey-test conditionals as
+      ordinary beliefs.
+    entries:
+      - grove-spheres
+      - katsuno-mendelzon-revision
+      - dalal-revision
+      - gardenfors-impossibility-theorem
+
+  - title: Iterated revision, update and merging
+    intro: >
+      A belief set alone does not fix the next revision, so iterated revision keeps a ranking of worlds, such as
+      an [ordinal conditional function](/ordinal-conditional-functions/), and the Darwiche-Pearl postulates say how
+      the ranking may change. Update handles news about a changing world, one possible state at a time, as in
+      Winslett's possible models approach. Merging combines several sources of equal standing.
+    entries:
+      - ordinal-conditional-functions
+      - darwiche-pearl-postulates
+      - belief-update
+      - possible-models-approach
+      - belief-merging

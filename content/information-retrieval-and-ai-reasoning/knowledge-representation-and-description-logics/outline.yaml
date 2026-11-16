@@ -1,0 +1,92 @@
+# The order of chapter 35.5, Knowledge representation and description logics. Groups are read in order; entries in a group too.
+groups:
+  - title: Knowledge as structures
+    intro: >
+      The first formal pictures of knowledge were graphs and records. A [semantic network](/semantic-network/)
+      links concepts by labelled edges and passes properties down is-a links, and a
+      [frame](/frame-knowledge-representation/) is a record with slots and defaults. A
+      [description logic](/description-logic/) gives such structures a model-theoretic meaning, and an
+      [ontology](/ontology-knowledge-representation/) is the shared vocabulary written in one.
+    entries:
+      - semantic-network
+      - frame-knowledge-representation
+      - description-logic
+      - ontology-knowledge-representation
+
+  - title: ALC and knowledge bases
+    intro: >
+      [ALC](/alc-description-logic/) is the basic description logic: concept names closed under negation,
+      conjunction, disjunction and the two role restrictions. A knowledge base is a
+      [TBox and an ABox](/tbox-and-abox/), general axioms and facts about individuals. It is read under the
+      [open-world assumption](/open-world-assumption/), and usually without the
+      [unique name assumption](/unique-name-assumption/), which is where it parts from a database.
+    entries:
+      - alc-description-logic
+      - tbox-and-abox
+      - open-world-assumption
+      - unique-name-assumption
+
+  - title: Reasoning problems
+    intro: >
+      Four questions are asked of a knowledge base: can a concept have an instance, is one concept contained in
+      another, is an individual an instance of a concept, and what is the whole hierarchy of concept names. With
+      negation they reduce to [concept satisfiability](/concept-satisfiability/), the problem that the
+      algorithms of the next group decide.
+    entries:
+      - concept-satisfiability
+      - concept-subsumption
+      - instance-checking
+      - ontology-classification
+
+  - title: Tableaux and the cost of ALC
+    intro: >
+      The [tableau algorithm](/alc-tableau-algorithm/) tries to build a model and reports a clash when none
+      exists; [blocking](/tableau-blocking/) makes it stop when the TBox has cycles. Two theorems fix the cost:
+      PSPACE-complete without a TBox, EXPTIME-complete with general TBoxes. Schild's correspondence with modal
+      logic explains both, and the hypertableau calculus and SROIQ show what practical reasoners for OWL 2 do.
+    entries:
+      - alc-tableau-algorithm
+      - tableau-blocking
+      - alc-pspace-completeness
+      - alc-general-tbox-exptime
+      - alc-modal-k-correspondence
+      - hypertableau
+      - sroiq
+
+  - title: Logics with cheap reasoning
+    intro: >
+      Large ontologies and large data need reasoning in polynomial time, and that means a smaller language.
+      [EL](/el-description-logic/) keeps conjunction and existential restrictions and classifies a TBox by
+      completion rules in polynomial time. [DL-Lite](/dl-lite/) is designed so that a query over an ontology
+      rewrites into a first-order query over the data alone.
+    entries:
+      - structural-subsumption
+      - el-description-logic
+      - el-classification
+      - dl-lite
+      - ontology-mediated-query-answering
+      - perfectref-rewriting
+
+  - title: Actions and change
+    intro: >
+      The [situation calculus](/situation-calculus/) describes change by histories of actions, and
+      [successor state axioms](/successor-state-axioms/) solve its frame problem for deterministic actions.
+      Regression turns a question about the future into a question about the initial situation. The
+      [event calculus](/event-calculus/) does the same work on a time line with circumscription.
+    entries:
+      - situation-calculus
+      - successor-state-axioms
+      - situation-calculus-regression
+      - event-calculus
+
+  - title: Knowledge compilation
+    intro: >
+      [Knowledge compilation](/knowledge-compilation/) pays for hard reasoning once, offline, so that later
+      queries take time polynomial in the compiled size. The compiled form can be exponentially large, and the
+      choice of target language decides which queries are cheap. [d-DNNF](/d-dnnf/) gives linear-time model
+      counting, SDDs add a canonical form and an apply operation, and the map compares them all.
+    entries:
+      - knowledge-compilation
+      - d-dnnf
+      - knowledge-compilation-map
+      - sentential-decision-diagram

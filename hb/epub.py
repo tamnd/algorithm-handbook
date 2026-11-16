@@ -96,6 +96,8 @@ _MATHML = [
     (re.compile(r"\\cfrac(?![A-Za-z])"), lambda m: "\\dfrac"),
     (re.compile(r"\\tbinom(?![A-Za-z])"), lambda m: "\\binom"),
     (re.compile(r"\\bmod(?![A-Za-z])"), lambda m: "\\mathbin{\\mathrm{mod}}"),
+    # texmath cannot read \not before a group, as in the negated "|~" of nonmonotonic reasoning
+    (re.compile(r"\\not\s*\\mathrel\{\|\\!\\sim\}"), lambda m: "\\mathrel{|\\!\\nsim}"),
     # texmath has \big but not the relation sizes \bigm, \Bigm, \biggm, \Biggm (as in P(A \bigm| B))
     (re.compile(r"\\(big|Big|bigg|Bigg)m(?![A-Za-z])\s*(\\\||\\[A-Za-z]+|.)"),
      lambda m: "\\mathrel{\\" + m[1] + m[2] + "}"),
