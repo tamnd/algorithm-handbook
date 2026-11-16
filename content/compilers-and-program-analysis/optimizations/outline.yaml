@@ -1,0 +1,103 @@
+# The order of chapter 34.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Local cleanups
+    intro: >
+      The simplest optimizations look at one instruction or one basic block at a time. Constant folding
+      and peephole rules rewrite single operations, local value numbering finds equal values inside a
+      block by hashing, and copy propagation replaces copied names by their sources. Each one leaves work
+      for the others, so compilers run them together and repeatedly.
+    entries:
+      - constant-folding
+      - peephole-optimization
+      - local-value-numbering
+      - copy-propagation
+
+  - title: Removing dead code
+    intro: >
+      Code whose result is never used can go, as long as it has no side effect. The liveness version
+      deletes instructions one name at a time. The aggressive version assumes everything is dead until
+      it is shown useful, and so it also removes branches and whole loops.
+    entries:
+      - dead-code-elimination
+      - aggressive-dead-code-elimination
+
+  - title: Finding equal values
+    intro: >
+      An expression that was already computed with the same operands need not be computed again.
+      Common subexpression elimination finds such cases by available expressions. Global value
+      numbering asks the more general question of which values are surely equal, and the
+      Alpern-Wegman-Zadeck algorithm answers it optimistically by partition refinement.
+    entries:
+      - common-subexpression-elimination
+      - global-value-numbering
+      - alpern-wegman-zadeck-value-numbering
+
+  - title: Moving code
+    intro: >
+      A computation can be moved to a place where it runs less often. Loop-invariant code motion
+      lifts it out of a loop. Partial redundancy elimination generalizes this to every path, lazy
+      code motion solves it with four bit-vector analyses, and SSAPRE does the same work sparsely on
+      SSA form.
+    entries:
+      - loop-invariant-code-motion
+      - partial-redundancy-elimination
+      - lazy-code-motion
+      - ssapre
+
+  - title: Cheaper operations in loops
+    intro: >
+      A multiplication by an induction variable can become an addition carried around the loop. The
+      classic rewrite works on loops and their induction variables; the SSA version finds the
+      induction variables as strongly connected components of the SSA graph.
+    entries:
+      - strength-reduction
+      - operator-strength-reduction
+
+  - title: Across procedure boundaries
+    intro: >
+      Calls hide code from the optimizer. Inlining copies the callee into the caller, tail call
+      optimization turns a final call into a jump, and devirtualization finds the single target of a
+      virtual call. Interprocedural constant propagation carries constants across calls, and scalar
+      replacement splits local records into registers once inlining has exposed them.
+    entries:
+      - function-inlining
+      - tail-call-optimization
+      - devirtualization
+      - interprocedural-constant-propagation
+      - scalar-replacement-of-aggregates
+
+  - title: Using profiles
+    intro: >
+      Measured frequencies tell the compiler which code is hot. Profile-guided optimization uses
+      them for inlining, layout and allocation. Ball-Larus path profiling counts whole paths with a
+      few additions per run, and Pettis-Hansen positioning orders blocks and procedures so that hot
+      edges become fall-throughs.
+    entries:
+      - profile-guided-optimization
+      - ball-larus-path-profiling
+      - pettis-hansen-code-positioning
+
+  - title: Specialization and fusion
+    intro: >
+      When part of the input is known in advance, a program can be specialized to it. Partial
+      evaluation does this, binding-time analysis plans it, and the Futamura projections show that
+      specializing an interpreter gives a compiler. Deforestation fuses a producer with its consumer,
+      and supercompilation combines both ideas by driving the program on unknown input.
+    entries:
+      - partial-evaluation
+      - binding-time-analysis
+      - futamura-projections
+      - deforestation
+      - supercompilation
+
+  - title: Limits and search
+    intro: >
+      No algorithm finds the smallest equivalent of every program, so every optimizer can be
+      improved. On short loop-free code, though, the best program can be searched for:
+      superoptimization enumerates candidates, equality saturation keeps all rewrites at once in an
+      e-graph, and stochastic superoptimization samples programs by Markov chain Monte Carlo.
+    entries:
+      - full-employment-theorem
+      - superoptimization
+      - equality-saturation
+      - stochastic-superoptimization

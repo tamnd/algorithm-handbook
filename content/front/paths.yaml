@@ -2988,3 +2988,309 @@ paths:
             why: the worst case sum is the exact range; the root sum of squares assumes independent, normal variations.
           - entry: monte-carlo-tolerance-analysis
             why: estimates the fraction of good assemblies with an error that falls as one over the square root of the number of samples.
+  - id: compilers-and-program-analysis
+    title: Compilers and program analysis
+    for: a student who knows graph search and dominators, basic logic and the lambda calculus, and has met NP-completeness and undecidability, and wants to follow a program from its syntax tree to machine code and through the analyses that prove facts about it, and to see which steps are proved correct or optimal, which problems are undecidable or NP-hard, and which methods are heuristics judged only by measured results.
+    intro: >
+      The path follows a compiler from source to machine code and then turns to the analyses that prove facts about
+      programs. Every nontrivial question about what a program computes is undecidable, so each analysis is sound in
+      one direction and approximate in the other, and how close it comes is measured. Type inference comes first:
+      algorithm W finds principal types for Hindley-Milner programs, ML typability is DEXPTIME-complete yet fast in
+      practice, and inference for System F or with polymorphic recursion is undecidable. Intermediate representations
+      follow, with dominators, dominance frontiers and SSA form; minimal SSA can need a quadratic number of
+      phi-functions, while the counts measured on real programs grow about linearly. Dataflow analysis computes fixed
+      points of monotone functions on lattices: the iterative algorithm stops on lattices of finite height, its
+      maximal fixed point equals the meet over all paths for distributive frameworks, and abstract interpretation is
+      sound relative to a concretization and stops on infinite domains by widening. Optimizations rest on these
+      analyses: lazy code motion is optimal among safe placements, value equality is undecidable, the best code
+      layout is NP-hard, and inlining and profile-guided choices are judged by measured speed. Loop transformations
+      need dependence tests that are conservative, exact for integer constraints only at exponential worst-case cost,
+      and the polyhedral model is exact only for affine loop nests. Code generation is optimal on trees for a cost
+      model; register allocation as graph coloring and instruction scheduling are NP-complete, chordal SSA
+      interference graphs color optimally, and linear scan, modulo scheduling and JIT compilation are judged by
+      measurement. Precise pointer analysis is undecidable; Andersen's analysis is cubic and Steensgaard's almost
+      linear. The path ends with verification and synthesis: verification conditions prove partial correctness from
+      given invariants, invariant synthesis is undecidable in general, and LTL synthesis is 2EXPTIME-complete.
+    stages:
+      - title: Types and type inference
+        intro: >
+          A type system assigns types to the phrases of a program and rejects the programs it cannot type. Soundness
+          is a theorem about a stated calculus and semantics, proved by progress and preservation, and it rules out
+          only what that semantics calls stuck. Unification gives inference for Hindley-Milner programs, with a
+          principal type for every typable term and a DEXPTIME-complete decision problem that is fast on real code.
+          Richer systems lose inference: System F and polymorphic recursion are undecidable, so they ask for annotations.
+        steps:
+          - abstract-syntax-tree
+          - lambda-calculus
+          - type-system
+          - type-checking-problem
+          - simply-typed-lambda-calculus
+          - entry: type-soundness
+            why: progress and preservation, proved for the simply typed calculus under call-by-value, which shows the form of every soundness proof and what it leaves out.
+          - robinson-unification
+          - type-inference-problem
+          - let-polymorphism
+          - hindley-milner-type-system
+          - entry: algorithm-w
+            why: inference by unification, sound and complete for Hindley-Milner, exponential in the worst case and fast on the programs people write.
+          - principal-type-theorem
+          - entry: ml-typability-dexptime-completeness
+            why: ML typability is DEXPTIME-complete, so the exponential worst case of algorithm W cannot be avoided; nested lets double the size of types, and the lower bound runs any exponential-time machine.
+          - system-f
+          - entry: system-f-inference-undecidability
+            why: typability without annotations is undecidable for System F, by a reduction from semi-unification, while checking an annotated term stays decidable.
+          - entry: polymorphic-recursion-undecidability
+            why: inference becomes undecidable but semi-decidable once a recursive function may use itself at other types, which is why such languages ask for a signature.
+          - bidirectional-type-checking
+          - subtyping
+      - title: Intermediate representations and SSA
+        intro: >
+          The compiler lowers the syntax tree to three-address code, cuts it into basic blocks and joins them in a
+          control flow graph. Dominators come from depth-first orders; Lengauer-Tarjan is near-linear, while the
+          simpler Cooper-Harvey-Kennedy method has a worse worst case and was measured faster on real graphs. SSA form
+          puts phi-functions at iterated dominance frontiers; minimal SSA can need a quadratic number of them, a proved
+          bound, while measured counts grow about linearly. Leaving SSA must split critical edges and avoid the
+          lost-copy and swap problems.
+        steps:
+          - activation-record
+          - intermediate-representation
+          - three-address-code
+          - basic-block
+          - control-flow-graph
+          - call-graph
+          - depth-first-orders
+          - dominators-problem
+          - dominator-tree
+          - entry: lengauer-tarjan-algorithm
+            why: dominators in near-linear time with path compression and balanced linking, the bound the simpler methods are compared against.
+          - entry: cooper-harvey-kennedy-dominance
+            why: an iterative dominator algorithm with a worse worst-case bound than Lengauer-Tarjan, measured faster on real control flow graphs.
+          - entry: dominance-frontier
+            why: the blocks where a definition stops dominating, which is where SSA construction puts its phi-functions.
+          - natural-loop
+          - static-single-assignment-form
+          - phi-function
+          - entry: cytron-ssa-construction
+            why: minimal SSA from iterated dominance frontiers and a renaming walk over the dominator tree, the standard construction.
+          - critical-edge-splitting
+          - out-of-ssa-translation
+          - entry: lost-copy-and-swap-problems
+            why: two ways a naive translation out of SSA gives wrong code after copy propagation, which show why phi-functions are parallel copies.
+      - title: Dataflow analysis and abstract interpretation
+        intro: >
+          A dataflow analysis computes, at every point, a fact that holds on all runs. The iterative algorithm stops
+          for monotone functions on lattices of finite height and finds the maximal fixed point, which is safe
+          relative to the meet over all paths and equal to it when the framework is distributive; constant
+          propagation is monotone but not distributive. Abstract interpretation generalizes this: a domain is sound
+          relative to its concretization, widening forces termination on infinite domains at a cost in precision, and
+          the polyhedra domain is exponential in the worst case. IFDS solves distributive subset problems across
+          procedures exactly.
+        steps:
+          - dataflow-analysis
+          - reaching-definitions
+          - entry: live-variable-analysis
+            why: the standard backward may-analysis, which over-approximates the set of live names and feeds register allocation.
+          - entry: available-expressions
+            why: the standard forward must-analysis, which under-approximates and so meets by intersection.
+          - fixed-point
+          - monotone-dataflow-framework
+          - distributive-dataflow-framework
+          - gen-kill-problem
+          - meet-over-all-paths-solution
+          - maximal-fixed-point-solution
+          - entry: worklist-dataflow-algorithm
+            why: the iterative solver, which stops on lattices of finite height and returns the maximal fixed point whatever the visiting order.
+          - entry: mop-mfp-coincidence-theorem
+            why: the theorem of Kildall and of Kam and Ullman that the fixed point equals the path solution for distributive frameworks with all blocks reachable, and lies below it otherwise.
+          - entry: constant-propagation-problem
+            why: the standard analysis that is monotone but not distributive, so the computed fixed point can be strictly less precise than the path solution.
+          - loop-invariant
+          - abstract-interpretation
+          - collecting-semantics
+          - abstract-domain
+          - galois-connection
+          - interval-domain
+          - entry: widening-operator
+            why: the operator that makes iteration stop on domains of infinite height and still yields a sound post-fixed point, losing precision that narrowing may win back.
+          - entry: polyhedra-domain
+            why: linear inequalities between variables, the most precise of the numeric domains here, with exponential worst-case cost and no Galois connection in general.
+          - context-sensitivity
+          - entry: ifds-framework
+            why: interprocedural distributive subset problems solved exactly over valid paths by graph reachability, in time cubic in the number of facts.
+      - title: Scalar optimizations
+        intro: >
+          Optimizations change the program while keeping its meaning, and each rests on an analysis. The full
+          employment theorem shows that no optimizer is best on all programs. Equality of values is undecidable, so
+          value numbering finds a provable part of it. Lazy code motion is optimal, in evaluations and in register
+          lifetimes, among safe placements. Choosing the best code layout is NP-hard, and inlining and profile-guided
+          optimization are judged by measured speed. Superoptimizers accept a candidate only after a full check, and
+          equality saturation is sound when its rewrite rules are.
+        steps:
+          - dead-code-elimination
+          - loop-invariant-code-motion
+          - local-value-numbering
+          - entry: global-value-numbering
+            why: finding equal values across a whole procedure, where exact equality is undecidable and every algorithm finds a provable part of it.
+          - entry: alpern-wegman-zadeck-value-numbering
+            why: the coarsest congruence of the SSA graph by partition refinement in O(E log E) time, incomplete because phi-functions are treated as uninterpreted.
+          - partial-redundancy-elimination
+          - entry: lazy-code-motion
+            why: four unidirectional analyses that place each computation as late as possible, proved optimal in evaluations and lifetimes among safe placements.
+          - entry: sparse-conditional-constant-propagation
+            why: constant propagation over SSA edges and executable flow edges together, which finds constants in branches the plain analysis cannot rule out.
+          - function-inlining
+          - entry: profile-guided-optimization
+            why: decisions driven by counts from a training run, which give no guarantee for other inputs and are judged by measured speed.
+          - entry: pettis-hansen-code-positioning
+            why: the best code layout is NP-hard, so blocks and procedures are placed by a greedy merge of the heaviest edges, a heuristic without a proved ratio.
+          - entry: full-employment-theorem
+            why: no optimizer produces the smallest program for every input program, a consequence of the halting problem.
+          - entry: superoptimization
+            why: search for the shortest equivalent code, where tests only reject candidates and a full equivalence check is needed to accept one.
+          - e-graph
+          - equality-saturation
+      - title: Dependence and loop transformations
+        intro: >
+          A loop transformation reorders iterations, and it is legal when every dependence distance stays
+          lexicographically positive. Dependence testing is integer programming: the GCD and Banerjee tests are
+          conservative, the omega test is exact for integer linear constraints with no polynomial bound, and real
+          compilers answer "maybe" when unsure. Interchange, tiling and vectorization follow from these tests. The
+          polyhedral model is exact only for static control parts with affine bounds and subscripts, and its
+          schedulers choose legal schedules by objectives that stand in for speed, so the code they produce is measured.
+        steps:
+          - data-dependence
+          - dependence-distance-vector
+          - loop-carried-dependence
+          - dependence-direction-vector
+          - lexicographic-order
+          - entry: loop-transformation-legality
+            why: the theorem that a reordering is legal when every dependence distance stays lexicographically positive, the test every transformation here must pass.
+          - dependence-testing
+          - entry: gcd-test
+            why: a linear equation has an integer solution only if the gcd of its coefficients divides the constant; the answer independent is always right, maybe can be wrong.
+          - entry: banerjee-test
+            why: bounds on a dependence equation over the reals, exact over the reals but conservative for integers.
+          - fourier-motzkin-elimination
+          - entry: omega-test
+            why: exact for integer linear constraints, with a worst case beyond any polynomial, measured fast on the systems that dependence tests produce.
+          - loop-interchange
+          - strip-mining
+          - entry: loop-tiling
+            why: strip mining and interchange together, legal on a fully permutable band, for the cache reuse that only measurement can price.
+          - doall-loop
+          - vectorization
+          - strongly-connected-components
+          - entry: allen-kennedy-algorithm
+            why: vectorizes a nest by the strongly connected components of its dependence graph, keeping only the cycles sequential.
+          - linear-programming-problem
+          - farkas-lemma
+          - entry: polyhedral-model
+            why: iteration domains and dependences as integer points of polyhedra, exact only for static control parts with affine bounds and subscripts.
+          - affine-scheduling-problem
+          - entry: feautrier-scheduling
+            why: affine schedules from linear programs built with Farkas' lemma, a construction that always ends with a legal schedule.
+          - entry: pluto-algorithm
+            why: chooses tiling hyperplanes by minimizing a bound on dependence distances, a heuristic objective for speed rather than an optimum.
+      - title: Code generation, register allocation and JIT
+        intro: >
+          Instruction selection covers the IR with machine instructions. On trees, dynamic programming is optimal for
+          its cost model; maximal munch is only locally best, and optimal code for a DAG is NP-complete. Register
+          allocation as graph coloring is NP-complete for every fixed number of registers from three, so Chaitin's and
+          Briggs's allocators are heuristics; strict SSA programs have chordal interference graphs that color
+          optimally, yet spilling and coalescing stay NP-hard. Instruction scheduling is NP-complete too. Linear scan,
+          modulo scheduling and the methods of JIT compilers are judged by measured speed.
+        steps:
+          - instruction-selection-problem
+          - entry: maximal-munch
+            why: greedy tiling from the root by the largest matching pattern, optimal in the sense that no two adjacent tiles combine into a cheaper one, but not optimum.
+          - entry: aho-johnson-code-generation
+            why: dynamic programming over a tree that gives the cheapest code for its cost model, in time linear in the tree.
+          - burs
+          - interference-graph
+          - graph-coloring
+          - register-allocation-problem
+          - entry: register-allocation-np-completeness
+            why: every graph is the interference graph of some program, so allocation by coloring is NP-complete for each fixed number of registers from three.
+          - entry: chaitin-register-allocation
+            why: build, simplify, spill and select, the heuristic allocator on which the others are built.
+          - briggs-optimistic-coloring
+          - register-coalescing-problem
+          - chordal-graph
+          - entry: ssa-chordal-interference-theorem
+            why: strict SSA programs have chordal interference graphs, colored optimally in polynomial time, while spilling and coalescing stay NP-hard.
+          - entry: linear-scan-register-allocation
+            why: one pass over sorted live intervals, optimal for its intervals but a heuristic for programs, which is why JIT compilers use it.
+          - list-scheduling
+          - entry: instruction-scheduling-problem
+            why: ordering the instructions of a block under latencies and resources, NP-complete in general, so compilers schedule by list heuristics.
+          - software-pipelining
+          - entry: iterative-modulo-scheduling
+            why: tries initiation intervals from a lower bound up; the least one is NP-hard to find, and how often it is reached is measured.
+          - just-in-time-compilation
+          - entry: inline-caching
+            why: caches the method found at each call site, a gain that rests on measurement, such as the 93.6 percent of monomorphic send sites in SELF programs.
+      - title: Pointer and alias analysis
+        intro: >
+          Pointer analysis asks which memory each reference may touch. Precise may-alias analysis is undecidable with
+          dynamic allocation, and even its flow-insensitive form is NP-hard, so every practical analysis
+          over-approximates. Andersen's inclusion analysis runs in cubic time and Steensgaard's unification in almost
+          linear time with less precision; how much precision each loses is measured. For higher-order programs,
+          0-CFA is cubic, and k-CFA is EXPTIME-complete for every k from 1. Class hierarchy analysis is sound for
+          type-safe programs without reflection.
+        steps:
+          - alias-analysis
+          - points-to-analysis
+          - call-graph-construction
+          - entry: andersen-analysis
+            why: inclusion constraints solved by a closure in cubic time, the precise end of flow-insensitive analysis and the source of the cubic bottleneck.
+          - entry: steensgaard-analysis
+            why: unification with union-find in almost linear time, less precise than Andersen's analysis by a margin that is measured.
+          - entry: may-alias-undecidability
+            why: precise may-alias analysis is undecidable for programs with dynamic allocation, so every analysis here over-approximates.
+          - entry: flow-insensitive-alias-np-hardness
+            why: even when statement order is ignored, the precise may-alias answer is NP-hard.
+          - entry: class-hierarchy-analysis
+            why: a call graph from declared types alone, in near-linear time, sound for type-safe programs without reflection.
+          - entry: zero-cfa
+            why: control flow analysis for higher-order programs in cubic time, with one abstract binding per variable.
+          - k-cfa
+          - entry: k-cfa-exptime-completeness
+            why: adding one level of call-string context makes control flow analysis EXPTIME-complete, by the result of Van Horn and Mairson.
+      - title: Verification, symbolic execution and synthesis
+        intro: >
+          Hoare logic is sound and relatively complete, and a verification condition generator turns an annotated
+          program into formulas whose validity proves partial correctness; finding the invariants is undecidable in
+          general and works only for restricted shapes. Linear ranking functions over the rationals are found in
+          polynomial time by linear programming. Symbolic execution and concolic testing find bugs but prove nothing
+          beyond the paths they run, and path explosion bounds them. Translation validation is incomplete, since
+          equivalence is undecidable, while verified compilation proves the compiler once. Synthesis ends the path:
+          CEGIS is sound, and LTL synthesis is 2EXPTIME-complete.
+        steps:
+          - hoare-triple
+          - hoare-logic
+          - weakest-precondition
+          - entry: verification-condition-generation
+            why: turns a program with loop invariants into formulas for a solver, and is sound for partial correctness when the formulas are valid.
+          - entry: loop-invariant-synthesis
+            why: finding an inductive invariant is undecidable in general, so each method fixes a shape or a domain and may fail.
+          - termination-proof
+          - entry: ranking-function-synthesis
+            why: linear ranking functions over the rationals by linear programming in polynomial time, while over the integers the question is coNP-complete.
+          - symbolic-execution
+          - path-condition
+          - symbolic-execution-tree
+          - entry: path-explosion-problem
+            why: the number of paths grows exponentially with the branches in sequence, which limits every method of this stage that runs paths one by one.
+          - smt-problem
+          - entry: concolic-testing
+            why: runs concrete inputs and solves negated branch conditions; with an exact solver it reaches every path that an input of the domain follows, and it stops only when the domain is finite.
+          - entry: translation-validation
+            why: checks one compiler run instead of the compiler, and is incomplete because program equivalence is undecidable.
+          - entry: verified-compilation
+            why: a machine-checked proof that every compiled program keeps the meaning of its source, as for CompCert in Coq.
+          - program-synthesis
+          - entry: cegis
+            why: alternates a synthesizer and a verifier on counterexamples, always sound, and sure to stop only when the candidate or input space is finite.
+          - reactive-synthesis
+          - entry: pnueli-rosner-theorem
+            why: deciding whether an LTL specification has a reactive implementation is 2EXPTIME-complete.

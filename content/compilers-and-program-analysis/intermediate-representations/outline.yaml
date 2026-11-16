@@ -1,0 +1,89 @@
+# The order of chapter 34.2, Intermediate representations. Groups are read in order; entries in a group too.
+groups:
+  - title: Programs as code and graphs
+    intro: >
+      An [intermediate representation](/intermediate-representation/) sits between the syntax tree and machine
+      code. [Three-address code](/three-address-code/) gives each instruction one operator, [basic blocks](/basic-block/)
+      cut it into straight runs, and the [control flow graph](/control-flow-graph/) joins the blocks by the jumps.
+      The [call graph](/call-graph/) does the same for procedures, and [def-use chains](/def-use-chains/) link each
+      definition to the uses it can reach.
+    entries:
+      - intermediate-representation
+      - three-address-code
+      - basic-block
+      - control-flow-graph
+      - call-graph
+      - def-use-chains
+
+  - title: Dominance and loops
+    intro: >
+      The [dominators problem](/dominators-problem/) and the [dominator tree](/dominator-tree/) are treated in Volume 7.
+      This group computes them on control flow graphs and builds on them. The [Cooper-Harvey-Kennedy algorithm](/cooper-harvey-kennedy-dominance/) needs at most
+      $d + 2$ passes, the [dominance frontier](/dominance-frontier/) marks where dominance ends, and
+      [post-dominance](/post-dominance/) is dominance on the reversed graph. Loops are found as
+      [natural loops](/natural-loop/) on [reducible graphs](/reducible-flow-graph/), tested by the
+      [T1-T2 reduction](/t1-t2-reduction/), and as a [loop nesting forest](/loop-nesting-forest/) on any graph.
+    entries:
+      - cooper-harvey-kennedy-dominance
+      - dominance-frontier
+      - dominance-frontier-computation
+      - post-dominance
+      - natural-loop
+      - reducible-flow-graph
+      - t1-t2-reduction
+      - loop-nesting-forest
+
+  - title: Static single assignment form
+    intro: >
+      In [SSA form](/static-single-assignment-form/) every name has one definition, and a
+      [phi node](/phi-function/) merges the names that meet at a join. The
+      [Cytron construction](/cytron-ssa-construction/) places phi nodes at iterated dominance frontiers and gives
+      minimal SSA, [pruned SSA](/pruned-ssa-form/) drops those whose variable is dead, and the
+      [Braun construction](/braun-ssa-construction/) builds pruned SSA on demand with no dominance information.
+    entries:
+      - static-single-assignment-form
+      - phi-function
+      - ssa-construction-problem
+      - cytron-ssa-construction
+      - pruned-ssa-form
+      - braun-ssa-construction
+
+  - title: Leaving SSA form
+    intro: >
+      A machine has no phi nodes, so they become copies on the incoming edges. Copies need a place on every edge, which
+      [critical edge splitting](/critical-edge-splitting/) provides, and the copies of one edge act as a parallel copy.
+      After copy folding the simple translation fails in the [lost-copy and swap problems](/lost-copy-and-swap-problems/),
+      and [Sreedhar's translation](/sreedhar-cssa-translation/) avoids them by making the program conventional first.
+    entries:
+      - critical-edge-splitting
+      - out-of-ssa-translation
+      - lost-copy-and-swap-problems
+      - sreedhar-cssa-translation
+
+  - title: Dependence-based representations
+    intro: >
+      [Control dependence](/control-dependence/) says which branch decides whether a block runs, and it is the
+      dominance frontier of the reversed graph. The [program dependence graph](/program-dependence-graph/) keeps only
+      control and data dependences, and the [sea of nodes](/sea-of-nodes/) drops basic blocks until a final schedule.
+      [SSI form](/static-single-information-form/) also renames variables at branches.
+    entries:
+      - control-dependence
+      - program-dependence-graph
+      - sea-of-nodes
+      - static-single-information-form
+
+  - title: Functional representations
+    intro: >
+      Compilers for functional languages use [continuation-passing style](/continuation-passing-style/), produced by
+      [CPS conversion](/cps-conversion/) in one pass, or the direct-style [A-normal form](/a-normal-form/). Functions
+      with free variables are removed by [closure conversion](/closure-conversion/), [lambda lifting](/lambda-lifting/)
+      or [defunctionalization](/defunctionalization/). The [correspondence of SSA and CPS](/ssa-cps-correspondence/)
+      shows that a strict SSA procedure is a functional program whose scopes follow the dominator tree.
+    entries:
+      - continuation-passing-style
+      - cps-conversion
+      - a-normal-form
+      - closure-conversion
+      - lambda-lifting
+      - defunctionalization
+      - ssa-cps-correspondence

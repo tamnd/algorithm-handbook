@@ -1,0 +1,98 @@
+# The order of chapter 34.8, Verification, symbolic execution and synthesis. Groups are read in order; entries in a group too.
+groups:
+  - title: Paths and their conditions
+    intro: >
+      A run of a program follows one path, and the inputs that follow it are the solutions of its
+      [path condition](/path-condition/). The [strongest postcondition](/strongest-postcondition/) carries a
+      formula forward along the code, the [symbolic execution tree](/symbolic-execution-tree/) collects all paths
+      at once, and the [path explosion problem](/path-explosion-problem/) explains why the number of paths, not
+      the cost of one path, limits the method.
+    entries:
+      - path-condition
+      - strongest-postcondition
+      - symbolic-execution-tree
+      - path-explosion-problem
+
+  - title: Testing by search
+    intro: >
+      These methods run the program and look for inputs that break it. [Concolic testing](/concolic-testing/)
+      and [generational search](/generational-search/) solve path conditions to reach new paths, while
+      [coverage-guided](/coverage-guided-fuzzing/) and [grammar-based fuzzing](/grammar-based-fuzzing/) mutate or
+      generate inputs and keep those that do something new. [Delta debugging](/delta-debugging/) shrinks a failing
+      input, and [equivalence modulo inputs](/equivalence-modulo-inputs/) tests compilers. Every bug they report
+      is real; a run with no bug proves nothing about the paths not covered.
+    entries:
+      - concolic-testing
+      - generational-search
+      - coverage-guided-fuzzing
+      - grammar-based-fuzzing
+      - delta-debugging
+      - equivalence-modulo-inputs
+
+  - title: Verification conditions and invariants
+    intro: >
+      A [verification condition generator](/verification-condition-generation/) turns a program with its
+      annotations into formulas whose validity proves it correct. Loops need invariants, and
+      [loop invariant synthesis](/loop-invariant-synthesis/) asks for them automatically: the problem is
+      undecidable in general, [Houdini](/houdini-algorithm/) picks the largest inductive subset of guessed
+      candidates, and the [Farkas method](/farkas-invariant-generation/) solves for linear ones.
+      [Proof-carrying code](/proof-carrying-code/) ships the proof of the conditions with the program.
+    entries:
+      - verification-condition-generation
+      - loop-invariant-synthesis
+      - houdini-algorithm
+      - farkas-invariant-generation
+      - proof-carrying-code
+
+  - title: Termination
+    intro: >
+      A loop stops if some measure drops on every turn and cannot drop for ever.
+      [Linear ranking function synthesis](/ranking-function-synthesis/) finds such a measure by one linear
+      program, and decides its existence for single-path linear loops over the rationals.
+      [Transition invariants](/transition-invariants/) let several measures share the work, which is how
+      termination provers handle loops with many paths.
+    entries:
+      - ranking-function-synthesis
+      - transition-invariants
+
+  - title: Two runs and two programs
+    intro: >
+      Some properties compare runs. [Noninterference](/noninterference/) says that runs with the same public
+      inputs end with the same public outputs, and [self-composition](/self-composition/) reduces it to a
+      property of one run of a doubled program. A compiler must keep the meaning of every program:
+      [verified compilation](/verified-compilation/) proves this once for the compiler, and
+      [translation validation](/translation-validation/) checks it again for each compilation.
+    entries:
+      - noninterference
+      - self-composition
+      - verified-compilation
+      - translation-validation
+
+  - title: Program synthesis
+    intro: >
+      [Program synthesis](/program-synthesis/) builds a program from a specification, which is undecidable in
+      general and a search in practice. From examples, [bottom-up enumeration](/bottom-up-enumerative-synthesis/)
+      keeps one program per behaviour, [version space algebras](/version-space-algebra/) hold all consistent
+      programs in a shared graph, and [types](/type-directed-synthesis/) prune the search top-down.
+      [Sketches](/program-sketching/) fix the shape and leave holes for a solver, [deductive synthesis](/deductive-program-synthesis/)
+      reads a program off a proof, and [program repair](/automated-program-repair/) synthesizes a small change.
+    entries:
+      - program-synthesis
+      - programming-by-example
+      - bottom-up-enumerative-synthesis
+      - version-space-algebra
+      - string-transformation-synthesis
+      - program-sketching
+      - deductive-program-synthesis
+      - type-directed-synthesis
+      - automated-program-repair
+
+  - title: Reactive synthesis
+    intro: >
+      A reactive system reads an input and writes an output at every step, for ever.
+      [Reactive synthesis](/reactive-synthesis/) builds a finite-state controller from a temporal specification
+      by solving a game against the environment, and the [Pnueli-Rosner theorem](/pnueli-rosner-theorem/) shows
+      that for LTL the problem is complete for doubly exponential time.
+    entries:
+      - reactive-synthesis
+      - pnueli-rosner-theorem

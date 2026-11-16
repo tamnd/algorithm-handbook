@@ -1,0 +1,123 @@
+# The order of chapter 34.3, Dataflow analysis and abstract interpretation. Groups are read in order; entries in a group too.
+groups:
+  - title: Classic dataflow problems
+    intro: >
+      A [dataflow analysis](/dataflow-analysis/) attaches a fact to every point of a control flow graph and
+      propagates it along the edges until nothing changes. Four problems recur in every compiler: which
+      expressions are already computed, which variables are still needed, which assignments can reach a use, and
+      which expressions will surely be computed later. They differ only in direction and in whether a fact must
+      hold on all paths or on some path.
+    entries:
+      - dataflow-analysis
+      - available-expressions
+      - live-variable-analysis
+      - reaching-definitions
+      - very-busy-expressions
+
+  - title: Frameworks and their solutions
+    intro: >
+      A [monotone dataflow framework](/monotone-dataflow-framework/) states all such problems at once: a lattice of
+      facts and a monotone transfer function per block. The ideal answer is the
+      [meet over all paths](/meet-over-all-paths-solution/); what an iterative solver computes is the
+      [maximal fixed point](/maximal-fixed-point-solution/). The two agree when the framework is distributive and
+      every block is reachable, as the [coincidence theorem](/mop-mfp-coincidence-theorem/) shows.
+    entries:
+      - monotone-dataflow-framework
+      - distributive-dataflow-framework
+      - gen-kill-problem
+      - meet-over-all-paths-solution
+      - maximal-fixed-point-solution
+      - kleene-fixed-point-theorem
+      - mop-mfp-coincidence-theorem
+
+  - title: Solving the equations
+    intro: >
+      The [worklist algorithm](/worklist-dataflow-algorithm/) reevaluates a block only when an input changed and
+      stops on any lattice of finite height. For rapid distributive frameworks, which include the gen-kill
+      problems, round robin in reverse postorder needs at most
+      $d + 2$ passes, by the [Kam-Ullman bound](/kam-ullman-iteration-bound/). Elimination methods solve the
+      equations by substitution over the loop structure instead.
+    entries:
+      - worklist-dataflow-algorithm
+      - kam-ullman-iteration-bound
+      - elimination-dataflow-methods
+
+  - title: Constant propagation
+    intro: >
+      [Constant propagation](/constant-propagation-problem/) is the standard monotone framework that is not
+      distributive, so its maximal fixed point can be below the meet over all paths. The sparse conditional
+      algorithm works on SSA form and marks only the edges that can run, which finds constants that plain
+      propagation and dead-branch removal miss.
+    entries:
+      - constant-propagation-problem
+      - sparse-conditional-constant-propagation
+
+  - title: Abstract interpretation
+    intro: >
+      Abstract interpretation starts from the [collecting semantics](/collecting-semantics/), the exact sets of
+      states at each point, and replaces sets by elements of an [abstract domain](/abstract-domain/). A
+      [Galois connection](/galois-connection/) fixes what each element means and gives the best transformer for
+      each statement. [Intervals](/interval-domain/) have infinite height, so a [widening](/widening-operator/)
+      forces termination, a narrowing wins back some precision, and a weak topological ordering says where to
+      widen and in what order to iterate.
+    entries:
+      - collecting-semantics
+      - abstract-domain
+      - galois-connection
+      - interval-domain
+      - widening-operator
+      - narrowing-operator
+      - weak-topological-ordering
+
+  - title: Richer domains
+    intro: >
+      Intervals forget every relation between variables. [Octagons](/octagon-domain/) keep bounds on $\pm x \pm y$,
+      with a closure that is cubic in the number of variables, and [convex polyhedra](/polyhedra-domain/) keep any linear inequalities at a cost that is
+      exponential in the worst case. A [reduced product](/reduced-product/) runs two domains side by side and lets
+      each sharpen the other. Strictness analysis applies the same machinery to functions of a lazy language.
+    entries:
+      - octagon-domain
+      - polyhedra-domain
+      - reduced-product
+      - strictness-analysis
+
+  - title: Across procedures
+    intro: >
+      An analysis can keep one fact per variable or one per point, which is
+      [flow sensitivity](/flow-sensitivity/), and it can analyze a procedure once or once per calling context,
+      which is [context sensitivity](/context-sensitivity/). The [functional approach](/functional-approach-interprocedural/)
+      computes a summary per procedure. [IFDS](/ifds-framework/) turns distributive subset problems into graph
+      reachability, IDE extends it to values per variable, and taint analysis is its best-known client.
+    entries:
+      - flow-sensitivity
+      - context-sensitivity
+      - interprocedural-dataflow-analysis
+      - functional-approach-interprocedural
+      - ifds-framework
+      - ide-framework
+      - taint-analysis
+
+  - title: Slicing
+    intro: >
+      A [program slice](/program-slicing/) keeps the statements that can affect chosen variables at a chosen point.
+      Weiser computed slices by dataflow; reachability in the program dependence graph gives the same kind of
+      slice in linear time. Dynamic slicing keeps only the dependences of one run, and the system dependence graph
+      extends slicing across calls without mixing up calling contexts.
+    entries:
+      - program-slicing
+      - weiser-slicing
+      - pdg-slicing
+      - dynamic-slicing
+      - system-dependence-graph-slicing
+
+  - title: The heap, and analysis in Datalog
+    intro: >
+      [Shape analysis](/shape-analysis/) asks what heap structures a program builds: lists, trees, cycles. The
+      three-valued logic approach summarizes many cells into one node and keeps "maybe" as a truth value.
+      [Bi-abduction](/bi-abduction/) infers separation-logic specifications procedure by procedure. Many
+      analyses can also be written as Datalog rules and run by a Datalog engine.
+    entries:
+      - shape-analysis
+      - three-valued-logic-shape-analysis
+      - bi-abduction
+      - datalog-program-analysis

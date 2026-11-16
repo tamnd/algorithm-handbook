@@ -1,0 +1,99 @@
+# The order of chapter 34.5, Loop transformations. Groups are read in order; entries in a group too.
+groups:
+  - title: Dependences
+    intro: >
+      A [data dependence](/data-dependence/) joins two accesses to one location, at least one of them a write,
+      whose order the program must keep. In a loop nest it is described by a
+      [distance vector](/dependence-distance-vector/) or a [direction vector](/dependence-direction-vector/), and
+      the outermost nonzero entry says which loop carries it. The
+      [legality theorem](/loop-transformation-legality/) states that a reordering keeps the meaning when every
+      distance stays lexicographically positive, and a [DOALL loop](/doall-loop/) is one that carries no dependence.
+    entries:
+      - data-dependence
+      - dependence-distance-vector
+      - dependence-direction-vector
+      - loop-carried-dependence
+      - loop-transformation-legality
+      - doall-loop
+
+  - title: Induction variables
+    intro: >
+      Subscripts are written in terms of loop counters, and a compiler first has to find which variables are
+      counters. [Induction variable analysis](/induction-variable-analysis/) finds the variables that change by a
+      fixed amount or are affine in such variables, using SSA form. [Chains of
+      recurrences](/chains-of-recurrences/) extend this to polynomial and geometric sequences, with a closed algebra.
+    entries:
+      - induction-variable-analysis
+      - chains-of-recurrences
+
+  - title: Dependence tests
+    intro: >
+      [Dependence testing](/dependence-testing/) asks whether two references can touch the same element, which is
+      integer programming over the iteration space. The [GCD test](/gcd-test/) ignores the bounds and the
+      [Banerjee test](/banerjee-test/) ignores integrality; both are conservative. The
+      [subscript-wise tests](/practical-dependence-tests/) classify subscripts and apply an exact test to each
+      class where one exists.
+    entries:
+      - dependence-testing
+      - gcd-test
+      - banerjee-test
+      - practical-dependence-tests
+
+  - title: Restructuring loops
+    intro: >
+      Each transformation here changes the order of iterations or the shape of the nest, and each is legal only
+      when the dependences allow it. [Unrolling](/loop-unrolling/) and [strip mining](/strip-mining/) never
+      reorder iterations; [interchange](/loop-interchange/), [fusion](/loop-fusion/) and
+      [distribution](/loop-distribution/) do. [Skewing](/loop-skewing/) makes dependences point forward so that
+      interchange and [tiling](/loop-tiling/) become legal.
+    entries:
+      - loop-unrolling
+      - strip-mining
+      - loop-interchange
+      - loop-fusion
+      - loop-distribution
+      - loop-skewing
+      - loop-tiling
+
+  - title: Vector and parallel code
+    intro: >
+      [Vectorization](/vectorization/) runs several iterations in one SIMD instruction, and the
+      [Allen-Kennedy algorithm](/allen-kennedy-algorithm/) finds the statements that can be vectorized by
+      distributing a nest over the strongly connected components of its dependence graph.
+      [SLP vectorization](/slp-vectorization/) packs statements of a basic block instead. A loop with carried
+      dependences can still run in parallel by [DOACROSS](/doacross-parallelization/) synchronization, and
+      [array privatization](/array-privatization/) removes dependences on scratch arrays.
+    entries:
+      - vectorization
+      - allen-kennedy-algorithm
+      - slp-vectorization
+      - doacross-parallelization
+      - array-privatization
+
+  - title: Unimodular transformations and locality
+    intro: >
+      Interchange, reversal and skewing are integer matrices of determinant $\pm 1$, and a product of them is one
+      [unimodular transformation](/unimodular-transformations/), legal when it maps every distance $d$ to
+      $Td \succ 0$. The [Lamport hyperplane method](/lamport-hyperplane-method/) uses such a matrix to put a
+      parallel wavefront inside, and the [Wolf-Lam algorithm](/wolf-lam-locality-algorithm/) uses it to keep
+      reuse in the innermost loops.
+    entries:
+      - unimodular-transformations
+      - lamport-hyperplane-method
+      - wolf-lam-locality-algorithm
+
+  - title: The polyhedral model
+    intro: >
+      The [polyhedral model](/polyhedral-model/) describes each statement instance as an integer point in a
+      polyhedron, which is exact for static control parts with affine bounds and subscripts. On that model
+      [array dataflow analysis](/feautrier-array-dataflow/) finds the exact source of every read, the
+      [affine scheduling problem](/affine-scheduling-problem/) is solved by [Feautrier's
+      algorithm](/feautrier-scheduling/) or by [Pluto](/pluto-algorithm/), each with its own cost model, and
+      [polyhedral scanning](/polyhedral-scanning/) turns the chosen schedule back into loops.
+    entries:
+      - polyhedral-model
+      - feautrier-array-dataflow
+      - affine-scheduling-problem
+      - feautrier-scheduling
+      - pluto-algorithm
+      - polyhedral-scanning

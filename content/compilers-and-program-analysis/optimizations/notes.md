@@ -1,0 +1,19 @@
+## History
+
+The first optimizations came with the first compilers for high-level languages. Ershov described value numbering in 1958, and McKeeman named peephole optimization in 1965. Around 1970 the work moved from blocks to whole procedures: Allen analyzed control flow and Cocke gave global common subexpression elimination, and Kildall's framework of 1973 made the analyses behind them uniform. Knuth's empirical study of FORTRAN programs in 1971 showed that most of the running time sits in a small part of the code, which is the argument for every profile-guided method since.
+
+Code motion and strength reduction became exact problems in the following decades. Cocke and Kennedy gave strength reduction in 1977, and Allen, Cocke and Kennedy extended it in 1981. Morel and Renvoise posed partial redundancy elimination in 1979, and Knoop, Rüthing and Steffen gave lazy code motion in 1992, with placements that are computationally and lifetime optimal. SSA form, in the version of Cytron and colleagues of 1991, changed how these passes were written: Alpern, Wegman and Zadeck and Rosen, Wegman and Zadeck published value numbering on SSA in 1988, Chow and colleagues gave SSAPRE in 1997, and Cooper, Simpson and Vick gave operator strength reduction on SSA in 2001.
+
+Calls and measured behavior came next. Scheifler studied inlining in 1977, the same year that Steele argued that a tail call is a jump. Callahan, Cooper, Kennedy and Torczon gave interprocedural constant propagation in 1986. For object-oriented languages, Hölzle and Ungar used type feedback in 1994, Dean, Grove and Chambers used class hierarchy analysis in 1995, and Bacon and Sweeney gave rapid type analysis in 1996. Pettis and Hansen ordered code by profile in 1990, and Ball and Larus counted edges in 1994 and whole paths in 1996.
+
+Specialization grew out of computability theory. Futamura described his projections in 1971, and Jones, Sestoft and Søndergaard built a self-applicable partial evaluator in 1985; the book of Jones, Gomard and Sestoft in 1993 collected the field. Turchin's supercompiler was published in 1986, Wadler gave deforestation in 1990, Gill, Launchbury and Peyton Jones gave short-cut fusion in 1993, and Sørensen, Glück and Jones described positive supercompilation in 1996.
+
+The search methods began with Massalin's superoptimizer of 1987, which enumerated short programs for the 68020. Denali, by Joshi, Nelson and Randall in 2002, matched axioms in an e-graph, and Bansal and Aiken in 2006 built peephole rules offline by superoptimizing short windows of code. Tate, Stepp, Tatlock and Lerner named equality saturation in 2009, Schkufza, Sharma and Aiken gave the stochastic search of STOKE in 2013, and the egg library of Willsey and colleagues made e-graphs a common tool in 2021.
+
+## Further reading
+
+- Keith D. Cooper and Linda Torczon, *Engineering a Compiler*, 3rd edition, Morgan Kaufmann, 2022. The clearest textbook account of value numbering, code motion, strength reduction and the order in which compilers run their passes.
+- Steven S. Muchnick, *Advanced Compiler Design and Implementation*, Morgan Kaufmann, 1997. A broad reference for nearly every pass of this chapter, with the details that production compilers need.
+- Alfred V. Aho, Monica S. Lam, Ravi Sethi and Jeffrey D. Ullman, *Compilers: Principles, Techniques, and Tools*, 2nd edition, Addison-Wesley, 2007. Good for the dataflow view of optimization, with lazy code motion worked out on examples.
+- Jens Knoop, Oliver Rüthing and Bernhard Steffen, "Optimal code motion: theory and practice", *ACM Transactions on Programming Languages and Systems* 16(4), 1994. The full proofs that lazy code motion is computationally and lifetime optimal.
+- Neil D. Jones, Carsten K. Gomard and Peter Sestoft, *Partial Evaluation and Automatic Program Generation*, Prentice Hall, 1993. The standard book on partial evaluation, binding-time analysis and the Futamura projections.

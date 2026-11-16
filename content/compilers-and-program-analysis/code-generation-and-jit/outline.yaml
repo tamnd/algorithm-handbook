@@ -1,0 +1,120 @@
+# The order of chapter 34.6, Code generation and JIT compilation. Groups are read in order; entries in a group too.
+groups:
+  - title: Frames, interpreters and JIT compilers
+    intro: >
+      Generated code runs inside a frame on the run-time stack, the [activation record](/activation-record/), with
+      static links for nested procedures. An interpreter that does not compile can still cut its dispatch cost with
+      [threaded code](/threaded-code/). [Just-in-time compilation](/just-in-time-compilation/) starts in an
+      interpreter and compiles only the hot parts; its break-even rule is the ski rental rule and is within a factor
+      of about 2 of the best choice in hindsight, which says nothing about the speed of a real system.
+    entries:
+      - activation-record
+      - threaded-code
+      - just-in-time-compilation
+
+  - title: Instruction selection
+    intro: >
+      [Instruction selection](/instruction-selection-problem/) covers an expression tree with instruction patterns at
+      least cost. [Maximal munch](/maximal-munch/) takes the biggest tile at each node and need not find the
+      optimum. On trees, [Sethi-Ullman numbering](/sethi-ullman-numbering/) gives the fewest registers and the
+      shortest code for its simple machine, and the dynamic program of [Aho and Johnson](/aho-johnson-code-generation/)
+      gives the cheapest code for a register limit; [BURS](/burs/) moves that work into tables. On DAGs the problem
+      is NP-complete ([DAG code generation](/dag-code-generation-np-completeness/)).
+    entries:
+      - instruction-selection-problem
+      - maximal-munch
+      - sethi-ullman-numbering
+      - aho-johnson-code-generation
+      - burs
+      - dag-code-generation-np-completeness
+
+  - title: Register allocation as graph coloring
+    intro: >
+      The [register allocation problem](/register-allocation-problem/) maps names to $k$ registers, and the
+      [interference graph](/interference-graph/) records which names cannot share one. Deciding $k$-colorability of
+      these graphs is NP-complete for every $k \ge 3$ ([NP-completeness of register allocation](/register-allocation-np-completeness/)).
+      [Chaitin's allocator](/chaitin-register-allocation/) colors by simplifying vertices of degree below $k$, and
+      [Briggs's optimistic coloring](/briggs-optimistic-coloring/) spills only when no color is left; both are
+      heuristics.
+    entries:
+      - register-allocation-problem
+      - interference-graph
+      - register-allocation-np-completeness
+      - chaitin-register-allocation
+      - briggs-optimistic-coloring
+
+  - title: Spilling, splitting and coalescing
+    intro: >
+      When $k$ registers are not enough, values go to memory. [Spill code placement](/spill-code-placement/) decides
+      where the loads and stores go, [live range splitting](/live-range-splitting/) spills a value only where the
+      pressure is high, and [rematerialization](/rematerialization/) recomputes a cheap value instead of loading it.
+      The [coalescing problem](/register-coalescing-problem/) removes copies and is NP-complete in all its usual
+      forms; [conservative coalescing](/conservative-coalescing/) and
+      [iterated register coalescing](/iterated-register-coalescing/) merge only when a safe test passes.
+    entries:
+      - spill-code-placement
+      - live-range-splitting
+      - rematerialization
+      - register-coalescing-problem
+      - conservative-coalescing
+      - iterated-register-coalescing
+
+  - title: Fast and SSA-based allocation
+    intro: >
+      [Local register allocation](/local-register-allocation/) with the furthest next use rule is optimal for one
+      block when stores are free. [Linear scan](/linear-scan-register-allocation/) colors lifetime intervals in one
+      pass and is optimal for its intervals, not for the program. The
+      [SSA chordal interference theorem](/ssa-chordal-interference-theorem/) shows that strict SSA programs need
+      exactly MaxLive registers, which [SSA-based register allocation](/ssa-based-register-allocation/) and
+      [linear scan on SSA](/ssa-linear-scan/) use; spilling stays NP-hard.
+    entries:
+      - local-register-allocation
+      - linear-scan-register-allocation
+      - ssa-chordal-interference-theorem
+      - ssa-based-register-allocation
+      - ssa-linear-scan
+
+  - title: Instruction scheduling
+    intro: >
+      The [instruction scheduling problem](/instruction-scheduling-problem/) orders the instructions of a block under
+      latencies and issue limits, and is NP-complete even with one issue slot when latencies are part of the input.
+      [Trace scheduling](/trace-scheduling/) and [superblock scheduling](/superblock-scheduling/) schedule a likely
+      path across blocks. [Software pipelining](/software-pipelining/) overlaps loop iterations at an interval
+      bounded below by ResMII and RecMII, and [iterative modulo scheduling](/iterative-modulo-scheduling/) is the
+      standard heuristic for it.
+    entries:
+      - instruction-scheduling-problem
+      - trace-scheduling
+      - superblock-scheduling
+      - software-pipelining
+      - iterative-modulo-scheduling
+
+  - title: Dynamic dispatch and speculation
+    intro: >
+      An [inline cache](/inline-caching/) remembers the method found for the last receiver class at a call site, a
+      [polymorphic inline cache](/polymorphic-inline-cache/) remembers a few, and [hidden classes](/hidden-classes/)
+      give objects without classes a key for these caches. [Adaptive optimization](/adaptive-optimization/) decides
+      which methods to recompile, [type feedback](/type-feedback/) inlines the receivers seen, and
+      [deoptimization](/deoptimization/) and [on-stack replacement](/on-stack-replacement/) move a running frame
+      between versions of the code when a guess fails or better code is ready.
+    entries:
+      - inline-caching
+      - polymorphic-inline-cache
+      - hidden-classes
+      - adaptive-optimization
+      - type-feedback
+      - deoptimization
+      - on-stack-replacement
+
+  - title: Traces, partial evaluation and stencils
+    intro: >
+      A [tracing JIT compiler](/tracing-jit-compilation/) records one hot path through a loop and compiles it with
+      guards. [Meta-tracing](/meta-tracing/) traces an interpreter instead of the user program, and a
+      [self-optimizing AST interpreter](/self-optimizing-ast-interpreter/) gets compiled code by partial evaluation
+      of the interpreter. [Copy-and-patch compilation](/copy-and-patch-compilation/) emits code fast by copying
+      ready-made stencils and filling their holes.
+    entries:
+      - tracing-jit-compilation
+      - meta-tracing
+      - self-optimizing-ast-interpreter
+      - copy-and-patch-compilation

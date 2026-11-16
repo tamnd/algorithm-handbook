@@ -120,6 +120,10 @@ For edition 0.33.0, the site's release v0.33.0 wrote the other six chapters of V
 shared the work: one per new chapter, two that brought the four older chapters up to date, and one that rewrote
 the volume introduction and wrote a learning path *CAD* for Volume 0.
 
+For edition 0.34.0, the site's release v0.34.0 wrote all eight chapters of Volume 34 *Compilers and program
+analysis*. Nine agents shared the work: one per chapter, and one that wrote the volume introduction and a learning
+path *Compilers and program analysis* for Volume 0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -135,7 +139,8 @@ claims. The list is kept with the project's notes. Most of the errors found up t
 the site by pull requests to `tamnd/algorithm` in November 2026; the site's releases from v0.26.0, and so
 the editions from 0.26.0, have the fixes. The errors found in Volumes 27 and 28 and in Chapter 29.2 were fixed in
 the site's release v0.29.0, those found in the rest of Volume 29 and in Volume 30 in its release v0.30.0, and
-those found in the written chapters of Volumes 31 and 32 in its release v0.31.0; this edition has all those fixes.
-The errors found in Volume 33 were fixed in the site's release v0.34.0, and those found in the six new chapters of
-Volume 32 in its release v0.35.0; the errors found in Volume 31 for this edition were fixed after that. All of them
-came after the site's release v0.33.0, so the entries of this edition do not yet have them.
+those found in the written chapters of Volumes 31 and 32 in its release v0.31.0, and those found in Volume 33 in its
+release v0.34.0; this edition has all those fixes. The errors found in the six new chapters of Volume 32 were fixed in
+the site's release v0.35.0, and those found in Volume 31 for edition 0.33.0 in its release v0.36.0; the errors found
+in Volume 34 for this edition were fixed after that. All of them came after the site's release v0.34.0, so the
+entries of this edition do not yet have them.

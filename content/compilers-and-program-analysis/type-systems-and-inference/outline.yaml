@@ -1,0 +1,83 @@
+# The order of chapter 34.1, Type systems and inference. Groups are read in order; entries in a group too.
+groups:
+  - title: What a type system promises
+    intro: >
+      A [type system](/type-system/) is a set of rules that gives each phrase of a program a type and rejects the
+      programs it cannot type. The [simply typed lambda calculus](/simply-typed-lambda-calculus/) is the smallest
+      serious example, with checking in linear time and terms that always terminate.
+      [Type soundness](/type-soundness/) states the promise, progress and preservation for one stated calculus, and
+      the [Curry-Howard correspondence](/curry-howard-correspondence/) reads the same rules as a logic.
+    entries:
+      - type-system
+      - type-checking-problem
+      - simply-typed-lambda-calculus
+      - type-soundness
+      - curry-howard-correspondence
+
+  - title: Inference for ML
+    intro: >
+      Without annotations, a checker must find the types itself. [Let-polymorphism](/let-polymorphism/) gives type
+      schemes only to names bound by `let`, and that restriction lets [algorithm W](/algorithm-w/) and its imperative
+      form, [algorithm J](/algorithm-j/), find a principal type of every typable term by unification. Constraint
+      generation splits the same work into two passes, and the [value restriction](/value-restriction/) keeps
+      generalization sound when the language has mutable references.
+    entries:
+      - type-inference-problem
+      - let-polymorphism
+      - hindley-milner-type-system
+      - algorithm-w
+      - principal-type-theorem
+      - algorithm-j
+      - constraint-based-type-inference
+      - value-restriction
+
+  - title: Where inference stops
+    intro: >
+      ML inference is decidable but DEXPTIME-complete, because nested `let` bindings can double the size of a type at
+      each level. Polymorphic recursion and [System F](/system-f/) go further and make inference undecidable, by
+      reductions from semi-unification. [Bidirectional type checking](/bidirectional-type-checking/) is the usual
+      answer: the programmer writes types where checking and synthesis meet, and the checker does the rest.
+    entries:
+      - ml-typability-dexptime-completeness
+      - polymorphic-recursion-undecidability
+      - system-f
+      - system-f-inference-undecidability
+      - bidirectional-type-checking
+
+  - title: Overloading and compiling polymorphism
+    intro: >
+      [Type classes](/type-classes/) give one name, such as equality, a different meaning at each type, and record
+      the choice as a constraint in the type scheme. A compiler then either passes the instance methods as an extra
+      argument, by the [dictionary-passing translation](/dictionary-passing-translation/), or makes one copy of each
+      polymorphic function per type, by [monomorphization](/monomorphization/).
+    entries:
+      - type-classes
+      - dictionary-passing-translation
+      - monomorphization
+
+  - title: More shapes of types
+    intro: >
+      [Subtyping](/subtyping/) lets a value of one type stand where another is expected, contravariant in function
+      arguments. Row variables type records with unknown extra fields and keep principal types,
+      [recursive types](/recursive-types/) describe lists, trees and objects, and gradual typing mixes checked and
+      unchecked code with casts at the borders.
+    entries:
+      - subtyping
+      - row-polymorphism
+      - recursive-types
+      - gradual-typing
+
+  - title: Types that track more than shape
+    intro: >
+      Types can also bound what a program does and how it uses its data. An [effect system](/effect-system/) records
+      the regions an expression reads and writes, [linear types](/linear-types/) count uses, and borrow checking adds
+      lifetimes computed from liveness. [Dependent types](/dependent-types/) and
+      [refinement types](/refinement-types/) put values and predicates into types, and liquid types infer
+      refinements from a finite set of qualifiers.
+    entries:
+      - effect-system
+      - linear-types
+      - borrow-checking
+      - dependent-types
+      - refinement-types
+      - liquid-types

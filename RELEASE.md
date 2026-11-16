@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.33.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.34.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.33.0](https://github.com/tamnd/algorithm/releases/tag/v0.33.0)
-(`087d0ac163dde33af2a0b0ddc2f6bd8568885f09`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.34.0](https://github.com/tamnd/algorithm/releases/tag/v0.34.0)
+(`77b456a32af754bde203884ba01acc9a4d256248`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,777 |
+| 0 | Guide and Index | the whole set | 1,832 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -39,53 +39,59 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 31 | CAD | 374 | 3,026 |
 | 32 | Electronic design automation | 358 | 2,690 |
 | 33 | Statistics and inference | 276 | 2,168 |
-| | **All** | **9,120** | **63,857** |
+| 34 | Compilers and program analysis | 273 | 2,797 |
+| | **All** | **9,393** | **66,709** |
 
-- **Volume 31, CAD, is now complete**: the six chapters that were openings only in 0.32.0 are written, and the
-  volume has 374 entries in ten chapters. The new chapters are *Surface interrogation and design* (34 entries: point
-  projection and inversion, distances and intersections of curves and surfaces with implicitization, lattice
-  evaluation, the interval projected polyhedron algorithm and loop detection, curvature combs, isophotes, reflection
-  lines, silhouettes and lines of curvature, continuity between patches with Gregory, n-sided and vertex blend
-  patches, skinning and Gordon surfaces, fairing, developable surfaces, geodesics, offset trimming and Pythagorean
-  hodograph curves), *Mechanism and assembly design* (40 entries: four-bar and slider-crank linkages with the Grashof
-  condition, instant centers and coupler curves, six-bar and straight-line linkages and Kempe's universality
-  theorem, function, path and motion generation with Freudenstein's equation and Burmester theory, cams, involute
-  gears and planetary trains, and assembly and disassembly sequence planning with liaison graphs, AND/OR graphs and
-  blocking graphs), *Mesh generation for analysis* (41 entries: quality measures and slivers, structured, elliptic
-  and transfinite grids, advancing front, quadtree and octree meshing, constrained Delaunay tetrahedralization and
-  Delaunay refinement, sliver exudation, surface meshing with restricted Delaunay triangulations and protecting
-  balls, boundary layers, anisotropic adaptation and curved high-order meshes, quadrilateral meshing by paving,
-  Q-Morph and Blossom-Quad, hexahedral meshing by whisker weaving, plastering, sweeping, polycubes and frame fields,
-  and smoothing, untangling and improvement), *Isogeometric analysis and CAD-CAE integration* (25 entries: Bézier
-  extraction, k-refinement, quadrature and collocation, T-splines and analysis-suitable T-splines, hierarchical,
-  truncated and locally refined splines, volumetric parameterization, trimmed and immersed analysis with the finite
-  cell and cut finite element methods, shells, boundary elements, shape optimization, defeaturing and mid-surface
-  extraction), *Manufacturing process planning* (25 entries: computer-aided process planning and manufacturability,
-  setups and operation sequences, locating and fixture planning with the Brost-Goldberg algorithm, tool life and
-  cutting parameters, sheet metal with bend allowance, flat patterns, springback and bend sequences, molding with
-  draft, undercuts, parting lines, gates and conformal cooling, and casting with Chvorinov's rule, risers and hot
-  spots) and *Reverse engineering, inspection and tolerancing* (29 entries: algebraic and geometric fitting of
-  circles, spheres, cylinders, cones and tori, parameter correction and squared distance minimization,
-  segmentation and slippage analysis, B-rep reconstruction from scans, geometric dimensioning and tolerancing with
-  datum frames, tolerance zones, the small displacement torsor and tolerance maps, localization, sampling and probe
-  paths for inspection, minimum zone form error, and tolerance analysis and allocation). The four chapters written
-  in 0.30.0 have 55 more entries: 31.1 *Solid modeling* adds offsets, Minkowski sums and medial surfaces, healing
-  and tolerant modeling, Nef polyhedra and selective geometric complexes, direct modeling and persistent naming, and
-  feature recognition; 31.3 *Geometric constraint solving* adds infinitesimal and global rigidity and distance
-  geometry; 31.5 *Mesh processing and repair* adds mesh compression, curvature estimation, surface deformation,
-  conformal parameterization, direction fields and segmentation; and 31.8 *CAM and additive manufacturing* adds
-  slicing of exact models and curved layers, trochoidal and five-axis machining, feedrate scheduling and more
-  topology optimization. As in the rest of the volume, the pages say which methods are exact, which come with a
-  proved bound, and which are judged by measured results on test parts. The introduction of the volume now covers
-  all ten chapters.
-- **Volume 0, Guide and Index**, covers the whole set of 9,120 entries. It has a new learning path, *CAD*, in ten
-  stages.
-- **Volumes 1 to 30, 32 and 33** have the same entries under the same numbers as in 0.32.0. Cross-references from
-  other volumes to the new entries of Volume 31 now give entry numbers.
-- Volumes 34 to 39 (Compilers and program analysis, Information retrieval and AI reasoning, Control, Robotics,
-  Computer vision, Complexity) are forthcoming; Volume 0 lists their chapters.
+- **New in this edition: Volume 34, Compilers and program analysis**, with all eight of its chapters written: *Type
+  systems and inference* (31 entries: the simply typed lambda calculus, type soundness and the Curry-Howard
+  correspondence, Hindley-Milner inference with algorithms W and J, principal types and the value restriction, the
+  DEXPTIME-completeness of ML typability, the undecidability of polymorphic recursion and of System F inference,
+  bidirectional checking, type classes and monomorphization, subtyping, row polymorphism, recursive and gradual
+  types, and effect systems, linear types, borrow checking, dependent, refinement and liquid types), *Intermediate
+  representations* (35 entries: three-address code, basic blocks and control flow graphs, dominators by the
+  Cooper-Harvey-Kennedy algorithm, dominance frontiers, natural loops and reducible graphs, static single assignment
+  form with Cytron's and Braun's constructions, leaving SSA form, control dependence, the program dependence graph
+  and the sea of nodes, and continuation-passing style, A-normal form, closure conversion and defunctionalization),
+  *Dataflow analysis and abstract interpretation* (44 entries: liveness, reaching definitions and the other classic
+  problems, monotone and distributive frameworks, the meet-over-all-paths and maximal fixed point solutions, the
+  worklist algorithm and the Kam-Ullman bound, sparse conditional constant propagation, Galois connections, the
+  interval, octagon and polyhedra domains with widening and narrowing, interprocedural analysis with IFDS and IDE,
+  taint analysis, program slicing, shape analysis, bi-abduction and analysis in Datalog), *Optimizations* (32
+  entries: value numbering, dead code elimination, common subexpressions and global value numbering, loop-invariant
+  code motion, partial redundancy elimination with lazy code motion and SSAPRE, strength reduction, inlining,
+  devirtualization, profile-guided optimization with Ball-Larus path profiling and Pettis-Hansen code positioning,
+  partial evaluation and the Futamura projections, deforestation and supercompilation, the full employment theorem,
+  superoptimization and equality saturation), *Loop transformations* (33 entries: data dependences with distance
+  and direction vectors, induction variables and chains of recurrences, the GCD and Banerjee tests, unrolling,
+  interchange, fusion, distribution, skewing and tiling, vectorization with the Allen-Kennedy algorithm and SLP,
+  DOACROSS loops, unimodular transformations, the Wolf-Lam locality algorithm, and the polyhedral model with
+  Feautrier's dataflow and scheduling, the Pluto algorithm and polyhedral scanning), *Code generation and JIT
+  compilation* (41 entries: activation records and threaded code, instruction selection by maximal munch, Sethi-Ullman
+  numbering, tree tiling and BURS, register allocation by graph coloring with Chaitin's and Briggs's allocators,
+  spilling, splitting, rematerialization and coalescing, linear scan, chordal interference graphs in SSA form,
+  instruction scheduling, trace and superblock scheduling and software pipelining, inline caches, hidden classes,
+  type feedback, deoptimization and on-stack replacement, tracing and meta-tracing JIT compilers, self-optimizing
+  interpreters and copy-and-patch compilation), *Pointer and alias analysis* (25 entries: Andersen's and
+  Steensgaard's analyses and Das's one-level flow, field sensitivity, cycle elimination and offline variable
+  substitution, demand-driven and sparse flow-sensitive analysis, call graphs by class hierarchy, rapid type and
+  variable type analysis, 0-CFA and k-CFA, object sensitivity, BDD-based analysis, type-based alias analysis,
+  mod-ref and escape analysis, and the undecidability and hardness results) and *Verification, symbolic execution
+  and synthesis* (32 entries: path conditions, symbolic execution and path explosion, concolic testing, coverage-guided
+  and grammar-based fuzzing, delta debugging, verification condition generation, loop invariants by Houdini and by
+  Farkas' lemma, proof-carrying code, ranking functions and transition invariants, noninterference and
+  self-composition, verified compilation and translation validation, program synthesis by enumeration, version space
+  algebras, sketching, deduction and types, program repair, and reactive synthesis with the Pnueli-Rosner theorem).
+  The pages say which analyses are proved sound or optimal, which problems are undecidable or NP-hard, and which
+  methods are heuristics judged by measured results.
+- **Volume 0, Guide and Index**, covers the whole set of 9,393 entries. It has a new learning path, *Compilers and
+  program analysis*, in eight stages.
+- **Volumes 1 to 33** have the same entries under the same numbers as in 0.33.0. The entries of Volume 33 have the
+  corrections that the site made in its release v0.34.0. Cross-references from other volumes to entries of Volume 34
+  now give entry numbers.
+- Volumes 35 to 39 (Information retrieval and AI reasoning, Control, Robotics, Computer vision, Complexity) are
+  forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.33.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.34.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

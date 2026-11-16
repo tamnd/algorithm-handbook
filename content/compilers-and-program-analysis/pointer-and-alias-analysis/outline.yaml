@@ -1,0 +1,82 @@
+# The order of chapter 34.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      Two questions run through the chapter. Alias analysis asks whether two memory references may, or
+      must, name the same location; points-to analysis asks which abstract locations a pointer may hold, and
+      answers the first question as a side effect. These entries fix the terms that the rest of the chapter
+      uses: may and must, flow and context sensitivity, and the abstract location of an allocation site.
+    entries:
+      - alias-analysis
+      - points-to-analysis
+
+  - title: Inclusion and unification
+    intro: >
+      The two classic flow-insensitive analyses differ in one choice. [Andersen's analysis](/andersen-analysis/)
+      keeps the direction of each assignment and solves subset constraints in cubic time;
+      [Steensgaard's analysis](/steensgaard-analysis/) unifies both sides with union-find in almost linear time
+      and loses precision. One-level flow keeps the direction only at the top level, and field sensitivity
+      decides what a location is.
+    entries:
+      - andersen-analysis
+      - steensgaard-analysis
+      - das-one-level-flow
+      - field-sensitivity
+
+  - title: Solving at scale
+    intro: >
+      These entries make Andersen's analysis fast on real programs without changing its answer, or answer
+      only part of it. Offline substitution and cycle detection merge variables whose sets must be equal;
+      none of them lowers the worst case, and their gains are measured. Demand-driven analysis answers
+      chosen queries, and sparse flow-sensitive analysis uses Andersen's result to run a more precise
+      analysis along def-use chains.
+    entries:
+      - offline-variable-substitution
+      - online-cycle-elimination
+      - hybrid-cycle-detection
+      - demand-driven-points-to
+      - sparse-flow-sensitive-pointer-analysis
+
+  - title: Call graphs for object-oriented programs
+    intro: >
+      A virtual call has a target that depends on the class of its receiver, so the call graph and the
+      points-to sets depend on each other. These entries build a sound call graph from declared types,
+      then from the classes that the program creates, then from the classes that reach each receiver. Each
+      step is cheap and removes edges that the step before it kept.
+    entries:
+      - call-graph-construction
+      - class-hierarchy-analysis
+      - rapid-type-analysis
+      - variable-type-analysis
+
+  - title: Higher-order programs and contexts
+    intro: >
+      In a functional program the function called at a site is a value, and finding it is control flow
+      analysis. [0-CFA](/zero-cfa/) keeps one set per variable and takes cubic time; [k-CFA](/k-cfa/) keeps
+      a set per string of call sites and can take exponential time. Object sensitivity and BDD-based
+      analysis bring contexts to object-oriented code at a cost that is measured on benchmarks.
+    entries:
+      - zero-cfa
+      - k-cfa
+      - object-sensitivity
+      - bdd-points-to-analysis
+
+  - title: Using alias facts
+    intro: >
+      Optimizers rarely ask for points-to sets themselves. They ask whether two references may overlap,
+      what a call may modify, and whether an object outlives the method that made it. These entries answer
+      such questions from declared types, from the call graph, and from points-to sets.
+    entries:
+      - type-based-alias-analysis
+      - mod-ref-analysis
+      - escape-analysis
+
+  - title: Limits
+    intro: >
+      Three theorems explain why every practical analysis gives up some precision. Precise may-alias with
+      dynamic allocation is undecidable, precise flow-insensitive may-alias is NP-hard even without
+      allocation, and k-CFA is complete for exponential time for every fixed k of at least 1.
+    entries:
+      - may-alias-undecidability
+      - flow-insensitive-alias-np-hardness
+      - k-cfa-exptime-completeness

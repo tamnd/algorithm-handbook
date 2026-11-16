@@ -1,0 +1,29 @@
+1. Quadruples: `t1 = b + c`, `t2 = b - d`, `t3 = t1 * t2`, `a = t3 / e`, four of them with three temporaries. Triples name results by position: (0) `+ b c`, (1) `- b d`, (2) `* (0) (1)`, (3) `/ (2) e`, (4) `= a (3)`, five of them, since a triple has no field for the target `a`. The division traps when `e` is zero.
+
+2. The leaders are 1 (first), 3, 5, 7, 8 and 10 (targets and instructions after a branch or jump), so the blocks are B1 = 1–2, B2 = 3–4, B3 = 5–6, B4 = 7, B5 = 8–9 and B6 = 10. The edges are B1→B2, B2→B3, B2→B6, B3→B4, B3→B5, B4→B5 and B5→B2. Only B3→B5 is critical: B3 has two successors and B5 two predecessors. The loop adds the multiples of 3 below $n$, so for $n = 7$ it returns $0 + 3 + 6 = 9$.
+
+3. All of B, C and D have the immediate dominator A, and E has D. $\mathrm{DF}(B) = \mathrm{DF}(C) = \{D\}$, and the other frontiers are empty. The immediate post-dominator of A, B and C is D, and that of D is E. B depends on A through the edge A→B, C on A through A→C, and A and D depend on START. D runs whichever way A branches, so it depends on no block.
+
+9. The moves form two cycles, $a \leftrightarrow b$ and $x \to z \to y \to x$, so $\lvert P \rvert + c = 5 + 2 = 7$ copies: `t = a; a = b; b = t; t = x; x = y; y = z; z = t`. Each cycle of length $k$ needs $k + 1$ copies, since the first copy into the cycle destroys a value that is needed later and is held nowhere else. A search over all short sequences confirms that 6 copies are not enough.
+
+10. The search visits r, a, c, b, so the reverse postorder is r, a, c, b. Pass 1 sets a to r, c to a (b is not yet seen) and b to r. Pass 2 sets c to the meeting point of a and b, which is r. Pass 3 changes nothing, so there are 3 passes. The only retreating edge is b→c, and the path r→b→c has one, so $d = 1$ and the bound $d + 2 = 3$ is reached.
+
+11. The immediate dominator of 2 is 1, of 6 is 4, and of 3, 4, 5 and 7 is 2. The frontiers are $\mathrm{DF}(2) = \{2\}$, $\mathrm{DF}(3) = \{5\}$, $\mathrm{DF}(4) = \{5, 7\}$, $\mathrm{DF}(5) = \{2, 7\}$, $\mathrm{DF}(6) = \{7\}$, and the others are empty. For blocks 1, 3 and 6, the iterated frontier is $\{2, 5, 7\}$; for blocks 1 and 6 it is $\{7\}$. The critical edges are 4→5, 5→2 and 5→7.
+
+14. The only nontrivial component is $\{A, B, C, D\}$. A and B have the predecessor r outside it, so they are its headers. Without them, $\{C, D\}$ is a component whose only block with an outside predecessor is C, so it is a loop with header C and parent the outer loop. D→C is the only back edge, since C dominates D, so natural loops find $\{C, D\}$ and miss the outer cycle, which can be entered at A and at B.
+
+15. Emit `d = a` first, since no move reads `d`. Now `d` holds the old value of `a`, so the cycle needs no temporary: `a = b; b = c; c = d`. A cycle needs no temporary when one of its values is also copied out of the cycle, because the tree copy saves that value before the cycle overwrites it.
+
+18. $D(f) = \{p\}$, $D(g) = \{q\}$, $D(h) = \emptyset$; $f$ calls $g$, $g$ calls $h$ and $h$ calls $f$, so each reaches all three and $E = \{p, q\}$ for each. Then `F p q n = if n < 1 then p else G p q (n - 1)`, `G p q n = H p q n + q`, `H p q n = F p q n`, and `main = let p = 1 in let q = 2 in F p q 3`, which returns 7. With $D$ alone, `H` would have to pass `p` and `q` to `F` without having them.
+
+20. `u` reads only the parameter `n`, so its earliest block is B1 and its latest is B4; the walk from B4 up the dominator tree reaches B1, which lies outside the loop, so `u` goes to B1. `v` reads the phi node of `i` at B2, so its earliest block is B2; all blocks from B4 to B2 lie in the loop, and the tie goes to the lower block, B4. `w` divides, which can trap, so it is pinned to B4: in B1 it would trap for $n = 0$, where the source never runs B4.
+
+22. On a reducible graph every retreating edge of a depth-first search is a back edge $t \to h$ with $h$ dominating $t$. A simple path from the entry never uses a back edge, so deleting the back edges keeps all dominators. In reverse postorder, the predecessors of $v$ that are processed before $v$ in pass 1 are exactly its predecessors in this acyclic graph. Use induction on the order: their guesses are already final, and the nearest common ancestor of the predecessors in the dominator tree is the immediate dominator of $v$. Pass 2 then only confirms.
+
+23. The search runs r, a, $v_k$, $v_{k-1}$, …, $v_0$, which is also the reverse postorder. Pass 1 sets $v_k$ to a and each $v_{i}$ to $v_{i+1}$, but $v_0$ to r. In each later pass the correct guess r moves up the chain by one vertex: pass $j$ sets $v_{j-1}$ to r. So $v_k$ is right after pass $k + 1$, and pass $k + 2$ confirms. The retreating edges are the $k$ edges $v_i \to v_{i+1}$, and the simple path r, $v_0$, …, $v_k$ uses all of them.
+
+24. Copying gives a tree of conditionals with $2^k$ branches, each ending in $k - 1$ additions, so $(k - 1)2^k$ additions in all. With join points, `let j1 = fun r1 -> ... in if a1 then j1 b1 else j1 c1`, where the body of `j1` handles the rest in the same way, each conditional appears once and there are $k - 1$ additions.
+
+25. A vertex $X$ dominates w exactly when $X = w$ or $X$ dominates u, since u is the only predecessor of w. Use that the old dominance relation does not change, and check the definition of $\mathrm{DF}$ for $Y = v$, the only block whose predecessors changed. For w: any $X$ that dominates u also dominates w, so it strictly dominates w unless $X = w$, and w does not dominate u.
+
+26. Method I adds three copies: `X = x.1` at the end of B1, `X = x.3` at the end of B2, and `x.2 = X` at the top of B2. The names `x.1` and `x.3` do not interfere with `X`, so those two copies merge away. `x.2` is live to B3 while `X` is written at the end of B2, so they interfere and one copy stays. The loop is then `x.2 = X; X = x.2 + 1; t.1 = X < n; br t.1 B2 B3`, and for $n = 3$ it returns 2.
