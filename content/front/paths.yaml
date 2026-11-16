@@ -3587,3 +3587,299 @@ paths:
           - simple-temporal-network-with-uncertainty
           - entry: morris-dynamic-controllability
             why: dynamic controllability of a network with uncertain durations is decided in polynomial time, by Morris's O(N^4) cutoff algorithm after the pseudo-polynomial first method.
+  - id: control
+    title: Control
+    for: a student who knows linear algebra (eigenvalues, positive definite matrices, least squares), linear differential equations, the transfer functions and z-transform of signal processing, and some convex optimization and finite automata, and wants to learn how to model a dynamical system, decide its stability, and design feedback that makes it behave, and to see which results are proved and for which model, which problems are NP-hard or undecidable, and which methods are judged only by measured responses.
+    intro: >
+      The path follows a feedback design from the model to the controller, and then to the systems that linear models
+      do not cover. Every result of control holds for a stated model: linear or nonlinear, continuous or discrete time,
+      a known plant or a set of plants, with stated noise. For linear time-invariant models the main tests are exact:
+      the Routh-Hurwitz and Jury tests, the Nyquist criterion, and the rank tests for controllability and
+      observability. Pole placement works exactly when the pair is controllable, and the separation principle lets
+      state feedback and observer be designed apart. LQR is optimal for its quadratic cost, and with one input its
+      continuous-time loop has gain margin from 1/2 to infinity and phase margin at least 60 degrees, while LQG has no
+      guaranteed margins. The Kalman filter is the minimum-variance estimator for linear Gaussian models and the best
+      linear one otherwise. Model predictive control is stable and recursively feasible only with its terminal
+      ingredients, and its solve times are measured. Identification is consistent only under the excitation and noise
+      conditions each method states. Many tools give only sufficient conditions: Lyapunov functions, small-gain,
+      circle and sum-of-squares certificates. Some questions are hard: the structured singular value is NP-hard to
+      compute, and reachability is PSPACE-complete for timed automata and undecidable for general hybrid automata.
+      Bode asymptotes, root locus sketches, describing functions, Ziegler-Nichols rules and the speed of solvers are
+      approximations or heuristics judged by measured responses.
+    stages:
+      - title: Models, discretization and identification
+        intro: >
+          A controller acts on a model, so the path starts with the models. An ordinary differential equation with a
+          Lipschitz right side has a unique solution near the start, by the Picard-Lindelöf theorem. A linear
+          time-invariant system is described by a transfer function or by state-space matrices, and its free response
+          is a matrix exponential. Linearization at an equilibrium gives a local linear model. Zero-order hold
+          discretization is exact for inputs held constant between samples, unlike a Runge-Kutta simulation, whose
+          error has a proved order in the step size. Identification fits a model to measured data: least squares on an
+          ARX model is consistent when the noise is white and the input is persistently exciting, and biased for
+          colored noise, where instrumental variables restore consistency in open loop.
+        steps:
+          - ode-initial-value-problem
+          - entry: picard-lindelof-theorem
+            why: a unique local solution when the right side is continuous and Lipschitz in the state, the fact behind every state model and every simulation of one.
+          - runge-kutta-methods
+          - linear-time-invariant-system
+          - z-transform
+          - transfer-function
+          - frequency-response
+          - laplace-transform
+          - poles-and-zeros
+          - state-space-representation
+          - equilibrium-point
+          - entry: jacobian-linearization
+            why: replaces a nonlinear system near an equilibrium by the linear system of its Jacobians, a model that is only valid locally.
+          - characteristic-polynomial
+          - eigenvalue
+          - matrix-exponential
+          - variation-of-constants-formula
+          - entry: zero-order-hold-discretization
+            why: the exact discrete model of a continuous linear plant when the input is held constant between samples, computed with one matrix exponential.
+          - system-identification
+          - positive-definite-matrix
+          - persistent-excitation
+          - arx-model
+          - entry: least-squares-arx-identification
+            why: linear least squares on past outputs and inputs, the exact minimizer of the equation error, consistent for white noise and biased when the noise is colored.
+          - entry: instrumental-variable-identification
+            why: instruments built from the input keep the estimate consistent for colored noise that is independent of the input, which holds in open loop.
+      - title: Stability
+        intro: >
+          Stability is defined for an equilibrium of a stated model. For a linear time-invariant model it is a property
+          of the eigenvalues, and the Routh-Hurwitz and Jury tests decide it exactly from the coefficients of the
+          characteristic polynomial without computing a root. For nonlinear models Lyapunov's direct method gives
+          sufficient conditions: a function that decreases along solutions proves stability, while failing to find one
+          proves nothing. For linear systems a quadratic Lyapunov function exists exactly when the matrix is Hurwitz,
+          and it comes from a Lyapunov equation. Linearization decides local stability only when no eigenvalue lies on
+          the imaginary axis. A control Lyapunov function extends the idea to systems with an input.
+        steps:
+          - hurwitz-matrix
+          - routh-array
+          - entry: routh-hurwitz-criterion
+            why: all roots in the open left half plane exactly when the first column of the Routh array is positive, an exact test for linear time-invariant models.
+          - entry: jury-stability-test
+            why: the discrete-time counterpart, which decides whether every root lies inside the unit circle.
+          - lyapunov-stability
+          - asymptotic-stability
+          - exponential-stability
+          - lyapunov-function
+          - entry: lyapunov-direct-method
+            why: a positive definite function with nonpositive or negative definite derivative proves stability or asymptotic stability, a sufficient condition only.
+          - lasalle-invariance-principle
+          - lyapunov-equation
+          - lyapunov-theorem-for-linear-systems
+          - entry: lyapunov-indirect-method
+            why: a Hurwitz linearization proves local exponential stability and an eigenvalue in the right half plane proves instability; with eigenvalues on the axis the test says nothing.
+          - control-affine-system
+          - lie-derivative
+          - control-lyapunov-function
+      - title: Classical feedback loops and PID
+        intro: >
+          Classical control designs a loop from the transfer function. The Nyquist criterion counts unstable
+          closed-loop poles exactly from the encirclements of -1, for linear time-invariant loops. Gain and phase
+          margins measure the distance to instability along one direction each, so a loop can have good margins and
+          still be close to -1. Root locus sketching rules and Bode asymptotes are approximations for design. The
+          sensitivity functions show what feedback can do, and the Bode gain-phase relation and the sensitivity integral
+          are proved limits on it. PID is the most used controller; Ziegler-Nichols and other tuning rules are rules of
+          thumb judged by measured responses.
+        steps:
+          - feedback-control-loop
+          - second-order-system
+          - final-value-theorem
+          - steady-state-error
+          - root-locus
+          - bode-plot
+          - nyquist-plot
+          - entry: nyquist-stability-criterion
+            why: Z = N + P counts the unstable closed-loop poles from encirclements of -1, exact for linear time-invariant loops and extended to loops with a time delay.
+          - gain-margin
+          - phase-margin
+          - sensitivity-function
+          - complementary-sensitivity-function
+          - pid-controller
+          - entry: ziegler-nichols-tuning
+            why: PID gains from the ultimate gain and period or from a step response, rules of thumb aimed at a quarter decay ratio and judged by the measured response.
+          - bode-gain-phase-relation
+          - loop-shaping
+          - entry: internal-model-principle
+            why: zero steady-state error under all small plant changes needs a model of the signal generator inside the loop, which is why integral action removes constant offsets.
+      - title: State feedback and observers
+        intro: >
+          State-space design works with the matrices of the model. Controllability and observability are decided
+          exactly by rank tests, the Kalman rank condition and the Popov-Belevitch-Hautus test. The eigenvalues of
+          A - BK can be placed anywhere exactly when the pair is controllable, and Ackermann's formula gives the gain
+          for one input; stabilizability and detectability are the weaker conditions that suffice for stability. An
+          observer estimates the state from the output, and the separation principle proves that the eigenvalues of
+          the joined loop are those of the feedback and of the observer. It says nothing about robustness.
+        steps:
+          - controllability
+          - observability
+          - cayley-hamilton-theorem
+          - entry: kalman-rank-condition
+            why: a linear time-invariant system is controllable exactly when the controllability matrix has full rank, an exact algebraic test.
+          - popov-belevitch-hautus-test
+          - controllable-canonical-form
+          - state-feedback
+          - pole-placement-problem
+          - entry: pole-placement-theorem
+            why: the closed-loop eigenvalues can be placed anywhere, in conjugate pairs, if and only if the pair is controllable.
+          - ackermann-formula
+          - stabilizability
+          - detectability
+          - controllability-gramian
+          - state-observer
+          - luenberger-observer
+          - entry: separation-principle
+            why: the eigenvalues of an observer-based loop are those of A - BK and A - LC, for linear models, with no statement about margins.
+      - title: Optimal control and the Kalman filter
+        intro: >
+          Optimal control chooses the input that minimizes a cost. Pontryagin's maximum principle gives necessary
+          conditions only; the Hamilton-Jacobi-Bellman equation gives a sufficient condition when its solution is
+          smooth, and the value function is otherwise its viscosity solution. For a linear model and a quadratic cost
+          the answer is the LQR state feedback from a Riccati equation, whose stabilizing solution exists and is unique
+          when the pair is stabilizable and detectable. With one input the continuous-time LQR loop has guaranteed
+          margins. The Kalman filter is the minimum-variance estimator for linear models with Gaussian noise and the
+          best linear one otherwise. LQG joins the two and is optimal for its model, but Doyle's example shows that its
+          margins can be arbitrarily small.
+        steps:
+          - optimal-control-problem
+          - principle-of-optimality
+          - entry: hamilton-jacobi-bellman-equation
+            why: a smooth solution of the HJB equation is the value function and gives an optimal feedback, a sufficient condition; in general the value function is only a viscosity solution.
+          - control-hamiltonian
+          - costate
+          - entry: pontryagin-maximum-principle
+            why: an optimal input minimizes the Hamiltonian along state and costate trajectories, a necessary condition, not a sufficient one.
+          - bang-bang-control
+          - lqr-problem
+          - finite-horizon-lqr
+          - continuous-algebraic-riccati-equation
+          - hamiltonian-matrix
+          - entry: stabilizing-riccati-solution-theorem
+            why: with (A, B) stabilizable, (Q^(1/2), A) detectable and R positive definite, the Riccati equation has a unique stabilizing solution.
+          - infinite-horizon-lqr
+          - entry: lqr-stability-margins
+            why: a single-input continuous-time LQR loop keeps |1 + L| at least 1, so gain margin from 1/2 to infinity and phase margin at least 60 degrees; false in discrete time.
+          - entry: kalman-filter
+            why: the exact posterior mean for linear models with Gaussian noise, and the best linear estimate for other noise with the same covariances.
+          - kalman-bucy-filter
+          - lqg-control
+          - entry: lqg-guaranteed-margins-counterexample
+            why: Doyle's 1978 example of an LQG loop that loses stability under input gains arbitrarily close to 1, so LQG has no guaranteed margins.
+      - title: Model predictive control
+        intro: >
+          Model predictive control solves a finite-horizon optimal control problem at each sample and applies the first
+          input. For a linear model with quadratic cost and linear constraints, each step is a convex quadratic program.
+          The closed loop is recursively feasible and asymptotically stable for the nominal model only when a terminal
+          set is invariant under a local controller and the terminal cost decreases by the stage cost. Explicit MPC
+          solves the program for all states offline, with a number of regions exponential in the constraints in the
+          worst case. Tube MPC keeps the guarantees under bounded disturbances. Nonlinear MPC loses convexity, so its
+          solver may find only local solutions, and its solve times, like those of every MPC solver, are measurements.
+        steps:
+          - positively-invariant-set
+          - control-invariant-set
+          - model-predictive-control
+          - kkt-conditions
+          - quadratic-programming
+          - linear-mpc
+          - recursive-feasibility
+          - entry: mpc-stability-theorem
+            why: nominal MPC is recursively feasible and asymptotically stable when the terminal set is invariant under a local law and the terminal cost decreases by at least the stage cost.
+          - entry: explicit-mpc
+            why: the MPC law is piecewise affine on polyhedral regions, computed offline; the number of regions is exponential in the constraints in the worst case and measured on real problems.
+          - offset-free-mpc
+          - tube-mpc
+          - nonlinear-mpc
+      - title: Robust and adaptive control
+        intro: >
+          Robust control asks for one controller that works for a set of plants. The small-gain theorem gives a
+          sufficient condition for a loop of two systems. Kharitonov's theorem reduces an interval polynomial to four
+          Routh-Hurwitz tests. H-infinity synthesis solves its problem exactly, by two Riccati equations or by linear
+          matrix inequalities, and a bisection finds the optimal level. Exact computation of the structured singular
+          value is NP-hard, so mu analysis computes upper and lower bounds. Adaptive controllers have Lyapunov
+          stability proofs for their ideal model, their parameters converge only under persistent excitation, and the
+          Rohrs example shows that small unmodeled dynamics can make them unstable.
+        steps:
+          - bibo-stability
+          - entry: small-gain-theorem
+            why: a well-posed loop of two systems with finite gains is finite-gain stable when the product of the gains is below 1, a sufficient condition.
+          - h-infinity-norm
+          - model-uncertainty
+          - kharitonov-theorem
+          - linear-fractional-transformation
+          - h-infinity-control-problem
+          - entry: dgkf-h-infinity-synthesis
+            why: a controller with closed-loop H-infinity norm below gamma exists exactly when two Riccati equations have stabilizing solutions and the spectral radius of XY is below gamma squared.
+          - semidefinite-programming
+          - linear-matrix-inequality
+          - structured-singular-value
+          - entry: mu-analysis
+            why: upper and lower bounds on the structured singular value over frequency, since its exact value is NP-hard to compute.
+          - adaptive-control
+          - entry: model-reference-adaptive-control
+            why: a Lyapunov-based adaptation law keeps all signals bounded and the tracking error tends to zero for the assumed plant structure; the gains converge only under persistent excitation.
+          - entry: rohrs-counterexample
+            why: a fast unmodeled factor and a bounded high-frequency command make the standard adaptive controller drift into instability.
+      - title: Nonlinear control
+        intro: >
+          Nonlinear control has few exact tests. The describing function predicts limit cycles approximately and can be
+          wrong. The circle criterion is a sufficient condition for stability against every nonlinearity in a sector,
+          and sum-of-squares programming finds polynomial Lyapunov functions by semidefinite programming, a sufficient
+          test since not every nonnegative polynomial is a sum of squares. Feedback linearization cancels the
+          nonlinearity exactly under conditions on relative degree or involutivity, but it needs an exact model and
+          gives no robustness guarantee. Backstepping builds a Lyapunov function step by step. Sliding mode control is
+          insensitive to matched uncertainty but chatters. Brockett's condition shows that some controllable systems
+          have no continuous stabilizing feedback.
+        steps:
+          - limit-cycle
+          - entry: describing-function
+            why: replaces a nonlinearity by its gain on a sinusoid and predicts oscillations, an approximation that can report a limit cycle that does not exist or miss one that does.
+          - lure-problem
+          - circle-criterion
+          - sum-of-squares-programming
+          - lie-bracket
+          - relative-degree
+          - input-output-linearization
+          - feedback-linearization
+          - entry: feedback-linearizability-conditions
+            why: a single-input system is feedback linearizable near a point exactly when n vector fields built by Lie brackets are independent and the first n - 1 span an involutive distribution.
+          - backstepping
+          - sliding-mode-control
+          - entry: brockett-condition
+            why: a necessary condition for continuous stabilizing feedback that fails for some controllable systems, such as the nonholonomic integrator.
+          - control-barrier-function
+      - title: Discrete-event and hybrid systems
+        intro: >
+          A discrete-event system is an automaton whose behavior is a language of event strings. In supervisory
+          control the supremal controllable sublanguage of a regular specification is computable, in time polynomial in
+          the size of the product automaton, and it gives the least restrictive nonblocking supervisor. Max-plus algebra
+          makes timed synchronization linear, and the cycle time is a maximum cycle mean. Switched systems can be
+          unstable even when every mode is stable; slow enough switching restores stability. Reachability is
+          PSPACE-complete for timed automata and undecidable for general hybrid automata, so reachable-set tools
+          over-approximate. Hybrid MPC solves a mixed-integer program at each sample, NP-hard in general and judged by
+          measured solve times.
+        steps:
+          - deterministic-finite-automaton
+          - product-construction
+          - discrete-event-system
+          - supervisory-control-theory
+          - controllable-language
+          - nonblocking-supervisor
+          - entry: supremal-controllable-sublanguage
+            why: the largest controllable part of a regular specification, computed by a fixed point on the product automaton in time polynomial in its size.
+          - max-plus-algebra
+          - max-plus-eigenvalue-theorem
+          - switched-system
+          - entry: dwell-time-theorem
+            why: if every mode is exponentially stable and switches are slow enough on average, the switched system is globally uniformly exponentially stable.
+          - reachability-problem
+          - entry: timed-automata
+            why: clocks that grow at rate 1 and are compared with integer constants; the region graph makes reachability decidable, and it is PSPACE-complete.
+          - entry: hybrid-automata
+            why: real variables with flows in each mode; reachability is undecidable even for linear flows and decidable for initialized rectangular automata.
+          - reachable-set-computation
+          - mixed-integer-programming
+          - hybrid-mpc

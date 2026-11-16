@@ -1,0 +1,27 @@
+Some problems have fast algorithms and some seem to have none. For a large family of problems, nobody knows which. That family includes scheduling jobs on one machine, packing items into boxes, routing a salesman through cities, coloring a map and satisfying a Boolean formula. NP-completeness ties these problems together. Each one can be turned into any other in polynomial time. So a polynomial-time algorithm for one of them would give one for all of them, and a proof that one of them has none would settle all of them. That is the question of whether P = NP, and it is open.
+
+The theory matters in daily work for a plain reason. When a new problem turns out to be NP-complete, you stop looking for an exact algorithm that is fast on every input. You look at special cases, at algorithms whose time grows with the size of the numbers, at approximation, or at solvers that work well on the inputs you have. Every hardness statement in this chapter is a worst-case statement about decision problems, and its meaning for algorithms holds only unless P = NP.
+
+## What the chapter covers
+
+The chapter is in seven groups, read in order.
+
+1. **Problems, certificates and verifiers.** A [decision problem](/decision-problem/) is a question with a yes-or-no answer about a string. A [certificate](/certificate/) is a short proof of a yes answer, and a [polynomial-time verifier](/polynomial-time-verifier/) checks it. NP is the class of problems with such certificates.
+2. **Hardness and completeness.** A problem is [NP-hard](/np-hard/) if every problem in NP reduces to it by a Karp reduction, and [NP-complete](/np-complete/) if it is also in NP. Complements of NP-complete problems, such as the tautology problem, are [coNP-complete](/co-np-complete/).
+3. **The first complete problems.** The [Cook-Levin theorem](/cook-levin-theorem/) shows that SAT is NP-complete. [Karp's 21 problems](/karps-21-np-complete-problems/) follow by reductions from SAT, and the [Garey-Johnson compendium](/garey-johnson-compendium/) lists several hundred more.
+4. **Numbers and their encoding.** [Unary encoding](/unary-encoding/) and [pseudo-polynomial time](/pseudo-polynomial-time/) explain why [subset sum](/subset-sum-problem/) and [partition](/partition-problem/) are NP-complete but solvable by dynamic programming when the numbers are small. Such problems are [weakly NP-hard](/weak-np-hardness/).
+5. **Matching and covering by triples.** [Three-dimensional matching](/three-dimensional-matching/) and [exact cover by 3-sets](/exact-cover-by-3-sets/) are NP-complete problems without numbers, and many hardness proofs start from them.
+6. **Strong NP-hardness.** Some problems with numbers stay hard when the numbers are small. [Strong NP-hardness](/strong-np-hardness/) rules out pseudo-polynomial algorithms unless P = NP. [Scheduling with release times and deadlines](/scheduling-with-release-times-and-deadlines/) is the main example.
+7. **The structure of NP if P is not NP.** [Ladner's theorem](/ladners-theorem/) gives problems in NP that are neither in P nor NP-complete. [Mahaney's theorem](/mahaneys-theorem/) shows that a sparse NP-hard set would make P = NP. Both say something only under the hypothesis that P ≠ NP.
+
+## A first reading
+
+For a first reading, take these twelve entries in order: [decision problem](/decision-problem/), [certificate](/certificate/), [polynomial-time verifier](/polynomial-time-verifier/), [NP-hard](/np-hard/), [NP-complete](/np-complete/), [the Cook-Levin theorem](/cook-levin-theorem/), [Karp's 21 problems](/karps-21-np-complete-problems/), [subset sum](/subset-sum-problem/), [pseudo-polynomial time](/pseudo-polynomial-time/), [partition](/partition-problem/), [three-dimensional matching](/three-dimensional-matching/) and [strong NP-hardness](/strong-np-hardness/). Read the proof of the Cook-Levin theorem slowly, since every later proof uses its pattern: build an instance, then show that yes maps to yes and no maps to no. The reductions in Karp's tree are short and worth doing by hand.
+
+You can skip the two theorems of the last group at first. They use diagonalization and self-reduction, and they need the rest of the chapter. The compendium, exact cover by 3-sets and the scheduling problem can also wait until you need a source problem for a proof of your own.
+
+## Before you start
+
+You need [Turing machines](/turing-machine/), [nondeterministic Turing machines](/nondeterministic-turing-machine/), [polynomial time](/polynomial-time/), [input size](/input-size/) and the [word RAM](/word-ram/) from Volume 1. You need the idea of a [reduction](/reduction/) from Volume 2. The reductions start from [SAT](/sat/), [3-SAT](/3-sat/) and [conjunctive normal form](/conjunctive-normal-form/) in Volume 16, so read those entries first. It helps to know [bipartite matching](/bipartite-matching/) and [Hamiltonian cycles](/hamiltonian-cycle-problem/) from Volume 7, and [knapsack dynamic programming](/knapsack-dynamic-programming/) from Volume 15.
+
+The complexity classes P, NP, coNP and PSPACE, polynomial-time reductions as a topic of their own, and undecidable problems such as the halting problem are the subjects of other chapters of this volume, which are still being written. This chapter uses them only in the sense its entries define. The roadmap below lists every entry of the chapter with its kind and level, and the figure after it shows which entries lean on which.

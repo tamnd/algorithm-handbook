@@ -1,0 +1,105 @@
+# The order of chapter 36.6, Robust and adaptive control. Groups are read in order; entries in a group too.
+groups:
+  - title: Norms and matrix inequalities
+    intro: >
+      Robust control measures a system by its [H-infinity norm](/h-infinity-norm/), the peak gain over all
+      frequencies, and sometimes by its [H2 norm](/h2-norm/), the energy of its impulse response. A Hamiltonian
+      eigenvalue test computes the first norm to any accuracy, and the [bounded real lemma](/bounded-real-lemma/)
+      turns the bound $\|G\|_\infty < \gamma$ into a linear matrix inequality. The S-procedure adds quadratic
+      constraints to such inequalities at the price of a multiplier.
+    entries:
+      - h-infinity-norm
+      - h2-norm
+      - linear-matrix-inequality
+      - h-infinity-norm-computation
+      - bounded-real-lemma
+      - s-procedure
+  - title: Uncertainty models and parametric robustness
+    intro: >
+      A model is never exact, so a design must hold for a set of plants. [Model uncertainty](/model-uncertainty/)
+      describes the set by a stable perturbation of bounded norm and tests it with the small-gain theorem, which
+      is a sufficient condition. When the uncertainty sits in the coefficients of the characteristic polynomial,
+      Kharitonov's four polynomials decide a box of coefficients exactly, and the edge theorem handles a polytope.
+    entries:
+      - model-uncertainty
+      - kharitonov-theorem
+      - edge-theorem
+  - title: Varying parameters
+    intro: >
+      When a parameter changes in time, stability of every frozen value proves nothing. [Gain
+      scheduling](/gain-scheduling/) still designs at frozen points, as a practical method without a general
+      guarantee. [Quadratic stability](/quadratic-stability/) asks for one Lyapunov matrix for all parameter
+      values, which covers arbitrarily fast variation and is an LMI test, and linear parameter-varying models put
+      the scheduled design on that footing.
+    entries:
+      - gain-scheduling
+      - quadratic-stability
+      - lpv-system
+  - title: Structured uncertainty
+    intro: >
+      A [linear fractional transformation](/linear-fractional-transformation/) pulls every uncertain element out
+      of a block diagram into one block-diagonal $\Delta$. The [structured singular value](/structured-singular-value/)
+      $\mu$ is the exact robustness margin against such a $\Delta$; it lies between the spectral radius and the
+      largest singular value, and only bounds are computed in practice. Mu analysis applies the bounds frequency
+      by frequency to robust stability and robust performance.
+    entries:
+      - linear-fractional-transformation
+      - structured-singular-value
+      - mu-analysis
+  - title: H-infinity synthesis
+    intro: >
+      The [H-infinity control problem](/h-infinity-control-problem/) asks for a stabilizing controller that keeps
+      a weighted closed loop norm below $\gamma$. Two Riccati equations or three LMIs decide exactly whether such
+      a controller exists and give one. Mixed sensitivity design chooses the weights, and D-K iteration uses the
+      synthesis inside a heuristic for mu-synthesis.
+    entries:
+      - h-infinity-control-problem
+      - dgkf-h-infinity-synthesis
+      - mixed-sensitivity-design
+      - dk-iteration
+      - lmi-h-infinity-synthesis
+  - title: Coprime factors and the gap
+    intro: >
+      Writing a plant as a ratio of stable transfer functions, a [coprime factorization](/coprime-factorization/),
+      gives the Youla-Kucera form of all stabilizing controllers, in which the closed loop maps are affine in a
+      free stable parameter. Normalized factors lead to H-infinity loop shaping, with a closed form optimal
+      margin, and to the nu-gap metric, which says how far a plant may move before that margin is used up.
+    entries:
+      - coprime-factorization
+      - youla-parametrization
+      - h-infinity-loop-shaping
+      - nu-gap-metric
+  - title: Model reference adaptive control
+    intro: >
+      An [adaptive controller](/adaptive-control/) tunes its own gains from data. The MIT rule descends the
+      gradient of the squared error and has no stability guarantee; the Lyapunov design of [model reference
+      adaptive control](/model-reference-adaptive-control/) has one for its ideal plant. The Rohrs example shows
+      that small unmodelled dynamics break that guarantee, and projection, leakage and the filtered L1
+      architecture are the responses.
+    entries:
+      - adaptive-control
+      - mit-rule
+      - model-reference-adaptive-control
+      - rohrs-counterexample
+      - parameter-projection
+      - sigma-modification
+      - l1-adaptive-control
+  - title: Self-tuning control
+    intro: >
+      An indirect adaptive controller estimates a plant model and then designs as if the estimate were true.
+      [Certainty equivalence](/certainty-equivalence/) names that step and its limits. The self-tuning regulator
+      pairs recursive least squares with minimum variance control, and adaptive pole placement pairs it with a
+      polynomial equation that needs a coprime estimate.
+    entries:
+      - certainty-equivalence
+      - self-tuning-regulator
+      - adaptive-pole-placement
+  - title: Learning from probes and repetition
+    intro: >
+      Two methods adapt with almost no model. [Extremum seeking](/extremum-seeking-control/) adds a small sine to
+      an input and reads the gradient of an unknown cost from the response. [Iterative learning
+      control](/iterative-learning-control/) corrects a whole input signal between repeated trials of the same
+      task.
+    entries:
+      - extremum-seeking-control
+      - iterative-learning-control

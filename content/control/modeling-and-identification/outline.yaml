@@ -1,0 +1,111 @@
+# The order of chapter 36.1, Modeling and identification. Groups are read in order; entries in a group too.
+groups:
+  - title: Transforms, poles and diagrams
+    intro: >
+      The Laplace transform turns a linear differential equation with constant coefficients into a
+      rational function of $s$. Its poles and zeros describe the response. Diagrams of connected blocks
+      are reduced to one [transfer function](/transfer-function/), either by local rules or in one step
+      by Mason's formula, which is Cramer's rule written on the graph.
+    entries:
+      - laplace-transform
+      - poles-and-zeros
+      - block-diagram-reduction
+      - signal-flow-graph
+      - masons-gain-formula
+
+  - title: State models and their equilibria
+    intro: >
+      A state model writes the system as first-order equations $\dot x = f(x, u)$, $y = h(x, u)$. An
+      equilibrium is a state where the vector field vanishes. Near it the Jacobians give a linear model,
+      which settles local stability when the equilibrium is hyperbolic. Control-affine and time-delay
+      systems are two common classes that fall outside the plain linear model.
+    entries:
+      - state-space-representation
+      - equilibrium-point
+      - jacobian-linearization
+      - control-affine-system
+      - time-delay-system
+
+  - title: Solving linear models
+    intro: >
+      For $\dot x = Ax + Bu$ the matrix exponential gives the free response, and the variation of constants
+      formula adds the forced response. When $A$ depends on time, the state-transition matrix takes the
+      place of $e^{At}$, and frozen eigenvalues no longer decide stability. In discrete time the impulse
+      response is the sequence of Markov parameters, and its Hankel matrix has rank equal to the minimal order.
+    entries:
+      - matrix-exponential
+      - variation-of-constants-formula
+      - linear-time-varying-system
+      - state-transition-matrix
+      - markov-parameters
+
+  - title: Several inputs and outputs
+    intro: >
+      With $m$ inputs and $p$ outputs the transfer function becomes a $p \times m$ matrix. Its poles and
+      zeros are not those of its entries. The Smith-McMillan form defines them with multiplicities, and
+      its total denominator degree is the least number of states of a realization.
+    entries:
+      - transfer-function-matrix
+      - smith-mcmillan-form
+      - transmission-zero
+
+  - title: Sampling
+    intro: >
+      A computer reads the plant every $h$ seconds and holds its input constant in between. The zero-order
+      hold model is exact at the sampling instants: poles map by $z = e^{sh}$, while zeros do not. The
+      sampled-data entry adds what happens between samples and when sampling destroys controllability.
+    entries:
+      - zero-order-hold-discretization
+      - sampled-data-system
+
+  - title: The identification problem and its inputs
+    intro: >
+      System identification picks a model set and the member that best predicts measured data. The process
+      reaction curve is the simplest case, three numbers read off one step response. Richer models need
+      inputs that are [persistently exciting](/persistent-excitation/), such as a PRBS. The empirical
+      transfer function estimate is the nonparametric baseline: it divides two discrete Fourier transforms.
+    entries:
+      - system-identification
+      - process-reaction-curve
+      - persistent-excitation
+      - prbs-input
+      - empirical-transfer-function-estimate
+
+  - title: Linear model structures and their estimators
+    intro: >
+      ARX, ARMAX and output error models differ in where the noise enters. Least squares fits ARX in one
+      linear solve, but it is biased when the noise is colored. Instrumental variables remove that bias,
+      and the prediction error method fits any structure by a local search. Feedback in the data and static
+      nonlinearities around a linear block each change which methods remain consistent.
+    entries:
+      - arx-model
+      - least-squares-arx-identification
+      - armax-model
+      - output-error-model
+      - instrumental-variable-identification
+      - prediction-error-method
+      - closed-loop-identification
+      - hammerstein-wiener-model
+
+  - title: Realization and subspace methods
+    intro: >
+      Ho and Kalman factor the exact Hankel matrix of Markov parameters into a minimal state model. ERA
+      replaces the exact rank by a truncated SVD so that it works on measured responses. Subspace methods
+      start from raw input-output data. They project block Hankel matrices, read the order from singular
+      values, and need no iterative search.
+    entries:
+      - ho-kalman-algorithm
+      - eigensystem-realization-algorithm
+      - subspace-identification
+      - moesp
+      - n4sid
+
+  - title: Data-driven models
+    intro: >
+      Three recent methods fit models with little structure fixed in advance. Dynamic mode decomposition
+      fits a linear map between snapshots. Kernel methods fit a long impulse response with a prior that
+      makes it decay. SINDy picks a few terms from a library of candidate functions by thresholded least squares.
+    entries:
+      - dynamic-mode-decomposition
+      - kernel-based-identification
+      - sindy

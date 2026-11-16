@@ -1,0 +1,119 @@
+# The order of chapter 36.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The optimal control problem and its conditions
+    intro: >
+      An optimal control problem asks for the input that minimizes a cost along the solution of a differential
+      equation. The [maximum principle](/pontryagin-maximum-principle/) turns it into a boundary value problem
+      for the state and the [costate](/costate/), and gives necessary conditions only. The
+      [Hamilton-Jacobi-Bellman equation](/hamilton-jacobi-bellman-equation/) works with the optimal cost as a
+      function of the state, and gives a sufficient condition when that function is smooth enough.
+    entries:
+      - optimal-control-problem
+      - euler-lagrange-equation
+      - control-hamiltonian
+      - costate
+      - pontryagin-maximum-principle
+      - transversality-conditions
+      - hamilton-jacobi-bellman-equation
+      - indirect-method-optimal-control
+
+  - title: Minimum energy and minimum time
+    intro: >
+      Two classic problems for linear systems have answers in closed form or close to it. The input of least
+      energy comes from the controllability Gramian. The fastest input under a box bound takes only the corners
+      of the box, and the [bang-bang principle](/bang-bang-control/) says when; a
+      [singular arc](/singular-arc/) is the case where the maximum principle does not decide the input.
+    entries:
+      - minimum-energy-control
+      - time-optimal-control
+      - bang-bang-control
+      - singular-arc
+
+  - title: The linear quadratic regulator
+    intro: >
+      For a linear model and a quadratic cost, the optimal input is a linear state feedback $u = -Kx$. On a
+      finite horizon the gains come from a Riccati recursion run backward; on an infinite horizon they come
+      from the stabilizing solution of an algebraic Riccati equation. In continuous time the single-input loop
+      has guaranteed gain and phase margins.
+    entries:
+      - lqr-problem
+      - finite-horizon-lqr
+      - continuous-algebraic-riccati-equation
+      - discrete-algebraic-riccati-equation
+      - infinite-horizon-lqr
+      - lqr-stability-margins
+
+  - title: Solving the Riccati equation
+    intro: >
+      The algebraic Riccati equation is quadratic in its unknown and can have many solutions. Its solutions
+      correspond to invariant subspaces of a $2n \times 2n$ [Hamiltonian matrix](/hamiltonian-matrix/), and the
+      stabilizing one exists under stabilizability and detectability. Two solvers follow: an ordered Schur
+      form of that matrix, and Newton's method with one Lyapunov equation per step.
+    entries:
+      - hamiltonian-matrix
+      - stabilizing-riccati-solution-theorem
+      - schur-method-riccati
+      - kleinman-iteration
+
+  - title: Output feedback, LQG and H2
+    intro: >
+      When only noisy outputs are measured, a [Kalman-Bucy filter](/kalman-bucy-filter/) estimates the state
+      and the LQR gain acts on the estimate. The result is optimal for linear models with Gaussian noise, and
+      under the standard assumptions it is also the H2 optimal controller. It has no guaranteed margins, as
+      Doyle's example shows; loop transfer recovery brings them back in a limit, for square minimum-phase
+      plants.
+    entries:
+      - kalman-bucy-filter
+      - lqg-control
+      - h2-optimal-control
+      - lqg-guaranteed-margins-counterexample
+      - loop-transfer-recovery
+
+  - title: Model predictive control
+    intro: >
+      Model predictive control solves a finite-horizon problem at every sample, applies the first input and
+      repeats from the new state. Constraints on inputs and states enter the problem directly. The early
+      industrial forms used step responses and transfer functions; for a linear state-space model each step is
+      a [quadratic program](/quadratic-programming/), which can also be solved offline for every state.
+    entries:
+      - model-predictive-control
+      - dynamic-matrix-control
+      - generalized-predictive-control
+      - linear-mpc
+      - offset-free-mpc
+      - multiparametric-quadratic-programming
+      - explicit-mpc
+
+  - title: Invariant sets, feasibility and stability
+    intro: >
+      A receding horizon alone does not make the closed loop stable or keep the problem feasible. Both follow
+      from a terminal set that a local controller keeps invariant and a terminal cost that decreases under it.
+      These entries build the sets, prove the theorem, and give the reference governor, a simpler add-on built
+      on the same sets.
+    entries:
+      - positively-invariant-set
+      - control-invariant-set
+      - maximal-positively-invariant-set
+      - recursive-feasibility
+      - mpc-stability-theorem
+      - reference-governor
+
+  - title: Nonlinear and economic MPC
+    intro: >
+      With a nonlinear model each MPC step is a nonconvex program, solved only to a local optimum. The
+      real-time iteration does one quadratic programming step per sample. Economic MPC replaces the distance to
+      a setpoint with a general cost and proves stability through dissipativity.
+    entries:
+      - nonlinear-mpc
+      - real-time-iteration
+      - economic-mpc
+
+  - title: MPC under uncertainty
+    intro: >
+      Bounded or random disturbances break the nominal theorem. Min-max MPC plans for the worst case, tube MPC
+      keeps the true state near a nominal plan with tightened constraints, and stochastic MPC asks that each
+      constraint hold with a given probability.
+    entries:
+      - min-max-mpc
+      - tube-mpc
+      - stochastic-mpc

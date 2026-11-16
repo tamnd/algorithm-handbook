@@ -1,0 +1,86 @@
+# The order of chapter 36.4, State space control. Groups are read in order; entries in a group too.
+groups:
+  - title: Controllability and observability
+    intro: >
+      Two questions come before any design: whether the input can move the state anywhere, and whether the
+      output tells us where the state is. These entries define the two properties, give the rank and eigenvalue tests
+      that decide them exactly for linear time-invariant systems, measure them by Gramians, and weaken them
+      to stabilizability and detectability, which are what feedback and estimation really need.
+    entries:
+      - controllability
+      - observability
+      - kalman-rank-condition
+      - popov-belevitch-hautus-test
+      - controllability-gramian
+      - observability-gramian
+      - stabilizability
+      - detectability
+
+  - title: Canonical forms and realization
+    intro: >
+      A system has many state-space descriptions, one for each choice of coordinates. The canonical forms
+      pick coordinates in which the transfer function can be read off. The Kalman decomposition splits any
+      model into the part that the input reaches and the output sees and the parts that it does not, and
+      this answers the question of the smallest model for a given transfer function.
+    entries:
+      - controllable-canonical-form
+      - observable-canonical-form
+      - realization-problem
+      - kalman-decomposition
+      - minimal-realization
+
+  - title: State feedback and pole placement
+    intro: >
+      Feeding back the whole state moves the eigenvalues of the loop. The pole placement theorem says how far
+      they can be moved, Ackermann's formula computes the gain for one input, and the Kautsky-Nichols-Van
+      Dooren method uses the extra freedom of several inputs to make the result less sensitive. Integral
+      action and deadbeat control are two common uses of the same idea.
+    entries:
+      - state-feedback
+      - pole-placement-problem
+      - pole-placement-theorem
+      - ackermann-formula
+      - robust-pole-placement
+      - integral-state-feedback
+      - deadbeat-control
+
+  - title: Observers
+    intro: >
+      In practice only the outputs are measured. An observer runs a copy of the model and corrects it with
+      the output error, so that its state converges to the true state. The separation principle shows that
+      the observer and the state feedback can be designed apart, as far as the eigenvalues go. The last two
+      entries handle signals that act on the plant but are not measured.
+    entries:
+      - state-observer
+      - luenberger-observer
+      - reduced-order-observer
+      - separation-principle
+      - unknown-input-observer
+      - disturbance-observer
+
+  - title: Geometric control and output regulation
+    intro: >
+      Some questions are about subspaces rather than eigenvalues. A controlled invariant subspace is a set of
+      states that feedback can keep the motion in. The largest one inside the kernel of the output map decides
+      whether a disturbance can be hidden from the output. Output regulation asks for tracking and rejection of
+      signals from a known model, and two linear matrix equations decide it.
+    entries:
+      - controlled-invariant-subspace
+      - invariant-subspace-algorithm
+      - disturbance-decoupling-problem
+      - output-regulation-problem
+      - regulator-equations
+
+  - title: Model order reduction
+    intro: >
+      Large models must often be made small before they can be simulated many times or used for design.
+      The Hankel singular values measure how much each state matters, a balanced realization puts the
+      states in that order, and balanced truncation drops the weak ones with a guaranteed error bound. The
+      iterative rational Krylov algorithm needs only linear solves and reaches much larger models.
+    entries:
+      - model-order-reduction
+      - hankel-singular-values
+      - balanced-realization
+      - balanced-truncation
+      - balanced-truncation-error-bound
+      - iterative-rational-krylov

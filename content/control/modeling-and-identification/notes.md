@@ -1,0 +1,18 @@
+## History
+
+The transfer function view of this chapter came from electrical engineering. Samuel Mason introduced signal-flow graphs in 1953 and published his general gain formula in 1956. Brockway McMillan extended Smith's diagonal form of integer matrices, from 1861, to rational matrices in 1952, in his work on the realizability of electrical networks. Rosenbrock made the form a standard tool of multivariable control in his 1970 book.
+
+The state-space view took over around 1960 with the work of Kalman. In 1963 Kalman, Ho and Narendra used the sampled model $x_{k+1} = e^{Ah}x_k + \int_0^h e^{As}\,ds\,Bu_k$ to show that sampling can destroy controllability. In 1966 Ho and Kalman showed that the rank of the Hankel matrix of the Markov parameters is the minimal order, and built a minimal realization from it. Moler and Van Loan's 1978 survey of ways to compute the matrix exponential, revised in 2003, shaped how $e^{Ah}$ is computed. In 1978 Van Loan also showed that the zero-order hold matrices are blocks of one larger exponential. Åström, Hagander and Sternby described the zeros of sampled systems in 1984.
+
+Identification grew from process control and statistics. Ziegler and Nichols read a delay and a slope off a recorded step response in 1942. Kalman's self-optimizing controller of 1958 estimated a difference equation by least squares. Åström and Bohlin fitted ARMAX models by maximum likelihood in 1965, and Åström and Eykhoff's survey of 1971 made least squares the reference method. Wong and Polak applied instrumental variables to dynamic systems in 1967. In the 1970s Ljung recast these methods as minimizations of prediction errors and proved convergence results, including a 1978 analysis that does not assume the true system is in the model set. His textbook appeared in 1987, with a second edition in 1999, and Söderström and Stoica's textbook appeared in 1989.
+
+Realization from noisy data led to subspace methods. Juang and Pappa published the eigensystem realization algorithm in 1985 for the modal testing of flexible space structures. Verhaegen and Dewilde introduced MOESP in 1992, Van Overschee and De Moor published N4SID in 1994, and in 1995 they showed that N4SID, MOESP and CVA are one algorithm with different weights. The data-driven methods are recent: Schmid's dynamic mode decomposition of 2010, the kernel approach of Pillonetto and De Nicolao in 2010, extended with the TC and DC kernels by Chen, Ohlsson and Ljung in 2012, and SINDy by Brunton, Proctor and Kutz in 2016.
+
+## Further reading
+
+- Lennart Ljung, *System Identification: Theory for the User*, second edition, Prentice Hall, 1999. The standard account of the prediction error framework, with model structures, consistency, variance and input design.
+- Torsten Söderström and Petre Stoica, *System Identification*, Prentice Hall, 1989. A careful treatment of least squares, instrumental variables and prediction error methods, with their accuracy analysis.
+- Peter Van Overschee and Bart De Moor, *Subspace Identification for Linear Systems: Theory, Implementation, Applications*, Kluwer, 1996. The reference on N4SID, MOESP and CVA, and on the projections they share.
+- Karl J. Åström and Björn Wittenmark, *Computer-Controlled Systems*, third edition, Prentice Hall, 1997. Sampling, the zero-order hold, sampling zeros and the choice of the sampling period.
+- Thomas Kailath, *Linear Systems*, Prentice Hall, 1980. State-space and polynomial matrix theory, including realization and the Smith-McMillan form.
+- Cleve Moler and Charles Van Loan, Nineteen dubious ways to compute the exponential of a matrix, twenty-five years later, *SIAM Review* 45(1), 2003. A survey of methods for $e^{A}$ and of why most of them fail on some matrices.

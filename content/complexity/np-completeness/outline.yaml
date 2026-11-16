@@ -1,0 +1,76 @@
+# The order of chapter 39.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Problems, certificates and verifiers
+    intro: >
+      NP is a class of yes-or-no questions, so the chapter starts with what such a question is and how its
+      size is measured. A [certificate](/certificate/) is a short proof that the answer is yes, and a
+      [polynomial-time verifier](/polynomial-time-verifier/) is the program that checks it. Together they
+      define NP.
+    entries:
+      - decision-problem
+      - certificate
+      - polynomial-time-verifier
+
+  - title: Hardness and completeness
+    intro: >
+      A problem is NP-hard when every problem in NP reduces to it by a polynomial-time many-one (Karp)
+      reduction, and NP-complete when it is also in NP itself. These are worst-case statements. They say
+      that no polynomial-time algorithm exists unless P = NP, and that question is open. The coNP-complete
+      problems are their mirror image.
+    entries:
+      - np-hard
+      - np-complete
+      - co-np-complete
+
+  - title: The first complete problems
+    intro: >
+      The [Cook-Levin theorem](/cook-levin-theorem/) gives the first NP-complete problem, SAT, by writing
+      the run of a verifier as a formula. Karp then reached 21 classic problems by a tree of reductions,
+      and Garey and Johnson collected several hundred more in a catalogue that is still the place to look
+      first.
+    entries:
+      - cook-levin-theorem
+      - karps-21-np-complete-problems
+      - garey-johnson-compendium
+
+  - title: Numbers and their encoding
+    intro: >
+      A number $N$ written in binary takes about $\lg N$ bits, but in unary it takes $N$ symbols. An
+      algorithm that runs in time polynomial in $N$ is therefore fast for small numbers and slow for long
+      ones. [Subset sum](/subset-sum-problem/) and [partition](/partition-problem/) are NP-complete, yet
+      both have such pseudo-polynomial algorithms. That makes them weakly NP-hard.
+    entries:
+      - unary-encoding
+      - pseudo-polynomial-time
+      - subset-sum-problem
+      - partition-problem
+      - weak-np-hardness
+
+  - title: Matching and covering by triples
+    intro: >
+      Matching pairs is easy, but matching triples is NP-complete. [Three-dimensional
+      matching](/three-dimensional-matching/) and [exact cover by 3-sets](/exact-cover-by-3-sets/) have no
+      numbers at all. That makes them good sources for hardness proofs about packing, covering and numbers.
+    entries:
+      - three-dimensional-matching
+      - exact-cover-by-3-sets
+
+  - title: Strong NP-hardness
+    intro: >
+      Some number problems stay NP-hard even when every number is bounded by a polynomial in the input
+      length. Such problems have no pseudo-polynomial algorithm unless P = NP. One-machine scheduling with
+      release times and deadlines is the standard example: it is strongly NP-complete, yet it becomes easy
+      once preemption is allowed.
+    entries:
+      - strong-np-hardness
+      - scheduling-with-release-times-and-deadlines
+
+  - title: The structure of NP if P is not NP
+    intro: >
+      If P = NP, every nontrivial problem in NP is NP-complete. If P ≠ NP, [Ladner's
+      theorem](/ladners-theorem/) gives problems in NP that are neither in P nor NP-complete, and
+      [Mahaney's theorem](/mahaneys-theorem/) shows that no NP-complete set is sparse. Both results are
+      conditional on P ≠ NP.
+    entries:
+      - ladners-theorem
+      - mahaneys-theorem

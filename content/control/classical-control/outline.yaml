@@ -1,0 +1,91 @@
+# The order of chapter 36.3, Classical control. Groups are read in order; entries in a group too.
+groups:
+  - title: The loop and its responses
+    intro: >
+      A [feedback control loop](/feedback-control-loop/) has a plant $P$ and a controller $C$, and every closed-loop
+      map is built from $L = PC$. A [second-order system](/second-order-system/) is the model for reading overshoot,
+      peak time and settling time. The [final value theorem](/final-value-theorem/) gives the error that is left at
+      the end, provided the closed loop is stable, and the internal model principle says what the controller must
+      contain for that error to be zero for every nearby plant.
+    entries:
+      - feedback-control-loop
+      - second-order-system
+      - step-response-specifications
+      - final-value-theorem
+      - steady-state-error
+      - internal-model-principle
+
+  - title: Root locus
+    intro: >
+      The [root locus](/root-locus/) draws the closed-loop poles of $1 + K G(s) = 0$ as the gain $K$ runs from 0 to
+      infinity. A point is on it when $\arg G(s)$ is an odd multiple of 180 degrees, and the gain there is
+      $1/|G(s)|$. The sketching rules give asymptotes, breakaway points and imaginary-axis crossings; they are a
+      quick sketch, and the exact poles come from a [polynomial root finder](/polynomial-root-finding/).
+    entries:
+      - root-locus
+      - root-locus-rules
+
+  - title: Frequency response and stability
+    intro: >
+      The [Bode plot](/bode-plot/) and the [Nyquist plot](/nyquist-plot/) show $L(j\omega)$ in two ways. The
+      [Nyquist stability criterion](/nyquist-stability-criterion/), $Z = N + P$, counts the unstable closed-loop
+      poles exactly for linear time-invariant models. The gain and phase margins read two points of the curve,
+      and the Nichols chart puts the closed-loop gain on the same sheet.
+    entries:
+      - bode-plot
+      - nyquist-plot
+      - nyquist-stability-criterion
+      - gain-margin
+      - phase-margin
+      - nichols-chart
+
+  - title: Sensitivity and limits of performance
+    intro: >
+      The [sensitivity function](/sensitivity-function/) $S = 1/(1 + L)$ and the complementary sensitivity
+      $T = L/(1 + L)$ add up to 1, so no loop makes both small at the same frequency. Its peak $M_s$ is the
+      inverse of the smallest distance from the Nyquist curve to $-1$. Two theorems of Bode limit every design: the phase
+      of a minimum-phase loop is fixed by its gain curve, and, for a stable
+      closed loop whose $L$ has relative degree at least 2, the area under $\ln|S|$ is never negative.
+    entries:
+      - sensitivity-function
+      - complementary-sensitivity-function
+      - bode-gain-phase-relation
+      - bode-sensitivity-integral
+
+  - title: Compensator design
+    intro: >
+      A [lead-lag compensator](/lead-lag-compensator/) adds phase near crossover or gain at low frequency, one
+      first-order factor at a time. [Loop shaping](/loop-shaping/) chooses the whole curve of $|L|$: high at low
+      frequency, low at high frequency, and a slope near $-20$ dB per decade at crossover. A design made in
+      continuous time then runs on a computer, and the hold costs about $\omega_c h/2$ radians of phase margin.
+    entries:
+      - lead-lag-compensator
+      - loop-shaping
+      - controller-discretization
+
+  - title: PID control and its tuning
+    intro: >
+      The [PID controller](/pid-controller/) is the most common controller in industry. Its three parameters are
+      set by rules: the Ziegler-Nichols tables, a relay experiment that finds the ultimate point, or a model-based
+      rule from internal model control. Every tuning rule here is a heuristic and is judged by the responses it
+      gives. An actuator limit makes the integral wind up, and anti-windup is part of every real PID.
+    entries:
+      - pid-controller
+      - ziegler-nichols-tuning
+      - relay-autotuning
+      - integrator-windup
+      - anti-windup
+      - internal-model-control
+
+  - title: Control structures
+    intro: >
+      A single loop is often not enough. [Two-degree-of-freedom control](/two-degree-of-freedom-control/) shapes
+      the reference response apart from the feedback, cascade control and feedforward act on disturbances
+      before they reach the output, and the Smith predictor takes a known delay out of the loop. With several
+      loops on one plant, the relative gain array helps choose which input controls which output.
+    entries:
+      - two-degree-of-freedom-control
+      - cascade-control
+      - feedforward-control
+      - smith-predictor
+      - relative-gain-array

@@ -1,0 +1,20 @@
+## History
+
+The stability of machines came first. Maxwell's paper "On governors" of 1868 linearized the equations of a steam engine with a governor and asked when the roots of the resulting polynomial have negative real parts; he gave the conditions for degree three. Routh solved the general case in his Adams Prize essay of 1877 with the array that now carries his name. Hurwitz, asked by Stodola about turbine regulators and unaware of Routh's work, gave the same conditions as determinants in 1895. The discrete counterpart grew from the work of Schur in 1917 and 1918 and of Cohn in 1922, and Jury and Blanchard put it in table form in 1961.
+
+Lyapunov's thesis of 1892 set out the general theory for nonlinear equations: the definitions of stability, the direct method with its auxiliary function, and the method of the first approximation. Fuller's English translation appeared in 1992. Chetaev added instability theorems in the 1930s. Barbashin and Krasovskii proved the global theorem with a nonstrict derivative in 1952, and LaSalle gave the invariance principle in 1960. Massera in 1949 and Kurzweil in 1956 proved the converse theorems, Barbălat published his lemma in 1959, and Kalman and Bertram brought the whole method to control engineers in 1960.
+
+Absolute stability began with Lur'e and Postnikov in 1944. Aizerman conjectured in 1949 that a loop is stable for every nonlinearity in a sector when it is stable for every linear gain in that sector, and Kalman made a similar conjecture in 1957; both are false in general. Popov published his frequency test in 1961. Yakubovich in 1962 and Kalman in 1963 proved the lemma that links such frequency conditions to quadratic Lyapunov functions. In the same years Sandberg, Narendra and Goldwyn, and Zames found the circle criterion, and Zames's paper of 1966 set out the input-output view, with the small-gain and passivity theorems.
+
+Willems defined dissipative systems in 1972, with storage functions and supply rates, and Hill and Moylan worked out the nonlinear theory in 1976 and 1977. Sontag introduced input-to-state stability in 1989, and Jiang, Teel and Praly proved its nonlinear small-gain theorem in 1994. Planar periodic orbits have an older history: Poincaré's memoir of 1881 to 1886 and Bendixson's paper of 1901 give the theorem that bears both names, and the describing function goes back to Krylov and Bogoliubov in the 1930s.
+
+The computational tools are recent. Demidovich gave a contraction condition with a constant metric in 1961, and Lohmiller and Slotine developed contraction analysis in 1998. Sum-of-squares programming rests on Hilbert's result of 1888 that not every nonnegative polynomial is a sum of squares, and Parrilo turned the search for squares into a semidefinite program in 2000 and 2003. Ahmadi, Krstic and Parrilo showed in 2011 that a globally asymptotically stable polynomial system need not have a polynomial Lyapunov function.
+
+## Further reading
+
+- H. K. Khalil, Nonlinear Systems, third edition, Prentice Hall, 2002. The standard text for most of the chapter: Lyapunov theory, converse theorems, input-to-state stability, passivity, absolute stability and the describing function.
+- F. R. Gantmacher, The Theory of Matrices, Volume 2, Chapter XV. A full account of the Routh-Hurwitz problem, including the singular cases.
+- C. A. Desoer and M. Vidyasagar, Feedback Systems: Input-Output Properties, SIAM Classics in Applied Mathematics. The input-output theory of the small-gain, passivity and circle theorems, with careful proofs.
+- A. van der Schaft, L2-Gain and Passivity Techniques in Nonlinear Control, third edition, Springer, 2017. Dissipativity, storage functions and passivity for nonlinear systems.
+- S. Boyd, L. El Ghaoui, E. Feron and V. Balakrishnan, Linear Matrix Inequalities in System and Control Theory, SIAM, 1994. How the KYP lemma, absolute stability and Lyapunov conditions become linear matrix inequalities.
+- E. D. Sontag, Input to state stability: Basic concepts and results, in Nonlinear and Optimal Control Theory, Lecture Notes in Mathematics 1932, Springer, 2008. A survey of input-to-state stability by its founder.

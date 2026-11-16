@@ -128,6 +128,12 @@ For edition 0.35.0, the site's release v0.35.0 wrote all eight chapters of Volum
 reasoning*. Nine agents shared the work: one per chapter, and one that wrote the volume introduction and a learning
 path *Information retrieval and AI reasoning* for Volume 0.
 
+For edition 0.36.0, the site's release v0.36.0 wrote all eight chapters of Volume 36 *Control* and Chapter 39.2
+*NP completeness* of Volume 39 *Complexity*; the other six chapters of Volume 39 have only short pages so far.
+Eleven agents shared the work: one per chapter of Volume 36; one that wrote the introduction to Volume 36 and a
+learning path *Control* for Volume 0; one for Chapter 39.2; and one that wrote the introduction to Volume 39 and
+the openings of its other six chapters. Volume 0 gains no learning path for Volume 39 until it is complete.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -145,6 +151,6 @@ the editions from 0.26.0, have the fixes. The errors found in Volumes 27 and 28 
 the site's release v0.29.0, those found in the rest of Volume 29 and in Volume 30 in its release v0.30.0, those
 found in the written chapters of Volumes 31 and 32 in its release v0.31.0, those found in Volume 33 in its release
 v0.34.0, and those found in the six new chapters of Volume 32 in its release v0.35.0; this edition has all those
-fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, and those
-found in Volume 34 for edition 0.34.0 and in Volume 35 for this edition after that. All of them came after the site's
-release v0.35.0, so the entries of this edition do not yet have them.
+fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, so this edition
+has them too. Those found in Volume 34 for edition 0.34.0, in Volume 35 for edition 0.35.0, and in Volumes 36
+and 39 for this edition were fixed after that release, so the entries of this edition do not yet have them.

@@ -1,0 +1,97 @@
+groups:
+  - title: Derivatives along vector fields
+    intro: >
+      The chapter works with control-affine systems $\dot x = f(x) + g(x) u$, and its basic tools are
+      derivatives taken along $f$ and $g$. The Lie derivative says how a function changes along a flow,
+      the Lie bracket gives the directions that switching between two flows can reach, and the relative
+      degree counts how many derivatives of the output pass before the input appears. Zero dynamics are
+      what is left when the input holds the output at zero.
+    entries:
+      - lie-derivative
+      - lie-bracket
+      - relative-degree
+      - zero-dynamics
+  - title: Exact linearization by feedback
+    intro: >
+      A nonlinear system can sometimes be made exactly linear by a change of coordinates and a feedback
+      that cancels the nonlinear terms. Input-output linearization does this for one output and leaves
+      the zero dynamics to be checked. Full state feedback linearization needs the bracket conditions of
+      Jakubczyk, Respondek, Hunt, Su and Meyer, and flatness extends the idea to trajectory planning with
+      several inputs.
+    entries:
+      - input-output-linearization
+      - feedback-linearization
+      - feedback-linearizability-conditions
+      - differential-flatness
+  - title: Control Lyapunov functions and the limits of stabilization
+    intro: >
+      A control Lyapunov function is a Lyapunov function that some input can make decrease. Artstein's
+      theorem says that a smooth one exists exactly when a feedback that is smooth away from the origin
+      stabilizes the system, and Sontag's formula writes such a feedback down. The Lie algebra rank
+      condition decides local accessibility, and Brockett's condition shows that a controllable system
+      may still have no continuous stabilizing feedback.
+    entries:
+      - control-lyapunov-function
+      - sontag-universal-formula
+      - artstein-sontag-theorem
+      - lie-algebra-rank-condition
+      - brockett-condition
+  - title: Backstepping
+    intro: >
+      Backstepping builds a control Lyapunov function and a feedback one state at a time for systems in
+      strict feedback form, using each state as a virtual control for the one before it. The adaptive
+      version adds an update law for unknown constant parameters and still gives
+      $\dot V = -\sum c_i z_i^2$, but the estimates need not reach the true values.
+    entries:
+      - backstepping
+      - adaptive-backstepping
+  - title: Sliding modes
+    intro: >
+      Sliding mode control drives the state to a surface and holds it there with a switching input that
+      dominates any bounded matched disturbance. The price is chattering, a fast oscillation caused by
+      sampling, delays and fast unmodeled dynamics. The super-twisting algorithm moves the switching into
+      the derivative of the control, so the control is continuous and the sliding accuracy under sampling
+      improves from order $h$ to order $h^2$.
+    entries:
+      - sliding-mode-control
+      - chattering
+      - super-twisting-algorithm
+  - title: Observers and disturbance estimation
+    intro: >
+      Nonlinear output feedback needs the unmeasured states. A high-gain observer estimates them as fast
+      as wanted, at the cost of a large transient called peaking. A sliding mode observer uses a switching
+      injection and reaches the output exactly in finite time. Active disturbance rejection control
+      extends the high-gain observer by one state that estimates everything the model leaves out, and
+      cancels it.
+    entries:
+      - high-gain-observer
+      - sliding-mode-observer
+      - active-disturbance-rejection-control
+  - title: Energy and passivity
+    intro: >
+      Physical systems have an energy, and a port-Hamiltonian model keeps the energy, the interconnection
+      and the dissipation as separate objects. Passivity-based control shapes the energy so that its
+      minimum sits at the target and then adds damping. IDA-PBC does this for underactuated systems by
+      solving matching equations for the closed-loop energy.
+    entries:
+      - port-hamiltonian-system
+      - passivity-based-control
+      - ida-pbc
+  - title: Two time scales
+    intro: >
+      Many systems mix fast and slow motion. Averaging replaces a fast periodic forcing by its mean over
+      one period, and singular perturbation splits fast and slow states into a boundary layer model and a
+      reduced model. Both turn a hard analysis into two easier ones, and both give results for a small
+      enough parameter.
+    entries:
+      - averaging-method
+      - singular-perturbation-method
+  - title: Safety with barrier functions
+    intro: >
+      A control barrier function does for safety what a control Lyapunov function does for stability: it
+      certifies that some input keeps the state in a set $\{h \ge 0\}$. The safety filter changes a
+      nominal input as little as possible, by a small quadratic program at each state, so that the barrier
+      condition holds.
+    entries:
+      - control-barrier-function
+      - cbf-safety-filter

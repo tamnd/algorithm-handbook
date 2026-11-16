@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.35.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.36.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.35.0](https://github.com/tamnd/algorithm/releases/tag/v0.35.0)
-(`7d7ad73682ac78bc87a92c90abe346b6361c27cb`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.36.0](https://github.com/tamnd/algorithm/releases/tag/v0.36.0)
+(`cab1666826dfae73e79dbae5a06445f24ea78135`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 1,885 |
+| 0 | Guide and Index | the whole set | 1,943 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -33,70 +33,83 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 25 | Machine learning | 419 | 2,982 |
 | 26 | Systems | 442 | 3,209 |
 | 27 | Biology | 254 | 1,611 |
-| 28 | Graphics and signals | 401 | 2,747 |
+| 28 | Graphics and signals | 401 | 2,749 |
 | 29 | Games and search | 209 | 1,612 |
 | 30 | Quantum | 152 | 1,582 |
-| 31 | CAD | 374 | 3,026 |
+| 31 | CAD | 374 | 3,027 |
 | 32 | Electronic design automation | 358 | 2,690 |
 | 33 | Statistics and inference | 276 | 2,168 |
 | 34 | Compilers and program analysis | 273 | 2,797 |
 | 35 | Information retrieval and AI reasoning | 278 | 1,724 |
-| | **All** | **9,671** | **68,486** |
+| 36 | Control | 279 | 2,334 |
+| 39 | Complexity | 20 | 134 |
+| | **All** | **9,970** | **71,015** |
 
-- **New in this edition: Volume 35, Information retrieval and AI reasoning**, with all eight of its chapters
-  written: *Indexing and query processing* (41 entries: posting lists, Zipf's and Heaps' laws, stemming with the
-  Porter stemmer, Boolean, phrase and wildcard queries with positional, k-gram and permuterm indexes, list
-  intersection by merging, skip pointers, the Baeza-Yates and Demaine-López-Ortiz-Munro algorithms, index
-  construction by blocked sort-based and single-pass indexing, logarithmic merging and geometric partitioning,
-  front coding, gap encoding, Simple-9 and partitioned Elias-Fano codes, document reordering by graph bisection,
-  and query evaluation term at a time and document at a time with MaxScore, WAND and block-max WAND), *Ranking
-  models* (36 entries: the Boolean and vector space models, tf-idf, relevance feedback and the Rocchio algorithm,
-  the probability ranking principle, the binary independence model, BM25 and BM25F, divergence from randomness,
-  query likelihood with Jelinek-Mercer and Dirichlet smoothing, rank aggregation by Borda, Kemeny and Markov chains,
-  CombMNZ and reciprocal rank fusion, learning to rank with Ranking SVM, RankNet, LambdaRank, LambdaMART and
-  ListNet, unbiased learning to rank, and dense, sparse and late-interaction neural retrieval with retrieval-augmented
-  generation), *Retrieval evaluation* (20 entries: test collections and the Cranfield paradigm, precision at k,
-  R-precision, mean average precision, nDCG, expected reciprocal rank and rank-biased precision, the C/W/L
-  framework, pooling, bpref, inferred average precision and minimal test collections, and balanced, team-draft and
-  probabilistic interleaving), *Web search and recommender systems* (49 entries: crawling with the URL frontier,
-  revisit policies and focused crawling, the bow-tie structure of the web, SALSA, link spam and TrustRank,
-  near-duplicate detection, query auto-completion, spelling correction and snippets, federated search, result
-  diversification with maximal marginal relevance, IA-Select and xQuAD, click models, collaborative filtering by
-  neighbors, Slope One and SLIM, matrix factorization by ALS and SGD, SVD++, factorization machines, exact matrix
-  completion by nuclear norm minimization, implicit feedback with weighted factorization and Bayesian personalized
-  ranking, and session-based recommenders such as GRU4Rec and SASRec), *Knowledge representation and description
-  logics* (33 entries: semantic networks, frames and ontologies, the description logics ALC, EL, DL-Lite and SROIQ,
-  TBoxes and ABoxes, the tableau algorithm with blocking, EL classification by completion rules, the PSPACE- and
-  EXPTIME-completeness of ALC, Schild's correspondence with modal logic, ontology-mediated query answering with
-  PerfectRef, the situation calculus with successor state axioms and regression, the event calculus, and knowledge
-  compilation into d-DNNF and sentential decision diagrams), *Rule-based and nonmonotonic reasoning* (43 entries:
-  production systems with forward and backward chaining, the Rete and TREAT algorithms, negation as failure,
-  Clark's completion, stable models and the Gelfond-Lifschitz reduct, the well-founded semantics, answer set
-  programming with grounding, Smodels and conflict-driven solving, the theorems of Fages and Lin-Zhao, splitting
-  sets and strong equivalence, circumscription, default and autoepistemic logic, System P, rational closure and
-  System Z, abduction, consistency-based diagnosis with Reiter's hitting set tree, and truth maintenance),
-  *Argumentation and belief revision* (31 entries: abstract argumentation frameworks with their grounded,
-  complete, preferred, stable and semi-stable extensions, labellings and SAT encodings, assumption-based and
-  value-based argumentation, ASPIC+, the AGM postulates and representation theorem, partial meet contraction,
-  epistemic entrenchment, Grove spheres, Dalal's operator, the Katsuno-Mendelzon theorem, belief update,
-  iterated revision with the Darwiche-Pearl postulates, belief merging and the Gärdenfors impossibility theorem)
-  and *Qualitative temporal and spatial reasoning* (25 entries: qualitative constraint calculi and composition
-  tables, algebraic closure, the point algebra, the NP-completeness of the interval algebra and the Nebel-Bürckert
-  theorem on ORD-Horn relations, RCC5 and RCC8 with the Renz-Nebel theorem, the nine-intersection model,
-  cardinal directions, the rectangle algebra and the double-cross calculus, temporal and disjunctive temporal
-  problems, simple temporal networks with uncertainty and Morris's dynamic controllability algorithm, and
-  qualitative physics with QSIM and qualitative process theory). The pages say which algorithms are exact, which
-  reasoning problems are NP-hard or harder, and which ranking and recommendation methods are judged by measured
-  results.
-- **Volume 0, Guide and Index**, covers the whole set of 9,671 entries. It has a new learning path, *Information
-  retrieval and AI reasoning*, in nine stages.
-- **Volumes 1 to 34** have the same entries under the same numbers as in 0.34.0. The entries of the six chapters of
-  Volume 32 written for edition 0.32.0 have the corrections that the site made in its release v0.35.0.
-  Cross-references from other volumes to entries of Volume 35 now give entry numbers.
-- Volumes 36 to 39 (Control, Robotics, Computer vision, Complexity) are forthcoming; Volume 0 lists their
-  chapters.
+- **New in this edition: Volume 36, Control**, with all eight of its chapters written: *Modeling and
+  identification* (41 entries: state-space representations, transfer function matrices, poles, zeros and the
+  Smith-McMillan form, the matrix exponential and zero-order-hold discretization, block diagrams, signal flow graphs
+  and Mason's gain formula, Jacobian linearization, ARX, ARMAX and output-error models, least squares, instrumental
+  variables and the prediction error method, persistent excitation and PRBS inputs, closed-loop identification,
+  realization from Markov parameters by the Ho-Kalman and eigensystem realization algorithms, the subspace methods
+  N4SID and MOESP, kernel-based identification, dynamic mode decomposition and SINDy), *Stability* (31 entries:
+  Lyapunov stability, asymptotic and exponential stability, Lyapunov's direct and indirect methods and the converse
+  theorems, the Routh-Hurwitz criterion and the Jury test, LaSalle's invariance principle and Barbalat's lemma, limit
+  cycles, the Poincaré-Bendixson theorem and describing functions, the Lur'e problem with the circle and Popov
+  criteria and the Kalman-Yakubovich-Popov lemma, passivity, dissipativity and the small-gain theorems,
+  input-to-state stability, contraction analysis, regions of attraction and sum-of-squares programming),
+  *Classical control* (32 entries: the feedback loop, sensitivity and complementary sensitivity, steady-state error
+  and the final value theorem, step response specifications, root locus, Bode and Nyquist plots, the Nyquist
+  stability criterion, gain and phase margins, Bode's gain-phase relation and sensitivity integral, the Nichols
+  chart, lead-lag compensation and loop shaping, PID control with Ziegler-Nichols and relay autotuning, integrator
+  windup and anti-windup, feedforward, cascade and two-degree-of-freedom control, the internal model principle and
+  internal model control, the Smith predictor and the relative gain array), *State space control* (37 entries:
+  controllability and observability with the Kalman rank condition and the PBH test, Gramians, canonical forms and
+  the Kalman decomposition, stabilizability and detectability, pole placement with Ackermann's formula and robust
+  pole placement, deadbeat control, Luenberger, reduced-order and unknown-input observers and the separation
+  principle, minimal realizations, balanced truncation with its error bound, Hankel singular values and iterative
+  rational Krylov reduction, and disturbance decoupling and output regulation with the regulator equations),
+  *Optimal and predictive control* (46 entries: the optimal control problem, the Euler-Lagrange equation,
+  Pontryagin's maximum principle with costates and transversality conditions, bang-bang, singular and time-optimal
+  control, the Hamilton-Jacobi-Bellman equation, the LQR problem over finite and infinite horizons, the algebraic
+  Riccati equations solved by the Schur method and Kleinman iteration, the stability margins of LQR and the
+  counterexample for LQG, the Kalman-Bucy filter, loop transfer recovery and H2 optimal control, model predictive
+  control with its stability theorem, invariant sets and recursive feasibility, explicit MPC by multiparametric
+  quadratic programming, DMC and generalized predictive control, offset-free, tube, min-max, stochastic, economic
+  and nonlinear MPC, and real-time iteration), *Robust and adaptive control* (36 entries: model uncertainty and
+  linear fractional transformations, the H2 and H-infinity norms and their computation, the bounded real lemma,
+  H-infinity synthesis by the DGKF equations and by linear matrix inequalities, mixed-sensitivity design and
+  H-infinity loop shaping, the Youla parametrization, the structured singular value with mu-analysis and
+  D-K iteration, the nu-gap metric, Kharitonov's theorem and the edge theorem, quadratic stability, the S-procedure
+  and LPV gain scheduling, and adaptive control by the MIT rule, model reference, self-tuning regulators and
+  adaptive pole placement, with the Rohrs counterexample, sigma modification and projection, L1 adaptive control,
+  iterative learning control and extremum seeking), *Nonlinear control* (28 entries: Lie derivatives and brackets,
+  relative degree and zero dynamics, feedback and input-output linearization and their conditions, differential
+  flatness, backstepping and adaptive backstepping, control Lyapunov functions, the Artstein-Sontag theorem and
+  Sontag's universal formula, Brockett's condition, control barrier functions and safety filters, sliding mode
+  control, chattering and the super-twisting algorithm, high-gain and sliding mode observers, passivity-based
+  control, port-Hamiltonian systems and IDA-PBC, averaging, singular perturbations and active disturbance rejection
+  control) and *Discrete-event and hybrid systems* (28 entries: supervisory control theory with controllable,
+  observable and normal languages, the supremal controllable sublanguage, nonblocking supervisors and supervision
+  by place invariants, diagnosability with diagnosers and the twin-plant test, max-plus algebra, its eigenvalue
+  theorem and timed event graphs, switched and piecewise affine systems, common Lyapunov functions, the dwell-time
+  theorem and the joint spectral radius, Zeno behavior, mixed logical dynamical systems and hybrid MPC,
+  reachable sets by zonotopes and Hamilton-Jacobi reachability, barrier certificates, symbolic control and
+  event-triggered control). The pages say which results are proved and for which model, which problems are NP-hard
+  or undecidable, and which methods are judged by measured responses.
+- **New in this edition: Volume 39, Complexity**, with one of its seven chapters written: *NP completeness* (20
+  entries: decision problems, certificates and polynomial-time verifiers, NP-hard and NP-complete problems, the
+  Cook-Levin theorem, Karp's 21 NP-complete problems and the Garey-Johnson compendium, exact cover by 3-sets,
+  three-dimensional matching, subset sum and partition, scheduling with release times and deadlines, unary
+  encoding, pseudo-polynomial time and weak and strong NP-hardness, co-NP-completeness, Ladner's theorem and
+  Mahaney's theorem). The volume has its introduction, and the other six chapters have their openings.
+- **Volume 0, Guide and Index**, covers the whole set of 9,970 entries. It has a new learning path, *Control*, in
+  nine stages.
+- **Volumes 1 to 35** have the same entries under the same numbers as in 0.35.0. The entries of Volume 31 have the
+  corrections that the site made in its release v0.36.0. Cross-references from other volumes to entries of
+  Volumes 36 and 39 now give entry numbers.
+- Volumes 37 and 38 (Robotics, Computer vision) are forthcoming; Volume 0 lists their chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.35.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.36.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

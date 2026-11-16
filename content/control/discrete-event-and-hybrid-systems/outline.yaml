@@ -1,0 +1,98 @@
+# The order of chapter 36.8, Discrete-event and hybrid systems. Groups are read in order; entries in a group too.
+groups:
+  - title: Discrete-event systems and supervisors
+    intro: >
+      A [discrete-event system](/discrete-event-system/) is an automaton whose events are split into
+      controllable and uncontrollable ones. [Supervisory control theory](/supervisory-control-theory/) asks a
+      supervisor to disable controllable events so that the closed loop stays inside a specification language.
+      This is possible exactly for a [controllable language](/controllable-language/), and the largest
+      controllable part of a regular specification is computed by a fixed point on a product automaton. For a
+      Petri net plant, linear constraints on the marking are enforced by monitor places, with no reachability
+      graph built.
+    entries:
+      - discrete-event-system
+      - supervisory-control-theory
+      - controllable-language
+      - nonblocking-supervisor
+      - supremal-controllable-sublanguage
+      - supervision-based-on-place-invariants
+
+  - title: Control under partial observation
+    intro: >
+      When some events are not seen, the supervisor acts on the projection of the string. It must then act the
+      same way after strings that look the same, which is [observability](/observable-language/).
+      Observability is not closed under union, so a largest observable sublanguage need not exist. Normality is
+      a stronger condition that is closed under union and gives a largest sublanguage.
+    entries:
+      - observable-language
+      - normal-language
+
+  - title: Fault diagnosis
+    intro: >
+      A fault is an unobservable event. The plant is [diagnosable](/diagnosability/) if every fault is detected
+      with certainty within a bounded number of events. The diagnoser is a subset construction that also
+      detects faults online, and it can be exponential in the number of plant states. The twin plant decides
+      diagnosability in polynomial time, by a search for a cycle in a product of the plant with itself.
+    entries:
+      - diagnosability
+      - diagnoser-automaton
+      - twin-plant-diagnosability-test
+
+  - title: Max-plus algebra and timed event graphs
+    intro: >
+      In [max-plus algebra](/max-plus-algebra/) addition is max and multiplication is $+$, so a system where
+      each event waits for the latest of its inputs is linear: $x(k) = A \otimes x(k-1)$. A
+      [timed event graph](/timed-event-graph/) is the Petri net with this behavior. The eigenvalue theorem gives
+      its cycle time as the maximum cycle mean of the matrix.
+    entries:
+      - max-plus-algebra
+      - timed-event-graph
+      - max-plus-eigenvalue-theorem
+
+  - title: Switched systems and their stability
+    intro: >
+      A [switched system](/switched-system/) picks its vector field from a finite family at each time. Stable
+      modes do not make a stable switched system. Stability under every switching signal follows from a common
+      Lyapunov function, and in discrete time it is the same as a joint spectral radius below 1. When neither is
+      available, the dwell-time theorem gives stability for switching that is slow enough.
+    entries:
+      - switched-system
+      - common-lyapunov-function
+      - joint-spectral-radius
+      - dwell-time-theorem
+
+  - title: Hybrid models and hybrid predictive control
+    intro: >
+      Hybrid models mix continuous dynamics with logic. An execution can have infinitely many jumps in finite
+      time, which is [Zeno behavior](/zeno-behavior/). In discrete time, a
+      [piecewise affine system](/piecewise-affine-system/) can be rewritten with binary variables and big-M
+      inequalities as a mixed logical dynamical system. Model predictive control on that form solves a
+      mixed-integer program at each step.
+    entries:
+      - zeno-behavior
+      - piecewise-affine-system
+      - mixed-logical-dynamical-system
+      - hybrid-mpc
+
+  - title: Reachability and safety
+    intro: >
+      Safety asks whether any trajectory from an initial set reaches an unsafe set.
+      [Reachable set computation](/reachable-set-computation/) is undecidable for general hybrid automata, so
+      the tools over-approximate. Zonotopes stay zonotopes under linear maps and Minkowski sums, which suits
+      linear systems, and Hamilton-Jacobi methods solve a PDE on a grid for nonlinear ones. A barrier
+      certificate proves safety with a single function and no set propagation.
+    entries:
+      - reachable-set-computation
+      - zonotope-reachability
+      - hamilton-jacobi-reachability
+      - barrier-certificate
+
+  - title: Abstraction and event-based implementation
+    intro: >
+      [Symbolic control](/symbolic-control/) replaces a continuous plant by a finite abstraction, solves a game
+      on it and refines the controller back, so the methods of the first groups apply to continuous plants.
+      [Event-triggered control](/event-triggered-control/) updates the input only when an error grows too
+      large, which turns a sampled loop into a hybrid system.
+    entries:
+      - symbolic-control
+      - event-triggered-control

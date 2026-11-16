@@ -1,0 +1,92 @@
+# The order of chapter 36.2, Stability. Groups are read in order; entries in a group too.
+groups:
+  - title: Testing a linear model
+    intro: >
+      A linear model $\dot x = Ax$ is stable exactly when every eigenvalue of $A$ has a negative real
+      part. The Routh array decides this from the coefficients of the characteristic polynomial, with
+      exact arithmetic and no root finding. The Jury test does the same for the unit circle, which is
+      the stability region of sampled models.
+    entries:
+      - hurwitz-matrix
+      - routh-array
+      - routh-hurwitz-criterion
+      - jury-stability-test
+
+  - title: What stability means
+    intro: >
+      For a nonlinear system, stability is a property of one equilibrium, and there are several
+      strengths of it. Lyapunov stability asks only that solutions stay close; asymptotic stability
+      adds convergence, and exponential stability adds a rate. The region of attraction says how far
+      from the equilibrium convergence still holds.
+    entries:
+      - lyapunov-stability
+      - asymptotic-stability
+      - exponential-stability
+      - region-of-attraction
+
+  - title: Lyapunov's method
+    intro: >
+      A function that is positive away from the equilibrium and does not increase along solutions proves
+      stability without solving the equation. The direct method and LaSalle's principle turn such a
+      function into a theorem. For linear systems a quadratic function always exists, and through the
+      linearization it settles local questions whenever no eigenvalue lies on the imaginary axis. The
+      converse theorems show that a function exists whenever the stability holds, and Barbalat's lemma
+      handles systems that vary in time.
+    entries:
+      - lyapunov-function
+      - lyapunov-direct-method
+      - lasalle-invariance-principle
+      - lyapunov-theorem-for-linear-systems
+      - lyapunov-indirect-method
+      - converse-lyapunov-theorem
+      - barbalat-lemma
+
+  - title: Computing certificates
+    intro: >
+      A Lyapunov function is hard to guess, so this group lets a computer search for one. Sublevel sets of
+      a Lyapunov function give proved inner estimates of a region of attraction. Sum-of-squares programs
+      search for polynomial Lyapunov functions by [semidefinite programming](/semidefinite-programming/).
+      Contraction analysis bounds the Jacobian instead and proves that all solutions converge to each other.
+    entries:
+      - region-of-attraction-estimation
+      - sum-of-squares-programming
+      - contraction-analysis
+
+  - title: Periodic orbits
+    intro: >
+      Some systems settle on an oscillation, not on an equilibrium. A limit cycle is an isolated periodic
+      orbit. In the plane, the Poincaré-Bendixson theorem proves that one exists, and Bendixson's
+      criterion proves that none exists. The describing function predicts the amplitude and frequency of
+      an oscillation in a feedback loop, but only approximately.
+    entries:
+      - limit-cycle
+      - poincare-bendixson-theorem
+      - describing-function
+
+  - title: Systems with inputs
+    intro: >
+      These results treat a system as a map from inputs to outputs, or from inputs to states, and they
+      build the stability of a loop from properties of its parts. The small-gain theorem asks that the
+      product of the gains be less than one, and the passivity theorem asks that the parts store energy
+      without producing it. Input-to-state stability bounds the state by the initial state and the size
+      of the input, and its small-gain theorem allows nonlinear gains.
+    entries:
+      - small-gain-theorem
+      - passivity
+      - dissipativity
+      - passivity-theorem
+      - input-to-state-stability
+      - iss-small-gain-theorem
+
+  - title: Absolute stability
+    intro: >
+      The Lur'e problem asks for stability of a linear system in feedback with any nonlinearity in a
+      sector. The KYP lemma turns a condition that must hold at every frequency into one linear matrix
+      inequality. The circle and Popov criteria use it to give sufficient frequency tests, the circle
+      criterion for nonlinearities that may vary in time, the Popov criterion only for those that do
+      not.
+    entries:
+      - lure-problem
+      - kalman-yakubovich-popov-lemma
+      - circle-criterion
+      - popov-criterion
