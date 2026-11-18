@@ -26,7 +26,7 @@ Several exercises use the toy collection of the entries. Its eight documents are
 
 13. • In the [Rocchio algorithm](/rocchio-algorithm/) with $\alpha = 1$, $\beta = 0.75$ and $\gamma = 0.15$, the query is $q = (1, 0, 0, 0)$ over four terms, the judged relevant documents are $(0.6, 0.8, 0, 0)$ and $(0.6, 0, 0.8, 0)$, and the judged non-relevant document is $(0, 0.6, 0, 0.8)$. Compute the new query, with negative weights set to 0.
 
-14. • Three voters rank four items as $(a, b, c, d)$, $(b, a, d, c)$ and $(c, b, a, d)$. Compute the [Borda count](/borda-count/) ranking, the [Kemeny](/kemeny-rank-aggregation/) ranking with its total [Kendall tau distance](/kendall-tau-distance/) to the three lists, and the total distance of each input list. Is there a Condorcet winner?
+14. • Three voters rank four items as $(a, b, c, d)$, $(b, a, d, c)$ and $(c, b, a, d)$. Compute the [Borda count](/borda-count/) ranking, the [Kemeny](/kemeny-rank-aggregation/) ranking (both in Volume 42) with its total [Kendall tau distance](/kendall-tau-distance/) to the three lists, and the total distance of each input list. Is there a Condorcet winner?
 
 15. • Two lists rank three items as $(a, b, c)$ and $(c, b, a)$. Find every Kemeny-optimal ranking and its cost. Then show that for any two lists, either input list is a Kemeny-optimal ranking.
 

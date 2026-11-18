@@ -1,0 +1,69 @@
+# The order of chapter 39.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Reductions and how they compose
+    intro: >
+      A [polynomial-time reduction](/polynomial-time-reduction/) turns instances of one problem into
+      instances of another and keeps the answer. Reductions compose, so a chain of them is again a
+      reduction. A [Turing reduction](/turing-reduction/) may ask many questions; it is more general
+      and it blurs the line between NP and coNP.
+    entries:
+      - polynomial-time-reduction
+      - transitivity-of-reductions
+      - turing-reduction
+
+  - title: How to write a hardness proof
+    intro: >
+      Every NP-completeness proof has the same parts: membership in NP, a map from a known
+      NP-complete problem, a bound on the time of the map, and the two directions of "if and only
+      if". Gadgets are the small pieces that make the map work. Karp's tree of 1972 is the first
+      large catalogue of such proofs.
+    entries:
+      - np-completeness-proof
+      - gadget-reduction
+      - np-hardness-reductions
+      - karp-21-np-complete
+
+  - title: Circuits and variants of satisfiability
+    intro: >
+      Circuit satisfiability is the natural first NP-complete problem, while evaluating a given
+      circuit is P-complete under logspace reductions. Not-all-equal SAT and one-in-three SAT keep
+      satisfiability hard under extra conditions, and their symmetry or rigidity makes them good
+      sources for reductions.
+    entries:
+      - circuit-sat
+      - circuit-value-problem
+      - not-all-equal-sat
+      - one-in-three-sat
+
+  - title: Graph problems
+    intro: >
+      Clique, 3-coloring and Hamiltonian cycle are proved NP-complete from 3-SAT, each with its own
+      kind of gadget. The traveling salesman decision problem follows from Hamiltonian cycle with
+      distances 1 and 2.
+    entries:
+      - clique-problem
+      - three-coloring
+      - hamiltonian-cycle-np-completeness
+      - traveling-salesman-decision
+
+  - title: Numbers and exact covers
+    intro: >
+      Exact cover becomes a system of 0-1 equations, and its rows become digits of numbers for subset
+      sum and knapsack. These maps make large numbers, so they prove only weak NP-hardness.
+      [3-partition](/three-partition/) is hard even with small numbers.
+    entries:
+      - zero-one-equations
+      - knapsack-decision
+      - three-partition
+
+  - title: Search, solutions and counting
+    intro: >
+      A [search problem](/search-problem/) asks for a solution, not a yes or no. For NP-complete
+      problems, a decision procedure finds solutions by self-reduction. Levin reductions also map
+      solutions, and parsimonious reductions keep their number, which matters for counting.
+    entries:
+      - search-problem
+      - search-to-decision-reduction
+      - self-reducibility
+      - levin-reduction
+      - parsimonious-reduction

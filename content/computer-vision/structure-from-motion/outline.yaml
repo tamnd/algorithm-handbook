@@ -1,0 +1,90 @@
+# The order of chapter 38.4, Structure from motion and visual odometry. Groups are read in order; entries in a group too.
+groups:
+  - title: Tracks and the reconstruction problem
+    intro: >
+      A [feature track](/feature-track/) is the set of pixels where one scene point appears, built by union-find
+      over pairwise matches; a track that holds two features of one image is inconsistent. The
+      [structure from motion problem](/structure-from-motion-problem/) asks for the points and the cameras from the
+      tracks alone, and its answer is fixed only up to a similarity for calibrated cameras.
+    entries:
+      - feature-track
+      - structure-from-motion-problem
+
+  - title: Nonlinear least squares
+    intro: >
+      [Nonlinear least squares](/nonlinear-least-squares/) minimizes a sum of squared residuals. The
+      [Gauss-Newton algorithm](/gauss-newton-algorithm/) solves the normal equations of the linearized residuals;
+      it converges fast when the residuals at the solution are small and may diverge when they are large.
+      [Levenberg-Marquardt](/levenberg-marquardt/) adds a damping term, and Powell's dog leg mixes the
+      Gauss-Newton and steepest descent steps inside a trust region.
+    entries:
+      - nonlinear-least-squares
+      - gauss-newton-algorithm
+      - levenberg-marquardt
+      - powell-dogleg
+
+  - title: Bundle adjustment
+    intro: >
+      [Bundle adjustment](/bundle-adjustment/) refines all cameras and points by the reprojection error and finds
+      a local minimum. The cost does not change under a [gauge](/gauge-freedom/) of 7 dimensions for calibrated
+      cameras. Its normal equations have an arrow shape, so the points can be eliminated to leave the
+      [reduced camera system](/reduced-camera-system/) $S = U - W V^{-1} W^{\mathsf T}$; sparse bundle adjustment
+      factors it, and the inexact Newton form solves it by preconditioned conjugate gradients.
+    entries:
+      - bundle-adjustment
+      - gauge-freedom
+      - reduced-camera-system
+      - sparse-bundle-adjustment
+      - inexact-newton-bundle-adjustment
+
+  - title: Factorization
+    intro: >
+      Under an affine camera the centred measurement matrix of $F$ frames and $P$ points has rank 3, and the
+      [Tomasi-Kanade method](/tomasi-kanade-factorization/) splits it by the SVD into motion and shape in closed
+      form. The [Sturm-Triggs method](/sturm-triggs-factorization/) does the same for projective cameras once the
+      projective depths are known, with rank 4.
+    entries:
+      - tomasi-kanade-factorization
+      - sturm-triggs-factorization
+
+  - title: Incremental and global reconstruction
+    intro: >
+      [Incremental SfM](/incremental-structure-from-motion/) starts from one pair and adds one image at a time by
+      PnP, triangulation and bundle adjustment. Global SfM uses the [view graph](/view-graph/) of all pairwise
+      poses: [rotation averaging](/rotation-averaging/) finds all rotations at once, and
+      [translation averaging](/translation-averaging/) then finds the centres from the directions, which needs a
+      parallel rigid graph.
+    entries:
+      - incremental-structure-from-motion
+      - view-graph
+      - rotation-averaging
+      - lie-algebraic-rotation-averaging
+      - translation-averaging
+      - global-structure-from-motion
+
+  - title: Visual odometry
+    intro: >
+      [Visual odometry](/visual-odometry/) estimates the motion of a camera from a video, frame by frame, as the
+      camera moves. It keeps only some frames as [keyframes](/keyframe-selection/), refines the last few by
+      sliding-window bundle adjustment, and with one camera it suffers [scale drift](/scale-drift/), since the
+      scale of each step is only relative. Nistér's system combines the five-point algorithm, preemptive RANSAC
+      and P3P.
+    entries:
+      - visual-odometry
+      - keyframe-selection
+      - scale-drift
+      - sliding-window-bundle-adjustment
+      - nister-visual-odometry
+
+  - title: Direct methods
+    intro: >
+      Direct methods compare intensities instead of matched features. The [photometric error](/photometric-error/)
+      is the difference of brightness at corresponding pixels, often with an affine change of brightness, and
+      [direct image alignment](/direct-image-alignment/) minimizes it over the pose by Gauss-Newton on an image
+      pyramid. DSO keeps a window of keyframes with sparse points, and SVO uses a direct step for the motion and a
+      feature step for the map.
+    entries:
+      - photometric-error
+      - direct-image-alignment
+      - direct-sparse-odometry
+      - semi-direct-visual-odometry

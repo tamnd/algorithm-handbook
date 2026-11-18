@@ -1,0 +1,140 @@
+# The order of chapter 39.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Classes, P and NP
+    intro: >
+      A [complexity class](/complexity-class/) is fixed by a model, a resource and a bound. The chapter
+      starts with polynomial time, the usual meaning of "efficient", and with [P](/p/), [NP](/np/) and
+      [coNP](/co-np/). Whether $\mathsf{P} = \mathsf{NP}$ is open, and so is whether
+      $\mathsf{NP} = \mathsf{coNP}$.
+    entries:
+      - complexity-class
+      - computational-tractability
+      - p
+      - fp
+      - np
+      - co-np
+      - p-versus-np-problem
+      - good-characterization
+
+  - title: Space and exponential time
+    intro: >
+      Space can be reused and time cannot, so space classes behave differently. This group defines
+      logarithmic and polynomial space, gives [QSAT](/qsat/) as the complete problem for
+      [PSPACE](/pspace/), and puts the main classes into one chain,
+      $\mathsf{L} \subseteq \mathsf{NL} \subseteq \mathsf{P} \subseteq \mathsf{NP} \subseteq \mathsf{PSPACE} \subseteq \mathsf{EXP}$.
+    entries:
+      - logspace
+      - nondeterministic-logspace
+      - pspace
+      - qsat
+      - exptime
+      - nexptime
+      - class-inclusions-chain
+
+  - title: Hierarchies and simulations
+    intro: >
+      The hierarchy theorems prove, by diagonalization, that more time or more space decides more
+      languages. They give the few separations that are known, such as $\mathsf{P} \ne \mathsf{EXP}$.
+      Savitch's theorem and the Immerman-Szelepcsényi theorem show how little nondeterminism changes
+      space.
+    entries:
+      - time-hierarchy-theorem
+      - space-hierarchy-theorem
+      - savitch-theorem
+      - immerman-szelepcsenyi-theorem
+      - expspace
+      - quasi-polynomial-time
+      - subexponential-time
+
+  - title: Randomness
+    intro: >
+      A machine that tosses coins may err with small probability. One-sided error gives
+      [RP](/rp/) and [coRP](/co-rp/), two-sided bounded error gives [BPP](/bpp/), and no error with
+      random running time gives [ZPP](/zpp/). [PP](/pp/) drops the gap between yes and no, and
+      [BQP](/bqp/) is the quantum version of BPP.
+    entries:
+      - bpp
+      - rp
+      - co-rp
+      - zpp
+      - pp
+      - bqp
+
+  - title: Small space and parallel time
+    intro: >
+      Between L and P lie classes for randomized and symmetric logspace machines, for machines with
+      polynomial time and polylogarithmic space at once, and for fast parallel algorithms. Reingold's
+      theorem shows that symmetric logspace equals L.
+    entries:
+      - randomized-logspace
+      - symmetric-logspace
+      - sc-class
+      - nc
+
+  - title: Above and beside NP
+    intro: >
+      Alternating quantifiers build the [polynomial hierarchy](/polynomial-hierarchy/) on top of NP,
+      and Boolean combinations of NP sets build the Boolean hierarchy. Inside NP there are classes with
+      unique certificates and, if $\mathsf{P} \ne \mathsf{NP}$, problems that are neither in P nor
+      NP-complete.
+    entries:
+      - polynomial-hierarchy
+      - boolean-hierarchy
+      - unambiguous-polynomial-time
+      - np-intermediate
+      - ladner-theorem
+      - sipser-gacs-theorem
+
+  - title: Circuits
+    intro: >
+      A circuit family gives one circuit for each input length. Circuit size is the main route to
+      lower bounds that need no unproved hypothesis, and in constant depth such bounds are proved:
+      parity is not in [AC0](/ac0/). Small circuits for NP would collapse the polynomial hierarchy.
+    entries:
+      - circuit-complexity
+      - ac0
+      - tc0
+      - p-poly
+      - adleman-theorem
+      - karp-lipton-theorem
+
+  - title: Search problems
+    intro: >
+      Many problems ask for an object, not a yes or no. [FNP](/fnp/) is the search version of NP, and
+      [TFNP](/tfnp/) holds the search problems whose solutions always exist. Its subclasses
+      [PLS](/pls/) and [PPAD](/ppad/) group such problems by the proof that a solution exists.
+    entries:
+      - fnp
+      - tfnp
+      - pls
+      - ppad
+
+  - title: Interactive and checkable proofs
+    intro: >
+      A proof can be a conversation with a randomized verifier, a conversation with several provers,
+      or a long string of which the verifier reads a few bits. The three theorems of this group say
+      what each kind of proof can show: $\mathsf{IP} = \mathsf{PSPACE}$, $\mathsf{MIP} = \mathsf{NEXP}$
+      and $\mathsf{NP} = \mathsf{PCP}(O(\log n), O(1))$.
+    entries:
+      - interactive-proofs
+      - arthur-merlin
+      - merlin-arthur
+      - ip-equals-pspace
+      - multi-prover-interactive-proofs
+      - mip-equals-nexp
+      - qma
+      - probabilistically-checkable-proof
+      - pcp-theorem
+
+  - title: Counting and the barriers
+    intro: >
+      Counting solutions is at least as hard as the whole polynomial hierarchy, by Toda's theorem.
+      The last entries explain why the open separations are hard to prove: proofs that relativize,
+      natural proofs and proofs that algebrize cannot settle P versus NP.
+    entries:
+      - valiant-vazirani-theorem
+      - toda-theorem
+      - relativization
+      - baker-gill-solovay-theorem
+      - natural-proofs-barrier
+      - algebrization-barrier

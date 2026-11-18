@@ -1,0 +1,111 @@
+# The order of chapter 37.7, Mobile and legged robots. Groups are read in order; entries in a group too.
+groups:
+  - title: Wheels and their constraints
+    intro: >
+      A wheel that rolls without slipping forbids some velocities but not the poses they would
+      lead to. Such a constraint is written as a Pfaffian form, and the Lie bracket test decides
+      whether it is nonholonomic. The unicycle, the differential drive and the kinematic bicycle
+      are the standard models of this kind, and robots with omni or mecanum wheels are the
+      exception that can move in every direction.
+    entries:
+      - pfaffian-constraint
+      - nonholonomic-constraint
+      - unicycle-model
+      - differential-drive-model
+      - kinematic-bicycle-model
+      - omnidirectional-robot-kinematics
+
+  - title: Following a path
+    intro: >
+      Two geometric laws steer a car along a given path. Pure pursuit aims at a point a fixed
+      distance ahead, and the Stanley controller corrects the heading error and the cross-track
+      error at the front axle. Both are simple to tune, and their proofs hold only on the model
+      and the paths that the entries state.
+    entries:
+      - pure-pursuit
+      - stanley-controller
+
+  - title: Paths and planners for cars
+    intro: >
+      A car with a bounded turning radius has shortest paths in closed form: Dubins paths when it
+      only drives forward, Reeds-Shepp paths when it may reverse. Lattice planners and Hybrid A*
+      search graphs of short feasible motions, and use these closed forms as heuristics or as the
+      last connection to the goal.
+    entries:
+      - dubins-path
+      - reeds-shepp-path
+      - state-lattice-planning
+      - hybrid-a-star
+
+  - title: Avoiding obstacles on the way
+    intro: >
+      Reactive methods choose the next command from what the sensors show now. The dynamic window
+      approach searches the velocities the motors can reach, the vector field histogram searches
+      directions in a polar histogram, and the velocity obstacle removes the velocities that lead
+      to a collision with a moving obstacle. None of them guarantees that the goal is reached.
+    entries:
+      - dynamic-window-approach
+      - vector-field-histogram
+      - velocity-obstacle
+
+  - title: Covering and exploring
+    intro: >
+      Some tasks ask the robot to pass over every point of a region, or to see every part of an
+      unknown place. Coverage planners split a known map into cells covered by back and forth
+      lanes. Exploration methods drive to the edge of the known map, or to the view that reveals
+      the most.
+    entries:
+      - coverage-path-planning
+      - boustrophedon-cell-decomposition
+      - frontier-based-exploration
+      - next-best-view-planning
+
+  - title: Balance on legs
+    intro: >
+      A standing robot is balanced when its center of mass is above the support polygon. A moving
+      one needs the center of pressure, the zero moment point or, on uneven ground, the contact
+      wrench cone. The linear inverted pendulum makes the motion linear, and its capture point
+      says where the robot must step to stop.
+    entries:
+      - support-polygon
+      - center-of-pressure
+      - zero-moment-point
+      - contact-wrench-cone
+      - linear-inverted-pendulum-model
+      - capture-point
+
+  - title: Walking, running and hopping
+    intro: >
+      A footstep plan says where the feet go, and ZMP preview control turns it into a motion of
+      the body. For running, the spring-loaded inverted pendulum is the model and the Raibert
+      controller the classic law. Passive walkers and hybrid zero dynamics treat a gait as a
+      periodic orbit with impacts and check it by a map from one step to the next.
+    entries:
+      - footstep-planning
+      - zmp-preview-control
+      - spring-loaded-inverted-pendulum
+      - raibert-hopping-controller
+      - passive-dynamic-walking
+      - hybrid-zero-dynamics
+
+  - title: Whole-body control
+    intro: >
+      A legged robot with many joints chooses its ground forces and joint torques by optimization
+      at every control cycle. Convex MPC plans the forces over a short horizon on a single rigid
+      body. Whole-body control tracks tasks with the full model, by weights or by strict
+      priorities, and hierarchical quadratic programming solves the strict version.
+    entries:
+      - convex-mpc-legged-locomotion
+      - whole-body-control
+      - hierarchical-quadratic-programming
+
+  - title: Quadrotors
+    intro: >
+      A quadrotor is a rigid body with one thrust and three moments, so it must tilt to move
+      sideways. Its position and yaw are flat outputs, which gives the attitude and the inputs
+      along a smooth path. The geometric controller on SE(3) tracks such a path with errors
+      measured on the rotation group itself.
+    entries:
+      - quadrotor-dynamics
+      - quadrotor-differential-flatness
+      - geometric-tracking-control-se3

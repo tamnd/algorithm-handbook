@@ -1,0 +1,75 @@
+# The order of chapter 40.5, Transactions and concurrency control. Groups are read in order; entries in a group too.
+# Only the written entries are listed.
+groups:
+  - title: Transactions and what correct means
+    intro: >
+      A transaction is a unit of work with the four [ACID properties](/acid-properties/). Isolation is
+      made precise by [serializability](/serializability/): a concurrent schedule is correct when it is
+      equivalent to some serial one. Final-state, view and conflict equivalence give three nested classes.
+      The [isolation levels](/isolation-levels/) of SQL and of real systems are weaker forms, each defined
+      by the anomalies it forbids.
+    entries:
+      - acid-properties
+      - serializability
+      - isolation-levels
+
+  - title: Testing a schedule by its conflicts
+    intro: >
+      Two actions conflict when they come from different transactions, touch the same item and at least
+      one writes. The [conflict graph](/conflict-graph/) has an edge for each such pair, in schedule order.
+      A schedule is [conflict serializable](/conflict-serializability/) exactly when that graph is acyclic,
+      and a topological order of the graph is an equivalent serial order.
+    entries:
+      - conflict-graph
+      - conflict-serializability
+
+  - title: Schedulers without locks
+    intro: >
+      The [concurrency control problem](/concurrency-control/) asks for a scheduler that runs, delays or
+      rejects each action so that the output is serializable and recoverable. Three methods avoid locks.
+      [Optimistic concurrency control](/optimistic-concurrency-control/) validates read sets at commit.
+      [Timestamp ordering](/timestamp-ordering/) aborts any action that arrives too late for its timestamp.
+      [Multiversion concurrency control](/multiversion-concurrency-control/) keeps old versions so that
+      reads need not wait. [Snapshot isolation](/snapshot-isolation/), the most used multiversion method,
+      allows write skew and so is not serializable.
+    entries:
+      - concurrency-control
+      - optimistic-concurrency-control
+      - timestamp-ordering
+      - multiversion-concurrency-control
+      - snapshot-isolation
+
+  - title: Locking
+    intro: >
+      [Two-phase locking](/two-phase-locking/) takes no lock after its first unlock, and every schedule it
+      allows is conflict serializable, in the order of the lock points.
+      [Strict two-phase locking](/strict-two-phase-locking/) keeps exclusive locks to the end, so its
+      schedules are also recoverable and free of cascading aborts. Locks can deadlock. A scheduler either
+      finds cycles in a wait-for graph and aborts a victim, or prevents them by age with
+      [wait-die and wound-wait](/wait-die-and-wound-wait/).
+    entries:
+      - two-phase-locking
+      - strict-two-phase-locking
+      - wait-die-and-wound-wait
+
+  - title: Beyond conflicts and rows
+    intro: >
+      [View serializability](/view-serializability/) keeps only the reads-from relation and the final
+      writes. It accepts more schedules than conflict serializability but is NP-complete to test. The
+      [phantom problem](/phantom-problem/) shows that row locks are not enough when a query reads a
+      condition, and [predicate locking](/predicate-locking/) cures it by locking the condition itself.
+    entries:
+      - view-serializability
+      - phantom-problem
+      - predicate-locking
+
+  - title: Two refinements
+    intro: >
+      The [Thomas write rule](/thomas-write-rule/) lets timestamp ordering skip an obsolete write in place
+      of aborting, and so admits some view serializable schedules that are not conflict serializable.
+      [Serializable snapshot isolation](/serializable-snapshot-isolation/) watches for two consecutive
+      read-write dependencies between concurrent transactions and aborts a possible pivot, which makes
+      snapshot isolation serializable at the cost of some false aborts.
+    entries:
+      - thomas-write-rule
+      - serializable-snapshot-isolation

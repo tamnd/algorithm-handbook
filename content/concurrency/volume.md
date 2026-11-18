@@ -20,7 +20,7 @@ Sequential algorithms are judged by their steps and their memory. Here the quest
 - **Volume 16, logic and constraints**, defines [safety](/safety-property/) and [liveness](/liveness-property/) properties and [fairness](/fairness/). Mutual exclusion and linearizability are safety properties; every progress condition of this volume is a liveness property.
 - **Volume 20, parallel algorithms**, studies how to split work among processors, with models such as the [PRAM](/pram-model/) that let the processors run in step. Its [work-stealing](/work-stealing/) schedulers keep their tasks in the deques of Chapter 22.2, and its [barriers](/barrier-synchronization/) are one more way to make processes wait for each other.
 - **Volume 21, distributed algorithms**, has the [consensus problem](/consensus-problem/) and the [FLP theorem](/flp-impossibility/). The same valency argument shows that registers cannot solve consensus for two processes.
-- **Volume 26, systems**, uses locks in schedulers and databases: [priority inversion](/priority-inversion/), [two-phase locking](/two-phase-locking/) and [serializability](/serializability/), which transactional memory borrows, and [reference counting](/reference-counting/), one of the ways to reclaim memory.
+- **Volume 26, systems**, uses locks in schedulers, as in [priority inversion](/priority-inversion/), and has [reference counting](/reference-counting/), one of the ways to reclaim memory. **Volume 40, databases**, has [two-phase locking](/two-phase-locking/) and [serializability](/serializability/), which transactional memory borrows.
 
 ## The chapters
 

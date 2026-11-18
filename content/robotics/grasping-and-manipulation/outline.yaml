@@ -1,0 +1,100 @@
+# The order of chapter 37.6, Grasping and manipulation. Groups are read in order; entries in a group too.
+groups:
+  - title: Contacts and friction
+    intro: >
+      A finger touches an object at a point and pushes on it. Coulomb's law bounds the tangential part
+      of that force by $\mu$ times the normal part, which gives the friction cone. The contact models
+      say which forces and moments one contact transmits, and the polyhedral approximation replaces
+      the round cone by a pyramid so that the later tests are linear.
+    entries:
+      - friction-cone
+      - grasp-contact-models
+      - polyhedral-friction-cone
+
+  - title: Holding an object still
+    intro: >
+      Form closure holds a body by the geometry of frictionless contacts alone, and force closure
+      lets friction help. Both are properties of the grasp matrix, which maps contact forces to the
+      net wrench on the object. The group ends with an exact test by linear feasibility and with
+      the number of fingers that form closure needs.
+    entries:
+      - form-closure
+      - grasp-matrix
+      - force-closure
+      - antipodal-grasp
+      - force-closure-test
+      - finger-bounds-for-form-closure
+
+  - title: Grasp quality and grasp choice
+    intro: >
+      Among the grasps that hold an object, some resist disturbances better than others. The grasp
+      wrench space and the Ferrari-Canny metric measure this for a bounded finger force, and the
+      wider family of quality measures ranks grasps by other numbers. Synthesis searches for good
+      contacts, independent regions allow for positioning errors, and caging traps an object
+      without holding it still.
+    entries:
+      - grasp-wrench-space
+      - ferrari-canny-metric
+      - grasp-quality-measures
+      - grasp-synthesis
+      - independent-contact-regions
+      - caging-grasp
+
+  - title: Moving the arm
+    intro: >
+      Before the hand can grasp, the arm must reach the object and follow a path. These three
+      controllers act on the joints of a free arm. PD control with gravity compensation needs only
+      the gravity model, computed-torque control cancels the whole model, and the Slotine-Li law
+      learns the model while it tracks.
+    entries:
+      - pd-control-with-gravity-compensation
+      - computed-torque-control
+      - slotine-li-adaptive-control
+
+  - title: Controlling contact
+    intro: >
+      When the tool touches a surface, a position error turns into a contact force, and a stiff
+      position loop can push hard. Impedance and admittance control make the tool behave as a
+      spring and a damper, in the two causal forms. Hybrid control splits the task into force and
+      position directions, and peg-in-hole insertion is the classic test of all of them.
+    entries:
+      - impedance-control
+      - admittance-control
+      - hybrid-position-force-control
+      - peg-in-hole
+
+  - title: Visual servoing
+    intro: >
+      A camera on the arm closes the loop through the image. The interaction matrix maps the camera
+      twist to the motion of image features. Image-based servoing drives the feature error to zero
+      directly, and position-based servoing first estimates the pose of the target and controls in
+      three dimensions.
+    entries:
+      - interaction-matrix
+      - image-based-visual-servoing
+      - position-based-visual-servoing
+
+  - title: Pushing and orienting without sensors
+    intro: >
+      A robot can move an object without grasping it, by pushing it across a table. The limit
+      surface describes the friction of the support, quasi-static pushing predicts the motion, and
+      Mason's voting theorem gives the sense of rotation without the pressure distribution. The
+      same mechanics lets a fixed sequence of squeezes or pushes orient a part with no sensor.
+    entries:
+      - limit-surface
+      - quasi-static-pushing
+      - mason-voting-theorem
+      - sensorless-part-orienting
+      - goldberg-part-orienting-algorithm
+
+  - title: Planning and dexterity
+    intro: >
+      A task with several objects needs a plan that grasps, carries and places them in the right
+      order. Manipulation planning works in a space split into modes, and task and motion planning
+      adds symbolic actions on top. Inside the hand, Montana's equations describe rolling contacts,
+      and in-hand manipulation uses them to turn a held object.
+    entries:
+      - manipulation-planning
+      - task-and-motion-planning
+      - montana-contact-kinematics
+      - in-hand-manipulation

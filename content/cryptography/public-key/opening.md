@@ -14,7 +14,7 @@ The chapter is in nine groups, read in order.
 6. **KEMs and generic transforms.** The [key encapsulation mechanism](/key-encapsulation-mechanism/), [hybrid encryption](/hybrid-encryption/), [ECIES](/ecies/), the [Fujisaki-Okamoto transform](/fujisaki-okamoto-transform/) and the [Naor-Yung paradigm](/naor-yung-paradigm/).
 7. **Residuosity and homomorphic encryption.** The [quadratic residuosity problem](/quadratic-residuosity-problem/), [Goldwasser-Micali](/goldwasser-micali-cryptosystem/), [Blum-Goldwasser](/blum-goldwasser-cryptosystem/), [DCR](/decisional-composite-residuosity/), [Paillier](/paillier-cryptosystem/), [Okamoto-Uchiyama](/okamoto-uchiyama-cryptosystem/), [Naccache-Stern](/naccache-stern-cryptosystem/), [homomorphic encryption](/homomorphic-encryption/) and [Gentry's scheme](/gentry-fully-homomorphic-encryption/).
 8. **Pairings and encryption to many readers.** The [bilinear pairing](/bilinear-pairing/), [Miller's algorithm](/miller-algorithm/), [BDH](/bilinear-diffie-hellman/), [identity-based encryption](/identity-based-encryption/), [Boneh-Franklin](/boneh-franklin-ibe/), [attribute-based](/attribute-based-encryption/) and [functional encryption](/functional-encryption/), and [broadcast encryption](/broadcast-encryption/).
-9. **Attacks on implementations.** The [timing attack](/timing-attack/), [RSA blinding](/rsa-blinding/) and the [CRT fault attack](/rsa-fault-attack/).
+9. **Attacks on implementations.** [RSA blinding](/rsa-blinding/), the defence against the [timing attack](/timing-attack/) of Volume 45, and the [CRT fault attack](/rsa-fault-attack/).
 
 ## A first reading
 

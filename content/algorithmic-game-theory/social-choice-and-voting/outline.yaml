@@ -1,0 +1,10 @@
+groups:
+  - title: Combining rankings
+    intro: >
+      Both entries take several rankings of the same items and return one. The Borda count adds points by
+      position and runs in linear time after a sort. Kemeny rank aggregation asks for the ranking with the
+      least total [Kendall tau distance](/kendall-tau-distance/) to the inputs, which is NP-hard, and the
+      Borda order is one of its approximations.
+    entries:
+      - borda-count
+      - kemeny-rank-aggregation

@@ -1,0 +1,111 @@
+# The order of chapter 39.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The two-party model
+    intro: >
+      Alice holds $x$, Bob holds $y$, and they exchange bits until both know $f(x, y)$. Only the bits
+      count. The [communication matrix](/communication-matrix/) turns every protocol into a partition of
+      a matrix into monochromatic rectangles, and the cost measures of the group (deterministic,
+      nondeterministic, randomized, one-way and simultaneous) are all read off that picture.
+    entries:
+      - communication-complexity
+      - communication-model
+      - communication-matrix
+      - deterministic-communication-complexity
+      - nondeterministic-communication-complexity
+      - randomized-communication-complexity
+      - one-way-communication-complexity
+      - simultaneous-message-model
+
+  - title: The standard problems
+    intro: >
+      A few functions serve as the test cases of the whole field, and most applications reduce from one
+      of them. Equality separates deterministic from randomized protocols; greater-than, disjointness and
+      inner product are hard in different models; index, gap Hamming distance and pointer chasing are the
+      tools for one-way and few-round bounds.
+    entries:
+      - equality-problem
+      - equality-testing-protocol
+      - greater-than-problem
+      - disjointness-problem
+      - inner-product-problem
+      - index-problem
+      - gap-hamming-distance
+      - pointer-chasing-problem
+
+  - title: Deterministic lower bounds
+    intro: >
+      A protocol with $c$ bits has at most $2^c$ leaves, and each leaf is a monochromatic rectangle. The
+      [fooling set method](/fooling-set-method/) counts rectangles by a combinatorial argument and the
+      [log-rank lower bound](/log-rank-lower-bound/) by linear algebra. Whether the rank bound is tight up
+      to a polynomial is the open log-rank conjecture.
+    entries:
+      - fooling-set-method
+      - log-rank-lower-bound
+      - log-rank-conjecture
+
+  - title: Randomized lower bounds and information
+    intro: >
+      Randomized protocols may put inputs with different answers in one leaf, so the bounds of the last
+      group fail for them. The methods here measure how far every rectangle is from being biased toward
+      one answer, or how much a protocol reveals about the inputs. They give the $\Omega(n)$ bounds for
+      inner product and disjointness, and round elimination handles protocols with few rounds.
+    entries:
+      - discrepancy-method
+      - corruption-bound
+      - sign-rank
+      - information-complexity
+      - direct-sum-communication
+      - round-elimination
+
+  - title: More players and quantum messages
+    intro: >
+      With $k \ge 3$ players, the answer depends on who sees which input. In the number-in-hand model
+      each player sees its own input, which fits streaming; in the number-on-forehead model each player
+      sees all inputs but its own, which ties the model to circuits. Quantum messages save a great deal
+      for some functions, such as disjointness, and little for others, such as inner product.
+    entries:
+      - multiparty-communication-complexity
+      - number-in-hand-model
+      - number-on-forehead-model
+      - quantum-communication-complexity
+
+  - title: Communication and formula depth
+    intro: >
+      Karchmer and Wigderson turned formula depth into a communication game: Alice holds a 1-input,
+      Bob a 0-input, and they must find a position where the two differ. Lower bounds on this game are
+      lower bounds on formula depth and size.
+    entries:
+      - karchmer-wigderson-relation
+      - karchmer-wigderson-theorem
+
+  - title: The query model and its measures
+    intro: >
+      An algorithm reads the bits of its input one at a time and pays for each one. The decision tree
+      depth $D^{dt}(f)$ sits on top of a family of smaller measures (certificate complexity, block
+      sensitivity, sensitivity and degree), and for total functions all of them are polynomially related.
+      The last link, between sensitivity and the rest, is Huang's sensitivity theorem of 2019.
+    entries:
+      - query-model
+      - query-complexity
+      - majority-problem
+      - parity-problem
+      - decision-tree-complexity
+      - certificate-complexity
+      - sensitivity
+      - block-sensitivity
+      - randomized-query-complexity
+      - sensitivity-theorem
+
+  - title: Quantum queries and their lower bounds
+    intro: >
+      In the quantum query model the oracle answers in superposition, and Grover search computes OR with
+      $O(\sqrt n)$ queries. Three methods prove that quantum algorithms cannot do better on many problems:
+      the hybrid argument, the polynomial method through the
+      [approximate degree](/approximate-degree/), and the quantum adversary method.
+    entries:
+      - quantum-query-model
+      - quantum-query-complexity
+      - approximate-degree
+      - polynomial-method
+      - hybrid-argument
+      - quantum-adversary-method

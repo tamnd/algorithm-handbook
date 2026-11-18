@@ -1,0 +1,92 @@
+# The order of chapter 39.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Decidable and enumerable languages
+    intro: >
+      A language is decidable when one machine answers every membership question and always halts,
+      and computably enumerable when a machine confirms every member but may run forever on the rest.
+      The [Church-Turing thesis](/church-turing-thesis/) ties both notions to every mechanical method,
+      and it is a thesis, not a theorem.
+    entries:
+      - decidable-language
+      - recursively-enumerable-language
+      - church-turing-thesis
+      - computable-function
+  - title: Counting and diagonalization
+    intro: >
+      There are countably many machines and uncountably many languages, so most languages have no
+      decider. The [diagonalization argument](/diagonalization-argument/) turns this count into explicit
+      examples: it builds an object that differs from every entry of a list in one chosen place.
+    entries:
+      - countability
+      - undecidability
+      - diagonalization-argument
+  - title: Programs as data
+    intro: >
+      A machine can be coded as a number and run by another machine. Gödel numbering, the universal
+      machine and the recursive function classes make this precise, and Turing completeness says
+      which other systems can do the same work. The primitive recursive functions mark the line
+      between programs with bounded loops and programs with unbounded search.
+    entries:
+      - godel-numbering
+      - primitive-recursive-function
+      - partial-recursive-function
+      - universal-turing-machine
+      - turing-completeness
+  - title: The halting problem and reductions
+    intro: >
+      The acceptance and halting problems are the first undecidable problems, and the first explicit
+      uncomputable functions come from them. Many-one reductions
+      carry their undecidability to other problems. Rice's theorem does all the reductions about the
+      language of a machine at once: every nontrivial property of it is undecidable.
+    entries:
+      - acceptance-problem
+      - halting-problem
+      - uncomputable-function
+      - many-one-reducibility
+      - rice-theorem
+  - title: Undecidable problems in mathematics
+    intro: >
+      Undecidability is not limited to questions about machines. Word matching, first-order validity,
+      Diophantine equations, tilings of the plane and the word problem for groups are all undecidable,
+      and each proof codes machine runs into the problem. Gödel's incompleteness theorems are the
+      same phenomenon seen from the side of proofs.
+    entries:
+      - post-correspondence-problem
+      - entscheidungsproblem
+      - church-theorem
+      - hilberts-tenth-problem
+      - wang-tiling-problem
+      - word-problem-for-groups
+      - godel-incompleteness-theorem
+  - title: Indices and self-reference
+    intro: >
+      The s-m-n theorem says that fixing inputs of a program is a computable operation on its index.
+      With it, Kleene's recursion theorem lets a program use its own code, which gives quines, short
+      proofs of Rice's theorem and the self-reference behind Gödel's theorems.
+    entries:
+      - s-m-n-theorem
+      - kleene-recursion-theorem
+  - title: Growth, information and real numbers
+    intro: >
+      Some uncomputable objects are numbers. The busy beaver function outgrows every computable
+      function, Kolmogorov complexity measures the shortest description of a string, and Chaitin's
+      constant packs the halting problem into one real. Computable reals are the ones an algorithm can
+      approximate to any precision.
+    entries:
+      - busy-beaver-function
+      - computable-real-numbers
+      - kolmogorov-complexity
+      - chaitins-constant
+  - title: Degrees of unsolvability
+    intro: >
+      Oracle machines compare undecidable problems with each other. Turing reducibility sorts sets
+      into degrees, the jump climbs from each degree to a harder one, and Post's theorem matches the
+      jumps with the quantifier levels of the arithmetical hierarchy. Post's problem asks for c.e.
+      degrees strictly between the decidable sets and the halting problem, and they exist.
+    entries:
+      - oracle-turing-machine
+      - turing-degrees
+      - turing-jump
+      - arithmetical-hierarchy
+      - posts-theorem
+      - post-problem

@@ -1,0 +1,16 @@
+## History
+
+The geometry is older than photography. Johann August Grunert solved the pose of three known points from their directions in 1841 by a quartic. Otto Hesse in 1863 and Rudolf Sturm in 1869 studied seven pairs of points in two projective views and found their three solutions, the problem that the seven-point algorithm solves today. Photogrammetry kept these methods alive, and Y. I. Abdel-Aziz and H. M. Karara named the direct linear transformation in 1971.
+
+The year 1981 brought two of the central papers. Christopher Longuet-Higgins gave the essential matrix with a linear method from eight matches, recovered the pose from it, and chose among the solutions by the signs of the depths. Martin Fischler and Robert Bolles of SRI International published RANSAC in the June issue of Communications of the ACM, with the pose of a camera from known landmarks as the main application. Paul Sampson gave his approximation of the geometric distance to a conic in 1982.
+
+The projective view of uncalibrated cameras came around 1990. Olivier Faugeras and Francis Lustman decomposed the homography of a plane in 1988, and Michel Demazure proved that five calibrated matches have 10 complex solutions the same year. In 1992 Faugeras, and independently Richard Hartley, Rajiv Gupta and Tom Chang, showed that uncalibrated matches fix the scene up to a projective map. Amnon Shashua and Hartley gave the trifocal tensor in 1995 and 1997, Faugeras described stratification in 1995, and Hartley showed in 1997 that normalizing the points makes the eight-point algorithm accurate. Hartley and Peter Sturm gave optimal triangulation the same year, and Hartley and Andrew Zisserman gathered the field in their book of 2000.
+
+The robust estimators grew from RANSAC. Philip Torr and Zisserman gave MSAC and MLESAC in 2000. Ondřej Chum, Jiří Matas and Josef Kittler added local optimization in 2003, and Chum and Matas gave PROSAC in 2005. David Nistér gave preemptive RANSAC in 2003 and the practical five-point solver in 2003 and 2004. Roberto Toldo and Andrea Fusiello gave J-linkage in 2008, and Daniel Barath, Matas and Jana Noskova gave MAGSAC in 2019. Francesc Moreno-Noguer, Vincent Lepetit and Pascal Fua gave EPnP in 2007, and Matthew Brown and David Lowe built automatic panorama stitching with multi-band blending in 2007.
+
+## Further reading
+
+- Richard Hartley and Andrew Zisserman, Multiple View Geometry in Computer Vision, second edition, Cambridge University Press, 2004. The standard text, with the algorithms of this chapter in boxes and their proofs.
+- Olivier Faugeras and Quang-Tuan Luong, The Geometry of Multiple Images, MIT Press, 2001. A full treatment of the projective, affine and Euclidean strata and of the trifocal tensor.
+- Yi Ma, Stefano Soatto, Jana Košecká and S. Shankar Sastry, An Invitation to 3-D Vision, Springer, 2004. A calibrated approach with careful proofs of the decomposition of the essential matrix and of homographies.
+- Rahul Raguram, Ondřej Chum, Marc Pollefeys, Jiří Matas and Jan-Michael Frahm, USAC: A Universal Framework for Random Sample Consensus, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2013. A survey of the RANSAC variants and a framework that combines them.

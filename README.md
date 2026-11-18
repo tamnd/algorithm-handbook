@@ -11,10 +11,10 @@ opening, groups and a reading order for each chapter, summaries, exercises with 
 reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
 the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.36.0
+## Volumes in edition 0.40.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.36.0](https://github.com/tamnd/algorithm/releases/tag/v0.36.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.40.0](https://github.com/tamnd/algorithm/releases/tag/v0.40.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from; a larger third number (such as 0.20.1) marks a
 new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
@@ -29,11 +29,11 @@ new build of the same release. The books are on the
 | 5 | Searching | 115 | written |
 | 6 | Sequences | 120 | written |
 | 7 | Graphs | 685 | written |
-| 8 | Strings | 216 | written |
+| 8 | Strings | 216 | written; an opening for the new chapter 8.8 |
 | 9 | Automata and parsing | 270 | written |
 | 10 | Number theory | 238 | written |
 | 11 | Algebra | 328 | written |
-| 12 | Numerical | 465 | written |
+| 12 | Numerical | 463 | written |
 | 13 | Geometry | 280 | written |
 | 14 | Combinatorics | 174 | written |
 | 15 | Optimization | 301 | written |
@@ -44,22 +44,30 @@ new build of the same release. The books are on the
 | 20 | Parallel | 128 | written |
 | 21 | Distributed | 281 | written |
 | 22 | Concurrency | 155 | written |
-| 23 | Cryptography | 390 | written |
+| 23 | Cryptography | 389 | written |
 | 24 | Compression and coding | 220 | written |
 | 25 | Machine learning | 419 | written |
-| 26 | Systems | 442 | written |
-| 27 | Biology | 254 | written |
-| 28 | Graphics and signals | 401 | written |
-| 29 | Games and search | 209 | written |
+| 26 | Systems | 346 | written |
+| 27 | Biology | 468 | written |
+| 28 | Graphics and signals | 467 | written; openings for chapters 28.7, 28.9 and 28.11 |
+| 29 | Games and search | 205 | written |
 | 30 | Quantum | 152 | written |
 | 31 | CAD | 374 | written |
 | 32 | Electronic design automation | 358 | written |
 | 33 | Statistics and inference | 276 | written |
-| 34 | Compilers and program analysis | 273 | written |
-| 35 | Information retrieval and AI reasoning | 278 | written |
+| 34 | Compilers and program analysis | 272 | written |
+| 35 | Information retrieval and AI reasoning | 276 | written |
 | 36 | Control | 279 | written |
-| 37–38 | Robotics, Computer vision | – | forthcoming: the site has only short pages so far |
-| 39 | Complexity | 20 | Chapter 39.2 written; openings for the other six |
+| 37 | Robotics | 264 | written |
+| 38 | Computer vision | 277 | written |
+| 39 | Complexity | 284 | written |
+| 40 | Databases | 126 | seven of nine chapters written; openings for 40.7 and 40.8 |
+| 41 | Natural language and speech | – | not built: the site has only short pages so far |
+| 42 | Algorithmic game theory | 6 | three of nine chapters written; openings for the others |
+| 43 | Scientific computing | 3 | two of nine chapters written; openings for the others |
+| 44 | Communications | – | not built: the site has only short pages so far |
+| 45 | Security and privacy | 2 | two of nine chapters written; openings for the others |
+| 46 | Imaging and inverse problems | 1 | one of eight chapters written; openings for the others |
 
 ## Building
 
@@ -90,7 +98,7 @@ python -m hb build --volume all --formats tex,pdf,epub         # Volume 0 and ev
 
 ## How the text was made
 
-The entries are the text of the site. The learner pages were drafted by AI agents (Claude) from a written brief
+The entries are the text of the site. The learner pages were drafted by agents from a written brief
 and a sample chapter, checked by `hb check`, and spot-checked; see [`content/PROVENANCE.md`](content/PROVENANCE.md).
 Report errors in an entry at [tamnd/algorithm issues](https://github.com/tamnd/algorithm/issues) and errors in
 the learner pages or the books here.

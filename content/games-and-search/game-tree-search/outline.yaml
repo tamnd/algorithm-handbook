@@ -115,15 +115,12 @@ groups:
   - title: Mixed strategies and hidden information
     intro: >
       When the players move at once or hide what they know, a pure strategy can be exploited, and the right
-      play is random. The minimax theorem gives a two-player zero-sum game a value in mixed strategies, and
-      one linear program finds it. Nash proved that every finite game has an equilibrium; computing one is
-      PPAD-complete already for two players in general. Counterfactual regret minimization plays a large
-      two-player zero-sum game against itself, and its average strategy approaches an equilibrium.
+      play is random. The [minimax theorem](/minimax-theorem/) gives a two-player zero-sum game a value in
+      mixed strategies, and the [Nash equilibrium](/nash-equilibrium/) generalizes it; both are in Volume 42.
+      This group gives the model of a game with hidden information, and counterfactual regret minimization,
+      which plays a large two-player zero-sum game against itself so that its average strategy approaches
+      an equilibrium.
     entries:
-      - minimax-theorem
-      - nash-equilibrium
-      - nash-existence-theorem
-      - nash-equilibrium-computation
       - imperfect-information-game
       - counterfactual-regret-minimization
 

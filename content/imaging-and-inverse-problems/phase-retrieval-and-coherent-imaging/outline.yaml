@@ -1,0 +1,11 @@
+# The order of chapter 46.7. One entry is written in this edition.
+groups:
+  - title: Phase retrieval
+    intro: >
+      [Phase retrieval](/phase-retrieval/) recovers a signal from the magnitude of its Fourier transform.
+      The entry shows that the magnitude carries exactly the autocorrelation, lists the trivial and the
+      nontrivial ambiguities of one dimension, and compares the algorithms: spectral factorization, the
+      iterations of Gerchberg, Saxton and Fienup, Griffin-Lim, and the methods with guarantees for random
+      measurements.
+    entries:
+      - phase-retrieval

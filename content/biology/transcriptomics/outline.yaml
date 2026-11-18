@@ -1,0 +1,106 @@
+# The order of chapter 27.8, Transcriptomics. Groups are read in order; entries in a group too.
+groups:
+  - title: Counts and units
+    intro: >
+      [RNA sequencing](/rna-sequencing/) turns the RNA of a sample into reads, and the reads of a gene are
+      counted. A count depends on the length of the gene and on the depth of the library, so raw counts are
+      not comparable. These entries give the per-sample units [RPKM and FPKM](/rpkm-and-fpkm/) and
+      [TPM](/transcripts-per-million/), and the size factors that make counts comparable between samples.
+      [Median of ratios](/median-of-ratios-normalization/) and [TMM](/tmm-normalization/) both assume that
+      most genes do not change.
+    entries:
+      - rna-sequencing
+      - rpkm-and-fpkm
+      - transcripts-per-million
+      - library-size-normalization
+      - median-of-ratios-normalization
+      - tmm-normalization
+      - quantile-normalization
+
+  - title: Alignment and quantification
+    intro: >
+      A read from a spliced transcript falls on the genome in pieces, so it needs a
+      [spliced alignment](/spliced-read-alignment/). Reads that fit several isoforms are shared out by the
+      [EM algorithm](/em-isoform-quantification/), whose log-likelihood is concave. [Pseudoalignment](/pseudoalignment/)
+      skips the alignment and finds only the set of compatible transcripts, which is all the EM needs.
+    entries:
+      - spliced-read-alignment
+      - maximal-mappable-prefix-alignment
+      - transcript-abundance-estimation
+      - em-isoform-quantification
+      - pseudoalignment
+      - selective-alignment
+
+  - title: Assembling transcripts
+    intro: >
+      Without a full annotation, the isoforms must be built from the reads. Exons and splice junctions form a
+      [splice graph](/splice-graph/), a DAG whose source-to-sink paths are the candidate transcripts. The
+      fewest paths that hold every fragment come from a bipartite matching; the fewest weighted paths that
+      explain the coverage are NP-hard, so programs use greedy rules.
+    entries:
+      - splice-graph
+      - transcript-assembly
+      - minimum-path-cover-transcript-assembly
+      - flow-based-transcript-assembly
+      - de-novo-transcriptome-assembly
+
+  - title: Count models and differential expression
+    intro: >
+      Counts of one gene across replicates vary more than a Poisson law allows. The
+      [negative binomial model](/negative-binomial-count-model/) adds a dispersion term, and empirical Bayes
+      shrinks each gene's dispersion or variance toward the others, because a few replicates cannot pin it
+      down alone. The tests are exact or approximate only under these distributional assumptions.
+    entries:
+      - negative-binomial-count-model
+      - dispersion-shrinkage
+      - differential-expression-analysis
+      - moderated-t-statistic
+
+  - title: Gene sets and coexpression
+    intro: >
+      A list of a few hundred changed genes is read through known sets of genes.
+      [Over-representation analysis](/over-representation-analysis/) tests the overlap of the list with each
+      set by the hypergeometric law, and [GSEA](/gene-set-enrichment-analysis/) walks down the whole ranking.
+      [WGCNA](/weighted-gene-coexpression-network-analysis/) finds the sets from the data, as modules of
+      correlated genes.
+    entries:
+      - over-representation-analysis
+      - gene-set-enrichment-analysis
+      - weighted-gene-coexpression-network-analysis
+
+  - title: Single cells
+    intro: >
+      [Single-cell RNA sequencing](/single-cell-rna-sequencing/) measures thousands of cells with a few
+      thousand molecules each. Molecules are counted by their UMIs, droplets with two cells are flagged, size
+      factors are pooled across cells, and the analysis keeps the highly variable genes before it builds a
+      neighbor graph and clusters it.
+    entries:
+      - single-cell-rna-sequencing
+      - umi-deduplication
+      - doublet-detection
+      - pooling-size-factors
+      - highly-variable-gene-selection
+      - shared-nearest-neighbor-clustering
+
+  - title: Batch effects
+    intro: >
+      Samples processed on different days or machines differ for technical reasons. [ComBat](/combat/) fits a
+      location and scale per gene and batch with empirical Bayes priors.
+      [Mutual nearest neighbors](/mnn-batch-correction/) pair cells across batches and remove the difference
+      between the pairs. Both can remove real biology when batch and condition are confounded.
+    entries:
+      - batch-effect-correction
+      - combat
+      - mnn-batch-correction
+
+  - title: Trajectories
+    intro: >
+      Cells caught at different stages of one process lie along a path in expression space.
+      [Trajectory inference](/trajectory-inference/) orders them by a pseudotime, along a
+      [minimum spanning tree](/mst-pseudotime/) or by [diffusion distances](/diffusion-pseudotime/).
+      [RNA velocity](/rna-velocity/) adds a direction from the ratio of unspliced to spliced counts.
+    entries:
+      - trajectory-inference
+      - mst-pseudotime
+      - diffusion-pseudotime
+      - rna-velocity

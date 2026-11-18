@@ -22,6 +22,8 @@
 
 15. Trace the plays: after $s \to a$ and $s \to c$ the rest of the play is forced. After $s \to e$ the opponent has two choices; check both.
 
+18. The deal has $4 \cdot 3 = 12$ outcomes. Player 1 moves at the start and after "check, bet", so has $4 \cdot 2 = 8$ information sets with two actions each, and $2^8 = 256$ pure strategies; player 2 moves after "check" and after "bet", and also has 8 information sets and 256 pure strategies. Each player has one empty sequence and two sequences for each information set, so $1 + 2 \cdot 8 = 17$ sequences, against $1 + 2 \cdot 6 = 13$ with three cards.
+
 19. Regret matching plays in proportion to the positive regrets. To update, add to each action's regret its payoff against paper minus the payoff of the current strategy against paper. The next strategy is $(18/31, 0, 13/31)$.
 
 22. If every maximum matching covers $s$, take one, $M$, and always move to the partner of the current vertex in $M$. If the opponent could ever move to a vertex outside the matched path, swapping the edges along the path would give a maximum matching missing $s$. For the converse, take a maximum matching $M$ missing $s$ and play the same strategy as the second player. With the pendant $e$, the only maximum matching is $\{sa, cd, be\}$.

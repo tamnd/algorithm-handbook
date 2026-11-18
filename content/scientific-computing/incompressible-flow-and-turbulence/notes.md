@@ -1,0 +1,12 @@
+## History
+
+The lattice Boltzmann method grew out of lattice gases, a kind of [cellular automaton](/cellular-automaton/) in which Boolean particles hop between the nodes of a lattice and collide by fixed rules. Uriel Frisch, Brosl Hasslacher and Yves Pomeau showed in 1986 that on a hexagonal lattice the averages of such a gas obey the Navier-Stokes equations. The averages were noisy, so Guy McNamara and Gianluigi Zanetti replaced the Boolean particles by their mean populations in 1988, and Francisco Higuera and Javier Jiménez linearized the collision operator in 1989. In 1992 Yue-Hong Qian, Dominique d'Humières and Pierre Lallemand, and independently Hudong Chen, Shiyi Chen and William Matthaeus, introduced the single relaxation time BGK collision on the D2Q9 and D3Q19 lattices with the equilibrium used today. The same year d'Humières proposed multiple relaxation times. Later work tied the method to a discretization of the discrete-velocity Boltzmann equation and added forcing schemes (Guo, Zheng and Shi in 2002), boundary schemes and entropic collisions.
+
+Smoothed particle hydrodynamics began in astrophysics. Leon Lucy, and independently Robert Gingold and Joe Monaghan, introduced it in 1977 to model stars that are not spherical, treating the particles as samples of a probability density. Monaghan and Gingold added the artificial viscosity in 1983, and Monaghan's 1992 review fixed the symmetric form and the viscosity with parameters $\alpha$ and $\beta$ that are still standard. Swegle, Hicks and Attaway identified the tensile instability in 1995. Later work derived the equations from a Lagrangian with variable smoothing lengths and took the method to magnetohydrodynamics, solids and liquids with free surfaces.
+
+## Further reading
+
+- Timm Krüger, Halim Kusumaatmaja, Alexandr Kuzmin, Orest Shardt, Goncalo Silva and Erlend Magnus Viggen, *The Lattice Boltzmann Method: Principles and Practice*, Springer, 2017. A complete modern text, with the Chapman-Enskog analysis, boundary conditions and forcing.
+- Sauro Succi, *The Lattice Boltzmann Equation for Fluid Dynamics and Beyond*, Oxford University Press, 2001. The method from its lattice gas origins, with its physics.
+- Joe J. Monaghan, Smoothed particle hydrodynamics, *Reports on Progress in Physics* 68, 2005, 1703–1759. A review by the method's main developer.
+- Daniel J. Price, Smoothed particle hydrodynamics and magnetohydrodynamics, *Journal of Computational Physics* 231, 2012, 759–794. A careful derivation from a Lagrangian, with the variable smoothing length terms.

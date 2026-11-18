@@ -130,11 +130,10 @@ groups:
 
   - title: Attacks on implementations
     intro: >
-      A correct scheme can still leak through its running time or its errors. A
-      [timing attack](/timing-attack/) reads the private exponent from the time of decryption,
-      [blinding](/rsa-blinding/) hides the input of the secret operation, and the
+      A correct scheme can still leak through its running time or its errors. The
+      [timing attack](/timing-attack/), now in Volume 45, reads the private exponent from the time of
+      decryption; [blinding](/rsa-blinding/) hides the input of the secret operation, and the
       [CRT fault attack](/rsa-fault-attack/) factors $N$ from one wrong signature with one gcd.
     entries:
-      - timing-attack
       - rsa-blinding
       - rsa-fault-attack

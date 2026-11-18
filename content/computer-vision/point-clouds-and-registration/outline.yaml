@@ -1,0 +1,63 @@
+groups:
+  - title: Point clouds and their cleanup
+    intro: >
+      A point cloud is a set of 3D points with no connections between them. A range image keeps the grid of
+      the sensor, which gives each point its neighbors for free. Before any other step, a voxel grid evens out
+      the density and a statistical filter removes the points that float in empty space. The chamfer distance
+      compares two clouds and serves as a loss and a score.
+    entries:
+      - point-cloud
+      - range-image
+      - voxel-grid-downsampling
+      - statistical-outlier-removal
+      - point-set-chamfer-distance
+  - title: Normals and local descriptors
+    intro: >
+      A normal comes from the covariance of a point's nearest neighbors, but only up to its sign; a spanning
+      tree propagates one consistent side. With normals, a point can be described by a short vector that does
+      not change under rigid motion: spin images, fast point feature histograms and SHOT. Matches of such
+      descriptors start the global methods of the last group.
+    entries:
+      - point-cloud-normal-estimation
+      - consistent-normal-orientation
+      - spin-images
+      - point-feature-histograms
+      - shot-descriptor
+  - title: Iterative closest point
+    intro: >
+      Registration asks for the rigid motion that aligns two clouds whose correspondences are unknown. ICP
+      alternates between closest-point matches and a least squares fit, and its error never rises, but it stops
+      at a local minimum that depends on the start. The variants change the error metric, drop the worst pairs
+      or weight each pair by the shape around both points.
+    entries:
+      - point-cloud-registration
+      - iterative-closest-point
+      - icp-convergence-theorem
+      - icp-variants-taxonomy
+      - point-to-plane-icp
+      - trimmed-icp
+      - generalized-icp
+  - title: Soft matches and deformations
+    intro: >
+      Instead of one hard match per point, these methods score a point against a distribution or spread it
+      over many partners. NDT fits a Gaussian per voxel; robust point matching and coherent point drift use
+      soft matches that sharpen as the fit improves. The same ideas extend to non-rigid registration, where a
+      smooth deformation replaces the rigid motion.
+    entries:
+      - normal-distributions-transform
+      - robust-point-matching
+      - non-rigid-registration
+      - coherent-point-drift
+  - title: Global registration and shape detection
+    intro: >
+      Global methods need no start pose. Geometric hashing and efficient RANSAC find models and simple shapes
+      by voting and sampling; 4PCS samples congruent four-point bases. FGR and TEASER start from descriptor
+      matches, most of them wrong, and Go-ICP searches the whole pose space by branch and bound with a proved
+      gap $\epsilon$.
+    entries:
+      - geometric-hashing
+      - efficient-ransac-shape-detection
+      - four-points-congruent-sets
+      - fast-global-registration
+      - teaser-registration
+      - go-icp

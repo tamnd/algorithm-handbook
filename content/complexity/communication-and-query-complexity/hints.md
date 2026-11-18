@@ -1,0 +1,27 @@
+1. (a) The rows for $x = 0, 1, 2, 3$ are $0001$, $0011$, $0111$ and $1111$. (b) $\operatorname{rank} M_f = 4$ and $\operatorname{rank}(J - M_f) = 3$, so every protocol has at least 7 leaves and $D^{cc}(f) \ge \lceil \log_2 7 \rceil = 3$. (c) Alice sends $x$ with 2 bits and Bob replies with $f(x, y)$, so $D^{cc}(f) = 3$.
+
+2. (a) $q = 37$, the least prime at least $36$, so each number takes 6 bits and the protocol sends 13. (b) $A_x(5) = 1 + 5 + 125 = 131 \equiv 20$ and $A_y(5) = 1 + 5 + 3125 = 3131 \equiv 23 \pmod{37}$, so Bob sends 0 and both output "not equal". (c) $A_x - A_y = z^3 - z^5 = z^3(1 - z)(1 + z)$, with roots $r = 0, 1, 36$. The error is $3/37$, below $5/37$.
+
+4. $\mathrm{s} = \mathrm{bs} = 3$ (at weight 1, each of the three zeros is sensitive), $C_0 = 3$, $C_1 = 2$, $C = 3$, $D^{dt} = 4$ and $\deg = 4$: the top coefficient is $\binom{4}{2} - \binom{4}{3} + \binom{4}{4} = 3$. The bounds read $3 \le 9$ and $4 \le 6$.
+
+6. (a) $q(k) = (1 + k)/3$ takes the values $1/3$, $2/3$, $1$, $4/3$. (b) Error $\varepsilon$ needs $a \le \varepsilon$, $a + b \ge 1 - \varepsilon$ and $a + 3b \le 1 + \varepsilon$. The last two give $2b \le 2\varepsilon$, so $1 - \varepsilon \le a + b \le 2\varepsilon$ and $\varepsilon \ge 1/3$. So $\widetilde{\deg}_{1/3}(\mathrm{OR}_3) = 1$. For $\varepsilon = 0.3$ the degree is 2: the best quadratic has error $1/8$.
+
+7. (a) True, by the fooling set of size $2^n$ and one 0-leaf. (b) False: fooling sets bound only deterministic and nondeterministic protocols, and the public-coin cost is $O(1)$. (c) False: it is open. (d) True: $D^{dt}(f) \le C_1(f)\, \mathrm{bs}(f) \le \mathrm{bs}(f)^3$. (e) True: Grover search and $\widetilde{\deg}(\mathrm{OR}_n) = \Theta(\sqrt n)$. (f) False: equality has rank $2^n$ and sign rank at most 3.
+
+12. Each input of weight $(n+1)/2$ has $(n+1)/2$ neighbours of weight $(n-1)/2$, and $|A| = |B|$, so the bound is $((n + 1)/2)^2$: 4 for $n = 3$ and 9 for $n = 5$. The formula for $\mathrm{MAJ}_3$ has 5 leaves. A search over all formulas with AND and OR gates on the literals $x_i$ and $\neg x_i$ shows that no formula with 4 leaves computes $\mathrm{MAJ}_3$, so here the bound is off by one leaf.
+
+13. (a) The transcript contains $x$, and Bob's reply is a function of $x$ and $y$, so $I(\Pi; X \mid Y) = H(X) = H_2(p)$. Alice learns $y$ exactly when $x = 1$, so $I(\Pi; Y \mid X) = p\, H_2(q)$. (b) $H_2(1/4) + 1/4 \approx 0.8113 + 0.25 = 1.0613$. With Bob first the cost is $H_2(q) + q H_2(p) \approx 1.4056$, so the player whose input has less entropy should speak first.
+
+14. The rectangle $\{x \ge 2^{n-1}\} \times \{y < 2^{n-1}\}$ has only 1-entries and weight $1/4$. For $n = 2$, the rectangle $\{0, 1, 2\} \times \{1, 2, 3\}$ has one 1-entry, at $(2, 1)$, and eight 0-entries, so its discrepancy is $7/16$. The bound is $\log_2((1 - 2\varepsilon)/\operatorname{disc})$, and a discrepancy of at least $1/4$ makes it a constant.
+
+15. (a) $Q^3$ is bipartite with two sides of 4 vertices. If 4 chosen vertices lie on one side, the fifth has all 3 neighbours chosen. Otherwise the split is 3 and 2, and each vertex on the side with 2 has 3 neighbours on the other side, of which only one is missing. (b) The degrees are 2 for all vertices except $1011$, which has degree 0.
+
+19. Fix a deterministic tree of depth $d$ with error at most $1/3$ under the distribution. On $0^n$ it must output 0, since otherwise it errs on weight $1/2$. Every $e_i$ whose index is not queried on the path of $0^n$ follows the same path and gets the wrong answer, so the error is at least $(n - d)/(2n)$, and $d \ge n/3$. For the upper bound, query a random set of $\lceil 2n/3 \rceil$ positions and output 1 if one of them is 1.
+
+21. Alice sends each $p_A(x, \ell)$, rounded down to a multiple of $2^{-(c+3)}$, for each of the at most $2^c$ leaves. Bob computes $\sum p_A(x, \ell)\, p_B(y, \ell)$ over the leaves with output 1, with total error at most $2^c \cdot 2^{-(c+3)} = 1/8$, which separates "at least $2/3$" from "at most $1/3$". He sends the answer. Taking logarithms, $c \ge \log_2 D^{cc}(f) - \log_2 \log_2 D^{cc}(f) - O(1)$.
+
+22. Draw $t$ random strings $r_1, \ldots, r_t$. For a fixed input, the fraction of strings on which the protocol errs exceeds $\varepsilon + \delta$ with probability at most $e^{-2\delta^2 t}$, by the [Chernoff bound](/chernoff-bound/). With $t = O(n/\delta^2)$, a union bound over the $2^{2n}$ inputs shows that some choice of the $t$ strings works for all inputs. Fix it; Alice picks $i$ at random and sends it with $\log_2 t$ bits.
+
+23. Keep a list of the 0-rectangles that may still contain $(x, y)$. If $f(x, y) = 1$, a 1-rectangle $R$ of the cover contains $(x, y)$, and each listed 0-rectangle misses $R$ in its rows or in its columns. So Alice can name an $R$ through row $x$ whose rows miss half the list, or Bob can name one through column $y$ whose columns miss half. Each naming costs $N^1 + O(1)$ bits and halves the list; if neither player can name one, $f(x, y) = 0$. After $N^0 + 1$ rounds the list is empty and $f(x, y) = 1$.
+
+24. The characters $\chi_S(x) = (-1)^{\sum_{i \in S} x_i}$ are eigenvectors of $A$ and of $J$, so $M_f$ has eigenvalues $1 + n - 2j$ and $J - M_f$ has $2^n - n - 1$ on the constant vector and $-(1 + n - 2j)$ on the others. For even $n$ no eigenvalue is 0, so both ranks are $2^n$. For odd $n$ both ranks are $2^n - \binom{n}{(n+1)/2}$, which is more than $2^{n-1}$ for $n \ge 3$. In both cases the number of leaves exceeds $2^n$, so $D^{cc}(f) \ge n + 1$, and the trivial protocol meets it.

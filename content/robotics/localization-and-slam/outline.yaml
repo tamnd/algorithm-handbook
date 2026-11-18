@@ -1,0 +1,120 @@
+# The order of chapter 37.5, Localization and SLAM. Groups are read in order; entries in a group too.
+groups:
+  - title: Where am I
+    intro: >
+      Localization asks for the pose of a robot in a known map, from its controls and its readings. The
+      [Bayes filter](/bayes-filter/) is the recursion behind every method of the chapter: predict with the
+      motion, correct with the reading. Dead reckoning is the prediction alone, and its error only grows.
+    entries:
+      - mobile-robot-localization
+      - bayes-filter
+      - dead-reckoning
+  - title: Motion and sensor models
+    intro: >
+      A filter needs two probability models. A motion model gives $p(x_t \mid u_t, x_{t-1})$ from odometry or
+      from velocity commands. A sensor model gives $p(z_t \mid x_t, m)$ for a landmark reading or a range
+      scan. These entries derive the standard models and say which of their parts are approximations.
+    entries:
+      - odometry-motion-model
+      - velocity-motion-model
+      - landmark-measurement-model
+      - beam-range-finder-model
+      - likelihood-field-model
+  - title: Maps
+    intro: >
+      A metric map stores space as cells. An occupancy grid keeps the log odds of each cell, and the update
+      of a cell is a sum, under the assumption that cells are independent. The octree map makes the same
+      idea fit in three dimensions. A topological map keeps only places and the paths between them.
+    entries:
+      - occupancy-grid-map
+      - inverse-sensor-model
+      - occupancy-grid-mapping
+      - octree-occupancy-map
+      - topological-map
+  - title: Localization filters
+    intro: >
+      The Bayes filter has three practical forms. A histogram filter keeps a grid over the poses, a Gaussian
+      filter keeps one mean and covariance, and Monte Carlo localization keeps a set of particles. Only the
+      grid and the particles can hold several hypotheses, which global localization and recovery from a
+      kidnapping need. Correlative scan matching finds the best pose in a window by search.
+    entries:
+      - histogram-filter
+      - markov-localization
+      - ekf-localization
+      - monte-carlo-localization
+      - kld-sampling
+      - global-localization
+      - kidnapped-robot-problem
+      - correlative-scan-matching
+  - title: Attitude
+    intro: >
+      Orientation alone is a smaller problem with its own tools. Wahba's problem finds the rotation that best
+      maps reference directions to measured ones, and TRIAD, the q-method and QUEST solve it. Filters then
+      fuse gyros with these directions, either as a deterministic observer on $SO(3)$ or as a Kalman filter
+      on a small error state.
+    entries:
+      - attitude-estimation
+      - wahba-problem
+      - triad-method
+      - davenport-q-method
+      - quest-algorithm
+      - nonlinear-complementary-filter
+      - error-state-kalman-filter
+      - invariant-extended-kalman-filter
+  - title: The SLAM problem
+    intro: >
+      In SLAM the map is unknown too, and the robot estimates it together with its pose. Online SLAM keeps
+      only the present pose; full SLAM keeps the whole path. Two discrete questions sit under both: which
+      landmark a reading belongs to, and whether the robot is back at a place it has seen.
+    entries:
+      - slam-problem
+      - online-slam
+      - full-slam
+      - data-association-slam
+      - loop-closure-detection
+  - title: Gaussian filters for SLAM
+    intro: >
+      [EKF SLAM](/ekf-slam/) keeps one Gaussian over the pose and all $m$ landmarks, at $O(m^2)$ per update.
+      Its convergence theorem holds for the linear Gaussian case only. Joint compatibility makes the data
+      association safer. The information form and its sparse version change what is cheap and what is
+      approximate, and MonoSLAM runs the same filter on a single camera.
+    entries:
+      - ekf-slam
+      - ekf-slam-convergence-theorem
+      - joint-compatibility-branch-and-bound
+      - extended-information-filter
+      - sparse-extended-information-filter
+      - monoslam
+  - title: Particle filters for SLAM
+    intro: >
+      Given the path, the landmarks are independent. A Rao-Blackwellized filter samples the path with
+      particles and keeps the map of each particle in closed form. FastSLAM does this with one small Kalman
+      filter per landmark, and the grid version keeps an occupancy grid per particle.
+    entries:
+      - rao-blackwellized-particle-filter
+      - fastslam
+      - grid-based-rbpf-slam
+  - title: Graphs and smoothing
+    intro: >
+      Full SLAM is a sparse nonlinear least squares problem over a graph of poses and constraints.
+      Gauss-Newton solves it to a local minimum, and the sparsity of the factorization depends on the
+      elimination order. iSAM and the Bayes tree update the factorization as data arrives. SE-Sync can
+      certify a global optimum, and switchable constraints guard against wrong loop closures.
+    entries:
+      - pose-graph
+      - pose-graph-optimization
+      - graphslam
+      - square-root-sam
+      - isam
+      - bayes-tree
+      - isam2
+      - se-sync
+      - switchable-constraints
+  - title: Complete systems
+    intro: >
+      Two systems show how the parts fit together. LOAM splits lidar odometry and mapping between two rates.
+      ORB-SLAM uses one kind of image feature for tracking, mapping and loop closing, and corrects drift with
+      pose graph optimization.
+    entries:
+      - lidar-odometry-and-mapping
+      - orb-slam

@@ -1,0 +1,104 @@
+# The order of chapter 38.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Disparity and the stereo problem
+    intro: >
+      Two cameras side by side see a near point shifted more than a far one. After the pair is rectified, the
+      shift is one number per pixel, the disparity, and depth is $Z = fb/d$. These entries fix the geometry,
+      the error law that follows from it, and the matching problem that the rest of the chapter solves.
+    entries:
+      - disparity
+      - depth-from-disparity
+      - stereo-rectification
+      - stereo-matching
+
+  - title: Matching costs and local methods
+    intro: >
+      Most stereo methods fill a cost volume, smooth it over a support region, and pick the best disparity at
+      each pixel. The entries go through the steps in that order: the [matching cost](/stereo-matching-cost/),
+      the [cost volume](/cost-volume/), plain [block matching](/block-matching-stereo/), better ways to
+      aggregate, and the two finishing steps, subpixel refinement and the left-right check.
+    entries:
+      - stereo-matching-cost
+      - census-transform
+      - cost-volume
+      - block-matching-stereo
+      - cost-aggregation
+      - adaptive-support-weights
+      - subpixel-disparity-refinement
+      - left-right-consistency-check
+
+  - title: Optimizing along lines
+    intro: >
+      A scanline is a chain, and on a chain a smoothness term costs nothing extra to optimize exactly: dynamic
+      programming does it. Scanline dynamic programming matches each row on its own; semi-global matching sums
+      such programs over many directions and so avoids the streaks of single rows.
+    entries:
+      - scanline-dynamic-programming-stereo
+      - semi-global-matching
+
+  - title: Random search for slanted windows
+    intro: >
+      A square window assumes the surface faces the cameras. PatchMatch finds good matches by random guesses
+      and the spreading of good guesses to neighbors; PatchMatch stereo uses the same search over a slanted
+      plane per pixel, a label space that no exhaustive method can scan.
+    entries:
+      - patchmatch
+      - patchmatch-stereo
+
+  - title: Energies and graph cuts
+    intro: >
+      A global method writes stereo as one energy over all pixels, a data term plus a smoothness term, and
+      minimizes it. [ICM](/iterated-conditional-modes/) changes one pixel at a time. A minimum cut minimizes a
+      binary energy exactly when the energy is regular, and the move methods use that to change many pixels
+      at once. Only expansion has a factor bound, and only for metric smoothness terms.
+    entries:
+      - iterated-conditional-modes
+      - graph-representable-energies
+      - boykov-kolmogorov-max-flow
+      - alpha-beta-swap
+      - alpha-expansion
+      - qpbo
+      - graph-cut-stereo
+
+  - title: Shape from light and focus
+    intro: >
+      Depth can come from other cues than a second camera. A projector can play the part of the second camera;
+      changing lights give the surface normal at each pixel; a single shaded image gives a partial answer; a
+      stack of images focused at different depths gives depth from sharpness.
+    entries:
+      - structured-light-scanning
+      - photometric-stereo
+      - shape-from-shading
+      - shape-from-focus
+
+  - title: Many views
+    intro: >
+      With many calibrated images, the test is whether the images agree about a point:
+      [photo-consistency](/photo-consistency/). Plane sweeping and patch growing turn the test into depth maps
+      or patches, and fusion turns many depth maps into one model.
+    entries:
+      - photo-consistency
+      - multi-view-stereo
+      - plane-sweep-stereo
+      - patch-based-multi-view-stereo
+      - depth-map-fusion
+      - tsdf-fusion
+
+  - title: Shapes from voxels
+    intro: >
+      A volumetric method starts from a block of space that holds the scene and removes what cannot be there.
+      Silhouettes alone give the visual hull; colors give the photo hull, found in one pass by voxel coloring
+      when the cameras allow it and by space carving in general.
+    entries:
+      - visual-hull
+      - voxel-coloring
+      - space-carving
+
+  - title: Learned scene representations
+    intro: >
+      The last two entries fit a whole scene to posed images by gradient descent through a differentiable
+      renderer: a neural network of density and color, or a large set of 3D Gaussians. They are judged by
+      measurements on benchmark scenes, not by guarantees.
+    entries:
+      - neural-radiance-field
+      - gaussian-splatting

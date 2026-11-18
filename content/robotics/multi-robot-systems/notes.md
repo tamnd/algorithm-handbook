@@ -1,0 +1,17 @@
+## History
+
+Two lines of work met in this chapter. The first came from distributed computing. Smith designed the contract net protocol in 1980 for distributed problem solving, with announcements, bids and awards. In 1984 Hopcroft, Schwartz and Sharir showed that planning the motion of many independent objects is PSPACE-hard, and Kornhauser, Miller and Spirakis decided pebble motion on graphs in polynomial time. Erdmann and Lozano-Pérez gave each moving object a priority and planned it in space-time in 1987. Suzuki and Yamashita studied the search of a polygon for a moving intruder in 1992, and Guibas, Latombe, LaValle, Lin and Motwani gave the bounds on the number of pursuers in 1999. In the same year Ando, Oasa, Suzuki and Yamashita gave the circumcenter rule for memoryless robots with a limited range.
+
+The second line came from animation, physics and control. Reynolds modeled flocks with three local rules in 1987. Vicsek and his coauthors studied a phase transition in a model of self-driven particles in 1995, and Jadbabaie, Lin and Morse proved in 2003 that its heading rule reaches agreement when the graph is connected often enough. Olfati-Saber and Murray stated the protocol $\dot x = -Lx$ in 2004, and Ren and Beard extended it to directed graphs with a spanning tree in 2005. Cortés, Martínez, Karatas and Bullo turned Lloyd's quantization method of 1982 into a coverage law for robots in 2004, and Cortés, Martínez and Bullo proved the circumcenter rule in any dimension in 2006.
+
+Formations and task allocation grew in the same years. Desai, Ostrowski and Kumar gave separation and bearing laws for nonholonomic robots in 2001. Krick, Broucke and Francis proved in 2009 that the distance gradient law stabilizes an infinitesimally rigid formation locally. Gerkey and Matarić gave the taxonomy of task allocation in 2004, Dias, Zlot, Kalra and Stentz surveyed market methods in 2006, and Choi, Brunet and How proposed the consensus-based bundle algorithm in 2009. Zavlanos and Pappas, and Ji and Egerstedt, gave laws that keep a team connected in 2007.
+
+Collision avoidance between many robots took its present form with van den Berg, Lin and Manocha, who shared the avoidance between two robots with reciprocal velocity obstacles in 2008, and with ORCA of van den Berg, Guy, Lin and Manocha, published in 2011. Howard built maps with several robots and particle filters in 2006, and the review of Saeedi, Trentini, Seto and Li in 2016 surveys the field. Rubenstein, Cornejo and Nagpal showed in 2014 that a thousand simple robots can assemble into given shapes.
+
+## Further reading
+
+- Francesco Bullo, Jorge Cortés and Sonia Martínez, *Distributed Control of Robotic Networks* (2009), treats rendezvous, deployment and coverage as algorithms on proximity graphs, with their time complexity.
+- Mehran Mesbahi and Magnus Egerstedt, *Graph Theoretic Methods in Multiagent Networks* (2010), develops consensus, formations and connectivity from the graph Laplacian.
+- Brian P. Gerkey and Maja J. Matarić, "A formal analysis and taxonomy of task allocation in multi-robot systems" (2004), gives the classes of the problem and relates them to known optimization problems.
+- Kwang-Kyo Oh, Myoung-Chul Park and Hyo-Sung Ahn, "A survey of multi-agent formation control" (2015), sorts formation methods by what the robots sense and control.
+- Sajad Saeedi, Michael Trentini, Mae Seto and Howard Li, "Multiple-robot simultaneous localization and mapping, a review" (2016), covers the problem of merging maps and the methods for it.

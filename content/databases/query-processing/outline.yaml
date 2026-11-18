@@ -1,0 +1,69 @@
+# The order of chapter 40.3. Groups are read in order; entries in a group too.
+groups:
+  - title: The join and nested loops
+    intro: >
+      The relational join pairs the tuples of two relations that satisfy a condition, and every
+      method must at least read both inputs. Nested loops work for any condition; the block and index
+      versions cut the number of scans of the inner relation.
+    entries:
+      - relational-join
+      - nested-loop-join
+      - block-nested-loop-join
+      - index-nested-loop-join
+  - title: Sort and hash joins
+    intro: >
+      For an equality condition, sorting or hashing brings matching tuples together. Sort-merge and
+      Grace hash join both cost about three reads of the input when memory is large enough, and the
+      hybrid hash join moves smoothly from that cost to a single read as memory grows.
+    entries:
+      - sort-merge-join
+      - hash-join
+      - grace-hash-join
+      - hybrid-hash-join
+  - title: Semijoins
+    intro: >
+      A semijoin keeps the tuples of one relation that have a partner in another. It shrinks inputs
+      before a join and, across sites, saves network traffic; a Bloom filter does the same job with a
+      few bits per key and some false positives.
+    entries:
+      - semijoin
+      - bloom-join
+  - title: Aggregation and the iterator model
+    intro: >
+      Grouping splits rows by a key and computes an aggregate per group, by sorting or by hashing.
+      The iterator model runs a whole plan of such operators by pulling tuples through open, next and
+      close, and it shows which operators pipeline and which must block.
+    entries:
+      - group-by-aggregation
+      - hash-aggregation
+      - iterator-model
+  - title: Joins of many relations
+    intro: >
+      A plan of two-way joins can build intermediate results far larger than its output. For acyclic
+      queries, semijoin passes remove every dangling tuple first. For cyclic queries, the AGM bound
+      limits the output, and generic join and leapfrog triejoin run within that bound.
+    entries:
+      - multiway-join
+      - acyclic-join-evaluation
+      - yannakakis-algorithm
+      - agm-bound
+      - generic-join
+      - leapfrog-triejoin
+  - title: Top-k queries
+    intro: >
+      A top-k query asks for the best k objects under a monotone combination of grades from several
+      sorted lists. Fagin's algorithm, the threshold algorithm and the no-random-access algorithm stop
+      as soon as the unread part of the lists cannot change the answer.
+    entries:
+      - top-k-query
+      - fagin-algorithm
+      - threshold-algorithm
+      - no-random-access-algorithm
+  - title: Skylines
+    intro: >
+      The skyline of a relation is the set of tuples that no other tuple dominates in every attribute.
+      Block nested loops keep a window of candidates; presorting by a monotone score lets each window
+      tuple be output at once.
+    entries:
+      - bnl-skyline
+      - sort-filter-skyline

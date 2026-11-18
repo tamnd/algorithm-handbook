@@ -1,0 +1,116 @@
+# The order of chapter 40.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The model and its query languages
+    intro: >
+      A database is a set of relations, and a query maps relations to a relation. These entries give the
+      model, the algebra and the calculus, show by [Codd's theorem](/codds-theorem/) that the algebra and the
+      domain-independent calculus say the same things, and explain how SQL's NULL bends the two-valued
+      logic. Conjunctive queries, the select-project-join core, come last, with the two ways of measuring
+      the cost of evaluation.
+    entries:
+      - relational-model
+      - relational-algebra
+      - relational-calculus
+      - sql-null-semantics
+      - domain-independent-query
+      - codds-theorem
+      - conjunctive-query
+      - data-and-combined-complexity
+  - title: Functional dependencies and keys
+    intro: >
+      A functional dependency $X \to Y$ says that $X$ fixes $Y$. Armstrong's axioms derive exactly the
+      dependencies that follow, and the attribute closure $X^+$ decides each one in linear time. Keys, minimal
+      covers and the implication problem build on the closure; finding whether an attribute lies in some
+      key is already NP-complete.
+    entries:
+      - functional-dependency
+      - armstrongs-axioms
+      - attribute-closure-problem
+      - attribute-closure-algorithm
+      - candidate-key
+      - dependency-implication-problem
+      - minimal-cover-problem
+      - prime-attribute-np-completeness
+  - title: Normal forms
+    intro: >
+      Normal forms name the schemas that store each fact once. These entries go from atomic values (1NF)
+      through 2NF and 3NF to BCNF, where every nontrivial dependency has a superkey on its left. The
+      entity-relationship model is the design step that usually comes before them.
+    entries:
+      - first-normal-form
+      - normalization
+      - second-normal-form
+      - third-normal-form
+      - boyce-codd-normal-form
+      - entity-relationship-model
+  - title: Decompositions
+    intro: >
+      A schema that is not in a normal form is split into projections. The split must lose no information
+      (a lossless join) and should keep the dependencies checkable inside the parts. Heath's theorem and the
+      tableau test decide losslessness; BCNF decomposition always gets a lossless BCNF split, and 3NF
+      synthesis always gets a lossless split that preserves the dependencies.
+    entries:
+      - lossless-join-decomposition
+      - heaths-theorem
+      - lossless-join-test
+      - dependency-preserving-decomposition
+      - bcnf-decomposition
+      - third-normal-form-synthesis
+  - title: More dependencies and the chase
+    intro: >
+      Multivalued and join dependencies capture redundancy that no FD sees, and lead to 4NF and 5NF.
+      Inclusion dependencies relate two relations, as foreign keys do. Equality-generating and
+      tuple-generating dependencies are the general forms of all of them, and the
+      [chase](/chase-algorithm/) is the procedure that reasons with them.
+    entries:
+      - multivalued-dependency
+      - fourth-normal-form
+      - join-dependency
+      - fifth-normal-form
+      - inclusion-dependency
+      - equality-generating-dependency
+      - tuple-generating-dependency
+      - chase-algorithm
+  - title: Containment and minimization
+    intro: >
+      One query is contained in another when it returns a subset of its answers on every database. For
+      conjunctive queries this is the existence of a homomorphism, which makes it NP-complete, and it gives
+      a way to remove redundant atoms. Unions of conjunctive queries reduce to their members.
+    entries:
+      - query-containment-problem
+      - chandra-merlin-theorem
+      - conjunctive-query-minimization
+      - sagiv-yannakakis-theorem
+  - title: Acyclicity and width
+    intro: >
+      The atoms of a query form a hypergraph. When that hypergraph is acyclic, joins are easy, and the GYO
+      reduction tests acyclicity by peeling off ears. Hypertree width and fractional hypertree width
+      measure how far a query is from acyclic, and bounded width gives polynomial-time evaluation.
+    entries:
+      - acyclic-hypergraph
+      - gyo-reduction
+      - hypertree-width
+      - fractional-hypertree-width
+  - title: Datalog and recursion
+    intro: >
+      Datalog adds recursion to conjunctive queries with Horn rules and a least fixed point. Semi-naive
+      evaluation avoids repeating derivations, and magic sets restrict bottom-up work to the facts a query
+      needs. Regular path queries are a recursive query language for graphs that reduces to search in a
+      product graph.
+    entries:
+      - datalog
+      - datalog-evaluation
+      - semi-naive-evaluation
+      - magic-sets
+      - regular-path-query
+  - title: Provenance and uncertainty
+    intro: >
+      An answer can carry more than its presence: the input tuples that explain it, a cost or a
+      probability. Provenance semirings give one algebra for all such annotations of positive queries.
+      Probabilistic databases ask for the probability of an answer, and the Dalvi-Suciu dichotomy splits
+      the unions of conjunctive queries into polynomial and #P-hard ones.
+    entries:
+      - why-and-where-provenance
+      - provenance-semirings
+      - probabilistic-database
+      - dalvi-suciu-dichotomy

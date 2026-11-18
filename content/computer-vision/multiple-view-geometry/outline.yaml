@@ -1,0 +1,125 @@
+# The order of chapter 38.3, Projective and multiple view geometry. Groups are read in order; entries in a group too.
+groups:
+  - title: The projective plane and its maps
+    intro: >
+      In the [projective plane](/projective-plane/) points and lines are vectors up to scale, and parallel lines
+      meet at a point at infinity. A [homography](/homography/) is an invertible $3 \times 3$ matrix up to scale,
+      with 8 degrees of freedom. The [hierarchy of planar maps](/planar-transformation-hierarchy/) has 3, 4, 6 and
+      8 degrees of freedom, and the cross-ratio of four points on a line is the invariant that every homography
+      keeps.
+    entries:
+      - projective-plane
+      - homography
+      - planar-transformation-hierarchy
+      - cross-ratio
+
+  - title: Estimating a homography
+    intro: >
+      [Homography estimation](/homography-estimation/) from four or more matches depends on the cost. The
+      [reprojection error](/reprojection-error/) is the maximum likelihood cost under Gaussian noise, the
+      algebraic error has a closed-form minimizer, and the Sampson distance is a first-order approximation of the
+      geometric error. The [DLT](/dlt-homography/) minimizes the algebraic error and needs
+      [Hartley normalization](/hartley-normalization/) to be well conditioned.
+    entries:
+      - homography-estimation
+      - reprojection-error
+      - algebraic-and-geometric-error
+      - sampson-distance
+      - dlt-homography
+      - hartley-normalization
+
+  - title: Using homographies
+    intro: >
+      A camera that turns about its centre gives images related by $H = K_i R_i R_j^{\mathsf T} K_j^{-1}$, which is
+      the basis of [image stitching](/image-stitching/). Multi-band blending hides the seams by mixing low
+      frequencies over a wide band and high frequencies over a narrow one. A homography induced by a plane can be
+      decomposed into a rotation, a translation and the normal of the plane, with four candidates of which two
+      survive the visibility test.
+    entries:
+      - image-stitching
+      - multi-band-blending
+      - homography-decomposition
+
+  - title: Fitting with outliers
+    intro: >
+      Matches contain outliers, often half or more, and least squares breaks down on a single one.
+      [RANSAC](/ransac/) fits models to random minimal samples and keeps the one with the largest consensus. The
+      [iteration bound](/ransac-iteration-bound/) $k = \lceil \log(1 - p)/\log(1 - w^s) \rceil$ gives the number of
+      samples needed to draw one clean sample with probability $p$; success is likely, not certain.
+    entries:
+      - robust-model-fitting
+      - ransac
+      - ransac-iteration-bound
+
+  - title: Two-view geometry
+    intro: >
+      The [epipolar geometry](/epipolar-geometry/) of two views puts the match of a point on a line. The
+      [fundamental matrix](/fundamental-matrix/) $F$ has rank 2 and 7 degrees of freedom; with known intrinsics it
+      becomes the [essential matrix](/essential-matrix/) $E = [t]_\times R$, whose singular values are
+      $(s, s, 0)$. Decomposing $E$ gives four candidate poses, and the [cheirality](/cheirality/) test keeps the
+      one that puts the points in front of both cameras.
+    entries:
+      - epipolar-geometry
+      - fundamental-matrix
+      - essential-matrix
+      - essential-matrix-characterization
+      - cheirality
+      - essential-matrix-decomposition
+      - relative-pose-problem
+
+  - title: Estimating F and E
+    intro: >
+      The [eight-point algorithm](/eight-point-algorithm/) solves a linear system for $F$ and then enforces rank 2;
+      the normalized version conditions the data first. The seven-point algorithm uses the rank condition to
+      reach the minimal sample, with one or three real solutions. A [minimal solver](/minimal-solver/) returns all
+      models that fit a minimal sample, and the [five-point algorithm](/five-point-algorithm/) for $E$ has at most
+      10 solutions.
+    entries:
+      - eight-point-algorithm
+      - normalized-eight-point-algorithm
+      - seven-point-algorithm
+      - minimal-solver
+      - five-point-algorithm
+
+  - title: Pose and triangulation
+    intro: >
+      [Perspective-n-point](/perspective-n-point/) finds the pose of a calibrated camera from known 3D points;
+      [P3P](/p3p/) solves three points with up to four solutions, and EPnP solves $n$ points in $O(n)$ time.
+      [Triangulation](/point-triangulation/) finds a point from its images in known cameras: the midpoint and
+      linear methods are fast but not projective invariant, and the optimal two-view method finds the global
+      minimum of the reprojection error from a polynomial of degree 6.
+    entries:
+      - perspective-n-point
+      - p3p
+      - epnp
+      - point-triangulation
+      - midpoint-triangulation
+      - linear-triangulation
+      - optimal-triangulation
+
+  - title: Better sample consensus
+    intro: >
+      [MSAC](/msac/) scores a model by truncated squared errors instead of an inlier count, and MLESAC by a
+      likelihood. LO-RANSAC refits on the inliers of each new best model, PROSAC draws first from the best-scored
+      matches, and preemptive RANSAC scores a fixed set of hypotheses on blocks of data within a time budget.
+      [MAGSAC](/magsac/) needs no inlier threshold, and J-linkage fits several models at once.
+    entries:
+      - msac
+      - mlesac
+      - lo-ransac
+      - prosac
+      - preemptive-ransac
+      - magsac
+      - j-linkage
+
+  - title: Projective reconstruction
+    intro: >
+      The [trifocal tensor](/trifocal-tensor/) has 27 entries and 18 degrees of freedom and ties three views.
+      The [projective reconstruction theorem](/projective-reconstruction-theorem/) says that matches alone fix the
+      cameras and the points up to a projective map of space, except for critical configurations such as points
+      and centres on a ruled quadric. Stratified reconstruction then climbs from projective to affine to metric.
+    entries:
+      - trifocal-tensor
+      - projective-reconstruction-theorem
+      - critical-configurations
+      - stratified-reconstruction

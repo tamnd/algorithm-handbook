@@ -1,0 +1,17 @@
+## History
+
+The phase problem was first met in X-ray crystallography. From the 1910s crystallographers recorded the intensities of diffracted X-rays, which give the magnitudes of the Fourier coefficients of the electron density, and lost the phases. In 1934 Arthur Lindo Patterson saw that the intensities alone give the autocorrelation of the density, the function that now carries his name, and the direct methods of Herbert Hauptman and Jerome Karle, which use the positivity and atomic structure of the density to fix the phases, earned a Nobel Prize in 1985.
+
+The algorithms used today began in electron microscopy. Ralph Gerchberg and Owen Saxton published *A practical algorithm for the determination of phase from image and diffraction plane pictures* in Optik in 1972: go back and forth between the two planes, each time keeping the computed phase and putting back the measured magnitude. James Fienup adapted the iteration to a single magnitude and a constraint on the object, and his paper *Phase retrieval algorithms: a comparison* in Applied Optics in 1982 set out error reduction, proved that its error does not increase, and introduced the input-output algorithms, of which hybrid input-output became the standard tool. Daniel Griffin and Jae Lim used the same idea for sound in 1984, recovering a signal from its short-time Fourier magnitude.
+
+The question of uniqueness was settled for finite signals at about the same time. Monson Hayes, Jae Lim and Alan Oppenheim showed in 1980 when the magnitude, or the phase, determines a finite sequence, and Hayes proved in 1982 that in two or more dimensions the magnitude determines almost every signal, because a polynomial in several variables almost never factors. Oversampling made this usable in practice: in 1999 Jianwei Miao and his colleagues recorded the first image by coherent diffraction from a noncrystalline object.
+
+Since about 2011 the problem has also been studied with random measurements. Emmanuel Candès, Thomas Strohmer and Vladislav Voroninski's PhaseLift lifts the signal to a rank-one matrix and solves a semidefinite program, and Candès, Xiaodong Li and Mahdi Soltanolkotabi's Wirtinger flow runs gradient descent from a spectral start; both recover the signal with high probability. The survey by Shechtman and others in 2015 brought the optical and the mathematical work together.
+
+## Further reading
+
+- J. R. Fienup, *Phase retrieval algorithms: a comparison*, Applied Optics 21(15), 1982, 2758 to 2769. Error reduction, its non-increasing error, and hybrid input-output, with examples.
+- R. W. Gerchberg and W. O. Saxton, *A practical algorithm for the determination of phase from image and diffraction plane pictures*, Optik 35(2), 1972, 237 to 246. The original two-plane iteration.
+- Monson H. Hayes, Jae S. Lim and Alan V. Oppenheim, *Signal reconstruction from phase or magnitude*, IEEE Transactions on Acoustics, Speech, and Signal Processing 28(6), 1980. The one-dimensional theory, with the zeros of the z-transform.
+- Monson H. Hayes, *The reconstruction of a multidimensional sequence from the phase or magnitude of its Fourier transform*, same journal, 30(2), 1982. Uniqueness in two and more dimensions.
+- Yoav Shechtman, Yonina C. Eldar, Oren Cohen, Henry N. Chapman, Jianwei Miao and Mordechai Segev, *Phase retrieval with application to optical imaging: a contemporary overview*, IEEE Signal Processing Magazine 32(3), 2015, 87 to 109. The best single survey, covering ambiguities, uniqueness and algorithms.

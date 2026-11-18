@@ -1,4 +1,4 @@
-# The order of chapter 26.6, Networking algorithms. Groups are read in order; entries in a group too.
+# The order of chapter 26.5, Networking algorithms. Groups are read in order; entries in a group too.
 groups:
   - title: Reliable transfer and flow control
     intro: >
@@ -165,7 +165,7 @@ groups:
       permutation can be carried. [Maximum-throughput routing](/maximum-throughput-routing/),
       [wireless link scheduling](/wireless-link-scheduling/) and [backpressure routing](/backpressure-routing/) keep
       queues stable for every load inside the capacity region; backpressure routing is not the
-      [backpressure](/backpressure/) of rate limiting in Chapter 26.8.
+      [backpressure](/backpressure/) of rate limiting in Chapter 26.7.
     entries:
       - store-and-forward
       - wormhole-routing

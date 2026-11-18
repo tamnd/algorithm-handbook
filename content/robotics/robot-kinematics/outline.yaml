@@ -1,0 +1,93 @@
+# The order of chapter 37.2, Robot kinematics. Groups are read in order; entries in a group too.
+groups:
+  - title: Joints, chains and mobility
+    intro: >
+      A robot is a set of rigid links joined by joints. These entries name the joints, say how links and
+      joints form open and closed chains, and count how many independent motions a mechanism has. The count
+      of [Grübler's formula](/grubler-formula/) is right only when the constraints of the joints are
+      independent.
+    entries:
+      - kinematic-pair
+      - kinematic-chain
+      - grubler-formula
+
+  - title: Forward kinematics
+    intro: >
+      Forward kinematics maps the joint values to the pose of the end effector. Two conventions write the
+      map: a product of Denavit-Hartenberg matrices, four parameters per link, and the product of
+      exponentials, one screw axis per joint. The workspace is the image of the map.
+    entries:
+      - forward-kinematics
+      - denavit-hartenberg-convention
+      - product-of-exponentials-formula
+      - robot-workspace
+
+  - title: Inverse kinematics in closed form
+    intro: >
+      Inverse kinematics asks for the joint values that give a pose. A target can have no solution, a finite
+      number or infinitely many. For arms with the right geometry, such as a spherical wrist, the problem
+      splits into small pieces with formulas, and every solution comes out. The general 6R arm needs
+      elimination, and it has at most 16 solutions.
+    entries:
+      - inverse-kinematics
+      - kinematic-decoupling
+      - paden-kahan-subproblems
+      - pieper-criterion
+      - raghavan-roth-method
+      - six-r-inverse-kinematics-sixteen-solutions
+
+  - title: Velocity kinematics and statics
+    intro: >
+      The Jacobian maps joint velocities to the velocity of the end effector. It comes in several forms that
+      differ in the frame and in how the angular part is written. Its transpose maps a force at the end
+      effector to joint torques.
+    entries:
+      - geometric-jacobian
+      - analytic-jacobian
+      - space-and-body-jacobian
+      - jacobian-statics-duality
+
+  - title: Singularities and manipulability
+    intro: >
+      At a singularity the Jacobian loses rank, and some end effector velocities become impossible. The
+      singular values of the Jacobian say how far an arm is from one: they are the semi-axes of the
+      manipulability ellipsoid, and their product is Yoshikawa's measure.
+    entries:
+      - kinematic-singularity
+      - manipulability-ellipsoid
+      - yoshikawa-manipulability-measure
+
+  - title: Numerical inverse kinematics
+    intro: >
+      When there is no closed form, iterate. The Jacobian methods take a linear step toward the target:
+      Newton steps converge fast, but only from a good start and away from singularities; damping and the
+      transpose trade speed for safety near them. [Cyclic coordinate descent](/cyclic-coordinate-descent-inverse-kinematics/)
+      and [FABRIK](/fabrik/) need no Jacobian at all.
+    entries:
+      - jacobian-pseudoinverse-method
+      - newton-raphson-inverse-kinematics
+      - damped-least-squares-inverse-kinematics
+      - jacobian-transpose-method
+      - resolved-rate-motion-control
+      - cyclic-coordinate-descent-inverse-kinematics
+      - fabrik
+
+  - title: Redundancy
+    intro: >
+      An arm with more joints than the task needs has motions that leave the task unchanged. Projecting onto
+      the null space of the Jacobian uses them for a second goal, and the task-priority method stacks
+      several goals in a strict order.
+    entries:
+      - kinematic-redundancy
+      - null-space-projection
+      - task-priority-inverse-kinematics
+
+  - title: Parallel robots and calibration
+    intro: >
+      A parallel robot holds its platform with several legs in closed loops. Its inverse kinematics is easy,
+      leg by leg, and its forward kinematics is hard: the Stewart-Gough platform has up to 40 solutions.
+      Calibration fits the kinematic parameters of a real arm to measured poses.
+    entries:
+      - parallel-manipulator
+      - stewart-gough-forward-kinematics
+      - kinematic-calibration

@@ -1,6 +1,6 @@
 A string is a finite sequence of symbols from an alphabet: the letters of a text, the bytes of a file, the bases of a genome, the notes of a melody, the tokens of a program. Every editor has a search command, every compiler reads its input as a string, and every search engine, spam filter, version-control system and DNA sequencer spends much of its time on string problems. The questions are easy to state. Where does this word occur? Which of these thousand words occur? How close are two strings? What is the longest piece that two strings share? Their answers fill a field of their own, with its own data structures and its own mathematics.
 
-This volume collects that field. It starts with finding one pattern in a text and goes on to many patterns, to indexes built once on a text and queried many times, and to matches that allow errors. Two shorter chapters treat palindromes and hashing. The last chapter is the mathematics of words that the others use: periods, rotations, Lyndon words, repetitions and the words that avoid them.
+This volume collects that field. It starts with finding one pattern in a text and goes on to many patterns, to indexes built once on a text and queried many times, and to matches that allow errors. Two shorter chapters treat palindromes and hashing, and Chapter 8.7 is the mathematics of words that the others use: periods, rotations, Lyndon words, repetitions and the words that avoid them. Seven of the eight chapters are written; the last, on text processing and typesetting, is being written.
 
 ## Why strings get a volume of its own
 
@@ -29,6 +29,8 @@ A string is only an array, and many string algorithms are array algorithms in di
 **Chapter 8.6, String hashing**, maps strings to numbers. It analyzes the polynomial hash and its collision bound, uses it for equality tests and for Rabin-Karp, shows how [anti-hash tests](/anti-hash-tests/) defeat a fixed base and modulus, and compares the hash functions used in practice.
 
 **Chapter 8.7, String combinatorics**, studies words for their own sake. [Borders](/border/) and [periods](/string-period/), [primitive words](/primitive-word/) and rotations, [Lyndon words](/lyndon-word/) and [de Bruijn sequences](/de-bruijn-sequence/), [runs](/maximal-repetition/) and [square-free words](/square-free-word/) are the tools behind many algorithms in the earlier chapters.
+
+**Chapter 8.8, Text processing and typesetting**, is being written. It will cover real text: Unicode encodings, normalization, segmentation and collation, line and page breaking with hyphenation, and diff and merge of files. Meanwhile, read [Knuth-Plass line breaking](/knuth-plass-line-breaking/) in Volume 2 and [Myers' diff algorithm](/myers-diff/) in Volume 6.
 
 ## How to read this volume
 

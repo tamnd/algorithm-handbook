@@ -1,0 +1,11 @@
+groups:
+  - title: Equilibria and their existence
+    intro: >
+      A Nash equilibrium is a profile of mixed strategies from which no player gains by a change of their own.
+      The minimax theorem settles two-player zero-sum games with one number, the value, proved by linear
+      programming duality. Nash's theorem then shows that every finite game, with any number of players, has
+      an equilibrium, by a fixed point argument.
+    entries:
+      - nash-equilibrium
+      - minimax-theorem
+      - nash-existence-theorem

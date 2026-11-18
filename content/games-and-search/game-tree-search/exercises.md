@@ -10,7 +10,7 @@
 
    $$A = \begin{pmatrix} 4 & -2 \\ -3 & 1 \end{pmatrix}.$$
 
-   Check first that there is no saddle point, then find both optimal mixed strategies and the value ([minimax theorem](/minimax-theorem/)).
+   Check first that there is no saddle point, then find both optimal mixed strategies and the value (the [minimax theorem](/minimax-theorem/) of Volume 42).
 
 6. ◦ MAX chooses between two moves. Move A leads to a chance node that gives 6 with probability $1/3$ and 3 with probability $2/3$. Move B leads to a chance node that gives 0 or 9, each with probability $1/2$. Which move does [expectiminimax](/expectiminimax/) choose, and with what value?
 
@@ -36,7 +36,7 @@
 
 17. • In a variant of rock-paper-scissors, a win with rock against scissors scores 2, the other wins score 1, and ties score 0. Write the payoff matrix and find the optimal mixed strategies and the value.
 
-18. • In the stag hunt, each of two hunters chooses stag or hare. Two stag hunters get 4 each; a hare hunter gets 3 whatever the other does; a lone stag hunter gets 0. Find all [Nash equilibria](/nash-equilibrium/), pure and mixed, and their payoffs.
+18. • Play Kuhn poker, as the [imperfect-information game](/imperfect-information-game/) entry gives it, with four cards J < Q < K < A instead of three: each player gets one card and two cards are not seen. How many outcomes has the chance node? How many information sets and how many pure strategies has each player? How many sequences has each player in the sequence form? Check your method on the three-card game, where the entry gives 64 pure strategies and 13 sequences.
 
 19. • A rock-paper-scissors player uses regret matching, the rule inside [counterfactual regret minimization](/counterfactual-regret-minimization/). Its cumulative regrets for rock, paper and scissors are $(4, -2, 1)$. Give its current strategy. The opponent then plays paper; update the regrets and give the next strategy.
 

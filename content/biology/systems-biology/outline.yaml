@@ -1,0 +1,93 @@
+# The order of chapter 27.9, Systems biology. Groups are read in order; entries in a group too.
+groups:
+  - title: Reaction networks and their matrices
+    intro: >
+      A network of reactions is written as a [stoichiometric matrix](/stoichiometric-matrix/), with a row per
+      species and a column per reaction. Its left null space gives the conservation laws, and its right null
+      space the steady flux patterns. Under [mass action](/mass-action-kinetics/) the network becomes an ODE,
+      and the [deficiency zero theorem](/deficiency-zero-theorem/) reads the behavior of that ODE from the
+      graph alone, for every choice of rate constants.
+    entries:
+      - stoichiometric-matrix
+      - chemical-reaction-network
+      - mass-action-kinetics
+      - deficiency-zero-theorem
+
+  - title: Rate laws and model reduction
+    intro: >
+      Detailed mass action models have many fast steps. The [quasi-steady-state approximation](/quasi-steady-state-approximation/)
+      removes the fast intermediates and leaves compact rate laws: the
+      [Michaelis-Menten law](/michaelis-menten-kinetics/) for enzymes and the [Hill function](/hill-equation/)
+      for cooperative binding. They hold when the timescales are well separated.
+    entries:
+      - hill-equation
+      - quasi-steady-state-approximation
+      - michaelis-menten-kinetics
+
+  - title: Gene circuits
+    intro: >
+      A [gene regulatory network](/gene-regulatory-network/) is a directed graph of activations and
+      repressions with a dynamic model on top. Small circuits have exact analyses in their models: the
+      [feed-forward loop](/feed-forward-loop/) delays or pulses, the [toggle switch](/genetic-toggle-switch/) is
+      bistable, the [repressilator](/repressilator/) oscillates. Boolean models replace levels by on and off,
+      and finding whether a Boolean network has a fixed point is NP-complete.
+    entries:
+      - gene-regulatory-network
+      - feed-forward-loop
+      - genetic-toggle-switch
+      - repressilator
+      - random-boolean-network
+      - boolean-network-attractor-detection
+
+  - title: Stochastic kinetics
+    intro: >
+      With few molecules, a well-mixed network is a continuous-time Markov chain whose law obeys the
+      [chemical master equation](/chemical-master-equation/). The [Gillespie algorithm](/gillespie-algorithm/)
+      and its variants sample that chain exactly. [Tau-leaping](/tau-leaping/), the
+      [chemical Langevin equation](/chemical-langevin-equation/), the
+      [linear noise approximation](/linear-noise-approximation/) and [moment closure](/moment-closure/)
+      approximate it, and the [finite state projection](/finite-state-projection/) solves it on a finite set
+      with a certified error bound.
+    entries:
+      - chemical-master-equation
+      - gillespie-algorithm
+      - first-reaction-method
+      - next-reaction-method
+      - tau-leaping
+      - chemical-langevin-equation
+      - linear-noise-approximation
+      - moment-closure
+      - finite-state-projection
+
+  - title: Constraint-based metabolism
+    intro: >
+      Genome-scale metabolic models have thousands of reactions and few known rate constants, so they are
+      studied through the steady-state constraint $Sv = 0$ and bounds on the fluxes.
+      [Flux balance analysis](/flux-balance-analysis/) is a linear program, and so are its variants;
+      [MOMA](/minimization-of-metabolic-adjustment/) is a quadratic program, and
+      [OptKnock](/optknock/) and [gap filling](/metabolic-network-gap-filling/) are mixed-integer programs.
+      [Elementary flux modes](/elementary-flux-mode/) list the minimal pathways, and there can be
+      exponentially many.
+    entries:
+      - constraint-based-metabolic-modeling
+      - flux-balance-analysis
+      - flux-variability-analysis
+      - dynamic-flux-balance-analysis
+      - minimization-of-metabolic-adjustment
+      - optknock
+      - metabolic-network-gap-filling
+      - elementary-flux-mode
+      - elementary-flux-mode-enumeration
+
+  - title: Inferring and comparing networks
+    intro: >
+      Networks are also inferred from data and compared across species.
+      [Network inference](/gene-regulatory-network-inference/) from expression is not identifiable without
+      assumptions, so methods such as [ARACNE](/aracne/) and [GENIE3](/genie3/) are scored on benchmarks.
+      [Network alignment](/biological-network-alignment/) is NP-hard, and [IsoRank](/isorank/) is a heuristic for it.
+    entries:
+      - gene-regulatory-network-inference
+      - aracne
+      - genie3
+      - biological-network-alignment
+      - isorank

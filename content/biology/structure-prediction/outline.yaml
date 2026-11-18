@@ -92,8 +92,9 @@ groups:
       simplest lattice model, and finding its optimum is
       [NP-complete](/hp-folding-np-completeness/) on the square and cubic lattices.
       [Ab initio folding](/ab-initio-protein-folding/) searches without a template:
-      [fragment assembly](/fragment-assembly/) and [Rosetta](/rosetta/) by Monte Carlo moves,
-      [molecular dynamics](/molecular-dynamics/) by integrating the equations of motion of a force field.
+      [fragment assembly](/fragment-assembly/) and [Rosetta](/rosetta/) by Monte Carlo moves. Simulation by
+      [molecular dynamics](/molecular-dynamics/), which integrates the equations of motion of a force field, is in
+      Volume 43.
     entries:
       - protein-structure-prediction
       - energy-function
@@ -102,7 +103,6 @@ groups:
       - hp-folding-np-completeness
       - ab-initio-protein-folding
       - fragment-assembly
-      - molecular-dynamics
       - rosetta
   - title: Templates
     intro: >

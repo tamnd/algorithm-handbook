@@ -1,0 +1,34 @@
+# The order of chapter 40.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Access paths and their order
+    intro: >
+      An index helps a query only as much as the table pages it saves. A clustered index keeps the rows
+      in key order, so a range reads few pages; a covering index answers a query without the table at
+      all. Bulk loading builds a B+ tree from sorted entries in one pass, with full nodes.
+    entries:
+      - clustered-index
+      - covering-index
+      - bulk-loading-b-tree
+  - title: Indexes for analytic scans
+    intro: >
+      Analytic queries read large parts of a table. Bitmap indexes answer selections with word-wide
+      AND and OR, zone maps let a scan skip blocks whose range of values misses the predicate, and a
+      join index stores the result of a join as pairs of row ids.
+    entries:
+      - bitmap-index
+      - zone-map
+      - join-index
+  - title: Adaptive and learned indexes
+    intro: >
+      Two research lines change how an index is built. Database cracking builds the index as a side
+      effect of the queries, one partition at a time; a learned index replaces the upper levels of a
+      tree with a model of the key distribution and a stored error bound.
+    entries:
+      - database-cracking
+      - learned-index
+  - title: Choosing indexes
+    intro: >
+      Each index speeds up some queries and slows every update. Choosing a set of indexes for a workload
+      under a space budget is NP-hard, and tools search greedily with the optimizer's cost estimates.
+    entries:
+      - index-selection

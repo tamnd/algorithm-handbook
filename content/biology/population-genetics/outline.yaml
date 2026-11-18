@@ -1,0 +1,117 @@
+groups:
+  - title: Populations, drift and equilibrium
+    intro: >
+      The state of a population at one locus is an [allele frequency](/allele-frequency/). The
+      [Wright-Fisher model](/wright-fisher-model/) samples each generation from the last, and the randomness of that
+      sampling is [genetic drift](/genetic-drift/). The [Hardy-Weinberg principle](/hardy-weinberg-principle/) gives
+      the genotype proportions under random mating, with an [exact test](/hardy-weinberg-exact-test/) for real
+      counts. [Effective size](/effective-population-size/) and the [Moran model](/moran-model/) relate real
+      populations to the ideal one.
+    entries:
+      - allele-frequency
+      - wright-fisher-model
+      - genetic-drift
+      - hardy-weinberg-principle
+      - hardy-weinberg-exact-test
+      - effective-population-size
+      - moran-model
+  - title: Mutation and diversity
+    intro: >
+      Drift removes variation and mutation adds it back. The [infinite alleles model](/infinite-alleles-model/)
+      and the [Ewens sampling formula](/ewens-sampling-formula/) treat alleles as labels; the
+      [infinite sites model](/infinite-sites-model/) treats them as sites on a sequence. Under neutrality,
+      [nucleotide diversity](/nucleotide-diversity/), the [site frequency spectrum](/site-frequency-spectrum/),
+      [Watterson's estimator](/watterson-estimator/) and [Tajima's D](/tajimas-d/) all follow from the genealogy
+      of the sample, which [coalescent simulation](/coalescent-simulation/) draws directly.
+    entries:
+      - infinite-alleles-model
+      - ewens-sampling-formula
+      - infinite-sites-model
+      - nucleotide-diversity
+      - site-frequency-spectrum
+      - watterson-estimator
+      - tajimas-d
+      - coalescent-simulation
+  - title: Selection
+    intro: >
+      The [Wright-Fisher diffusion](/wright-fisher-diffusion/) turns the allele count into a continuous frequency
+      and gives [Kimura's fixation probability](/kimura-fixation-probability/) for a selected allele.
+      [Mutation-selection balance](/mutation-selection-balance/) sets the frequency of a harmful allele. The rest of
+      the group detects selection in data: the [dN/dS ratio](/dn-ds-ratio/), estimated by the
+      [Nei-Gojobori method](/nei-gojobori-method/) or a [codon model](/codon-substitution-model/), the
+      [McDonald-Kreitman test](/mcdonald-kreitman-test/), and [extended haplotype homozygosity](/extended-haplotype-homozygosity/)
+      for recent sweeps.
+    entries:
+      - wright-fisher-diffusion
+      - kimura-fixation-probability
+      - mutation-selection-balance
+      - dn-ds-ratio
+      - nei-gojobori-method
+      - codon-substitution-model
+      - mcdonald-kreitman-test
+      - extended-haplotype-homozygosity
+  - title: Relatedness and pedigrees
+    intro: >
+      Two gene copies are [identical by descent](/identity-by-descent/) when they copy one ancestral copy, and the
+      [kinship coefficient](/kinship-coefficient/) is the chance of this for two individuals. On a known pedigree,
+      the [Elston-Stewart algorithm](/elston-stewart-algorithm/) peels one family at a time, and the
+      [Lander-Green algorithm](/lander-green-algorithm/) runs an HMM along the markers instead.
+    entries:
+      - identity-by-descent
+      - kinship-coefficient
+      - elston-stewart-algorithm
+      - lander-green-algorithm
+  - title: Haplotypes, phasing and imputation
+    intro: >
+      Alleles at nearby sites travel together, which [linkage disequilibrium](/linkage-disequilibrium/) measures.
+      [Haplotype phasing](/haplotype-phasing/) recovers the two haplotypes of each person, first by
+      [EM over haplotype frequencies](/em-haplotype-frequency-estimation/) and now by the
+      [Li-Stephens copying model](/li-stephens-model/), which also drives [genotype imputation](/genotype-imputation/).
+      The [positional Burrows-Wheeler transform](/positional-burrows-wheeler-transform/) finds shared haplotype
+      segments in large panels.
+    entries:
+      - linkage-disequilibrium
+      - haplotype-phasing
+      - em-haplotype-frequency-estimation
+      - li-stephens-model
+      - genotype-imputation
+      - positional-burrows-wheeler-transform
+  - title: Structure and admixture
+    intro: >
+      Subpopulations differ in allele frequency, which the [fixation index](/fixation-index/) measures.
+      [Population structure inference](/population-structure-inference/) finds the source populations and each
+      person's share of them, by the [Pritchard-Stephens-Donnelly model](/pritchard-stephens-donnelly-model/), by
+      [maximum likelihood](/maximum-likelihood-admixture-estimation/) or by
+      [principal components](/genetic-principal-components/). [Local ancestry inference](/local-ancestry-inference/)
+      labels each segment, and the [f-statistics](/patterson-f-statistics/) and the
+      [ABBA-BABA test](/abba-baba-test/) test for admixture between populations.
+    entries:
+      - fixation-index
+      - population-structure-inference
+      - pritchard-stephens-donnelly-model
+      - maximum-likelihood-admixture-estimation
+      - genetic-principal-components
+      - local-ancestry-inference
+      - patterson-f-statistics
+      - abba-baba-test
+  - title: Association and heritability
+    intro: >
+      A [genome-wide association study](/genome-wide-association-study/) tests every variant against a trait.
+      Structure and relatedness inflate its statistics; [genomic control](/genomic-control/) divides them by a
+      common factor, and [mixed models](/mixed-model-association/) model the relatedness directly. The same mixed
+      model gives [SNP heritability](/snp-heritability-estimation/), and [LD score regression](/ld-score-regression/)
+      separates heritability from confounding using summary statistics alone.
+    entries:
+      - genome-wide-association-study
+      - genomic-control
+      - mixed-model-association
+      - snp-heritability-estimation
+      - ld-score-regression
+  - title: Genealogies along the genome
+    intro: >
+      With recombination, each position of the genome has its own tree. The
+      [sequentially Markov coalescent](/sequentially-markov-coalescent/) treats the sequence of trees as a Markov
+      chain, and [PSMC](/psmc/) uses that chain as an HMM to read past population sizes from one diploid genome.
+    entries:
+      - sequentially-markov-coalescent
+      - psmc

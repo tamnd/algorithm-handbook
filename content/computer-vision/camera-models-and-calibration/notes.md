@@ -1,0 +1,16 @@
+## History
+
+Calibration began in photogrammetry, long before computers. A. E. Conrady described the distortion of decentred lenses in 1919, and Duane Brown turned radial and decentering distortion into the model that still carries both names, in papers of 1966 and 1971. Y. I. Abdel-Aziz and H. M. Karara introduced the direct linear transformation for close-range photogrammetry in 1971, so that a camera could be found from known points by linear algebra alone.
+
+Computer vision took up these tools in the 1980s. Sundaram Ganapathy showed in 1984 how to take a $3 \times 4$ matrix apart into position, orientation and internal parameters. Roger Tsai gave a two-stage method with radial distortion at CVPR in 1986 and in a journal in 1987, and it served machine vision metrology for a decade. Bruno Caprile and Vincent Torre calibrated from vanishing points in 1990, and Stephen Barnard had already found vanishing points on the Gaussian sphere in 1983. Zhengyou Zhang published his method with a flat pattern as a report in 1998 and in a journal in 2000; with the toolbox of Jean-Yves Bouguet and with OpenCV, it became the standard way to calibrate a camera.
+
+Self-calibration came from the geometry of the absolute conic. Stephen Maybank and Olivier Faugeras derived the Kruppa equations for a moving camera in 1992, from a constraint that Erwin Kruppa had written in 1913. Richard Hartley derived them from the fundamental matrix in 1997, Bill Triggs introduced the absolute quadric the same year, and Marc Pollefeys, Reinhard Koch and Luc Van Gool handled varying intrinsics in 1999. Peter Sturm classified the critical motions in 1997 and argued against the Kruppa equations in 2000.
+
+Wide and unusual cameras came last. Christopher Geyer and Kostas Daniilidis unified the central catadioptric cameras in 2000, and Christopher Mei and Patrick Rives calibrated the model from planar grids in 2007. Andrew Fitzgibbon proposed the division model in 2001, and Juho Kannala and Sami Brandt gave their generic fisheye model in 2006. Michael Grossberg and Shree Nayar described any camera as a map from pixels to rays in 2001, and Robert Pless wrote the epipolar constraint of such cameras in 2003. Marci Meingast, Christopher Geyer and Shankar Sastry modelled the rolling shutter in 2005.
+
+## Further reading
+
+- Richard Hartley and Andrew Zisserman, Multiple View Geometry in Computer Vision, second edition, Cambridge University Press, 2004. Chapters 6 to 8 give the camera models, resectioning, the absolute conic and calibration from one view, and Chapter 19 gives self-calibration.
+- Peter Sturm, Srikumar Ramalingam, Jean-Philippe Tardif, Simone Gasparini and João Barreto, Camera Models and Fundamental Concepts Used in Geometric Computer Vision, Now Publishers, 2011. A survey of central, non-central, fisheye and catadioptric models in one notation.
+- Zhengyou Zhang, A Flexible New Technique for Camera Calibration, IEEE Transactions on Pattern Analysis and Machine Intelligence, 2000. The calibration method with a flat pattern, short and clear.
+- Richard Szeliski, Computer Vision: Algorithms and Applications, second edition, Springer, 2022. Chapters 2 and 11 give image formation and calibration with practical advice.

@@ -1,0 +1,10 @@
+# The order of chapter 45.1. One entry is written in this edition.
+groups:
+  - title: Noninterference
+    intro: >
+      Information-flow security asks what a program does with its secrets, not who may call it.
+      [Noninterference](/noninterference/) is the standard definition: runs that agree on the public
+      inputs agree on the public outputs. It compares two runs, so it is not a property of single runs,
+      and it is undecidable; security type systems check a stronger condition that implies it.
+    entries:
+      - noninterference

@@ -1,0 +1,9 @@
+groups:
+  - title: Integrating the motion of atoms
+    intro: >
+      Molecular dynamics moves every atom by Newton's law under the forces of a force field, one small time
+      step at a time. The integrator is velocity Verlet: a half kick, a drift, one force evaluation and a
+      second half kick. It is time-reversible and symplectic, so its energy error stays bounded for a small
+      enough step, and the fastest vibration in the system sets how small that step must be.
+    entries:
+      - molecular-dynamics

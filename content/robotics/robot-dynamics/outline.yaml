@@ -1,0 +1,89 @@
+# The order of chapter 37.3, Robot dynamics. Groups are read in order; entries in a group too.
+groups:
+  - title: The equations of motion
+    intro: >
+      One rigid body obeys the Newton-Euler equations. A chain of bodies has a joint-space inertia
+      matrix $M(q)$, and the Euler-Lagrange equations turn its kinetic and potential energy into the
+      manipulator equation $M(q)\ddot q + C(q, \dot q)\dot q + g(q) = \tau$. Two properties of this
+      equation carry most of robot control: $\dot M - 2C$ is skew-symmetric for the right $C$, and the
+      torques are linear in the inertial parameters. Kane's method reaches the same equations by
+      another route.
+    entries:
+      - newton-euler-equations
+      - joint-space-inertia-matrix
+      - euler-lagrange-manipulator-dynamics
+      - manipulator-equation
+      - skew-symmetry-of-manipulator-dynamics
+      - linearity-in-dynamic-parameters
+      - kanes-method
+
+  - title: Inverse and forward dynamics
+    intro: >
+      The manipulator equation is used in two directions. Inverse dynamics gives the torques for a
+      motion, and forward dynamics gives the accelerations for the torques, which a simulator then
+      integrates. A robot with a floating base, such as a legged robot, has six unactuated rows, so
+      its inverse dynamics can have no solution or many.
+    entries:
+      - inverse-dynamics
+      - forward-dynamics
+      - floating-base-dynamics
+
+  - title: Spatial vectors
+    intro: >
+      Six-dimensional vectors that hold an angular and a linear part make the equations of a body
+      short. Velocities and accelerations are motion vectors, forces and momenta are force vectors,
+      and the $6 \times 6$ spatial inertia, ten numbers per body, maps one kind to the other.
+    entries:
+      - spatial-vector-algebra
+      - spatial-inertia
+
+  - title: Recursive algorithms
+    intro: >
+      A robot is a tree of bodies, and the fast algorithms walk along the tree. The
+      [recursive Newton-Euler algorithm](/recursive-newton-euler-algorithm/) solves inverse dynamics in
+      $O(n)$ time, the composite rigid body algorithm forms $M(q)$ in $O(nd)$ time for a tree of depth
+      $d$, and the articulated-body algorithm solves forward dynamics in $O(n)$ time with the
+      articulated-body inertias. The derivatives of these maps, needed by optimizers, cost $O(nd)$.
+    entries:
+      - recursive-newton-euler-algorithm
+      - composite-rigid-body-algorithm
+      - articulated-body-inertia
+      - articulated-body-algorithm
+      - rigid-body-dynamics-derivatives
+
+  - title: Matching the model to the robot
+    intro: >
+      A model is only as good as its numbers. Torque data can fix only certain combinations of the
+      masses and inertias, the base parameters, and least squares along an exciting trajectory finds
+      them. Elastic gears break the rigid model in another way, and the flexible joint model adds a
+      spring and a motor position at each joint.
+    entries:
+      - base-inertial-parameters
+      - dynamic-parameter-identification
+      - flexible-joint-model
+
+  - title: Task space and momentum
+    intro: >
+      Two reduced views of the same equations. The operational space formulation writes the dynamics in
+      the coordinates of a task, such as the position of the hand, and the dynamically consistent
+      inverse splits the torques of a redundant arm into a task part and a part the task does not feel.
+      The centroidal momentum matrix and centroidal dynamics keep only the total momentum of the robot,
+      which only the contacts and gravity can change.
+    entries:
+      - operational-space-formulation
+      - dynamically-consistent-generalized-inverse
+      - centroidal-momentum-matrix
+      - centroidal-dynamics
+
+  - title: Constraints and contact
+    intro: >
+      Gauss's principle makes constrained motion a quadratic program at each instant. Contact with the
+      ground is a one-sided constraint with friction, written as a complementarity problem. With
+      Coulomb friction the force form of that problem can have no solution or several, the Painlevé
+      paradox, and the impulse form of Stewart-Trinkle time stepping, one linear complementarity
+      problem per step, is what simulators solve instead.
+    entries:
+      - gauss-principle-of-least-constraint
+      - rigid-contact-complementarity
+      - painleve-paradox
+      - stewart-trinkle-time-stepping

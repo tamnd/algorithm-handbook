@@ -1,0 +1,83 @@
+# The order of chapter 39.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Conditional lower bounds
+    intro: >
+      Many problems with simple quadratic or cubic algorithms have resisted every attempt to save a power
+      of $n$. Fine-grained complexity explains this with [conditional lower bounds](/conditional-lower-bound/):
+      a [fine-grained reduction](/fine-grained-reduction/) shows that a faster algorithm for one problem
+      would give a faster algorithm for another that is believed hard. When reductions go both ways, the
+      problems form an equivalence class.
+    entries:
+      - quadratic-barrier
+      - conditional-lower-bound
+      - fine-grained-reduction
+      - quadratic-time-hardness
+      - fine-grained-equivalence-class
+
+  - title: SETH and orthogonal vectors
+    intro: >
+      The Strong Exponential Time Hypothesis says that $k$-SAT needs time close to $2^n$ when $k$ is large.
+      Splitting the variables into two halves turns a formula into an instance of orthogonal vectors, so
+      SETH implies that orthogonal vectors needs time $n^{2-o(1)}$. Reductions from orthogonal vectors give
+      the quadratic bounds for edit distance and LCS. The set cover conjecture is a separate hypothesis of
+      the same exponential kind.
+    entries:
+      - strong-exponential-time-hypothesis
+      - orthogonal-vectors
+      - seth-implies-ov-lower-bound
+      - orthogonal-vectors-hypothesis
+      - edit-distance-seth-lower-bound
+      - lcs-seth-lower-bound
+      - set-cover-conjecture
+
+  - title: 3SUM
+    intro: >
+      [3SUM](/3sum/) asks for three numbers that sum to zero, and sorting with two pointers solves it in
+      $O(n^2)$ time. For thirty years the conjecture that no $O(n^{2-\varepsilon})$ algorithm exists was the
+      source of lower bounds in geometry and beyond. Preprints of October 2026, not yet refereed, give
+      truly subquadratic algorithms; the entries say what this changes for 3SUM-hardness, Convolution
+      3SUM and min-plus convolution.
+    entries:
+      - 3sum
+      - k-sum
+      - 3sum-conjecture
+      - 3sum-hardness
+      - convolution-3sum
+      - min-plus-convolution
+
+  - title: APSP, triangles and cliques
+    intro: >
+      All-pairs shortest paths, the min-plus product and negative triangle detection are equivalent under
+      subcubic reductions, so one question about a triangle stands for a whole class of cubic problems.
+      The weighted clique hypotheses extend it to $k$ vertices. A preprint of October 2026 claims truly
+      subcubic APSP; unweighted triangle detection and combinatorial Boolean matrix multiplication are
+      separate questions that the preprints leave open.
+    entries:
+      - apsp-conjecture
+      - negative-triangle
+      - apsp-negative-triangle-equivalence
+      - min-weight-k-clique-hypothesis
+      - zero-k-clique-hypothesis
+      - triangle-detection-hypothesis
+      - combinatorial-bmm-conjecture
+
+  - title: Dynamic problems
+    intro: >
+      A dynamic algorithm answers queries while its input changes. The OMv conjecture says that multiplying
+      a fixed Boolean matrix by $n$ vectors that arrive one at a time needs time $n^{3-o(1)}$, and short
+      reductions turn it into polynomial lower bounds on update and query times, many of them tight.
+    entries:
+      - online-matrix-vector-multiplication
+      - omv-conjecture
+      - dynamic-lower-bounds
+
+  - title: Hypercliques and the algorithmic method
+    intro: >
+      For hypergraphs with edges of size $d \ge 3$, no algorithm is known that beats trying all $k$-sets by
+      a polynomial factor, and the hyperclique hypothesis says none exists. The last entry runs the other
+      way: Williams' algorithmic method turns a satisfiability algorithm that beats $2^n$ by a superpolynomial
+      factor into a circuit lower bound.
+    entries:
+      - hyperclique
+      - hyperclique-hypothesis
+      - algorithmic-method

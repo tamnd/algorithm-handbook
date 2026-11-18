@@ -17,7 +17,7 @@ The chapter is in ten groups, read in order.
 9. **Packet and switch scheduling.** [Packet scheduling](/packet-scheduling/), [generalized processor sharing](/generalized-processor-sharing/), [fair queueing](/fair-queueing/), weighted fair queueing, [deficit round robin](/deficit-round-robin/), [proportional fair scheduling](/proportional-fair-scheduling/), switch scheduling, the [Birkhoff-von Neumann decomposition](/birkhoff-von-neumann-decomposition/), PIM and [iSLIP](/islip/).
 10. **Interconnection networks and throughput.** [Store-and-forward](/store-and-forward/), [wormhole routing](/wormhole-routing/), [virtual cut-through](/virtual-cut-through/), [dimension-order routing](/dimension-order-routing/), [permutation routing](/permutation-routing/), [Valiant's routing](/valiant-routing/), [oblivious routing](/oblivious-routing/), the [Beneš network](/benes-network-routing/), [maximum-throughput routing](/maximum-throughput-routing/), [wireless link scheduling](/wireless-link-scheduling/) and [backpressure routing](/backpressure-routing/).
 
-Chord, Kademlia and overlay lookup are distributed algorithms; they are here because Volume 21 has no entry for them. Backpressure routing, the max-weight policy of Tassiulas and Ephremides, is a different idea from the [backpressure](/backpressure/) of Chapter 26.8, where a slow consumer makes its producer wait.
+Chord, Kademlia and overlay lookup are distributed algorithms; they are here because Volume 21 has no entry for them. Backpressure routing, the max-weight policy of Tassiulas and Ephremides, is a different idea from the [backpressure](/backpressure/) of Chapter 26.7, where a slow consumer makes its producer wait.
 
 ## A first reading
 

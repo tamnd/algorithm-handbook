@@ -1,0 +1,132 @@
+# The order of chapter 39.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Parameters and fixed-parameter tractability
+    intro: >
+      A [parameter](/parameter/) is a number attached to each input, such as the size $k$ of the solution
+      sought. A problem is fixed-parameter tractable when it can be solved in time $f(k) \cdot n^{c}$, with
+      all of the exponential growth confined to $k$. Vertex cover, independent set and clique are the three
+      problems that every later group returns to, and [XP](/xp/) is the weaker class of time $n^{g(k)}$.
+    entries:
+      - parameter
+      - parameterized-problem
+      - fixed-parameter-tractable
+      - parameterized-vertex-cover
+      - parameterized-independent-set
+      - parameterized-clique
+      - xp
+
+  - title: Search trees and first kernels
+    intro: >
+      The two oldest tools of the field are a branching algorithm whose depth is bounded by $k$ and a
+      kernel, a polynomial-time reduction to an equivalent instance whose size depends on $k$ alone. Vertex
+      cover shows both: branching on an edge gives $2^k$ leaves, and the rules of Buss give a kernel with at
+      most $k^2$ edges. The group ends with branching and kernels for other edit and deletion problems.
+    entries:
+      - bounded-search-tree
+      - vertex-cover-branching
+      - kernel
+      - buss-kernel
+      - kernelization
+      - bounded-degree-deletion
+      - cluster-editing
+      - edge-clique-cover
+      - measure-and-conquer
+
+  - title: Kernels from matchings, linear programs and sunflowers
+    intro: >
+      Better kernels come from structure. A crown, found with a maximum matching, and the half-integral
+      linear program of Nemhauser and Trotter each give a vertex cover kernel with a linear number of
+      vertices. The sunflower lemma gives kernels of size $O(k^d)$ for hitting set and set packing with sets
+      of size at most $d$.
+    entries:
+      - crown-reduction
+      - nemhauser-trotter-theorem
+      - lp-kernelization
+      - sunflower-lemma
+      - parameterized-hitting-set
+      - parameterized-set-packing
+
+  - title: Parameterized reductions and the W-hierarchy
+    intro: >
+      Some problems seem to have no FPT algorithm, and a parameterized reduction, which keeps the new
+      parameter bounded by a function of the old one, compares them. Weighted satisfiability defines the
+      classes $\mathsf{W}[1] \subseteq \mathsf{W}[2] \subseteq \cdots$, clique is $\mathsf{W}[1]$-complete and
+      dominating set is $\mathsf{W}[2]$-complete. Hardness here is conditional: a $\mathsf{W}[1]$-hard
+      problem has no FPT algorithm unless $\mathsf{FPT} = \mathsf{W}[1]$, which is open.
+    entries:
+      - parameterized-reduction
+      - para-np-hardness
+      - weighted-satisfiability
+      - w-hierarchy
+      - w-hardness
+      - clique-w1-completeness
+      - fpt-w1-conjecture
+      - parameterized-dominating-set
+      - parameterized-bandwidth
+      - parameterized-counting-complexity
+      - para-l
+
+  - title: Limits of kernels
+    intro: >
+      Every FPT problem has a kernel, but not every one has a kernel of polynomial size. Compositions and
+      cross-compositions show, unless $\mathsf{NP} \subseteq \mathsf{coNP/poly}$, that problems such as
+      $k$-path have no polynomial kernel, and polynomial parameter transformations carry such bounds from one
+      problem to another. Lossy kernels and FPT approximation relax the demand for an exact answer.
+    entries:
+      - polynomial-kernel
+      - polynomial-compression
+      - kernel-lower-bounds
+      - cross-composition
+      - polynomial-parameter-transformation
+      - lossy-kernelization
+      - fpt-approximation
+
+  - title: Random colorings and algebra
+    intro: >
+      [Color coding](/color-coding/) colors the vertices at random and looks for a solution whose vertices
+      all get different colors, which a dynamic program over color sets finds in time $2^{O(k)}$ times a
+      polynomial. Divide and color, representative families and algebraic sieves improve the base for
+      $k$-path and related problems, and Steiner tree shows dynamic programming over subsets of terminals.
+    entries:
+      - color-coding
+      - parameterized-longest-path
+      - k-path-color-coding
+      - divide-and-color
+      - graph-motif
+      - representative-families
+      - parameterized-steiner-tree
+
+  - title: Cuts and deletion problems
+    intro: >
+      Iterative compression builds a solution of size $k$ from one of size $k+1$, and it gave the first FPT
+      algorithm for odd cycle transversal. Important separators bound the number of cuts worth trying by
+      $4^k$, and they are the key step in the FPT algorithms for multiway cut, multicut and directed feedback
+      vertex set. Randomized contractions
+      handle cut problems where separators alone do not suffice.
+    entries:
+      - iterative-compression
+      - odd-cycle-transversal
+      - parameterized-feedback-vertex-set
+      - important-separators
+      - parameterized-multiway-cut
+      - parameterized-multicut
+      - directed-feedback-vertex-set
+      - randomized-contractions
+
+  - title: Treewidth, minors and meta-theorems
+    intro: >
+      Courcelle's theorem decides every property of monadic second-order logic in linear time on graphs of
+      bounded treewidth, and [cut and count](/cut-and-count/) makes such dynamic programs single exponential
+      for connectivity problems. The grid minor theorem says that large treewidth forces a large grid minor,
+      which gives bidimensionality, subexponential algorithms on planar graphs and the irrelevant vertex
+      technique behind minor testing and disjoint paths.
+    entries:
+      - courcelle-theorem
+      - meta-theorems
+      - cut-and-count
+      - grid-minor-theorem
+      - bidimensionality-theory
+      - subexponential-parameterized-algorithm
+      - minor-testing
+      - parameterized-disjoint-paths
+      - irrelevant-vertex-technique

@@ -52,16 +52,15 @@ groups:
   - title: Rank fusion
     intro: >
       Several systems, or several query variants, give several ranked lists. These entries merge them into
-      one, by positions, by scores, by a random walk or by an optimal consensus. The consensus of Kemeny is
-      NP-hard to find, so the cheap rules are what systems run, and only some of them carry a proved
-      approximation factor.
+      one, by scores, by reciprocal ranks or by a random walk. Two rules from voting, the
+      [Borda count](/borda-count/) and the optimal consensus of [Kemeny](/kemeny-rank-aggregation/), are in
+      Volume 42. The Kemeny consensus is NP-hard to find, so the cheap rules are what systems run, and only
+      some of them carry a proved approximation factor.
     entries:
       - rank-aggregation
-      - borda-count
       - combmnz
       - reciprocal-rank-fusion
       - markov-chain-rank-aggregation
-      - kemeny-rank-aggregation
 
   - title: Learning to rank
     intro: >

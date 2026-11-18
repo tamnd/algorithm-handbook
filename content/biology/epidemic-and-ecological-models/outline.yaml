@@ -1,0 +1,96 @@
+# The order of chapter 27.10, Epidemic and ecological models. Groups are read in order; entries in a group too.
+groups:
+  - title: Diversity and sampling
+    intro: >
+      Field ecology starts by counting. The [Shannon index](/shannon-diversity-index/) and the
+      [Simpson index](/simpson-diversity-index/) turn the counts of each species into one number for
+      diversity. Rarefaction and the Chao1 estimator correct for the size of the sample and for the
+      species that it missed, and the Lincoln-Petersen estimator gives the size of a population from
+      two catches.
+    entries:
+      - shannon-diversity-index
+      - simpson-diversity-index
+      - rarefaction
+      - chao1-estimator
+      - lincoln-petersen-estimator
+
+  - title: Growth of a single population
+    intro: >
+      The [logistic model](/logistic-growth-model/) is growth that slows as the population nears a
+      carrying capacity. Written for separate generations, it becomes the logistic map and the Ricker
+      model, which can cycle and turn chaotic. The Leslie matrix adds age classes, and the Levins model
+      applies the same logistic law to the fraction of habitat patches that are occupied.
+    entries:
+      - logistic-growth-model
+      - logistic-map
+      - ricker-model
+      - leslie-matrix
+      - levins-metapopulation-model
+
+  - title: Interacting species and space
+    intro: >
+      Two species that eat or compete with each other give a pair of coupled equations. The
+      [Lotka-Volterra predator-prey model](/lotka-volterra-predator-prey/) cycles, the Holling response
+      makes the rate of predation saturate, and the competition model decides which species survive.
+      Diffusion adds space: it gives traveling waves of invasion and, when an inhibitor diffuses faster
+      than an activator, stationary patterns.
+    entries:
+      - lotka-volterra-predator-prey
+      - holling-functional-response
+      - lotka-volterra-competition
+      - competitive-exclusion-principle
+      - fisher-kpp-equation
+      - turing-instability
+
+  - title: Compartmental epidemics
+    intro: >
+      A [compartmental model](/compartmental-epidemic-model/) divides a population into classes such as
+      susceptible, infected and recovered, and moves people between them at given rates. The basic
+      reproduction number decides whether an epidemic grows. It also gives the vaccination level that
+      stops the epidemic and, through the final size relation, the share of the population that is
+      infected in the end.
+    entries:
+      - compartmental-epidemic-model
+      - basic-reproduction-number
+      - herd-immunity-threshold
+      - kermack-mckendrick-sir-model
+      - final-size-relation
+      - sis-epidemic-model
+      - seir-epidemic-model
+
+  - title: Structured transmission
+    intro: >
+      Real populations are not mixed evenly. When there are several types of host, the
+      [next-generation matrix](/next-generation-matrix/) gives the reproduction number as a spectral
+      radius. The same tool handles hosts and vectors in the Ross-Macdonald malaria model, patches joined
+      by travel, and contact networks with very uneven degrees.
+    entries:
+      - next-generation-matrix
+      - ross-macdonald-model
+      - metapopulation-epidemic-model
+      - heterogeneous-mean-field-epidemic
+
+  - title: Chance in epidemics
+    intro: >
+      A few cases can die out by chance even when the reproduction number is above 1. The
+      [Galton-Watson process](/galton-watson-process/) gives the probability of that early extinction.
+      The Reed-Frost chain, the stochastic SIR model and agent-based simulation follow a whole epidemic
+      with random events, at more and more detail.
+    entries:
+      - galton-watson-process
+      - branching-process-extinction-theorem
+      - reed-frost-model
+      - stochastic-sir-model
+      - agent-based-epidemic-simulation
+
+  - title: Inference from case data
+    intro: >
+      The [generation interval](/generation-interval/) links the growth rate of an epidemic to its
+      reproduction number. The renewal equation uses it to predict new cases from past cases, and the
+      Cori method runs this backward to estimate the reproduction number over time. When the infection
+      times are not observed, data augmentation MCMC samples them together with the parameters.
+    entries:
+      - generation-interval
+      - epidemic-renewal-equation
+      - cori-rt-estimation
+      - epidemic-data-augmentation-mcmc

@@ -17,7 +17,7 @@ The chapter is in ten groups, read in order.
 7. **Time-frequency analysis.** The [short-time Fourier transform](/short-time-fourier-transform/), the [uncertainty principle](/time-frequency-uncertainty/), the [continuous wavelet transform](/continuous-wavelet-transform/) and the [analytic signal](/analytic-signal/).
 8. **Linear prediction, models and pitch.** [Linear predictive coding](/linear-predictive-coding/), [Burg's method](/burg-method/), [Prony's method](/prony-method/), the [cepstrum](/cepstrum/) and [pitch detection](/pitch-detection/).
 9. **Detection, estimation and adaptive filters.** [Signal detection](/signal-detection/), the matched filter, the Wiener filter, [adaptive filtering](/adaptive-filtering/) by LMS and [RLS](/rls-algorithm/), and [state estimation](/state-estimation/) with the Kalman filter.
-10. **Sparse recovery and phase retrieval.** [Sparse signal recovery](/sparse-signal-recovery/), [basis pursuit](/basis-pursuit/), [orthogonal matching pursuit](/orthogonal-matching-pursuit/), [compressed sensing](/compressed-sensing/), [phase retrieval](/phase-retrieval/) and the [Griffin-Lim algorithm](/griffin-lim-algorithm/).
+10. **Sparse recovery and phase retrieval.** [Sparse signal recovery](/sparse-signal-recovery/), [basis pursuit](/basis-pursuit/), [orthogonal matching pursuit](/orthogonal-matching-pursuit/), [compressed sensing](/compressed-sensing/) and the [Griffin-Lim algorithm](/griffin-lim-algorithm/), which recovers a signal from STFT magnitudes. The general [phase retrieval](/phase-retrieval/) problem is in Volume 46.
 
 ## A first reading
 

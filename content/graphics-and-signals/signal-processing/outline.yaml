@@ -166,8 +166,9 @@ groups:
       the $\ell_1$ norm, [orthogonal matching pursuit](/orthogonal-matching-pursuit/) picks columns greedily, and
       [iterative shrinkage-thresholding](/iterative-shrinkage-thresholding/) alternates gradient steps and soft
       thresholds. The [restricted isometry property](/restricted-isometry-property/) is the condition behind
-      [compressed sensing](/compressed-sensing/). [Phase retrieval](/phase-retrieval/) recovers a signal from
-      Fourier magnitudes, and the [Griffin-Lim algorithm](/griffin-lim-algorithm/) does so for STFT magnitudes.
+      [compressed sensing](/compressed-sensing/). The [Griffin-Lim algorithm](/griffin-lim-algorithm/) recovers
+      a signal from STFT magnitudes; the general problem of [phase retrieval](/phase-retrieval/), from Fourier
+      magnitudes, is in Volume 46.
     entries:
       - sparse-signal-recovery
       - basis-pursuit
@@ -175,5 +176,4 @@ groups:
       - iterative-shrinkage-thresholding
       - restricted-isometry-property
       - compressed-sensing
-      - phase-retrieval
       - griffin-lim-algorithm

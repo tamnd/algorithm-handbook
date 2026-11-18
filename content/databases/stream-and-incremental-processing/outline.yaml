@@ -1,0 +1,28 @@
+# The order of chapter 40.9, Stream and incremental processing. Groups are read in order; entries in a group too.
+# Only the written entries are listed.
+groups:
+  - title: Stored results
+    intro: >
+      A [materialized view](/materialized-view/) is a query whose result is computed and stored. Queries
+      can read it in place of the base tables, often a much smaller input, but the stored result must
+      change whenever the base tables do.
+    entries:
+      - materialized-view
+
+  - title: Keeping a view up to date
+    intro: >
+      The [view maintenance problem](/view-maintenance/) asks how to keep the stored result equal to its
+      query: by recomputation or by deltas, at once or deferred. [Incremental view maintenance](/incremental-view-maintenance/)
+      gives a delta rule for each operator, such as $\Delta R \bowtie S + R \bowtie \Delta S + \Delta R \bowtie \Delta S$
+      for a join, and keeps a count of derivations so that deletions are handled exactly.
+    entries:
+      - view-maintenance
+      - incremental-view-maintenance
+
+  - title: Recursive views
+    intro: >
+      Counts of derivations fail for recursive views, where facts derive each other in cycles. The
+      [DRed algorithm](/dred-algorithm/) overdeletes every fact with a derivation through a deleted fact,
+      rederives the ones that still hold, and then runs the insertions as in semi-naive evaluation.
+    entries:
+      - dred-algorithm

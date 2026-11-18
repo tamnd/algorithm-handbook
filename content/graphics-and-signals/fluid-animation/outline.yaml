@@ -1,0 +1,79 @@
+groups:
+  - title: The problem and the grid
+    intro: >
+      A fluid can be described by values at fixed points of space or by values carried with the moving fluid,
+      and the solvers of this chapter take one view or mix the two. The problem entry states what animation
+      asks of a fluid solver: plausible motion that stays stable at the large time steps of a film or a game,
+      not accuracy. The MAC grid is the data structure that almost every grid solver here builds on.
+    entries:
+      - eulerian-and-lagrangian-viewpoints
+      - fluid-simulation-for-animation
+      - mac-grid
+  - title: Grid solvers
+    intro: >
+      Foster and Metaxas brought the explicit marker-and-cell method into animation; its explicit steps must
+      obey the CFL condition and a limit set by the viscosity. Stable fluids replaced its explicit steps by semi-Lagrangian advection, implicit
+      diffusion and a pressure projection, and so removed the limit on the time step, at the price of a
+      first order, dissipative method.
+    entries:
+      - foster-metaxas-fluids
+      - stable-fluids
+  - title: Sharper advection
+    intro: >
+      Most of the blur of stable fluids comes from its advection step. BFECC and the MacCormack variant
+      estimate the error of one plain step by a round trip and remove it, which makes the step second order
+      for smooth fields. Both need a limiter at sharp edges.
+    entries:
+      - bfecc
+      - unconditionally-stable-maccormack
+  - title: Smoke and fire
+    intro: >
+      Smoke rises because it is hot and sinks because it carries soot; the Boussinesq model turns both into
+      one force on a flow of constant density. Vorticity confinement puts back small swirls that the coarse
+      grid has smoothed away. The fire model joins two such flows, fuel and hot products, at a thin moving
+      core.
+    entries:
+      - boussinesq-buoyancy
+      - vorticity-confinement
+      - fire-simulation
+  - title: Particles on a grid
+    intro: >
+      PIC, FLIP and APIC carry the velocity on particles and solve for pressure on a MAC grid. They differ
+      only in what goes back from the grid to the particles, and that choice trades dissipation against
+      noise: PIC smooths, FLIP keeps much more energy but lets noise build up, and APIC keeps an affine field on each
+      particle.
+    entries:
+      - particle-in-cell
+      - fluid-implicit-particle
+      - affine-particle-in-cell
+  - title: Liquid surfaces and solids
+    intro: >
+      A liquid needs a surface that moves with it and does not lose volume, a mesh to render, and walls and
+      bodies that need not follow the grid. The particle level set fixes the volume loss of a plain level set,
+      surfacing turns particles into a mesh, and the variational method couples fluid and solids in one
+      pressure solve.
+    entries:
+      - particle-level-set
+      - particle-fluid-surfacing
+      - variational-solid-fluid-coupling
+  - title: Particle fluids
+    intro: >
+      SPH solvers need no grid at all. Weakly compressible SPH gets pressure from density by a stiff equation
+      of state and pays with small steps. PCISPH, IISPH and DFSPH solve for the pressure by iterations that
+      allow larger steps, and position based fluids treat the density as a constraint on positions. All of
+      them keep the density close to the rest density, never exactly at it.
+    entries:
+      - weakly-compressible-sph
+      - pcisph
+      - implicit-incompressible-sph
+      - divergence-free-sph
+      - position-based-fluids
+  - title: Water surfaces
+    intro: >
+      Open water is often animated without any volume solver. Gerstner waves move surface points on circles,
+      FFT synthesis sums thousands of waves from an ocean spectrum, and height field water solves a wave
+      equation on a 2D grid so that the surface reacts to objects.
+    entries:
+      - gerstner-waves
+      - fft-ocean-synthesis
+      - height-field-water

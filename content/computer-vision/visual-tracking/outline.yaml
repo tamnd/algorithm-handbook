@@ -1,0 +1,74 @@
+groups:
+  - title: Tracking problems and their scores
+    intro: >
+      Visual object tracking follows one target from a box in the first frame. Multi-object tracking finds
+      every object of some classes and keeps an identity for each. A tracker of many objects is judged by
+      numbers computed against a ground truth: the CLEAR MOT metrics count misses, false positives and
+      identity switches, IDF1 matches whole trajectories, and HOTA weighs detection and association evenly.
+    entries:
+      - visual-object-tracking
+      - multi-object-tracking
+      - clear-mot-metrics
+      - idf1-score
+      - hota-metric
+  - title: Background subtraction
+    intro: >
+      With a fixed camera, moving things show up as pixels that differ from a model of the empty scene. The
+      adaptive mixture of Stauffer and Grimson keeps a few Gaussians per pixel, and ViBe keeps a random set of
+      past values. Both update the model online, and both are heuristics judged on benchmark videos.
+    entries:
+      - background-subtraction
+      - stauffer-grimson-background-model
+      - vibe-background-subtraction
+  - title: Points, templates and motion fields
+    intro: >
+      The Kanade-Lucas-Tomasi tracker follows small windows by Lucas-Kanade steps, and inverse compositional
+      alignment makes those steps cheap by warping the template. The forward-backward error checks a point
+      track by running it back in time. Scene flow asks for the motion in three dimensions of every visible
+      point.
+    entries:
+      - kanade-lucas-tomasi-tracker
+      - inverse-compositional-alignment
+      - forward-backward-error
+      - scene-flow
+  - title: Following one target by its appearance
+    intro: >
+      Mean shift and CAMShift climb a color similarity from the last position. CONDENSATION keeps many
+      hypotheses as weighted samples. Correlation filters, from MOSSE to the kernelized filter, learn a template
+      in the Fourier domain and move to the peak of its response, and Siamese tracking compares the target
+      with a search region through a network trained offline. Tracking-learning-detection pairs a tracker with
+      a detector for long videos.
+    entries:
+      - mean-shift-tracking
+      - camshift
+      - condensation-algorithm
+      - correlation-filter-tracking
+      - mosse-filter
+      - kernelized-correlation-filter
+      - siamese-tracking
+      - tracking-learning-detection
+  - title: Gating and data association
+    intro: >
+      Each track predicts its next measurement, and a gate keeps only the measurements near the prediction.
+      Data association then decides which measurement belongs to which track. Global nearest neighbor solves
+      one assignment per frame, JPDA mixes all gated measurements with posterior weights, multiple hypothesis
+      tracking defers hard choices over several frames, and the PHD filter tracks the number of targets
+      without assigning measurements at all.
+    entries:
+      - track-gating
+      - data-association
+      - global-nearest-neighbor-association
+      - joint-probabilistic-data-association
+      - multiple-hypothesis-tracking
+      - phd-filter
+  - title: Tracking by detection
+    intro: >
+      A detector runs on every frame, and the tracker links its boxes. Network flow links all detections of a
+      video in one optimization. SORT links them frame by frame with a Kalman filter and the Hungarian
+      algorithm, Deep SORT adds an appearance embedding, and ByteTrack also uses the boxes of low score.
+    entries:
+      - tracking-by-detection
+      - network-flow-tracking
+      - sort-tracker
+      - deep-sort
+      - bytetrack

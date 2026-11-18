@@ -1,0 +1,80 @@
+# The order of chapter 37.1, Rigid body motion. Groups are read in order; entries in a group too.
+groups:
+  - title: Rotations in space
+    intro: >
+      A rotation of space is a $3 \times 3$ orthogonal matrix with determinant $+1$, and the set of
+      them is the group SO(3). Every rotation turns about one axis by one angle, and the Rodrigues
+      formula builds the matrix from that axis and angle; the logarithm map recovers them. The
+      skew-symmetric matrix of a vector turns the cross product into a matrix product and carries
+      angular velocity.
+    entries:
+      - skew-symmetric-matrix-of-a-vector
+      - special-orthogonal-group
+      - euler-rotation-theorem
+      - rodrigues-rotation-formula
+      - axis-angle-representation
+      - so3-logarithm-map
+      - angular-velocity
+
+  - title: Angles as coordinates
+    intro: >
+      Three angles about chosen axes describe any rotation, and people read them easily. Every such
+      chart has poses where two of its axes line up: there one angle is lost and the angle rates blow
+      up. This is gimbal lock, and it is a property of the chart, not of the motion.
+    entries:
+      - euler-angles
+      - roll-pitch-yaw-angles
+      - gimbal-lock
+
+  - title: Quaternions
+    intro: >
+      A unit quaternion stores a rotation in four numbers with no singular pose, at the price of a
+      double cover: $q$ and $-q$ give the same rotation. Shepperd's method converts a matrix to a
+      quaternion stably, slerp interpolates between two orientations at constant rate, and the
+      quaternion kinematic equation integrates an angular velocity. The Cayley parameters are a
+      three-number chart close to the quaternion, and Stuelpnagel's theorem says why no three-number
+      chart can be free of singular points.
+    entries:
+      - unit-quaternion-rotation
+      - shepperd-method
+      - spherical-linear-interpolation
+      - quaternion-kinematic-equation
+      - cayley-rotation-parameters
+      - stuelpnagel-theorem
+
+  - title: Rigid motions and poses
+    intro: >
+      A rigid motion is a rotation followed by a translation. The $4 \times 4$ homogeneous matrix
+      writes it as one matrix, so that composing motions is matrix multiplication, and the set of
+      these matrices is the group SE(3). A robot pose is an element of this group, read as the
+      position and orientation of a frame attached to the robot.
+    entries:
+      - rigid-body-transformation
+      - homogeneous-transformation-matrix
+      - special-euclidean-group
+      - robot-pose
+
+  - title: Twists, screws and wrenches
+    intro: >
+      The velocity of a rigid body is a twist, six numbers that join the angular and the linear
+      velocity, and the adjoint map changes the frame in which a twist is written. Chasles' theorem
+      says every rigid motion is a screw motion, a turn about a line combined with a slide along it;
+      the exponential map of SE(3) builds the motion from the screw. Wrenches are the forces that
+      pair with twists, and dual quaternions are a compact algebra for the same screws.
+    entries:
+      - rigid-body-twist
+      - adjoint-map-se3
+      - screw-motion
+      - chasles-theorem
+      - se3-exponential-map
+      - wrench
+      - dual-quaternion
+
+  - title: Uncertain poses
+    intro: >
+      A robot never knows its pose exactly. The pose compounding operators chain relative poses and
+      carry their covariances to first order; the group view puts the noise in the tangent space, as
+      $T = \bar T \operatorname{Exp}(\xi)$, so that every sample is a valid pose.
+    entries:
+      - pose-compounding-operators
+      - uncertainty-on-lie-groups

@@ -1,0 +1,10 @@
+# The order of chapter 45.4. One entry is written in this edition.
+groups:
+  - title: Timing attacks
+    intro: >
+      A [timing attack](/timing-attack/) reads a secret out of the time a computation takes. The entry
+      models the device as a function whose cost depends on the key and on the input, shows the leaks of
+      square and multiply and of the extra reduction in Montgomery multiplication, and ranks the fixes:
+      no secret branches, no secret addresses, blinding and a uniform error path.
+    entries:
+      - timing-attack

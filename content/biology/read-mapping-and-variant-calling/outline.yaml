@@ -1,0 +1,76 @@
+groups:
+  - title: Formats and qualities
+    intro: >
+      Every later step reads and writes a few shared formats. A base quality is an error probability on the
+      [Phred scale](/phred-quality-score/), the [SAM format](/sam-alignment-format/) stores where each read
+      aligns, a [pileup](/read-pileup/) turns the alignments into columns, and the
+      [VCF format](/variant-call-format/) stores the calls. [Mapping quality](/mapping-quality/) applies the
+      Phred scale to the question of whether a read sits at the right place at all.
+    entries:
+      - phred-quality-score
+      - sam-alignment-format
+      - read-pileup
+      - variant-call-format
+      - mapping-quality
+  - title: Mapping pairs and preparing the reads
+    intro: >
+      Before any call is made, the reads are placed and cleaned. [Paired-end mapping](/paired-end-read-mapping/)
+      uses the two ends of a fragment to place reads in repeats, [duplicate marking](/duplicate-read-marking/)
+      flags copies of one molecule, and [base quality recalibration](/base-quality-score-recalibration/)
+      corrects the qualities the sequencer reported. A [variation graph](/variation-graph/) replaces the single
+      linear reference so that reads carrying known variants map without penalty.
+    entries:
+      - paired-end-read-mapping
+      - duplicate-read-marking
+      - base-quality-score-recalibration
+      - variation-graph
+  - title: Calling small variants
+    intro: >
+      A [genotype likelihood](/genotype-likelihood/) gives the probability of the reads at a site under each
+      genotype. The [variant calling problem](/variant-calling-problem/) asks for the genotypes, and
+      [Bayesian genotype calling](/bayesian-genotype-calling/) adds a prior to get posteriors. The rest of the
+      group handles indels and filters: [normalization](/variant-normalization/) gives each indel one written
+      form, [haplotype-based calling](/haplotype-based-variant-calling/) assembles candidate haplotypes,
+      [VQSR](/variant-quality-score-recalibration/) filters calls by a learned model, and
+      [somatic calling](/somatic-variant-calling/) looks for variants present in only part of a tumor.
+    entries:
+      - genotype-likelihood
+      - variant-calling-problem
+      - bayesian-genotype-calling
+      - variant-normalization
+      - haplotype-based-variant-calling
+      - variant-quality-score-recalibration
+      - somatic-variant-calling
+  - title: Haplotype assembly
+    intro: >
+      Reads that cover two or more heterozygous sites show which alleles sit on the same chromosome.
+      [Haplotype assembly](/haplotype-assembly/) uses them to split the alleles into two haplotypes. The
+      [minimum error correction problem](/minimum-error-correction-problem/) is its usual objective and is
+      NP-hard, and the [fixed-parameter dynamic program](/fixed-parameter-mec/) solves it exactly in time
+      exponential only in the coverage.
+    entries:
+      - haplotype-assembly
+      - minimum-error-correction-problem
+      - fixed-parameter-mec
+  - title: Structural variants
+    intro: >
+      Deletions, insertions, inversions and translocations of hundreds of bases or more do not fit inside one
+      short read. [Structural variant detection](/structural-variant-detection/) uses four signals. Two of them
+      have their own entries: [discordant read pairs](/discordant-read-pair-method/), whose span or orientation
+      disagrees with the library, and [split reads](/split-read-method/), whose two parts align apart.
+    entries:
+      - structural-variant-detection
+      - discordant-read-pair-method
+      - split-read-method
+  - title: Copy number
+    intro: >
+      A change in copy number changes the depth of coverage, or the intensity on an array, over a whole region.
+      [Copy number segmentation](/copy-number-segmentation/) cuts the signal into pieces of constant mean.
+      [Read-depth analysis](/read-depth-copy-number-analysis/) builds the signal from counts of reads in
+      windows. [Circular binary segmentation](/circular-binary-segmentation/) and
+      [HMM calling](/hmm-copy-number-calling/) are the two classical ways to cut it.
+    entries:
+      - copy-number-segmentation
+      - read-depth-copy-number-analysis
+      - circular-binary-segmentation
+      - hmm-copy-number-calling

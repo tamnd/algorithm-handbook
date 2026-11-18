@@ -1,0 +1,17 @@
+## History
+
+Reductions came to complexity from computability. Emil Post defined many-one and Turing reducibility for sets of integers in 1944, and Alan Turing had used oracle machines in 1939. Stephen Cook's 1971 paper used polynomial-time Turing reductions and proved that satisfiability, and satisfiability with three literals per clause, are complete for NP. Leonid Levin, in work published in 1973, used reductions that also carry solutions back, which are now called Levin reductions. Richard Karp's 1972 paper used polynomial-time many-one reductions and proved 21 problems complete by a tree of them, which made the many-one form the standard one.
+
+The catalogue grew through the 1970s. Karp's tree gave clique, vertex cover, Hamiltonian cycle, chromatic number, exact cover, knapsack and partition. Michael Garey, David Johnson and Larry Stockmeyer proved in 1976 that MAX-2-SAT and 3-coloring of planar graphs are NP-complete, and Garey and Johnson gave 3-partition in 1975 as the source of strong NP-hardness. Thomas Schaefer classified all Boolean constraint problems in 1978, with not-all-equal SAT and one-in-three SAT among the hard ones. Richard Ladner showed in 1975 that the circuit value problem is complete for P under logspace reductions, and Ladner, Nancy Lynch and Alan Selman compared the different kinds of polynomial-time reductions in the same year. Garey and Johnson's book of 1979 collected the proofs and set out the methods of restriction, local replacement and component design.
+
+Counting and search came next. Janos Simon defined parsimonious reductions in 1977, and Leslie Valiant used them in 1979 to define #P and to show that the permanent is #P-complete under Cook reductions. Claus-Peter Schnorr studied self-reducibility in 1976, and later work on sparse sets, by Piotr Berman, Steven Fortune and Stephen Mahaney, used it to show that a sparse NP-complete set would make P = NP. Mihir Bellare and Shafi Goldwasser showed in 1994 that, under standard assumptions, some NP search problems are harder than their decision versions.
+
+Newer forms of reduction keep more than the answer. Gap-preserving reductions, built on the PCP theorem of 1992, carry hardness of approximation. Parameterized reductions, from the work of Rodney Downey and Michael Fellows in the 1990s, keep the parameter small, and fine-grained reductions keep exact running times. Each has its own chapter in this volume or in Volume 18.
+
+## Further reading
+
+- Michael R. Garey and David S. Johnson, *Computers and Intractability: A Guide to the Theory of NP-Completeness*, W. H. Freeman (1979). Chapter 3 teaches the three methods of proof, and the appendix lists the source problems.
+- Richard M. Karp, *Reducibility among combinatorial problems*, in *Complexity of Computer Computations*, Plenum (1972). The original tree, short and readable.
+- Jon Kleinberg and Éva Tardos, *Algorithm Design*, Addison-Wesley (2006). Chapter 8 groups reductions by the kind of problem: packing, covering, sequencing, partitioning, coloring and numbers.
+- Oded Goldreich, *P, NP, and NP-Completeness: The Basics of Computational Complexity*, Cambridge University Press (2010). Careful about search problems, Levin reductions and self-reducibility.
+- Erik D. Demaine and others, lecture notes for *Algorithmic Lower Bounds: Fun with Hardness Proofs*, MIT course 6.890 (2014). Many reductions from 3-partition, NAE-3SAT and one-in-three SAT to puzzles and games.

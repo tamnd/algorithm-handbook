@@ -1,0 +1,15 @@
+groups:
+  - title: Populations on a lattice
+    intro: >
+      The lattice Boltzmann method does not discretize the Navier-Stokes equations. It moves a few particle
+      populations per node, relaxing them toward a local equilibrium and streaming them to the neighbours,
+      and the flow it produces at low Mach number obeys Navier-Stokes with viscosity $(\tau - \frac12)/3$.
+    entries:
+      - lattice-boltzmann-method
+  - title: Particles without a mesh
+    intro: >
+      Smoothed particle hydrodynamics follows the fluid with particles that carry mass. Density and pressure
+      forces come from kernel-weighted sums over neighbours, and a pairwise symmetric form makes the forces
+      conserve momentum exactly.
+    entries:
+      - smoothed-particle-hydrodynamics

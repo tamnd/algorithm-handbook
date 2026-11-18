@@ -1,0 +1,17 @@
+## History
+
+The join methods of the first two groups come from the System R project and the database machines of the early 1980s. Blasgen and Eswaran (1977) compared nested loops with sorting and merging for System R, and Selinger and her coauthors (1979) costed nested loops and merging scans in the System R optimizer. Hash joins arrived when memories grew large enough to hold a table on one relation: Kitsuregawa, Tanaka and Moto-Oka (1983) partitioned both inputs in the GRACE database machine, and DeWitt, Katz, Olken, Shapiro, Stonebraker and Wood (1984) studied the simple, Grace and hybrid hash joins for large memories and found the hybrid join the best over a wide range. Shapiro (1986) analyzed their costs, and Graefe's survey (1993) set out the duality between sort-based and hash-based methods and the open, next and close interface that his Volcano system made standard.
+
+Semijoins came from distributed databases. Bernstein and Chiu (1981) studied them as a way to reduce relations before a join and showed that tree queries have full reducers, and the SDD-1 system used them across sites. Bloom's filter of 1970 gave the cheaper, inexact form that Mackert and Lohman measured in the R* system in 1986. In the same year as Bernstein and Chiu, Yannakakis (1981) gave the algorithm for acyclic joins, and Beeri, Fagin, Maier and Yannakakis (1983) showed that acyclicity, join trees and full reducers are the same condition.
+
+Cyclic joins had to wait longer. Grohe and Marx bounded the size of a join by fractional edge covers in 2006, and Atserias, Grohe and Marx (2008) showed that the bound is tight and that plans of two-way joins can be far from it. Ngo, Porat, Ré and Rudra (2012) gave the first join algorithm that runs within the bound for every query, Veldhuizen proved that the leapfrog triejoin of the LogicBlox system does too, and Ngo, Ré and Rudra (2013) described generic join as the common core of both.
+
+Top-k queries and skylines are newer still. Fagin presented his algorithm at PODS 1996 for the Garlic middleware system, and Fagin, Lotem and Naor (2001) gave the threshold algorithm and the no-random-access algorithm and proved them instance optimal; the paper received the Gödel Prize in 2014. Börzsönyi, Kossmann and Stocker (2001) brought the maxima of vectors, studied by Kung, Luccio and Preparata in 1975, into databases as the skyline, with the BNL algorithm, and Chomicki, Godfrey, Gryz and Liang (2003) added presorting with SFS.
+
+## Further reading
+
+- Raghu Ramakrishnan and Johannes Gehrke, *Database Management Systems*, third edition, McGraw-Hill (2003). Chapters 12 to 14 give the cost formulas for selections, sorting and joins used throughout the chapter.
+- Goetz Graefe, Query evaluation techniques for large databases, *ACM Computing Surveys* 25(2) (1993). The standard survey of join, aggregation and sorting methods and of the iterator interface.
+- Hung Q. Ngo, Christopher Ré and Atri Rudra, Skew strikes back: new developments in the theory of join algorithms, *SIGMOD Record* 42(4) (2013). A short account of the AGM bound and worst-case optimal joins.
+- Ronald Fagin, Amnon Lotem and Moni Naor, Optimal aggregation algorithms for middleware, *Journal of Computer and System Sciences* 66(4) (2003). The threshold and no-random-access algorithms and instance optimality.
+- Mihalis Yannakakis, Algorithms for acyclic database schemes, *Proceedings of VLDB* (1981). The semijoin passes and the join tree.

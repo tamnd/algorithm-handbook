@@ -1,4 +1,4 @@
-# The order of chapter 26.8, Rate limiting. Groups are read in order; entries in a group too.
+# The order of chapter 26.7, Rate limiting. Groups are read in order; entries in a group too.
 groups:
   - title: The problem
     intro: >

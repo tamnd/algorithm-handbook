@@ -1,0 +1,102 @@
+# The order of chapter 38.1, Local features and matching. Groups are read in order; entries in a group too.
+groups:
+  - title: Features and matches
+    intro: >
+      A local feature is a small region found by a detector, with a [descriptor](/feature-descriptor/) that
+      summarizes the image inside it. [Feature matching](/feature-matching/) pairs the features of two images by
+      nearest neighbor search in descriptor space.
+    entries:
+      - feature-descriptor
+      - feature-matching
+
+  - title: Corner detectors
+    intro: >
+      A corner is a point where a window changes when it moves in any direction. The
+      [Moravec detector](/moravec-corner-detector/) tries four shifts, the
+      [Shi-Tomasi detector](/shi-tomasi-corner-detector/) takes the smaller eigenvalue of the structure tensor,
+      which is the minimum over all shifts, and the [FAST detector](/fast-corner-detector/) only compares the
+      16 pixels of a circle with the center.
+    entries:
+      - moravec-corner-detector
+      - shi-tomasi-corner-detector
+      - fast-corner-detector
+
+  - title: Scale space and blob detectors
+    intro: >
+      The [scale space](/scale-space-representation/) of an image is the family of its Gaussian blurs, indexed by
+      $t = \sigma^2$. [Automatic scale selection](/automatic-scale-selection/) multiplies each derivative by a power
+      of $t$, so that a structure $s$ times larger is selected at a scale $s^2$ times larger. The DoG and
+      determinant of Hessian detectors find blobs this way, SURF approximates the Hessian with box filters, and
+      KAZE replaces the Gaussian blur by a nonlinear diffusion.
+    entries:
+      - scale-space-representation
+      - automatic-scale-selection
+      - difference-of-gaussians-detector
+      - determinant-of-hessian-detector
+      - surf
+      - kaze-features
+
+  - title: Invariance and covariant regions
+    intro: >
+      A detector is [covariant](/invariant-local-features/) with a class of maps when it finds the moved regions
+      in the moved image, and [repeatability](/detector-repeatability/) measures how well a real detector does
+      this on real images. The [Harris-Laplace detector](/harris-laplace-detector/) places a point on a corner with the Harris measure
+      and picks its scale with the normalized Laplacian. The Harris-affine detector then adapts an ellipse around
+      the point until the second moment matrix is isotropic, so the region follows a change of viewpoint.
+      [MSER](/maximally-stable-extremal-regions/) finds whole regions whose area changes little over a range of
+      thresholds.
+    entries:
+      - invariant-local-features
+      - detector-repeatability
+      - harris-laplace-detector
+      - harris-affine-detector
+      - maximally-stable-extremal-regions
+
+  - title: Histogram descriptors
+    intro: >
+      Most real-valued descriptors are histograms. [HOG](/histogram-of-oriented-gradients/) counts gradient
+      orientations in cells and normalizes them in blocks, [RootSIFT](/rootsift/) compares SIFT histograms by the
+      Hellinger kernel, DAISY reads its histograms from blurred orientation maps at every pixel, the shape context
+      counts edge points in log-polar bins, and [local binary patterns](/local-binary-patterns/) count the codes
+      of sign comparisons.
+    entries:
+      - histogram-of-oriented-gradients
+      - rootsift
+      - daisy-descriptor
+      - shape-context
+      - local-binary-patterns
+
+  - title: Binary features
+    intro: >
+      A binary descriptor is a string of intensity comparisons, matched by the Hamming distance with an exclusive
+      or and a population count. [BRIEF](/brief-descriptor/) uses random pairs in a smoothed patch,
+      [ORB](/orb-features/) adds a FAST keypoint and an orientation from the intensity centroid, and BRISK uses a
+      fixed sampling pattern on circles with a scale from a FAST pyramid.
+    entries:
+      - brief-descriptor
+      - orb-features
+      - brisk-features
+
+  - title: Filtering matches and searching fast
+    intro: >
+      The [ratio test](/lowe-ratio-test/) keeps a match when the nearest descriptor is clearly nearer than the
+      second, and the [mutual check](/mutual-nearest-neighbor-matching/) keeps it when each feature is the other's
+      nearest neighbor. For many features in high dimension, [best bin first](/best-bin-first-search/) search
+      stops a k-d tree search after a fixed number of leaves, and a randomized forest searches several trees with
+      one queue.
+    entries:
+      - lowe-ratio-test
+      - mutual-nearest-neighbor-matching
+      - best-bin-first-search
+      - randomized-kd-forest
+
+  - title: Learned detectors and matchers
+    intro: >
+      [SuperPoint](/superpoint/) is a network that gives a point score per pixel and a descriptor per point.
+      [SuperGlue](/superglue/) matches two sets of keypoints with attention and a Sinkhorn layer with a dustbin,
+      and LoFTR matches dense coarse features with no detector at all. Their quality is a measured result on
+      benchmarks, not a guarantee.
+    entries:
+      - superpoint
+      - superglue
+      - loftr

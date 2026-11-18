@@ -1,0 +1,73 @@
+# The order of chapter 38.2, Camera models and calibration. Groups are read in order; entries in a group too.
+groups:
+  - title: The pinhole camera in homogeneous coordinates
+    intro: >
+      [Homogeneous coordinates](/homogeneous-coordinates/) make the perspective division a linear map followed by
+      a rescaling. The [extrinsic parameters](/camera-extrinsic-parameters/) $R, t$ take a world point to the
+      camera frame, the [intrinsic matrix](/camera-intrinsic-matrix/) $K$ takes it to pixels, and the
+      [projection matrix](/camera-projection-matrix/) $P = K[R \mid t]$ has 11 degrees of freedom. An RQ
+      factorization takes $P$ apart again, and the affine camera is the limit of a camera far from a shallow scene.
+    entries:
+      - homogeneous-coordinates
+      - camera-extrinsic-parameters
+      - camera-intrinsic-matrix
+      - camera-projection-matrix
+      - camera-matrix-decomposition
+      - affine-camera-model
+
+  - title: Calibration with a known target
+    intro: >
+      [Camera calibration](/camera-calibration/) finds $K$ and the lens distortion from images of points whose
+      positions are known. [DLT resectioning](/dlt-camera-resectioning/) solves for $P$ from six or more points not
+      on one plane, Tsai's method uses the radial alignment constraint, and
+      [Zhang's method](/zhang-calibration-method/) needs only photos of a flat printed pattern. A rig of two
+      cameras adds one fixed relative pose.
+    entries:
+      - camera-calibration
+      - dlt-camera-resectioning
+      - tsai-calibration-method
+      - zhang-calibration-method
+      - stereo-camera-calibration
+
+  - title: Lens distortion and wide-angle cameras
+    intro: >
+      The [Brown-Conrady model](/brown-conrady-distortion-model/) adds radial and tangential terms to the pinhole
+      projection. The division model needs one parameter for many lenses and keeps lines easy to handle. A
+      fisheye lens can see $180°$ or more, which no pinhole can map, so the
+      [Kannala-Brandt model](/kannala-brandt-fisheye-model/) writes the image radius as a polynomial in the angle,
+      and the unified model projects through a unit sphere.
+    entries:
+      - brown-conrady-distortion-model
+      - division-distortion-model
+      - kannala-brandt-fisheye-model
+      - unified-omnidirectional-camera-model
+
+  - title: Vanishing points and the absolute conic
+    intro: >
+      The [image of the absolute conic](/image-of-the-absolute-conic/) $\omega = K^{-\mathsf T} K^{-1}$ depends on
+      $K$ only, and every angle between two rays is a statement about $\omega$. Parallel scene lines meet at a
+      [vanishing point](/vanishing-point-detection/), and three vanishing points of orthogonal directions give the
+      principal point as the orthocenter of their triangle when the pixels are square with zero skew.
+    entries:
+      - image-of-the-absolute-conic
+      - vanishing-point-detection
+      - vanishing-point-calibration
+
+  - title: Self-calibration
+    intro: >
+      With no target, the matches between images fix the scene only up to a projective map. The
+      [Kruppa equations](/kruppa-equations/) give two constraints on $K$ for each pair of views, and
+      [self-calibration](/self-calibration/) uses assumptions such as a constant $K$ or zero skew to select the
+      metric reconstruction. Some camera motions leave it ambiguous.
+    entries:
+      - kruppa-equations
+      - self-calibration
+
+  - title: Cameras that are not a single pinhole
+    intro: >
+      A [rolling shutter](/rolling-shutter-camera-model/) reads the rows one after another, so each row has its
+      own pose. The [generalized camera model](/generalized-camera-model/) is any map from pixels to rays, with no
+      single center, and it covers rigs of several cameras treated as one.
+    entries:
+      - rolling-shutter-camera-model
+      - generalized-camera-model

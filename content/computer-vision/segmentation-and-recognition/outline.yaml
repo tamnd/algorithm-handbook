@@ -1,0 +1,114 @@
+groups:
+  - title: Measuring detections and segmentations
+    intro: >
+      Every method in this chapter is judged by a number computed on a benchmark. Intersection over union
+      says how well one region matches another. Mean average precision scores a ranked list of detections,
+      mean intersection over union scores a labeling of pixels, and the boundary F-measure scores a map of
+      edges. Each has conventions that change the number, and a paper must state them.
+    entries:
+      - intersection-over-union
+      - detection-mean-average-precision
+      - mean-intersection-over-union
+      - boundary-f-measure
+  - title: Recognition by models and votes
+    intro: >
+      Before learned features, recognition compared an image with an explicit model. Eigenfaces compare
+      aligned faces in a subspace found by principal component analysis. The generalized Hough transform and
+      the implicit shape model let local evidence vote for an object's position, and recognition by alignment
+      fits a pose from a few matches and checks it. Active shape and appearance models fit a statistical
+      model of landmarks and texture to an image.
+    entries:
+      - object-recognition
+      - eigenfaces
+      - generalized-hough-transform
+      - implicit-shape-model
+      - alignment-recognition
+      - active-shape-model
+      - active-appearance-model
+  - title: Windows, parts and suppression
+    intro: >
+      Object detection asks for a box, a class and a score for every object. The classical answer scores
+      windows at every position and scale, then removes duplicate boxes by non-maximum suppression or lowers
+      their scores by Soft-NMS. The Dalal-Triggs detector is a linear classifier on HOG features. Pictorial
+      structures and the deformable part model add parts on springs, and a distance transform makes the best
+      placement of the parts fast to find.
+    entries:
+      - object-detection
+      - sliding-window-detection
+      - box-non-maximum-suppression
+      - soft-nms
+      - dalal-triggs-detector
+      - pictorial-structures
+      - deformable-part-model
+  - title: Proposals and two-stage networks
+    intro: >
+      A detector can look at a few thousand candidate boxes instead of every window. Selective search finds
+      them by grouping regions, R-CNN classifies each with a convolutional network, and bounding box
+      regression tightens it. Fast R-CNN shares the network over proposals through RoI pooling, and Faster
+      R-CNN makes the proposals itself from anchor boxes. A feature pyramid gives every scale strong features.
+    entries:
+      - object-proposals
+      - selective-search
+      - bounding-box-regression
+      - r-cnn
+      - roi-pooling
+      - fast-r-cnn
+      - anchor-boxes
+      - anchor-assignment
+      - faster-r-cnn
+      - feature-pyramid-network
+  - title: Detectors in one pass
+    intro: >
+      One-stage detectors drop the proposal step. SSD predicts scores and offsets for default boxes on several
+      feature maps, and YOLO predicts boxes from a grid of cells. DETR predicts a fixed set of boxes and
+      trains them by a Hungarian matching to the true objects, which removes anchors and non-maximum
+      suppression.
+    entries:
+      - single-shot-multibox-detector
+      - yolo-detector
+      - detr
+  - title: Retrieval and image representations
+    intro: >
+      Retrieval ranks a large collection by how likely each image is to show the query's object or place. A
+      bag of visual words turns an image into a sparse histogram that an inverted file searches fast, and a
+      vocabulary tree makes the vocabulary large. Spatial verification checks the geometry of the top
+      results, and query expansion searches again with them. Spatial pyramids, VLAD and Fisher vectors give
+      richer fixed-length vectors for classification and search.
+    entries:
+      - image-retrieval
+      - bag-of-visual-words
+      - vocabulary-tree
+      - spatial-verification
+      - query-expansion
+      - visual-place-recognition
+      - spatial-pyramid-matching
+      - vlad
+      - fisher-vector
+  - title: Interactive segmentation and matting
+    intro: >
+      A user marks a few pixels or clicks along a boundary, and the program cuts out the object. Intelligent
+      scissors follow a shortest path, Boykov-Jolly graph cuts find a minimum s-t cut, and the random walker
+      solves a linear system. Matting goes further and recovers a soft opacity at every pixel; closed-form
+      matting gets it from one sparse linear system.
+    entries:
+      - interactive-segmentation
+      - intelligent-scissors
+      - boykov-jolly-graph-cuts
+      - random-walker-segmentation
+      - image-matting
+      - closed-form-matting
+  - title: Segmenting the whole image
+    intro: >
+      Without a user, segmentation splits every pixel of an image. The Mumford-Shah functional states the
+      goal as an energy, quick shift groups pixels by the modes of a density, and the ultrametric contour map
+      gives a whole hierarchy of segmentations. Semantic segmentation labels each pixel with a class, a dense
+      CRF sharpens the labels, and instance and panoptic segmentation also keep objects of one class apart.
+    entries:
+      - mumford-shah-functional
+      - quick-shift
+      - ultrametric-contour-map
+      - semantic-segmentation
+      - dense-crf
+      - instance-segmentation
+      - mask-r-cnn
+      - panoptic-segmentation

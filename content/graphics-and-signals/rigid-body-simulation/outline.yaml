@@ -1,0 +1,63 @@
+# The order of chapter 28.10, Rigid body simulation. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the contact laws
+    intro: >
+      A rigid body simulator integrates the Newton-Euler equations and must keep bodies from passing through
+      each other. Two empirical laws describe what happens at a contact: the coefficient of restitution for the
+      bounce, and Coulomb's law for friction.
+    entries:
+      - rigid-body-simulation-problem
+      - coefficient-of-restitution
+      - coulomb-friction-law
+  - title: Broad and middle phase
+    intro: >
+      Most pairs of bodies are far apart, and a simulator must skip them cheaply. Sweep and prune keeps sorted
+      box endpoints between steps. Trees of oriented boxes, k-DOPs or spheres prune the pairs of triangles of
+      two meshes, and approximate convex decomposition splits a mesh into parts that convex tests can handle.
+    entries:
+      - sweep-and-prune
+      - obb-tree
+      - k-dop-tree
+      - sphere-tree
+      - approximate-convex-decomposition
+  - title: Distance and depth of convex shapes
+    intro: >
+      For two convex shapes the narrow phase is exact. Lin-Canny and V-Clip walk the features of two polytopes
+      to the closest pair, and V-Clip also reports penetration. When the shapes overlap, the penetration depth
+      says how far apart to push them, and EPA computes it from support functions to a tolerance.
+    entries:
+      - lin-canny-closest-features
+      - v-clip
+      - penetration-depth
+      - expanding-polytope-algorithm
+  - title: Continuous collision detection
+    intro: >
+      A test at the end of each step misses a fast thin object that passes through a wall within the step.
+      Continuous collision detection finds the first time of contact along the motion. Conservative
+      advancement does it for rigid motion with a speed bound, and the elementary tests solve a cubic for
+      points that move on lines.
+    entries:
+      - continuous-collision-detection
+      - conservative-advancement
+      - elementary-ccd-tests
+  - title: Contact and collision response
+    intro: >
+      Detection gives contact points and normals, which the contact manifold collects and keeps from step to
+      step. The collision impulse resolves one contact in closed form. Penalty contact replaces the impulse by
+      a stiff spring, and impulse-based simulation treats all contact, even resting contact, as collisions.
+    entries:
+      - contact-manifold
+      - collision-impulse
+      - penalty-contact
+      - impulse-based-simulation
+  - title: Solving many contacts at once
+    intro: >
+      A body that rests on several points, or a stack of bodies, couples its contacts. Projected Gauss-Seidel
+      sweeps over them a fixed number of times; Baumgarte stabilization feeds the position error back into the
+      solve; shock propagation makes stacks rest. Baraff's pivoting algorithm solves the frictionless problem
+      exactly.
+    entries:
+      - projected-gauss-seidel
+      - baumgarte-stabilization
+      - shock-propagation
+      - baraff-contact-force-algorithm

@@ -533,8 +533,10 @@ paths:
     title: The theory of algorithms
     for: a graduate student who wants the tools of analysis and lower bounds.
     intro: >
-      How to prove what an algorithm costs and what no algorithm can do. The later stages point into
-      volumes that are still being written.
+      How to prove what an algorithm costs and what no algorithm can do. The last two stages point into
+      Volume 39: the fine-grained lower bounds there are conditional on hypotheses such as SETH, and apart
+      from separations that the hierarchy theorems give, such as P different from EXP, the main questions
+      about the classes, P versus NP among them, are open.
     stages:
       - title: Models and analysis
         steps:
@@ -562,13 +564,25 @@ paths:
       - title: Fine-grained questions
         steps:
           - matrix-multiplication-exponent
+          - fine-grained-reduction
+          - strong-exponential-time-hypothesis
+          - orthogonal-vectors-hypothesis
           - edit-distance-hardness
           - backurs-indyk-lcs-lower-bound
       - title: Complexity classes
         steps:
+          - p
+          - np
+          - np-complete
           - entry: p-versus-np-problem
           - entry: cook-levin-theorem
           - entry: karps-21-np-complete-problems
+          - pspace
+          - entry: time-hierarchy-theorem
+            why: if f log f = o(g) for a time-constructible g, then DTIME(f) is a proper subset of DTIME(g), which gives P different from EXP
+          - savitch-theorem
+          - entry: baker-gill-solovay-theorem
+            why: no relativizing proof settles P versus NP
 
   - id: optimization-and-solving
     title: Optimization and constraint solving
@@ -1390,7 +1404,7 @@ paths:
       the policies that real caches use. Then the two resources an operating system shares, processor time and
       memory: the scheduling rules and the real-time tests that say whether every deadline is met, the allocators
       and their fragmentation, and the garbage collectors that free memory for a program. Databases come next,
-      with joins, query plans and the protocols that make transactions serializable and recoverable. The last
+      from Volume 40, with joins, query plans and the protocols that make transactions serializable and recoverable. The last
       stages are about networks and services: routing, congestion control and fair queueing, then load balancing
       by consistent hashing and the power of two choices, and rate limiting by token buckets. Each step says what
       is proved, under which model, and what is only measured.
@@ -3883,3 +3897,809 @@ paths:
           - reachable-set-computation
           - mixed-integer-programming
           - hybrid-mpc
+
+  - id: robotics
+    title: Robotics
+    for: a student who knows linear algebra, the Jacobian of a map, basic probability and graph search, and wants to see how a robot arm, a mobile robot and a team of robots are modeled, planned for and controlled.
+    intro: >
+      The path follows Volume 37 from rotations to robot teams, with motion
+      planning from Volume 29 and filters from Volumes 25 and 28. The
+      kinematics and dynamics results hold for rigid links and ideal joints.
+      Inverse kinematics may have no solution, finitely many (at most 16 for a
+      general 6R arm) or infinitely many, and the numerical methods converge
+      only near a solution. The recursive dynamics algorithms are exact for the
+      rigid-body model. Sampling planners are probabilistically complete for
+      problems with positive clearance and cannot report that no path exists.
+      The Kalman filter is exact only for linear Gaussian models, and pose
+      graph optimization is nonconvex, so most mapping results are local unless
+      a certificate is computed. Speeds and success rates of planners, SLAM
+      systems and collision avoidance are measured, not proved.
+    stages:
+      - title: Rigid body motion
+        intro: >
+          Every later stage writes positions and orientations as elements of
+          SO(3) and SE(3). This stage gives the charts (Euler angles, axis
+          angle, quaternions), the exponential and logarithm maps, and twists
+          and wrenches, which carry velocities and forces.
+        steps:
+          - cross-product
+          - matrix-exponential
+          - skew-symmetric-matrix-of-a-vector
+          - special-orthogonal-group
+          - euler-angles
+          - entry: gimbal-lock
+            why: a three-angle chart loses one degree of freedom when two axes line up, which is why the later stages prefer quaternions or the exponential map
+          - axis-angle-representation
+          - rodrigues-rotation-formula
+          - entry: unit-quaternion-rotation
+            why: q and -q give the same rotation, so a quaternion covers SO(3) twice
+          - special-euclidean-group
+          - homogeneous-transformation-matrix
+          - rigid-body-twist
+          - se3-exponential-map
+          - wrench
+      - title: Kinematics of arms
+        intro: >
+          Forward kinematics maps joint values to the pose of the end
+          effector and has one answer. Inverse kinematics may have none,
+          finitely many or infinitely many. Closed forms exist for special
+          arms; numerical methods use the Jacobian and converge only from a
+          nearby start, quadratically for Newton and the pseudo-inverse near a
+          regular solution and linearly for damped least squares.
+        steps:
+          - pseudoinverse
+          - singular-value-decomposition
+          - newton-method-for-systems
+          - kinematic-chain
+          - forward-kinematics
+          - denavit-hartenberg-convention
+          - product-of-exponentials-formula
+          - inverse-kinematics
+          - entry: pieper-criterion
+            why: three consecutive axes that meet in a point give a closed-form solution; the condition is sufficient, not necessary
+          - entry: six-r-inverse-kinematics-sixteen-solutions
+            why: a general six-revolute arm has at most 16 inverse kinematics solutions
+          - space-and-body-jacobian
+          - kinematic-singularity
+          - newton-raphson-inverse-kinematics
+          - damped-least-squares-inverse-kinematics
+          - kinematic-redundancy
+          - entry: stewart-gough-forward-kinematics
+            why: for a parallel platform the roles swap, and forward kinematics has up to 40 complex solutions
+      - title: Dynamics and control of arms
+        intro: >
+          The manipulator equation relates joint torques to joint
+          accelerations for rigid links. The recursive algorithms compute it
+          exactly for that model: inverse dynamics by RNEA and forward
+          dynamics by ABA, both in linear time in the number of joints, and the
+          mass matrix by CRBA. Controllers built on the model come with
+          stability proofs that assume the model is exact.
+        steps:
+          - lyapunov-function
+          - newton-euler-equations
+          - euler-lagrange-manipulator-dynamics
+          - manipulator-equation
+          - skew-symmetry-of-manipulator-dynamics
+          - linearity-in-dynamic-parameters
+          - entry: recursive-newton-euler-algorithm
+            why: inverse dynamics in O(n) operations for n joints, exact for the rigid-body model
+          - composite-rigid-body-algorithm
+          - entry: articulated-body-algorithm
+            why: forward dynamics of a kinematic tree in O(n) time by three passes over the tree
+          - floating-base-dynamics
+          - computed-torque-control
+          - entry: pd-control-with-gravity-compensation
+            why: a regulator that is globally asymptotically stable when the gravity term is known exactly
+          - operational-space-formulation
+          - impedance-control
+      - title: Grasping and manipulation
+        intro: >
+          A grasp is judged by the wrenches its contacts can apply through
+          friction cones. The force closure test is exact once the cones are
+          replaced by polyhedral cones, and quality measures rank grasps by the
+          size of the wrench space they span.
+        steps:
+          - convex-hull
+          - linear-programming-problem
+          - friction-cone
+          - grasp-matrix
+          - form-closure
+          - entry: finger-bounds-for-form-closure
+            why: form closure needs at least 4 frictionless fingers in the plane and 7 in space, and these suffice except for a disc or a surface of revolution
+          - force-closure
+          - polyhedral-friction-cone
+          - force-closure-test
+          - ferrari-canny-metric
+          - sensorless-part-orienting
+          - task-and-motion-planning
+      - title: Motion planning and trajectories
+        intro: >
+          Planning in configuration space is PSPACE-hard in general (Reif), so
+          practical planners trade completeness for speed. Exact cell
+          decomposition is complete, grid search is resolution complete, and
+          PRM and RRT are probabilistically complete. RRT* is asymptotically
+          optimal; plain RRT is not. A path is then timed: convex time-optimal
+          parameterization is solved globally, while trajectory optimizers such
+          as CHOMP return local results.
+        steps:
+          - configuration-space
+          - motion-planning
+          - piano-movers-problem
+          - cell-decomposition
+          - probabilistic-roadmap
+          - rapidly-exploring-random-tree
+          - rrt-star
+          - entry: rrt-star-asymptotic-optimality
+            why: the 2011 proof has a gap, and Solovey et al. (2020) proved the result with the exponent 1/(d+1)
+          - kinodynamic-planning
+          - time-scaling
+          - trapezoidal-velocity-profile
+          - time-optimal-path-parameterization
+          - topp-reachability-analysis
+          - entry: convex-time-optimal-path-parameterization
+            why: with the squared path speed as the variable, timing a fixed path under torque limits becomes one convex program, solved globally
+          - trajectory-optimization
+          - entry: chomp
+            why: a local descent method; the proved result is about the decrease of the cost, not about avoiding collisions
+      - title: Localization and mapping
+        intro: >
+          A robot estimates its pose from motion and sensor models with a
+          Bayes filter. The Kalman filter is exact for linear Gaussian models,
+          the EKF is an approximation, and particle filters approximate the
+          posterior with samples. SLAM is then posed as a pose graph, whose
+          optimization is nonconvex; SE-Sync certifies a global optimum when
+          its relaxation is tight.
+        steps:
+          - bayes-theorem
+          - kalman-filter
+          - extended-kalman-filter
+          - particle-filter
+          - factor-graph
+          - least-squares-problem
+          - bayes-filter
+          - odometry-motion-model
+          - ekf-localization
+          - monte-carlo-localization
+          - occupancy-grid-mapping
+          - slam-problem
+          - entry: ekf-slam
+            why: the joint covariance of m landmarks makes each update cost O(m^2)
+          - fastslam
+          - graphslam
+          - pose-graph-optimization
+          - entry: se-sync
+            why: solves a convex relaxation and certifies a global optimum of pose graph optimization when the relaxation is tight
+      - title: Mobile, legged and multi-robot systems
+        intro: >
+          Wheeled robots obey nonholonomic constraints, and shortest paths for
+          a car with bounded curvature come from small word families (six
+          for Dubins, 46 sufficient for Reeds-Shepp). Legged robots keep
+          balance through the zero moment point. Teams of robots share tasks
+          by assignment and agree on values by consensus; the Hungarian
+          algorithm solves single-task assignment exactly, and decoupled
+          planning for many robots is incomplete.
+        steps:
+          - hungarian-algorithm
+          - laplacian-matrix
+          - lloyds-algorithm
+          - nonholonomic-constraint
+          - kinematic-bicycle-model
+          - pure-pursuit
+          - entry: stanley-controller
+            why: locally exponentially stable for the kinematic bicycle at positive speed
+          - dubins-path
+          - reeds-shepp-path
+          - entry: hybrid-a-star
+            why: A* over grid cells that keep a continuous pose, with Reeds-Shepp shots to the goal; the result depends on when the shot is tried, so it is not optimal
+          - zero-moment-point
+          - multi-robot-task-allocation
+          - entry: laplacian-consensus-protocol
+            why: converges to the average of the initial values on a connected undirected graph
+          - coupled-and-decoupled-planning
+          - entry: optimal-reciprocal-collision-avoidance
+            why: robots do not collide as long as every linear program is feasible
+          - cortes-coverage-algorithm
+
+  - id: computer-vision
+    title: Computer vision
+    for: a student who knows linear algebra with the SVD, least squares, basic probability and the image filters of Volume 28, and wants to recover cameras, depth, objects and motion from images.
+    intro: >
+      The path follows Volume 38 from local features to tracking, after a
+      short review of images and filters from Volume 28. The geometric
+      estimators (DLT, the eight-point and five-point algorithms, PnP) are
+      exact for noise-free data and in general minimize an algebraic error,
+      so their results are refined by minimizing the reprojection error, and
+      bundle adjustment finds a local minimum from a good start. Critical
+      configurations exist where two views do not fix the scene. The RANSAC
+      iteration bound assumes independent samples and is optimistic with
+      noise. Graph cuts minimize submodular energies exactly, while alpha
+      expansion is within a factor 2c of the optimum and alpha-beta swap has
+      no constant factor bound. ICP reaches only a local result. Detector
+      repeatability, learned matchers, detectors and trackers are judged by
+      measurements on benchmarks.
+    stages:
+      - title: Images, filters and linear algebra
+        intro: >
+          A review of what the volume assumes: images as arrays, smoothing and
+          pyramids, edges and corners, SIFT, the pinhole camera, the SVD and
+          least squares, and nearest-neighbor search.
+        steps:
+          - digital-image
+          - gaussian-filter
+          - image-pyramid
+          - edge-detection
+          - canny-edge-detector
+          - harris-corner-detector
+          - sift
+          - pinhole-camera-model
+          - singular-value-decomposition
+          - least-squares-problem
+          - nearest-neighbor-search
+          - kd-tree
+      - title: Local features and matching
+        intro: >
+          A feature is a point or region that can be found again in another
+          image of the same scene, with a descriptor that can be compared.
+          How often it is found again is measured, not proved. Matches are
+          found by nearest neighbors in descriptor space and filtered, since
+          many are wrong.
+        steps:
+          - scale-space-representation
+          - invariant-local-features
+          - entry: detector-repeatability
+            why: the fraction of features found again at the corresponding place in a transformed image, measured on test sequences
+          - shi-tomasi-corner-detector
+          - difference-of-gaussians-detector
+          - fast-corner-detector
+          - brief-descriptor
+          - orb-features
+          - histogram-of-oriented-gradients
+          - feature-descriptor
+          - feature-matching
+          - entry: lowe-ratio-test
+            why: keeps a match only when the nearest descriptor is much closer than the second nearest, which rejects ambiguous matches
+          - randomized-kd-forest
+          - superpoint
+          - entry: superglue
+            why: a learned matcher, whose quality is reported as pose and homography accuracy on benchmarks
+      - title: Cameras and calibration
+        intro: >
+          A camera maps 3D points to pixels by a projection matrix, which
+          splits into intrinsic and extrinsic parameters, with lens distortion
+          on top. Calibration recovers these from known patterns or, under
+          stronger assumptions, from the images alone.
+        steps:
+          - homogeneous-coordinates
+          - camera-intrinsic-matrix
+          - camera-extrinsic-parameters
+          - camera-projection-matrix
+          - brown-conrady-distortion-model
+          - dlt-camera-resectioning
+          - camera-matrix-decomposition
+          - entry: zhang-calibration-method
+            why: gets the intrinsic matrix in closed form from homographies of a planar pattern, then refines all parameters with Levenberg-Marquardt
+          - image-of-the-absolute-conic
+          - self-calibration
+      - title: Two-view geometry and robust fitting
+        intro: >
+          Two images of a plane are related by a homography, and two images of
+          a general scene by the fundamental or essential matrix. Linear and
+          minimal solvers compute these exactly from noise-free matches; with
+          noise and wrong matches they run inside RANSAC and their results are
+          refined by a geometric error.
+        steps:
+          - homography
+          - dlt-homography
+          - hartley-normalization
+          - algebraic-and-geometric-error
+          - epipolar-geometry
+          - entry: fundamental-matrix
+            why: a rank 2 matrix defined up to scale, with 7 degrees of freedom
+          - essential-matrix
+          - normalized-eight-point-algorithm
+          - entry: seven-point-algorithm
+            why: the cubic det F = 0 gives one or three solutions from seven matches
+          - entry: five-point-algorithm
+            why: up to ten essential matrices fit five calibrated matches
+          - essential-matrix-decomposition
+          - cheirality
+          - linear-triangulation
+          - perspective-n-point
+          - entry: p3p
+            why: three point pairs give a quartic equation and up to four poses
+          - ransac
+          - entry: ransac-iteration-bound
+            why: ceil(log(1-p)/log(1-w^s)) samples assume independent all-inlier samples, and the count is optimistic with noise
+          - lo-ransac
+          - entry: critical-configurations
+            why: points on a ruled quadric through the camera centers make the two-view reconstruction not unique
+          - entry: projective-reconstruction-theorem
+            why: matches alone fix uncalibrated cameras and points only up to a projective transformation of space
+      - title: Structure from motion
+        intro: >
+          Many views are combined by bundle adjustment, a large sparse
+          nonlinear least squares problem. Its cost is nonconvex, so the
+          methods find a local minimizer, and the start comes from incremental
+          or global reconstruction pipelines.
+        steps:
+          - nonlinear-least-squares
+          - gauss-newton-algorithm
+          - levenberg-marquardt
+          - entry: bundle-adjustment
+            why: the cost is nonconvex and the standard methods find only a local minimizer
+          - gauge-freedom
+          - entry: sparse-bundle-adjustment
+            why: eliminating the points makes a step cost O(N^3) in the N cameras and linear time in the points
+          - incremental-structure-from-motion
+          - rotation-averaging
+          - global-structure-from-motion
+          - visual-odometry
+          - entry: scale-drift
+            why: a single camera fixes motion only up to scale, and the estimate wanders unless loop closure, stereo or inertia fixes it
+          - direct-sparse-odometry
+      - title: Stereo, depth and point clouds
+        intro: >
+          Depth comes from disparity between rectified images. Local matching
+          and dynamic programming are fast; global methods pose stereo as an
+          energy over a grid and minimize it by min cuts, exactly for
+          submodular energies and approximately otherwise. Point clouds are
+          then aligned by ICP, which converges to a local result, or by global
+          methods with a certified gap.
+        steps:
+          - max-flow-min-cut-theorem
+          - stereo-rectification
+          - disparity
+          - depth-from-disparity
+          - stereo-matching-cost
+          - block-matching-stereo
+          - semi-global-matching
+          - entry: graph-representable-energies
+            why: only regular (submodular) binary energies can be represented by a cut, and for terms of at most three variables regularity is also sufficient
+          - entry: alpha-expansion
+            why: within 2c of the optimum for a metric pairwise term, so 2 for Potts
+          - entry: alpha-beta-swap
+            why: works for semimetric terms but has no constant factor bound
+          - entry: qpbo
+            why: labels only part of the variables, with values that some optimum shares
+          - multi-view-stereo
+          - tsdf-fusion
+          - point-cloud
+          - iterative-closest-point
+          - entry: icp-convergence-theorem
+            why: no iteration increases the mean squared closest-point distance, but a global minimum is not guaranteed
+          - point-to-plane-icp
+          - entry: go-icp
+            why: branch and bound over all rotations and translations in a box gives the optimum of the ICP cost within a gap eps
+      - title: Recognition, segmentation and tracking
+        intro: >
+          The last stage labels pixels, finds objects and follows them over
+          time. Interactive segmentation by graph cuts is exact for its
+          energy. Learned detectors and trackers are compared by measured
+          scores such as mean average precision and the CLEAR MOT metrics.
+        steps:
+          - image-segmentation
+          - markov-random-field
+          - boykov-jolly-graph-cuts
+          - intersection-over-union
+          - object-detection
+          - box-non-maximum-suppression
+          - detection-mean-average-precision
+          - bag-of-visual-words
+          - faster-r-cnn
+          - kalman-filter
+          - hungarian-algorithm
+          - multi-object-tracking
+          - kanade-lucas-tomasi-tracker
+          - entry: sort-tracker
+            why: a constant velocity Kalman filter per box and the Hungarian algorithm on IoU, frame by frame
+          - clear-mot-metrics
+
+  - id: complexity
+    title: Computational complexity
+    for: a student who knows Turing machines, Boolean circuits, SAT and asymptotic analysis, and wants to see what is proved and what is open about the limits of computation.
+    intro: >
+      The path follows Volume 39 from computability to communication and
+      query complexity, after the machine models of the earlier volumes. Some
+      results are theorems: the halting problem and Hilbert's tenth problem
+      are undecidable, Rice's theorem holds, the time and space hierarchy
+      theorems give P different from EXP and NL different from PSPACE,
+      parity is not in AC0, the PCP theorem holds, relativizing proofs cannot
+      settle P versus NP, FPT is properly inside XP, and communication and
+      query lower bounds hold without assumptions. The Church-Turing thesis
+      is a thesis, not a theorem. P versus NP, P versus PSPACE, L versus P
+      and BPP versus P are open, so NP-hardness and W[1]-hardness are
+      evidence of hardness under P not equal to NP and FPT not equal to
+      W[1], and kernel lower bounds assume NP is not in coNP/poly. The
+      fine-grained bounds are conditional on SETH, the OV, 3SUM or APSP
+      hypotheses; the entries on the 3SUM and APSP conjectures report recent
+      preprints that claim to refute them, which does not change the
+      reductions. Each stage names its kind of reduction: many-one, Karp,
+      Cook, logspace, Levin, parsimonious, parameterized or fine-grained.
+    stages:
+      - title: Models of computation
+        intro: >
+          A review of the models the volume measures: deterministic,
+          nondeterministic and probabilistic Turing machines, Boolean
+          circuits, time and space as resources, and SAT as the first hard
+          problem.
+        steps:
+          - turing-machine
+          - multitape-turing-machine
+          - nondeterministic-turing-machine
+          - probabilistic-turing-machine
+          - boolean-circuit
+          - time-complexity
+          - space-complexity
+          - polynomial-time
+          - sat
+          - 3-sat
+          - adversary-argument
+          - yao-minimax-principle
+      - title: Computability
+        intro: >
+          Before cost comes the question of whether a problem can be solved
+          at all. Diagonalization shows that the halting problem is
+          undecidable, many-one reductions carry undecidability to other
+          problems, and Rice's theorem covers every nontrivial property of
+          what a program computes.
+        steps:
+          - decidable-language
+          - recursively-enumerable-language
+          - entry: church-turing-thesis
+            why: a thesis about the informal notion of a mechanical method, not a theorem
+          - countability
+          - diagonalization-argument
+          - universal-turing-machine
+          - entry: halting-problem
+            why: computably enumerable but undecidable, and complete for the c.e. sets
+          - many-one-reducibility
+          - entry: rice-theorem
+            why: covers every nontrivial property of the language of a machine, but not properties of the machine text such as its number of states
+          - post-correspondence-problem
+          - entry: hilberts-tenth-problem
+            why: the MRDP theorem (1970) shows that no algorithm decides integer solvability of polynomial equations
+          - kolmogorov-complexity
+          - oracle-turing-machine
+          - arithmetical-hierarchy
+      - title: Complexity classes
+        intro: >
+          Classes group problems by the resources a machine needs. The chain
+          L, NL, P, NP, PSPACE, EXP is known, and the hierarchy theorems show
+          that some of its steps are strict, but no single step is known to
+          be strict. Barriers such as relativization explain why the usual
+          proof methods do not settle P versus NP.
+        steps:
+          - complexity-class
+          - p
+          - np
+          - co-np
+          - logspace
+          - nondeterministic-logspace
+          - pspace
+          - exptime
+          - entry: class-inclusions-chain
+            why: NL differs from PSPACE and P from EXP, so some steps of the chain are strict, but no single step is known to be strict
+          - p-versus-np-problem
+          - entry: time-hierarchy-theorem
+            why: if f log f = o(g) for a time-constructible g, then DTIME(f) is a proper subset of DTIME(g)
+          - space-hierarchy-theorem
+          - entry: savitch-theorem
+            why: nondeterministic space s(n) is simulated in deterministic space O(s(n)^2), so NPSPACE = PSPACE
+          - immerman-szelepcsenyi-theorem
+          - bpp
+          - polynomial-hierarchy
+          - entry: karp-lipton-theorem
+            why: if NP is in P/poly, the polynomial hierarchy collapses to its second level
+          - entry: ac0
+            why: addition is in AC0, but parity, majority and multiplication are not
+          - entry: baker-gill-solovay-theorem
+            why: there are oracles A and B with P^A = NP^A and P^B different from NP^B, so no relativizing proof settles P versus NP
+          - natural-proofs-barrier
+          - ip-equals-pspace
+          - pcp-theorem
+      - title: NP-completeness and reductions
+        intro: >
+          A Karp reduction maps instances to instances and preserves the
+          answer; a Cook reduction may ask an oracle many questions. Levin and
+          parsimonious reductions also carry solutions and their number.
+          NP-completeness says a problem has no polynomial algorithm unless P
+          equals NP, and strong NP-hardness rules out pseudo-polynomial
+          algorithms under the same assumption.
+        steps:
+          - decision-problem
+          - polynomial-time-verifier
+          - entry: polynomial-time-reduction
+            why: the Karp reduction, a polynomial-time map with x in A exactly when f(x) is in B
+          - entry: turing-reduction
+            why: a Cook reduction may ask many oracle questions and combine the answers, which a Karp reduction cannot
+          - np-hard
+          - np-complete
+          - entry: cook-levin-theorem
+            why: SAT is NP-complete under Karp reductions
+          - entry: circuit-value-problem
+            why: in P, and P-complete under logspace reductions
+          - gadget-reduction
+          - three-coloring
+          - hamiltonian-cycle-np-completeness
+          - karps-21-np-complete-problems
+          - pseudo-polynomial-time
+          - subset-sum-problem
+          - entry: strong-np-hardness
+            why: hardness that holds with numbers bounded by a polynomial, so no pseudo-polynomial algorithm exists unless P = NP
+          - three-partition
+          - levin-reduction
+          - parsimonious-reduction
+          - entry: ladners-theorem
+            why: if P is not NP, then NP has problems that are neither in P nor NP-complete
+      - title: Parameterized complexity
+        intro: >
+          A parameter k separates the hard part of an instance from its size.
+          FPT algorithms run in time f(k) n^c, kernels shrink instances to a
+          size bounded in k, and W[1]-hardness under parameterized reductions
+          is evidence that no FPT algorithm exists.
+        steps:
+          - treewidth
+          - parameterized-problem
+          - fixed-parameter-tractable
+          - entry: vertex-cover-branching
+            why: a search tree with at most 2^k leaves decides vertex cover in O(2^k (n + m)) time
+          - entry: buss-kernel
+            why: a vertex cover kernel with at most k^2 edges, found in O(n + m) time
+          - kernelization
+          - entry: courcelle-theorem
+            why: MSO2 properties are decidable in time f(|phi|, t) n given a tree decomposition of width t, where f is a non-elementary tower
+          - color-coding
+          - entry: xp
+            why: XP contains FPT, and the inclusion is proper without any assumption
+          - parameterized-reduction
+          - w-hierarchy
+          - entry: clique-w1-completeness
+            why: clique is W[1]-complete, so it has no FPT algorithm unless FPT = W[1]
+          - entry: fpt-w1-conjecture
+            why: implies P different from NP, and is implied by the Exponential Time Hypothesis
+          - entry: kernel-lower-bounds
+            why: rule out polynomial kernels unless NP is a subset of coNP/poly
+      - title: Fine-grained complexity
+        intro: >
+          Fine-grained reductions transfer exact exponents, such as n^2 for
+          edit distance or n^3 for APSP. Every lower bound in this stage is
+          conditional on a hypothesis about SAT, Orthogonal Vectors, 3SUM or
+          APSP.
+        steps:
+          - edit-distance
+          - all-pairs-shortest-paths
+          - entry: fine-grained-reduction
+            why: saving a power in the time for B saves a power in the time for A
+          - conditional-lower-bound
+          - strong-exponential-time-hypothesis
+          - orthogonal-vectors
+          - entry: seth-implies-ov-lower-bound
+            why: a truly subquadratic algorithm for Orthogonal Vectors in every dimension c log n would refute SETH (Williams 2005)
+          - entry: edit-distance-seth-lower-bound
+            why: no O(N^(2-e)) algorithm for edit distance unless SETH fails, even for binary strings
+          - 3sum
+          - entry: 3sum-conjecture
+            why: the entry states the conjecture and reports preprints from October 2026 that claim an O(n^1.9992) algorithm
+          - apsp-conjecture
+          - entry: apsp-negative-triangle-equivalence
+            why: APSP, min-plus product and negative triangle detection are subcubic equivalent
+      - title: Communication and query complexity
+        intro: >
+          In these models the cost is bits sent between players or input bits
+          read, and lower bounds are proved without assumptions, by fooling
+          sets, rank and rectangles.
+        steps:
+          - communication-model
+          - deterministic-communication-complexity
+          - fooling-set-method
+          - log-rank-lower-bound
+          - entry: disjointness-problem
+            why: deterministic cost n + 1, randomized cost Theta(n) and quantum cost Theta(sqrt n)
+          - randomized-communication-complexity
+          - entry: index-problem
+            why: one-way from Alice it costs Theta(n) bits even with public coins, but with interaction about log2 n
+          - decision-tree-complexity
+          - entry: sensitivity-theorem
+            why: proved by Huang in 2019, so block sensitivity is at most the fourth power of sensitivity
+          - entry: log-rank-conjecture
+            why: open since 1988; the known upper bound is O(sqrt(rank))
+
+  - id: databases
+    title: Databases
+    for: a student who knows B-trees, hashing, external sorting and basic logic and graphs, and wants the theory and algorithms behind relational database systems.
+    intro: >
+      The path follows the written entries of Volume 40, which is still being
+      written: relational theory, indexes, query processing and optimization,
+      transactions, recovery and materialized views. The chapters on
+      distributed databases and on data integration and cleaning are not yet
+      written, and only part of the storage chapter is. Several results are exact: Armstrong's
+      axioms are sound and complete for functional dependencies,
+      conjunctive-query containment is NP-complete (Chandra and Merlin),
+      Datalog evaluation is P-complete in data complexity and
+      EXPTIME-complete in program complexity, generic join and leapfrog
+      triejoin are worst-case optimal for the AGM bound, two-phase locking
+      gives conflict serializability, and ARIES is correct under write-ahead
+      logging. Join ordering is NP-hard, and Selinger's algorithm searches
+      only left-deep plans. Cost models and cardinality estimates are
+      approximations whose errors grow with the number of joins, so plan
+      quality is measured. Snapshot isolation allows write skew; serializable
+      snapshot isolation removes it by aborting some transactions.
+    stages:
+      - title: Storage structures and prerequisites
+        intro: >
+          A review of the structures and models the volume uses: the external
+          memory model, B-trees and hashing, external sorting, hypergraphs and
+          Horn clauses, and deadlock in concurrent programs.
+        steps:
+          - external-memory-model
+          - b-tree
+          - b-plus-tree
+          - hash-table
+          - external-merge-sort
+          - bloom-filter
+          - bit-vector
+          - hypergraph
+          - topological-sort
+          - horn-clause
+          - np-complete
+          - deadlock
+          - wait-for-graph
+      - title: The relational model and query languages
+        intro: >
+          A database is a set of finite relations, queried by relational
+          algebra, relational calculus or Datalog. Conjunctive queries are
+          the select-project-join core, and their containment is decidable
+          but NP-complete; for the full calculus it is undecidable.
+        steps:
+          - relational-model
+          - relational-algebra
+          - relational-calculus
+          - domain-independent-query
+          - entry: codds-theorem
+            why: relational algebra and the domain-independent calculus express the same queries under set semantics
+          - sql-null-semantics
+          - conjunctive-query
+          - entry: query-containment-problem
+            why: NP-complete for conjunctive queries and undecidable for the full relational calculus
+          - entry: chandra-merlin-theorem
+            why: Q1 is contained in Q2 exactly when there is a homomorphism from Q2 to Q1
+          - conjunctive-query-minimization
+          - data-and-combined-complexity
+          - datalog
+          - entry: datalog-evaluation
+            why: P-complete in the data and EXPTIME-complete in the program
+          - semi-naive-evaluation
+          - magic-sets
+      - title: Dependencies and normal forms
+        intro: >
+          Functional and multivalued dependencies say which decompositions of
+          a schema lose no information. BCNF decomposition is always lossless
+          but may lose dependencies; 3NF synthesis keeps both. Some design
+          questions are hard, such as whether an attribute lies in some key.
+        steps:
+          - functional-dependency
+          - entry: armstrongs-axioms
+            why: reflexivity, augmentation and transitivity are sound and complete for implied functional dependencies
+          - entry: attribute-closure-algorithm
+            why: computes the closure of an attribute set in linear time
+          - candidate-key
+          - entry: prime-attribute-np-completeness
+            why: deciding whether an attribute is in some candidate key is NP-complete, while finding one key is easy
+          - minimal-cover-problem
+          - lossless-join-decomposition
+          - chase-algorithm
+          - lossless-join-test
+          - entry: boyce-codd-normal-form
+            why: deciding that a subschema is in BCNF is coNP-complete
+          - entry: bcnf-decomposition
+            why: the result is a lossless join, but it can lose dependencies
+          - third-normal-form
+          - entry: third-normal-form-synthesis
+            why: a 3NF decomposition that is both lossless and dependency preserving
+          - multivalued-dependency
+          - fourth-normal-form
+      - title: Indexes and join algorithms
+        intro: >
+          Indexes trade space and update cost for faster selections. Joins
+          are computed by nested loops, sorting or hashing, with costs counted
+          in page I/Os. For acyclic queries Yannakakis' algorithm runs in time
+          linear in input plus output, and worst-case optimal joins meet the
+          AGM bound for any query.
+        steps:
+          - clustered-index
+          - bitmap-index
+          - bulk-loading-b-tree
+          - learned-index
+          - iterator-model
+          - nested-loop-join
+          - block-nested-loop-join
+          - index-nested-loop-join
+          - entry: sort-merge-join
+            why: about 3(M + N) page I/Os when memory is large enough
+          - entry: grace-hash-join
+            why: partitions both inputs on disk with one hash function and joins each pair in memory, about 3(M + N) I/Os
+          - hybrid-hash-join
+          - semijoin
+          - acyclic-hypergraph
+          - gyo-reduction
+          - entry: yannakakis-algorithm
+            why: semijoin passes over the join tree remove dangling tuples, then the join runs in time linear in input plus output
+          - entry: agm-bound
+            why: the output size is at most the product of the relation sizes raised to any fractional edge cover, and some instances reach the best bound
+          - generic-join
+          - entry: leapfrog-triejoin
+            why: worst-case optimal, binding one attribute at a time by intersecting sorted trie levels
+          - threshold-algorithm
+      - title: Query optimization
+        intro: >
+          An optimizer rewrites a query and picks a plan by an estimated
+          cost. The estimates come from statistics and are often far off for
+          many joins, and the search space is cut down, so the chosen plan is
+          the best only under the model.
+        steps:
+          - query-plan
+          - predicate-pushdown
+          - selectivity
+          - histogram
+          - entry: cardinality-estimation
+            why: estimates from statistics, samples or sketches, with errors that grow fast with the number of joins
+          - cost-model
+          - entry: join-ordering
+            why: NP-hard in general, polynomial for tree queries with ASI costs
+          - entry: selinger-join-enumeration
+            why: dynamic programming over subsets for the cheapest left-deep plan, keeping one plan per interesting order
+          - query-optimization
+      - title: Transactions and concurrency control
+        intro: >
+          Transactions must look as if they ran one at a time. Conflict
+          serializability is tested by an acyclic conflict graph, while view
+          serializability is NP-complete to test. Locking, timestamps,
+          validation and multiple versions each enforce some form of it, and
+          the SQL isolation levels trade it for speed.
+        steps:
+          - acid-properties
+          - serializability
+          - conflict-graph
+          - entry: conflict-serializability
+            why: holds exactly when the conflict graph is acyclic
+          - entry: view-serializability
+            why: strictly larger than conflict serializability and NP-complete to test
+          - entry: two-phase-locking
+            why: every schedule it allows is conflict serializable, in the order of the lock points
+          - entry: strict-two-phase-locking
+            why: holding exclusive locks to commit or abort also avoids cascading aborts
+          - wait-die-and-wound-wait
+          - entry: phantom-problem
+            why: row locks cannot stop inserts that match a read condition, so two-phase locking on rows is not serializable
+          - predicate-locking
+          - timestamp-ordering
+          - thomas-write-rule
+          - optimistic-concurrency-control
+          - multiversion-concurrency-control
+          - isolation-levels
+          - entry: snapshot-isolation
+            why: allows write skew, so it is not serializable
+          - entry: serializable-snapshot-isolation
+            why: aborts any transaction that could be the pivot of two consecutive rw edges, so that every committed history is serializable
+      - title: Recovery and materialized views
+        intro: >
+          After a crash the system must keep committed work and remove the
+          rest. Write-ahead logging and ARIES do this with a log; shadow paging
+          does it without one. Materialized views store query results, kept
+          up to date from the changes to their base tables.
+        steps:
+          - crash-recovery
+          - entry: steal-and-force-policies
+            why: steal needs undo and no-force needs redo
+          - shadow-paging
+          - write-ahead-logging
+          - checkpointing
+          - group-commit
+          - entry: aries-recovery
+            why: analysis, redo that repeats history, and undo that logs compensation records
+          - materialized-view
+          - view-maintenance
+          - incremental-view-maintenance
+          - dred-algorithm
+          - entry: view-selection
+            why: in the data cube lattice, greedy selection gets at least 1 - 1/e of the best benefit

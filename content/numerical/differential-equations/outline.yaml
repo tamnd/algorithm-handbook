@@ -152,8 +152,8 @@ groups:
       Hyperbolic equations carry information along characteristics, and nonlinear ones form shocks. The
       group goes from upwinding and the Riemann problem to finite volume schemes, the Lax-Friedrichs,
       Lax-Wendroff and Godunov schemes, and the TVD, limiter and WENO ideas that keep shocks sharp without
-      oscillations. Fronts are tracked by the eikonal and level set methods, and three fluid solvers end the
-      chapter.
+      oscillations. Fronts are tracked by the eikonal and level set methods, and the Navier-Stokes
+      equations of viscous flow end the chapter.
     entries:
       - upwind-scheme
       - method-of-characteristics
@@ -170,5 +170,3 @@ groups:
       - flux-limiter-methods
       - weno-scheme
       - navier-stokes-equations
-      - lattice-boltzmann-method
-      - smoothed-particle-hydrodynamics

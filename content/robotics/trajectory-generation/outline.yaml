@@ -1,0 +1,77 @@
+# The order of chapter 37.4, Trajectory generation. Groups are read in order; entries in a group too.
+groups:
+  - title: Paths, timings and the problem
+    intro: >
+      A path says where the robot goes, and a time scaling says when. Composing the two gives a
+      trajectory, and the chain rule turns every limit on joint velocity and acceleration into a limit
+      on the path speed and its rate. The problem page sets out what a trajectory generator gets as
+      input and how the standard profiles compare on one move.
+    entries:
+      - time-scaling
+      - trajectory-generation-problem
+
+  - title: Smooth point-to-point motions
+    intro: >
+      A polynomial in time that meets given end conditions is the simplest smooth motion. The cubic
+      matches positions and velocities, the quintic adds accelerations, and both are the unique
+      minimizers of an integral of a squared derivative. Minimum snap strings degree-seven pieces
+      through waypoints by a quadratic program. A movement primitive replaces the polynomial by a
+      stable differential equation fitted to a demonstration.
+    entries:
+      - cubic-polynomial-trajectory
+      - quintic-polynomial-trajectory
+      - minimum-jerk-trajectory
+      - minimum-snap-trajectory
+      - dynamic-movement-primitives
+
+  - title: Profiles from velocity, acceleration and jerk limits
+    intro: >
+      When the limits are known and the move must be fast, the profile is built from the limits
+      themselves. The trapezoid is the fastest rest-to-rest motion of one axis under velocity and
+      acceleration limits, a theorem. The double S adds a jerk limit, and online generation starts
+      from any moving state, once in every control cycle.
+    entries:
+      - trapezoidal-velocity-profile
+      - double-s-velocity-profile
+      - online-trajectory-generation
+
+  - title: The fastest timing along a fixed path
+    intro: >
+      With torque limits that depend on the configuration, the fastest timing of a fixed path is a
+      problem in the phase plane of path position and squared path speed. The maximum velocity curve
+      is its ceiling. Bobrow's method integrates curves and finds switch points, the reachability
+      method solves small linear programs on a grid, and the convex formulation solves one convex
+      program for the same grid.
+    entries:
+      - time-optimal-path-parameterization
+      - maximum-velocity-curve
+      - bobrow-time-optimal-algorithm
+      - topp-reachability-analysis
+      - convex-time-optimal-path-parameterization
+
+  - title: Working with a planned path
+    intro: >
+      A sampling-based planner returns a jagged path that is free but long. Random shortcuts make it
+      shorter, elastic bands deform it while obstacles move, and the path-velocity decomposition keeps
+      it fixed and plans only the speed past moving obstacles. All three keep the planner's safety
+      check and give up any claim of optimality.
+    entries:
+      - random-shortcut-path-smoothing
+      - elastic-bands
+      - path-velocity-decomposition
+
+  - title: Trajectory optimization
+    intro: >
+      Trajectory optimization chooses the path and the timing together by minimizing a cost under
+      dynamics, limits and obstacles. The problem is nonconvex, so the methods are local: CHOMP and
+      STOMP improve a waypoint list with and without gradients, TrajOpt solves convex subproblems in a
+      trust region, and GPMP2 solves an inference problem. Control-limited DDP and contact-implicit
+      optimization add the dynamics, torque bounds and contact.
+    entries:
+      - trajectory-optimization
+      - chomp
+      - stomp
+      - sequential-convex-trajectory-optimization
+      - gaussian-process-motion-planning
+      - control-limited-ddp
+      - contact-implicit-trajectory-optimization

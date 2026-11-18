@@ -1,0 +1,19 @@
+A protein in water is a few tens of thousands of atoms that never stop moving. Bonds stretch and bend, side chains swing, water molecules push past each other, and once in a long while the whole chain changes shape. Molecular dynamics follows that motion on a computer. It treats each atom as a point with a mass, takes the forces from a force field, a physical energy function of the positions, and integrates Newton's equations $m_i \ddot{x}_i = -\nabla_i U(x)$ forward in small time steps. The result is a trajectory: a film of the molecule, from which one reads both how it moves and, by averaging, its thermodynamic properties.
+
+The algorithm is short. The hard parts are elsewhere. The time step must be shorter than the fastest motion in the system, the stretch of a bond to a hydrogen atom, so a step is about 1 to 2 femtoseconds and one microsecond takes hundreds of millions of steps. Each step needs the forces on every atom, and that force evaluation is almost all of the cost. And the integrator must behave well over those hundreds of millions of steps: an error in the energy that grows a little each step would ruin a long run. The velocity form of Verlet's method meets that last requirement at the price of one force evaluation per step, which is why every major simulation program uses it or a close relative.
+
+## What the chapter covers
+
+The chapter has one group.
+
+1. **Integrating the motion of atoms.** [Molecular dynamics simulation](/molecular-dynamics/) states the problem, with a periodic box and the minimum image convention, and gives the velocity Verlet loop with its one force evaluation per step. It works two examples, a spring with an exact solution and a cluster of eight Lennard-Jones atoms, where halving the step divides the energy error by about 4. It proves that the loop conserves the total momentum for pair forces and that it is time-reversible, and it explains why a step of 1 to 2 fs is the limit for a protein.
+
+## A first reading
+
+Read the entry from the start through the examples, and check the first step of the spring example by hand. Then read the correctness section next to [Verlet integration](/verlet-integration/) in Volume 12, where the order, the symplectic property and the bounded energy error are proved; the entry here relies on those proofs. The sections on complexity and pitfalls say what production programs change and what goes wrong in practice.
+
+## Before you start
+
+You need [Verlet integration](/verlet-integration/) and the idea of a [Hamiltonian system](/hamiltonian-systems/) from Volume 12, and the [energy function](/energy-function/) of Volume 27, which plays the part of the force field. [Symplectic integrators](/symplectic-integrators/) in Volume 12 explain why the energy error stays bounded. Finding the pairs of atoms within a cutoff is the [fixed-radius near neighbors](/fixed-radius-near-neighbors/) problem of Volume 5.
+
+Most of the chapter is not written yet. The planned entries cover the Lennard-Jones potential, interatomic potentials, molecular mechanics force fields, the embedded atom method and neural network potentials; periodic boundary conditions, linked-cell and Verlet neighbour lists, and Ewald, particle mesh Ewald and smooth particle mesh Ewald summation; thermostats (Andersen, Berendsen, Nosé-Hoover and its chains, stochastic velocity rescaling), the Parrinello-Rahman barostat, Langevin and Brownian dynamics with the BAOAB integrator, and the microcanonical and canonical ensembles; constraints with SHAKE, RATTLE and LINCS, multiple time steps with RESPA, and the shadow Hamiltonian; free energy methods (free energy perturbation, thermodynamic integration, the Bennett acceptance ratio, the Jarzynski equality, umbrella sampling with WHAM, and metadynamics on collective variables); the radial distribution function and the Green-Kubo relations; and Born-Oppenheimer and Car-Parrinello molecular dynamics.

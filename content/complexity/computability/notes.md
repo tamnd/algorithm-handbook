@@ -1,0 +1,17 @@
+## History
+
+The questions came before the theory. Hilbert's Paris address of 1900 asked for a process that decides whether a Diophantine equation has an integer solution, and Hilbert and Ackermann's textbook of 1928 stated the Entscheidungsproblem for first-order logic. Gödel's incompleteness theorems of 1931 showed that no consistent theory with a listable set of axioms proves all true statements of arithmetic, and his coding of formulas by numbers became the Gödel numbering of the subject.
+
+The year 1936 gave the definitions. Church defined effective calculability by the lambda calculus and proved that first-order validity is undecidable. Turing, independently, introduced his machines in "On computable numbers, with an application to the Entscheidungsproblem", described a universal machine, and proved the same result. Kleene introduced the $\mu$ operator and showed that it gives the general recursive functions of Herbrand and Gödel, and Post described a model close to Turing's. The models were soon proved equivalent, and the claim that they capture every effective method became the Church-Turing thesis. Kleene proved the recursion theorem in 1938, and Turing introduced oracle machines in 1939.
+
+Post shaped the next stage. His paper of 1944 on recursively enumerable sets defined many-one and one-one reducibility next to Turing reducibility and asked whether every undecidable c.e. set computes the halting problem. In 1946 he proved the correspondence problem undecidable. Kleene in 1943 and Mostowski in 1947 introduced the arithmetical hierarchy, and Post's abstract of 1948 tied its levels to the iterated jumps. Rice proved his theorem in 1953. Friedberg (1957) and Muchnik (1956) solved Post's problem independently with the priority method.
+
+Undecidability then reached the rest of mathematics. Novikov (1955) and Boone (1959) built finitely presented groups with undecidable word problem. Berger proved the Wang tiling problem undecidable in 1966. Davis, Putnam and Robinson showed in 1961 that every c.e. set is exponential Diophantine, and Matiyasevich removed the exponential in 1970, which settled Hilbert's tenth problem. Rado defined the busy beaver function in 1962. Solomonoff, Kolmogorov and Chaitin defined description complexity in the 1960s, and Chaitin defined the halting probability in 1975. The value $S(5) = 47{,}176{,}870$ was proved in 2024 by the bbchallenge collaboration.
+
+## Further reading
+
+- Michael Sipser, *Introduction to the Theory of Computation*, 3rd edition, Cengage, 2012. Part Two covers decidability, reducibility, Rice's theorem, the recursion theorem and Kolmogorov complexity at the level of a first course.
+- Hartley Rogers Jr., *Theory of Recursive Functions and Effective Computability*, McGraw-Hill, 1967. The classic text on indices, the s-m-n and recursion theorems, reducibilities and the hierarchy.
+- Robert I. Soare, *Turing Computability: Theory and Applications*, Springer, 2016. A modern treatment of Turing degrees, the jump, Post's theorem and the priority method.
+- Martin Davis, *Computability and Unsolvability*, McGraw-Hill, 1958. An early textbook that includes the unsolvability of word problems; the Dover reprint adds Davis's paper on Hilbert's tenth problem.
+- Ming Li and Paul Vitányi, *An Introduction to Kolmogorov Complexity and Its Applications*, 4th edition, Springer, 2019. The reference for Kolmogorov complexity, Chaitin's constant and the incompressibility method.

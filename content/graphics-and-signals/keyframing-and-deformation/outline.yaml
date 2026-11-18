@@ -1,0 +1,58 @@
+# The order of chapter 28.8, Keyframing and deformation. Groups are read in order; entries in a group too.
+groups:
+  - title: Keys and timing
+    intro: >
+      An animator sets a few keys, and the computer fills in the frames between them. These entries cover the
+      rules of hand animation that keyframing inherits, the interpolation of keys by splines, the ease curves
+      that reshape time, and the arc length table that lets an object move along a path at a chosen speed.
+    entries:
+      - principles-of-animation
+      - keyframe-interpolation
+      - ease-in-ease-out
+      - arc-length-table
+  - title: Interpolating rotations
+    intro: >
+      Orientations live on the sphere of unit quaternions, not in a vector space, so spline formulas do not
+      apply to them directly. Squad builds a $C^1$ curve that passes through the keys from three nested
+      slerps; the cumulative B-spline curve gives up interpolation and gets $C^2$ in return.
+    entries:
+      - squad
+      - cumulative-b-spline-quaternion-curve
+  - title: Frames along a path
+    intro: >
+      A camera or a swept profile that follows a curve needs a frame at every point. The rotation minimizing
+      frame does not spin about the tangent, unlike the Frenet frame, and the double reflection method computes
+      it from sample points with fourth-order accuracy.
+    entries:
+      - rotation-minimizing-frame
+      - double-reflection-method
+  - title: Deforming space
+    intro: >
+      A space deformation moves every point of space and so carries any model with it. The problem entry sets
+      out the kinds of handles. Barr's operations use a matrix that varies along an axis, free-form deformation
+      uses a Bezier lattice, its extension glues lattices of other shapes, and wires move the space near curves.
+    entries:
+      - shape-deformation
+      - barr-global-deformations
+      - free-form-deformation
+      - extended-free-form-deformation
+      - wire-deformation
+  - title: Cage coordinates
+    intro: >
+      A cage is a coarse polygon or polyhedron around a model. Each point is written as a weighted sum of the
+      cage vertices, and moving the cage moves the point. The entries differ in how they choose the weights:
+      mean value, harmonic and Green coordinates trade cost, sign and shape preservation.
+    entries:
+      - generalized-barycentric-coordinates
+      - cage-based-deformation
+      - green-coordinates
+      - harmonic-coordinates
+  - title: Rigidity and morphing
+    intro: >
+      Two methods keep each triangle of a mesh as close to rigid as they can: one deforms a shape from moved
+      handles, the other morphs between two shapes. Beier-Neely morphing does the same job for images, with
+      line pairs in place of a mesh.
+    entries:
+      - as-rigid-as-possible-shape-manipulation
+      - as-rigid-as-possible-shape-interpolation
+      - beier-neely-morphing

@@ -1,0 +1,75 @@
+# The order of chapter 37.8, Multi-robot systems. Groups are read in order; entries in a group too.
+groups:
+  - title: Teams and swarms
+    intro: >
+      A multi-robot system is a team that shares a task over links of limited range. The first question is
+      where decisions are made: in one computer, in each robot with full data, or in each robot with local
+      data only. Swarms and boids show how far simple local rules can go without any leader.
+    entries:
+      - multi-robot-system
+      - swarm-robotics
+      - boids
+  - title: Agreement and rendezvous
+    intro: >
+      Many team behaviors reduce to agreeing on a number or a point. The Laplacian consensus protocol
+      reaches the average on a connected undirected graph, at a rate set by the second eigenvalue. Ando's
+      circumcenter rule brings robots with a limited sensing range to one point, and connectivity
+      maintenance keeps the graph that all of these laws need.
+    entries:
+      - laplacian-consensus-protocol
+      - multi-robot-rendezvous
+      - ando-circumcenter-algorithm
+      - connectivity-maintenance
+  - title: Formations
+    intro: >
+      A formation is a shape given by positions, offsets, distances or bearings. Leader-follower control
+      builds it from pairs of unicycles in a tree. Distance-based control needs only relative positions in
+      local frames, but it converges only locally, and only when the target framework is rigid.
+    entries:
+      - formation-control
+      - leader-follower-formation-control
+      - distance-based-formation-control
+  - title: Coverage and search
+    intro: >
+      Coverage control places sensors so that events are close to some sensor. Moving each robot to the
+      centroid of its Voronoi cell never raises the cost and reaches a critical point, not always the best
+      one. Pursuit-evasion asks for a sweep that is sure to see an evader of any speed.
+    entries:
+      - coverage-control
+      - cortes-coverage-algorithm
+      - polygon-pursuit-evasion
+  - title: Task allocation
+    intro: >
+      Task allocation decides which robot does which task. The simplest class is the assignment problem and
+      is solved exactly by the Hungarian algorithm. Markets, the contract net protocol and the
+      consensus-based bundle algorithm trade optimality for fewer messages and no central computer.
+    entries:
+      - multi-robot-task-allocation
+      - market-based-task-allocation
+      - contract-net-protocol
+      - consensus-based-bundle-algorithm
+  - title: Paths for many robots
+    intro: >
+      A coupled planner searches the joint space of the team and is complete, at a cost exponential in the
+      number of robots. Prioritized planning is fast but can fail when a plan exists. Pebble motion is the
+      discrete core of the problem, and its feasibility is decidable in polynomial time.
+    entries:
+      - coupled-and-decoupled-planning
+      - prioritized-multi-robot-planning
+      - pebble-motion-on-graphs
+  - title: Avoiding each other on the fly
+    intro: >
+      Without a joint plan, each robot can choose its velocity each step from what it senses. Reciprocal
+      velocity obstacles share the avoidance between two robots and remove the oscillation of plain velocity
+      obstacles. ORCA turns each neighbor into one half-plane and solves a small linear program.
+    entries:
+      - reciprocal-velocity-obstacles
+      - optimal-reciprocal-collision-avoidance
+  - title: One object, one map
+    intro: >
+      Some tasks cannot be split. Several arms that carry one object must share the load while the internal
+      forces in the null space of the grasp matrix stay bounded. Several robots that build one map must find
+      the unknown transforms between their frames from encounters and shared places.
+    entries:
+      - cooperative-manipulation
+      - multi-robot-slam

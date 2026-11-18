@@ -1,0 +1,86 @@
+groups:
+  - title: Reading frames and coding statistics
+    intro: >
+      A protein-coding region is first of all an [open reading frame](/open-reading-frame/), and
+      [ORF finding](/orf-finding/) lists them in one pass over the six frames. Length alone does not separate genes
+      from chance, so the entries of this group score how coding a stretch looks: the
+      [codon adaptation index](/codon-adaptation-index/) from codon usage, the
+      [three-periodic Markov chain](/periodic-markov-chain-gene-model/) and the
+      [interpolated Markov model](/interpolated-markov-model/) from base context. [CpG island
+      detection](/cpg-island-detection/) uses the same kind of statistics for a different signal, the CG-rich regions
+      near many promoters.
+    entries:
+      - open-reading-frame
+      - orf-finding
+      - codon-adaptation-index
+      - periodic-markov-chain-gene-model
+      - interpolated-markov-model
+      - cpg-island-detection
+  - title: Gene structure
+    intro: >
+      In eukaryotes a gene is a chain of exons split by introns, and [gene prediction](/gene-prediction/) must find
+      the chain. [Splice site prediction](/splice-site-prediction/) scores the boundaries, with weight matrices or
+      with the tree of matrices of [maximal dependence decomposition](/maximal-dependence-decomposition/).
+      [Exon chaining](/exon-chaining/) and the [spliced alignment problem](/spliced-alignment-problem/) assemble
+      candidate exons, and the [generalized HMM](/generalized-hmm-gene-finder/) parses the whole sequence at once.
+      [Comparative gene finding](/comparative-gene-finding/) adds a second genome.
+    entries:
+      - gene-prediction
+      - splice-site-prediction
+      - maximal-dependence-decomposition
+      - exon-chaining
+      - spliced-alignment-problem
+      - generalized-hmm-gene-finder
+      - comparative-gene-finding
+  - title: Annotation
+    intro: >
+      Before genes are predicted, the repeats are found and masked. [Repeat masking](/repeat-masking/) aligns the
+      genome to a library of known repeat families, and [tandem repeat finding](/tandem-repeat-finding/) finds
+      repeats of a short pattern without a library. [Homology-based function
+      transfer](/homology-based-function-transfer/) names the predicted genes, and [genome
+      annotation](/genome-annotation/) is the whole pipeline.
+    entries:
+      - repeat-masking
+      - tandem-repeat-finding
+      - homology-based-function-transfer
+      - genome-annotation
+  - title: Motifs and their scores
+    intro: >
+      A regulatory motif is a short pattern that recurs, with variation, in sequences that share a binding protein.
+      [Motif information content](/motif-information-content/) measures how sharp a motif is, and the [motif
+      finding problem](/motif-finding-problem/) asks for the sharpest motif in a set of sequences. The [median
+      string problem](/median-string-problem/) is the same task with a Hamming distance score.
+      [Weight matrix p-values](/pwm-score-p-value/) say how rare a score is in background sequence.
+    entries:
+      - motif-information-content
+      - motif-finding-problem
+      - median-string-problem
+      - pwm-score-p-value
+  - title: Searching for motifs
+    intro: >
+      Motif finding is NP-hard in general, so the entries here trade exactness for speed in different ways.
+      [Branch and bound](/branch-and-bound-motif-search/) is exact and prunes the search tree. [Greedy
+      search](/greedy-motif-search/) and [randomized search](/randomized-motif-search/) are fast local methods.
+      The [Gibbs sampler](/gibbs-motif-sampler/) draws sites at random from a profile, and
+      [MEME](/meme-algorithm/) fits a mixture model by expectation maximization.
+    entries:
+      - branch-and-bound-motif-search
+      - greedy-motif-search
+      - randomized-motif-search
+      - gibbs-motif-sampler
+      - meme-algorithm
+  - title: Subtle motifs and other signals
+    intro: >
+      The [planted motif problem](/planted-motif-problem/) is a test case where the copies of the motif differ from
+      it in up to d places and from each other in up to 2d places, so that the profile methods fail.
+      [WINNOWER](/winnower-algorithm/) looks for a large clique in a graph of close windows, and [random
+      projection](/random-projection-motif-finding/) hashes windows by a few positions. [Phylogenetic
+      footprinting](/phylogenetic-footprinting/) uses conservation across species instead, and the
+      [convolutional regulatory sequence model](/convolutional-regulatory-sequence-model/) learns many motifs at once
+      from labeled data.
+    entries:
+      - planted-motif-problem
+      - winnower-algorithm
+      - random-projection-motif-finding
+      - phylogenetic-footprinting
+      - convolutional-regulatory-sequence-model

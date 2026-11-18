@@ -350,9 +350,10 @@ def shift_headings(md: str, by: int) -> str:
 
 
 def _md_backslash(t: str) -> str:
-    """A backslash in source text outside $…$ is a character (POSIX "\\n"), not a TeX command."""
+    """A backslash in source text outside $…$ is a character (POSIX "\\n"), not a TeX command, and a "<" is a
+    character (the mean degree "<k>"), not the start of an HTML tag."""
     parts = re.split(r"(\$[^$]+\$)", t)
-    return "".join(p if i % 2 else p.replace("\\", "\\\\") for i, p in enumerate(parts))
+    return "".join(p if i % 2 else p.replace("\\", "\\\\").replace("<", "\\<") for i, p in enumerate(parts))
 
 
 def fmt_sources(sources) -> list[str]:

@@ -1,0 +1,9 @@
+groups:
+  - title: Finding an equilibrium
+    intro: >
+      Nash's theorem says that an equilibrium exists; this group asks how fast one can be found. Zero-sum
+      games take one linear program and correlated equilibria another, but finding a Nash equilibrium of a
+      general two-player game is PPAD-complete, and with three or more players exact equilibria can be
+      irrational.
+    entries:
+      - nash-equilibrium-computation

@@ -13,7 +13,7 @@ and are not stored here.
 
 ## How the pages were written
 
-All pages in this directory were drafted by AI agents (Anthropic's Claude), in November 2026:
+All pages in this directory were drafted by agents, in November 2026:
 
 1. A brief, [`prompts/area.md`](../prompts/area.md), fixes the files, their sizes, the voice, the exercise
    bands, the rules for hints and notes, and the checks.
@@ -134,6 +134,18 @@ Eleven agents shared the work: one per chapter of Volume 36; one that wrote the 
 learning path *Control* for Volume 0; one for Chapter 39.2; and one that wrote the introduction to Volume 39 and
 the openings of its other six chapters. Volume 0 gains no learning path for Volume 39 until it is complete.
 
+For edition 0.40.0, the site's releases up to v0.40.0 wrote the other six chapters of Volume 39 *Complexity*,
+so the volume is complete; all eight chapters of Volume 37 *Robotics* and of Volume 38 *Computer vision*; six new
+chapters of Volume 27 *Biology* (27.5 to 27.10); and three new chapters of Volume 28 *Graphics and signals* (28.8,
+28.10 and 28.12). They also opened new areas: Volume 40 *Databases*, which took over the old Chapter 26.5 and has
+seven of its nine chapters written in part, and Volumes 42 *Algorithmic game theory*, 43 *Scientific computing*,
+45 *Security and privacy* and 46 *Imaging and inverse problems*, each with a few entries moved from older volumes
+and the rest still short pages. Sixteen agents shared the work: two each for Volumes 37, 38, 27, 40 and 28, three
+for Volume 39, two for Volumes 42, 43, 45 and 46 (introductions, the chapters with entries, the openings of the
+others, and the updates to the volumes that lost entries), and one that wrote four learning paths for Volume 0,
+*Robotics*, *Computer vision*, *Complexity* and *Databases*. Volumes 41 and 44 have no entries yet and are not
+built.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -151,6 +163,7 @@ the editions from 0.26.0, have the fixes. The errors found in Volumes 27 and 28 
 the site's release v0.29.0, those found in the rest of Volume 29 and in Volume 30 in its release v0.30.0, those
 found in the written chapters of Volumes 31 and 32 in its release v0.31.0, those found in Volume 33 in its release
 v0.34.0, and those found in the six new chapters of Volume 32 in its release v0.35.0; this edition has all those
-fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, so this edition
-has them too. Those found in Volume 34 for edition 0.34.0, in Volume 35 for edition 0.35.0, and in Volumes 36
-and 39 for this edition were fixed after that release, so the entries of this edition do not yet have them.
+fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, and those
+found in Volume 34 for edition 0.34.0, in Volume 35 for edition 0.35.0 and in Volumes 36 and 39 for edition 0.36.0
+in its release v0.40.0, so this edition has them too. Those found in Volumes 38, 39, 40, 42 and 43 for this
+edition were fixed after that release, so the entries of this edition do not yet have them.

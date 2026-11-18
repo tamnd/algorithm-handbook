@@ -57,13 +57,12 @@ groups:
 
   - title: Two runs and two programs
     intro: >
-      Some properties compare runs. [Noninterference](/noninterference/) says that runs with the same public
-      inputs end with the same public outputs, and [self-composition](/self-composition/) reduces it to a
-      property of one run of a doubled program. A compiler must keep the meaning of every program:
+      Some properties compare runs. [Noninterference](/noninterference/), in Volume 45, says that runs with
+      the same public inputs end with the same public outputs, and [self-composition](/self-composition/)
+      reduces it to a property of one run of a doubled program. A compiler must keep the meaning of every program:
       [verified compilation](/verified-compilation/) proves this once for the compiler, and
       [translation validation](/translation-validation/) checks it again for each compilation.
     entries:
-      - noninterference
       - self-composition
       - verified-compilation
       - translation-validation
