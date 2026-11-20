@@ -1,75 +1,118 @@
 # The order of chapter 40.5, Transactions and concurrency control. Groups are read in order; entries in a group too.
-# Only the written entries are listed.
 groups:
   - title: Transactions and what correct means
     intro: >
-      A transaction is a unit of work with the four [ACID properties](/acid-properties/). Isolation is
-      made precise by [serializability](/serializability/): a concurrent schedule is correct when it is
-      equivalent to some serial one. Final-state, view and conflict equivalence give three nested classes.
-      The [isolation levels](/isolation-levels/) of SQL and of real systems are weaker forms, each defined
-      by the anomalies it forbids.
+      A transaction is a unit of work with the four [ACID properties](/acid-properties/). A
+      [schedule](/transaction-schedule/) interleaves the actions of several transactions and keeps the order
+      inside each one. Isolation is made precise by [serializability](/serializability/): a schedule is
+      correct when it is equivalent to some serial one. Final-state, view and conflict equivalence give three
+      nested classes.
     entries:
       - acid-properties
+      - transaction-schedule
       - serializability
-      - isolation-levels
 
-  - title: Testing a schedule by its conflicts
+  - title: Schedules that survive an abort
     intro: >
-      Two actions conflict when they come from different transactions, touch the same item and at least
-      one writes. The [conflict graph](/conflict-graph/) has an edge for each such pair, in schedule order.
-      A schedule is [conflict serializable](/conflict-serializability/) exactly when that graph is acyclic,
-      and a topological order of the graph is an equivalent serial order.
+      Serializability says nothing about aborts. A [recoverable schedule](/recoverable-schedule/) never lets
+      a transaction commit before the ones it read from, a [cascadeless](/cascadeless-schedule/) one reads only
+      committed values, and a [strict](/strict-schedule/) one also never overwrites an uncommitted value, so
+      that undo can restore a before image. Each class is strictly inside the one before.
+    entries:
+      - recoverable-schedule
+      - cascadeless-schedule
+      - strict-schedule
+
+  - title: Testing a schedule
+    intro: >
+      Two actions conflict when they come from different transactions, touch the same item and at least one
+      writes. The [conflict graph](/conflict-graph/) has an edge for each such pair, in schedule order, and
+      the [serializability theorem](/serializability-theorem/) says that a schedule is
+      [conflict serializable](/conflict-serializability/) exactly when that graph is acyclic.
+      [View serializability](/view-serializability/) keeps only the reads-from relation and the final writes.
+      It accepts more schedules, but testing it is [NP-complete](/view-serializability-np-completeness/).
     entries:
       - conflict-graph
       - conflict-serializability
-
-  - title: Schedulers without locks
-    intro: >
-      The [concurrency control problem](/concurrency-control/) asks for a scheduler that runs, delays or
-      rejects each action so that the output is serializable and recoverable. Three methods avoid locks.
-      [Optimistic concurrency control](/optimistic-concurrency-control/) validates read sets at commit.
-      [Timestamp ordering](/timestamp-ordering/) aborts any action that arrives too late for its timestamp.
-      [Multiversion concurrency control](/multiversion-concurrency-control/) keeps old versions so that
-      reads need not wait. [Snapshot isolation](/snapshot-isolation/), the most used multiversion method,
-      allows write skew and so is not serializable.
-    entries:
-      - concurrency-control
-      - optimistic-concurrency-control
-      - timestamp-ordering
-      - multiversion-concurrency-control
-      - snapshot-isolation
+      - serializability-theorem
+      - view-serializability
+      - view-serializability-np-completeness
 
   - title: Locking
     intro: >
-      [Two-phase locking](/two-phase-locking/) takes no lock after its first unlock, and every schedule it
-      allows is conflict serializable, in the order of the lock points.
-      [Strict two-phase locking](/strict-two-phase-locking/) keeps exclusive locks to the end, so its
-      schedules are also recoverable and free of cascading aborts. Locks can deadlock. A scheduler either
-      finds cycles in a wait-for graph and aborts a victim, or prevents them by age with
-      [wait-die and wound-wait](/wait-die-and-wound-wait/).
+      The [concurrency control problem](/concurrency-control/) asks for a scheduler that runs, delays or
+      rejects each action so that the output is serializable and recoverable. [Two-phase locking](/two-phase-locking/)
+      takes no lock after its first unlock, and the [two-phase locking theorem](/two-phase-locking-theorem/)
+      proves its schedules conflict serializable, in the order of the lock points. The strict and conservative
+      forms add recoverability or remove deadlock; the [lock table](/lock-table/) implements them; wait-die and
+      wound-wait prevent deadlock by age. The last two entries lock a hierarchy of granules and a tree of items.
     entries:
+      - concurrency-control
       - two-phase-locking
+      - two-phase-locking-theorem
       - strict-two-phase-locking
+      - lock-table
+      - conservative-two-phase-locking
       - wait-die-and-wound-wait
+      - multiple-granularity-locking
+      - tree-locking-protocol
 
-  - title: Beyond conflicts and rows
+  - title: Phantoms
     intro: >
-      [View serializability](/view-serializability/) keeps only the reads-from relation and the final
-      writes. It accepts more schedules than conflict serializability but is NP-complete to test. The
-      [phantom problem](/phantom-problem/) shows that row locks are not enough when a query reads a
-      condition, and [predicate locking](/predicate-locking/) cures it by locking the condition itself.
+      The [phantom problem](/phantom-problem/) shows that row locks are not enough when a query reads a
+      condition: a new row that matches it was never locked. [Predicate locking](/predicate-locking/) cures it
+      exactly by locking the condition itself, and [key-range locking](/key-range-locking/) is the practical form
+      on an ordered index, where a lock on a key also covers the gap below it.
     entries:
-      - view-serializability
       - phantom-problem
       - predicate-locking
+      - key-range-locking
 
-  - title: Two refinements
+  - title: Schedulers without locks
     intro: >
-      The [Thomas write rule](/thomas-write-rule/) lets timestamp ordering skip an obsolete write in place
-      of aborting, and so admits some view serializable schedules that are not conflict serializable.
-      [Serializable snapshot isolation](/serializable-snapshot-isolation/) watches for two consecutive
-      read-write dependencies between concurrent transactions and aborts a possible pivot, which makes
-      snapshot isolation serializable at the cost of some false aborts.
+      [Optimistic concurrency control](/optimistic-concurrency-control/) validates read sets at commit, and
+      [Silo](/silo-concurrency-control/) makes that validation fast on a multicore machine.
+      [Timestamp ordering](/timestamp-ordering/) aborts any action that arrives too late for its timestamp, and
+      the [Thomas write rule](/thomas-write-rule/) skips obsolete writes. [Multiversion concurrency control](/multiversion-concurrency-control/)
+      keeps old versions so that reads need not wait, and [multiversion serializability](/multiversion-serializability/)
+      says when its schedules are correct.
     entries:
+      - optimistic-concurrency-control
+      - silo-concurrency-control
+      - timestamp-ordering
       - thomas-write-rule
+      - multiversion-concurrency-control
+      - multiversion-serializability
+
+  - title: Weak isolation
+    intro: >
+      Real systems offer [isolation levels](/isolation-levels/) weaker than serializability, each defined by
+      the [anomalies](/transaction-anomalies/) it forbids. [Snapshot isolation](/snapshot-isolation/) forbids
+      most of them but allows [write skew](/write-skew/). [Adya's levels](/adya-isolation-levels/) define the
+      levels by cycles in a dependency graph, and in those terms the [dangerous structure theorem](/snapshot-isolation-dangerous-structure/)
+      finds two consecutive read-write edges in every cycle that snapshot isolation allows.
+      [Serializable snapshot isolation](/serializable-snapshot-isolation/) aborts a possible pivot of such a
+      structure; [robustness](/robustness-against-weak-isolation/) asks when a workload needs no such help.
+    entries:
+      - isolation-levels
+      - transaction-anomalies
+      - write-skew
+      - snapshot-isolation
+      - adya-isolation-levels
+      - snapshot-isolation-dangerous-structure
       - serializable-snapshot-isolation
+      - robustness-against-weak-isolation
+
+  - title: Beyond the classical model
+    intro: >
+      The last group changes the rules of the game. [Commitment ordering](/commitment-ordering/) commits in the
+      order of the conflicts, which makes serializability compose across databases.
+      [Transaction chopping](/transaction-chopping/) splits known programs into pieces that commit one by one
+      and stay serializable. [Sagas](/sagas/) give up isolation for long-lived work and undo with compensating
+      transactions, and the [escrow method](/escrow-transactional-method/) lets many transactions update one
+      counter at once while every outcome keeps its bounds.
+    entries:
+      - commitment-ordering
+      - transaction-chopping
+      - sagas
+      - escrow-transactional-method

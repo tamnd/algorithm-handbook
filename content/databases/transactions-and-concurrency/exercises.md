@@ -4,7 +4,7 @@
 
 3. ◦ Show that $r_1(x)\, r_2(y)\, w_1(x)\, w_2(y)\, r_1(z)$ is [conflict serializable](/conflict-serializability/) by turning it into a serial schedule with swaps of adjacent actions that do not conflict. Can you reach both serial orders?
 
-4. ◦ A schedule is *recoverable* if every transaction commits only after each transaction it read from has committed, *cascadeless* if every transaction reads only committed values, and *strict* if no transaction reads or overwrites an uncommitted value. Classify each schedule: (a) $w_1(x)\, r_2(x)\, c_2\, c_1$; (b) $w_1(x)\, r_2(x)\, c_1\, c_2$; (c) $w_1(x)\, w_2(x)\, c_1\, c_2$; (d) $w_1(x)\, c_1\, r_2(x)\, w_2(x)\, c_2$.
+4. ◦ A schedule is [recoverable](/recoverable-schedule/) if every transaction commits only after each transaction it read from has committed, [cascadeless](/cascadeless-schedule/) if every transaction reads only committed values, and [strict](/strict-schedule/) if no transaction reads or overwrites an uncommitted value. Classify each schedule: (a) $w_1(x)\, r_2(x)\, c_2\, c_1$; (b) $w_1(x)\, r_2(x)\, c_1\, c_2$; (c) $w_1(x)\, w_2(x)\, c_1\, c_2$; (d) $w_1(x)\, c_1\, r_2(x)\, w_2(x)\, c_2$.
 
 5. ◦ Name the anomaly of the [isolation levels](/isolation-levels/) entry that each history shows: (a) $r_1(x)\, w_2(x)\, w_2(y)\, c_2\, r_1(y)\, c_1$; (b) $r_1(P)\, w_2(y \in P)\, c_2\, r_1(P)\, c_1$; (c) $w_1(x)\, r_2(x)\, a_1\, c_2$; (d) $r_1(x)\, w_2(x)\, w_1(x)\, c_1$. Check that [snapshot isolation](/snapshot-isolation/) forbids all four.
 
@@ -16,32 +16,44 @@
 
 9. ◦ Two transactions each run $r(x)\, w(x)$. List the six interleavings of their four actions and say which are conflict serializable.
 
-10. • Show that $r_1(x)\, w_2(x)\, r_3(y)\, w_1(y)$ is conflict serializable, but that [two-phase locking](/two-phase-locking/) cannot produce it. Run basic [timestamp ordering](/timestamp-ordering/) on it with timestamps in order of first action, and again with $\mathrm{ts}(T_3) = 1$, $\mathrm{ts}(T_1) = 2$ and $\mathrm{ts}(T_2) = 3$.
+10. ◦ A database holds tables, and tables hold rows. Under [multiple granularity locking](/multiple-granularity-locking/), which locks does a transaction take on the database, on table $A$ and on rows to (a) read one row of $A$; (b) update one row of $A$; (c) read all of $A$ and update a few of its rows? While the transaction of (c) runs, which of these requests on $A$ must wait: IS, IX, S?
 
-11. • Give a schedule that two-phase locking allows in which the abort of one transaction forces another to abort. Show that [strict two-phase locking](/strict-two-phase-locking/) prevents it.
+11. ◦ A [saga](/sagas/) has the steps $T_1, \dots, T_4$ and the compensations $C_1, C_2, C_3$. Give the sequence that runs (a) when $T_3$ fails; (b) when the system crashes after $T_2$ commits and recovers backward; (c) when it recovers forward. Why is there no $C_4$, and what can another transaction see between $T_1$ and $C_1$?
 
-12. • Three transactions start together and run under [optimistic concurrency control](/optimistic-concurrency-control/) with serial backward validation. $T_1$ has read set $\{x, y\}$ and write set $\{x\}$; $T_2$ has $\{y, z\}$ and $\{z\}$; $T_3$ has $\{x, z\}$ and $\{y\}$. They validate in the order $T_1$, $T_2$, $T_3$. Which commit and which abort?
+12. ◦ Under the [escrow method](/escrow-transactional-method/), a stock has the committed value 20 and the bound $\ge 0$, and three transactions hold pending changes $-8$, $-7$ and $+10$. Compute the infimum and the supremum. Is a request of $-6$ granted? One of $-5$? Show that a test against the committed value alone would grant $-6$, and give the outcome that then breaks the bound.
 
-13. • Show that two-phase locking and basic timestamp ordering, with timestamps in start order, accept incomparable sets of schedules. Use exercise 10 for one direction, and for the other consider $r_1(y)\, r_2(x)\, w_1(x)\, c_1\, c_2$ with $T_1$ older.
+13. • Show that $r_1(x)\, w_2(x)\, r_3(y)\, w_1(y)$ is conflict serializable, but that [two-phase locking](/two-phase-locking/) cannot produce it. Run basic [timestamp ordering](/timestamp-ordering/) on it with timestamps in order of first action, and again with $\mathrm{ts}(T_3) = 1$, $\mathrm{ts}(T_1) = 2$ and $\mathrm{ts}(T_2) = 3$.
 
-14. • Show that $w_1(x)\, r_2(x)\, w_2(y)\, w_1(y)\, w_3(y)$ is [view serializable](/view-serializability/) but not conflict serializable. Find every view equivalent serial order, and say which action makes the difference.
+14. • Give a schedule that two-phase locking allows in which the abort of one transaction forces another to abort. Show that [strict two-phase locking](/strict-two-phase-locking/) prevents it.
 
-15. • Two transactions each run $r(x)\, w(x)$ under two-phase locking, and the actions arrive as $r_1(x)\, r_2(x)\, w_1(x)\, w_2(x)$. Show that they deadlock when they try to upgrade their shared locks. An *update lock* is taken by a read that plans to write; it is compatible with shared locks but not with another update lock. Show that update locks remove this deadlock.
+15. • Three transactions start together and run under [optimistic concurrency control](/optimistic-concurrency-control/) with serial backward validation. $T_1$ has read set $\{x, y\}$ and write set $\{x\}$; $T_2$ has $\{y, z\}$ and $\{z\}$; $T_3$ has $\{x, z\}$ and $\{y\}$. They validate in the order $T_1$, $T_2$, $T_3$. Which commit and which abort?
 
-16. • Under wound-wait, suppose a wounded transaction restarted with a new timestamp. Describe a sequence of arrivals in which it is wounded forever. Then prove that a restart that keeps its timestamp is wounded only finitely often.
+16. • Show that two-phase locking and basic timestamp ordering, with timestamps in start order, accept incomparable sets of schedules. Use exercise 13 for one direction, and for the other consider $r_1(y)\, r_2(x)\, w_1(x)\, c_1\, c_2$ with $T_1$ older.
 
-17. • Show that snapshot isolation and repeatable read are incomparable: give a history that snapshot isolation allows and repeatable read forbids, and one that repeatable read allows and snapshot isolation forbids. Use the anomalies of the isolation levels entry.
+17. • Show that $w_1(x)\, r_2(x)\, w_2(y)\, w_1(y)\, w_3(y)$ is [view serializable](/view-serializability/) but not conflict serializable. Find every view equivalent serial order, and say which action makes the difference.
 
-18. • Under snapshot isolation, take $r_2(x)\, r_2(y)\, r_1(y)\, w_1(y)\, c_1\, r_3(x)\, r_3(y)\, c_3\, w_2(x)\, c_2$, where $T_3$ only reads. Draw its dependency graph with wr, ww and rw edges, show that it is not serializable, and find the pivot. Is the history serializable without $T_3$?
+18. • Two transactions each run $r(x)\, w(x)$ under two-phase locking, and the actions arrive as $r_1(x)\, r_2(x)\, w_1(x)\, w_2(x)$. Show that they deadlock when they try to upgrade their shared locks. An *update lock* is taken by a read that plans to write; it is compatible with shared locks but not with another update lock. Show that update locks remove this deadlock.
 
-19. • Run multiversion timestamp ordering, as in the [multiversion concurrency control](/multiversion-concurrency-control/) entry, on the write skew $r_1(a)\, r_1(b)\, r_2(a)\, r_2(b)\, w_1(a)\, w_2(b)$ with $\mathrm{ts}(T_1) < \mathrm{ts}(T_2)$. Which transaction aborts, and why does multiversion timestamp ordering not have the write skew of snapshot isolation?
+19. • Under wound-wait, suppose a wounded transaction restarted with a new timestamp. Describe a sequence of arrivals in which it is wounded forever. Then prove that a restart that keeps its timestamp is wounded only finitely often.
 
-20. ★ The direct serialization graph of a history has an edge for each write-write, write-read and read-write dependency. Prove that if a history allowed by snapshot isolation is not serializable, its graph has a cycle with two consecutive read-write edges, each between transactions that ran at the same time.
+20. • Show that snapshot isolation and repeatable read are incomparable: give a history that snapshot isolation allows and repeatable read forbids, and one that repeatable read allows and snapshot isolation forbids. Use the anomalies of the isolation levels entry.
 
-21. ★ Rigorous two-phase locking keeps every lock, shared or exclusive, until the transaction ends. Prove that if $T_i \to T_j$ is an edge of the conflict graph of a schedule it produces, then $T_i$ commits before $T_j$. Show by an example that strict two-phase locking, which may release shared locks early, does not have this property.
+21. • Under snapshot isolation, take $r_2(x)\, r_2(y)\, r_1(y)\, w_1(y)\, c_1\, r_3(x)\, r_3(y)\, c_3\, w_2(x)\, c_2$, where $T_3$ only reads. Draw its dependency graph with wr, ww and rw edges, show that it is not serializable, and find the pivot. Is the history serializable without $T_3$?
 
-22. ★ A schema keeps doctors on call in separate rows, and each transaction takes one doctor off call if it sees at least two on call. Under snapshot isolation this allows write skew. Give two ways to change the transactions, without changing the isolation level, so that first-committer-wins forces one of two concurrent transactions to abort, and prove that each works.
+22. • Run multiversion timestamp ordering, as in the [multiversion concurrency control](/multiversion-concurrency-control/) entry, on the write skew $r_1(a)\, r_1(b)\, r_2(a)\, r_2(b)\, w_1(a)\, w_2(b)$ with $\mathrm{ts}(T_1) < \mathrm{ts}(T_2)$. Which transaction aborts, and why does multiversion timestamp ordering not have the write skew of snapshot isolation?
 
-23. ★ Serialization graph testing keeps the conflict graph of the active and committed transactions and rejects an action that closes a cycle. Show by the schedule $r_1(x)\, w_2(x)\, w_2(y)\, c_2\, r_1(y)$ that deleting a committed node that has incoming edges can miss a cycle. Then prove that a committed node with no incoming edges can be deleted safely.
+23. • Consider $w_1(x)\, r_2(x)\, w_2(y)\, r_3(y)\, c_3\, c_2\, c_1$. Is it conflict serializable? Is it recoverable? Show that it is not in [commitment ordering](/commitment-ordering/), and find every order of the three commits for which it is. Which of the classes of exercise 4 does the reordered schedule belong to?
 
-24. ★ Each of $n$ transactions runs $r(x)\, w(x)$. Prove that among the $(2n)!/2^n$ interleavings, exactly the $n!$ serial ones are conflict serializable. Check the counts 6 of 90 for $n = 3$.
+24. • Under [transaction chopping](/transaction-chopping/), $T_1 = r(x)\, w(x)\, r(y)\, w(y)$ is cut into the pieces $r(x)\, w(x)$ and $r(y)\, w(y)$. The other transactions are $T_2 = r(x)\, w(z)$ and $T_3 = r(z)\, r(y)$, and are not cut. Draw the chopping graph and find an SC-cycle. Then give an execution of the pieces in which every piece runs alone but the result is not serializable. Is the chopping correct if $T_3$ is removed?
+
+25. • Two programs run under [snapshot isolation](/snapshot-isolation/): $\mathrm{Deposit}(x) = r(x)\, w(x)$, and $\mathrm{Withdraw}(x) = r(x)\, r(y)\, w(x)$, which checks $x + y$ before it writes. Use the [dangerous structure theorem](/snapshot-isolation-dangerous-structure/) to decide which workloads are [robust](/robustness-against-weak-isolation/): (a) deposits only; (b) withdrawals only; (c) both. Then let Withdraw also write $y$ with its old value, and decide again.
+
+26. ★ Rigorous two-phase locking keeps every lock, shared or exclusive, until the transaction ends. Prove that if $T_i \to T_j$ is an edge of the conflict graph of a schedule it produces, then $T_i$ commits before $T_j$. Show by an example that strict two-phase locking, which may release shared locks early, does not have this property.
+
+27. ★ A schema keeps doctors on call in separate rows, and each transaction takes one doctor off call if it sees at least two on call. Under snapshot isolation this allows write skew. Give two ways to change the transactions, without changing the isolation level, so that first-committer-wins forces one of two concurrent transactions to abort, and prove that each works.
+
+28. ★ Serialization graph testing keeps the conflict graph of the active and committed transactions and rejects an action that closes a cycle. Show by the schedule $r_1(x)\, w_2(x)\, w_2(y)\, c_2\, r_1(y)$ that deleting a committed node that has incoming edges can miss a cycle. Then prove that a committed node with no incoming edges can be deleted safely.
+
+29. ★ Each of $n$ transactions runs $r(x)\, w(x)$. Prove that among the $(2n)!/2^n$ interleavings, exactly the $n!$ serial ones are conflict serializable. Check the counts 6 of 90 for $n = 3$.
+
+30. ★ Prove the guarantee of the escrow method: if each grant keeps the infimum and the supremum within the bounds, then for every set of pending transactions that commit, in any order and with the others aborted, the final value is within the bounds. Show by an example that the guarantee fails if an aborted transaction is undone by restoring a before image in place of subtracting its change.

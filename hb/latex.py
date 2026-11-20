@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def pandoc_latex(md: str) -> str:
-    cmd = ["pandoc", "-f", "markdown-auto_identifiers", "-t", "latex",
+    cmd = ["pandoc", "-f", "markdown-auto_identifiers-raw_tex", "-t", "latex",
            "--lua-filter", os.path.join(ROOT, "filters", "hb.lua"),
            "--top-level-division=chapter", "--wrap=preserve", "--syntax-highlighting=pygments"]
     r = subprocess.run(cmd, input=md, capture_output=True, text=True)

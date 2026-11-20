@@ -10,18 +10,32 @@
 
 9. Only the two serial interleavings are conflict serializable. In each of the other four, both reads come before both writes, so each transaction reads $x$ before the other writes it, which gives edges both ways.
 
-10. The only conflicts give $T_1 \to T_2$ and $T_3 \to T_1$, so $T_3\, T_1\, T_2$ is equivalent. Under 2PL, $T_1$ must release $x$ before $w_2(x)$, and it cannot lock $y$ until $r_3(y)$ has run, so it would lock after it unlocks. Basic TO with timestamps 1, 2, 3 aborts $T_1$ at $w_1(y)$, since $y$ was read with timestamp 3. With $\mathrm{ts}(T_3) = 1$ it accepts the schedule. A script ran both cases.
+10. (a) IS on the database, IS on $A$, S on the row. (b) IX, IX and X. (c) IX on the database, SIX on $A$ and X on each updated row. SIX is compatible only with IS, so the IS request goes on, and IX and S wait.
 
-12. $T_1$ validates first and commits. $T_2$ read $\{y, z\}$, which misses the write set $\{x\}$ of $T_1$, so it commits. $T_3$ read $x$, which $T_1$ wrote after $T_3$ started, so $T_3$ aborts.
+11. (a) $T_1\, T_2\, C_2\, C_1$, after $T_3$ has been rolled back as an ordinary transaction. (b) $C_2\, C_1$. (c) $T_3\, T_4$. After $T_4$ the saga is complete and nothing is undone. Another transaction can read the effects of $T_1$ before $C_1$ removes them, since a saga has no isolation between its steps.
 
-14. $r_2(x)$ reads from $T_1$, and the final writes are $w_1(x)$ and $w_3(y)$. The serial order $T_1\, T_2\, T_3$ has the same reads-from and final writes, and it is the only one, since $T_1$ must precede $T_2$ and $T_3$ must be last. The conflict graph has $T_1 \to T_2$ on $x$ and $T_2 \to T_1$ on $y$. The blind write $w_3(y)$ hides the order of $w_2(y)$ and $w_1(y)$.
+12. The infimum is $20 - 8 - 7 = 5$ and the supremum is $20 + 10 = 30$. A request of $-6$ would make the infimum $-1$, so it is not granted; $-5$ makes it 0 and is granted. The test $20 - 6 \ge 0$ grants $-6$, and if the three decrements commit and the increment aborts, the value is $-1$.
 
-15. After the two reads each holds a shared lock on $x$, and each upgrade waits for the other's shared lock, so the wait-for graph has the cycle $T_1 \to T_2 \to T_1$. With update locks, $T_2$ waits already at $r_2(x)$, so $T_1$ upgrades, finishes and lets $T_2$ go on.
+13. The only conflicts give $T_1 \to T_2$ and $T_3 \to T_1$, so $T_3\, T_1\, T_2$ is equivalent. Under 2PL, $T_1$ must release $x$ before $w_2(x)$, and it cannot lock $y$ until $r_3(y)$ has run, so it would lock after it unlocks. Basic TO with timestamps 1, 2, 3 aborts $T_1$ at $w_1(y)$, since $y$ was read with timestamp 3. With $\mathrm{ts}(T_3) = 1$ it accepts the schedule. A script ran both cases.
 
-18. $T_2$ reads $y$ and $T_1$ writes a newer $y$, so $T_2 \xrightarrow{rw} T_1$. $T_3$ reads $y$ from $T_1$, so $T_1 \xrightarrow{wr} T_3$. $T_3$ reads the old $x$ and $T_2$ writes $x$, so $T_3 \xrightarrow{rw} T_2$. The cycle has two consecutive read-write edges, and $T_2$, with one in and one out, is the pivot. Without $T_3$ the history is equivalent to $T_2\, T_1$.
+15. $T_1$ validates first and commits. $T_2$ read $\{y, z\}$, which misses the write set $\{x\}$ of $T_1$, so it commits. $T_3$ read $x$, which $T_1$ wrote after $T_3$ started, so $T_3$ aborts.
 
-19. $T_1$ aborts at $w_1(a)$: the version of $a$ it would follow is the initial one, and $T_2$, younger than $T_1$, has already read it. Every multiversion timestamp ordering history is one-copy serializable in timestamp order, so write skew, which has no serial order, cannot commit.
+17. $r_2(x)$ reads from $T_1$, and the final writes are $w_1(x)$ and $w_3(y)$. The serial order $T_1\, T_2\, T_3$ has the same reads-from and final writes, and it is the only one, since $T_1$ must precede $T_2$ and $T_3$ must be last. The conflict graph has $T_1 \to T_2$ on $x$ and $T_2 \to T_1$ on $y$. The blind write $w_3(y)$ hides the order of $w_2(y)$ and $w_1(y)$.
 
-21. If $T_i$ acts on an item before a conflicting action of $T_j$, then $T_i$ held a conflicting lock on it, and under rigorous 2PL it kept that lock until it ended. For strict 2PL, take $r_1(x)\, w_2(x)\, c_2\, c_1$, where $T_1$ releases its shared lock after its last read.
+18. After the two reads each holds a shared lock on $x$, and each upgrade waits for the other's shared lock, so the wait-for graph has the cycle $T_1 \to T_2 \to T_1$. With update locks, $T_2$ waits already at $r_2(x)$, so $T_1$ upgrades, finishes and lets $T_2$ go on.
 
-23. The schedule gives $T_1 \to T_2$ and then, after $c_2$, $T_2 \to T_1$. New edges into a node come only from later actions of that node, and a committed transaction has none, so a node with no incoming edges never gets one.
+21. $T_2$ reads $y$ and $T_1$ writes a newer $y$, so $T_2 \xrightarrow{rw} T_1$. $T_3$ reads $y$ from $T_1$, so $T_1 \xrightarrow{wr} T_3$. $T_3$ reads the old $x$ and $T_2$ writes $x$, so $T_3 \xrightarrow{rw} T_2$. The cycle has two consecutive read-write edges, and $T_2$, with one in and one out, is the pivot. Without $T_3$ the history is equivalent to $T_2\, T_1$.
+
+22. $T_1$ aborts at $w_1(a)$: the version of $a$ it would follow is the initial one, and $T_2$, younger than $T_1$, has already read it. Every multiversion timestamp ordering history is one-copy serializable in timestamp order, so write skew, which has no serial order, cannot commit.
+
+23. The conflicts give $T_1 \to T_2$ and $T_2 \to T_3$, so it is conflict serializable as $T_1\, T_2\, T_3$. It is not recoverable: $T_3$ commits before $T_2$, from which it read. Commitment ordering needs the commits in the order of the conflicts, so only $c_1\, c_2\, c_3$ works; the result is recoverable, but not cascadeless, since $T_2$ and $T_3$ read uncommitted values.
+
+24. The C edges join the first piece to $T_2$ on $x$, $T_2$ to $T_3$ on $z$, and $T_3$ to the second piece on $y$; with the S edge between the two pieces they close an SC-cycle. Run the first piece, then $T_2$, then $T_3$, then the second piece: $T_3$ sees the change to $x$ through $T_2$ but the old $y$, and the conflict graph has the cycle $T_1 \to T_2 \to T_3 \to T_1$. Without $T_3$ the graph has no cycle and the chopping is correct.
+
+25. A read-write edge between two concurrent transactions that both commit needs a reader that does not write the item, since two concurrent writers of one item cannot both commit. A deposit writes what it reads, so (a) is robust. A withdrawal on $x$ reads $y$, and two withdrawals on $x$ and $y$ give the write skew, so (b) and (c) are not. When Withdraw also writes $y$, every transaction writes all it reads, no such edge exists, and every workload is robust.
+
+26. If $T_i$ acts on an item before a conflicting action of $T_j$, then $T_i$ held a conflicting lock on it, and under rigorous 2PL it kept that lock until it ended. For strict 2PL, take $r_1(x)\, w_2(x)\, c_2\, c_1$, where $T_1$ releases its shared lock after its last read.
+
+28. The schedule gives $T_1 \to T_2$ and then, after $c_2$, $T_2 \to T_1$. New edges into a node come only from later actions of that node, and a committed transaction has none, so a node with no incoming edges never gets one.
+
+30. The final value is the committed value plus the sum of a subset of the pending changes. That sum is at least the sum of the negative changes and at most the sum of the positive ones. For the second part, let one transaction's change be applied in place, let another add to the value and commit, and then restore the before image of the first.

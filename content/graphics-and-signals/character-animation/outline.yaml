@@ -1,0 +1,104 @@
+groups:
+  - title: Skeletons and linear blend skinning
+    intro: >
+      A character is a mesh driven by a tree of joints. Forward kinematics turns the local transforms into
+      world transforms in one pass in parent order, and the bind pose fixes the frame in which each vertex
+      is attached. Linear blend skinning mixes the joint matrices with weights per vertex. It is cheap and
+      everywhere, but a mix of rotation matrices is not a rotation, and twists and bends lose volume.
+    entries:
+      - character-skeleton
+      - bind-pose
+      - skeletal-animation
+      - character-skinning
+      - linear-blend-skinning
+      - candy-wrapper-artifact
+  - title: Rigid blends
+    intro: >
+      These methods replace the matrix mix by a blend that stays rigid at each vertex. Dual quaternion
+      skinning blends unit dual quaternions; spherical blend skinning and optimized centers of rotation
+      blend quaternions about a center. Implicit skinning goes further and lets fields around the bones
+      shape the skin at contacts. Each fixes the collapse of linear blending and pays with bulges, extra
+      cost or a precomputation.
+    entries:
+      - dual-quaternion-skinning
+      - spherical-blend-skinning
+      - optimized-centers-of-rotation-skinning
+      - implicit-skinning
+  - title: Corrections on top of skinning
+    intro: >
+      Delta mush smooths the skinned mesh and puts back the detail it stored in the rest pose. Pose space
+      deformation interpolates sculpted corrections over the pose by radial basis functions and adds them
+      in the rest frame, before skinning.
+    entries:
+      - delta-mush
+      - pose-space-deformation
+  - title: Rigs and weights
+    intro: >
+      Painting weights by hand is slow. Automatic rigging fits a template skeleton into a mesh and gets the
+      weights from heat diffusion; bounded biharmonic weights minimize a smoothness energy under bounds;
+      skinning decomposition fits bones and sparse weights to an animated mesh.
+    entries:
+      - automatic-rigging
+      - bounded-biharmonic-weights
+      - skinning-decomposition
+  - title: Faces
+    intro: >
+      Faces are mostly animated by blendshapes, a linear mix of sculpted targets. FACS gives a vocabulary
+      for the targets, direct manipulation solves for the weights from dragged points, and deformation
+      transfer and example-based rigging build the targets of a new face from a generic one.
+    entries:
+      - blendshape-model
+      - facial-action-coding-system
+      - blendshape-direct-manipulation
+      - deformation-transfer
+      - example-based-facial-rigging
+  - title: Blending and editing captured motion
+    intro: >
+      Captured motion is reused by mixing and reshaping it. A blend needs the clips aligned in time and on
+      the ground, and verbs and adverbs mix many examples over a parameter space. Motion warping adds a
+      smooth offset through new keys, and motion signal processing changes the gains of frequency bands.
+    entries:
+      - motion-blending
+      - verbs-and-adverbs
+      - motion-warping
+      - motion-signal-processing
+  - title: Motion from a database
+    intro: >
+      A motion graph precomputes the frames where clips can be joined and keeps the largest strongly
+      connected part, so a walk in the graph plays for as long as needed. Registration curves align clips
+      in time, space and constraints before they are blended, and build on the same frame distances.
+      Motion matching drops the graph and searches the whole database every few frames for the nearest
+      feature vector.
+    entries:
+      - motion-graph
+      - registration-curves
+      - motion-matching
+  - title: Constraints and new characters
+    intro: >
+      Spacetime constraints solve for a whole motion as an optimization with the laws of motion and the
+      keys as constraints. Edits move the feet. Two-bone inverse kinematics is the closed-form limb solver,
+      retargeting adapts a motion to other proportions by a spacetime optimization of a smooth
+      displacement, and footskate cleanup pins planted feet with analytic leg solves. Style-based inverse
+      kinematics picks the most likely pose under a model learned from capture.
+    entries:
+      - spacetime-constraints
+      - two-bone-inverse-kinematics
+      - motion-retargeting
+      - footskate-cleanup
+      - style-based-inverse-kinematics
+  - title: Physics-based control
+    intro: >
+      SIMBICON makes a simulated biped walk with target poses, PD control and a balance rule, and DeepMimic
+      learns a tracking policy by reinforcement learning. The controllers are judged by measurements, not
+      proofs.
+    entries:
+      - simbicon
+      - deepmimic
+  - title: Crowds
+    intro: >
+      The social force model moves each person by a pull toward the goal and pushes from others. Continuum
+      crowds replace the people by a density on a grid and plan with one potential per group, solved by
+      fast marching.
+    entries:
+      - social-force-model
+      - continuum-crowds

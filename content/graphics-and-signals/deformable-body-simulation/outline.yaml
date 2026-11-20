@@ -1,0 +1,75 @@
+groups:
+  - title: Particles and springs
+    intro: >
+      The simplest deformable models are point masses, alone or joined by springs. A particle system moves
+      independent points at a cost linear in their number. A mass-spring system adds Hooke springs; its
+      explicit step is stable only for a small enough step, and its stiffness depends on the mesh. Provot's
+      strain limiting corrects the stretch of soft springs after each step.
+    entries:
+      - particle-system
+      - mass-spring-system
+      - provot-strain-limiting
+  - title: Continuum elasticity
+    intro: >
+      Finite elements describe deformation by the deformation gradient of each element and turn it into
+      energy and force through a hyperelastic material. The models differ in what they do under strong
+      compression and inversion: St. Venant-Kirchhoff softens, neo-Hookean is undefined at a flat element,
+      and the stable neo-Hookean, corotational and invertible variants each handle that case in their own
+      way. Modal reduction and brittle fracture build on the same elements.
+    entries:
+      - deformation-gradient
+      - hyperelastic-material
+      - elastically-deformable-models
+      - st-venant-kirchhoff-model
+      - neo-hookean-model
+      - stable-neo-hookean
+      - corotational-fem
+      - invertible-finite-elements
+      - modal-reduction
+      - brittle-fracture
+  - title: Cloth, shells and rods
+    intro: >
+      Thin bodies stretch much less than they bend, which makes their equations stiff. The cloth entry
+      states the problem, and Baraff and Witkin's implicit step made large steps the norm. Discrete shells
+      and the quadratic bending model give bending energies for triangle meshes, and the Cosserat rod and
+      discrete elastic rods give stretch, bending and twist for hair and cables.
+    entries:
+      - cloth-simulation
+      - baraff-witkin-cloth
+      - discrete-shells
+      - quadratic-bending-model
+      - cosserat-rod
+      - discrete-elastic-rods
+  - title: Position based methods
+    intro: >
+      These methods move positions directly onto constraints instead of integrating forces. They are
+      simple and hard to break, but not physically exact. In plain position based dynamics the stiffness
+      depends on the sweep count and the step; XPBD removes that dependence when its sweeps converge, and
+      small steps spend the same work on many substeps.
+    entries:
+      - position-based-dynamics
+      - extended-position-based-dynamics
+      - small-steps-physics
+      - meshless-shape-matching
+  - title: Implicit steps as optimization
+    intro: >
+      A backward Euler step is the minimizer of an inertia term plus the potential energy. The entries of
+      this group minimize that one objective in different ways: Newton's method with a line search, local
+      projections with a constant matrix, or one vertex at a time. Which descent and convergence properties
+      each one has is stated, and proved or measured, in its entry.
+    entries:
+      - optimization-time-integration
+      - fast-mass-spring
+      - projective-dynamics
+      - vertex-block-descent
+  - title: Collisions and contact
+    intro: >
+      Contact for thin and stiff bodies must keep every state free of intersection. Impact zones and the
+      robust cloth collision method reach that in exact arithmetic with impulses and rigid groups.
+      Incremental potential contact adds a barrier to the step energy and caps each Newton step by a
+      collision check, and affine body dynamics applies it to nearly rigid bodies.
+    entries:
+      - impact-zones
+      - robust-cloth-collision
+      - incremental-potential-contact
+      - affine-body-dynamics

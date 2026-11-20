@@ -1,0 +1,102 @@
+# The order of chapter 8.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Code points and encodings
+    intro: >
+      Unicode gives every character a number, a code point, and the encodings turn these numbers into bytes.
+      UTF-8 and UTF-16 are the two encodings in common use. Punycode writes Unicode in the few ASCII characters
+      that domain names allow, and the last entry checks UTF-8 with vector instructions instead of one byte at
+      a time.
+    entries:
+      - unicode-code-point
+      - utf-8
+      - utf-16
+      - punycode
+      - simd-utf-8-validation
+  - title: Equal strings, different code points
+    intro: >
+      The same text can be written with different code points: é is one code point or two. Canonical
+      equivalence says when two strings are the same text, and the normalization forms choose one string from
+      each class. The normalization algorithm computes them, with Hangul syllables handled by arithmetic. Case
+      folding and confusable detection widen the notion of "the same" to case and to look.
+    entries:
+      - canonical-equivalence
+      - unicode-normalization-forms
+      - hangul-syllable-composition
+      - unicode-normalization-algorithm
+      - unicode-case-folding
+      - unicode-confusable-detection
+  - title: Characters, words and sorting order
+    intro: >
+      A reader's character is often several code points. The grapheme cluster rules of UAX 29 find these
+      characters, and the same rule machinery finds words and sentences. The collation algorithm orders strings
+      the way people expect, with several levels of weights from a table.
+    entries:
+      - extended-grapheme-cluster
+      - unicode-text-segmentation
+      - unicode-collation-algorithm
+  - title: From characters to glyphs and lines
+    intro: >
+      Before text can be broken into lines it must be turned into glyphs and put in display order. Kerning and
+      text shaping choose and place the glyphs of a run, the bidirectional algorithm gives the order of mixed
+      left-to-right and right-to-left text, and the line breaking algorithm says where a line may end.
+    entries:
+      - kerning
+      - text-shaping
+      - unicode-bidirectional-algorithm
+      - unicode-line-breaking-algorithm
+  - title: Breaking paragraphs into lines
+    intro: >
+      TeX describes a paragraph as boxes, glue and penalties, and scores each line by its badness. Greedy
+      breaking fills one line at a time. Choosing all breaks together is a least weight subsequence problem,
+      solved by dynamic programming in general and in $O(n \log n)$ or $O(n)$ time when the weight satisfies
+      the quadrangle inequality.
+    entries:
+      - box-glue-penalty-model
+      - typesetting-badness
+      - greedy-line-breaking
+      - least-weight-subsequence
+      - hirschberg-larmore-algorithm
+      - wilber-algorithm
+  - title: Hyphenation
+    intro: >
+      Narrow lines need places where a word may be split. Liang's patterns find most of them with very few
+      errors, a packed trie stores the patterns in a small table, and pattern generation learns the patterns
+      from a hyphenated word list.
+    entries:
+      - hyphenation-problem
+      - liang-hyphenation
+      - packed-trie
+      - hyphenation-pattern-generation
+  - title: Pages, tables and formulas
+    intro: >
+      Pages are broken like paragraphs, with widows and orphans as the bad breaks and figures as the hard part.
+      TeX breaks pages by best fit; dynamic programming finds the optimum when figures keep their order, and
+      the problem is NP-complete when they do not. Tables and formulas are the other two layouts of this group.
+    entries:
+      - widows-and-orphans
+      - page-breaking-problem
+      - best-fit-page-breaking
+      - optimal-pagination
+      - pagination-np-completeness
+      - table-layout-problem
+      - tex-math-layout
+  - title: Differences between files
+    intro: >
+      A line diff that keeps a longest common subsequence is minimal, but it is not always the diff a person
+      wants. Heckel's, patience and histogram diff anchor on rare lines instead. Tichy's method describes moved
+      blocks, and Chawathe's method compares trees instead of lines.
+    entries:
+      - heckel-diff
+      - patience-diff
+      - histogram-diff
+      - tichy-block-moves
+      - chawathe-tree-diff
+  - title: Merging
+    intro: >
+      A three-way merge combines two edited versions with their common ancestor. diff3 is the standard method,
+      and conflicts are part of its design. Semistructured merge works on the declarations of a program and
+      avoids some of the conflicts that a line merge reports.
+    entries:
+      - three-way-merge
+      - diff3
+      - semistructured-merge

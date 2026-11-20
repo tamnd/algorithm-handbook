@@ -146,6 +146,16 @@ others, and the updates to the volumes that lost entries), and one that wrote fo
 *Robotics*, *Computer vision*, *Complexity* and *Databases*. Volumes 41 and 44 have no entries yet and are not
 built.
 
+For edition 0.42.0, the site's releases v0.41.0 and v0.42.0 wrote Chapter 8.8 *Text processing and typesetting*
+of Volume 8 *Strings*; the last three chapters of Volume 28 *Graphics and signals* (28.7, 28.9 and 28.11), so the
+volume is complete; Chapters 40.7 and 40.8 of Volume 40 *Databases*, so that volume is complete too, and many new
+entries in six of its other chapters; and Chapter 41.1 *Tokenization and text normalization*, the first of Volume
+41 *Natural language and speech*. Seven agents shared the work: one for Chapter 8.8 and the changes to the
+introduction of Volume 8; two for Volume 28 (Chapter 28.7; Chapters 28.9 and 28.11 and the introduction); three
+for Volume 40 (the rewritten pages of Chapters 40.2 to 40.4, those of 40.5, 40.6 and 40.9, and Chapters 40.7 and
+40.8 with the introduction); and one for Volume 41 (its introduction, Chapter 41.1 and the openings of the other
+eight chapters). Volume 44 has no entries yet and is not built.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -165,5 +175,8 @@ found in the written chapters of Volumes 31 and 32 in its release v0.31.0, those
 v0.34.0, and those found in the six new chapters of Volume 32 in its release v0.35.0; this edition has all those
 fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, and those
 found in Volume 34 for edition 0.34.0, in Volume 35 for edition 0.35.0 and in Volumes 36 and 39 for edition 0.36.0
-in its release v0.40.0, so this edition has them too. Those found in Volumes 38, 39, 40, 42 and 43 for this
-edition were fixed after that release, so the entries of this edition do not yet have them.
+in its release v0.40.0, and those found in Volumes 38, 39, 40, 42 and 43 for edition 0.40.0 in its release
+v0.42.0, so this edition has them too. Those found in Volumes 3, 8, 28 and 40 and in Chapter 41.1 for this
+edition were fixed after that release, so the entries of this edition do not yet have them, except two that
+damaged the typesetting (a bare `<compat>` read as an HTML tag in Chapter 8.8, and a formula in Chapter 3.8 that
+did not close), which the builder repairs (`hb/patches.py`).

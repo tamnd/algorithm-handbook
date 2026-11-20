@@ -1,5 +1,4 @@
 # The order of chapter 40.6, Logging and recovery. Groups are read in order; entries in a group too.
-# Only the written entries are listed.
 groups:
   - title: The problem and the buffer choices
     intro: >
@@ -12,33 +11,73 @@ groups:
       - crash-recovery
       - steal-and-force-policies
 
-  - title: Two ways to make updates atomic
+  - title: Updating out of place
     intro: >
-      [Shadow paging](/shadow-paging/) never overwrites a page in use: a transaction writes new copies and
-      commits by switching one root pointer, so no log of page contents is needed. The
-      [write-ahead log](/write-ahead-logging/) updates in place and logs each change before the page it
-      changes, and the whole transaction before its commit returns. Recovery then redoes and undoes from
-      the log.
+      One way to make updates atomic is never to overwrite data in use. [Shadow paging](/shadow-paging/)
+      writes new copies of changed pages and commits by switching one root pointer, so no log of page
+      contents is needed. A [differential file](/differential-file/) keeps all changes apart from the main file,
+      with a Bloom filter that sends most reads of unchanged records straight to the main file.
     entries:
       - shadow-paging
+      - differential-file
+
+  - title: The write-ahead log
+    intro: >
+      The [write-ahead log](/write-ahead-logging/) updates in place and logs each change before the page it
+      changes, and the whole transaction before its commit returns. [Undo/redo logging](/undo-redo-logging/)
+      is the classic form, with a before and an after image in each record. A [log sequence number](/log-sequence-number/)
+      on each page tells recovery which changes the page already holds. Records can describe a change by
+      bytes, by an operation inside one page ([physiological logging](/physiological-logging/)), or by an
+      operation on the database ([logical logging](/logical-logging/)).
+    entries:
       - write-ahead-logging
+      - undo-redo-logging
+      - log-sequence-number
+      - physiological-logging
+      - logical-logging
 
   - title: Keeping the log cheap
     intro: >
       [Checkpointing](/checkpointing/) writes the recovery tables to the log and names them in a master
-      record, so that restart reads only a bounded tail of the log. [Group commit](/group-commit/) makes
-      one log write durable for the commit records of many transactions, so that the commit rate is not
-      bounded by one device write per transaction.
+      record, so that restart reads only a bounded tail of the log. A [fuzzy checkpoint](/fuzzy-checkpoint/)
+      does this without stopping updates or forcing pages. [Group commit](/group-commit/) makes one log write
+      durable for the commit records of many transactions, so that the commit rate is not bounded by one
+      device write per transaction.
     entries:
       - checkpointing
+      - fuzzy-checkpoint
       - group-commit
 
-  - title: The full algorithm
+  - title: ARIES and its refinements
     intro: >
-      [ARIES](/aries-recovery/) puts the pieces together in three passes. Analysis rebuilds the
-      transaction and dirty page tables from the last checkpoint, redo repeats history from the smallest
-      recLSN, and undo rolls back the losers and logs a compensation record for each change it undoes. It
-      is correct under the WAL rule and its other rules, also when the system crashes again during
-      recovery.
+      [ARIES](/aries-recovery/) puts the pieces together in three passes. Analysis rebuilds the transaction
+      and dirty page tables, redo repeats history from the smallest recLSN, and undo rolls back the losers.
+      Each undone change gets a [compensation log record](/compensation-log-record/), which also makes
+      [savepoints](/savepoint/) cheap. [Multi-level recovery](/multi-level-recovery/) undoes whole operations
+      by their logical inverses, and [instant restart](/instant-restart/) lets new transactions in right after
+      analysis.
     entries:
       - aries-recovery
+      - compensation-log-record
+      - savepoint
+      - multi-level-recovery
+      - instant-restart
+
+  - title: When the disk is lost, or the data is wrong
+    intro: >
+      A crash of the system keeps the disk; a failure of the disk does not. [Media recovery](/media-recovery/)
+      restores an archive copy and replays the log written since. [Point-in-time recovery](/point-in-time-recovery/)
+      stops the replay at a chosen moment, before a mistake that the log faithfully recorded.
+    entries:
+      - media-recovery
+      - point-in-time-recovery
+
+  - title: Logging for main memory and new storage
+    intro: >
+      When the whole database lives in memory, the log can be much smaller. [Command logging](/command-logging/)
+      logs only the requests of a deterministic system and replays them from a checkpoint.
+      [Write-behind logging](/write-behind-logging/), for non-volatile memory, writes the data first and logs
+      only ranges of commit timestamps, so restart needs no redo.
+    entries:
+      - command-logging
+      - write-behind-logging

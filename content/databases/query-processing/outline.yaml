@@ -14,12 +14,14 @@ groups:
     intro: >
       For an equality condition, sorting or hashing brings matching tuples together. Sort-merge and
       Grace hash join both cost about three reads of the input when memory is large enough, and the
-      hybrid hash join moves smoothly from that cost to a single read as memory grows.
+      hybrid hash join moves smoothly from that cost to a single read as memory grows. The radix hash
+      join applies the same partitioning one level down, so that each part fits in the CPU cache.
     entries:
       - sort-merge-join
       - hash-join
       - grace-hash-join
       - hybrid-hash-join
+      - radix-hash-join
   - title: Semijoins
     intro: >
       A semijoin keeps the tuples of one relation that have a partner in another. It shrinks inputs
@@ -28,20 +30,38 @@ groups:
     entries:
       - semijoin
       - bloom-join
-  - title: Aggregation and the iterator model
+  - title: Aggregation and the data cube
     intro: >
-      Grouping splits rows by a key and computes an aggregate per group, by sorting or by hashing.
-      The iterator model runs a whole plan of such operators by pulling tuples through open, next and
-      close, and it shows which operators pipeline and which must block.
+      Grouping splits rows by a key and computes an aggregate per group, by hashing or by sorting with
+      the partial states combined while the runs are formed. The data cube asks for the aggregates of
+      every subset of the grouping attributes at once, and BUC computes the cells with enough rows
+      from the coarsest group-by down, skipping every block that is too small.
     entries:
       - group-by-aggregation
       - hash-aggregation
+      - sort-based-aggregation
+      - data-cube
+      - bottom-up-cube
+  - title: Running a plan
+    intro: >
+      The iterator model runs a whole plan by pulling tuples through open, next and close, and the
+      blocking operators cut it into pipelines. The later entries change how a pipeline runs: in
+      parallel streams behind an exchange operator, as one compiled loop, on batches of column values,
+      or on small morsels that worker threads take while the query runs.
+    entries:
       - iterator-model
+      - pipelining-and-materialization
+      - exchange-operator
+      - data-centric-query-compilation
+      - vectorized-query-execution
+      - morsel-driven-parallelism
   - title: Joins of many relations
     intro: >
       A plan of two-way joins can build intermediate results far larger than its output. For acyclic
       queries, semijoin passes remove every dangling tuple first. For cyclic queries, the AGM bound
-      limits the output, and generic join and leapfrog triejoin run within that bound.
+      limits the output, and generic join and leapfrog triejoin run within that bound. A factorized
+      representation stores a large join result in much less space, and the holistic twig join
+      matches a tree pattern in XML data as one multiway join on containment.
     entries:
       - multiway-join
       - acyclic-join-evaluation
@@ -49,21 +69,30 @@ groups:
       - agm-bound
       - generic-join
       - leapfrog-triejoin
-  - title: Top-k queries
+      - factorized-representation
+      - holistic-twig-join
+  - title: Top-k queries and skylines
     intro: >
       A top-k query asks for the best k objects under a monotone combination of grades from several
       sorted lists. Fagin's algorithm, the threshold algorithm and the no-random-access algorithm stop
-      as soon as the unread part of the lists cannot change the answer.
+      as soon as the unread part of the lists cannot change the answer, and a rank join does the same
+      for the results of a join. The skyline is the set of tuples that no other tuple dominates; block
+      nested loops and presorting scan all the data, while branch and bound on an R-tree reads only
+      the nodes that may hold a skyline point.
     entries:
       - top-k-query
       - fagin-algorithm
       - threshold-algorithm
       - no-random-access-algorithm
-  - title: Skylines
-    intro: >
-      The skyline of a relation is the set of tuples that no other tuple dominates in every attribute.
-      Block nested loops keep a window of candidates; presorting by a monotone score lets each window
-      tuple be output at once.
-    entries:
+      - rank-join
       - bnl-skyline
       - sort-filter-skyline
+      - branch-and-bound-skyline
+  - title: Online aggregation
+    intro: >
+      An aggregate over a large table can be estimated long before the scan ends, if the rows are read
+      in random order. Online aggregation keeps a running estimate with a confidence interval for each
+      group, and the ripple join extends it to joins by sampling both inputs at once.
+    entries:
+      - online-aggregation
+      - ripple-join

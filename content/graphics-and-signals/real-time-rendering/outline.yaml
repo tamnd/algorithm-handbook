@@ -1,0 +1,122 @@
+groups:
+  - title: Shading models
+    intro: >
+      A shading model gives the light that leaves a surface point toward the eye from the light that reaches it.
+      Blinn-Phong is the old empirical model. Physically based shading asks for reciprocity and energy
+      conservation and builds the specular term from a microfacet distribution, a masking function and a Fresnel
+      term. GGX, the Smith function and Schlick's formula are those three parts. Oren-Nayar, the Disney model and
+      linearly transformed cosines extend the set to rough diffuse surfaces, artist parameters and area lights.
+    entries:
+      - blinn-phong-reflection-model
+      - physically-based-shading
+      - ggx-distribution
+      - smith-masking-shadowing-function
+      - schlick-fresnel-approximation
+      - oren-nayar-reflectance-model
+      - disney-principled-brdf
+      - linearly-transformed-cosines
+  - title: Stylized shading and tone mapping
+    intro: >
+      Toon and Gooch shading replace the physical model by a chosen look: flat bands of color, or a ramp from
+      cool to warm that keeps shape visible in shadow. Tone mapping is the last step of every frame. It maps
+      the wide range of scene luminances to the narrow range of a display, and Reinhard's operator is the
+      standard global and local example.
+    entries:
+      - toon-shading
+      - gooch-shading
+      - tone-mapping
+      - reinhard-tone-mapping
+  - title: Light from the environment
+    intro: >
+      Much of the light in a scene comes from far away or from many bounces, and real-time renderers store it
+      in advance. Cube maps and environment maps store distant radiance by direction. Image-based lighting
+      and the split sum turn that store into diffuse and glossy lighting. Spherical harmonics compress smooth
+      lighting to a few numbers per point, which gives irradiance maps, precomputed radiance transfer and
+      irradiance volumes. Light maps store baked lighting on surfaces, and the two sky models give the
+      environment of an outdoor scene.
+    entries:
+      - cube-map
+      - environment-mapping
+      - image-based-lighting
+      - split-sum-approximation
+      - spherical-harmonic-lighting
+      - irradiance-environment-map
+      - precomputed-radiance-transfer
+      - irradiance-volume
+      - light-mapping
+      - preetham-sky-model
+      - precomputed-atmospheric-scattering
+  - title: Procedural and compressed textures
+    intro: >
+      Textures are either computed or stored. Perlin, simplex and Worley noise compute pseudorandom detail at
+      any point, and fractal noise sums them over several scales. Stored textures are compressed in fixed-size
+      blocks that the GPU decodes at random access, S3TC at 4 bits per texel and ASTC at a chosen rate.
+      Clipmaps and virtual texturing keep only the part of a huge texture that the view needs in memory.
+    entries:
+      - perlin-noise
+      - simplex-noise
+      - worley-noise
+      - fractal-noise
+      - s3-texture-compression
+      - adaptive-scalable-texture-compression
+      - texture-clipmap
+      - virtual-texturing
+  - title: Surface detail
+    intro: >
+      These methods add small relief to a coarse mesh, in increasing order of cost and of what they get right.
+      Bump and normal mapping change only the shading normal. Parallax mapping and parallax occlusion mapping
+      also move the texture coordinate along the view ray, so the relief shifts and hides itself. Displacement
+      mapping moves the vertices, so the outline, the depth and the shadows are right as well.
+    entries:
+      - bump-mapping
+      - normal-mapping
+      - parallax-mapping
+      - parallax-occlusion-mapping
+      - displacement-mapping
+  - title: Level of detail
+    intro: >
+      Level of detail draws a far object with less detail than a near one and hides the switch. Billboards and
+      impostors replace an object by a picture on a quad. Geomorphing blends between meshes. View-dependent
+      refinement of progressive meshes, ROAM and geometry clipmaps change the detail across one surface,
+      which matters most for terrain.
+    entries:
+      - level-of-detail
+      - billboard
+      - impostor
+      - geomorphing
+      - view-dependent-refinement
+      - roam-terrain
+      - geometry-clipmaps
+  - title: Shadows
+    intro: >
+      All five methods start from the shadow map. Cascaded shadow maps split the view by depth so the texel
+      size follows the pixel size. Percentage-closer filtering softens the edge by filtering the results of
+      the depth tests, and percentage-closer soft shadows choose the filter width from the blocker distance.
+      Variance and moment shadow maps store moments of the depth so the map can be filtered first, and pay with
+      light leaks that a proved bound limits.
+    entries:
+      - cascaded-shadow-maps
+      - percentage-closer-filtering
+      - percentage-closer-soft-shadows
+      - variance-shadow-maps
+      - moment-shadow-mapping
+  - title: The deferred frame, screen-space effects and transparency
+    intro: >
+      A G-buffer stores the visible surface of each pixel, so lighting can run once per pixel. Deferred, tiled
+      and clustered shading use it to shade many lights, and the visibility buffer stores only a triangle id.
+      The same buffers feed the screen-space effects, ambient occlusion and reflections, which see only what
+      the depth buffer holds. Transparent surfaces do not fit a buffer with one surface per pixel; the last
+      three entries composite them without sorting, exactly with per-pixel lists or approximately with weights.
+    entries:
+      - g-buffer
+      - deferred-shading
+      - tiled-shading
+      - clustered-shading
+      - visibility-buffer
+      - screen-space-ambient-occlusion
+      - horizon-based-ambient-occlusion
+      - ground-truth-ambient-occlusion
+      - screen-space-reflections
+      - order-independent-transparency
+      - per-pixel-linked-lists
+      - weighted-blended-oit

@@ -1,0 +1,61 @@
+# The order of chapter 40.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Splitting the data across nodes
+    intro: >
+      A distributed database first decides where each row and column lives. Start with the
+      [shared-nothing architecture](/shared-nothing-architecture/), then the two ways to cut a relation: by
+      rows, with selection predicates, and by columns, with projections that keep the key. The bond energy
+      algorithm groups columns that the queries use together, the allocation problem places the fragments on
+      sites, and Schism learns a partition of the rows from a trace of transactions.
+    entries:
+      - shared-nothing-architecture
+      - horizontal-fragmentation
+      - vertical-fragmentation
+      - bond-energy-algorithm
+      - data-allocation-problem
+      - schism-partitioning
+
+  - title: Queries over distributed data
+    intro: >
+      Once the data is spread out, a query plan must also say what to ship and where. The cost model counts
+      bytes sent between sites. SDD-1 cuts that cost with semijoins chosen by hill climbing, and the parallel
+      hash join reshuffles both inputs by a hash of the key so that each node joins its own share.
+    entries:
+      - distributed-query-processing
+      - sdd1-semijoin-optimization
+      - parallel-hash-join
+
+  - title: Replicated data
+    intro: >
+      Copies of an item must behave like one copy. [One-copy serializability](/one-copy-serializability/) is
+      the correctness goal; the eager and lazy schemes say when the copies are updated and who may update
+      them. Primary copy locking and read-one-write-all are the two classic eager protocols, with different
+      costs for reads, writes and failures.
+    entries:
+      - one-copy-serializability
+      - eager-and-lazy-replication
+      - primary-copy-locking
+      - read-one-write-all
+
+  - title: Transactions across nodes
+    intro: >
+      A transaction that touches several nodes needs a global answer to deadlock, ordering and commit. The
+      Chandy-Misra-Haas probes find deadlock cycles with local knowledge only. Calvin fixes the order of
+      transactions before they run, so it needs no two-phase commit. Clock-SI and Percolator give snapshot
+      isolation, the first from loosely synchronized clocks and the second from a central timestamp oracle.
+    entries:
+      - chandy-misra-haas
+      - calvin-deterministic-transactions
+      - clock-si
+      - percolator-transactions
+
+  - title: Avoiding coordination
+    intro: >
+      Some guarantees need no coordination at all, and a system that keeps to them stays available during a
+      partition. The entry on highly available transactions sorts the isolation levels into those that can
+      and cannot be had this way. RAMP transactions give atomic visibility without locks, and invariant
+      confluence says exactly which application invariants survive merges of concurrent work.
+    entries:
+      - highly-available-transactions
+      - ramp-transactions
+      - invariant-confluence

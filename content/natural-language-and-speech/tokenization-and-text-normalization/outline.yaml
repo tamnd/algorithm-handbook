@@ -1,0 +1,75 @@
+# The order of chapter 41.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Which language
+    intro: >
+      Most processing of a text depends on its language, so the first step is often to find it. The problem
+      page sets out the task and its hard cases; the Cavnar-Trenkle method answers it with ranked lists of
+      character n-grams and a sum of rank differences.
+    entries:
+      - language-identification
+      - cavnar-trenkle-language-identification
+
+  - title: Tokens and words
+    intro: >
+      A tokenizer cuts a string into the units that later steps count. [Tokenization](/text-tokenization/)
+      defines the problem and its three kinds of specification. The Penn Treebank rules are the standard
+      example of a rule-based tokenizer for English, and the out-of-vocabulary page says what goes wrong when
+      a test text has a token that training never saw.
+    entries:
+      - text-tokenization
+      - penn-treebank-tokenization
+      - out-of-vocabulary-word
+
+  - title: Sentences and case
+    intro: >
+      A period can end a sentence, an abbreviation or both, and a capital letter can mark a name or only the
+      start of a sentence. These entries split a text into sentences, with Punkt learning its abbreviations
+      from raw text, and restore the case of text whose case was lost.
+    entries:
+      - sentence-boundary-detection
+      - punkt-sentence-tokenizer
+      - truecasing
+
+  - title: Text without spaces
+    intro: >
+      Chinese, Japanese and Thai are written without spaces between words. Word segmentation states the
+      problem and solves it exactly for a unigram model by dynamic programming; maximum matching is the fast
+      greedy method with a dictionary, and its failures are worth knowing.
+    entries:
+      - word-segmentation
+      - maximum-matching-segmentation
+
+  - title: Morphology
+    intro: >
+      Words have inner structure. A lemmatizer maps a form to its dictionary form; a morphological analyzer
+      gives every analysis as a relation computed by a finite-state transducer, and two-level morphology
+      writes the rules as constraints on letter pairs. Morfessor learns morph-like units with no labels at all,
+      under a minimum description length cost.
+    entries:
+      - lemmatization
+      - morphological-analysis
+      - two-level-morphology
+      - morfessor
+
+  - title: Subword vocabularies
+    intro: >
+      Neural models use a fixed vocabulary of pieces smaller than words, so that any string can be encoded.
+      [Subword tokenization](/subword-tokenization/) sets out the idea and the trade-off. WordPiece, byte-level
+      BPE and the unigram language model are the three methods in wide use; fast WordPiece encodes in linear
+      time with failure links on a trie.
+    entries:
+      - subword-tokenization
+      - wordpiece
+      - fast-wordpiece-tokenization
+      - byte-level-bpe
+      - unigram-language-model-tokenization
+
+  - title: Sampling and limits
+    intro: >
+      Training on one fixed segmentation of each word hides the others. Subword regularization and BPE-dropout
+      sample segmentations instead. The last entry shows that choosing a vocabulary that gives the fewest
+      tokens is NP-complete, which is why every method above is a heuristic.
+    entries:
+      - subword-regularization
+      - bpe-dropout
+      - optimal-tokenization-hardness

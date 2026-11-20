@@ -1,0 +1,17 @@
+## History
+
+Record linkage is the oldest part of the chapter. Ivan Fellegi and Alan Sunter gave its probabilistic theory in 1969, with the likelihood ratio rule and its optimality for given error levels. Mauricio Hernández and Salvatore Stolfo described the sorted neighborhood method for the merge/purge problem in 1995. At Stanford, Omar Benjelloun, Hector Garcia-Molina, Jennifer Widom and their colleagues gave the generic model with black-box match and merge functions, and the Swoosh algorithms, in 2009.
+
+Data integration grew from the theory of incomplete information and of views. Tomasz Imieliński and Witold Lipski studied tables with nulls and the answers that hold in every possible world in 1984. Alon Levy, Alberto Mendelzon, Yehoshua Sagiv and Divesh Srivastava proved in 1995 that finding a rewriting of a query using views is NP-complete. Levy, Anand Rajaraman and Joann Ordille gave the bucket algorithm for the Information Manifold in 1996, Oliver Duschka and Michael Genesereth gave inverse rules in 1997, and Rachel Pottinger and Levy gave MiniCon in 2000. Maurizio Lenzerini's survey of 2002 set out the GAV and LAV views of integration, and Erhard Rahm and Philip Bernstein surveyed schema matching in 2001; Sergey Melnik, Garcia-Molina and Rahm presented similarity flooding in 2002.
+
+Data exchange came next. Ronald Fagin, Phokion Kolaitis, Renée Miller and Lucian Popa defined universal solutions and weak acyclicity at ICDT 2003, in a paper published in full in 2005. Fagin, Kolaitis and Popa showed that all universal solutions share one core, and with Wang-Chiew Tan they introduced second-order tgds for composition, both in 2005. Georg Gottlob and Alan Nash gave a polynomial algorithm for the core under weakly acyclic dependencies in 2008.
+
+Inconsistent data became a topic of its own in 1999, when Marcelo Arenas, Leopoldo Bertossi and Jan Chomicki defined repairs and consistent query answers. Ariel Fuxman and Miller found first-order rewritable cases, and Paraschos Koutris and Jef Wijsen proved the complexity classification for self-join-free queries under primary keys in 2017. For cleaning, Philip Bohannon, Wenfei Fan, Floris Geerts, Xibei Jia and Anastasios Kementsietsidis introduced conditional functional dependencies in 2007, and Xu Chu, Ihab Ilyas and Paolo Papotti used denial constraints in 2013. Theodoros Rekatsinas, Chu, Ilyas and Christopher Ré presented HoloClean in 2017. Discovery and truth finding have their own line: Yka Huhtala, Juha Kärkkäinen, Pasi Porkka and Hannu Toivonen presented TANE in 1998, and Xiaoxin Yin, Jiawei Han and Philip Yu presented TruthFinder in 2007.
+
+## Further reading
+
+- AnHai Doan, Alon Halevy and Zachary Ives, *Principles of Data Integration* (2012). The standard textbook: mappings, query rewriting, schema matching, entity resolution and data cleaning.
+- Marcelo Arenas, Pablo Barceló, Leonid Libkin and Filip Murlak, *Foundations of Data Exchange* (2014). Universal solutions, certain answers, the core and composition, with proofs.
+- Peter Christen, *Data Matching: Concepts and Techniques for Record Linkage, Entity Resolution, and Duplicate Detection* (2012). The practice of record linkage, from blocking to the Fellegi-Sunter weights and evaluation.
+- Leopoldo Bertossi, *Database Repairing and Consistent Query Answering* (2011). Repair semantics and consistent answers in one short book.
+- Maurizio Lenzerini, *Data Integration: A Theoretical Perspective* (2002). The survey that fixed the framework of GAV and LAV mappings and certain answers.

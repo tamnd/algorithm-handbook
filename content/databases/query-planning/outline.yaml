@@ -1,49 +1,106 @@
-# The order of chapter 40.4, Query planning. Groups are read in order; entries in a group too.
-# Only the written entries are listed.
+# The order of chapter 40.4, Query optimization. Groups are read in order; entries in a group too.
 groups:
-  - title: Plans, sizes and rewrites
+  - title: Plans, shapes and rewrites
     intro: >
       A [query plan](/query-plan/) is a tree of operators, each with an algorithm and an access path. The
-      number of join trees grows fast: $n!$ left-deep trees and $(2n-2)!/(n-1)!$ bushy ones for $n$
-      relations. The size of each intermediate result is estimated from [selectivities](/selectivity/),
-      under assumptions of uniformity and independence that real data often break. The first rewrite of
-      almost every optimizer is [predicate pushdown](/predicate-pushdown/), which applies filters as early
-      as the algebra allows.
+      size of each intermediate result is estimated from [selectivities](/selectivity/), and the first
+      rewrite of almost every optimizer is [predicate pushdown](/predicate-pushdown/). The number of
+      [left-deep and bushy join trees](/left-deep-and-bushy-join-trees/) grows as $n!$ and
+      $(2n-2)!/(n-1)!$. The other rewrites, [subquery unnesting](/subquery-unnesting/) and
+      [eager aggregation](/eager-aggregation/), rest on the
+      [equivalences of relational algebra](/relational-algebra-equivalences/), some of which hold only for
+      sets.
     entries:
       - query-plan
       - selectivity
       - predicate-pushdown
+      - left-deep-and-bushy-join-trees
+      - subquery-unnesting
+      - relational-algebra-equivalences
+      - eager-aggregation
 
   - title: Costs and the search problems
     intro: >
       A [cost model](/cost-model/) turns a plan and its size estimates into one number, such as page I/Os
       with a weight for CPU work, or $C_{\mathrm{out}}$, the sum of the intermediate result sizes. With a
-      cost model fixed, [join ordering](/join-ordering/) is NP-hard in general, and the wider
+      cost model fixed, [join ordering](/join-ordering/) is a search problem, and the wider
       [query optimization problem](/query-optimization/) adds the choice of algorithms, access paths and
-      rewrites.
+      rewrites. The [NP-hardness of join ordering](/join-ordering-np-hardness/) is proved for left-deep
+      trees, with and without cross products.
     entries:
       - cost-model
       - join-ordering
       - query-optimization
+      - join-ordering-np-hardness
 
-  - title: Statistics and the System R search
+  - title: Statistics and size estimates
     intro: >
-      A [histogram](/histogram/) summarizes one column in a few buckets; equi-depth buckets bound the
-      error of a range estimate by the size of one bucket, and the V-optimal histogram is found by a
-      dynamic program. [System R join enumeration](/selinger-join-enumeration/) is the dynamic program over
-      subsets of relations that most optimizers still follow, with interesting orders and no cross
-      products.
+      A [histogram](/histogram/) summarizes one column in a few buckets.
+      [Cardinality estimation](/cardinality-estimation/) combines such summaries for joins, under the
+      [attribute value independence](/attribute-value-independence/) assumption, and its errors
+      [grow with the number of joins](/estimation-error-propagation/). The other entries replace a guess by
+      something firmer: a distinct count from a sample with a
+      [guaranteed error](/guaranteed-error-estimator/), a [learned model](/learned-cardinality-estimation/)
+      of the data, or a [pessimistic upper bound](/pessimistic-cardinality-estimation/).
     entries:
       - histogram
-      - selinger-join-enumeration
-
-  - title: Hard estimates and stored views
-    intro: >
-      [Cardinality estimation](/cardinality-estimation/) is where optimizers fail most: errors multiply
-      along a chain of joins, and the measured errors on real queries reach several orders of magnitude.
-      [View selection](/view-selection/) chooses which [materialized views](/materialized-view/) to keep
-      under a space budget; the greedy algorithm on the lattice of a data cube is within $1 - 1/e$ of the
-      best benefit.
-    entries:
       - cardinality-estimation
+      - attribute-value-independence
+      - guaranteed-error-estimator
+      - estimation-error-propagation
+      - learned-cardinality-estimation
+      - pessimistic-cardinality-estimation
+
+  - title: Join enumeration
+    intro: >
+      [System R join enumeration](/selinger-join-enumeration/) is the dynamic program over subsets of
+      relations that most optimizers still follow. It keeps one plan per set and
+      [interesting order](/interesting-orders/), and starts from the
+      [access path](/access-path-selection/) of each table. [DPccp](/dpccp/) visits only the connected
+      pairs of sets, and [DPhyp](/dphyp/) extends it to predicates over three or more tables. For large
+      queries, [greedy operator ordering](/greedy-operator-ordering/) is a heuristic, and the
+      [IKKBZ algorithm](/ikkbz-algorithm/) is exact for tree queries under a special class of costs.
+    entries:
+      - selinger-join-enumeration
+      - interesting-orders
+      - access-path-selection
+      - greedy-operator-ordering
+      - dpccp
+      - ikkbz-algorithm
+      - dphyp
+
+  - title: Optimizer frameworks
+    intro: >
+      The [Volcano optimizer generator](/volcano-optimizer-generator/) and the
+      [Cascades framework](/cascades-framework/) turn rules and a cost model into a top-down search over a
+      memo of equivalent expressions. [Learned query optimization](/learned-query-optimization/) adds a
+      model trained on measured running times; its gains are measured, not proved.
+    entries:
+      - volcano-optimizer-generator
+      - cascades-framework
+      - learned-query-optimization
+
+  - title: Plans that adapt
+    intro: >
+      When an estimate is unknown or wrong, the plan can change. [Parametric query
+      optimization](/parametric-query-optimization/) prepares one plan for each range of a parameter,
+      [mid-query re-optimization](/mid-query-reoptimization/) checks the estimates while the plan runs, and
+      [eddies](/eddies/) choose the order of operators for each tuple. [Wander join](/wander-join/)
+      estimates an aggregate over a join by random walks through the indexes.
+    entries:
+      - parametric-query-optimization
+      - mid-query-reoptimization
+      - eddies
+      - wander-join
+
+  - title: Many queries and stored views
+    intro: >
+      [View selection](/view-selection/) chooses which [materialized views](/materialized-view/) to keep
+      under a space budget, and the [HRU greedy algorithm](/hru-greedy-view-selection/) on the lattice of a
+      data cube gets at least $1 - 1/e$ of the best benefit.
+      [Multiple-query optimization](/multiple-query-optimization/) shares common subexpressions between the
+      queries of a batch.
+    entries:
       - view-selection
+      - multiple-query-optimization
+      - hru-greedy-view-selection

@@ -1,6 +1,6 @@
 """The fallback fonts (spec handbook 05.2).
 
-Libertinus Serif lacks some characters of the corpus (⌊ ⌋ ∎ box drawing, CJK, …). The builder wraps each
+Libertinus Serif lacks some characters of the corpus (⌊ ⌋ ∎ box drawing, CJK, Hangul, emoji, …). The builder wraps each
 such character, outside mathematics, in \\hbfb{X}{c}, where X names the first font of the chain that has it.
 Mathematics needs no help: unicode-math takes the glyph from Libertinus Math.
 """
@@ -18,7 +18,8 @@ import tempfile
 TEXT_FONTS = ["LibertinusSerif-Regular.otf", "LibertinusSerif-Italic.otf", "LibertinusSerif-Bold.otf",
               "LibertinusSans-Regular.otf", "LibertinusSans-Bold.otf", "DejaVuSansMono.ttf"]
 CHAIN = [("F", "LibertinusSerif-Regular.otf"), ("A", "LibertinusMath-Regular.otf"), ("B", "DejaVuSansMono.ttf"),
-         ("C", "STIXTwoMath-Regular.otf"), ("D", "FreeSerif.otf"), ("E", "FandolSong-Regular.otf")]
+         ("C", "STIXTwoMath-Regular.otf"), ("D", "FreeSerif.otf"), ("E", "FandolSong-Regular.otf"),
+         ("G", "UnBatang.ttf"), ("H", "DejaVuSans.ttf")]
 
 
 def _cache_dirs():

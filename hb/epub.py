@@ -147,7 +147,7 @@ def build(book: Book, vol: Volume, md: str, outdir: str, edition: str, date: str
     cover = os.path.join(outdir, "cover.png")
     cover_png(vol, edition, cover)
     out = os.path.join(outdir, "main.epub")
-    cmd = ["pandoc", src, "-f", "markdown-auto_identifiers", "-t", "epub3", "-o", out,
+    cmd = ["pandoc", src, "-f", "markdown-auto_identifiers-raw_tex", "-t", "epub3", "-o", out,
            "--lua-filter", os.path.join(ROOT, "filters", "hb.lua"),
            "--math-method=mathml", "--toc", "--toc-depth=3", "--split-level=1",
            "--css", volume_css(vol, outdir),

@@ -1,0 +1,85 @@
+# The order of chapter 40.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Matching schemas and writing mappings
+    intro: >
+      Two databases that hold the same kind of data rarely use the same schema. Schema matching guesses which
+      elements correspond, and similarity flooding does it from the structure of the two schemas. A
+      [schema mapping](/schema-mapping/) states the correspondence exactly, as dependencies between a source
+      and a target, and the global-as-view and local-as-view styles are its two common special cases.
+    entries:
+      - schema-matching
+      - similarity-flooding
+      - schema-mapping
+      - gav-and-lav
+
+  - title: Answering queries using views
+    intro: >
+      In local-as-view integration each source is a view over a global schema, so a query over that schema
+      must be rewritten to use the views. Finding an equivalent rewriting is NP-complete. The bucket
+      algorithm and MiniCon find the maximally contained rewriting, and inverse rules turn the views into a
+      Datalog program that also handles recursive queries.
+    entries:
+      - answering-queries-using-views
+      - view-rewriting-np-completeness
+      - bucket-algorithm
+      - minicon-algorithm
+      - inverse-rules-algorithm
+
+  - title: Data exchange
+    intro: >
+      Data exchange builds the target instance for real. The chase gives a universal solution with labeled
+      nulls, and the certain answers of a union of conjunctive queries are its null-free answers. Weak
+      acyclicity makes the chase stop in polynomial time, the core is the smallest universal solution, and
+      composition joins two mappings into one, at the price of second-order dependencies.
+    entries:
+      - data-exchange-problem
+      - universal-solution
+      - certain-answers
+      - weak-acyclicity
+      - data-exchange-core-computation
+      - schema-mapping-composition
+
+  - title: Entity resolution
+    intro: >
+      Records that describe the same real thing must be found and merged. The Fellegi-Sunter model scores a
+      pair of records by a likelihood ratio. Blocking and the sorted neighborhood method cut the number of
+      pairs compared, R-Swoosh merges records with black-box rules, and collective resolution lets the
+      decisions on related records inform each other.
+    entries:
+      - entity-resolution
+      - fellegi-sunter-model
+      - entity-resolution-blocking
+      - sorted-neighborhood-method
+      - r-swoosh
+      - collective-entity-resolution
+
+  - title: Constraints, errors and repairs
+    intro: >
+      Dirty data breaks the rules it should satisfy. Conditional functional dependencies and denial
+      constraints state those rules. A repair changes the data until the rules hold, consistent query
+      answering returns only what holds in every repair, and HoloClean picks the most likely values with a
+      learned probabilistic model.
+    entries:
+      - conditional-functional-dependency
+      - denial-constraint
+      - database-repair
+      - consistent-query-answering
+      - holoclean
+
+  - title: Finding dependencies in data
+    intro: >
+      Instead of declaring the functional dependencies, one can list those that hold in an instance. The
+      output can be exponential in the number of attributes. TANE searches the lattice of attribute sets
+      level by level and tests each candidate with partitions of the rows.
+    entries:
+      - functional-dependency-discovery
+      - tane-algorithm
+
+  - title: Truth discovery
+    intro: >
+      When sources disagree about a value and no labels exist, the reliability of the sources and the truth
+      must be estimated together. A vote is the baseline. TruthFinder iterates between the trust of sources
+      and the confidence of the facts they claim.
+    entries:
+      - truth-discovery
+      - truthfinder

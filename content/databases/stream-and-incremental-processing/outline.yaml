@@ -1,28 +1,95 @@
 # The order of chapter 40.9, Stream and incremental processing. Groups are read in order; entries in a group too.
-# Only the written entries are listed.
 groups:
   - title: Stored results
     intro: >
       A [materialized view](/materialized-view/) is a query whose result is computed and stored. Queries
       can read it in place of the base tables, often a much smaller input, but the stored result must
-      change whenever the base tables do.
+      change whenever the base tables do. The [view maintenance problem](/view-maintenance/) asks how: by
+      recomputation or by deltas, at once or deferred.
     entries:
       - materialized-view
-
-  - title: Keeping a view up to date
-    intro: >
-      The [view maintenance problem](/view-maintenance/) asks how to keep the stored result equal to its
-      query: by recomputation or by deltas, at once or deferred. [Incremental view maintenance](/incremental-view-maintenance/)
-      gives a delta rule for each operator, such as $\Delta R \bowtie S + R \bowtie \Delta S + \Delta R \bowtie \Delta S$
-      for a join, and keeps a count of derivations so that deletions are handled exactly.
-    entries:
       - view-maintenance
-      - incremental-view-maintenance
 
-  - title: Recursive views
+  - title: Maintaining a view by deltas
+    intro: >
+      [Incremental view maintenance](/incremental-view-maintenance/) updates the view from the changes to
+      its base tables, and the [delta rules](/delta-rules/) give the change for each operator, such as
+      $\Delta R \bowtie S + R \bowtie \Delta S + \Delta R \bowtie \Delta S$ for a join. A
+      [self-maintainable view](/self-maintainable-view/) needs no base table at all, a
+      [deferred](/deferred-view-maintenance/) one is brought up to date later from logs, and
+      [higher-order maintenance](/higher-order-ivm/) stores the deltas of the deltas too.
+    entries:
+      - incremental-view-maintenance
+      - delta-rules
+      - self-maintainable-view
+      - deferred-view-maintenance
+      - higher-order-ivm
+
+  - title: Recursion and general incremental computation
     intro: >
       Counts of derivations fail for recursive views, where facts derive each other in cycles. The
-      [DRed algorithm](/dred-algorithm/) overdeletes every fact with a derivation through a deleted fact,
-      rederives the ones that still hold, and then runs the insertions as in semi-naive evaluation.
+      [DRed algorithm](/dred-algorithm/) overdeletes, rederives and inserts. [DBSP](/dbsp/) turns any query
+      over streams of changes into an incremental circuit. [Timely dataflow](/timely-dataflow/) tracks the
+      progress of logical timestamps through a cyclic dataflow, and [differential dataflow](/differential-dataflow/)
+      builds on it to maintain iterative computations by differences.
     entries:
       - dred-algorithm
+      - dbsp
+      - timely-dataflow
+      - differential-dataflow
+
+  - title: Queries over streams
+    intro: >
+      A [continuous query](/continuous-query/) is registered once and runs over input that never ends. The
+      [CQL model](/cql-stream-model/) gives it a meaning with windows that turn streams into relations and
+      operators that turn relations back into streams. Data arrives out of order, so a
+      [watermark](/event-time-watermark/) or a [punctuation](/stream-punctuation/) says when a part of the
+      input is complete, and the [dataflow model](/dataflow-model/) separates what is computed, where in
+      event time, when in processing time and how results are refined.
+    entries:
+      - continuous-query
+      - cql-stream-model
+      - event-time-watermark
+      - stream-punctuation
+      - dataflow-model
+
+  - title: Window aggregation
+    intro: >
+      Overlapping windows share most of their data. [Panes](/panes-window-aggregation/) cut a sliding window
+      into pieces of length $\gcd(R, S)$ and aggregate each piece once; [stream slicing](/stream-slicing/)
+      shares slices among many queries with different windows; [FlatFAT](/flatfat/) keeps partial aggregates
+      in a tree, for any associative operator.
+    entries:
+      - panes-window-aggregation
+      - stream-slicing
+      - flatfat
+
+  - title: Joining streams
+    intro: >
+      A join over streams cannot wait for the end of an input. The [symmetric hash join](/symmetric-hash-join/)
+      keeps a table for each input and emits each result as soon as both tuples have arrived.
+      [XJoin](/xjoin/) adds memory limits and slow sources: it spills partitions to disk and joins them while
+      the inputs are blocked.
+    entries:
+      - symmetric-hash-join
+      - xjoin
+
+  - title: Patterns of events
+    intro: >
+      [Complex event processing](/complex-event-processing/) looks for sequences of events with predicates
+      and time limits, such as a login followed by two failed payments within a minute.
+      [SASE](/sase-event-matching/) evaluates such patterns with an automaton and a shared buffer of partial
+      matches.
+    entries:
+      - complex-event-processing
+      - sase-event-matching
+
+  - title: Running a stream engine
+    intro: >
+      Two problems of a running system close the chapter. [Chain scheduling](/chain-scheduling/) orders the
+      work of the operators so that the queues between them use little memory, and
+      [asynchronous barrier snapshotting](/asynchronous-barrier-snapshotting/) takes consistent snapshots of a
+      running job, for restart after a failure, without stopping it.
+    entries:
+      - chain-scheduling
+      - asynchronous-barrier-snapshotting
