@@ -1,0 +1,93 @@
+# The order of chapter 41.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The decoding problem
+    intro: >
+      A model gives a distribution over the next token, and a decoder turns it into text. The first entry
+      states the two questions, the most probable output and a sample, and why the first one is hard in
+      general. Greedy decoding is the cheapest answer, and length normalization fixes the preference of
+      log probability scores for short outputs.
+    entries:
+      - autoregressive-decoding
+      - greedy-decoding
+      - length-normalization
+
+  - title: Sampling the next token
+    intro: >
+      Sampling draws each token from the model, usually after the distribution has been reshaped. Temperature
+      sharpens or flattens it, and top-k, nucleus and typical sampling cut off a tail of unlikely tokens.
+      The repetition penalty and contrastive search change the scores so that the text does not repeat itself.
+    entries:
+      - temperature-sampling
+      - top-k-sampling
+      - nucleus-sampling
+      - typical-sampling
+      - repetition-penalty
+      - contrastive-search
+
+  - title: Beam search variants and constraints
+    intro: >
+      These methods extend [beam search](/beam-search/) from Volume 29. Diverse beam search asks for outputs
+      that differ, grid beam search forces given words into the output, and stochastic beam search draws
+      samples without replacement. Grammar-constrained decoding keeps the output inside a formal language.
+    entries:
+      - diverse-beam-search
+      - grid-beam-search
+      - stochastic-beam-search
+      - grammar-constrained-decoding
+
+  - title: The mode and the risk
+    intro: >
+      For many models the most probable output is a poor one, often too short. Minimum Bayes risk decoding
+      picks the output with the best expected score against the model's own samples, and self-consistency
+      takes a vote over sampled answers, which is the same rule with the 0-1 loss.
+    entries:
+      - inadequacy-of-the-mode
+      - minimum-bayes-risk-decoding
+      - self-consistency-decoding
+
+  - title: Faster decoding
+    intro: >
+      A transformer decoder spends most of its time on one token at a time. The key-value cache stores what
+      attention has already computed, and speculative decoding lets a small model propose tokens that the
+      large model checks in one pass, without changing the law of the output.
+    entries:
+      - key-value-cache
+      - speculative-decoding
+
+  - title: Training and test mismatch
+    intro: >
+      A model trained on true prefixes is run on its own prefixes. Exposure bias names the gap and bounds
+      what it can cost; scheduled sampling is one way to train on the model's own tokens.
+    entries:
+      - exposure-bias
+      - scheduled-sampling
+
+  - title: Summarization
+    intro: >
+      A summarizer shortens a text under a length budget. The problem page separates the scores from the
+      selection, which is a knapsack problem when there is no redundancy. Luhn's method, LexRank and TextRank
+      score sentences, and the pointer-generator network writes new sentences and copies words from the source.
+    entries:
+      - automatic-summarization
+      - luhn-summarization
+      - lexrank
+      - textrank
+      - pointer-generator-network
+
+  - title: Scoring generated text
+    intro: >
+      Generated text is scored against reference texts written by people. ROUGE counts shared n-grams and
+      common subsequences, and BERTScore matches contextual embeddings. Both are computed exactly; how well
+      they agree with human judgment is measured.
+    entries:
+      - rouge
+      - bertscore
+
+  - title: Generation from data
+    intro: >
+      Before neural models, systems generated text from data through a pipeline of planning and realization
+      steps. The incremental algorithm is the classic method for one of those steps, the choice of a
+      description that picks out one object.
+    entries:
+      - natural-language-generation-pipeline
+      - incremental-algorithm-referring-expressions

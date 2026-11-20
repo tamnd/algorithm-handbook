@@ -1,0 +1,82 @@
+# The order of chapter 41.6. Groups are read in order; entries in a group too.
+groups:
+  - title: Trees, treebanks and scores
+    intro: >
+      A parser outputs a tree, and the chapter uses two kinds. A [dependency tree](/dependency-tree/) links
+      each word to its head; a phrase-structure tree groups words into labelled spans. Projectivity
+      separates the dependency trees that nest from those with crossing arcs. A treebank supplies the gold
+      trees, and PARSEVAL and the attachment scores measure how close a parser comes to them.
+    entries:
+      - dependency-tree
+      - projective-dependency-tree
+      - treebank
+      - parseval-measures
+      - attachment-score
+
+  - title: Constituency parsing
+    intro: >
+      A probabilistic grammar read off a treebank and parsed with probabilistic CKY gives the exact best
+      tree in $O(g n^3)$ time, but a plain treebank grammar is weak. Head rules, parent annotation,
+      lexicalization and latent symbols refine it; A* search and span scores change how the best tree is
+      found.
+    entries:
+      - constituency-parsing
+      - head-rules
+      - parent-annotation
+      - lexicalized-pcfg
+      - latent-variable-pcfg
+      - a-star-parsing
+      - span-based-constituency-parsing
+
+  - title: Graph-based dependency parsing
+    intro: >
+      When the score of a tree is a sum of scores of its arcs, the best tree can be found exactly. Eisner's
+      algorithm finds the best projective tree in $\Theta(n^3)$ time; the Chu-Liu-Edmonds algorithm finds
+      the best tree of any shape as a maximum spanning arborescence. The biaffine parser supplies the arc
+      scores from a neural network.
+    entries:
+      - dependency-parsing
+      - eisner-algorithm
+      - mst-dependency-parsing
+      - biaffine-dependency-parser
+
+  - title: Transition-based dependency parsing
+    intro: >
+      A transition parser reads the sentence once with a stack and a buffer and builds the tree by a
+      sequence of moves chosen by a classifier, in linear time but without a guarantee of the best tree.
+      Arc-standard, arc-eager and arc-hybrid build projective trees; the swap move adds non-projective
+      ones. Dynamic oracles train the classifier on its own mistakes, and the Chen-Manning parser makes it a
+      neural network.
+    entries:
+      - arc-standard-parsing
+      - arc-eager-parsing
+      - arc-hybrid-parsing
+      - swap-transition-system
+      - dynamic-oracle
+      - chen-manning-parser
+
+  - title: Richer grammars and grammar induction
+    intro: >
+      Feature structures, combinatory categorial grammar and tree-adjoining grammar put more of the grammar
+      into the words. Supertagging chooses the lexical categories before parsing and leaves little for the
+      parser to do. The dependency model with valence learns a grammar from raw text by EM.
+    entries:
+      - feature-structure-unification
+      - combinatory-categorial-grammar
+      - tree-adjoining-grammar
+      - supertagging
+      - dependency-model-with-valence
+
+  - title: Meaning and discourse
+    intro: >
+      The last group goes from syntax to meaning. Semantic role labelling finds who did what to whom,
+      AMR writes the meaning of a sentence as a graph and Smatch compares two such graphs, semantic parsing
+      maps a sentence to a logical form or a query, natural language inference asks whether one sentence
+      follows from another, and rhetorical structure theory puts a tree over the clauses of a text.
+    entries:
+      - semantic-role-labeling
+      - abstract-meaning-representation
+      - smatch
+      - semantic-parsing
+      - natural-language-inference
+      - rhetorical-structure-theory

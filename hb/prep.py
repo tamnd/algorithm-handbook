@@ -276,7 +276,35 @@ def clean_html(md: str) -> str:
     md = re.sub(r"<sub>(.*?)</sub>", lambda m: "~" + m.group(1).replace(" ", "\\ ") + "~", md)
     md = re.sub(r"<sup>(.*?)</sup>", lambda m: "^" + m.group(1).replace(" ", "\\ ") + "^", md)
     md = re.sub(r"<br\s*/?>", " ", md)
-    return fix_math(md)
+    return fix_math(code_bare_tags(md))
+
+
+# A bare `<s>`, `</s>` or `<her>` in the text (a sentence marker, a word with its boundary symbols) is read by
+# pandoc as an HTML tag: it vanishes from the PDF and leaves the EPUB malformed. Outside code and mathematics it
+# is set as code, as the site writes it elsewhere.
+_BARE_TAG = re.compile(r"</?[A-Za-z][A-Za-z0-9-]*>")
+_NOT_TEXT = re.compile(r"(`+).*?(?<!`)\1(?!`)|\$\$.*?\$\$|(?<![\\$])\$[^$\n]*?(?<!\\)\$")
+
+
+def code_bare_tags(md: str) -> str:
+    out, fence, display = [], None, False
+    for ln in md.split("\n"):
+        s = ln.lstrip()
+        if fence is None and (m := re.match(r"`{3,}|~{3,}", s)):
+            fence = m.group(0)
+        elif fence is not None:
+            if s.startswith(fence) and not s[len(fence):].strip():
+                fence = None
+        elif s.startswith("$$") and s.count("$$") % 2:
+            display = not display
+        elif not display and "<" in ln:
+            parts, i = [], 0
+            for m in _NOT_TEXT.finditer(ln):
+                parts += [_BARE_TAG.sub(lambda t: f"`{t.group(0)}`", ln[i:m.start()]), m.group(0)]
+                i = m.end()
+            ln = "".join(parts) + _BARE_TAG.sub(lambda t: f"`{t.group(0)}`", ln[i:])
+        out.append(ln)
+    return "\n".join(out)
 
 
 # `$j' $`: KaTeX on the site accepts a space before the closing dollar; pandoc does not, and prints the dollars
@@ -522,7 +550,7 @@ def entry_md(node: Node, num: str, refs: Refs) -> str:
     body = clean_html(refs.rewrite_body(node.body, node))
     st = Statements(node.slug, node.name, node.kind)
     body = st.mark(body, "body")
-    pbodies = {p.id: st.mark(fix_math(shift_headings(refs.rewrite_body(p.body, node, in_proof=True), 4)), p.id) for p in node.proofs}
+    pbodies = {p.id: st.mark(fix_math(code_bare_tags(shift_headings(refs.rewrite_body(p.body, node, in_proof=True), 4))), p.id) for p in node.proofs}
     body = st.refs(body, "body")
     pbodies = {k: st.refs(v, k) for k, v in pbodies.items()}
     sections = split_h2(body)

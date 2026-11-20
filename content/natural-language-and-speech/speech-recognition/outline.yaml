@@ -1,0 +1,112 @@
+# The order of chapter 41.9. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its measure
+    intro: >
+      A recognizer maps a sequence of feature frames to a sequence of words. The source-channel model
+      states this as a search for the words that maximize the product of an acoustic model and a language
+      model, and the pronunciation lexicon links the two. The word error rate is how every result in the
+      chapter is measured.
+    entries:
+      - automatic-speech-recognition
+      - source-channel-speech-recognition
+      - pronunciation-lexicon
+      - word-error-rate
+
+  - title: Template matching
+    intro: >
+      The first recognizers compared an input with stored examples of each word. Dynamic time warping
+      aligns two sequences spoken at different speeds by dynamic programming, and the Sakoe-Chiba band
+      limits the alignment to a strip around the diagonal.
+    entries:
+      - dynamic-time-warping
+      - sakoe-chiba-band
+
+  - title: HMM acoustic models
+    intro: >
+      The statistical recognizer models each phone with a hidden Markov model whose states emit
+      Gaussian mixtures. Forced alignment and Viterbi training place a known transcript on the frames.
+      Triphones model each phone in its context, and a phonetic decision tree ties their states so
+      that the data can support them.
+    entries:
+      - gmm-hmm-acoustic-model
+      - forced-alignment
+      - viterbi-training
+      - triphone-model
+      - phonetic-decision-tree-state-tying
+
+  - title: Adaptation to the speaker
+    intro: >
+      A model trained on many speakers fits each one less well. Vocal tract length normalization warps
+      the frequency axis of the features; MAP adaptation moves each Gaussian toward the speaker's data;
+      MLLR moves whole classes of Gaussians with one shared affine map.
+    entries:
+      - vocal-tract-length-normalization
+      - map-speaker-adaptation
+      - maximum-likelihood-linear-regression
+
+  - title: Search and its output
+    intro: >
+      The decoder searches for the best word sequence. Time-synchronous beam search and token passing
+      advance all hypotheses frame by frame; the stack decoder extends the best partial sentence first.
+      A decoder can write a word lattice, which a second pass rescores or turns into a confusion network,
+      and which keyword search can index.
+    entries:
+      - time-synchronous-beam-search
+      - token-passing
+      - stack-decoding
+      - word-lattice
+      - lattice-rescoring
+      - confusion-network
+      - keyword-spotting
+
+  - title: Weighted transducers
+    intro: >
+      Each knowledge source of a recognizer can be written as a weighted finite-state transducer. This
+      group gives the three operations, composition, determinization and weight pushing, and the HCLG
+      graph that combines the HMMs, the context, the lexicon and the grammar into one search network.
+    entries:
+      - weighted-transducer-composition
+      - weighted-determinization
+      - weight-pushing
+      - hclg-decoding-graph
+
+  - title: Discriminative and neural acoustic models
+    intro: >
+      Maximum likelihood ignores the competing transcripts; MMI training raises the correct one against
+      them. The hybrid model replaces the Gaussian mixtures by a neural network, LF-MMI trains that
+      network with MMI from the start, and SpecAugment makes the training data harder.
+    entries:
+      - maximum-mutual-information-training
+      - hybrid-dnn-hmm
+      - lattice-free-mmi
+      - specaugment
+
+  - title: End-to-end recognition
+    intro: >
+      End-to-end models map frames to characters or subword units with one network and no lexicon.
+      CTC and the RNN transducer sum over all alignments, and attention models such as LAS learn the
+      alignment. The rest of the group is about decoding them, joining CTC with attention, adding a
+      language model, and the encoders and pretraining that current systems use.
+    entries:
+      - connectionist-temporal-classification
+      - ctc-prefix-beam-search
+      - rnn-transducer
+      - listen-attend-and-spell
+      - joint-ctc-attention
+      - shallow-fusion
+      - conformer
+      - wav2vec-2
+
+  - title: Speakers
+    intro: >
+      The last group asks who is speaking, not what is said. Speaker verification and its error measure
+      come first, then the methods from GMM-UBM scoring to i-vectors, PLDA and x-vectors. Diarization
+      uses the same embeddings to find who spoke when.
+    entries:
+      - speaker-verification
+      - equal-error-rate
+      - gmm-ubm-speaker-verification
+      - i-vector
+      - plda-scoring
+      - x-vector
+      - speaker-diarization

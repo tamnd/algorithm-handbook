@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.42.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.43.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.42.0](https://github.com/tamnd/algorithm/releases/tag/v0.42.0)
-(`56d85ec9f045746050a9f644811529bdb768d909`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.43.0](https://github.com/tamnd/algorithm/releases/tag/v0.43.0)
+(`3a1b64f389c36ce619d8bc88f9e941cd8c7379fd`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 2,214 |
+| 0 | Guide and Index | the whole set | 2,279 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -46,46 +46,40 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 38 | Computer vision | 277 | 2,593 |
 | 39 | Complexity | 284 | 1,225 |
 | 40 | Databases | 296 | 2,420 |
-| 41 | Natural language and speech | 22 | 215 |
+| 41 | Natural language and speech | 299 | 2,157 |
 | 42 | Algorithmic game theory | 6 | 102 |
 | 43 | Scientific computing | 3 | 91 |
 | 45 | Security and privacy | 2 | 75 |
 | 46 | Imaging and inverse problems | 1 | 61 |
-| | **All** | **11,449** | **83,531** |
+| | **All** | **11,726** | **85,538** |
 
-- **Volume 28, Graphics and signals**, now has all twelve of its chapters written, 594 entries in all. Three
-  new chapters: *Real-time rendering* (60 entries: shading models, stylized shading and tone mapping, environment
-  lighting, procedural and compressed textures, surface detail, level of detail, shadows, deferred shading,
-  screen-space effects and transparency), *Character animation* (36 entries: skeletons, linear blend and dual quaternion
-  skinning and their corrections, automatic rigging and skinning weights, blendshapes and facial rigs, blending
-  and warping captured motion, motion graphs and motion matching, inverse kinematics, spacetime constraints and
-  retargeting, physics-based control and crowds) and
-  *Deformable body simulation* (31 entries: mass-spring systems, continuum elasticity and finite elements, cloth,
-  shells and rods, position based dynamics, implicit steps as optimization, collisions and contact).
-- **Volume 40, Databases**, now has all nine of its chapters written, 296 entries in all (126 in 0.40.0). Two new
-  chapters: *Distributed and replicated databases* (20 entries: fragmentation and allocation, distributed query
-  processing and semijoins, replication, distributed transactions, coordination avoidance) and *Data integration
-  and cleaning* (30 entries: schema matching and mappings, answering queries using views, data exchange, entity
-  resolution, constraints and repairs, dependency discovery, truth discovery). Six chapters grew, and their pages
-  are rewritten: *Storage and indexing* (31 entries), *Query processing* (40), *Query optimization* (35),
-  *Transactions and concurrency control* (41), *Logging and recovery* (21) and *Stream and incremental
-  processing* (25).
-- **Volume 8, Strings**, has a new chapter, *Text processing and typesetting* (43 entries: Unicode code points and
-  encodings, normalization and case folding, segmentation and collation, text shaping, line breaking with
-  boxes, glue and penalties, hyphenation, page and table layout, diff and merge), and has 259 entries.
-- **New in this edition: Volume 41, Natural language and speech**, with its introduction, its first chapter,
-  *Tokenization and text normalization* (22 entries: language identification, tokenization, sentence boundaries
-  and truecasing, word segmentation, morphology, byte pair encoding, WordPiece and unigram subword vocabularies),
-  and the openings of the other eight chapters.
-- **Volume 0, Guide and Index**, covers the whole set of 11,449 entries.
-- The other volumes have the same entries under the same numbers as in 0.40.0. The entries have the corrections
-  that the site made up to its release v0.42.0, among them those found while writing edition 0.40.0.
-- Backslashes in the text of an entry outside mathematics, such as the string "\uD800" or the category (S\NP)/NP,
-  are now printed as written; before, the builder passed them to TeX. Hangul and emoji in the text now have fonts.
+- **Volume 41, Natural language and speech**, now has all nine of its chapters written, 299 entries in all (22 in
+  0.42.0). Eight new chapters: *Word and sentence embeddings* (32 entries: count vectors and PMI, word2vec, GloVe
+  and subword vectors, contextual and sentence embeddings, bias tests, word senses), *Language modeling* (41:
+  n-gram smoothing from Laplace to modified Kneser-Ney, neural and recurrent models, attention and the
+  transformer, pretraining, fine-tuning and preference training, scaling laws), *Text generation and decoding*
+  (29: greedy and beam decoding, sampling and truncation, constrained, speculative and minimum Bayes risk decoding,
+  summarization and its metrics), *Tagging and information extraction* (26: HMM, MEMM and CRF taggers, named
+  entities, relation extraction, coreference and entity linking), *Syntactic and semantic parsing* (33: PCFG and
+  span-based constituency parsing, transition-based and graph-based dependency parsing, grammar formalisms,
+  semantic parsing and meaning representations), *Machine translation and alignment* (36: the IBM and HMM
+  alignment models, phrase-based and hierarchical translation, neural translation with attention, evaluation by
+  BLEU, chrF, TER and COMET), *Speech analysis and synthesis* (36: the source-filter model, cepstral and mel
+  features, pitch, formants and voice activity, noise reduction, coding by CELP, grapheme-to-phoneme conversion,
+  concatenative, parametric and neural synthesis) and *Speech recognition* (44: HMM acoustic models, decoding graphs from weighted transducers,
+  discriminative training, CTC, transducer and attention models, speaker recognition and diarization). The
+  introduction of the volume is rewritten for the complete volume.
+- **Volume 0, Guide and Index**, covers the whole set of 11,726 entries and has a new learning path, *Natural
+  language and speech*, in six stages from text and probability to speech.
+- The other volumes have the same entries under the same numbers as in 0.42.0. The entries have the corrections
+  that the site made up to its release v0.43.0, among them those found while writing edition 0.42.0 in Volume 40
+  and Chapters 8.8 and 41.1.
+- A tag-like word written as bare text in an entry, such as the sentence markers `<s>` and `</s>`, is now set as
+  code; before, it was read as an HTML tag, dropped from the PDF and left the EPUB malformed.
 - Volume 44 (Communications) is not built: the site has only short pages for it so far. Volume 0 lists its
   chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.42.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.43.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

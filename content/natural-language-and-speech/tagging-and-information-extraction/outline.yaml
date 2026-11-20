@@ -1,0 +1,70 @@
+# The order of chapter 41.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Labels for texts and tokens
+    intro: >
+      The chapter starts with the shapes of the output. Sentiment analysis gives one label to a whole text,
+      and sequence labeling gives one label to each token. The BIO encoding turns labeled spans into token
+      tags and back, and span F1 is the score that counts whole spans.
+    entries:
+      - sentiment-analysis
+      - sequence-labeling
+      - bio-encoding
+      - span-f1-score
+
+  - title: Part-of-speech tagging
+    intro: >
+      Part-of-speech tagging is the oldest sequence labeling task. The universal tagset gives tags that work
+      across languages. The HMM tagger decodes with Viterbi, the Brill tagger learns a list of
+      transformation rules, and Bayesian HMM tagging learns tag classes from text with no tags at all.
+    entries:
+      - part-of-speech-tagging
+      - universal-pos-tagset
+      - hmm-part-of-speech-tagger
+      - brill-tagger
+      - bayesian-hmm-tagging
+
+  - title: Chunks and named entities
+    intro: >
+      Chunking and named entity recognition label spans, not single tokens. Both are usually solved as
+      sequence labeling over BIO tags and scored by span F1, on the CoNLL shared task data.
+    entries:
+      - text-chunking
+      - named-entity-recognition
+
+  - title: Discriminative sequence models
+    intro: >
+      These models score a tag sequence from features of the whole input. The maximum entropy Markov model
+      normalizes each step and so suffers from the label bias problem. The structured perceptron and the
+      [conditional random field](/conditional-random-field/) of Volume 25 avoid it; the BiLSTM-CRF adds
+      learned features, and the semi-Markov CRF labels segments in place of tokens.
+    entries:
+      - maximum-entropy-markov-model
+      - label-bias-problem
+      - structured-perceptron
+      - bilstm-crf
+      - semi-markov-crf
+
+  - title: Coreference
+    intro: >
+      Coreference resolution groups the mentions of a text that refer to the same entity. Hobbs' algorithm
+      and centering theory are the classic accounts of pronouns and local coherence. The mention-pair model
+      and the span-ranking model are the learned methods, and the B-cubed metric is one of the scores used
+      to compare them.
+    entries:
+      - coreference-resolution
+      - hobbs-algorithm
+      - centering-theory
+      - mention-pair-model
+      - b-cubed-metric
+      - span-ranking-coreference
+
+  - title: Entities and relations
+    intro: >
+      The last group connects text to a knowledge base. Entity linking maps each name to an entry, and
+      relation extraction finds the facts that hold between entities. DIPRE grows a relation from a few
+      seed pairs, and distant supervision labels training sentences with facts already in a knowledge base.
+    entries:
+      - entity-linking
+      - relation-extraction
+      - dipre
+      - distant-supervision

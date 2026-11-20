@@ -156,6 +156,12 @@ for Volume 40 (the rewritten pages of Chapters 40.2 to 40.4, those of 40.5, 40.6
 40.8 with the introduction); and one for Volume 41 (its introduction, Chapter 41.1 and the openings of the other
 eight chapters). Volume 44 has no entries yet and is not built.
 
+For edition 0.43.0, the site's release v0.43.0 wrote the other eight chapters of Volume 41 *Natural language and
+speech* (41.2 to 41.9), so the volume is complete. Five agents shared the work: four for the chapters (41.2 and
+41.3; 41.4 and 41.5; 41.6 and 41.7; 41.8 and 41.9) and one for the introduction of the volume, the links from
+Chapter 41.1 to the new entries, and a learning path for natural language and speech in Volume 0. Volume 44 has
+no entries yet and is not built.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -175,8 +181,11 @@ found in the written chapters of Volumes 31 and 32 in its release v0.31.0, those
 v0.34.0, and those found in the six new chapters of Volume 32 in its release v0.35.0; this edition has all those
 fixes. The errors found in Volume 31 for edition 0.33.0 were fixed in the site's release v0.36.0, and those
 found in Volume 34 for edition 0.34.0, in Volume 35 for edition 0.35.0 and in Volumes 36 and 39 for edition 0.36.0
-in its release v0.40.0, and those found in Volumes 38, 39, 40, 42 and 43 for edition 0.40.0 in its release
-v0.42.0, so this edition has them too. Those found in Volumes 3, 8, 28 and 40 and in Chapter 41.1 for this
-edition were fixed after that release, so the entries of this edition do not yet have them, except two that
-damaged the typesetting (a bare `<compat>` read as an HTML tag in Chapter 8.8, and a formula in Chapter 3.8 that
-did not close), which the builder repairs (`hb/patches.py`).
+in its release v0.40.0, those found in Volumes 38, 39, 40, 42 and 43 for edition 0.40.0 in its release
+v0.42.0, and those found in Volume 40 and in Chapters 8.8 and 41.1 for edition 0.42.0 in its release v0.43.0, so
+this edition has them too. Those found in Volumes 3, 8 and 28 for edition 0.42.0 and in Volume 41 for this edition
+were fixed after that release, so the entries of this edition do not yet have them, except those that
+damaged the typesetting. Two the builder repairs one by one (`hb/patches.py`): a bare `<compat>` read as an HTML
+tag in Chapter 8.8, and a formula in Chapter 3.8 that did not close. The sentence markers `<s>` and `</s>`,
+written as bare text in 27 entries of Volume 41, are read as HTML tags too; the builder sets any such bare tag in
+the text of an entry as code (`hb/prep.py`), as the site now writes them.

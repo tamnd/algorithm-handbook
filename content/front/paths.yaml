@@ -4703,3 +4703,207 @@ paths:
           - dred-algorithm
           - entry: view-selection
             why: in the data cube lattice, greedy selection gets at least 1 - 1/e of the best benefit
+  - id: natural-language-and-speech
+    title: Natural language and speech
+    for: a student who knows basic probability, hidden Markov models, finite automata and a little signal processing, and wants to see how programs model, tag, parse, translate, generate and recognize language.
+    intro: >
+      The path follows Volume 41 from tokens to speech, with the Unicode
+      entries of Chapter 8.8, the probabilistic models of Volume 25, the
+      automata and grammars of Volume 9 and the signal processing of
+      Volume 28 as its base. Some searches are exact for their models:
+      Viterbi decoding of HMMs and linear-chain CRFs, CKY and the Eisner
+      algorithm in cubic time, the maximum spanning tree for arc-factored
+      non-projective parsing, and the forward-backward sums of CTC. EM
+      never lowers the likelihood but in general reaches only a local
+      maximum, except for IBM model 1, whose likelihood is concave.
+      Subword vocabulary training, transition parsers and beam decoders
+      are greedy or approximate. Smoothing methods are estimators
+      judged by perplexity, and word vectors, neural language models,
+      scaling laws and translation and recognition systems are judged by
+      measurements such as perplexity, BLEU and word error rate, not by
+      theorems.
+    stages:
+      - title: Text, probability and automata
+        intro: >
+          A review of what the volume assumes: Unicode text and its bytes,
+          regular expressions and transducers, hidden Markov models with
+          their three dynamic programs, EM, and the softmax and cross-entropy
+          of neural models.
+        steps:
+          - unicode-code-point
+          - utf-8
+          - regular-expression
+          - finite-state-transducer
+          - weighted-automaton
+          - maximum-likelihood-estimation
+          - hidden-markov-model
+          - entry: viterbi-algorithm
+            why: the most probable state path of an HMM, exactly, in O(T N^2) time for T observations and N states.
+          - forward-backward-algorithm
+          - entry: expectation-maximization
+            why: never lowers the likelihood, and in general stops at a local maximum.
+          - baum-welch-algorithm
+          - softmax-regression
+          - cross-entropy-loss
+          - backpropagation
+          - kullback-leibler-divergence
+      - title: Tokens and n-gram models
+        intro: >
+          Text is cut into words, sentences or subword pieces, and a language
+          model gives each sequence of tokens a probability. Counts alone give
+          zero to what was not seen, so n-gram models are smoothed. The
+          smoothing methods here give proper distributions and are compared
+          by perplexity on held-out text.
+        steps:
+          - text-tokenization
+          - penn-treebank-tokenization
+          - sentence-boundary-detection
+          - word-segmentation
+          - subword-tokenization
+          - wordpiece
+          - byte-level-bpe
+          - unigram-language-model-tokenization
+          - entry: optimal-tokenization-hardness
+            why: choosing the vocabulary that gives the fewest tokens is NP-complete, so the subword methods are heuristics.
+          - language-model
+          - perplexity
+          - n-gram-language-model
+          - out-of-vocabulary-word
+          - laplace-smoothing
+          - entry: good-turing-estimation
+            why: estimates the total probability of the unseen types as N_1/N.
+          - katz-backoff
+          - entry: kneser-ney-smoothing
+            why: the lower-order model counts the distinct contexts of a word, not its occurrences.
+      - title: Word vectors and transformers
+        intro: >
+          Words used in similar contexts get similar vectors, from count
+          matrices or from models trained to predict a word from its
+          neighbours. Attention lets each position read every other, and the
+          transformer stacks it into the language models that the rest of the
+          volume uses. What these models do well is measured, not proved.
+        steps:
+          - distributional-hypothesis
+          - pointwise-mutual-information
+          - word-context-matrix
+          - word-embedding
+          - skip-gram-model
+          - negative-sampling
+          - entry: sgns-implicit-factorization-theorem
+            why: if every dot product is free, the optimum of skip-gram with k negatives factorizes PMI shifted by log k.
+          - glove
+          - word-analogy
+          - neural-probabilistic-language-model
+          - recurrent-neural-network-language-model
+          - scaled-dot-product-attention
+          - multi-head-attention
+          - sinusoidal-positional-encoding
+          - transformer
+          - causal-language-modeling
+          - masked-language-modeling
+          - bert
+          - generative-pretrained-transformer
+          - entry: flashattention
+            why: exact attention computed in tiles, with fewer transfers to slow memory than the plain computation.
+          - entry: neural-scaling-law
+            why: power laws fitted to measured training runs, which hold only over the range of the fit.
+      - title: Tagging and parsing
+        intro: >
+          A tagger labels each word and a parser builds a tree over the
+          sentence. For HMMs, CRFs, PCFGs and arc-factored dependency models
+          the best output is found exactly by dynamic programming or by a
+          spanning tree algorithm; transition parsers are greedy and fast.
+        steps:
+          - sequence-labeling
+          - bio-encoding
+          - part-of-speech-tagging
+          - hmm-part-of-speech-tagger
+          - maximum-entropy-markov-model
+          - entry: label-bias-problem
+            why: a property of locally normalized models such as MEMMs, which motivated CRFs.
+          - conditional-random-field
+          - entry: structured-perceptron
+            why: Viterbi decoding inside the perceptron update; on separable data the number of mistakes is bounded.
+          - named-entity-recognition
+          - span-f1-score
+          - context-free-grammar
+          - probabilistic-context-free-grammar
+          - probabilistic-cky
+          - treebank
+          - constituency-parsing
+          - parseval-measures
+          - dependency-tree
+          - projective-dependency-tree
+          - dependency-parsing
+          - entry: arc-standard-parsing
+            why: 2n greedy transitions that can build only projective trees.
+          - entry: eisner-algorithm
+            why: the best projective tree under arc-factored scores, exactly, in O(n^3) time.
+          - edmonds-arborescence
+          - entry: mst-dependency-parsing
+            why: the maximum spanning arborescence gives the best non-projective tree under arc-factored scores.
+          - attachment-score
+      - title: Decoding and translation
+        intro: >
+          A language model is turned into a generator by a decoding rule.
+          Greedy and beam search look for the most probable output and need
+          not find it, and the most probable output is often not the best.
+          Translation adds word alignment, learned by EM from parallel text,
+          and the encoder-decoder with attention.
+        steps:
+          - autoregressive-decoding
+          - greedy-decoding
+          - length-normalization
+          - entry: inadequacy-of-the-mode
+            why: a measured fact; the most probable translation is often empty or too short.
+          - temperature-sampling
+          - top-k-sampling
+          - nucleus-sampling
+          - key-value-cache
+          - entry: speculative-decoding
+            why: a draft model proposes tokens, and the acceptance rule keeps exactly the distribution of the large model.
+          - parallel-corpus
+          - noisy-channel-translation-model
+          - word-alignment
+          - entry: ibm-model-1
+            why: its likelihood is concave, so EM reaches a global maximum, though not always a unique one.
+          - entry: hmm-alignment-model
+            why: alignments that depend on the previous jump; EM reaches a local maximum.
+          - phrase-pair-extraction
+          - phrase-based-translation-model
+          - encoder-decoder-model
+          - additive-attention
+          - entry: bleu
+            why: clipped n-gram precisions and a brevity penalty over a test set; its agreement with human judgment is measured.
+      - title: Speech
+        intro: >
+          Speech is analysed frame by frame into short spectral vectors.
+          Recognition searches for the word sequence that best explains them
+          under acoustic, pronunciation and language models, with beam
+          pruning, so the search is approximate; end-to-end models learn the
+          map directly. Synthesis runs the other way, from text to a waveform.
+        steps:
+          - short-time-fourier-transform
+          - cepstrum
+          - linear-predictive-coding
+          - source-filter-model
+          - mel-scale
+          - mel-filter-bank
+          - mel-frequency-cepstral-coefficients
+          - automatic-speech-recognition
+          - source-channel-speech-recognition
+          - entry: word-error-rate
+            why: substitutions, deletions and insertions of the best alignment over the reference length; it can exceed 1.
+          - pronunciation-lexicon
+          - gmm-hmm-acoustic-model
+          - triphone-model
+          - time-synchronous-beam-search
+          - word-lattice
+          - weighted-transducer-composition
+          - hclg-decoding-graph
+          - entry: connectionist-temporal-classification
+            why: sums over all alignments of the label sequence exactly by forward-backward.
+          - text-to-speech
+          - grapheme-to-phoneme-conversion
+          - unit-selection-synthesis
+          - wavenet

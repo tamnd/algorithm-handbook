@@ -1,0 +1,87 @@
+# The order of chapter 41.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its data
+    intro: >
+      [Machine translation](/machine-translation/) maps a sentence in one language to a sentence in
+      another, and every method in the chapter learns from a [parallel corpus](/parallel-corpus/). The
+      noisy channel model splits the task into a language model and a translation model. Before any of
+      this, the sentences of the two texts have to be paired, which a dynamic program over sentence lengths
+      does well.
+    entries:
+      - machine-translation
+      - parallel-corpus
+      - noisy-channel-translation-model
+      - sentence-alignment
+      - gale-church-alignment
+
+  - title: Word alignment
+    intro: >
+      Within each sentence pair, word alignment finds which words translate which. The IBM models and the
+      HMM model learn it by EM without any labelled links: Model 1 has a concave likelihood, the later
+      models add positions, jumps and fertility at the price of local optima. Alignments in the two
+      directions are merged by symmetrization, and the alignment error rate scores them against hand
+      alignments.
+    entries:
+      - word-alignment
+      - alignment-error-rate
+      - ibm-model-1
+      - ibm-model-2
+      - hmm-alignment-model
+      - fast-align
+      - ibm-model-3
+      - grow-diag-final-symmetrization
+
+  - title: Evaluation
+    intro: >
+      Automatic metrics compare a translation with human references. BLEU counts clipped word n-grams,
+      chrF character n-grams, TER counts edits with block shifts, and COMET is a trained network. All are
+      judged by how well they agree with human scores, which is measured, not proved. They come before the
+      translation models because the training methods of later groups optimize them.
+    entries:
+      - bleu
+      - chrf
+      - translation-edit-rate
+      - comet-metric
+
+  - title: Phrase-based translation
+    intro: >
+      Phrase-based systems translate in chunks. Phrase pairs consistent with the word alignment are
+      extracted and scored, a log-linear model combines the phrase scores with a language model and
+      reordering features, stack decoding searches for a good translation with beams, and minimum error
+      rate training tunes the weights for BLEU.
+    entries:
+      - phrase-pair-extraction
+      - log-linear-translation-model
+      - phrase-based-translation-model
+      - lexicalized-reordering-model
+      - phrase-based-stack-decoding
+      - minimum-error-rate-training
+
+  - title: Translation with synchronous grammars
+    intro: >
+      A synchronous context-free grammar derives a sentence and its translation from one tree, so
+      reordering becomes a matter of grammar rules. Inversion transduction grammars keep or invert two
+      children; Hiero learns rules with gaps from aligned text; cube pruning adds the language model to the
+      chart; GHKM extracts rules from a parsed target side.
+    entries:
+      - synchronous-context-free-grammar
+      - inversion-transduction-grammar
+      - hierarchical-phrase-based-translation
+      - cube-pruning
+      - ghkm-rule-extraction
+
+  - title: Neural translation
+    intro: >
+      An encoder-decoder network reads the source and writes the target one token at a time; attention
+      lets each output step look at all source positions. The remaining entries are ways to train and run
+      such models: synthetic data by back-translation, one model for many languages, distillation into a
+      smaller model, training for the metric, and decoding all positions at once.
+    entries:
+      - encoder-decoder-model
+      - additive-attention
+      - multiplicative-attention
+      - back-translation
+      - multilingual-neural-translation
+      - sequence-level-knowledge-distillation
+      - minimum-risk-training
+      - non-autoregressive-translation

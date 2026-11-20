@@ -1,0 +1,82 @@
+# The order of chapter 41.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Words by their contexts
+    intro: >
+      The chapter starts from one idea: a word is known by the words around it.
+      These entries count the contexts of each word in a matrix, weight the
+      counts by pointwise mutual information, and turn rows into vectors.
+      Brown clustering uses the same counts to put words into classes.
+    entries:
+      - distributional-hypothesis
+      - word-context-matrix
+      - pointwise-mutual-information
+      - positive-pointwise-mutual-information
+      - word-embedding
+      - brown-clustering
+  - title: Word vectors by prediction
+    intro: >
+      The word2vec models learn short dense vectors by predicting words from
+      their neighbours. Hierarchical softmax and negative sampling make the
+      training cheap, and a theorem links negative sampling back to the
+      counts of the first group. GloVe fits the log counts directly, and the
+      subword model builds vectors from character n-grams.
+    entries:
+      - continuous-bag-of-words
+      - skip-gram-model
+      - hierarchical-softmax
+      - negative-sampling
+      - sgns-implicit-factorization-theorem
+      - glove
+      - subword-information-embeddings
+  - title: Testing and adjusting word vectors
+    intro: >
+      Word vectors are judged by measurements such as analogy questions, and
+      they can be changed after training. Retrofitting pulls words together
+      that a lexicon links. Hard debiasing removes one direction from chosen
+      words, and the association test measures bias under a stated test.
+    entries:
+      - word-analogy
+      - retrofitting-word-vectors
+      - hard-debiasing
+      - word-embedding-association-test
+  - title: Across languages
+    intro: >
+      Vectors trained on two languages can be aligned by an orthogonal map
+      fitted on a small dictionary. Retrieval in the shared space then needs a
+      correction for hub words that are near everything.
+    entries:
+      - cross-lingual-embedding-mapping
+      - cross-domain-similarity-local-scaling
+  - title: Word senses and taxonomies
+    intro: >
+      One vector per word mixes the senses of the word. This group works with
+      the senses directly: choosing the sense of an occurrence with a
+      dictionary or a few seeds, scoring the similarity of concepts in a
+      taxonomy, and reading hyponym pairs off text with fixed patterns.
+    entries:
+      - word-sense-disambiguation
+      - lesk-algorithm
+      - yarowsky-algorithm
+      - resnik-similarity
+      - hearst-patterns
+  - title: Vectors in context
+    intro: >
+      A contextual vector belongs to one occurrence of a word and is computed
+      from the whole sentence. ELMo takes it from the layers of a
+      bidirectional language model.
+    entries:
+      - contextual-word-embedding
+      - elmo
+  - title: Sentence and document vectors
+    intro: >
+      The last group maps a whole sentence or document to one vector, or
+      compares two texts directly. It goes from weighted averages of word
+      vectors and a transport distance to encoders trained on sentence pairs
+      and by a contrastive loss.
+    entries:
+      - sentence-embedding
+      - paragraph-vector
+      - smooth-inverse-frequency-embedding
+      - word-movers-distance
+      - sentence-bert
+      - simcse

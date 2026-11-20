@@ -1,0 +1,94 @@
+# The order of chapter 41.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Language models and their measure
+    intro: >
+      A language model is a probability distribution over sentences, written
+      as a product of next-token predictions. Perplexity measures a model on
+      held-out text. The n-gram model predicts each token from the few tokens
+      before it, with counts.
+    entries:
+      - language-model
+      - perplexity
+      - n-gram-language-model
+  - title: Smoothing n-gram counts
+    intro: >
+      Maximum likelihood gives zero probability to every n-gram that the
+      training text missed. Each smoothing method moves some probability to
+      unseen events and still gives a proper distribution. They differ in how
+      much they move and where, and they are compared by perplexity.
+    entries:
+      - laplace-smoothing
+      - good-turing-estimation
+      - simple-good-turing
+      - absolute-discounting
+      - katz-backoff
+      - deleted-interpolation
+      - witten-bell-smoothing
+      - kneser-ney-smoothing
+      - modified-kneser-ney-smoothing
+  - title: Large n-gram models and adaptation
+    intro: >
+      These entries make n-gram models larger, smaller or more flexible.
+      Stupid backoff drops normalization to scale to web text, entropy pruning
+      removes n-grams that change the model least, and the cache and maximum
+      entropy models add evidence from the recent text and from other
+      features.
+    entries:
+      - stupid-backoff
+      - entropy-based-ngram-pruning
+      - cache-language-model
+      - maximum-entropy-language-model
+  - title: Neural language models
+    intro: >
+      A neural model replaces counts by learned word vectors and a network
+      that maps a history to a distribution. The feed-forward model uses a
+      fixed window and the recurrent model an unbounded history.
+      Noise-contrastive estimation avoids the cost of the full softmax.
+    entries:
+      - neural-probabilistic-language-model
+      - recurrent-neural-network-language-model
+      - noise-contrastive-estimation
+  - title: Attention and the transformer
+    intro: >
+      Attention lets every position read every earlier position in one step.
+      These entries build the transformer from scaled dot-product and
+      multi-head attention and a position code, then cover the later position
+      methods, the memory savings of grouped-query attention and
+      FlashAttention, and the selective state space model as an alternative.
+    entries:
+      - scaled-dot-product-attention
+      - multi-head-attention
+      - sinusoidal-positional-encoding
+      - transformer
+      - rotary-position-embedding
+      - alibi-attention-bias
+      - grouped-query-attention
+      - flashattention
+      - selective-state-space-model
+  - title: Pretraining
+    intro: >
+      A transformer is first trained on a large text with a self-supervised
+      objective: predict the next token, a masked token, or whether a token
+      was replaced. BERT and GPT are the two main families. Scaling laws are
+      power laws fitted to the measured loss of such runs.
+    entries:
+      - causal-language-modeling
+      - masked-language-modeling
+      - bert
+      - replaced-token-detection
+      - generative-pretrained-transformer
+      - neural-scaling-law
+  - title: Using and aligning pretrained models
+    intro: >
+      A pretrained model can do a task from examples in its prompt, or from
+      a prompt that asks for intermediate steps. Instruction tuning and
+      learning from human preferences change its behaviour with further
+      training, and low-rank adaptation makes such training cheap.
+    entries:
+      - in-context-learning
+      - chain-of-thought-prompting
+      - instruction-tuning
+      - preference-reward-model
+      - reinforcement-learning-from-human-feedback
+      - direct-preference-optimization
+      - low-rank-adaptation

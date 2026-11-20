@@ -11,10 +11,10 @@ opening, groups and a reading order for each chapter, summaries, exercises with 
 reading, concept maps, problem tables, a bibliography and indexes. Volume 0, *Guide and Index*, holds the preface,
 the notation, learning paths across the set, a catalogue of problems, a glossary, a timeline and the master index.
 
-## Volumes in edition 0.42.0
+## Volumes in edition 0.43.0
 
 Built from [`tamnd/algorithm`](https://github.com/tamnd/algorithm) release
-[v0.42.0](https://github.com/tamnd/algorithm/releases/tag/v0.42.0), the commit named in [`EDITION`](EDITION). The edition
+[v0.43.0](https://github.com/tamnd/algorithm/releases/tag/v0.43.0), the commit named in [`EDITION`](EDITION). The edition
 number of the handbook follows the release of the site it is built from; a larger third number (such as 0.20.1) marks a
 new build of the same release. The books are on the
 [releases page](https://github.com/tamnd/algorithm-handbook/releases).
@@ -62,7 +62,7 @@ new build of the same release. The books are on the
 | 38 | Computer vision | 277 | written |
 | 39 | Complexity | 284 | written |
 | 40 | Databases | 296 | written |
-| 41 | Natural language and speech | 22 | one of nine chapters written; openings for the others |
+| 41 | Natural language and speech | 299 | written |
 | 42 | Algorithmic game theory | 6 | three of nine chapters written; openings for the others |
 | 43 | Scientific computing | 3 | two of nine chapters written; openings for the others |
 | 44 | Communications | – | not built: the site has only short pages so far |

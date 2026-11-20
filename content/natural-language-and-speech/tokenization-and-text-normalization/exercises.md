@@ -1,6 +1,6 @@
 1. ◦ Apply the rules of [Penn Treebank tokenization](/penn-treebank-tokenization/) to the line `We'll pay $5 (cash) -- won't you?` and list the tokens. Then do the same for `I met Dr. Smith at 5 p.m.` What happens to the abbreviation at the end of the second line?
 
-2. ◦ A model is trained on the text "to be or not to be that is the question" and tested on "to sleep or not to sleep". What share of the test tokens are [out of vocabulary](/out-of-vocabulary-word/)? What share of the test types? What does the Good-Turing estimate $N_1/N$ computed on the training text say about the chance that the next token is new?
+2. ◦ A model is trained on the text "to be or not to be that is the question" and tested on "to sleep or not to sleep". What share of the test tokens are [out of vocabulary](/out-of-vocabulary-word/)? What share of the test types? What does the [Good-Turing](/good-turing-estimation/) estimate $N_1/N$ computed on the training text say about the chance that the next token is new?
 
 3. ◦ List the strings that the suffix rules of the WordNet [lemmatizer](/lemmatization/) produce for the noun "boxes", the noun "wolves" and the verb "studies". Leave out the exception list and the form itself, and stop before the check against WordNet.
 

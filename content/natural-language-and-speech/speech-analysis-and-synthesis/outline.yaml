@@ -1,0 +1,98 @@
+# The order of chapter 41.8. Groups are read in order; entries in a group too.
+groups:
+  - title: The speech signal
+    intro: >
+      Speech is a source, the voice or a noise, passed through the filter of the vocal tract. The
+      source-filter model gives the vocabulary of the whole chapter: pitch, formants and the spectral
+      envelope. The zero-crossing rate and pre-emphasis are the first two operations on the samples.
+    entries:
+      - source-filter-model
+      - zero-crossing-rate
+      - pre-emphasis
+
+  - title: Speech in noise
+    intro: >
+      Before a signal is analysed, a system has to find the speech in it and often reduce the noise. The
+      problem page sets out voice activity detection; the Rabiner-Sambur detector uses energy and zero
+      crossings, and the likelihood-ratio detector uses a statistical model of each frequency bin. The
+      Ephraim-Malah estimator is the noise suppressor whose a priori SNR the detector borrows.
+    entries:
+      - voice-activity-detection
+      - rabiner-sambur-endpoint-detection
+      - ephraim-malah-estimator
+      - likelihood-ratio-vad
+
+  - title: Spectral features
+    intro: >
+      Recognizers do not read samples; they read a short vector per frame of 10 ms. This group builds
+      the standard vector step by step: the mel scale, the mel filter bank, the cepstral coefficients,
+      their mean normalization and their time derivatives. Perceptual linear prediction and RASTA are
+      the alternative front end built on auditory models and on filtering over time.
+    entries:
+      - mel-scale
+      - mel-filter-bank
+      - mel-frequency-cepstral-coefficients
+      - cepstral-mean-normalization
+      - delta-features
+      - perceptual-linear-prediction
+      - rasta-filtering
+
+  - title: Pitch and formants
+    intro: >
+      The source and the filter can also be measured directly. Three pitch trackers follow, from the
+      cepstral peak of one frame to two trackers that choose a path through candidates with dynamic
+      programming. Formant estimation reads the resonances from the roots of a linear prediction
+      polynomial.
+    entries:
+      - cepstral-pitch-detection
+      - rapt-pitch-tracker
+      - pyin
+      - formant-estimation
+
+  - title: Coding and modification
+    intro: >
+      A speech coder sends the parameters of the model in place of the samples; CELP chooses its
+      excitation by trying each codebook entry through the synthesis filter. The phase vocoder and
+      PSOLA change the duration and the pitch of a recording without the other.
+    entries:
+      - code-excited-linear-prediction
+      - phase-vocoder
+      - psola
+
+  - title: From text to sounds
+    intro: >
+      Text-to-speech starts with text. The problem page sets out the pipeline and the mean opinion
+      score gives the usual measure of the result. Text normalization writes numbers and abbreviations
+      out as words, and grapheme-to-phoneme conversion turns the words into phonemes, here with the
+      joint-sequence model.
+    entries:
+      - text-to-speech
+      - mean-opinion-score
+      - tts-text-normalization
+      - grapheme-to-phoneme-conversion
+      - joint-sequence-g2p
+
+  - title: Classical synthesis
+    intro: >
+      Before neural networks, a synthesizer either computed speech from rules, joined recorded units,
+      or generated parameters from a statistical model. Formant synthesis, unit selection and HMM-based
+      synthesis are the three ways, and parameter generation is the smoothing step of the third.
+    entries:
+      - formant-synthesis
+      - unit-selection-synthesis
+      - maximum-likelihood-parameter-generation
+      - hmm-based-speech-synthesis
+
+  - title: Neural synthesis
+    intro: >
+      Neural systems map phonemes to a mel spectrogram and the spectrogram to a waveform. Tacotron and
+      FastSpeech make the spectrogram, with attention or with predicted durations; WaveNet and HiFi-GAN
+      make the waveform. VITS trains the two stages as one model, and the codec language model treats
+      speech as a sequence of discrete tokens.
+    entries:
+      - tacotron
+      - fastspeech
+      - wavenet
+      - hifi-gan
+      - vits
+      - neural-codec-language-model
