@@ -123,6 +123,8 @@ class Refs:
         md = re.sub(r"\]\((?:\./)?([a-z0-9-]+)\.md\)",
                     lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
         if in_proof:   # a proof page sits at /slug/proofs/id/: ../ is the entry, ../other/ (or other/) a sibling proof
+            # and ../../slug/proofs/id.md a proof of another entry
+            md = re.sub(r"\]\(\.\./\.\./([a-z0-9][a-z0-9-]*)/proofs/([a-z0-9-]+)(?:\.md|/)?\)", lambda m: proof(m[1], m[2]), md)
             md = re.sub(r"\]\((?:\.\./)?([a-z0-9-]+)/\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
             md = re.sub(r"\]\(\.\./([a-z0-9-]+)\)", lambda m: proof(node.slug, m[1]) if m[1] in ids else m[0], md)
             # ../ is the entry, and so is ../node.md, its source file

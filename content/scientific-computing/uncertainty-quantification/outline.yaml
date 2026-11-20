@@ -1,0 +1,88 @@
+# The order of chapter 43.8. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem
+    intro: >
+      A model with uncertain inputs has an uncertain output, and forward propagation asks for its mean, its
+      variance or the probability of a bad outcome. Inputs that vary in space are random fields, given by a
+      mean and a covariance and reduced to a few random variables by the Karhunen-Loève expansion.
+    entries:
+      - forward-uncertainty-propagation
+      - random-field
+  - title: Sampling methods
+    intro: >
+      Monte Carlo has the error $\sigma/\sqrt N$ in any dimension, so the way to make it cheaper is to lower
+      $\sigma$ per unit of cost. Multilevel Monte Carlo spreads the samples over a hierarchy of grids, its
+      complexity theorem gives the cost from three rates, and multifidelity Monte Carlo uses cheap models as
+      control variates.
+    entries:
+      - multilevel-monte-carlo
+      - mlmc-complexity-theorem
+      - multifidelity-monte-carlo
+  - title: Rare failures
+    intro: >
+      A failure probability of $10^{-6}$ needs about $10^8$ plain samples for a 10 % error. The first-order
+      reliability method linearizes the limit state at the most probable failure point; subset simulation
+      writes the small probability as a product of larger conditional ones.
+    entries:
+      - first-order-reliability-method
+      - subset-simulation
+  - title: Polynomial chaos
+    intro: >
+      A polynomial chaos expansion writes the output as a series in polynomials orthogonal for the input law,
+      so the mean and variance are read off the coefficients. Generalized chaos matches the family to the law,
+      and the stochastic Galerkin method projects the equations themselves onto the basis.
+    entries:
+      - polynomial-chaos-expansion
+      - generalized-polynomial-chaos
+      - stochastic-galerkin-method
+  - title: Non-intrusive spectral methods
+    intro: >
+      These methods only run the model at chosen inputs. Spectral projection computes the coefficients by
+      quadrature, regression fits them by least squares, sparse chaos recovers few large coefficients from
+      fewer runs than terms, and stochastic collocation interpolates on a Smolyak sparse grid.
+    entries:
+      - non-intrusive-spectral-projection
+      - regression-polynomial-chaos
+      - sparse-polynomial-chaos
+      - stochastic-collocation-method
+  - title: Sensitivity analysis
+    intro: >
+      Sensitivity analysis asks which inputs matter. The Morris method screens many inputs cheaply. The
+      Hoeffding-Sobol decomposition splits the variance into shares, the Sobol indices; the Saltelli scheme
+      and the Fourier amplitude sensitivity test estimate them, and active subspaces find the directions of
+      input space along which the output changes most.
+    entries:
+      - morris-method
+      - hoeffding-sobol-decomposition
+      - sobol-indices
+      - saltelli-sampling-scheme
+      - fourier-amplitude-sensitivity-test
+      - active-subspaces
+  - title: Calibration and inverse problems
+    intro: >
+      Calibration runs the other way: from data to the inputs. Kennedy and O'Hagan model the data as the
+      simulator plus a Gaussian process discrepancy plus noise, and the well-posedness theorem says when a
+      Bayesian posterior exists and depends continuously on the data.
+    entries:
+      - kennedy-ohagan-calibration
+      - bayesian-inverse-problem-well-posedness
+  - title: Projection-based reduced models
+    intro: >
+      Many queries of one parametrized model call for a small surrogate. POD-Galerkin projects the equations
+      onto the leading modes of snapshots; the reduced basis method uses solutions at chosen parameters and
+      certifies each answer, and the weak greedy algorithm chooses those parameters.
+    entries:
+      - pod-galerkin-reduced-model
+      - reduced-basis-method
+      - weak-greedy-reduced-basis
+  - title: Nonlinear terms and data-driven reduction
+    intro: >
+      A nonlinear term must be evaluated at few points for a reduced model to be fast: the empirical
+      interpolation method and its discrete form choose those points greedily. Operator inference learns the
+      reduced matrices from data without the model's code, and the proper generalized decomposition builds a
+      separated solution one rank-one term at a time.
+    entries:
+      - empirical-interpolation-method
+      - discrete-empirical-interpolation-method
+      - operator-inference
+      - proper-generalized-decomposition

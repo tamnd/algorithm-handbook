@@ -1,0 +1,47 @@
+1. ◦ An infinite homogeneous medium has $\Sigma_t = 1\ \mathrm{cm}^{-1}$ and $\Sigma_s = 0.8\ \mathrm{cm}^{-1}$, with a uniform isotropic source of $Q = 5$ particles per $\mathrm{cm}^3$ per second. Using the [linear Boltzmann transport equation](/linear-boltzmann-transport-equation/), find the scalar flux $\phi$, the mean number of collisions of one source particle, and the collision rate density $\Sigma_t\phi$. Check that the last number equals $Q$ times the mean number of collisions.
+
+2. ◦ A particle starts at $x = 0$ moving in the $+x$ direction. The medium has $\Sigma_t = 0.5\ \mathrm{cm}^{-1}$ on $[0, 1)$ and $\Sigma_t = 3\ \mathrm{cm}^{-1}$ for $x \ge 1$. With [free-flight sampling](/free-flight-sampling/) and the random number $\xi = 0.05$, where is the first collision? What is the probability that a particle crosses $x = 1$ without a collision?
+
+3. ◦ A material has $\Sigma_t = 1\ \mathrm{cm}^{-1}$, $\Sigma_s = 0.9\ \mathrm{cm}^{-1}$ and mean scattering cosine $\bar\mu_0 = 0.2$. Find $\Sigma_{tr}$, the diffusion coefficient $D$ of the [diffusion approximation](/diffusion-approximation-of-transport/), and the diffusion length $\sqrt{D/\Sigma_a}$. By what factor does $D$ differ from the value for isotropic scattering?
+
+4. ◦ A one-group bare slab has $D = 1$ cm, $\Sigma_a = 0.012\ \mathrm{cm}^{-1}$, $\nu\Sigma_f = 0.015\ \mathrm{cm}^{-1}$ and width $L = 50$ cm, with zero flux at the faces. Find $k_\infty$, the diffusion value of $k_{\mathrm{eff}} = \nu\Sigma_f/(\Sigma_a + D(\pi/L)^2)$ from the [k-eigenvalue problem](/k-eigenvalue-problem/), and the critical width.
+
+5. ◦ One cell of the [discrete ordinates method](/discrete-ordinates-method/) with diamond differences has $\Sigma_t = 1\ \mathrm{cm}^{-1}$, $\Delta x = 1$ cm and no source. The direction is $\mu = 0.25$ and the incoming flux is 1. Compute the outgoing flux, the cell average, and the exact outgoing flux $e^{-\Sigma_t\Delta x/\mu}$. What is the largest $\Delta x$ for which diamond differences give a nonnegative outgoing flux for this direction?
+
+6. ◦ In an infinite medium with $c = 0.9$, how many sweeps of [source iteration](/source-iteration/) reduce the error by a factor $10^6$? How many with [diffusion synthetic acceleration](/diffusion-synthetic-acceleration/), taking its Fourier factor $0.2247c$ as the rate?
+
+7. ◦ A [transport sweep](/transport-sweep/) runs on a $3 \times 3 \times 3$ grid of cubes for a direction with all three components positive. How many wavefronts are there, and how many cells are on each? How many wavefronts does an $n_x \times n_y \times n_z$ grid have?
+
+8. ◦ A particle of weight 1 enters a cell of volume $2\ \mathrm{cm}^3$ with $\Sigma_t = 0.5\ \mathrm{cm}^{-1}$. It flies 1.2 cm to a collision, scatters, flies 0.5 cm to a second collision and is absorbed there. What does this history add to the [track-length estimator](/track-length-estimator/) and to the [collision estimator](/collision-estimator/) of the average flux in the cell?
+
+9. ◦ The fission sites of one cycle of a [Monte Carlo criticality calculation](/monte-carlo-criticality/) fall into 8 bins with the counts $0, 10, 30, 60, 60, 30, 10, 0$. Compute the [fission source entropy](/fission-source-entropy/) in bits and compare it with its largest possible value. What is the entropy if all 200 sites fall into two bins, 100 each?
+
+10. • With [implicit capture](/implicit-capture/) in an infinite medium with $c = 0.6$, a particle starts with weight 1. Give its weight after each of the first four collisions. With roulette below $w_{\mathrm{low}} = 0.25$ and survival weight $w_s = 0.5$, after which collision is the first roulette played, and with what probability does the particle survive it? Show that the expected weight after the roulette equals the weight before, and compare the survival probability with the probability that an analog particle survives the same number of collisions.
+
+11. • In the [method of characteristics](/method-of-characteristics-transport/), a segment has $\psi_{\mathrm{in}} = 2$, flat source $Q/\Sigma_t = 1$ and optical length $\tau = 0.5$. Compute $\psi_{\mathrm{out}}$ and the mean of $\psi$ over the segment. Show that the mean always lies between $Q/\Sigma_t$ and $\psi_{\mathrm{in}}$, and find its limit as $\tau \to \infty$.
+
+12. • A beam enters a pure absorber of optical thickness $\tau = 8$ at normal incidence, and the tally is the transmission. How many analog histories give a relative standard error of 1%? How many with the [exponential transform](/exponential-transform/) with $p = 0.75$, using the relative variance $e^{(1 - p)\tau} - 1$ of the beam example?
+
+13. • A two-region fission matrix is $A = \begin{pmatrix} 0.9 & 0.3 \\ 0.2 & 0.6 \end{pmatrix}$, with $A_{ij}$ the expected number of fission neutrons born in region $i$ per fission neutron born in region $j$. Find $k_{\mathrm{eff}}$, the fundamental mode normalized to sum 1, and the dominance ratio. By what factor does the second mode shrink in 20 generations of [power iteration](/power-iteration/)?
+
+14. • A slab has three cells with adjoint fluxes $\phi^+ = 0.01, 0.1, 0.8$, the detector next to cell 3. The source has strength $0.5$ in cell 1 and $0.5$ in cell 2. Following [CADIS](/cadis/) with $c_u = 5$, find the response $R$, the biased source probabilities, the birth weights, and the window $[w_L, w_U]$ of each cell. A particle born in cell 2 enters cell 3 with its birth weight. How many copies does the [weight window](/weight-window/) make, and with what weight?
+
+15. • In [implicit Monte Carlo](/implicit-monte-carlo/), take $a = c = \sigma = c_v = 1$. Compute $\beta = 4aT^3/c_v$ and the Fleck factor $f = 1/(1 + \beta c\sigma\Delta t)$ for $T = 0.5$, $\Delta t = 1$ and for $T = 1$, $\Delta t = 1$. What fraction of the absorptions becomes effective scattering in each case, and what happens to $f$ as $\Delta t \to \infty$?
+
+16. • In [direct simulation Monte Carlo](/direct-simulation-monte-carlo/) a cell holds $N_c = 40$ particles, and $F_N(\sigma_T g)_{\max}\Delta t/V_c = 0.01$. Using the no-time-counter rule with carry-over, how many candidate pairs are drawn in each of the first two steps, and what is carried over? If $\langle\sigma_T g\rangle = 0.6\,(\sigma_T g)_{\max}$ and $N_c$ stays 40, how many candidates and how many collisions are expected in 10 steps?
+
+17. • The approximate rate of inconsistent diffusion synthetic acceleration on thick cells is $c/(1 - c + 4/(3\Sigma_t^2h^2))$. Find the cell thickness $\Sigma_t h$ above which it exceeds 1 for $c = 0.9$ and for $c = 0.99$. Show that by this formula it never exceeds 1 when $c \le 1/2$.
+
+18. • The speeds of the slab $P_5$ equations of the [spherical harmonics method](/spherical-harmonics-method/) are the roots of $P_6$. Compute them to six digits. Which discrete ordinates set has these directions, and in what sense are the two methods the same?
+
+19. • A slab 1 cm thick is a pure absorber with $\Sigma_t = 0.01\ \mathrm{cm}^{-1}$, and particles enter at normal incidence. The tally is the integral of the flux over the slab per entering particle. Compute its mean and the variance per history of the collision estimator and of the track-length estimator. Which estimator would you use in a thin gas, and why?
+
+20. ★ In an infinite medium with isotropic scattering and scattering ratio $c < 1$, look for source-free slab solutions $\psi = e^{-\kappa\Sigma_t x}g(\mu)$. Show that $0 < \kappa < 1$ and $c\operatorname{artanh}(\kappa)/\kappa = 1$, and that $\kappa^2 = 3(1 - c) + O((1 - c)^2)$ as $c \to 1$. Compute $\kappa$ for $c = 0.3$ and compare it with the diffusion value $\sqrt{3(1 - c)}$. Why can the diffusion value not be right here?
+
+21. ★ A tally scores 1 for each unit of weight that reaches a detector, and $\phi^+(x)$ is the probability that a particle born at $x$ reaches it. Show that biasing only the source, with density $q\phi^+/R$ and birth weight $R/\phi^+$, while transport stays analog, gives exactly the variance of the analog game. What does this say about the role of the [weight window](/weight-window/) in CADIS?
+
+22. ★ For a one-group bare slab $[0, L]$ in diffusion theory with zero flux at the faces, the modes are $\sin(n\pi x/L)$. Derive the dominance ratio $d = k_2/k_1$ and show $1 - d \approx 3D\pi^2/(\Sigma_a L^2)$ for large $L$. For $D = 1$ cm and $\Sigma_a = 0.02\ \mathrm{cm}^{-1}$, compute $d$ for $L = 100$ cm and $L = 200$ cm and the number of generations that reduce the second mode by a factor of 10.
+
+23. ★ [Delta tracking](/delta-tracking/) flies with a majorant $\Sigma_{\max} \ge \Sigma_t(x)$ and accepts a tentative collision at $x$ with probability $\Sigma_t(x)/\Sigma_{\max}$. In a homogeneous medium, show with Laplace transforms that the distance to the first accepted collision has the exponential law with rate $\Sigma_t$. Then show for any $\Sigma_t(x) \le \Sigma_{\max}$ that the probability of no accepted collision in $[0, s]$ is $\exp(-\int_0^s\Sigma_t)$, as in [free-flight sampling](/free-flight-sampling/). How many tentative collisions are made on average per centimetre?
+
+24. ★ Apply source iteration with the $S_2$ Gauss directions $\mu = \pm 1/\sqrt3$ to an infinite medium, with an error mode $e^{i\lambda\Sigma_t x}$. Show that the error is multiplied by $c/(1 + \lambda^2/3)$ per sweep, and compare with the factor $c\arctan(\lambda)/\lambda$ of the continuous angle at $\lambda = 1$. Which modes converge slowest in both cases?

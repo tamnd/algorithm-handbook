@@ -1,0 +1,96 @@
+# The order of chapter 43.9. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and its parts
+    intro: >
+      Data assimilation combines a forecast from a model with new observations to estimate the state of a
+      system. These entries state the problem in Bayesian form, define the observation operator that maps a
+      state to what an instrument would see, and describe the background error covariance that decides how
+      far each observation spreads. The [Lorenz-96 model](/lorenz-96-model/) is the small chaotic system on
+      which most methods of the chapter are tested, and an
+      [observing system simulation experiment](/observing-system-simulation-experiment/) is how such tests
+      are run and read.
+    entries:
+      - data-assimilation-problem
+      - observation-operator
+      - background-error-covariance
+      - lorenz-96-model
+      - observing-system-simulation-experiment
+
+  - title: First methods
+    intro: >
+      Nudging adds a relaxation term that pulls the model towards the observations as it runs. Optimal
+      interpolation computes the best linear estimate at one time from a few nearby observations. Neither
+      is used alone in large systems today, but both show the main ideas in a few lines.
+    entries:
+      - nudging
+      - optimal-interpolation
+
+  - title: Variational assimilation
+    intro: >
+      Variational methods write the analysis as the minimizer of a cost: the distance to the background,
+      weighted by $B^{-1}$, plus the misfit to the observations, weighted by $R^{-1}$. 3D-Var fits the
+      observations of one time; 4D-Var fits a whole window of observations with the model as a constraint,
+      and gets its gradient from the adjoint model. The control variable transform and the incremental form
+      make the minimization fast enough for weather prediction, and the Desroziers diagnostics check the
+      error statistics after the fact.
+    entries:
+      - three-dimensional-variational-assimilation
+      - control-variable-transform
+      - desroziers-diagnostics
+      - adjoint-model
+      - four-dimensional-variational-assimilation
+      - incremental-4d-var
+
+  - title: Model error and the dual form
+    intro: >
+      Strong-constraint 4D-Var treats the model as perfect. Weak-constraint 4D-Var lets the model be wrong by
+      a random forcing with its own covariance. The representer method solves the same linear problem in
+      observation space, with one unknown per observation instead of one per state value and time.
+    entries:
+      - weak-constraint-4d-var
+      - representer-method
+
+  - title: The ensemble Kalman filter and its repairs
+    intro: >
+      The [ensemble Kalman filter](/ensemble-kalman-filter/) replaces the covariance of the Kalman filter by
+      the sample covariance of a set of model runs. With tens of members for millions of unknowns the sample
+      covariance is too small and full of spurious long-range correlations. Inflation fixes the first
+      problem and localization the second; the Gaspari-Cohn function is the usual taper for localization.
+    entries:
+      - ensemble-kalman-filter
+      - covariance-inflation
+      - covariance-localization
+      - gaspari-cohn-function
+
+  - title: Deterministic ensemble filters and smoothers
+    intro: >
+      Square root filters update the ensemble without perturbing the observations, so that the analysis
+      spread matches the Kalman formula exactly. The EAKF and the ETKF are two forms of this idea, and the
+      LETKF does the ETKF update separately at each grid point with nearby observations. The ensemble
+      Kalman smoother carries the update back in time, and ensemble Kalman inversion reuses the update to
+      solve inverse problems without derivatives.
+    entries:
+      - ensemble-square-root-filter
+      - ensemble-adjustment-kalman-filter
+      - ensemble-transform-kalman-filter
+      - local-ensemble-transform-kalman-filter
+      - ensemble-kalman-smoother
+      - ensemble-kalman-inversion
+
+  - title: Hybrid methods
+    intro: >
+      Hybrid methods put the localized ensemble covariance inside a variational cost, mixed with a static
+      covariance. 4DEnVar extends this over a time window and uses the ensemble trajectories in place of the
+      tangent linear and adjoint models.
+    entries:
+      - hybrid-ensemble-variational
+      - four-dimensional-ensemble-variational
+
+  - title: Particle filters in high dimensions
+    intro: >
+      A particle filter makes no Gaussian assumption, but with many independent observations one particle
+      takes almost all the weight unless the number of particles grows exponentially. The local particle
+      filter avoids this collapse by weighting and resampling each grid point with nearby observations only.
+    entries:
+      - particle-filter-weight-collapse
+      - local-particle-filter

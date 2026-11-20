@@ -1,0 +1,89 @@
+# The order of chapter 43.1, N-body and particle methods. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and the exact sum
+    intro: >
+      $N$ bodies attract each other by gravity, and every body feels every other one. Summing all
+      $N(N-1)/2$ pairs gives the forces exactly up to rounding, at a cost of $\Theta(N^2)$ per step.
+      Softening removes the singularity of close encounters, and it changes the physics at short range.
+    entries:
+      - gravitational-n-body-problem
+      - direct-n-body-summation
+      - gravitational-softening
+
+  - title: Trees and multipole expansions
+    intro: >
+      A distant group of bodies acts almost like one body at its centre of mass, and a multipole
+      expansion of degree $p$ makes this precise, with an error that falls like $(a/r)^{p+1}$. A tree
+      of cells decides which groups are distant enough. Barnes-Hut uses the tree to reach
+      $O(N \log N)$ time for typical distributions, trading accuracy for speed through the opening
+      angle $\theta$.
+    entries:
+      - multipole-expansion
+      - multipole-truncation-error-bound
+      - multipole-acceptance-criterion
+      - barnes-hut-algorithm
+      - hashed-oct-tree
+
+  - title: The fast multipole method
+    intro: >
+      The fast multipole method also expands the field near the targets, and converts far
+      expansions into near ones with the multipole-to-local translation. For a fixed accuracy the cost
+      is $O(N)$, and the constant grows with the number of digits through the order $p = O(\log(1/\varepsilon))$.
+      The later entries adapt the tree to clustered bodies, remove the need for analytic expansions,
+      and apply the same idea to the Gaussian kernel.
+    entries:
+      - multipole-to-local-translation
+      - fast-multipole-method
+      - adaptive-fast-multipole-method
+      - kernel-independent-fast-multipole-method
+      - black-box-fast-multipole-method
+      - fast-gauss-transform
+
+  - title: Fields on a mesh
+    intro: >
+      Particle-mesh methods spread the mass onto a grid, solve the [Poisson equation](/poisson-equation/)
+      with the [fast Fourier transform](/fast-fourier-transform/), and read the forces back. They
+      cost $\Theta(N + M \log M)$ for $M$ mesh points but smooth the force over about one cell. P3M
+      and TreePM add a short-range sum to restore the force at small distances. Friends-of-friends
+      then finds the halos in the output of such runs.
+    entries:
+      - cloud-in-cell-assignment
+      - particle-mesh-method
+      - p3m-method
+      - treepm-method
+      - friends-of-friends-algorithm
+
+  - title: Plasmas
+    intro: >
+      A plasma is described by the Vlasov-Poisson system for the density of particles in phase space.
+      The Boris pusher moves charged particles in electric and magnetic fields and keeps the speed
+      exact in a pure magnetic field. Particle-in-cell codes use it to move macro-particles that
+      sample the density, and solve for the field on a mesh.
+    entries:
+      - vlasov-poisson-system
+      - boris-pusher
+      - plasma-particle-in-cell
+
+  - title: Time steps for gravitating bodies
+    intro: >
+      Star clusters and planetary systems need many orbits with high accuracy. The Hermite scheme
+      reaches fourth order with one force evaluation per step, and block time steps let each body
+      take its own power-of-two step. Wisdom-Holman splits a planetary system into Kepler motion and
+      small interactions, and Kustaanheimo-Stiefel variables remove the singularity of a close binary.
+    entries:
+      - hermite-n-body-integrator
+      - block-time-steps
+      - wisdom-holman-integrator
+      - kustaanheimo-stiefel-regularization
+
+  - title: Particles in continua
+    intro: >
+      Particles also carry fields of a continuum. Vortex particles carry vorticity in an incompressible
+      flow, and particle strength exchange adds viscous diffusion between them. The material point
+      method carries the mass and state of a solid on particles and solves the momentum equation on a
+      background grid; GIMP smooths the jumps when particles cross cells.
+    entries:
+      - vortex-particle-method
+      - particle-strength-exchange
+      - material-point-method
+      - generalized-interpolation-material-point

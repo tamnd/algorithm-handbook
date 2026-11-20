@@ -1,0 +1,73 @@
+groups:
+  - title: The transport equation and its approximations
+    intro: >
+      The linear Boltzmann equation balances streaming, absorption, scattering and sources in position,
+      direction and energy. The diffusion approximation and the multigroup approximation reduce its size,
+      the k-eigenvalue problem asks whether a chain reaction sustains itself, and the adjoint equation
+      gives the importance of a particle for one answer.
+    entries:
+      - linear-boltzmann-transport-equation
+      - diffusion-approximation-of-transport
+      - multigroup-approximation
+      - k-eigenvalue-problem
+      - adjoint-importance-function
+  - title: Monte Carlo transport
+    intro: >
+      A Monte Carlo code samples the random walk that the equation describes: a free flight, a collision, a
+      new direction, again. Estimators turn the walks into fluxes and reaction rates. Photons and electrons
+      need their own sampling rules, Kahn's method for Compton scattering and condensed history for the many
+      small deflections of electrons.
+    entries:
+      - free-flight-sampling
+      - analog-monte-carlo-transport
+      - collision-estimator
+      - track-length-estimator
+      - kahn-compton-sampling
+      - condensed-history-method
+  - title: Variance reduction
+    intro: >
+      Analog histories rarely reach a thick shield's far side. These games change how particles move or
+      multiply and correct the weight so that every tally keeps its mean. They lower the variance only when
+      their parameters fit the problem, and a bad choice can raise it.
+    entries:
+      - implicit-capture
+      - particle-splitting
+      - weight-window
+      - exponential-transform
+  - title: Criticality
+    intro: >
+      A Monte Carlo criticality run applies power iteration to generations of fission neutrons. The estimate
+      of $k_{\mathrm{eff}}$ settles before the shape of the source does, so the entropy of the binned fission
+      sites is watched as well.
+    entries:
+      - monte-carlo-criticality
+      - fission-source-entropy
+  - title: Deterministic transport
+    intro: >
+      Discrete ordinates fixes a set of directions and sweeps each one through the mesh in upwind order.
+      Source iteration repeats the sweeps and slows down when scattering dominates; diffusion synthetic
+      acceleration removes the slow modes. Spherical harmonics and the method of characteristics treat the
+      angle and the geometry in other ways.
+    entries:
+      - discrete-ordinates-method
+      - transport-sweep
+      - source-iteration
+      - diffusion-synthetic-acceleration
+      - spherical-harmonics-method
+      - method-of-characteristics-transport
+  - title: Hybrid methods
+    intro: >
+      A cheap deterministic adjoint solve gives an importance map, and the importance map gives a biased
+      source and weight windows for Monte Carlo. CADIS does this for one tally, and FW-CADIS for many tallies
+      at once.
+    entries:
+      - cadis
+      - fw-cadis
+  - title: Thermal radiation and rarefied gas
+    intro: >
+      Two Monte Carlo methods use the same free flights and sampled collisions on other problems. Implicit
+      Monte Carlo couples photons to a material that absorbs and reemits them, and direct simulation Monte
+      Carlo collides gas particles with each other, which makes its problem nonlinear.
+    entries:
+      - implicit-monte-carlo
+      - direct-simulation-monte-carlo

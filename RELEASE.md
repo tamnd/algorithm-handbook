@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.43.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.45.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.43.0](https://github.com/tamnd/algorithm/releases/tag/v0.43.0)
-(`3a1b64f389c36ce619d8bc88f9e941cd8c7379fd`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.45.0](https://github.com/tamnd/algorithm/releases/tag/v0.45.0)
+(`91e1d11ae55f72130a50cdc92dc2f6d9af6115be`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 2,279 |
+| 0 | Guide and Index | the whole set | 2,351 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -17,7 +17,7 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 9 | Automata and parsing | 270 | 1,604 |
 | 10 | Number theory | 238 | 1,438 |
 | 11 | Algebra | 328 | 2,122 |
-| 12 | Numerical | 463 | 3,004 |
+| 12 | Numerical | 463 | 3,008 |
 | 13 | Geometry | 280 | 1,796 |
 | 14 | Combinatorics | 174 | 877 |
 | 15 | Optimization | 301 | 1,766 |
@@ -48,38 +48,47 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 40 | Databases | 296 | 2,420 |
 | 41 | Natural language and speech | 299 | 2,157 |
 | 42 | Algorithmic game theory | 6 | 102 |
-| 43 | Scientific computing | 3 | 91 |
+| 43 | Scientific computing | 292 | 2,441 |
 | 45 | Security and privacy | 2 | 75 |
 | 46 | Imaging and inverse problems | 1 | 61 |
-| | **All** | **11,726** | **85,538** |
+| | **All** | **12,015** | **87,964** |
 
-- **Volume 41, Natural language and speech**, now has all nine of its chapters written, 299 entries in all (22 in
-  0.42.0). Eight new chapters: *Word and sentence embeddings* (32 entries: count vectors and PMI, word2vec, GloVe
-  and subword vectors, contextual and sentence embeddings, bias tests, word senses), *Language modeling* (41:
-  n-gram smoothing from Laplace to modified Kneser-Ney, neural and recurrent models, attention and the
-  transformer, pretraining, fine-tuning and preference training, scaling laws), *Text generation and decoding*
-  (29: greedy and beam decoding, sampling and truncation, constrained, speculative and minimum Bayes risk decoding,
-  summarization and its metrics), *Tagging and information extraction* (26: HMM, MEMM and CRF taggers, named
-  entities, relation extraction, coreference and entity linking), *Syntactic and semantic parsing* (33: PCFG and
-  span-based constituency parsing, transition-based and graph-based dependency parsing, grammar formalisms,
-  semantic parsing and meaning representations), *Machine translation and alignment* (36: the IBM and HMM
-  alignment models, phrase-based and hierarchical translation, neural translation with attention, evaluation by
-  BLEU, chrF, TER and COMET), *Speech analysis and synthesis* (36: the source-filter model, cepstral and mel
-  features, pitch, formants and voice activity, noise reduction, coding by CELP, grapheme-to-phoneme conversion,
-  concatenative, parametric and neural synthesis) and *Speech recognition* (44: HMM acoustic models, decoding graphs from weighted transducers,
-  discriminative training, CTC, transducer and attention models, speaker recognition and diarization). The
-  introduction of the volume is rewritten for the complete volume.
-- **Volume 0, Guide and Index**, covers the whole set of 11,726 entries and has a new learning path, *Natural
-  language and speech*, in six stages from text and probability to speech.
-- The other volumes have the same entries under the same numbers as in 0.42.0. The entries have the corrections
-  that the site made up to its release v0.43.0, among them those found while writing edition 0.42.0 in Volume 40
-  and Chapters 8.8 and 41.1.
-- A tag-like word written as bare text in an entry, such as the sentence markers `<s>` and `</s>`, is now set as
-  code; before, it was read as an HTML tag, dropped from the PDF and left the EPUB malformed.
+- **Volume 43, Scientific computing**, now has all nine of its chapters written, 292 entries in all (3 in
+  0.43.0): *N-body and particle methods* (30 entries: direct sums, Barnes-Hut trees and the fast multipole
+  method, particle-mesh and P3M methods, plasma particle-in-cell, integrators for gravitating bodies, the material
+  point method), *Molecular simulation* (40: molecular dynamics, force fields, Ewald and particle-mesh Ewald sums,
+  constraints and multiple time steps, ab initio dynamics, thermostats and barostats, free energy methods),
+  *Conservation laws and shock capturing* (34: Riemann solvers and numerical fluxes, MUSCL, ENO and
+  discontinuous Galerkin schemes, entropy stability, well-balanced schemes, adaptive mesh refinement),
+  *Incompressible flow and turbulence* (35: projection and pressure-correction methods, interfaces and immersed
+  bodies, turbulence models from k-epsilon to large eddy simulation, lattice Boltzmann methods and smoothed
+  particle hydrodynamics), *Finite element practice* (39: weak forms, elements and assembly, locking and mixed
+  methods, stabilized and discontinuous methods, error estimation and adaptivity, high order, dynamics and
+  nonlinear solids, boundary, virtual and extended elements), *Particle transport* (27: Monte Carlo transport,
+  variance reduction, criticality, discrete ordinates, hybrid methods, thermal radiation and rarefied gas),
+  *Multiscale methods* (29: homogenization, multiscale finite elements, heterogeneous multiscale methods,
+  coarse-graining, saddle points, rare transitions and accelerated molecular dynamics), *Uncertainty
+  quantification* (29: sampling and multilevel Monte Carlo, rare failures, polynomial chaos and stochastic
+  collocation, sensitivity analysis, calibration and inverse problems, reduced models) and *Data assimilation*
+  (29: optimal interpolation, 3D-Var and 4D-Var, the ensemble Kalman filter and its repairs, ensemble smoothers,
+  hybrid methods, particle filters). The introduction of the volume is rewritten for the complete volume.
+- **Volume 0, Guide and Index**, covers the whole set of 12,015 entries and has a new learning path, *Simulation
+  of physical systems*, in seven stages from time stepping to data assimilation.
+- The subject index of a volume now lists every topic of another volume that it uses, also when two of them have
+  the same name (such as *Bit vector*, 2.12.8 and 3.12.1); before, only one of the two was listed, and which one
+  could change from build to build. References from Volumes 27 and 28 to Volume 41 now carry the numbers that
+  Volume 41 gives its entries, and a link from a proof to the proof of another entry, written as a relative path,
+  now leads to that proof.
+- Only the volumes whose text changed were built again: 0, 1, 2, 7, 10, 12, 17, 23 to 29, 31, 32, 38, 41 and 43.
+  The other volumes have the same text as in 0.43.0, and their files are those of 0.43.0 under the new names, so
+  their covers, title pages and copyright pages say edition 0.43.0.
+- The entries have the corrections that the site made up to its release v0.45.0, among them those found while
+  writing edition 0.42.0 in Volumes 3, 8 and 28 and edition 0.43.0 in Volume 41. The builder no longer patches
+  any entry.
 - Volume 44 (Communications) is not built: the site has only short pages for it so far. Volume 0 lists its
   chapters.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.43.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.45.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

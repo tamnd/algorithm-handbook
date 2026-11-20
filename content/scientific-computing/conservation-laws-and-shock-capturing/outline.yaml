@@ -1,0 +1,94 @@
+groups:
+  - title: Conservation laws and their solutions
+    intro: >
+      A conservation law says that a quantity in a fixed interval changes only by what flows through its ends.
+      Smooth solutions break down in finite time, so the theory works with weak solutions, which allow jumps.
+      The Rankine-Hugoniot conditions fix the speed of a jump, and the entropy condition picks the physical
+      solution among the many weak ones. Two theorems then tell a scheme designer what to aim for: a convergent
+      conservative scheme converges to a weak solution, and a linear scheme that creates no new oscillations is
+      at most first order.
+    entries:
+      - hyperbolic-conservation-law
+      - weak-solution-of-conservation-law
+      - rankine-hugoniot-conditions
+      - lax-entropy-condition
+      - lax-wendroff-theorem
+      - godunov-order-barrier
+
+  - title: Gas dynamics and shallow water
+    intro: >
+      Two systems carry most of the examples of the chapter. The Euler equations of gas dynamics have three
+      waves, two acoustic waves and a contact, and their Riemann problem can be solved exactly by a Newton
+      iteration for one pressure. The shallow water equations have two waves and a source term from the bottom.
+    entries:
+      - euler-equations-of-gas-dynamics
+      - exact-riemann-solver
+      - shallow-water-equations
+
+  - title: Numerical fluxes and approximate Riemann solvers
+    intro: >
+      A finite volume scheme needs one number per face and component: the flux between two cells. The exact
+      Riemann solver gives Godunov's flux but costs an iteration. The fluxes here are cheaper. Rusanov adds the
+      most dissipation and is the simplest; Roe linearizes and needs an entropy fix; HLL and HLLC use wave speed
+      estimates, and HLLC puts the contact back; flux vector splitting and AUSM split the flux itself and need
+      no Riemann solver at all.
+    entries:
+      - rusanov-flux
+      - roe-solver
+      - harten-hyman-entropy-fix
+      - hll-riemann-solver
+      - hllc-riemann-solver
+      - flux-vector-splitting
+      - ausm-scheme
+
+  - title: High-resolution schemes
+    intro: >
+      The MacCormack method is second order and linear, so by Godunov's theorem it oscillates at shocks. The
+      schemes after it are nonlinear: they reconstruct the data in each cell with limited slopes (MUSCL),
+      limited parabolas (PPM) or adaptively chosen stencils (ENO), or they average over staggered cells
+      (Nessyahu-Tadmor and Kurganov-Tadmor). Strong stability preserving Runge-Kutta methods advance them in
+      time without losing the properties of the forward Euler step.
+    entries:
+      - maccormack-method
+      - strong-stability-preserving-runge-kutta
+      - muscl-scheme
+      - piecewise-parabolic-method
+      - eno-scheme
+      - nessyahu-tadmor-scheme
+      - kurganov-tadmor-scheme
+
+  - title: Discontinuous Galerkin and robust high order
+    intro: >
+      The discontinuous Galerkin method keeps a polynomial in each cell and couples cells only through
+      numerical fluxes, so it reaches high order on any mesh and stays conservative. With a slope limiter and
+      SSP time steps it captures shocks. The last two entries make high-order schemes safe in other ways: a
+      limiter that keeps density and pressure positive, and fluxes that make a discrete entropy inequality hold
+      on every mesh.
+    entries:
+      - discontinuous-galerkin-method
+      - runge-kutta-discontinuous-galerkin
+      - positivity-preserving-limiter
+      - entropy-stable-scheme
+
+  - title: Sources, interfaces and adaptive grids
+    intro: >
+      Real problems add a bottom that varies, interfaces between materials, and features much smaller than the
+      domain. Well-balanced schemes keep steady states such as a lake at rest exactly; the ghost fluid method
+      keeps a material interface sharp; adaptive mesh refinement, and the Berger-Colella method in particular,
+      put fine cells only where they are needed while keeping the scheme conservative.
+    entries:
+      - well-balanced-scheme
+      - ghost-fluid-method
+      - adaptive-mesh-refinement
+      - berger-colella-amr
+
+  - title: Linear waves, energy and boundaries
+    intro: >
+      For linear hyperbolic systems the questions are different: no shocks form, but waves must travel for a
+      long time with little error and leave the domain without reflection. The Yee scheme solves Maxwell's
+      equations on staggered grids, the perfectly matched layer absorbs outgoing waves, and summation-by-parts
+      operators with weak boundary terms make stability provable by the energy method.
+    entries:
+      - yee-fdtd-scheme
+      - perfectly-matched-layer
+      - summation-by-parts-operators

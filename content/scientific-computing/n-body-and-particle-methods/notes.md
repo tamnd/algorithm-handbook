@@ -1,0 +1,17 @@
+## History
+
+Direct summation is the oldest method in the chapter. Sebastian von Hoerner ran the first gravitational N-body integrations in 1960 with 16 bodies, and Sverre Aarseth wrote the codes that carried the direct method from tens to millions of bodies over the following decades. The Hermite integrator and block time steps came from Junichiro Makino and Aarseth around 1991 and 1992, and they still drive the special-purpose GRAPE machines and the codes that replaced them. The regularization of Paul Kustaanheimo and Eduard Stiefel (1965) made close binaries tractable, and the map of Jack Wisdom and Matthew Holman (1991) made billion-year runs of the solar system possible.
+
+Trees and meshes came from two directions. Roger Hockney and James Eastwood built the particle-mesh codes of the 1960s and 1970s and wrote them up, with P3M, in their 1981 book. Andrew Appel used a tree in 1985, and Josh Barnes and Piet Hut published the octree algorithm with the opening angle in Nature in 1986. Leslie Greengard and Vladimir Rokhlin published the fast multipole method in 1987, with error bounds that made it the first fast method with a guaranteed accuracy, and with John Carrier they made it adaptive in 1988. Michael Warren and John Salmon gave the hashed oct-tree and a sharper acceptance criterion in 1993 and 1994. TreePM, which joins a tree to a mesh, followed from Jasjeet Bagla in 2002 and from Volker Springel's GADGET-2 in 2005. Friends-of-friends was the group finder of Marc Davis and coauthors in 1985.
+
+Later work freed the FMM from the expansions of one kernel. Greengard and John Strain gave the fast Gauss transform in 1991. Lexing Ying, George Biros and Denis Zorin gave the kernel-independent method in 2004, and William Fong and Eric Darve gave the black-box method, built on Chebyshev interpolation, in 2009.
+
+Plasma simulation grew in parallel. John Dawson ran sheet models in 1962, Charles Birdsall and Dieter Fuss introduced cloud-in-cell in 1969, and Jay Boris gave his pusher in 1970. Birdsall and Bruce Langdon collected the practice in a book. For fluids, Alexandre Chorin introduced vortex blobs in 1973, and Pierre Degond and Sylvie Mas-Gallic gave particle strength exchange for viscosity in 1989. Deborah Sulsky, Zhen Chen and Howard Schreyer carried the particle-in-cell idea to solids in 1994 as the material point method, and Scott Bardenhagen and Edward Kober gave its generalized interpolation in 2004.
+
+## Further reading
+
+- Roger W. Hockney and James W. Eastwood, Computer Simulation Using Particles, Adam Hilger, 1988. The standard account of particle-mesh and P3M methods, with a full treatment of the optimal influence function.
+- Sverre J. Aarseth, Gravitational N-Body Simulations: Tools and Algorithms, Cambridge University Press, 2003. Direct summation, the Hermite scheme, block steps and regularization, from the author of the main codes.
+- James Binney and Scott Tremaine, Galactic Dynamics, 2nd edition, Princeton University Press, 2008. The physics behind softening, relaxation and collisionless dynamics, with a chapter on N-body methods.
+- Charles K. Birdsall and A. Bruce Langdon, Plasma Physics via Computer Simulation, Institute of Physics Publishing, 1991. The reference on particle-in-cell methods, their instabilities and their noise.
+- Georges-Henri Cottet and Petros D. Koumoutsakos, Vortex Methods: Theory and Practice, Cambridge University Press, 2000. Vortex blobs, particle strength exchange and the convergence theory of both.

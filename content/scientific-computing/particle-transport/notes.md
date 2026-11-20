@@ -1,0 +1,20 @@
+## History
+
+Monte Carlo transport began with neutrons. In 1947 John von Neumann and Stanislaw Ulam proposed to follow neutrons one at a time through a weapon core, drawing each flight distance and each collision with random numbers, and Nicholas Metropolis and Ulam published the method in 1949. The free-flight sampling, the analog game and the collision scores of this chapter all date from those first Los Alamos calculations. Herman Kahn collected the early sampling methods in a 1954 RAND report, which also contains his method for the Klein-Nishina distribution. Woodcock and coworkers gave delta tracking in 1965, and Jerome Spanier and Ely Gelbard set out the collision and track-length estimators with their variances in their 1969 book.
+
+The deterministic methods have a parallel history. James Jeans expanded the radiation intensity in spherical harmonics for stellar atmospheres in 1917. G. C. Wick replaced the angular integral by a Gauss quadrature in 1943, Subrahmanyan Chandrasekhar developed discrete ordinates for radiative transfer in the 1940s, and Bengt Carlson turned them into the $S_N$ method of the Los Alamos reactor codes in the 1950s. Marshak proposed his half-range boundary conditions for $P_N$ in 1947. Askew described the method of characteristics for the irregular regions of reactor lattices in 1972, and it became the standard for two-dimensional lattice calculations.
+
+Source iteration converges slowly when scattering dominates, and fixing this took two decades. Kopp proposed the synthetic method in 1963. Reed analyzed the diffusion correction by Fourier analysis in 1971 and found the factor $0.2247c$, but the discretized forms of that time could diverge on thick cells. Alcouffe showed in 1977 that the diffusion equation must be derived from the diamond-difference transport equations, and Larsen made this a general procedure in 1982. Adams and Larsen reviewed the whole subject in 2002.
+
+Criticality and variance reduction grew with the reactor codes. Lieberoth studied the generation method with a fixed number of neutrons per cycle and its source convergence in 1968. Implicit capture, splitting, roulette and weight windows came out of the same practice. John Wagner and Alireza Haghighat published CADIS in 1998, taking the importance from a discrete ordinates adjoint solve, and Wagner, Peplow and Mosher extended it to many tallies as FW-CADIS in 2014.
+
+The last two methods of the chapter come from neighbouring fields. Joseph Fleck and J. D. Cummings published implicit Monte Carlo for thermal radiation in 1971, and Larsen and Mercier showed in 1987 that it can violate the maximum principle for large time steps. Graeme Bird simulated a relaxing hard-sphere gas in 1963 and built direct simulation Monte Carlo into the standard method for rarefied flow; his no-time-counter scheme dates from 1989.
+
+## Further reading
+
+- E. E. Lewis and W. F. Miller, *Computational Methods of Neutron Transport* (Wiley, 1984). The standard text on the deterministic side: the transport equation, discrete ordinates, spherical harmonics, sweeps and source iteration.
+- Jerome Spanier and Ely M. Gelbard, *Monte Carlo Principles and Neutron Transport Problems* (Addison-Wesley, 1969; Dover reprint, 2008). The estimators, their variances and the theory of the importance function.
+- Iván Lux and László Koblinger, *Monte Carlo Particle Transport Methods: Neutron and Photon Calculations* (CRC Press, 1991). A thorough treatment of the games, the estimators and variance reduction.
+- Marvin L. Adams and Edward W. Larsen, "Fast iterative methods for discrete-ordinates particle transport calculations", *Progress in Nuclear Energy* 40 (2002). The survey of source iteration, diffusion synthetic acceleration and Krylov methods.
+- Alireza Haghighat and John C. Wagner, "Monte Carlo variance reduction with deterministic importance functions", *Progress in Nuclear Energy* 42 (2003). The adjoint as an importance function, CADIS and its relatives.
+- G. A. Bird, *Molecular Gas Dynamics and the Direct Simulation of Gas Flows* (Oxford University Press, 1994). The reference for direct simulation Monte Carlo by its inventor.

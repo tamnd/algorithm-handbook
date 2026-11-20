@@ -72,7 +72,10 @@ def subject_index(book: Book, vol: Volume, refs: Refs) -> str:
             a = str(a)
             if fold(a) != fold(e.name) and a not in terms:
                 terms[a] = f"{md_plain(a)}, *see* [{md_plain(e.name)}]({refs.target(e.slug)})\n"
-    # topics of other volumes that this volume uses
+    # topics of other volumes that this volume uses; two of them may share a name (Bit vector is both 2.12.8 and
+    # 3.12.1), so each gets its own line, in the order of their numbers
+    items = list(terms.items())
+    outside = []
     for s, users in mentioned.items():
         if book.volume_of.get(s) == vol.number:
             continue
@@ -80,10 +83,12 @@ def subject_index(book: Book, vol: Volume, refs: Refs) -> str:
         if n.name in terms:
             continue
         where = f"[{book.ref(s)}]({refs.target(s)})" if book.ref(s) else f"[site]({refs.target(s)})"
-        terms[n.name] = f"{md_plain(n.name)} ({where}), used in {_links(book, refs, users)}\n"
+        key = numkey(book.ref(s)) if book.ref(s) else [10**9]
+        outside.append((n.name, key, s, f"{md_plain(n.name)} ({where}), used in {_links(book, refs, users)}\n"))
+    items += [(name, line) for name, _, _, line in sorted(outside, key=lambda x: (x[0], x[1], x[2]))]
     groups = defaultdict(list)
-    for t in sorted(terms, key=fold):
-        groups[_letter(t)].append(terms[t])
+    for t, line in sorted(items, key=lambda x: fold(x[0])):
+        groups[_letter(t)].append(line)
     return _render(groups)
 
 

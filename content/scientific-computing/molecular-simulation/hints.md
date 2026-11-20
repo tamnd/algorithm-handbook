@@ -1,11 +1,25 @@
-1. The half kick gives $v = -0.1$, the drift $x = 1 - 0.2 \cdot 0.1 = 0.98$, the new force is $-0.98$, and the second half kick gives $v = -0.1 - 0.1 \cdot 0.98 = -0.198$. Then $H = 0.499802$, below $\frac12$ by $0.000198 = \frac{h^2}{8}(1 - x^2)$, and $v^2 + 0.99\, x^2 = 0.039204 + 0.950796 = 0.99$, the same value as at the start.
+1. $\phi(1.5) = 4(1.5^{-12} - 1.5^{-6}) = -0.320337$. The force is $24(2r^{-13} - r^{-7}) = -1.158029$, and the negative sign means attraction. The minimum is at $2^{1/6} = 1.122462$, where the force vanishes.
 
-2. $U'(r) = 0$ gives $(\sigma/r)^6 = \frac12$, so $r_m = 2^{1/6}\sigma \approx 1.1225\,\sigma$ and $U(r_m) = 4\epsilon(\frac14 - \frac12) = -\epsilon$. At $r = \sigma$, $U = 0$ and $-U'(\sigma) = 24\epsilon/\sigma > 0$: the force pushes the atoms apart.
+3. Fixing the three components of the total momentum removes three degrees of freedom, so $N_f = 297$. The mean is $148.5\, k_B T$, the standard deviation $\sqrt{148.5} = 12.186$ in units of $k_B T$, and the relative fluctuation is $\sqrt{2/N_f} = 0.0821$.
 
-5. The conserved quantity $v^2 + (1 - h^2/4) x^2$ equals $15/16$ at the start, so $|v|$ is at most $\sqrt{15}/4 \approx 0.968$, reached on the invariant curve where $x = 0$, with $H = 15/32$.
+5. $\lambda^2 = 1 + 0.1(2/3 - 1) = 0.966667$, so $\lambda = 0.983192$, and $K' = \lambda^2 K = 145$. In general $K' - K_0 = (1 - h/\tau)(K - K_0)$, so $K - K_0 = 50 \cdot 0.9^n$, which falls below 1 after 38 steps.
 
-8. $U''(r_m) = 72 \cdot 2^{-1/3}\epsilon/\sigma^2 \approx 57.15$, so $\omega = \sqrt{2 U''(r_m)} \approx 10.69$ and $h < 2/\omega \approx 0.187$. The tiny start keeps the motion harmonic, so the run with $h = 0.186$ stays within $10^{-4}$ of $r_m$ with an energy error near $3 \times 10^{-7}$, and the run with $h = 0.19$ grows until the run breaks down. With a large start, such as $1.02\, r_m$, the anharmonic potential lowers the frequency and the threshold moves.
+7. The mean of $e^{-0.5}$, $e^{-1.5}$ and $e^{0.2}$ is 0.683688, so $\beta\Delta A = 0.380254$. The mean of $\beta\Delta U$ is 0.6. The estimate is below it, as Jensen's inequality requires, and the single negative sample carries more than half the weight.
 
-9. Write the step as kick, drift, kick with $f$ at the two ends. Apply a step to $(x', -v')$: the first half kick undoes the last half kick of the original step with the sign of $v$ flipped, the drift returns the position to $x$, and the second half kick uses $f(x)$.
+9. One step gives $x = 0.98$ and $v = -0.198$, so $H = 0.499802$ and $\tilde E = 0.495$, as at the start. Since $H = \tilde E + \frac{h^2}{8} x^2$ and $x^2 \le 2\tilde E/(1 - h^2/4)$, $H$ stays between $\tilde E$ and $\frac12$, and $|H - \frac12| \le h^2/8$. The bound is 0.005 at $h = 0.2$. $\tilde E$ is the exact shadow Hamiltonian of this linear problem, and it differs from $H$ by $O(h^2)$.
 
-10. $M = \begin{pmatrix} 1 - z^2/2 & h \\ -\omega z (1 - z^2/4) & 1 - z^2/2 \end{pmatrix}$ in the variables $(x, v)$. A real $2 \times 2$ matrix with determinant 1 has eigenvalues $e^{\pm i\theta}$ when $|\operatorname{tr} M| < 2$; at $z = 2$ there is a double eigenvalue $-1$ with a Jordan block, and the solution grows linearly. For the last part, $\theta = 2 \arcsin(z/2)$ and $\arcsin y > y$ for $0 < y \le 1$.
+12. The variance obeys $s = (1 - c)^2 s + 2Dh$, so $s = 2Dh/(1 - (1 - c)^2)$. At $h = 0.005$, $c = 0.5$ and $s = 0.01/0.75 = 0.013333$, a third above the exact 0.01. The scheme is unstable for $|1 - c| \ge 1$, that is $h \ge 0.02$.
+
+15. The unbiased free energy is $F(s) = -\ln P(s) - w(s)$ up to a constant. With $w(0.1) = 0.25$ and $w(0.2) = 1$, $F(0.1) - F(0) = \ln\frac43 - 0.25 = 0.037682$ and $F(0.2) - F(0) = \ln 4 - 1 = 0.386294$.
+
+18. In the perfect lattice each atom has $\bar\rho = z$, so $E_c = \sqrt z$. Removing one atom takes away its $-\sqrt z$ and lowers the density of $z$ neighbours to $z - 1$. Count the change against the $N - 1$ atoms of the perfect lattice to find $E_v = z(\sqrt z - \sqrt{z - 1})$. A pair potential gives $E_v = E_c$.
+
+20. On $(x, v)$ the half kick is the matrix $\begin{pmatrix} 1 & 0 \\ -\kappa h/2 & 1 \end{pmatrix}$, and the trace of $K R K$ equals that of $R K^2$. A linear map with determinant 1 is stable for $|\operatorname{tr}| < 2$. Near $\Omega h = \pi$ the cosine term is close to $-2$ and the sine term pushes the trace below $-2$ on $0.311049 < h < 0.314159$. The slow force is weak, yet the outer step cannot sit at half the fast period.
+
+21. The left side increases with $C$ and the right side decreases, so there is one root. Bisection gives $C = 0.861043$. Forward perturbation gives $-\ln\frac{e^{-1} + e^{-2}}{2} = 1.379885$, and reverse perturbation gives $\ln\frac{e^{0.5} + 1}{2} = 0.280930$. The acceptance ratio lies between them.
+
+22. With $W = \frac32 x^2$ and $x$ standard normal, $\langle e^{-aW} \rangle = (1 + 3a)^{-1/2}$. So the mean is $\frac12$ and the second moment $1/\sqrt7$, which gives the variance 0.127964. The standard error of $\Delta A$ is about $\sigma/(\frac12 \sqrt N)$, which needs $N \ge 5119$. In reverse, $x$ has variance $\frac14$ and the second moment is $\langle e^{3x^2} \rangle$, which is infinite since $2 \cdot 3 \cdot \frac14 \ge 1$.
+
+23. With $\omega = 2\pi/11$ per fs, the periods are 10.847 fs at 1 fs, 10.335 fs at 2 fs and 9.159 fs at 3 fs. The method is unstable for $\omega h > 2$, that is $h > 11/\pi = 3.50$ fs.
+
+24. The velocity at time $t$ equals the velocity at 0 if no collision has happened, with probability $e^{-\nu t}$. Otherwise it is independent of it with mean zero. Then $D = \frac13 \int_0^\infty \langle v(0) \cdot v(t) \rangle\, dt = k_B T/(m\nu) = 2$, and the mean squared displacement is $6D\,(t - (1 - e^{-\nu t})/\nu) = 96.16$ at $t = 10$.

@@ -1,0 +1,89 @@
+groups:
+  - title: Weak problems and their spaces
+    intro: >
+      A boundary value problem becomes a statement about a bilinear form on a space of functions with
+      square-integrable derivatives. Lax-Milgram gives a unique solution, and Céa's lemma says that the Galerkin
+      solution is as good as the best approximation from the discrete space, up to the factor $M/\alpha$.
+    entries:
+      - weak-formulation
+      - sobolev-space
+      - lax-milgram-theorem
+      - cea-lemma
+  - title: Elements and assembly
+    intro: >
+      The Lagrange elements are continuous piecewise polynomials fixed by their values at nodes, and Ciarlet's
+      definition makes any element a cell, a space of shape functions and a set of degrees of freedom. The
+      group then assembles the global matrix from element matrices, maps curved cells from a reference
+      cell, and tests the result. Static condensation and mass lumping change the element matrices before
+      assembly, and the Bramble-Hilbert lemma turns all this into the $h^k$ error bounds.
+    entries:
+      - lagrange-finite-element
+      - ciarlet-finite-element
+      - finite-element-assembly
+      - isoparametric-mapping
+      - patch-test
+      - static-condensation
+      - mass-lumping
+      - bramble-hilbert-lemma
+  - title: Locking and mixed methods
+    intro: >
+      Low order elements lock when they must meet a constraint such as incompressibility. Mixed methods treat
+      the constrained quantity as a second unknown, and then the pair of spaces must satisfy the inf-sup
+      condition. Taylor-Hood, Raviart-Thomas and Nédélec are the standard pairs and vector elements.
+    entries:
+      - finite-element-locking
+      - inf-sup-condition
+      - mixed-finite-element-method
+      - taylor-hood-element
+      - raviart-thomas-element
+      - nedelec-element
+  - title: Weak boundary conditions, stabilization and discontinuous methods
+    intro: >
+      The same idea of adding consistent terms to the Galerkin form runs through this group. Nitsche's method
+      imposes Dirichlet data weakly, SUPG adds a streamline term against convection, and the interior penalty
+      and hybridizable methods apply Nitsche's terms to every face of a discontinuous space.
+    entries:
+      - nitsche-method
+      - streamline-upwind-petrov-galerkin
+      - symmetric-interior-penalty-galerkin
+      - hybridizable-discontinuous-galerkin
+  - title: Error estimation and adaptivity
+    intro: >
+      A posteriori estimators measure the error from the computed solution. The adaptive loop solves,
+      estimates, marks and refines, using Dörfler marking and newest vertex bisection, and the optimality
+      theorem says when it reaches the best possible rate.
+    entries:
+      - residual-error-estimator
+      - zienkiewicz-zhu-estimator
+      - dual-weighted-residual-method
+      - newest-vertex-bisection
+      - adaptive-finite-element-method
+      - dorfler-marking
+      - afem-optimality-theorem
+  - title: High order
+    intro: >
+      Raising the degree instead of refining the mesh gives exponential convergence for smooth or piecewise
+      analytic solutions. The hp method combines both; the spectral element method uses high degree tensor
+      product elements with Gauss-Lobatto nodes.
+    entries:
+      - hp-finite-element-method
+      - spectral-element-method
+  - title: Dynamics and nonlinear solids
+    intro: >
+      Structural dynamics steps the semi-discrete system $M\ddot d + C\dot d + Kd = F$ in time with Newmark
+      or generalized-$\alpha$. Plasticity is integrated point by point by return mapping, and arc-length
+      continuation follows load paths through limit points.
+    entries:
+      - newmark-beta-method
+      - generalized-alpha-method
+      - return-mapping-algorithm
+      - arc-length-method
+  - title: Beyond the standard mesh
+    intro: >
+      These methods change what is discretized: only the boundary, scattered nodes without a mesh, a mesh
+      that does not follow a crack, or cells that are general polygons.
+    entries:
+      - boundary-element-method
+      - element-free-galerkin-method
+      - extended-finite-element-method
+      - virtual-element-method

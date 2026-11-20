@@ -1,19 +1,39 @@
-Cover a domain with triangles and look for the solution of the Poisson equation among functions that are linear on each triangle and continuous across edges. The weak form of the equation turns into a sparse linear system with one unknown per vertex, assembled triangle by triangle from small element matrices. Céa's lemma then says that the computed solution is, up to a constant, the best approximation from the chosen space in the $H^1$ norm, so for a smooth solution the error falls in proportion to the mesh size. The finite element method is this idea carried to elasticity, heat flow, electromagnetics and fluids, on meshes that follow any geometry.
+The [finite element method](/finite-element-method/) turns a partial differential equation on a complicated domain into a sparse linear system. Its idea fits in one line: write the problem in weak form, pick a space of piecewise polynomials on a mesh, and ask that the equation hold against every function of that space. This chapter is about everything between that line and a working code that gives answers you can trust. It covers the theory that says when the discrete problem has a solution and how close it is, the elements and the assembly loop, the things that go wrong, and the methods that fix them.
 
-Practice is where the method gets hard. Some pairs of spaces fail: for incompressible flow and nearly incompressible solids, a careless choice of elements locks or produces spurious pressures, and the inf-sup condition says which pairs work. Singularities at corners and cracks spoil the convergence rate unless the mesh is refined where the error is large, which needs error estimators computed from the solution itself. And dynamics, plasticity and buckling bring their own time integrators and nonlinear solvers.
+Two examples show the range. A car body in a crash is a thin shell of steel that bends, yields and buckles. A simulation needs elements that do not lock in bending, a return mapping for plasticity at every quadrature point, and a time stepper for millions of unknowns. Groundwater flow through layered rock is a Darcy problem whose flux matters more than the pressure. A mixed method with Raviart-Thomas fluxes conserves mass on every cell, and an adaptive mesh puts the unknowns near the wells.
 
-## What the chapter will cover
+## What the chapter covers
 
-The entries of this chapter are being written. They will cover:
+1. **Weak problems and their spaces.** The [weak formulation](/weak-formulation/) poses the problem in a [Sobolev space](/sobolev-space/). The [Lax-Milgram theorem](/lax-milgram-theorem/) gives existence and uniqueness, and [Céa's lemma](/cea-lemma/) bounds the Galerkin error by the best approximation error times $M/\alpha$.
+2. **Elements and assembly.** The [Lagrange elements](/lagrange-finite-element/) and the [Ciarlet definition](/ciarlet-finite-element/) of an element in general. Then [assembly](/finite-element-assembly/) of the global matrix, [isoparametric maps](/isoparametric-mapping/) for curved cells, the [patch test](/patch-test/), [static condensation](/static-condensation/), [mass lumping](/mass-lumping/), and the [Bramble-Hilbert lemma](/bramble-hilbert-lemma/) behind the $h^k$ rates.
+3. **Locking and mixed methods.** Why low order elements [lock](/finite-element-locking/), the [inf-sup condition](/inf-sup-condition/) for [mixed methods](/mixed-finite-element-method/), and the standard spaces: [Taylor-Hood](/taylor-hood-element/), [Raviart-Thomas](/raviart-thomas-element/) and [Nédélec](/nedelec-element/).
+4. **Weak boundary conditions, stabilization and discontinuous methods.** [Nitsche's method](/nitsche-method/), [SUPG](/streamline-upwind-petrov-galerkin/) for convection, the [symmetric interior penalty method](/symmetric-interior-penalty-galerkin/) and the [hybridizable discontinuous Galerkin method](/hybridizable-discontinuous-galerkin/).
+5. **Error estimation and adaptivity.** The [residual estimator](/residual-error-estimator/), [Zienkiewicz-Zhu recovery](/zienkiewicz-zhu-estimator/) and the [dual weighted residual method](/dual-weighted-residual-method/). Then [newest vertex bisection](/newest-vertex-bisection/), the [adaptive loop](/adaptive-finite-element-method/), [Dörfler marking](/dorfler-marking/) and the [optimality theorem](/afem-optimality-theorem/).
+6. **High order.** The [hp method](/hp-finite-element-method/), with exponential convergence on geometric meshes, and the [spectral element method](/spectral-element-method/).
+7. **Dynamics and nonlinear solids.** The [Newmark method](/newmark-beta-method/) and [generalized-$\alpha$](/generalized-alpha-method/) for structural dynamics, the [return mapping algorithm](/return-mapping-algorithm/) for plasticity and the [arc-length method](/arc-length-method/) for paths through limit points.
+8. **Beyond the standard mesh.** The [boundary element method](/boundary-element-method/), the meshfree [element-free Galerkin method](/element-free-galerkin-method/), the [extended finite element method](/extended-finite-element-method/) for cracks, and the [virtual element method](/virtual-element-method/) on polygons.
 
-1. **Foundations.** The weak formulation, Sobolev spaces, the Lax-Milgram theorem, Céa's lemma, the Bramble-Hilbert lemma and the Ciarlet definition of a finite element.
-2. **Building and assembling elements.** Lagrange elements and isoparametric mappings, finite element assembly, static condensation, mass lumping, the patch test and locking.
-3. **Mixed and nonstandard methods.** Mixed finite elements and the Babuška-Brezzi inf-sup condition, the Taylor-Hood, Raviart-Thomas and Nédélec elements, Nitsche's method, the symmetric interior penalty and hybridizable discontinuous Galerkin methods, streamline upwind Petrov-Galerkin and the virtual element method.
-4. **Adaptivity.** Residual-based and Zienkiewicz-Zhu error estimators, the dual weighted residual method, Dörfler marking, newest vertex bisection, the optimality of adaptive finite element methods, hp finite elements and spectral elements.
-5. **Dynamics, nonlinearity and other discretizations.** The Newmark-beta and generalized-alpha methods, the return mapping algorithm for plasticity, the arc-length method, and the boundary element, element-free Galerkin and extended finite element methods.
+## A first reading
 
-## What to read meanwhile
+Read these in order:
 
-The method itself is written in Volume 12: read the [finite element method](/finite-element-method/) and the [Galerkin method](/galerkin-method/), with the [Poisson equation](/poisson-equation/) as the model problem and [spectral methods](/spectral-methods/) for the high-order end. The linear systems are solved by the [conjugate gradient method](/conjugate-gradient-method/), [GMRES](/gmres/) and the [multigrid method](/multigrid-method/), also in Volume 12.
+1. [Weak formulation](/weak-formulation/)
+2. [Lax-Milgram theorem](/lax-milgram-theorem/)
+3. [Céa's lemma](/cea-lemma/)
+4. [Lagrange finite element](/lagrange-finite-element/)
+5. [Finite element assembly](/finite-element-assembly/)
+6. [Isoparametric mapping](/isoparametric-mapping/)
+7. [Patch test](/patch-test/)
+8. [Finite element locking](/finite-element-locking/)
+9. [Inf-sup condition](/inf-sup-condition/)
+10. [Taylor-Hood element](/taylor-hood-element/)
+11. [Nitsche's method](/nitsche-method/)
+12. [Residual error estimator](/residual-error-estimator/)
+13. [Adaptive finite element method](/adaptive-finite-element-method/)
+14. [Newmark method](/newmark-beta-method/)
 
-Meshes come from Volume 13: [mesh generation](/mesh-generation/), the [Delaunay triangulation](/delaunay-triangulation/) and [Delaunay refinement](/delaunay-refinement/), which gives triangles with a lower bound on their angles, the shape regularity that the error estimates need.
+This path goes from the weak problem to a code that assembles, checks itself, avoids locking and adapts its mesh. Sobolev spaces and the Bramble-Hilbert lemma can be read when a proof needs them. The optimality theorem, the hybridizable method and the last group can wait until the rest is familiar.
+
+## Before you start
+
+The chapter assumes the finite element method and the [Galerkin method](/galerkin-method/) at the level of Volume 12, with the [Poisson equation](/poisson-equation/) and its [boundary conditions](/boundary-conditions/) as the model problem. [Lagrange interpolation](/lagrange-interpolation/), [Legendre polynomials](/legendre-polynomials/), [Gauss-Legendre](/gauss-legendre-quadrature/) and [Gauss-Lobatto quadrature](/gauss-lobatto-quadrature/) give the shape functions and the quadrature rules. The linear algebra is that of [sparse matrices](/sparse-matrix/), the [Schur complement](/schur-complement/), the [conjugate gradient method](/conjugate-gradient-method/), [MINRES](/minres/) for saddle point systems and [multigrid](/multigrid-method/). The time steppers build on [initial value problems for ODEs](/ode-initial-value-problem/) and the nonlinear solids on [Newton's method for systems](/newton-method-for-systems/). Meshes come from [mesh generation](/mesh-generation/) in Volume 13, and the [partition of unity](/partition-of-unity/) of Volume 28 is the base of the meshfree and extended methods. The [discontinuous Galerkin method](/discontinuous-galerkin-method/) of the conservation laws chapter is the hyperbolic cousin of group 4. You need real analysis at the level of $L^2$ spaces and integration by parts.

@@ -4907,3 +4907,224 @@ paths:
           - grapheme-to-phoneme-conversion
           - unit-selection-synthesis
           - wavenet
+
+  - id: simulation
+    title: Simulation of physical systems
+    for: a student who knows calculus, linear algebra and basic probability, can program, and wants to learn how particles, fluids, solids and radiation are simulated, and how the uncertainty of a simulation is measured and corrected with data.
+    intro: >
+      The path goes through Volume 43, after a base of numerical methods
+      from Volume 12 and sampling from Volume 17. It keeps the line the
+      entries draw between what is proved and what is measured. Direct
+      N-body summation is exact up to rounding; tree codes, the fast
+      multipole method and mesh methods trade accuracy for speed within
+      stated error bounds. Symplectic integrators keep a nearby modified
+      energy bounded for a fixed step; they do not conserve the energy
+      exactly. Thermostats sample the ensembles their entries state, and
+      only under their conditions. A consistent conservative scheme that
+      converges has a weak solution as its limit, not necessarily the
+      entropy one. Finite element errors and adaptive rates hold under the
+      conditions of their theorems. Monte Carlo estimators are unbiased with
+      error falling like the inverse square root of the number of samples.
+      Turbulence closures, force fields and data assimilation systems are
+      models and methods judged by measurement; the Kalman filter is exact
+      only for linear Gaussian models.
+    stages:
+      - title: Time stepping and sampling
+        intro: >
+          Ordinary differential equations and their integrators from Volume
+          12, with the symplectic methods that long simulations of particles
+          rely on, then random numbers and the sampling methods of Volume 17
+          that Monte Carlo transport, molecular simulation and uncertainty
+          quantification use.
+        steps:
+          - ode-initial-value-problem
+          - euler-method
+          - backward-euler-method
+          - stiff-ode-problem
+          - classical-runge-kutta-4
+          - hamiltonian-systems
+          - verlet-integration
+          - entry: symplectic-integrators
+            why: for a fixed step they keep a modified energy close to the true one bounded over long times; they do not conserve the energy exactly.
+          - stochastic-differential-equation
+          - pseudorandom-number-generator
+          - entry: monte-carlo-integration
+            why: the error falls like N^(-1/2) whatever the dimension.
+          - inverse-transform-sampling
+          - rejection-sampling
+          - importance-sampling
+          - markov-chain
+          - metropolis-hastings
+      - title: Fields on grids
+        intro: >
+          Polynomials and quadrature, the model partial differential
+          equations, finite differences, finite volumes with Riemann problems,
+          and Galerkin methods, with the sparse solvers and the fast Fourier
+          transform that the later stages call at every step.
+        steps:
+          - lagrange-interpolation
+          - legendre-polynomials
+          - orthogonal-polynomials
+          - gaussian-quadrature
+          - poisson-equation
+          - heat-equation
+          - advection-equation
+          - finite-difference-method
+          - entry: courant-friedrichs-lewy-condition
+            why: necessary for the stability of an explicit scheme, not sufficient.
+          - upwind-scheme
+          - finite-volume-method
+          - riemann-problem
+          - godunov-method
+          - total-variation-diminishing
+          - navier-stokes-equations
+          - galerkin-method
+          - finite-element-method
+          - sparse-matrix
+          - conjugate-gradient-method
+          - power-iteration
+          - fast-fourier-transform
+      - title: Particles
+        intro: >
+          Chapters 43.1 and 43.2. Gravitating bodies and plasmas need all
+          pairwise forces; trees, multipole expansions and meshes make each
+          step cheaper than the direct sum. Molecular dynamics adds neighbour
+          lists, periodic boxes, Ewald sums for charges, constraints, and
+          thermostats that set the ensemble.
+        steps:
+          - octree
+          - gravitational-n-body-problem
+          - entry: direct-n-body-summation
+            why: exact up to rounding, at Θ(N^2) cost per step.
+          - multipole-expansion
+          - multipole-acceptance-criterion
+          - barnes-hut-algorithm
+          - entry: fast-multipole-method
+            why: O(N) for a fixed accuracy, with constants that grow with the number of digits.
+          - cloud-in-cell-assignment
+          - particle-mesh-method
+          - boris-pusher
+          - plasma-particle-in-cell
+          - molecular-dynamics
+          - interatomic-potential
+          - lennard-jones-potential
+          - periodic-boundary-conditions
+          - linked-cell-list
+          - canonical-ensemble
+          - langevin-dynamics
+          - entry: nose-hoover-thermostat
+            why: the extended dynamics samples the canonical ensemble only if it is ergodic.
+          - ewald-summation
+          - particle-mesh-ewald
+          - p3m-method
+          - shake-constraint-algorithm
+          - shadow-hamiltonian
+      - title: Fluids
+        intro: >
+          Chapters 43.3 and 43.4. Shocks need conservative schemes, the
+          entropy condition and nonlinear limiters; incompressible flow needs a
+          pressure that keeps the velocity divergence free; turbulence is
+          either resolved at great cost or modelled.
+        steps:
+          - hyperbolic-conservation-law
+          - weak-solution-of-conservation-law
+          - rankine-hugoniot-conditions
+          - lax-entropy-condition
+          - entry: lax-wendroff-theorem
+            why: a limit of a consistent conservative scheme is a weak solution, not necessarily the entropy solution.
+          - entry: godunov-order-barrier
+            why: a linear monotone scheme is at most first order, so high resolution schemes are nonlinear.
+          - euler-equations-of-gas-dynamics
+          - entry: roe-solver
+            why: it accepts expansion shocks unless an entropy fix is added.
+          - hll-riemann-solver
+          - muscl-scheme
+          - strong-stability-preserving-runge-kutta
+          - discontinuous-galerkin-method
+          - chorin-projection-method
+          - entry: kolmogorov-1941-theory
+            why: the k^(-5/3) spectrum is a prediction from similarity hypotheses that measurements confirm, not a theorem about the Navier-Stokes equations.
+          - entry: direct-numerical-simulation
+            why: resolving every scale costs about Re^3.
+          - reynolds-averaged-navier-stokes
+          - large-eddy-simulation
+          - lattice-boltzmann-method
+      - title: Solids, fields and radiation
+        intro: >
+          Chapters 43.5 and 43.6. The finite element method with its
+          theorems of existence, error and stability and its adaptive loop;
+          then the transport of neutrons and photons, by Monte Carlo histories
+          and by deterministic sweeps over directions.
+        steps:
+          - weak-formulation
+          - sobolev-space
+          - lagrange-finite-element
+          - finite-element-assembly
+          - lax-milgram-theorem
+          - entry: cea-lemma
+            why: under its conditions the Galerkin error is within the factor M/α of the best approximation in the space.
+          - inf-sup-condition
+          - mixed-finite-element-method
+          - residual-error-estimator
+          - adaptive-finite-element-method
+          - linear-boltzmann-transport-equation
+          - free-flight-sampling
+          - entry: analog-monte-carlo-transport
+            why: each count is an unbiased estimate; its variance is measured.
+          - implicit-capture
+          - particle-splitting
+          - weight-window
+          - track-length-estimator
+          - k-eigenvalue-problem
+          - monte-carlo-criticality
+          - discrete-ordinates-method
+          - transport-sweep
+          - entry: source-iteration
+            why: converges slowly when the scattering ratio is near one.
+          - diffusion-approximation-of-transport
+          - diffusion-synthetic-acceleration
+      - title: Scales and uncertainty
+        intro: >
+          Chapters 43.7 and 43.8. Models at two scales are coupled where the
+          fine one is needed, and rare events are simulated by their rates.
+          Uncertain inputs are pushed through a model by sampling or by
+          polynomial expansions, and sensitivity indices say which inputs
+          matter.
+        steps:
+          - multiscale-modeling
+          - cauchy-born-rule
+          - entry: quasicontinuum-method
+            why: the energy-based coupling of atoms and continuum makes ghost forces at the interface unless they are corrected.
+          - periodic-homogenization
+          - kinetic-monte-carlo
+          - nudged-elastic-band
+          - forward-uncertainty-propagation
+          - entry: polynomial-chaos-expansion
+            why: converges fast only when the output depends smoothly on the inputs.
+          - stochastic-collocation-method
+          - entry: multilevel-monte-carlo
+            why: its cost bound holds under the rate assumptions of its theorem.
+          - hoeffding-sobol-decomposition
+          - sobol-indices
+      - title: Data assimilation
+        intro: >
+          Chapter 43.9, with the Kalman filter of Volume 28. Observations
+          correct the state of a model: by minimizing a cost over a time
+          window, or by an ensemble whose spread estimates the errors.
+        steps:
+          - entry: kalman-filter
+            why: the exact posterior only for linear Gaussian models.
+          - data-assimilation-problem
+          - observation-operator
+          - background-error-covariance
+          - lorenz-96-model
+          - optimal-interpolation
+          - three-dimensional-variational-assimilation
+          - adjoint-model
+          - entry: four-dimensional-variational-assimilation
+            why: finds a local minimum of its cost; long windows of a chaotic model have many.
+          - ensemble-kalman-filter
+          - covariance-inflation
+          - entry: covariance-localization
+            why: a Gaspari-Cohn taper along a periodic distance is not positive semidefinite for large cutoffs.
+          - particle-filter-weight-collapse

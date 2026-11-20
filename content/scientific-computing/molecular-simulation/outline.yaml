@@ -1,9 +1,96 @@
+# The order of chapter 43.2, Molecular simulation. Groups are read in order; entries in a group too.
 groups:
-  - title: Integrating the motion of atoms
+  - title: Molecular dynamics in a box
     intro: >
-      Molecular dynamics moves every atom by Newton's law under the forces of a force field, one small time
-      step at a time. The integrator is velocity Verlet: a half kick, a drift, one force evaluation and a
-      second half kick. It is time-reversible and symplectic, so its energy error stays bounded for a small
-      enough step, and the fastest vibration in the system sets how small that step must be.
+      Molecular dynamics moves every atom by Newton's law under a potential energy function, with
+      the velocity Verlet method and one force evaluation per step of 1 to 2 fs. A small periodic
+      box stands in for bulk matter, and cell and neighbour lists find the interacting pairs in
+      $O(N)$ time. Plain dynamics conserves the energy and samples the microcanonical ensemble; most
+      experiments are at fixed temperature, which is the canonical ensemble.
     entries:
       - molecular-dynamics
+      - interatomic-potential
+      - lennard-jones-potential
+      - periodic-boundary-conditions
+      - radial-distribution-function
+      - linked-cell-list
+      - verlet-neighbor-list
+      - microcanonical-ensemble
+      - canonical-ensemble
+
+  - title: Where the forces come from
+    intro: >
+      The potential decides what the simulation can describe. A molecular mechanics force field
+      adds up bonds, angles, torsions, Lennard-Jones and Coulomb terms. Metals need many-body terms,
+      which the embedded atom method supplies, and a neural network potential learns the energy from
+      quantum calculations.
+    entries:
+      - molecular-mechanics-force-field
+      - embedded-atom-method
+      - behler-parrinello-potential
+
+  - title: Long-range electrostatics
+    intro: >
+      The Coulomb energy of a periodic system converges only conditionally, and a cutoff distorts it.
+      Ewald summation splits it into a short-range sum in real space and a smooth sum in reciprocal
+      space. The mesh methods compute the second part with FFTs in $O(N \log N)$ time.
+    entries:
+      - ewald-summation
+      - particle-mesh-ewald
+      - smooth-particle-mesh-ewald
+
+  - title: Long runs, constraints and multiple steps
+    intro: >
+      The shadow Hamiltonian explains why a symplectic integrator keeps the energy close to its
+      start for very long runs. The fastest motions limit the step. Constraint algorithms freeze bond
+      lengths so that the step can grow, and RESPA takes small steps only for the fast forces.
+    entries:
+      - shadow-hamiltonian
+      - shake-constraint-algorithm
+      - rattle-algorithm
+      - lincs-algorithm
+      - respa-multiple-time-step
+
+  - title: Forces from the electrons
+    intro: >
+      When bonds form and break, the forces must come from the electrons. Born-Oppenheimer dynamics
+      solves the electronic problem at every step. Car-Parrinello dynamics gives the orbitals a
+      fictitious mass and moves them along with the nuclei.
+    entries:
+      - born-oppenheimer-molecular-dynamics
+      - car-parrinello-molecular-dynamics
+
+  - title: Thermostats, barostats and transport
+    intro: >
+      A thermostat changes the dynamics so that it samples the canonical ensemble, or at least
+      holds the temperature. Some do it by random collisions or friction and noise, some by
+      rescaling the velocities, and some by an extra degree of freedom. A barostat lets the box
+      change shape under a set pressure. Transport coefficients come from equilibrium runs through
+      the Green-Kubo relations.
+    entries:
+      - andersen-thermostat
+      - berendsen-thermostat
+      - stochastic-velocity-rescaling
+      - langevin-dynamics
+      - baoab-langevin-integrator
+      - brownian-dynamics
+      - nose-hoover-thermostat
+      - nose-hoover-chains
+      - parrinello-rahman-barostat
+      - green-kubo-relations
+
+  - title: Free energy
+    intro: >
+      Free energy differences decide binding, solubility and the rates of slow processes, and they
+      are not averages of one quantity over one ensemble. Perturbation, the acceptance ratio,
+      thermodynamic integration and nonequilibrium work connect two states. Along a collective
+      variable, umbrella sampling, WHAM and metadynamics compute a whole profile.
+    entries:
+      - free-energy-perturbation
+      - bennett-acceptance-ratio
+      - thermodynamic-integration
+      - jarzynski-equality
+      - collective-variable
+      - umbrella-sampling
+      - weighted-histogram-analysis-method
+      - metadynamics

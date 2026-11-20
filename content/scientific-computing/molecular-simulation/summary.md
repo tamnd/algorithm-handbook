@@ -1,12 +1,29 @@
 ## What to remember
 
-- **The problem.** Given positions, velocities and masses of $N$ atoms and a force field $U$, approximate the trajectory of $\dot{x}_i = v_i$, $m_i \dot{v}_i = -\nabla_i U(x)$ at the times $h, 2h, \ldots, Sh$. The exact flow conserves the total energy $H = \sum_i \frac12 m_i |v_i|^2 + U(x)$.
-- **Velocity Verlet.** Each step is a half kick $v_i \leftarrow v_i + \frac{h}{2} f_i / m_i$, a drift $x_i \leftarrow x_i + h v_i$, one force evaluation, and a second half kick. The forces from the end of one step are reused at the start of the next, so a step costs one force evaluation, the same as the Euler method.
-- **What is proved.** The method has order 2, it is symplectic and time-reversible, and for pair forces it conserves the total momentum exactly, up to rounding. Energy is not conserved: the recorded $H$ oscillates with an amplitude of $O(h^2)$, and backward error analysis keeps it bounded over very long times for a small enough $h$. A steady drift of $H$ points to a bug, a step that is too large or a force field that is not smooth, such as a cutoff without a shift.
-- **The time step.** For a harmonic motion of angular frequency $\omega$, Verlet is stable only for $h \omega < 2$, that is, $h < T / \pi$ for the period $T$. The C-H stretch, with $T \approx 11$ fs, gives about 3.5 fs; simulations use 1 fs, or 2 fs with the bonds to hydrogen held fixed by constraints.
-- **The cost.** All pairs cost $\Theta(N^2)$ per step. Cell or neighbour lists bring short-range forces to $O(N)$ at fixed density, and particle mesh Ewald computes the long-range Coulomb sum in $O(N \log N)$ with the [fast Fourier transform](/fast-fourier-transform/). The number of steps remains the limit: 1 ms at 2 fs is $5 \times 10^{11}$ steps.
-- **The ensemble.** Without a thermostat the method samples the microcanonical ensemble (fixed $N$, volume and energy) if the dynamics is ergodic. Thermostats change the dynamics so that it samples the canonical ensemble at a temperature $T$.
+- Molecular dynamics integrates Newton's equations with velocity Verlet, one force evaluation per step. The fastest motion sets the step, about 1 fs for bonds to hydrogen and 2 fs once they are constrained.
+- The method is symplectic, so it follows a shadow Hamiltonian that differs from the true one by $O(h^2)$, and the energy error stays bounded over very long runs instead of drifting.
+- Periodic boundary conditions with the minimum image stand in for bulk matter. Cell lists and Verlet lists find the pairs within a cutoff in $O(N)$ time.
+- The Coulomb sum of a periodic system needs Ewald summation or a mesh variant. Particle mesh Ewald and its smooth form cost $O(N \log N)$ per step.
+- Plain dynamics samples the microcanonical ensemble at best. A thermostat is canonical only if its theory says so: Andersen, Langevin, stochastic velocity rescaling and Nose-Hoover (when the dynamics is ergodic) are, and Berendsen is not.
+- Constraints remove the fastest vibrations. SHAKE and RATTLE iterate one bond at a time, and LINCS solves a matrix series that suits parallel machines.
+- Free energy differences are logarithms of ratios of partition functions. They need overlap between the states compared, or a path of intermediate states, or a bias along a collective variable.
+- The choice of potential decides what can be simulated. Pair potentials miss the many-body physics of metals, fixed force fields cannot break bonds, and electronic structure costs orders of magnitude more per step.
 
-## Choosing
+| Thermostat | Canonical | Ergodicity | Effect on dynamics |
+|---|---|---|---|
+| Andersen | yes | from the collisions | destroys velocity memory; $D = k_B T/(m\nu)$ for a free particle |
+| Berendsen | no | not relevant | smooth; kinetic energy fluctuations too small |
+| Stochastic velocity rescaling | yes | needs the dynamics to mix velocity directions | small for usual $\tau$ |
+| Langevin, BAOAB | yes, up to the step error | proved for $\gamma > 0$ | friction slows diffusion as $\gamma$ grows |
+| Nose-Hoover | yes, if ergodic | fails for one oscillator | deterministic, time-reversible |
+| Nose-Hoover chains | yes, if ergodic | measured, not proved | deterministic, time-reversible |
 
-Use molecular dynamics when the motion itself matters: flexibility, binding, the effect of a mutation, or the folding of a small fast-folding protein. To sample an equilibrium distribution without the dynamics, Monte Carlo methods such as [Metropolis-Hastings](/metropolis-hastings/) or [Hamiltonian Monte Carlo](/hamiltonian-monte-carlo/), which uses the same leapfrog trajectories inside a Metropolis test, can be faster. To cross high energy barriers, [parallel tempering](/parallel-tempering/) runs copies at several temperatures. Always test a new integrator or force field without a thermostat first, since a thermostat removes the energy that a bad step adds and hides the error.
+: Thermostats of the chapter. "Canonical" means that the exact dynamics samples the canonical ensemble; the entries give the conditions.
+
+## Choosing a method
+
+For a first simulation of a liquid, use velocity Verlet with a cutoff, a cell or Verlet list, and periodic boundaries. Add smooth particle mesh Ewald as soon as there are charges, since a plain cutoff on Coulomb forces gives wrong structure and wrong energies. Constrain the bonds to hydrogen with SHAKE, RATTLE or LINCS and use a 2 fs step. RESPA can lengthen the step for the slow forces further, but resonance limits the outer step to about a third of the fastest period.
+
+Equilibrate with Berendsen if you like, then switch. For production, stochastic velocity rescaling and Nose-Hoover chains change the dynamics little, which matters for diffusion and other transport coefficients computed by Green-Kubo integrals. Langevin dynamics, best with the BAOAB splitting, is the most robust sampler, and it is the right model when a solvent is left out; at high friction it becomes Brownian dynamics. Andersen collisions suit small systems but ruin the dynamics. Run at constant pressure with Parrinello-Rahman and a thermostat when the box shape can change.
+
+For free energies between two states, use the Bennett acceptance ratio when samples of both states exist, and thermodynamic integration or a chain of perturbation windows when the states are far apart. Free energy perturbation in one direction is reliable only when the distributions overlap well. For a profile along one or two collective variables, use umbrella sampling with WHAM, or well-tempered metadynamics when the windows cannot be placed in advance. Nonequilibrium work and the Jarzynski equality suit pulling experiments, but the exponential average converges slowly when the dissipated work is large. When bonds break, the forces must come from Born-Oppenheimer or Car-Parrinello dynamics, or from a neural network potential trained on such calculations.

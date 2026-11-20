@@ -7,15 +7,10 @@ listed in the project notes (spec handbook 11) to be reported upstream; remove i
 from __future__ import annotations
 
 # The eleven patches of earlier editions were fixed upstream (tamnd/algorithm #467) and are in the site from
-# release v0.26.0, so they were removed. Add a patch here only for damage the site still has.
-PATCHES: dict[str, list[tuple[str, str]]] = {
-    # a bare <compat> is read as an HTML tag: it vanishes from the PDF and leaves the EPUB malformed
-    "strings/text-processing-and-typesetting/unicode-normalization-algorithm/proofs/correctness.md":
-        [("(those with a tag such as <compat>)", "(those with a tag such as `<compat>`)")],
-    # a closing $ after a space does not close: the formula and the rest of the line print as text
-    "data-structures/string-structures/sparse-suffix-tree/node.md":
-        [("the cut symbols $T[7 \\ldots 8] = $ ab", "the cut symbols $T[7 \\ldots 8]$ = ab")],
-}
+# release v0.26.0, and the two of edition 0.42.0 (a bare <compat> in Chapter 8.8 and a formula in Chapter 3.8
+# that did not close) by #852 and #853, in the site from release v0.45.0; so they were removed. Add a patch here
+# only for damage the site still has.
+PATCHES: dict[str, list[tuple[str, str]]] = {}
 
 
 def apply(rel: str, text: str) -> str:

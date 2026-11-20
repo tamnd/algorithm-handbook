@@ -1,0 +1,92 @@
+# The order of chapter 43.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Scales and coupling atoms with continua
+    intro: >
+      A fine model resolves everything and costs about $(L/\varepsilon)^d$ unknowns; a coarse model is cheap
+      but needs data it cannot compute. The first entry sets out how the two are coupled. The Cauchy-Born rule
+      turns an interatomic potential into a continuum energy, and the quasicontinuum and QM/MM methods keep
+      the fine model only where a defect or a reaction needs it.
+    entries:
+      - multiscale-modeling
+      - cauchy-born-rule
+      - quasicontinuum-method
+      - qm-mm-method
+  - title: Homogenization
+    intro: >
+      A coefficient that oscillates on a scale $\varepsilon$ has an effective coefficient computed from a cell
+      problem on one period. Two-scale convergence is the tool that proves the limit. For random materials
+      the representative volume element plays the part of the cell, and the FE² method solves a cell problem
+      at every integration point of a macroscopic model.
+    entries:
+      - periodic-homogenization
+      - two-scale-convergence
+      - representative-volume-element
+      - fe2-method
+  - title: Multiscale finite elements
+    intro: >
+      These methods put the fine scale into the basis functions of a coarse mesh. The multiscale finite
+      element method solves the fine equation on each element; localized orthogonal decomposition corrects
+      the basis on small patches and removes the resonance error. The variational multiscale method splits
+      the solution into resolved and unresolved parts and explains stabilized methods such as SUPG.
+    entries:
+      - multiscale-finite-element-method
+      - localized-orthogonal-decomposition
+      - variational-multiscale-method
+  - title: Macroscale solvers with microscale data
+    intro: >
+      When no effective equation is known, a macroscale solver can ask a microscale model for the data it
+      lacks. The heterogeneous multiscale method estimates fluxes from small micro problems near each point;
+      coarse projective integration estimates a time derivative from short bursts of a fine simulator and
+      takes a large step.
+    entries:
+      - heterogeneous-multiscale-method
+      - coarse-projective-integration
+  - title: Coarse-graining
+    intro: >
+      Coarse-graining replaces groups of atoms by beads. The Mori-Zwanzig formalism shows what an exact
+      reduced model contains: a Markov term, a memory term and noise. Force matching and iterative Boltzmann
+      inversion fit the bead interactions to atomistic data, and dissipative particle dynamics adds friction
+      and noise in pairs so that momentum is conserved.
+    entries:
+      - mori-zwanzig-formalism
+      - force-matching-coarse-graining
+      - iterative-boltzmann-inversion
+      - dissipative-particle-dynamics
+  - title: Mesoscale continuum models
+    intro: >
+      Two continuum models handle interfaces and cracks without tracking them. A phase-field model smooths a
+      sharp interface over a width of order $\varepsilon$; peridynamics replaces derivatives by integrals over
+      a horizon $\delta$, so a crack is a set of broken bonds.
+    entries:
+      - phase-field-model
+      - peridynamics
+  - title: Saddles and rates
+    intro: >
+      A rare event is a jump between basins of an energy surface over a saddle. The nudged elastic band and
+      the string method find the minimum energy path between two minima; the dimer method finds a saddle from
+      one minimum. Harmonic transition state theory turns the barrier and the vibration frequencies into a
+      rate, and kinetic Monte Carlo runs a system from a catalogue of such rates.
+    entries:
+      - nudged-elastic-band
+      - string-method
+      - dimer-method
+      - harmonic-transition-state-theory
+      - kinetic-monte-carlo
+  - title: Sampling rare transitions
+    intro: >
+      When the barrier is not a single saddle, rates come from the dynamics itself. Transition path sampling
+      runs a Monte Carlo walk over whole reactive trajectories; forward flux sampling splits the passage into
+      steps between interfaces and multiplies the probabilities.
+    entries:
+      - transition-path-sampling
+      - forward-flux-sampling
+  - title: Accelerated molecular dynamics
+    intro: >
+      Three methods make molecular dynamics reach rare events sooner. Hyperdynamics raises the basins with a
+      bias and corrects the clock, parallel replica dynamics runs many copies at once, and
+      temperature-accelerated dynamics finds events at a high temperature and extrapolates their times with
+      [harmonic transition state theory](/harmonic-transition-state-theory/).
+    entries:
+      - hyperdynamics
+      - parallel-replica-dynamics
+      - temperature-accelerated-dynamics
