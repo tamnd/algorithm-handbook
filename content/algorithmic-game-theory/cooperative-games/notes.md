@@ -1,0 +1,17 @@
+## History
+
+Cooperative games start with von Neumann and Morgenstern, whose *Theory of Games and Economic Behavior* (1944) defined games in characteristic function form and a notion of stable set. Gillies named the core in his work on solutions of such games in 1959. Shapley defined his value in 1953 by three axioms and showed that they fix it. A year later Shapley and Shubik used it to measure voting power in committees. Penrose had proposed a power measure based on swings in 1946, and Banzhaf found it again in 1965 and used it in court cases on weighted voting.
+
+The question of when the core is nonempty was answered twice: by Bondareva in 1963 and by Shapley in 1967, with the condition of balancedness that now carries both names. Schmeidler defined the nucleolus in 1969 and proved that it is a single point. Kopelowitz had already described it in 1967 as the end of a sequence of linear programs, and Kohlberg gave a criterion for checking a candidate in 1971. In 1971 Shapley also studied convex games, whose core contains the Shapley value and has the marginal vectors as its corners.
+
+Games that come from optimization problems followed. Shapley and Shubik studied the assignment game in 1971, Littlechild and Owen the airport game in 1973, and Bird the minimum cost spanning tree game in 1976. O'Neill posed a problem of conflicting claims in 1982, and Aumann and Maschler showed in 1985 that the division in the Talmud is the nucleolus of the bankruptcy game. Nash gave his bargaining solution in 1950. Rubinstein's alternating-offers model of 1982 gave it a noncooperative basis.
+
+The computational questions came later. Prasad and Kelly showed in 1990 that counting the swings of a player in a weighted voting game, and so computing its Banzhaf index, is #P-complete. Deng and Papadimitriou in 1994 asked how hard the usual solution concepts are to compute, and proved the same for the Shapley value of weighted voting games. Ieong and Shoham gave marginal contribution nets in 2005, a representation in which the Shapley value is easy. For cost sharing, Moulin in 1999 and Moulin and Shenker in 2001 connected cross-monotonic methods with group strategy-proof mechanisms, and Jain and Vazirani built such a method for Steiner trees in 2001. Drèze and Greenberg introduced hedonic games in 1980, and Bogomolnaia and Jackson studied their stability in 2002. Sandholm and coauthors studied anytime bounds for coalition structure generation in 1999.
+
+## Further reading
+
+- G. Chalkiadakis, E. Elkind and M. Wooldridge, *Computational Aspects of Cooperative Game Theory* (2011). A short book on representations, the complexity of solution concepts, and coalition formation.
+- B. Peleg and P. Sudhölter, *Introduction to the Theory of Cooperative Games*, 2nd edition (2007). The standard reference for the core, the nucleolus and the Shapley value, with full proofs.
+- M. Maschler, E. Solan and S. Zamir, *Game Theory* (2013). A textbook whose later chapters cover bargaining, the core, the Shapley value, the nucleolus and bankruptcy problems with many examples.
+- N. Nisan, T. Roughgarden, É. Tardos and V. V. Vazirani (eds.), *Algorithmic Game Theory* (2007). Its chapter on cost sharing covers cross-monotonic methods, the Moulin mechanism and the Jain-Vazirani method.
+- W. Thomson, "Axiomatic and game-theoretic analysis of bankruptcy and taxation problems: a survey", *Mathematical Social Sciences* 45 (2003). A survey of the rules for claims problems and the axioms that pick them out.

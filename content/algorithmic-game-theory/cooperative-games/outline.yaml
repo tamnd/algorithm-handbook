@@ -1,0 +1,89 @@
+# The order of chapter 42.9 (spec handbook 02.4). Groups are read in order; entries in a group too.
+groups:
+  - title: Games and stable divisions
+    intro: >
+      A TU game gives each coalition a worth, and the question is how to divide the worth of the grand
+      coalition. The core asks for a division that no coalition can beat on its own. These entries say when
+      the core is empty, by linear programming duality, and what to do then: shrink every complaint as far
+      as possible, first the largest one, which leads to the least core and the nucleolus.
+    entries:
+      - transferable-utility-game
+      - core-of-a-cooperative-game
+      - bondareva-shapley-theorem
+      - least-core
+      - nucleolus
+      - nucleolus-sequential-lp
+
+  - title: The Shapley value
+    intro: >
+      The Shapley value pays each player its average marginal contribution over all orders of arrival, and
+      it is the only value with four simple axioms. Computing it from a table takes exponential time, so the
+      later entries give three ways around this: an integral over a multilinear extension, random sampling
+      with an additive error bound, and a compact representation with a value that is linear in its size.
+    entries:
+      - shapley-value
+      - shapley-uniqueness-theorem
+      - owen-multilinear-extension
+      - shapley-value-sampling
+      - marginal-contribution-nets
+
+  - title: Convex games and games from optimization
+    intro: >
+      In a convex game a player adds more to a larger coalition. Shapley's theorem then describes the core
+      exactly, and the Shapley value lies in it. The other entries are games that come from optimization
+      problems: sharing a runway, an assignment of buyers to sellers, and a spanning tree to a source. Their
+      structure gives a core point in polynomial time.
+    entries:
+      - convex-game
+      - shapley-convex-games-theorem
+      - airport-game
+      - assignment-game
+      - minimum-cost-spanning-tree-game
+      - bird-rule
+
+  - title: Voting power
+    intro: >
+      A weighted voting game wins when the weights of the yes voters reach a quota. Votes are not power:
+      the Shapley-Shubik and Banzhaf indices count how often a voter turns a losing coalition into a winning
+      one. A dynamic program computes them in time polynomial in the quota, and with weights in binary the
+      exact problem is #P-complete.
+    entries:
+      - weighted-voting-game
+      - shapley-shubik-index
+      - banzhaf-index
+      - power-index-dynamic-programming
+      - power-index-hardness
+
+  - title: Claims and bargaining
+    intro: >
+      When an estate is smaller than the claims on it, rules such as proportional division, equal awards,
+      equal losses and the Talmud rule say who gets what. Two of them are solutions of a TU game: the
+      Talmud rule is the nucleolus, and the random arrival rule is the Shapley value. Bargaining between two
+      players is answered by Nash's axioms and, as a limit, by Rubinstein's game of alternating offers.
+    entries:
+      - bankruptcy-problem
+      - talmud-rule
+      - nash-bargaining-solution
+      - rubinstein-bargaining-model
+
+  - title: Cost-sharing mechanisms
+    intro: >
+      Here the players have private values for a shared service, and the mechanism decides whom to serve
+      and what to charge. A cross-monotonic cost-sharing method, under which no share rises when the set
+      grows, gives a Moulin mechanism that is group strategyproof and budget balanced. For Steiner trees the
+      Jain-Vazirani method gives the same with a factor of 2.
+    entries:
+      - cost-sharing-mechanism
+      - cross-monotonicity
+      - moulin-mechanism
+      - jain-vazirani-steiner-cost-sharing
+
+  - title: Forming coalitions
+    intro: >
+      The last entries ask which coalitions form at all. Coalition structure generation finds the partition
+      of the players with the largest total worth, by a dynamic program in $O(3^n)$ time. In a hedonic game
+      each player cares only about the members of its own coalition, and the question is which partitions
+      are stable.
+    entries:
+      - coalition-structure-generation
+      - hedonic-game

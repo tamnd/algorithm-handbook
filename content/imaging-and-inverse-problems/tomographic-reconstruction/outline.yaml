@@ -1,0 +1,114 @@
+# The order of chapter 46.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Projections and the data
+    intro: >
+      A projection is a set of line integrals of the unknown image. The [Radon transform](/radon-transform/)
+      collects all of them, the [sinogram](/sinogram/) is the picture of that data, and the
+      [Shepp-Logan phantom](/shepp-logan-phantom/) is the test image whose projections are known in closed form.
+      The [X-ray transform](/x-ray-transform/) is the same idea in three dimensions, the
+      [Beer-Lambert law](/beer-lambert-law/) explains why logarithms of measured intensities are line integrals,
+      and the [back-projection operator](/back-projection-operator/) is the adjoint that every method uses. The
+      group ends with the [reconstruction problem](/tomographic-reconstruction-problem/) stated in full.
+    entries:
+      - radon-transform
+      - sinogram
+      - shepp-logan-phantom
+      - x-ray-transform
+      - beer-lambert-law
+      - back-projection-operator
+      - tomographic-reconstruction-problem
+
+  - title: Fourier methods and filtered back-projection
+    intro: >
+      The [Fourier slice theorem](/fourier-slice-theorem/) turns each projection into a line of the 2D Fourier
+      transform of the image. Weighting by the [ramp filter](/ramp-filter/) and back-projecting gives
+      [filtered back-projection](/filtered-back-projection/), the method of clinical scanners. Interpolating
+      the polar Fourier data onto a grid gives [direct Fourier reconstruction](/direct-fourier-reconstruction/).
+      The [Radon inversion formula](/radon-inversion-formula/) is the exact statement behind both, and it shows
+      why the problem is only mildly ill-posed.
+    entries:
+      - fourier-slice-theorem
+      - ramp-filter
+      - filtered-back-projection
+      - direct-fourier-reconstruction
+      - radon-inversion-formula
+
+  - title: Fan beams and cone beams
+    intro: >
+      Real scanners send rays from a point source. In 2D, the
+      [fan-beam form of filtered back-projection](/fan-beam-filtered-back-projection/) adds weights, and
+      [rebinning](/fan-to-parallel-rebinning/) sorts fan rays into parallel ones. In 3D, the
+      [Feldkamp-Davis-Kress](/feldkamp-davis-kress/) method is a practical approximation for a circular orbit.
+      [Grangeat's formula](/grangeat-formula/) links cone-beam data to the 3D Radon transform, the
+      [Tuy condition](/tuy-condition/) says which orbits allow exact reconstruction, and the
+      [Katsevich algorithm](/katsevich-algorithm/) is an exact filtered back-projection for the helix.
+    entries:
+      - fan-beam-filtered-back-projection
+      - fan-to-parallel-rebinning
+      - feldkamp-davis-kress
+      - grangeat-formula
+      - tuy-condition
+      - katsevich-algorithm
+
+  - title: Discrete models and algebraic methods
+    intro: >
+      Iterative methods need the system matrix, whose entries are the lengths or weights of rays in pixels.
+      [Siddon's algorithm](/siddon-algorithm/) computes exact lengths, the [Joseph projector](/joseph-projector/)
+      interpolates along the ray, and the [distance-driven projector](/distance-driven-projector/) overlaps
+      pixel and detector boundaries. [SIRT](/sirt/) and [SART](/sart/) then solve the linear system by
+      Landweber-type steps, with the number of iterations as the regularization.
+    entries:
+      - siddon-algorithm
+      - joseph-projector
+      - distance-driven-projector
+      - sirt
+      - sart
+
+  - title: Emission tomography
+    intro: >
+      In PET and SPECT the data are Poisson counts. The [emission tomography model](/emission-tomography-model/)
+      states the likelihood, [MLEM](/mlem-reconstruction/) maximizes it with a multiplicative update that never
+      lowers it, and [OSEM](/osem/) runs the same update on subsets for speed. The
+      [one-step-late algorithm](/one-step-late-algorithm/) and
+      [separable paraboloidal surrogates](/separable-paraboloidal-surrogates/) add a penalty. Attenuation inside
+      the body gives the [attenuated Radon transform](/attenuated-radon-transform/), which the
+      [Novikov inversion formula](/novikov-inversion-formula/) inverts exactly.
+    entries:
+      - emission-tomography-model
+      - mlem-reconstruction
+      - osem
+      - one-step-late-algorithm
+      - separable-paraboloidal-surrogates
+      - attenuated-radon-transform
+      - novikov-inversion-formula
+
+  - title: Incomplete data and artifacts
+    intro: >
+      A missing range of angles ([limited angle](/limited-angle-tomography/)), rays that cover only a region
+      inside the body ([interior tomography](/interior-tomography/)) and few views
+      ([sparse view](/sparse-view-ct-reconstruction/)) each damage the data in a different way.
+      [Lambda tomography](/lambda-tomography/) recovers edges from local data, and [ASD-POCS](/asd-pocs/) uses
+      total variation to fill in views. [Beam hardening](/beam-hardening/) and
+      [metal artifact reduction](/metal-artifact-reduction/) deal with data that break the linear model.
+    entries:
+      - limited-angle-tomography
+      - interior-tomography
+      - lambda-tomography
+      - sparse-view-ct-reconstruction
+      - asd-pocs
+      - beam-hardening
+      - metal-artifact-reduction
+
+  - title: Related problems
+    intro: >
+      Five problems share the tools of the chapter. [Discrete tomography](/discrete-tomography/) asks for a
+      0-1 image from a few projections. [Single particle reconstruction](/single-particle-reconstruction/) in
+      cryo-electron microscopy has projections at unknown angles, and the
+      [common lines method](/common-lines-method/) finds them. The [Calderón problem](/calderon-problem/) of
+      impedance tomography and its [D-bar method](/d-bar-method/) replace line integrals by boundary voltages.
+    entries:
+      - discrete-tomography
+      - single-particle-reconstruction
+      - common-lines-method
+      - calderon-problem
+      - d-bar-method

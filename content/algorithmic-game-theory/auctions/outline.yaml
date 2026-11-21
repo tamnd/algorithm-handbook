@@ -1,0 +1,108 @@
+# The order of chapter 42.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Selling one item
+    intro: >
+      The five classic formats for one item. In the [Vickrey auction](/vickrey-auction/) and the
+      [English auction](/english-auction/) bidding one's value is a dominant strategy, so no bidder needs to
+      know anything about the others. In the first-price, Dutch and all-pay formats the best bid depends on
+      what the others are likely to bid, and the [independent private values](/independent-private-values/)
+      model says what a bidder knows about them.
+    entries:
+      - vickrey-auction
+      - english-auction
+      - independent-private-values
+      - first-price-auction
+      - dutch-auction
+
+  - title: Equilibrium bidding and revenue equivalence
+    intro: >
+      With symmetric independent private values the first-price auction has a closed-form equilibrium, and
+      its expected revenue is that of the Vickrey auction. The
+      [revenue equivalence theorem](/revenue-equivalence-theorem/) explains why: under its conditions the
+      allocation and the payment of the lowest type fix every expected payment. The all-pay auction is a
+      third case of the same theorem, and the last entry bounds how much welfare a first-price auction can
+      lose when the bidders are not symmetric.
+    entries:
+      - first-price-auction-equilibrium
+      - revenue-equivalence-theorem
+      - all-pay-auction
+      - first-price-auction-price-of-anarchy
+
+  - title: Auctions that maximize revenue
+    intro: >
+      A seller who knows the value distributions can earn more than the Vickrey auction does. The
+      [virtual valuation](/virtual-valuation/) turns expected revenue into expected virtual welfare, and
+      [Myerson's optimal auction](/myerson-optimal-auction/) maximizes it point by point. For i.i.d. regular
+      values the result is a Vickrey auction with a reserve price; for irregular values it needs
+      [ironing](/ironing/). The Bulow-Klemperer theorem says that one more bidder is worth more than the
+      best reserve.
+    entries:
+      - virtual-valuation
+      - regular-distribution
+      - reserve-price
+      - myerson-optimal-auction
+      - ironing
+      - bulow-klemperer-theorem
+
+  - title: Simple, approximate and learned mechanisms
+    intro: >
+      The optimal auction needs the exact distributions and, with many items, can be complicated and
+      randomized. These entries trade a constant factor of revenue for simplicity: posted prices offered one
+      buyer at a time, the better of separate and bundled sales, and auctions chosen from samples rather
+      than from known distributions.
+    entries:
+      - sequential-posted-pricing
+      - simple-versus-optimal-multi-item
+      - sample-complexity-of-revenue-maximization
+
+  - title: Interdependent values
+    intro: >
+      When the item is worth the same unknown amount to everyone, each bidder's signal says something about
+      the others' values. Winning then carries bad news, the winner's curse, and the revenue ranking of the
+      standard auctions changes: with affiliated signals the
+      [linkage principle](/linkage-principle/) puts the English auction first and the first-price auction
+      last.
+    entries:
+      - common-value-auction
+      - linkage-principle
+
+  - title: Many units and two-sided markets
+    intro: >
+      Selling several identical units, and matching buyers with sellers. The uniform price auction is
+      truthful only for bidders who want one unit. In a double auction the
+      [Myerson-Satterthwaite theorem](/myerson-satterthwaite-theorem/) rules out a mechanism that is
+      efficient, incentive compatible, individually rational and budget balanced at once, and McAfee's
+      mechanism gives up at most one trade to be truthful in dominant strategies, individually rational and
+      free of deficits.
+    entries:
+      - uniform-price-auction
+      - double-auction
+      - mcafee-trade-reduction
+
+  - title: Combinatorial auctions
+    intro: >
+      Many different items, and bidders who value bundles. Choosing the winners is weighted set packing,
+      which is NP-hard and hard to approximate, and even writing down a valuation can take exponential
+      space. Bidding languages and demand queries make the input manageable; the
+      Lehmann-O'Callaghan-Shoham mechanism is truthful and approximate for single-minded bidders; the
+      simultaneous ascending auction is the format used in practice for spectrum.
+    entries:
+      - combinatorial-auction
+      - winner-determination-problem
+      - bidding-languages
+      - demand-query
+      - single-minded-bidder-mechanism
+      - simultaneous-ascending-auction
+
+  - title: Advertising auctions
+    intro: >
+      Search engines sell ranked ad slots in an auction for every query. The
+      [position auction](/position-auction/) is the model, the generalized second-price auction is the rule
+      used for years in practice, and an envy-free equilibrium of it reproduces the VCG outcome although
+      truthful bidding is not always an equilibrium. Pacing equilibria describe how budget-limited bidders take
+      part in many auctions at once.
+    entries:
+      - position-auction
+      - generalized-second-price-auction
+      - gsp-envy-free-equilibrium
+      - pacing-equilibrium

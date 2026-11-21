@@ -1,0 +1,100 @@
+# The order of chapter 42.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Two-sided matching
+    intro: >
+      The stable matchings of Volume 7 have a structure that the algorithm alone does not show. They form a
+      lattice, every stable matching matches the same residents and fills the same number of positions at
+      each hospital, and deferred acceptance is safe to use for
+      the proposing side but not for the other side. The last two entries ask for the best stable matching
+      by total rank, and for stable matchings when couples apply together.
+    entries:
+      - lattice-of-stable-matchings
+      - rural-hospitals-theorem
+      - deferred-acceptance-strategyproofness
+      - roth-impossibility-theorem
+      - egalitarian-stable-matching
+      - matching-with-couples
+
+  - title: School choice
+    intro: >
+      Students rank schools and schools rank students by priority. The [school choice
+      problem](/school-choice-problem/) states the goals: no justified envy, efficiency for students, and
+      truth as a safe strategy. The [Boston mechanism](/boston-mechanism/) shows what goes wrong when a
+      school accepts students for good in the first round.
+    entries:
+      - school-choice-problem
+      - boston-mechanism
+
+  - title: Allocation without money
+    intro: >
+      Objects go to agents who rank them, one object each, and nobody pays. Serial dictatorship is the
+      simplest rule that is efficient and safe from lies. A random order makes it fair, and the eating rule
+      of probabilistic serial makes the lottery more efficient at the cost of truthfulness. Popular matchings
+      ask for a matching that no other matching beats in a vote of the agents.
+    entries:
+      - house-allocation-problem
+      - serial-dictatorship
+      - random-serial-dictatorship
+      - probabilistic-serial
+      - popular-matching
+
+  - title: Prices and equilibrium
+    intro: >
+      A [competitive equilibrium](/competitive-equilibrium/) is a price vector at which every agent buys a
+      best bundle and the market clears. These entries define it, prove that it is Pareto optimal and that it
+      exists under convexity, and set up the two market models of the chapter: the exchange market of Arrow
+      and Debreu and the Fisher market of buyers with budgets.
+    entries:
+      - competitive-equilibrium
+      - first-welfare-theorem
+      - arrow-debreu-market
+      - arrow-debreu-existence-theorem
+      - fisher-market
+
+  - title: Housing markets and kidney exchange
+    intro: >
+      In a housing market each agent owns one house and trades without money. Top trading cycles finds the
+      unique allocation in the strict core, and it is also the only competitive allocation. Kidney exchange
+      is a housing market of patient-donor pairs, where long cycles cannot be carried out, so the cycle length
+      is bounded; with a bound of three or more the problem is NP-hard.
+    entries:
+      - shapley-scarf-housing-market
+      - top-trading-cycles
+      - roth-postlewaite-theorem
+      - kidney-exchange-problem
+      - kidney-exchange-cycle-formulation
+      - top-trading-cycles-and-chains
+
+  - title: Computing market equilibria
+    intro: >
+      A linear Fisher market is solved by a convex program, the [Eisenberg-Gale
+      program](/eisenberg-gale-program/), and by combinatorial algorithms that raise prices along maximum
+      flows. Two simple dynamics, proportional response and tatonnement, approach the same prices. For
+      separable piecewise-linear concave utilities in exchange markets, finding an equilibrium is PPAD-hard.
+    entries:
+      - eisenberg-gale-program
+      - dpsv-algorithm
+      - orlin-fisher-market-algorithm
+      - proportional-response-dynamics
+      - tatonnement
+      - ppad-hardness-of-arrow-debreu
+
+  - title: Indivisible goods with prices
+    intro: >
+      When items are indivisible and bidders pay money, an equilibrium exists when every valuation has
+      [gross substitutes](/gross-substitutes/). Ascending auctions find it: exactly for unit-demand bidders,
+      where the final prices are the VCG payments, and up to the bid step for bundles.
+    entries:
+      - gross-substitutes
+      - demange-gale-sotomayor-auction
+      - kelso-crawford-process
+
+  - title: Markets for fair division
+    intro: >
+      Give every agent the same budget of fake money and let a market set the prices. The result is
+      envy-free and efficient. With probability shares of objects this is the Hylland-Zeckhauser mechanism,
+      and with indivisible course seats it needs slightly unequal budgets and approximate clearing.
+    entries:
+      - competitive-equilibrium-from-equal-incomes
+      - hylland-zeckhauser-mechanism
+      - approximate-ceei

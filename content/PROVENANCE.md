@@ -168,6 +168,13 @@ and 43.6; 43.7 and 43.8) and one for Chapter 43.9, the introduction of the volum
 simulation of physical systems in Volume 0. Only the volumes whose text changed were built again; the others are
 those of edition 0.43.0. Volume 44 has no entries yet and is not built.
 
+For edition 0.48.0, the site had, by its release v0.48.0, written all chapters of Volumes 42 *Algorithmic game
+theory*, 44 *Communications* and 46 *Imaging and inverse problems*, so the three volumes are complete, and Volume
+44 is built for the first time. Fifteen agents shared the work, five for each volume: four for the chapters, two
+chapters each (42.1 to 42.8, 44.1 to 44.8 and 46.1 to 46.8), and one for the introduction of the volume and a
+learning path in Volume 0, which for Volumes 42 and 44 also wrote Chapters 42.9 and 44.9. Only the volumes whose
+text changed were built again; the others are those of editions 0.43.0 and 0.45.0.
+
 ## What was not done
 
 - No person has yet read every page. Spot checks found the pages accurate, but errors remain likely, most of all
@@ -191,7 +198,9 @@ in its release v0.40.0, those found in Volumes 38, 39, 40, 42 and 43 for edition
 v0.42.0, and those found in Volume 40 and in Chapters 8.8 and 41.1 for edition 0.42.0 in its release v0.43.0;
 those found in Volumes 3, 8 and 28 for edition 0.42.0 and in Volume 41 for edition 0.43.0 were fixed in its
 release v0.45.0, so this edition has them too, and the builder no longer repairs any entry one by one
-(`hb/patches.py` is empty). Those found in Volume 43 for this edition were fixed after that release, so the
-entries of this edition do not yet have them. The sentence markers `<s>` and `</s>`, written as bare text in
+(`hb/patches.py` is empty). Those found in Volume 43 for edition 0.45.0 were fixed in its release v0.48.0, so
+this edition has them too. Those found in Volumes 42, 44 and 46 for this edition were fixed after that release
+([tamnd/algorithm#883](https://github.com/tamnd/algorithm/pull/883)), so the entries of this edition do not yet
+have them. The sentence markers `<s>` and `</s>`, written as bare text in
 entries of Volume 41 up to the site's release v0.43.0, were read as HTML tags; the builder sets any such bare tag
 in the text of an entry as code (`hb/prep.py`), as the site now writes them.

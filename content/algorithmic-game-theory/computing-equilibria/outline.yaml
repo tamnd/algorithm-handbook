@@ -1,9 +1,81 @@
+# The order of chapter 42.2. Groups are read in order; entries in a group too.
 groups:
-  - title: Finding an equilibrium
+  - title: The problem and first methods
     intro: >
-      Nash's theorem says that an equilibrium exists; this group asks how fast one can be found. Zero-sum
-      games take one linear program and correlated equilibria another, but finding a Nash equilibrium of a
-      general two-player game is PPAD-complete, and with three or more players exact equilibria can be
-      irrational.
+      Every finite game has a Nash equilibrium, so the task is a search with a guaranteed answer, and an answer
+      is easy to check. The indifference principle turns a guess of the supports into linear equations, and
+      support enumeration tries every guess. Best-response dynamics is the simplest search for a pure
+      equilibrium; it stops in potential games but may cycle in others.
     entries:
       - nash-equilibrium-computation
+      - indifference-principle
+      - support-enumeration
+      - best-response-dynamics
+  - title: Equilibria that linear programs find
+    intro: >
+      Some equilibrium problems are linear programs and so take polynomial time. A two-player zero-sum game is
+      one LP and its dual, correlated equilibria are the points of a polytope given by linear inequalities, and
+      the leader's best commitment is the best of one LP per follower action. The sequence form does the same
+      for zero-sum games in extensive form with an LP of size linear in the tree, and the ellipsoid against hope
+      finds correlated equilibria of games far too large to write out.
+    entries:
+      - zero-sum-game-linear-programming
+      - correlated-equilibrium-linear-program
+      - stackelberg-commitment-algorithm
+      - security-game
+      - sequence-form
+      - sequence-form-linear-program
+      - ellipsoid-against-hope
+  - title: Complementarity and path following
+    intro: >
+      The equilibria of a bimatrix game are the solutions of a linear complementarity problem. The
+      best-response polytopes give it a geometric form, and the Lemke-Howson algorithm follows a path of
+      pivots from an artificial start to an equilibrium. Lemke's algorithm does the same for general LCPs.
+      Savani and von Stengel built games on which every Lemke-Howson path is exponentially long.
+    entries:
+      - linear-complementarity-problem
+      - best-response-polytope
+      - lemke-howson-algorithm
+      - lemke-algorithm
+      - savani-von-stengel-theorem
+  - title: Fixed points, PPAD and NP-hardness
+    intro: >
+      Sperner's lemma is the combinatorial core of Brouwer's theorem, and its proof follows a path that ends
+      at a fully coloured cell; Scarf's algorithm turns that path into a method for approximate fixed points.
+      END OF THE LINE abstracts all these path arguments and defines the class PPAD. Finding a Nash
+      equilibrium is PPAD-complete, which is evidence, not proof, that no polynomial method exists, while
+      asking for an equilibrium with a given property is NP-hard.
+    entries:
+      - sperner-lemma
+      - end-of-the-line-problem
+      - scarf-algorithm
+      - ppad-completeness-of-nash
+      - hardness-of-optimal-nash-equilibria
+  - title: Approximate equilibria
+    intro: >
+      If an exact equilibrium is hard, an $\varepsilon$-Nash equilibrium may be easier. A $1/2$-approximate
+      equilibrium needs only one row and two best responses, and a sampling argument gives every constant
+      $\varepsilon$ in quasi-polynomial time. Rubinstein's lower bound shows that, under an exponential time
+      hypothesis for PPAD, some constant $\varepsilon$ needs time $n^{\log^{1-o(1)} n}$, so this is close to
+      the best possible.
+    entries:
+      - dmp-half-approximate-nash
+      - lipton-markakis-mehta-algorithm
+      - rubinstein-approximate-nash-lower-bound
+  - title: Learning dynamics
+    intro: >
+      When each player runs a no-regret algorithm, the time average of play is an approximate coarse
+      correlated equilibrium, and in zero-sum games the average strategies approach optimal ones. No-swap-regret
+      algorithms, such as regret matching and the Blum-Mansour reduction, give correlated equilibria instead.
+      Blackwell's approachability theorem is the geometric tool behind several of these results. Fictitious play
+      converges in zero-sum games but not in general, and optimistic Hedge, when every player uses it, keeps
+      each player's regret polylogarithmic in the number of rounds.
+    entries:
+      - no-regret-dynamics
+      - no-regret-coarse-correlated-theorem
+      - no-regret-zero-sum-theorem
+      - regret-matching
+      - blum-mansour-reduction
+      - blackwell-approachability
+      - robinson-fictitious-play-theorem
+      - optimistic-hedge

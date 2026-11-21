@@ -1,0 +1,62 @@
+# The order of chapter 44.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Loops and the carrier phase
+    intro: >
+      The phase-locked loop is the tool of the whole chapter: a detector, a loop filter and an oscillator that
+      follow a phase. Carrier recovery uses it, or a block estimate, to find the phase of a modulated carrier.
+      The Costas and squaring loops remove the data with a nonlinearity, the decision-directed loop uses the
+      receiver's decisions, and the Viterbi and Viterbi estimator works on a block. Cycle slips are what
+      happens when noise pushes a loop to another lock point.
+    entries:
+      - phase-locked-loop
+      - carrier-recovery
+      - costas-loop
+      - squaring-loop
+      - decision-directed-carrier-recovery
+      - viterbi-viterbi-phase-estimation
+      - cycle-slip
+
+  - title: Carrier frequency
+    intro: >
+      A frequency offset turns the constellation steadily, so it must be estimated before the phase can be
+      tracked. The Rife and Boorstyn estimator is the maximum likelihood estimate and has the lowest threshold of the common estimators.
+      The Kay and Luise and Reggiannini estimators cost less, at the price of a higher threshold or a smaller
+      range.
+    entries:
+      - frequency-offset-estimation
+      - rife-boorstyn-frequency-estimator
+      - kay-frequency-estimator
+      - luise-reggiannini-estimator
+
+  - title: Symbol timing
+    intro: >
+      The receiver must sample each pulse at its peak. Timing error detectors (the early-late gate, the
+      Gardner detector and the Mueller and Müller detector) drive a loop, and the Oerder and Meyr estimator
+      finds the delay of a block at once. The Farrow interpolator computes the samples at the chosen instants
+      from a fixed sampling clock.
+    entries:
+      - symbol-timing-recovery
+      - early-late-gate-synchronizer
+      - gardner-timing-error-detector
+      - mueller-muller-timing-recovery
+      - oerder-meyr-timing-estimation
+      - farrow-interpolator
+
+  - title: Frames
+    intro: >
+      A receiver that has the symbols still has to find where a frame starts. A known sync word or preamble is
+      found by correlation against a threshold set for the false-alarm rate. Massey's rule corrects plain
+      correlation for the random data around the word and makes fewer errors at low SNR.
+    entries:
+      - frame-synchronization
+      - preamble-correlation-detection
+      - massey-frame-synchronization
+
+  - title: Known symbols and the limits
+    intro: >
+      Pilots and preambles make estimation easier, especially at low SNR. The modified Cramér-Rao bound is the
+      reference against which the measured variances of every method in the chapter are quoted; it is a bound
+      for unbiased estimators, and it is looser than the true bound when the data are unknown.
+    entries:
+      - data-aided-synchronization
+      - modified-cramer-rao-bound

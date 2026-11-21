@@ -1,0 +1,101 @@
+# The order of chapter 46.8. Groups are read in order; entries in a group too.
+groups:
+  - title: What the optics passes
+    intro: >
+      An incoherent imaging system multiplies the spectrum of the scene by its
+      [optical transfer function](/optical-transfer-function/), the Fourier transform of the point spread
+      function. In the scalar model this function is zero above $2\,\mathrm{NA}/\lambda$, which is the Abbe
+      limit, a theorem; the Rayleigh criterion of $0.61\lambda/\mathrm{NA}$ is a convention about when two
+      points look separate.
+    entries:
+      - optical-transfer-function
+      - rayleigh-criterion
+      - abbe-diffraction-limit
+
+  - title: Deconvolution with a known blur
+    intro: >
+      With the point spread function known, deconvolution is a linear inverse problem with a
+      positivity constraint. Van Cittert's iteration adds back the residual and fails where the OTF is
+      negative; Richardson-Lucy with a total variation term and the maximum entropy method add a prior to the
+      Poisson or Gaussian likelihood. In wide-field microscopy the blur depends on depth, which the
+      Gibson-Lanni model describes; nearest neighbour deconvolution is a fast linear approximation that
+      sharpens a focal series plane by plane.
+    entries:
+      - van-cittert-deconvolution
+      - richardson-lucy-total-variation
+      - maximum-entropy-method-imaging
+      - gibson-lanni-model
+      - nearest-neighbor-deconvolution
+
+  - title: Imaging through turbulence
+    intro: >
+      The atmosphere changes the point spread function of a telescope every few milliseconds. Lucky imaging
+      keeps the rare sharp frames. Speckle interferometry averages the power spectrum of short exposures and
+      keeps the modulus of the object spectrum to the diffraction limit; the Knox-Thompson method and speckle
+      masking recover the phase from the cross spectrum and the bispectrum.
+    entries:
+      - lucky-imaging
+      - speckle-interferometry
+      - knox-thompson-method
+      - speckle-masking
+
+  - title: Blind deconvolution and the wavefront
+    intro: >
+      When the blur is not known, image and blur must be estimated together, and the pair is fixed only up
+      to a scale and a shift. Ayers-Dainty alternates between the two, and variational Bayes averages over the image instead of maximizing over it to choose the kernel. Phase diversity and zonal reconstruction estimate the wavefront itself,
+      from which the point spread function follows.
+    entries:
+      - ayers-dainty-blind-deconvolution
+      - variational-bayes-blind-deconvolution
+      - phase-diversity
+      - zonal-wavefront-reconstruction
+
+  - title: Radio interferometry and CLEAN
+    intro: >
+      By the Van Cittert-Zernike theorem, each pair of antennas measures one Fourier coefficient of the sky.
+      Aperture synthesis collects many of them, and their inverse transform is the dirty image, the sky
+      convolved with the dirty beam. The CLEAN family deconvolves it greedily, from Högbom's image-plane
+      loop to the major cycles of Cotton-Schwab, components of several sizes, and the w-term correction of
+      w-projection.
+    entries:
+      - van-cittert-zernike-theorem
+      - aperture-synthesis
+      - dirty-image
+      - hogbom-clean
+      - cotton-schwab-clean
+      - multiscale-clean
+      - w-projection
+
+  - title: Super-resolution from many frames
+    intro: >
+      Several aliased low resolution frames with different subpixel shifts can be combined into one image
+      on a finer grid. The first entry says when the shifts determine the fine image; iterative
+      back-projection is a Landweber iteration for it, and drizzle is the linear flux-keeping combination
+      used for Hubble images, which does not deblur.
+    entries:
+      - multiframe-super-resolution
+      - iterative-back-projection-super-resolution
+      - drizzle
+
+  - title: Fluorescence microscopy beyond the diffraction limit
+    intro: >
+      Structured illumination moves high frequencies into the passband and at most doubles the cutoff in its
+      linear form. Single-molecule localization images sparse emitters one at a time and finds each centre
+      far more precisely than the width of the PSF, at a precision set by the Cramér-Rao bound and the photon
+      count. SOFI uses the statistics of blinking instead.
+    entries:
+      - structured-illumination-microscopy
+      - single-molecule-localization
+      - localization-precision-formula
+      - maximum-likelihood-localization
+      - sofi
+
+  - title: Sparse super-resolution theory
+    intro: >
+      When the scene is a few point sources, low Fourier coefficients can determine it exactly. The
+      Beurling LASSO minimizes the total variation of a measure, and a dual certificate proves that it
+      returns the true spikes; the last entry gives the separation $2/f_c$ under which such a certificate
+      exists.
+    entries:
+      - beurling-lasso
+      - super-resolution-total-variation-theorem

@@ -1,17 +1,91 @@
-Every optical instrument blurs. A microscope, a telescope or a camera records the true scene convolved with its point spread function, adds noise, and samples the result on a grid of pixels. Deconvolution tries to undo the blur, and super-resolution tries to recover detail finer than the pixels or than the diffraction limit of the optics. Both are ill-posed: the blur removes high frequencies, and any method that puts them back must also decide what to do with the noise at those frequencies. Prior knowledge, such as positivity, a few point sources or a known noise distribution, is what makes the problem solvable.
+Every optical instrument blurs. A telescope, a microscope or a radio array records the scene convolved with
+its [point spread function](/point-spread-function/), adds noise and samples the result. In Fourier terms
+the instrument multiplies the spectrum of the scene by a transfer function that falls to zero at a cutoff
+frequency, so the finest detail is not damped but absent. Deconvolution tries to undo the blur inside the
+passband, where the data still carry the information. Super-resolution tries to go further: finer than the
+pixels, which needs several shifted frames, or finer than the diffraction limit, which needs something
+the optics does not provide, such as structured light, emitters that switch on one at a time, or the
+knowledge that the scene is a few points.
 
-Astronomy and microscopy have driven many of the algorithms. Radio astronomers form images from interferometer data that sample the sky's Fourier transform only at scattered points, and remove the resulting artifacts with the CLEAN family. Optical astronomers fight the turbulence of the atmosphere with speckle methods and lucky imaging. Fluorescence microscopists beat the diffraction limit by localizing single molecules, one at a time, to a precision much finer than the width of the point spread function. The theory of super-resolution says when such recovery is possible: exact recovery of point sources by total variation minimization holds when the sources are separated by a stated minimum distance.
+The methods of this chapter come mostly from astronomy and fluorescence microscopy. A radio interferometer
+measures Fourier coefficients of the sky at scattered points, and the CLEAN family removes the sidelobes
+that the missing coefficients leave. Ground-based telescopes look through turbulence that changes the blur
+every few milliseconds, which speckle methods, lucky imaging and wavefront sensing work around.
+Microscopists localize single molecules to a few nanometres with a lens that resolves a few hundred.
 
-## What the chapter will cover
+Most of these algorithms are iterations without a regularization term, and many of their guarantees are
+weak or conditional. [Richardson-Lucy](/richardson-lucy-deconvolution/) is EM for Poisson data and tends to
+the noisy maximum likelihood estimate, so it is stopped early; van Cittert and Landweber iterations show the same
+[semi-convergence](/semi-convergence/). The [Wiener filter](/wiener-filter/) is the best linear estimator
+for stationary Gaussian signal and noise with known spectra. CLEAN is greedy and fits the data, but nothing
+says it reaches the true sky. Blind deconvolution can never fix the scale and position of the image and the
+blur separately. The resolution limits themselves hold under stated models: the Abbe limit for scalar
+incoherent imaging, the exact recovery of spikes for a stated minimum separation.
 
-The entries of this chapter are being written. They will cover:
+## What the chapter covers
 
-1. **Image formation and limits.** The Abbe diffraction limit, the Rayleigh criterion, the optical transfer function and the Gibson-Lanni model of a microscope point spread function.
-2. **Deconvolution.** Van Cittert deconvolution, nearest neighbor deconvolution, Richardson-Lucy with total variation regularization, the maximum entropy method, and blind deconvolution by the Ayers-Dainty method, variational Bayes and phase diversity.
-3. **Radio interferometry.** Aperture synthesis, the van Cittert-Zernike theorem, the dirty image, Högbom, Cotton-Schwab and multiscale CLEAN, and W-projection.
-4. **Imaging through turbulence.** Speckle interferometry, the Knox-Thompson method, speckle masking, lucky imaging and zonal wavefront reconstruction.
-5. **Super-resolution.** Multi-frame and iterative back-projection super-resolution, drizzle, the Beurling LASSO and exact super-resolution by total variation minimization, single-molecule localization with its precision formula and maximum likelihood localization, structured illumination microscopy and SOFI.
+1. **What the optics passes.** The [optical transfer function](/optical-transfer-function/), the
+   [Rayleigh criterion](/rayleigh-criterion/) and the [Abbe diffraction limit](/abbe-diffraction-limit/).
+2. **Deconvolution with a known blur.** [Van Cittert deconvolution](/van-cittert-deconvolution/),
+   [Richardson-Lucy with total variation](/richardson-lucy-total-variation/), the
+   [maximum entropy method](/maximum-entropy-method-imaging/), and for widefield microscopy the
+   [Gibson-Lanni model](/gibson-lanni-model/) and [nearest neighbour deconvolution](/nearest-neighbor-deconvolution/).
+3. **Imaging through turbulence.** [Lucky imaging](/lucky-imaging/),
+   [speckle interferometry](/speckle-interferometry/), the [Knox-Thompson method](/knox-thompson-method/)
+   and [speckle masking](/speckle-masking/).
+4. **Blind deconvolution and the wavefront.** [Ayers-Dainty](/ayers-dainty-blind-deconvolution/),
+   [variational Bayes blind deconvolution](/variational-bayes-blind-deconvolution/),
+   [phase diversity](/phase-diversity/) and [zonal wavefront reconstruction](/zonal-wavefront-reconstruction/).
+5. **Radio interferometry and CLEAN.** The [Van Cittert-Zernike theorem](/van-cittert-zernike-theorem/),
+   [aperture synthesis](/aperture-synthesis/), the [dirty image](/dirty-image/),
+   [Högbom CLEAN](/hogbom-clean/), [Cotton-Schwab CLEAN](/cotton-schwab-clean/),
+   [multiscale CLEAN](/multiscale-clean/) and [w-projection](/w-projection/).
+6. **Super-resolution from many frames.** [Multi-frame super-resolution](/multiframe-super-resolution/),
+   [iterative back-projection](/iterative-back-projection-super-resolution/) and [drizzle](/drizzle/).
+7. **Fluorescence microscopy beyond the diffraction limit.**
+   [Structured illumination](/structured-illumination-microscopy/),
+   [single-molecule localization](/single-molecule-localization/), the
+   [localization precision formula](/localization-precision-formula/),
+   [maximum likelihood localization](/maximum-likelihood-localization/) and [SOFI](/sofi/).
+8. **Sparse super-resolution theory.** The [Beurling LASSO](/beurling-lasso/) and
+   [exact super-resolution by total variation minimization](/super-resolution-total-variation-theorem/).
 
-## What to read meanwhile
+## A first reading
 
-Volume 28 has the written entries closest to this chapter: the [point spread function](/point-spread-function/), [Richardson-Lucy deconvolution](/richardson-lucy-deconvolution/), the [Wiener filter](/wiener-filter/), [super-resolution](/super-resolution/), [image denoising](/image-denoising/) and [total variation denoising](/total-variation-denoising/). The [convolution theorem](/convolution-theorem/) and the [fast Fourier transform](/fast-fourier-transform/) of Volume 11 explain why blur is a product in the frequency domain, and [Tikhonov regularization](/tikhonov-regularization/) of Volume 12 is the simplest stable inverse. CLEAN is a greedy method close to [orthogonal matching pursuit](/orthogonal-matching-pursuit/) in Volume 28, and the precision of single-molecule localization is limited by the [Cramér-Rao bound](/cramer-rao-bound/) of Volume 33.
+Read these in order:
+
+1. [Optical transfer function](/optical-transfer-function/)
+2. [Abbe diffraction limit](/abbe-diffraction-limit/)
+3. [Rayleigh criterion](/rayleigh-criterion/)
+4. [Van Cittert deconvolution](/van-cittert-deconvolution/)
+5. [Speckle interferometry](/speckle-interferometry/)
+6. [Lucky imaging](/lucky-imaging/)
+7. [Van Cittert-Zernike theorem](/van-cittert-zernike-theorem/)
+8. [Aperture synthesis](/aperture-synthesis/)
+9. [Dirty image](/dirty-image/)
+10. [Högbom CLEAN](/hogbom-clean/)
+11. [Multi-frame super-resolution](/multiframe-super-resolution/)
+12. [Single-molecule localization](/single-molecule-localization/)
+
+The microscopy models of the second group, the bispectrum and blind methods, the refinements of CLEAN and
+the sparse theory of the last group can wait. The groups after the first depend little on each other, so a
+reader interested in one instrument can go from the first group straight to its group.
+
+## Before you start
+
+From Volume 28 the chapter uses the [point spread function](/point-spread-function/),
+[image deblurring](/image-deblurring/), [Richardson-Lucy deconvolution](/richardson-lucy-deconvolution/),
+the [Wiener filter](/wiener-filter/), [cross-correlation](/cross-correlation/),
+[aliasing](/aliasing/) and [image registration](/image-registration/). The
+[discrete Fourier transform](/discrete-fourier-transform/) and the
+[convolution theorem](/convolution-theorem/) come from Volume 11. From earlier in this volume it uses
+[Landweber iteration](/landweber-iteration/), the
+[discrepancy principle](/morozov-discrepancy-principle/), [speckle](/speckle/) and
+[phase retrieval](/phase-retrieval/). The statistical entries need
+[maximum likelihood estimation](/maximum-likelihood-estimation/) and
+[variational inference](/variational-inference/) from Volume 25, the
+[Cramér-Rao bound](/cramer-rao-bound/) from Volume 33 and the
+[Poisson distribution](/poisson-distribution/) from Volume 1. Zonal reconstruction solves a
+[least squares problem](/least-squares-problem/) by the
+[conjugate gradient method](/conjugate-gradient-method/) (Volume 12), and the sparse theory uses
+[Lagrangian duality](/lagrangian-duality/) from Volume 15.

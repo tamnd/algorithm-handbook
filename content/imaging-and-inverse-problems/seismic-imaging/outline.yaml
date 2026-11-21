@@ -1,0 +1,81 @@
+# The order of chapter 46.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The seismic trace and deconvolution
+    intro: >
+      A seismic trace is modelled as a source wavelet convolved with the reflectivity of the layers, plus
+      noise. Deconvolution tries to undo the wavelet. Predictive deconvolution solves Toeplitz normal
+      equations for a prediction filter, and minimum entropy deconvolution looks for the filter whose output
+      is most spiky.
+    entries:
+      - seismic-reflection-model
+      - predictive-deconvolution
+      - minimum-entropy-deconvolution
+
+  - title: Moveout, velocity and stacking
+    intro: >
+      A reflection recorded at growing offsets arrives along a hyperbola whose curvature depends on the
+      velocity above it. These entries flatten the hyperbola with normal moveout, add the traces of one
+      midpoint into a stack, scan velocities with semblance, and turn the stacking velocities into interval
+      velocities with the Dix formula.
+    entries:
+      - normal-moveout-correction
+      - common-midpoint-stacking
+      - semblance-velocity-analysis
+      - dix-formula
+
+  - title: Removing multiples
+    intro: >
+      Multiples are waves that bounced more than once, and they look like reflections that are not there.
+      The parabolic Radon transform separates them from primaries by their residual moveout after the
+      correction. Surface-related multiple elimination predicts the surface multiples from the data itself,
+      with no model of the earth.
+    entries:
+      - parabolic-radon-transform
+      - surface-related-multiple-elimination
+
+  - title: What migration does
+    intro: >
+      Migration moves recorded reflections back to the points where they happened. The imaging condition says
+      where a reflector is: where the source wave and the back-propagated receiver wave meet. The exploding
+      reflector model turns zero-offset data into a single wavefield, and the problem entry states migration
+      as the adjoint of a linear forward operator, not its inverse.
+    entries:
+      - imaging-condition
+      - exploding-reflector-model
+      - seismic-migration
+
+  - title: Migration by rays and one-way waves
+    intro: >
+      Kirchhoff migration sums the data along diffraction curves. The other methods of this group extrapolate
+      the wavefield downward one depth step at a time: phase shift is exact for velocities that vary with depth
+      only, finite differences and split-step Fourier handle lateral changes with an error at steep dips, and
+      Stolt migration maps the whole wavefield in one Fourier step for a constant velocity.
+    entries:
+      - kirchhoff-migration
+      - phase-shift-migration
+      - finite-difference-migration
+      - split-step-fourier-migration
+      - stolt-migration
+
+  - title: Two-way waves and waveform inversion
+    intro: >
+      Reverse time migration solves the full wave equation and applies the imaging condition. Least-squares
+      migration iterates migration and modelling to fit the data. The adjoint-state method gives the gradient
+      of a misfit at the cost of two simulations, and full waveform inversion uses it to fit the velocity model
+      itself, at the risk of cycle skipping when the starting model is too far off.
+    entries:
+      - reverse-time-migration
+      - least-squares-migration
+      - adjoint-state-method
+      - full-waveform-inversion
+      - cycle-skipping
+
+  - title: Traveltimes and passive data
+    intro: >
+      Travel times alone carry much information. Traveltime tomography inverts first arrivals for the slowness
+      of the medium, and the Geiger method locates an earthquake from the arrival times at a few stations.
+      Seismic interferometry builds the response between two receivers by correlating ambient noise.
+    entries:
+      - traveltime-tomography
+      - geiger-method
+      - seismic-interferometry

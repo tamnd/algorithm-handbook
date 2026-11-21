@@ -1,11 +1,84 @@
+# The order of chapter 42.1. Groups are read in order; entries in a group too.
 groups:
-  - title: Equilibria and their existence
+  - title: Games, strategies and best responses
     intro: >
-      A Nash equilibrium is a profile of mixed strategies from which no player gains by a change of their own.
-      The minimax theorem settles two-player zero-sum games with one number, the value, proved by linear
-      programming duality. Nash's theorem then shows that every finite game, with any number of players, has
-      an equilibrium, by a fixed point argument.
+      A game in normal form is a table: each player picks a strategy, and the table gives every player a payoff.
+      With two players the table is a pair of matrices. A mixed strategy is a lottery over pure strategies, and a
+      best response is a strategy that does as well as possible against fixed choices of the others. Every later
+      entry of the chapter is built from these four ideas.
+    entries:
+      - normal-form-game
+      - bimatrix-game
+      - mixed-strategy
+      - best-response
+  - title: Dominance
+    intro: >
+      Some strategies are worse than another strategy whatever the others do. A rational player never uses
+      them, so they can be crossed out, and crossing out can go on in rounds. Strict dominance by a mixed
+      strategy is tested by one linear program, and its iterated removal never loses a Nash equilibrium.
+    entries:
+      - dominant-strategy
+      - iterated-elimination-of-dominated-strategies
+  - title: Nash equilibrium
+    intro: >
+      A Nash equilibrium is a profile in which every player plays a best response to the others. It can be pure
+      or mixed, and a game can have many. The prisoner's dilemma shows that an equilibrium can be bad for
+      everyone, and the minimax theorem shows that in zero-sum games all equilibria give the same value. The
+      $\varepsilon$-Nash equilibrium is the relaxed form that algorithms compute.
     entries:
       - nash-equilibrium
+      - pure-nash-equilibrium
+      - prisoners-dilemma
       - minimax-theorem
+      - epsilon-nash-equilibrium
+  - title: Why equilibria exist
+    intro: >
+      Nash proved that every finite game has a mixed equilibrium, first with Kakutani's theorem for set-valued
+      maps and then with Brouwer's theorem for continuous maps. These fixed-point theorems prove existence but
+      give no method to find the point; the computational side is in Chapter 42.2.
+    entries:
+      - brouwer-fixed-point-theorem
+      - kakutani-fixed-point-theorem
       - nash-existence-theorem
+  - title: Correlated equilibria
+    intro: >
+      If a mediator draws a whole profile and tells each player only their own part, the players can do better
+      than with independent lotteries. Correlated equilibria are defined by linear inequalities, so they form a
+      polytope. Coarse correlated equilibria are larger still, and they are what players with no regret reach.
+    entries:
+      - correlated-equilibrium
+      - coarse-correlated-equilibrium
+  - title: Private information
+    intro: >
+      In a Bayesian game each player has a private type drawn from a common prior. A strategy maps types to
+      actions, and a Bayes-Nash equilibrium asks every type of every player to best respond on average over the
+      types of the others. Auctions are the main example.
+    entries:
+      - bayesian-game
+      - bayes-nash-equilibrium
+  - title: Games in extensive form
+    intro: >
+      A game tree keeps the order of moves and what each player knows when moving. Information sets model
+      hidden moves, and perfect recall says that nobody forgets. Subgame perfection removes threats that a
+      player would not carry out, Stackelberg equilibrium models a leader who commits first, and Kuhn's theorem
+      lets players randomize move by move. Trembling-hand perfection removes equilibria that use weakly dominated
+      strategies.
+    entries:
+      - extensive-form-game
+      - information-set
+      - perfect-recall
+      - subgame-perfect-equilibrium
+      - stackelberg-equilibrium
+      - kuhn-theorem-behavioral-strategies
+      - trembling-hand-perfect-equilibrium
+  - title: Evolution, noise and large games
+    intro: >
+      Evolutionarily stable strategies and the replicator equation read a symmetric game as a model of a
+      population. Quantal response equilibria let players make errors that are more likely when they are cheap.
+      Graphical games write the payoffs of many players compactly when each player cares about a few
+      neighbours only.
+    entries:
+      - evolutionarily-stable-strategy
+      - replicator-dynamics
+      - quantal-response-equilibrium
+      - graphical-game

@@ -1,0 +1,93 @@
+# The order of chapter 44.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Sharing by frequency and time
+    intro: >
+      The simplest way to let many users share one channel is to give each a part of it that no one else
+      uses: a band of frequencies, a slot of time, or a set of subcarriers of an OFDM symbol. The users
+      then do not interfere, and each sees a single-user channel. These entries count the users that fit,
+      show what guard bands and guard times cost, and compare the rates with the capacity of the shared
+      channel.
+    entries:
+      - frequency-division-multiple-access
+      - time-division-multiple-access
+      - orthogonal-frequency-division-multiple-access
+
+  - title: Spreading the signal
+    intro: >
+      Spread spectrum sends a signal over a band much wider than its data rate needs. The
+      [processing gain](/processing-gain/) is the ratio of the two, and it is the factor by which
+      despreading raises the signal over interference of fixed power. Frequency hopping spreads by moving
+      the carrier; direct sequence spreads by multiplying each bit with a fast pseudorandom code, usually an
+      m-sequence. Code-division multiple access gives each user its own code on the same band.
+    entries:
+      - processing-gain
+      - frequency-hopping-spread-spectrum
+      - maximal-length-sequence
+      - direct-sequence-spread-spectrum
+      - code-division-multiple-access
+
+  - title: Spreading sequences and their limits
+    intro: >
+      A family of codes is good when every code has a sharp autocorrelation and every pair has a small
+      cross-correlation. Gold and Kasami families are built from m-sequences, OVSF codes are exactly
+      orthogonal when the users are aligned, and Zadoff-Chu sequences have zero periodic autocorrelation at
+      every nonzero shift. The Welch bound says how small the largest cross-correlation of a family can be,
+      and measures how close each family comes.
+    entries:
+      - gold-sequences
+      - ovsf-codes
+      - zadoff-chu-sequence
+      - welch-bound
+      - kasami-sequences
+
+  - title: Acquisition, tracking and multipath
+    intro: >
+      A receiver cannot despread until it knows where the code starts. Serial search tries the code phases
+      one at a time; parallel code phase search tests them all with FFTs. A delay-locked loop then tracks
+      the phase to a fraction of a chip, and a rake receiver uses the sharp autocorrelation of the code to
+      separate the paths of a multipath channel and add them coherently.
+    entries:
+      - serial-search-code-acquisition
+      - parallel-code-phase-search
+      - delay-locked-loop
+      - rake-receiver
+
+  - title: Multiuser detection
+    intro: >
+      With codes that are not orthogonal, the matched filter of one user also collects the others, and a
+      strong user near the base station can bury a weak one far away. Multiuser detection decides all users
+      together from the matched filter outputs $z = RAb + n$. The linear detectors invert or regularize
+      the correlation matrix, the cancellers subtract decided users, and the optimum detector searches all
+      $2^K$ bit vectors, a problem that is NP-hard in the number of users.
+    entries:
+      - near-far-problem
+      - multiuser-detection
+      - decorrelating-detector
+      - mmse-multiuser-detector
+      - successive-interference-cancellation
+      - parallel-interference-cancellation
+      - optimum-multiuser-detector
+      - multiuser-detection-np-hardness
+
+  - title: Capacity and non-orthogonal access
+    intro: >
+      Information theory says what rates a shared channel can carry. The capacity region of the Gaussian
+      multiple access channel has two corner points, reached by successive cancellation of whole codewords,
+      and superposition coding does the same for the broadcast channel. Non-orthogonal multiple access puts
+      these results into a system design, and sparse code multiple access overloads the resources with
+      sparse codebooks decoded by message passing.
+    entries:
+      - mac-capacity-region
+      - superposition-coding
+      - non-orthogonal-multiple-access
+      - sparse-code-multiple-access
+
+  - title: Random access with coding
+    intro: >
+      When many devices send short messages at random times, there is no time to assign resources first.
+      Coded slotted ALOHA sends several copies of each packet and removes decoded copies from the other
+      slots, which turns collisions into a peeling decoder on a graph. Unsourced random access goes further:
+      all users share one codebook, and the receiver only has to return the list of messages sent.
+    entries:
+      - coded-slotted-aloha
+      - unsourced-random-access

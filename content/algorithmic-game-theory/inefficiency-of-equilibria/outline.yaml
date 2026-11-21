@@ -1,0 +1,75 @@
+# The order of chapter 42.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Measuring inefficiency
+    intro: >
+      The price of anarchy compares the worst equilibrium of a game with an optimal outcome, and the price of
+      stability compares the best one. Both depend on the class of equilibria: pure, mixed, correlated or
+      coarse correlated, and the ratio can only grow as the class grows.
+    entries:
+      - price-of-anarchy
+      - price-of-stability
+  - title: Selfish routing
+    intro: >
+      A continuum of drivers sends traffic through a network with latency functions on the edges. At a
+      Wardrop equilibrium every used path is a shortest one; it minimizes the Beckmann potential, while the
+      system optimum minimizes total latency. Pigou's two-link network and Braess's paradox show the gap
+      between the two.
+    entries:
+      - selfish-routing-model
+      - wardrop-equilibrium
+      - beckmann-potential
+      - system-optimal-flow
+      - pigou-example
+      - braess-paradox
+  - title: Bounds for nonatomic routing
+    intro: >
+      With affine latencies no network does worse than Pigou's, and the price of anarchy is 4/3. The Pigou
+      bound extends this to every class of latencies that contains the constants, so the worst case depends
+      on the latencies and not on the network. With affine latencies, removing nothing is within 4/3 of the
+      best set of edges to remove, and no polynomial-time algorithm does better unless P = NP.
+    entries:
+      - roughgarden-tardos-four-thirds-bound
+      - pigou-bound
+      - braess-paradox-detection-hardness
+  - title: Changing the routing game
+    intro: >
+      Marginal cost tolls make the optimal flow an equilibrium. A Stackelberg leader who controls part of the
+      traffic can lower the cost of the equilibrium of the rest. Nash flows over time replace latency
+      functions by queues that build up and drain.
+    entries:
+      - marginal-cost-tolls
+      - stackelberg-routing
+      - nash-flows-over-time
+  - title: Potential and congestion games
+    intro: >
+      In a potential game one function tracks every unilateral improvement, so improvement paths are finite
+      and pure equilibria exist. Rosenthal's potential makes every atomic congestion game such a game. The
+      equilibrium is easy to compute for symmetric network games, by min-cost flow, and PLS-complete in
+      general.
+    entries:
+      - potential-game
+      - finite-improvement-property
+      - atomic-congestion-game
+      - rosenthal-potential-theorem
+      - symmetric-network-congestion-min-cost-flow
+      - pls-completeness-of-congestion-games
+  - title: Atomic bounds and smoothness
+    intro: >
+      A smoothness inequality gives one bound that holds for pure, mixed, correlated and coarse correlated
+      equilibria and for no-regret play. For atomic affine congestion games it gives 5/2, which is tight.
+      Load balancing, whose cost is the makespan, is the main game where smoothness does not apply and where
+      pure and mixed equilibria differ.
+    entries:
+      - smoothness-framework
+      - atomic-linear-congestion-price-of-anarchy
+      - load-balancing-game
+      - price-of-anarchy-of-load-balancing
+  - title: Network design and formation
+    intro: >
+      In the Shapley network design game players share the cost of the edges they use; the price of anarchy
+      is the number of players and the price of stability is the harmonic number. In the network creation
+      game players buy edges to be close to everyone, and the price of anarchy depends on the edge price.
+    entries:
+      - shapley-network-design-game
+      - harmonic-price-of-stability
+      - network-creation-game

@@ -1,0 +1,86 @@
+# The order of chapter 44.8. Groups are read in order; entries in a group too.
+groups:
+  - title: Matching the rate to the channel
+    intro: >
+      A link that always sends at one rate wastes the good moments of a fading channel and fails in the bad
+      ones. Link adaptation picks the modulation and coding scheme for the channel the receiver reports.
+      The SNR gap turns capacity formulas into rates that real constellations reach, adaptive modulation
+      changes rate and power with the fading state, and an effective SNR mapping compresses the SNRs of
+      many subcarriers into the one number that the rate tables need.
+    entries:
+      - link-adaptation
+      - snr-gap-approximation
+      - adaptive-modulation
+      - effective-snr-mapping
+
+  - title: Retransmission and the outer loop
+    intro: >
+      Reports are late and noisy, so some blocks fail anyway. Hybrid ARQ keeps the failed attempts and
+      combines them with the retransmissions: Chase combining adds copies of the same block, incremental
+      redundancy sends new parity. The acknowledgments are also a measurement, and outer loop link
+      adaptation uses them to correct the bias of the reports so that the block error rate meets its target.
+    entries:
+      - hybrid-arq
+      - chase-combining
+      - outer-loop-link-adaptation
+
+  - title: Power over parallel channels
+    intro: >
+      When the transmitter knows the gains of parallel channels, in frequency or in time, it can share its
+      power among them. Water-filling maximizes the sum rate and is solved exactly by a sort. Truncated
+      channel inversion gives up on bad states to keep a constant rate in the others, and energy-efficient
+      allocation maximizes bits per joule, a fractional program solved by Dinkelbach's method.
+    entries:
+      - water-filling-power-allocation
+      - truncated-channel-inversion
+      - energy-efficient-power-allocation
+
+  - title: Bit loading
+    intro: >
+      Real modems carry whole bits on each subcarrier. Bit loading is water-filling with integers, and with
+      the SNR gap the cost of each extra bit doubles, so a greedy rule is optimal. Hughes-Hartogs adds the
+      cheapest bit until the target is met, Levin-Campello starts from any loading and moves bits until it
+      is efficient, and the Chow-Cioffi-Bingham heuristic adjusts a common margin and rounds.
+    entries:
+      - bit-loading
+      - hughes-hartogs-algorithm
+      - levin-campello-algorithm
+      - chow-cioffi-bingham-algorithm
+
+  - title: Scheduling many users
+    intro: >
+      With many users the fading of each becomes an asset: at any moment some user has a good channel.
+      Serving that user gives multiuser diversity, max-rate scheduling is the rule that collects it, and
+      OFDMA resource allocation does the same across subcarriers, with rate targets that make the problem
+      combinatorial. Weighted sum rate maximization with interference is NP-hard, and its algorithms find
+      stationary points.
+    entries:
+      - multiuser-diversity
+      - max-rate-scheduling
+      - ofdma-resource-allocation
+      - weighted-sum-rate-maximization
+
+  - title: Power control under interference
+    intro: >
+      When links share a band, the power of one is interference for the others. The Foschini-Miljanic
+      iteration meets SINR targets with the least power whenever the targets are feasible, and Yates's
+      standard interference functions explain why it converges. Max-min SINR control and geometric
+      programming optimize the targets themselves, and interference alignment shows how many interference
+      free streams a network can carry at high SNR.
+    entries:
+      - foschini-miljanic-power-control
+      - standard-interference-function
+      - max-min-sinr-power-control
+      - geometric-programming-power-control
+      - interference-alignment
+
+  - title: Sensing the spectrum
+    intro: >
+      A secondary user that wants to borrow an idle band must first decide whether the band is in use.
+      Spectrum sensing is a detection problem with a false alarm and a detection probability. The energy
+      detector needs no knowledge of the signal but fails below an SNR wall when the noise level is
+      uncertain; cyclostationary detection uses the periodic structure of the signal to avoid that wall.
+    entries:
+      - spectrum-sensing
+      - energy-detector
+      - cyclostationary-feature-detection

@@ -1,0 +1,99 @@
+# The order of chapter 44.1. Groups are read in order; entries in a group too.
+groups:
+  - title: Signals, noise and limits
+    intro: >
+      A digital modulator maps bits to waveforms, and the receiver sees them in white Gaussian noise. These
+      entries give the tools that every later page uses: the Gaussian tail function, the ratio of energy per
+      bit to noise density, and the signal space in which a waveform becomes a point. The Shannon-Hartley
+      theorem and spectral efficiency set the limits against which all schemes are measured.
+    entries:
+      - gaussian-q-function
+      - digital-modulation
+      - energy-per-bit-to-noise-density-ratio
+      - signal-space-representation
+      - signal-constellation
+      - shannon-hartley-theorem
+      - spectral-efficiency
+
+  - title: The basic constellations
+    intro: >
+      Amplitude, phase and both together give PAM, PSK and QAM, the linear modulations of almost every modem.
+      Frequency-shift keying uses orthogonal tones instead and trades bandwidth for power. Each entry gives the
+      geometry, the energy and the minimum distance of its constellation.
+    entries:
+      - pulse-amplitude-modulation
+      - phase-shift-keying
+      - quadrature-amplitude-modulation
+      - frequency-shift-keying
+
+  - title: Detection and error rates
+    intro: >
+      The receiver picks the most probable symbol, and in Gaussian noise with equal priors that is the nearest
+      point. These entries derive the detectors, the exact symbol error rates for the stated model, and the
+      bit error rate with Gray labels, which is an approximation that is good at high SNR.
+    entries:
+      - symbol-detection
+      - minimum-distance-detector
+      - symbol-error-rate
+      - gray-labeling
+      - bit-error-rate
+
+  - title: Pulses and intersymbol interference
+    intro: >
+      Real channels have finite bandwidth, so each symbol is carried by a pulse that overlaps its neighbours.
+      The Nyquist criterion says when the overlap vanishes at the sampling instants. Raised cosine and root
+      raised cosine pulses meet it with a roll-off, and the eye diagram shows the margin left at each offset.
+    entries:
+      - intersymbol-interference
+      - nyquist-isi-criterion
+      - pulse-shaping
+      - raised-cosine-filter
+      - root-raised-cosine-filter
+      - eye-diagram
+
+  - title: Controlled intersymbol interference
+    intro: >
+      Two methods add interference on purpose. Partial-response signaling uses a known overlap to reach the
+      minimum bandwidth with a realizable pulse. Faster-than-Nyquist signaling packs the pulses closer than
+      the Nyquist spacing and needs a sequence detector to undo the overlap.
+    entries:
+      - partial-response-signaling
+      - faster-than-nyquist-signaling
+
+  - title: Constant envelope and noncoherent reception
+    intro: >
+      Power amplifiers work best on signals with a constant envelope. Offset QPSK, continuous-phase modulation,
+      MSK and GMSK keep the envelope steady or nearly so, and the Laurent decomposition writes such signals as
+      sums of linear pulses. Noncoherent detection and DPSK work without a carrier phase reference, at a stated
+      loss in power.
+    entries:
+      - offset-qpsk
+      - continuous-phase-modulation
+      - minimum-shift-keying
+      - gaussian-minimum-shift-keying
+      - laurent-decomposition
+      - noncoherent-detection
+      - differential-phase-shift-keying
+
+  - title: Soft bits and coded modulation
+    intro: >
+      A decoder needs the reliability of each bit, not only a hard decision. Soft demapping computes the bit
+      log-likelihood ratios, and the max-log form approximates them with distances. Trellis-coded modulation,
+      bit-interleaved coded modulation and multilevel coding are the three ways of joining a code to a
+      constellation.
+    entries:
+      - soft-demapping
+      - max-log-demapping
+      - trellis-coded-modulation
+      - bit-interleaved-coded-modulation
+      - multilevel-coding
+
+  - title: Shaping
+    intro: >
+      Uniform square constellations lose up to 1.53 dB against the Gaussian input of capacity. APSK changes the
+      geometry to suit nonlinear amplifiers. Probabilistic shaping changes the probabilities of the points
+      instead, and constant composition distribution matching produces those probabilities from uniform bits.
+    entries:
+      - amplitude-and-phase-shift-keying
+      - probabilistic-constellation-shaping
+      - constant-composition-distribution-matching

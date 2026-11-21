@@ -1,0 +1,75 @@
+# The order of chapter 44.9. Groups are read in order; entries in a group too.
+groups:
+  - title: The radar equation and the target
+    intro: >
+      A radar sends a pulse and listens for its echo. The
+      [radar range equation](/radar-range-equation/) gives the signal to noise ratio of the echo, which falls
+      as the fourth power of the range. It is a physical model, exact only under its assumptions. The
+      [Swerling models](/swerling-target-models/) say how the echo of a real target fluctuates from look to
+      look, and the [Albersheim equation](/albersheim-equation/) is a fitted formula for the signal to noise
+      ratio a steady target needs, valid only in its stated range.
+    entries:
+      - radar-range-equation
+      - swerling-target-models
+      - albersheim-equation
+
+  - title: Detection with a constant false alarm rate
+    intro: >
+      A fixed threshold gives the wanted false alarm rate only if the noise power is known.
+      [CFAR detection](/cfar-detection/) estimates it from the cells around the one under test.
+      [Cell-averaging CFAR](/cell-averaging-cfar/) keeps the design false alarm rate exactly in homogeneous
+      exponential noise, and [ordered-statistic CFAR](/ordered-statistic-cfar/) gives up about 1 dB to resist
+      other targets in the window.
+    entries:
+      - cfar-detection
+      - cell-averaging-cfar
+      - ordered-statistic-cfar
+
+  - title: Pulse compression and frequency modulation
+    intro: >
+      [Pulse compression](/pulse-compression/) sends a long pulse with a wide band, so the energy of a long
+      pulse and the resolution of a short one come together. The
+      [ambiguity function](/ambiguity-function/) shows how the matched filter responds to a delay and a
+      Doppler shift together, and its volume is fixed. The
+      [linear FM pulse](/linear-frequency-modulation-pulse/) tolerates Doppler but shifts the peak in range,
+      the [range-Doppler coupling](/range-doppler-coupling/).
+      [Nonlinear FM](/nonlinear-frequency-modulation/) lowers the sidelobes with no loss, at a cost in
+      Doppler tolerance. A [stepped frequency waveform](/stepped-frequency-waveform/) builds a wide band from
+      narrow pulses, and [FMCW radar](/fmcw-radar/) turns range into a beat frequency.
+    entries:
+      - pulse-compression
+      - ambiguity-function
+      - linear-frequency-modulation-pulse
+      - range-doppler-coupling
+      - nonlinear-frequency-modulation
+      - stepped-frequency-waveform
+      - fmcw-radar
+
+  - title: Phase codes and frequency codes
+    intro: >
+      A [phase-coded waveform](/phase-coded-waveform/) changes the phase of the carrier from chip to chip,
+      and its compressed output is the autocorrelation of the code. [Barker codes](/barker-code/) have
+      sidelobes of magnitude 1, and none of odd length above 13 exists. The [Frank code](/frank-code/) is a
+      polyphase code with perfect periodic autocorrelation, and a [Costas array](/costas-array/) orders
+      frequencies so that the ambiguity function has a sharp peak. A
+      [mismatched filter](/mismatched-filter-design/) lowers the sidelobes of a fixed code at a small loss.
+    entries:
+      - phase-coded-waveform
+      - barker-code
+      - frank-code
+      - costas-array
+      - mismatched-filter-design
+
+  - title: Doppler processing and joint sensing
+    intro: >
+      Over many pulses the phase of a moving target turns while ground clutter stays still.
+      [Moving target indication](/moving-target-indication/) cancels the clutter with a short filter over
+      the pulses, and [range-Doppler processing](/range-doppler-processing/) measures the speed with an FFT.
+      On a moving radar, [space-time adaptive processing](/space-time-adaptive-processing/) adapts over
+      antennas and pulses together. [Integrated sensing and communication](/integrated-sensing-and-communication/)
+      uses the same signal for data and for radar.
+    entries:
+      - moving-target-indication
+      - range-doppler-processing
+      - space-time-adaptive-processing
+      - integrated-sensing-and-communication

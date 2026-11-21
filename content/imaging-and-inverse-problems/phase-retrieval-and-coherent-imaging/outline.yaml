@@ -1,11 +1,87 @@
-# The order of chapter 46.7. One entry is written in this edition.
+# The order of chapter 46.7. Groups are read in order; entries in a group too.
 groups:
-  - title: Phase retrieval
+  - title: The problem and its ambiguities
     intro: >
-      [Phase retrieval](/phase-retrieval/) recovers a signal from the magnitude of its Fourier transform.
-      The entry shows that the magnitude carries exactly the autocorrelation, lists the trivial and the
-      nontrivial ambiguities of one dimension, and compares the algorithms: spectral factorization, the
-      iterations of Gerchberg, Saxton and Fienup, Griffin-Lim, and the methods with guarantees for random
-      measurements.
+      A detector records the intensity of a wave, the squared magnitude of its Fourier transform, and loses
+      the phase. [Phase retrieval](/phase-retrieval/) asks for the signal back from the magnitude alone. The
+      magnitude fixes the [autocorrelation](/autocorrelation/) and nothing more, so a global phase, a shift
+      and the conjugate reversal can never be undone; the second entry sorts these trivial ambiguities from
+      the nontrivial ones.
     entries:
       - phase-retrieval
+      - phase-retrieval-ambiguities
+
+  - title: When the magnitude determines the signal
+    intro: >
+      Three entries say when the trivial ambiguities are the only ones. Sampling the magnitude finely enough
+      gives the whole autocorrelation; in two or more dimensions a generic image is then unique up to the
+      trivial changes, while in one dimension it is not. For general linear measurements the question
+      becomes one of linear algebra, the complement property.
+    entries:
+      - oversampling-in-phase-retrieval
+      - bruck-sodin-uniqueness
+      - complement-property
+
+  - title: Iterative projection methods
+    intro: >
+      The working algorithms alternate between the magnitude constraint and what is known about the object,
+      such as its support. Gerchberg-Saxton and error reduction never increase their error but stagnate.
+      Hybrid input-output, the difference map and RAAR escape stagnation at the price of monotonicity and of
+      any general convergence proof, and shrinkwrap learns the support while they run.
+    entries:
+      - gerchberg-saxton-algorithm
+      - error-reduction-algorithm
+      - hybrid-input-output
+      - difference-map
+      - raar
+      - shrinkwrap
+
+  - title: The crystallographic phase problem
+    intro: >
+      A crystal diffracts only at the points of its reciprocal lattice, so its intensities are sampled at
+      the ratio $\sigma = 1$ and the oversampling argument does not apply. The
+      [Patterson function](/patterson-function/) is the autocorrelation that the data give directly. Direct
+      methods use probability relations among phases, and charge flipping is a projection method of the
+      kind met in the previous group.
+    entries:
+      - crystallographic-phase-problem
+      - patterson-function
+      - direct-methods-crystallography
+      - charge-flipping
+
+  - title: Propagation and holography
+    intro: >
+      The [angular spectrum method](/angular-spectrum-method/) moves a wave from one plane to another by one
+      FFT and one multiplication, and every later entry uses it. A hologram records the phase by mixing the
+      wave with a reference. The off-axis form separates the object term exactly; the in-line form leaves
+      the twin image. The transport of intensity equation gets the phase from the change of intensity along
+      the beam.
+    entries:
+      - angular-spectrum-method
+      - digital-holography-reconstruction
+      - twin-image-problem
+      - transport-of-intensity-equation
+
+  - title: Coherent diffraction imaging and ptychography
+    intro: >
+      Coherent diffraction imaging puts the algorithms of the projection group to work on X-ray and electron
+      data. Ptychography scans an illumination over the object with overlap, which makes the problem far
+      better determined and removes the need for a support. ePIE is its standard algorithm, and Fourier
+      ptychography applies the same idea in the frequency plane of a light microscope.
+    entries:
+      - coherent-diffraction-imaging
+      - ptychography
+      - epie
+      - fourier-ptychography
+
+  - title: Methods with guarantees
+    intro: >
+      For random measurement vectors there are algorithms with proofs. [PhaseLift](/phaselift/) lifts the
+      problem to a semidefinite program in the matrix $xx^*$. Spectral initialization starts close to the
+      signal, and Wirtinger flow descends from there at a linear rate. The guarantees hold with high
+      probability for the Gaussian models in the entries, with about $n \log n$ measurements, and not for
+      Fourier data.
+    entries:
+      - phaselift
+      - spectral-initialization
+      - wirtinger-flow

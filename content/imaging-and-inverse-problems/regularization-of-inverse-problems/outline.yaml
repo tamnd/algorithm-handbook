@@ -1,0 +1,98 @@
+# The order of chapter 46.1. Groups are read in order; entries in a group too.
+groups:
+  - title: The problem and why it is ill posed
+    intro: >
+      An [inverse problem](/inverse-problem/) recovers $x$ from data $y = Ax + e$, where the
+      [forward operator](/forward-operator/) $A$ is known. Most such problems fail the third condition of a
+      [well-posed problem](/well-posed-problem/): the solution does not depend continuously on the data.
+      The [singular value expansion](/singular-value-expansion/) shows why, the
+      [Picard condition](/picard-condition/) says when a solution exists, and the
+      [degree of ill-posedness](/degree-of-ill-posedness/) measures how bad the problem is.
+    entries:
+      - inverse-problem
+      - forward-operator
+      - well-posed-problem
+      - fredholm-integral-equation-first-kind
+      - singular-value-expansion
+      - picard-condition
+      - degree-of-ill-posedness
+
+  - title: Regularization by filtering and averaging
+    intro: >
+      A [regularization method](/regularization-method/) replaces the unbounded inverse by a family of bounded
+      operators with a parameter. Linear methods differ only in their
+      [spectral filter factors](/spectral-filter-factors/), and [truncated SVD](/truncated-svd/) is the
+      simplest of them. The [resolution matrix](/resolution-matrix/) shows what any linear estimate averages,
+      and the [Backus-Gilbert method](/backus-gilbert-method/) and the
+      [approximate inverse](/approximate-inverse/) design the average first.
+    entries:
+      - regularization-method
+      - spectral-filter-factors
+      - truncated-svd
+      - resolution-matrix
+      - backus-gilbert-method
+      - approximate-inverse
+
+  - title: Choosing the parameter
+    intro: >
+      A method is only as good as its parameter, and
+      [regularization parameter choice](/regularization-parameter-choice/) compares the rules on one test
+      problem. The [discrepancy principle](/morozov-discrepancy-principle/) uses the noise level.
+      [Generalized cross-validation](/generalized-cross-validation/), the [L-curve](/l-curve-method/) and the
+      [quasi-optimality criterion](/quasi-optimality-criterion/) do not, and the
+      [Bakushinskii veto](/bakushinskii-veto/) shows that such rules cannot converge for every problem.
+      [SURE](/stein-unbiased-risk-estimate/) and [UPRE](/unbiased-predictive-risk-estimator/) estimate a risk
+      from a known noise variance.
+    entries:
+      - regularization-parameter-choice
+      - morozov-discrepancy-principle
+      - generalized-cross-validation
+      - l-curve-method
+      - quasi-optimality-criterion
+      - stein-unbiased-risk-estimate
+      - unbiased-predictive-risk-estimator
+      - bakushinskii-veto
+
+  - title: Iterative and Krylov regularization
+    intro: >
+      An iterative method regularizes by stopping early, and its error shows
+      [semi-convergence](/semi-convergence/): it falls and then rises. [Landweber iteration](/landweber-iteration/)
+      is the simplest such method; [CGLS](/cgls/) and [LSQR](/lsqr/) reach the same accuracy in far fewer steps.
+      [Hybrid Krylov regularization](/hybrid-krylov-regularization/) adds Tikhonov inside the Krylov space, and the
+      [iteratively regularized Gauss-Newton method](/iteratively-regularized-gauss-newton/) handles a nonlinear
+      forward operator.
+    entries:
+      - semi-convergence
+      - landweber-iteration
+      - cgls
+      - lsqr
+      - hybrid-krylov-regularization
+      - iteratively-regularized-gauss-newton
+
+  - title: Convergence rates
+    intro: >
+      How fast the error goes to zero with the noise depends on a
+      [source condition](/source-condition/), a smoothness assumption on the true solution. The
+      [qualification](/qualification-of-regularization/) of a method caps the rate it can reach, and
+      [Tikhonov convergence rates](/tikhonov-convergence-rates/) work out the case with the saturation at
+      $\delta^{2/3}$. The [Lepskii balancing principle](/lepskii-balancing-principle/) reaches the optimal order
+      without knowing the smoothness.
+    entries:
+      - source-condition
+      - qualification-of-regularization
+      - tikhonov-convergence-rates
+      - lepskii-balancing-principle
+
+  - title: The Bayesian view
+    intro: >
+      A [Bayesian inverse problem](/bayesian-inverse-problem/) treats the unknown as random and asks for its
+      posterior. In the [linear Gaussian inverse problem](/linear-gaussian-inverse-problem/) the posterior is
+      Gaussian and its mean is a Tikhonov solution. Otherwise the posterior is sampled, by
+      [preconditioned Crank-Nicolson MCMC](/preconditioned-crank-nicolson-mcmc/), whose acceptance rate does not
+      fall as the mesh is refined, or by [randomize-then-optimize](/randomize-then-optimize/), which turns
+      optimization into sampling.
+    entries:
+      - linear-gaussian-inverse-problem
+      - bayesian-inverse-problem
+      - preconditioned-crank-nicolson-mcmc
+      - randomize-then-optimize

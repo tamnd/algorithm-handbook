@@ -1,0 +1,92 @@
+# The order of chapter 44.6. Groups are read in order; entries in a group too.
+groups:
+  - title: The MIMO channel and its capacity
+    intro: >
+      A link with $N_t$ transmit and $N_r$ receive antennas is one matrix equation, $y = Hx + w$. The
+      capacity theorem says what such a link can carry: the log-determinant of $I + HQH^H/N_0$, which grows like
+      $\min(N_t, N_r)\log_2 \rho$ at high SNR in i.i.d. Rayleigh fading. Spatial multiplexing is the plan that
+      uses this growth, and SVD precoding reaches the capacity when the transmitter knows $H$. The Kronecker
+      model shows what antenna correlation takes away.
+    entries:
+      - mimo-channel-model
+      - kronecker-channel-model
+      - mimo-capacity
+      - spatial-multiplexing
+      - svd-precoding
+
+  - title: Space-time codes for diversity
+    intro: >
+      Without channel knowledge at the transmitter, the antennas can still give diversity if each symbol is
+      spread over antennas and time. The Alamouti code does this for two antennas at full rate with a linear
+      decoder, and orthogonal designs extend it to more antennas at lower rates. The rank and determinant
+      criteria say what a good code needs, trellis codes meet them with a Viterbi decoder, and the
+      diversity-multiplexing tradeoff measures diversity and rate together, which the golden code reaches on
+      the $2 \times 2$ channel.
+    entries:
+      - alamouti-code
+      - orthogonal-space-time-block-codes
+      - rank-and-determinant-criteria
+      - space-time-trellis-codes
+      - diversity-multiplexing-tradeoff
+      - golden-code
+
+  - title: Detecting the streams
+    intro: >
+      The receiver of spatial multiplexing must find the symbol vector that best explains $y$, a closest vector
+      search that is NP-hard in general. Zero forcing and MMSE filters are cheap and lose diversity. V-BLAST
+      detects one stream at a time in the best order and D-BLAST spreads layers over the antennas. The tree
+      searches (K-best, the list sphere decoder) and lattice reduction come closer to maximum likelihood at
+      a higher or less predictable cost.
+    entries:
+      - mimo-detection
+      - zero-forcing-mimo-detector
+      - mmse-mimo-detector
+      - v-blast
+      - d-blast
+      - k-best-detector
+      - list-sphere-decoder
+      - lattice-reduction-aided-detection
+
+  - title: Relaxation and message passing
+    intro: >
+      Three detectors come from optimization and inference rather than search. Semidefinite relaxation gives
+      a polynomial-time lower bound that can prove a decision optimal. Approximate message passing and
+      expectation propagation track Gaussian approximations of the posterior and work best for large
+      channels with independent entries.
+    entries:
+      - semidefinite-relaxation-detection
+      - amp-mimo-detection
+      - expectation-propagation-detection
+
+  - title: Precoding and the broadcast channel
+    intro: >
+      When the transmitter knows the channel it can shape its signal. Maximum ratio transmission is the best
+      single beam, and codebooks send a few bits of feedback in place of the channel. For several users,
+      zero forcing removes the interference, its regularized form trades interference against noise, block
+      diagonalization handles users with several antennas, and vector perturbation adds a lattice search.
+      Dirty paper coding gives the capacity region of the broadcast channel, and weighted MMSE finds
+      stationary points of the weighted sum rate.
+    entries:
+      - maximum-ratio-transmission
+      - codebook-based-precoding
+      - zero-forcing-precoding
+      - regularized-zero-forcing-precoding
+      - block-diagonalization
+      - vector-perturbation-precoding
+      - dirty-paper-coding
+      - weighted-mmse-precoding
+
+  - title: Large arrays
+    intro: >
+      With many more base station antennas than users, the law of large numbers makes each user's gain
+      nearly fixed and different users' channels nearly orthogonal, so linear processing is close to optimal
+      in the i.i.d. model. Pilot reuse between cells is what limits this. The last entries spread the
+      antennas over an area, build the array with fewer radio chains, or add a passive reflecting surface.
+    entries:
+      - massive-mimo
+      - channel-hardening
+      - favorable-propagation
+      - pilot-contamination
+      - cell-free-massive-mimo
+      - hybrid-beamforming
+      - reconfigurable-intelligent-surface

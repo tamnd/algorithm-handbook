@@ -1,0 +1,79 @@
+# The order of chapter 44.5. Groups are read in order; entries in a group too.
+groups:
+  - title: From one carrier to many
+    intro: >
+      A channel with echoes mixes neighbouring symbols when they are short. Multicarrier modulation sends many
+      slow streams side by side instead, the cyclic prefix makes the channel act as a circular convolution, and
+      OFDM puts the two together with one inverse FFT at the sender and one FFT at the receiver, so each
+      subcarrier needs a single complex gain. Discrete multitone is the real-valued form for wires, with as
+      many bits on each tone as its SNR allows.
+    entries:
+      - multicarrier-modulation
+      - cyclic-prefix
+      - orthogonal-frequency-division-multiplexing
+      - discrete-multitone
+
+  - title: Learning the channel from pilots
+    intro: >
+      The one-tap receiver needs the gain $H[k]$ of every subcarrier. Comb pilots give least squares estimates
+      on a few subcarriers and interpolate between them. The DFT-based estimator uses the fact that the impulse
+      response is short and keeps only the fraction $L_t/N$ of the noise. Two-dimensional Wiener interpolation
+      uses the correlation of the channel in time and frequency, and is the best linear estimate from the
+      chosen pilots.
+    entries:
+      - comb-pilot-channel-estimation
+      - dft-based-channel-estimation
+      - two-dimensional-wiener-pilot-interpolation
+
+  - title: Synchronization and analog impairments
+    intro: >
+      OFDM symbols are long, so anything that turns the signal during a symbol breaks the orthogonality of the
+      subcarriers. [Inter-carrier interference](/inter-carrier-interference/) measures the damage. Schmidl-Cox,
+      Moose and van de Beek estimate the frequency offset (and the first and last also the timing) from a
+      training symbol with two halves, from two repeated symbols, or from the cyclic prefix alone. Common phase
+      error correction removes the shared part of phase noise, and IQ imbalance compensation separates each
+      subcarrier from its mirror image.
+    entries:
+      - inter-carrier-interference
+      - schmidl-cox-synchronization
+      - moose-frequency-offset-estimator
+      - van-de-beek-estimator
+      - common-phase-error-correction
+      - iq-imbalance-compensation
+
+  - title: The peak power problem
+    intro: >
+      A sum of many subcarriers has rare tall peaks, so the power amplifier must back off. The
+      [peak-to-average power ratio](/peak-to-average-power-ratio/) and its distribution come first. Clipping and
+      filtering distorts the signal a little; selected mapping and partial transmit sequences choose among exact
+      versions of the symbol and send side information; tone reservation and active constellation extension
+      add a peak-cancelling signal where it does not hurt detection. SC-FDMA avoids most of the problem by
+      spreading the data with a DFT first.
+    entries:
+      - peak-to-average-power-ratio
+      - iterative-clipping-and-filtering
+      - selected-mapping
+      - partial-transmit-sequence
+      - tone-reservation
+      - active-constellation-extension
+      - sc-fdma
+
+  - title: Shaped and filtered multicarrier
+    intro: >
+      The rectangular pulse of OFDM has a sinc spectrum whose sidelobes fall slowly. These schemes shape the
+      subcarriers or groups of them: filter bank multicarrier with a prototype filter and offset QAM, GFDM with
+      circularly shifted pulses and one prefix per block, and UFMC with a short filter on each subband in place
+      of the prefix.
+    entries:
+      - filter-bank-multicarrier
+      - generalized-frequency-division-multiplexing
+      - universal-filtered-multicarrier
+
+  - title: Waveforms for doubly dispersive channels
+    intro: >
+      When the channel has both delay spread and Doppler spread, OFDM subcarriers leak into each other. OTFS
+      places the data on a delay-Doppler grid, where a channel of few paths acts as a few shifts, and AFDM
+      sends the data on chirps chosen so that different paths land on different bins.
+    entries:
+      - orthogonal-time-frequency-space-modulation
+      - affine-frequency-division-multiplexing

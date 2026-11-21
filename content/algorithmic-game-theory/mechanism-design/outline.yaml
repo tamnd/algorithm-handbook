@@ -1,0 +1,84 @@
+# The order of chapter 42.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The model
+    intro: >
+      A mechanism asks agents for their private values, picks an outcome and charges payments. These entries
+      fix the utility model, the two standard meanings of "truthful", the participation and budget conditions
+      that a mechanism may have to meet, and the revelation principle, which says that truthful direct
+      mechanisms are enough to study.
+    entries:
+      - quasilinear-utility
+      - direct-revelation-mechanism
+      - dominant-strategy-incentive-compatibility
+      - bayesian-incentive-compatibility
+      - individual-rationality
+      - budget-balance
+      - revelation-principle
+
+  - title: Payments that align incentives with welfare
+    intro: >
+      If each agent is paid the reported welfare of the others, every agent wants the outcome of maximum
+      total welfare, and truth telling is dominant. This is the Groves family; the Clarke pivot rule picks
+      the member that makes the VCG mechanism. Affine maximizers add weights and constants, and the AGV
+      mechanism trades dominant strategies for a balanced budget.
+    entries:
+      - groves-mechanisms
+      - clarke-pivot-rule
+      - vcg-mechanism
+      - affine-maximizer
+      - agv-mechanism
+
+  - title: One private number per agent
+    intro: >
+      When an agent's private information is a single number, such as a value per unit of allocation, a rule
+      can be made truthful exactly when it is monotone, and Myerson's lemma gives the only payments that work.
+      Randomized rules get the same characterization in expectation.
+    entries:
+      - single-parameter-environment
+      - monotone-allocation-rule
+      - myerson-lemma
+      - truthful-in-expectation
+
+  - title: Characterizations of truthful rules
+    intro: >
+      With several private numbers per agent, the test for truthfulness becomes a condition on cycles of
+      types, and on unrestricted domains only affine maximizers pass it. Border's theorem says which interim
+      allocation rules come from a real auction. Maskin's theorem answers the same kind of question for
+      Nash implementation, where agents know each other's preferences.
+    entries:
+      - cycle-monotonicity
+      - roberts-theorem
+      - border-theorem
+      - maskin-monotonicity
+
+  - title: What cannot be had together
+    intro: >
+      Efficiency, participation, balanced budgets and incentive compatibility cannot all hold in general.
+      The Myerson-Satterthwaite and Green-Laffont theorems state two exact forms of this. The Cremer-McLean
+      theorem shows how much changes when types are correlated.
+    entries:
+      - myerson-satterthwaite-theorem
+      - green-laffont-theorem
+      - cremer-mclean-theorem
+
+  - title: Truthful approximation
+    intro: >
+      When the welfare-maximizing outcome is hard to compute, or the objective is not welfare, a mechanism
+      must be both truthful and approximately optimal. These entries cover the maximal-in-range method,
+      facility location without money, and machine scheduling, where the best deterministic truthful ratio
+      is exactly the number of machines.
+    entries:
+      - maximal-in-range-mechanism
+      - facility-location-mechanism
+      - truthful-scheduling-unrelated-machines
+      - nisan-ronen-conjecture
+
+  - title: Designing by computation
+    intro: >
+      For a concrete prior, the best mechanism can be found by a linear program, or approximately by training
+      a neural network. Bayesian persuasion applies the same linear-programming view to the design of
+      information instead of outcomes and payments.
+    entries:
+      - automated-mechanism-design
+      - differentiable-economics
+      - bayesian-persuasion

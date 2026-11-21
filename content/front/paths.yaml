@@ -5128,3 +5128,779 @@ paths:
           - entry: covariance-localization
             why: a Gaspari-Cohn taper along a periodic distance is not positive semidefinite for large cutoffs.
           - particle-filter-weight-collapse
+  - id: algorithmic-game-theory
+    title: Algorithmic game theory
+    for: a student who knows linear programming, basic probability and the idea of NP-completeness, can program, and wants to learn how equilibria are computed, what selfish behaviour costs, and how auctions, elections, fair division, markets and cost sharing are designed.
+    intro: >
+      The path goes through Volume 42, after a base of probability from
+      Volume 1, zero-sum games from Volume 29, linear programming from
+      Volume 15 and the classes PPAD and PLS from Volume 39. It keeps the
+      line the entries draw between what exists, what can be computed and
+      what is only believed hard. Every finite game has a mixed Nash
+      equilibrium by a fixed-point theorem, which is not an algorithm.
+      Zero-sum games and correlated equilibria are solved by linear
+      programs. Finding a Nash equilibrium is PPAD-complete already for two
+      players, which is evidence of hardness, not a proof of it. No-regret
+      play converges in time average to coarse correlated equilibria, not to
+      Nash equilibria. Price of anarchy bounds hold for the class of cost
+      functions and the kind of equilibrium they state. Mechanisms are
+      truthful in the sense their entries give, dominant strategy or Bayes;
+      the impossibility theorems need their exact hypotheses, and the
+      NP-hardness of manipulating an election is a worst-case statement.
+    stages:
+      - title: Games and their equilibria
+        intro: >
+          Expected value and zero-sum games from Volumes 1 and 29, then the
+          normal-form game, mixed strategies and the main solution concepts
+          of Chapter 42.1, from dominant strategies to Nash, correlated and
+          subgame perfect equilibria.
+        steps:
+          - expected-value
+          - probability-distribution
+          - zero-sum-game
+          - game-tree
+          - normal-form-game
+          - bimatrix-game
+          - mixed-strategy
+          - best-response
+          - dominant-strategy
+          - prisoners-dilemma
+          - iterated-elimination-of-dominated-strategies
+          - pure-nash-equilibrium
+          - nash-equilibrium
+          - entry: minimax-theorem
+            why: in a finite two-player zero-sum game the maximin and minimax values are equal once mixed strategies are allowed; with pure strategies alone they can differ.
+          - brouwer-fixed-point-theorem
+          - entry: nash-existence-theorem
+            why: every finite game has a Nash equilibrium in mixed strategies; the proof is by a fixed-point theorem and gives no efficient algorithm.
+          - correlated-equilibrium
+          - coarse-correlated-equilibrium
+          - epsilon-nash-equilibrium
+          - bayesian-game
+          - bayes-nash-equilibrium
+          - extensive-form-game
+          - information-set
+          - subgame-perfect-equilibrium
+          - stackelberg-equilibrium
+      - title: Computing equilibria
+        intro: >
+          Linear programming solves zero-sum games and finds correlated
+          equilibria. For general two-player games the pivoting algorithms
+          can take exponential time, and the PPAD-completeness theorem
+          explains why no fast algorithm is expected. No-regret learning
+          reaches weaker equilibria cheaply.
+        steps:
+          - linear-programming-problem
+          - lp-duality
+          - entry: zero-sum-game-linear-programming
+            why: one linear program and its dual give the value and optimal mixed strategies of a two-player zero-sum game in polynomial time.
+          - entry: correlated-equilibrium-linear-program
+            why: a correlated equilibrium, even one of largest welfare, is a solution of a linear program whose size is polynomial in the size of the payoff tables.
+          - indifference-principle
+          - support-enumeration
+          - linear-complementarity-problem
+          - best-response-polytope
+          - lemke-howson-algorithm
+          - entry: savani-von-stengel-theorem
+            why: there are bimatrix games on which every Lemke-Howson path, from every starting label, is exponentially long.
+          - ppad
+          - end-of-the-line-problem
+          - entry: ppad-completeness-of-nash
+            why: finding a Nash equilibrium is PPAD-complete already for two players and for inverse-polynomial approximation; this is evidence that no polynomial algorithm exists, not a proof.
+          - entry: lipton-markakis-mehta-algorithm
+            why: an epsilon-Nash equilibrium of a bimatrix game is found in quasi-polynomial time, n to the power O(log n / epsilon^2), by searching small uniform mixtures.
+          - entry: dmp-half-approximate-nash
+            why: a 1/2-approximate Nash equilibrium of a bimatrix game with payoffs in [0, 1] takes linear time; the additive error 1/2 is the guarantee, not a measured value.
+          - multiplicative-weights-update
+          - no-regret-dynamics
+          - regret-matching
+          - entry: no-regret-coarse-correlated-theorem
+            why: when every player has external regret o(T), the empirical distribution of play converges to the set of coarse correlated equilibria; the day-to-day play need not converge, and the limit need not be a Nash equilibrium.
+          - entry: no-regret-zero-sum-theorem
+            why: in a zero-sum game the average strategies of two no-regret players are approximately optimal and the average payoff tends to the value.
+          - entry: robinson-fictitious-play-theorem
+            why: fictitious play converges in two-player zero-sum games, in empirical frequencies; Shapley's example shows it can cycle in general games.
+          - sequence-form-linear-program
+          - stackelberg-commitment-algorithm
+      - title: Potential games and the price of anarchy
+        intro: >
+          Potential games have pure equilibria that improvement paths reach,
+          though perhaps after exponentially many steps. The price of anarchy
+          bounds what selfish routing costs; each bound comes with its class
+          of latency functions and its kind of equilibrium.
+        steps:
+          - potential-game
+          - entry: best-response-dynamics
+            why: in a finite potential game it always stops at a pure Nash equilibrium, but the number of steps can be exponential.
+          - entry: rosenthal-potential-theorem
+            why: every atomic congestion game is an exact potential game, so it has a pure Nash equilibrium and every improvement path ends.
+          - pls
+          - entry: pls-completeness-of-congestion-games
+            why: finding a pure Nash equilibrium of a congestion game is PLS-complete, also for symmetric and for network games, and some improvement paths are exponentially long.
+          - price-of-anarchy
+          - price-of-stability
+          - pigou-example
+          - selfish-routing-model
+          - wardrop-equilibrium
+          - beckmann-potential
+          - system-optimal-flow
+          - entry: roughgarden-tardos-four-thirds-bound
+            why: in nonatomic selfish routing with affine latencies a Wardrop equilibrium costs at most 4/3 times the optimum; the bound is for this latency class and this equilibrium.
+          - entry: pigou-bound
+            why: if the latency class contains the constants, the worst price of anarchy of nonatomic routing is already reached on a two-link Pigou network.
+          - entry: braess-paradox
+            why: adding a fast link can raise the equilibrium latency of every traveller; it is a fact about equilibria, not about optimal flows.
+          - atomic-congestion-game
+          - entry: atomic-linear-congestion-price-of-anarchy
+            why: in atomic unweighted congestion games with affine costs every pure Nash equilibrium costs at most 5/2 times the optimum, and the bound is tight.
+          - entry: smoothness-framework
+            why: a (lambda, mu) smoothness inequality bounds the price of anarchy by lambda/(1 - mu) for pure, mixed, correlated and coarse correlated outcomes alike, including no-regret play.
+          - marginal-cost-tolls
+          - shapley-network-design-game
+          - entry: harmonic-price-of-stability
+            why: some pure equilibrium of the Shapley network design game with n players costs at most H(n) times the optimum; tight in directed graphs, open in undirected ones.
+      - title: Mechanism design
+        intro: >
+          A mechanism asks agents for private information and must make
+          honesty pay. The VCG mechanism does this for welfare, and Myerson's
+          lemma characterizes truthful mechanisms with one number per agent.
+          The impossibility theorems mark what no mechanism can do.
+        steps:
+          - quasilinear-utility
+          - direct-revelation-mechanism
+          - dominant-strategy-incentive-compatibility
+          - revelation-principle
+          - individual-rationality
+          - budget-balance
+          - entry: vcg-mechanism
+            why: truth telling is a dominant strategy and the outcome maximizes reported welfare, but the payments are not budget balanced and the revenue can be low or zero.
+          - clarke-pivot-rule
+          - groves-mechanisms
+          - entry: green-laffont-theorem
+            why: on unrestricted domains every efficient dominant-strategy truthful mechanism is a Groves mechanism, and a companion result shows that none is budget balanced.
+          - single-parameter-environment
+          - monotone-allocation-rule
+          - entry: myerson-lemma
+            why: in a single-parameter environment an allocation rule has truthful payments if and only if it is monotone, and the payments are unique once a zero bid pays zero.
+          - bayesian-incentive-compatibility
+          - entry: myerson-satterthwaite-theorem
+            why: with independent private values on overlapping intervals with positive densities, no Bayes incentive compatible, interim individually rational and weakly budget balanced mechanism trades efficiently between a buyer and a seller.
+          - roberts-theorem
+          - truthful-scheduling-unrelated-machines
+          - entry: nisan-ronen-conjecture
+            why: no deterministic truthful mechanism for n unrelated machines has makespan ratio below n; it was proved in 2023, and the bound is for deterministic mechanisms.
+      - title: Auctions
+        intro: >
+          Single-item auctions with independent private values: which are
+          truthful, what their equilibria are, and which earns the most.
+          Then sponsored search and combinatorial auctions, where the
+          allocation itself is hard to compute.
+        steps:
+          - independent-private-values
+          - entry: vickrey-auction
+            why: the highest bidder pays the second highest bid, so bidding one's value is a weakly dominant strategy.
+          - english-auction
+          - entry: first-price-auction
+            why: it is not truthful; bidders shade their bids below their values.
+          - entry: first-price-auction-equilibrium
+            why: the bid equal to the expected highest rival value, given that it is below one's own, is a Bayes-Nash equilibrium in the symmetric independent private values model.
+          - entry: revenue-equivalence-theorem
+            why: with independent private values and risk-neutral bidders, auctions with the same equilibrium allocation and the same payment of the lowest type have the same expected revenue.
+          - virtual-valuation
+          - regular-distribution
+          - ironing
+          - entry: myerson-optimal-auction
+            why: giving the item to the highest nonnegative ironed virtual value maximizes expected revenue for independent private values; ironing is needed only when a distribution is not regular.
+          - entry: bulow-klemperer-theorem
+            why: for i.i.d. regular values, the Vickrey auction with n + 1 bidders and no reserve earns at least as much as the optimal auction with n bidders.
+          - position-auction
+          - entry: generalized-second-price-auction
+            why: it is not truthful, but it has an envy-free equilibrium with the outcome and payments of VCG.
+          - combinatorial-auction
+          - entry: winner-determination-problem
+            why: choosing the best set of disjoint package bids is weighted set packing, so it is NP-hard and hard to approximate.
+          - single-minded-bidder-mechanism
+      - title: Social choice and voting
+        intro: >
+          Voting rules turn ballots into a winner or a ranking. Arrow's and
+          the Gibbard-Satterthwaite theorems show that no rule has every
+          desirable property; hardness of manipulation and of some rules is
+          worst-case complexity.
+        steps:
+          - preference-profile
+          - plurality-voting
+          - borda-count
+          - condorcet-winner
+          - condorcet-paradox
+          - social-welfare-function
+          - entry: arrow-impossibility-theorem
+            why: with at least three alternatives and an unrestricted domain, every social welfare function that satisfies Pareto and independence of irrelevant alternatives is a dictatorship.
+          - may-theorem
+          - single-peaked-preferences
+          - median-voter-theorem
+          - entry: gibbard-satterthwaite-theorem
+            why: a deterministic voting rule with at least three possible winners that is strategyproof is a dictatorship; with two possible winners majority rule is strategyproof.
+          - entry: voting-manipulation-problem
+            why: manipulation is NP-hard for some rules; this is a worst-case statement and does not make manipulation hard on typical elections.
+          - entry: kemeny-rank-aggregation
+            why: finding a Kemeny ranking is NP-hard, already for four input rankings.
+          - entry: kwiksort-rank-aggregation
+            why: random-pivot quicksort on pairwise majorities is a 2-approximation for Kemeny in expectation, and 11/7 when the better of it and an input ranking is kept.
+          - entry: dodgson-rule
+            why: deciding the Dodgson winner is Theta_2^p-complete.
+          - apportionment-problem
+          - entry: balinski-young-theorem
+            why: for four or more states no apportionment method always stays within quota and avoids the population paradox.
+          - approval-voting
+          - justified-representation
+          - method-of-equal-shares
+      - title: Fair division
+        intro: >
+          Dividing a cake among agents with different tastes, then indivisible
+          goods. Some fair divisions always exist, some exist only with huge
+          protocols, some can fail to exist, and one central case is open.
+        steps:
+          - cake-cutting-problem
+          - robertson-webb-query-model
+          - divide-and-choose
+          - proportional-division
+          - envy-freeness
+          - even-paz-algorithm
+          - entry: edmonds-pruhs-lower-bound
+            why: every deterministic proportional protocol needs Omega(n log n) queries in the Robertson-Webb model, so Even-Paz is optimal among deterministic protocols.
+          - selfridge-conway-procedure
+          - entry: aziz-mackenzie-protocol
+            why: envy-free cake cutting for any number of agents with a bounded number of queries, but the bound is a tower of exponentials.
+          - indivisible-goods-allocation
+          - entry: envy-freeness-up-to-one-good
+            why: EF1 allocations always exist, for example by round robin with additive valuations or by envy-cycle elimination.
+          - round-robin-allocation
+          - envy-cycle-elimination
+          - entry: envy-freeness-up-to-any-good
+            why: EFX allocations exist for two agents and for three additive agents; for four or more additive agents existence is open.
+          - maximin-share
+          - entry: mms-nonexistence-theorem
+            why: there are additive instances in which no allocation gives every agent its maximin share.
+          - entry: approximate-mms-allocation
+            why: a constant fraction such as 3/4 of every maximin share can be guaranteed in polynomial time.
+          - maximum-nash-welfare
+      - title: Matching and markets
+        intro: >
+          Stable matching and its incentives, allocation of houses and
+          kidneys without money, and market equilibria, which convex
+          programming finds for Fisher markets and which are PPAD-hard in
+          general exchange markets.
+        steps:
+          - stable-matching
+          - gale-shapley
+          - entry: deferred-acceptance-strategyproofness
+            why: truth is a dominant strategy for every proposer, but not for the receiving side.
+          - entry: roth-impossibility-theorem
+            why: no stable matching mechanism makes truthful reporting dominant for both sides.
+          - lattice-of-stable-matchings
+          - rural-hospitals-theorem
+          - school-choice-problem
+          - house-allocation-problem
+          - serial-dictatorship
+          - shapley-scarf-housing-market
+          - entry: top-trading-cycles
+            why: with strict preferences it gives the unique strict core allocation of a housing market, and it is strategy-proof.
+          - kidney-exchange-problem
+          - competitive-equilibrium
+          - fisher-market
+          - entry: eisenberg-gale-program
+            why: the equilibrium allocations of a linear Fisher market maximize the budget-weighted sum of log utilities, a convex program whose dual variables are the prices.
+          - arrow-debreu-market
+          - entry: arrow-debreu-existence-theorem
+            why: under continuity, convexity, local nonsatiation and positive endowments an exchange market has an equilibrium, by a fixed-point argument.
+          - entry: ppad-hardness-of-arrow-debreu
+            why: finding an equilibrium with additively separable piecewise-linear concave utilities is PPAD-complete, even with two segments per good.
+      - title: Cooperative games and cost sharing
+        intro: >
+          Coalitions and how to divide what they earn or what they cost.
+          The core can be empty, the Shapley value is fixed by its axioms,
+          and computing it is hard for weighted voting games; cost-sharing
+          mechanisms trade budget balance against efficiency.
+        steps:
+          - transferable-utility-game
+          - core-of-a-cooperative-game
+          - entry: bondareva-shapley-theorem
+            why: the core is nonempty if and only if the game is balanced, by LP duality; many games have an empty core.
+          - least-core
+          - nucleolus
+          - shapley-value
+          - entry: shapley-uniqueness-theorem
+            why: the Shapley value is the only value that is efficient, symmetric, additive and gives null players zero.
+          - convex-game
+          - entry: shapley-convex-games-theorem
+            why: the core of a convex game is the convex hull of the marginal vectors and contains the Shapley value; outside convex games the Shapley value can lie outside the core.
+          - weighted-voting-game
+          - shapley-shubik-index
+          - banzhaf-index
+          - entry: power-index-dynamic-programming
+            why: the indices of a weighted voting game take pseudo-polynomial time, polynomial in the number of players and the total weight.
+          - entry: power-index-hardness
+            why: computing the Shapley-Shubik or Banzhaf index of a player in a weighted voting game is #P-complete, and deciding whether it is positive is NP-complete; the hardness needs large weights.
+          - bankruptcy-problem
+          - talmud-rule
+          - cost-sharing-mechanism
+          - cross-monotonicity
+          - entry: moulin-mechanism
+            why: with a cross-monotonic cost-sharing method it is group strategyproof and recovers the cost of the served set within the method's budget-balance factor, but it need not be efficient.
+          - hedonic-game
+  - id: communications
+    title: Communications and radar
+    for: a student who knows probability, linear algebra and the Fourier transform, can program, and wants to learn how a receiver recovers data from a noisy, fading channel, how many users and antennas share it, and how the same ideas detect targets in radar.
+    intro: >
+      The path goes through Volume 44, after a base of signal processing
+      from Volume 28 and coding from Volume 24. It keeps the line the
+      entries draw between what is proved and what is measured. Every rate
+      below capacity is achievable, and the AWGN capacity is half of
+      log2(1 + SNR) per real dimension; ergodic and outage capacity answer
+      different questions. Closed-form error rates are exact only for their
+      model, the Gray-labelled bit error formulas are high-SNR
+      approximations, and union and Chernoff bounds are bounds. The MAP
+      detector minimizes the error probability and equals maximum
+      likelihood for equal priors; Viterbi detection is maximum likelihood
+      over sequences and BCJR gives per-symbol MAP. Sphere decoding is exact
+      maximum likelihood with a cost that is exponential in the worst case
+      and depends on the SNR; zero-forcing and MMSE detection are
+      suboptimal, and successive cancellation suffers error propagation.
+      Simulated error rates are measurements for their model, seed and
+      number of trials.
+    stages:
+      - title: Signals, noise and codes
+        intro: >
+          The matched filter, sampling and the Fourier transform from
+          Volumes 28 and 11, the Neyman-Pearson lemma and the Cramér-Rao
+          bound from Volume 33, and the Gaussian channel and its capacity
+          from Volume 24, which the receivers of the volume try to approach.
+        steps:
+          - discrete-fourier-transform
+          - sampling-theorem
+          - entry: matched-filter
+            why: among linear filters it maximizes the output SNR in white noise; in coloured noise the noise must be whitened first.
+          - neyman-pearson-lemma
+          - cramer-rao-bound
+          - additive-white-gaussian-noise-channel
+          - channel-capacity
+      - title: Modulation and detection
+        intro: >
+          Constellations in signal space, the optimal detector, the error
+          rates it achieves, and the pulses that keep symbols from
+          interfering, from Chapter 44.1.
+        steps:
+          - gaussian-q-function
+          - signal-space-representation
+          - signal-constellation
+          - quadrature-amplitude-modulation
+          - entry: symbol-detection
+            why: the MAP rule minimizes the error probability; with equal priors it is maximum likelihood, and in AWGN that is the minimum distance rule.
+          - symbol-error-rate
+          - entry: bit-error-rate
+            why: the usual Gray-labelled formulas for PSK and QAM are high-SNR approximations, not exact values.
+          - intersymbol-interference
+          - nyquist-isi-criterion
+          - raised-cosine-filter
+          - entry: shannon-hartley-theorem
+            why: every rate below B log2(1 + S/N) is achievable and no higher rate is; practical codes run at a gap below it.
+          - soft-demapping
+      - title: Synchronization
+        intro: >
+          Recovering carrier phase, frequency and symbol timing, from
+          Chapter 44.2. Loops have acquisition and lock ranges, and
+          estimators reach their bounds only above a threshold SNR.
+        steps:
+          - entry: phase-locked-loop
+            why: with a PI loop filter it tracks phase and frequency steps with zero steady-state error, but only for offsets inside its acquisition and lock ranges.
+          - costas-loop
+          - symbol-timing-recovery
+          - gardner-timing-error-detector
+          - entry: kay-frequency-estimator
+            why: it reaches the Cramér-Rao bound only above a threshold SNR; below it the error grows sharply.
+          - frame-synchronization
+      - title: Fading channels and diversity
+        intro: >
+          Path loss, multipath and Doppler, the Rayleigh channel, and the
+          diversity that recovers its error rate, from Chapter 44.3.
+        steps:
+          - free-space-path-loss
+          - multipath-fading
+          - delay-spread
+          - doppler-spread
+          - entry: rayleigh-fading-channel
+            why: with coherent BPSK the error rate falls only as 1/(4 mean SNR), not exponentially as in AWGN.
+          - diversity-order
+          - entry: maximal-ratio-combining
+            why: the output SNR is the sum of the branch SNRs, the largest of any linear combiner.
+          - entry: ergodic-capacity
+            why: the right measure when a codeword spans many fades; outage capacity is the measure for one fade per codeword.
+          - outage-probability
+      - title: Channel estimation and equalization
+        intro: >
+          Learning the channel from pilots and undoing its intersymbol
+          interference, from Chapter 44.4.
+        steps:
+          - least-squares-channel-estimation
+          - lmmse-channel-estimation
+          - entry: zero-forcing-equalizer
+            why: it removes the interference completely but enhances the noise where the channel response is weak.
+          - entry: mmse-linear-equalizer
+            why: it trades residual interference against noise; it is suboptimal, and its output is biased.
+          - entry: decision-feedback-equalizer
+            why: cancelling past symbols helps when the decisions are right; wrong decisions propagate.
+          - entry: viterbi-equalizer
+            why: it finds the maximum likelihood symbol sequence, at a cost exponential in the channel memory.
+      - title: OFDM and multicarrier
+        intro: >
+          How a cyclic prefix turns a frequency-selective channel into many
+          flat ones, and what OFDM pays for it, from Chapter 44.5.
+        steps:
+          - entry: cyclic-prefix
+            why: a prefix at least as long as the channel memory makes the convolution circular, so one complex tap per subcarrier equalizes it.
+          - orthogonal-frequency-division-multiplexing
+          - entry: inter-carrier-interference
+            why: a carrier frequency offset breaks the orthogonality of the subcarriers and leaks energy between them.
+          - entry: peak-to-average-power-ratio
+            why: each reduction method trades its own cost (distortion, side information, lost subcarriers or extra power).
+          - entry: schmidl-cox-synchronization
+            why: the fractional estimate covers offsets below one subcarrier spacing in size, and the second training symbol extends the range by an even integer search.
+      - title: MIMO
+        intro: >
+          Many antennas at both ends, their capacity, space-time codes and
+          detectors, and massive MIMO, from Chapter 44.6.
+        steps:
+          - mimo-channel-model
+          - entry: mimo-capacity
+            why: in Rayleigh fading with the channel known at the receiver it grows like min(Nt, Nr) log2 SNR at high SNR.
+          - entry: svd-precoding
+            why: it turns the channel into parallel scalar channels; with the channel known at the transmitter, water-filling over them is optimal.
+          - entry: alamouti-code
+            why: the only complex orthogonal design with full rate and full diversity, and only for two transmit antennas.
+          - entry: mimo-detection
+            why: maximum likelihood detection is NP-hard in general, so receivers trade exactness for cost.
+          - zero-forcing-mimo-detector
+          - entry: list-sphere-decoder
+            why: it keeps the L best vectors of a sphere search to give bit LLRs to the decoder; like all sphere decoding its cost depends on the SNR and is exponential in the worst case.
+          - entry: diversity-multiplexing-tradeoff
+            why: a high-SNR asymptotic result, not a statement about any fixed SNR.
+          - massive-mimo
+          - entry: channel-hardening
+            why: it holds under the stated channel models; pilot contamination limits what massive MIMO gains.
+          - pilot-contamination
+      - title: Multiple access
+        intro: >
+          Sharing one medium among many users by time, frequency, codes and
+          power, from Chapter 44.7.
+        steps:
+          - time-division-multiple-access
+          - orthogonal-frequency-division-multiple-access
+          - direct-sequence-spread-spectrum
+          - code-division-multiple-access
+          - entry: near-far-problem
+            why: without power control or interference cancellation, a strong nearby user drowns a weak distant one.
+          - entry: multiuser-detection-np-hardness
+            why: optimum multiuser detection is NP-hard in general, which is why the linear and cancelling detectors exist.
+          - decorrelating-detector
+          - entry: successive-interference-cancellation
+            why: with Gaussian codes and whole codewords decoded it reaches the corner points of the MAC capacity region; with wrong decisions errors propagate.
+          - mac-capacity-region
+      - title: Link adaptation and resource allocation
+        intro: >
+          Fitting the rate, the power and the users to the channel, from
+          Chapter 44.8. Many allocation problems are NP-hard, and their
+          heuristics are judged by measurement.
+        steps:
+          - link-adaptation
+          - entry: snr-gap-approximation
+            why: a design rule for practical codes, not a theorem.
+          - entry: water-filling-power-allocation
+            why: optimal for parallel Gaussian channels with the gains known at the transmitter.
+          - bit-loading
+          - entry: foschini-miljanic-power-control
+            why: it converges to the least powers that meet the targets when they are feasible, that is when the spectral radius of the normalized gain matrix is below 1.
+          - entry: multiuser-diversity
+            why: serving the strongest user raises the sum throughput like log log K for i.i.d. Rayleigh users, with a scheduler that knows the channels.
+          - max-rate-scheduling
+          - hybrid-arq
+          - entry: weighted-sum-rate-maximization
+            why: NP-hard in general; WMMSE finds stationary points, not certified optima.
+      - title: Radar waveforms and detection
+        intro: >
+          The same receiver ideas turned to sensing, from Chapter 44.9:
+          pulse compression, the ambiguity function, CFAR detection and
+          Doppler processing.
+        steps:
+          - radar-range-equation
+          - swerling-target-models
+          - entry: pulse-compression
+            why: the matched filter gives the energy of a long pulse and the range resolution of its bandwidth.
+          - linear-frequency-modulation-pulse
+          - entry: ambiguity-function
+            why: its total volume is fixed by the energy, so a waveform can only move ambiguity around the delay-Doppler plane.
+          - barker-code
+          - entry: cfar-detection
+            why: the threshold keeps the false alarm probability fixed only under the assumed clutter statistics.
+          - cell-averaging-cfar
+          - range-doppler-processing
+          - entry: space-time-adaptive-processing
+            why: the sample matrix inversion loses about 3 dB on average with twice as many training snapshots as degrees of freedom, under Gaussian homogeneous training data.
+          - integrated-sensing-and-communication
+  - id: imaging-and-inverse-problems
+    title: Imaging and inverse problems
+    for: a student who knows linear algebra, the Fourier transform and basic probability, and wants to learn how images are computed from indirect data in CT, MRI, ultrasound, radar, seismic surveys, diffraction and telescopes.
+    intro: >
+      The path goes through Volume 46, after a base of linear algebra, Fourier
+      analysis and sparse optimization from other volumes. It first builds the
+      theory of ill-posed problems and regularization, where convergence rates
+      are proved under source conditions and the parameter rules are split into
+      those that use the noise level and those that are heuristics. Then it
+      treats sparsity and learned reconstruction, keeping apart what is proved
+      under stated conditions and what is only measured. The rest of the path
+      applies these ideas to tomography, MRI, wave imaging, phase retrieval and
+      deconvolution, where the exact formulas need complete data and the
+      nonconvex problems need good starting points.
+    stages:
+      - title: The base from other volumes
+        intro: >
+          Least squares, the SVD and Fourier transforms are the language of the
+          whole path. Sparse recovery and its proximal solvers come from the
+          volumes on signals and optimization.
+        steps:
+          - singular-value-decomposition
+          - least-squares-problem
+          - tikhonov-regularization
+          - conjugate-gradient-method
+          - entry: kaczmarz-method
+            why: this is ART, the first CT reconstruction method; for a consistent system the cyclic method converges to the solution nearest the starting point, and for an inconsistent one it ends in a limit cycle.
+          - discrete-fourier-transform
+          - fast-fourier-transform
+          - convolution-theorem
+          - proximal-operator
+          - entry: iterative-shrinkage-thresholding
+            why: for the l1-penalized least squares fit with step 1/L, the objective gap is at most L times the squared initial distance over 2k, an O(1/k) bound.
+          - entry: fista
+            why: the same cost per step as ISTA with an O(1/k^2) bound on the objective gap for convex problems; the iterates need not decrease the objective at every step.
+          - entry: compressed-sensing
+            why: Gaussian matrices with order s log(n/s) rows have the restricted isometry property with high probability, and then basis pursuit recovers every s-sparse signal exactly without noise.
+      - title: Ill-posed problems and regularization
+        intro: >
+          A compact forward operator has an unbounded inverse, so a solution must
+          be stabilized. The stage builds filter methods, iterations stopped
+          early and parameter rules, and ends with the Bayesian view.
+        steps:
+          - inverse-problem
+          - forward-operator
+          - well-posed-problem
+          - singular-value-expansion
+          - entry: picard-condition
+            why: for compact A, Ax = y has a solution exactly when y lies in the closure of the range and the sum of |<u_k, y>|^2/sigma_k^2 is finite.
+          - degree-of-ill-posedness
+          - regularization-method
+          - spectral-filter-factors
+          - truncated-svd
+          - source-condition
+          - entry: tikhonov-convergence-rates
+            why: under the source condition with 0 < nu <= 1 and the a priori choice of alpha, the error is of order delta^(2nu/(2nu+1)), which is order optimal; it saturates at delta^(2/3).
+          - entry: qualification-of-regularization
+            why: Tikhonov has qualification 1 in this convention, TSVD and Landweber infinite; an a posteriori rule can lower it, so Tikhonov with the discrepancy principle is order optimal only up to nu = 1/2.
+          - entry: semi-convergence
+            why: on noisy data the error of an iteration such as Landweber, CGLS, ART, SIRT, MLEM or Richardson-Lucy first falls and then grows, so the iteration must be stopped.
+          - entry: landweber-iteration
+            why: with a step between 0 and 2/||A||^2 it converges for exact data in the range of A; with noisy data the iteration index is the regularization parameter.
+          - cgls
+          - regularization-parameter-choice
+          - entry: morozov-discrepancy-principle
+            why: it stops when the residual reaches tau times the noise level with tau >= 1, and it is a proved convergent rule because it uses the noise level.
+          - generalized-cross-validation
+          - l-curve-method
+          - entry: bakushinskii-veto
+            why: a rule that ignores the noise level can converge for all data and all noise only if the inverse is bounded, so GCV and the L-curve are heuristics; they converge only under restrictions on the noise.
+          - bayes-theorem
+          - bayesian-inverse-problem
+          - entry: linear-gaussian-inverse-problem
+            why: with a linear model and Gaussian prior and noise the posterior is Gaussian, its mean is a weighted Tikhonov solution, and its covariance does not depend on the data.
+      - title: Sparsity, variational and learned reconstruction
+        intro: >
+          Convex priors such as total variation and sparsity replace the
+          quadratic penalty. Recovery is proved under conditions on the matrix;
+          learned methods have guarantees only under stated assumptions.
+        steps:
+          - variational-regularization
+          - total-variation-denoising
+          - entry: null-space-property
+            why: it is the exact condition for basis pursuit to recover every s-sparse vector; the restricted isometry property is only sufficient, and both constants are NP-hard to compute.
+          - entry: candes-romberg-tao-theorem
+            why: a fixed signal with |T| <= C|Omega|/log N nonzeros is recovered from |Omega| random Fourier samples with probability 1 - O(N^-M); it is a statement for one signal, not for all at once.
+          - entry: donoho-tanner-phase-transition
+            why: for Gaussian measurements the boundary between success and failure of l1 recovery is a computed curve, not a bound up to an unknown constant.
+          - entry: chambolle-pock-algorithm
+            why: it converges when tau sigma ||K||^2 < 1, with an O(1/N) bound on the ergodic primal-dual gap.
+          - admm
+          - split-bregman-method
+          - entry: plug-and-play-priors
+            why: it converges when the denoiser is the proximal map of a convex function, or under stated conditions such as a Lipschitz residual and a strongly convex data term; with BM3D or a trained network the results are measured.
+          - entry: regularization-by-denoising
+            why: its gradient formula x - D(x) needs a locally homogeneous denoiser with a symmetric Jacobian; common denoisers lack these, and then the iteration does not minimize the stated objective.
+          - entry: algorithm-unrolling
+            why: the layers are trained, so there is no guarantee for inputs unlike the training data.
+          - entry: lista
+            why: a measured speedup over ISTA and FISTA on the training distribution, not a proved one.
+          - entry: deep-image-prior
+            why: with a linear generator it reduces to Landweber iteration, so early stopping matters; for a network there is no guarantee.
+          - diffusion-posterior-sampling
+      - title: Tomography
+        intro: >
+          The Radon transform and the Fourier slice theorem give exact inversion
+          for complete data. Incomplete data, cone beams and emission counts
+          lead to approximations, iterations and severe ill-posedness.
+        steps:
+          - beer-lambert-law
+          - radon-transform
+          - back-projection-operator
+          - entry: fourier-slice-theorem
+            why: the 1D Fourier transform of a projection is exactly the 2D Fourier transform of the object on a line through the origin.
+          - ramp-filter
+          - entry: filtered-back-projection
+            why: it discretizes the exact inversion formula for complete parallel data; with a angles, d detector bins and an n x n image it takes O(a d log d + a n^2) time.
+          - entry: feldkamp-davis-kress
+            why: for a circular orbit it is exact only in the orbit plane and for objects constant along the axis; elsewhere it is an approximation, good for small cone angles.
+          - entry: tuy-condition
+            why: exact cone-beam reconstruction needs every plane through the object to meet the source trajectory; a single circle fails this and a helix meets it.
+          - katsevich-algorithm
+          - entry: sirt
+            why: a weighted Landweber iteration, so it converges for exact data and shows semi-convergence on noisy data.
+          - sart
+          - expectation-maximization
+          - emission-tomography-model
+          - entry: mlem-reconstruction
+            why: each step keeps the image nonnegative and never decreases the Poisson likelihood; on noisy data it is stopped early.
+          - entry: osem
+            why: much faster than MLEM per pass, but it does not increase the likelihood monotonically and need not converge on noisy data.
+          - entry: limited-angle-tomography
+            why: a missing double wedge in Fourier space; the data still fix a compactly supported object, but the problem is severely ill-posed.
+          - entry: interior-tomography
+            why: rays through the region of interest alone do not fix the image there without prior information.
+      - title: MRI reconstruction
+        intro: >
+          The scanner samples the Fourier transform of the image. Parallel
+          imaging and compressed sensing take fewer samples, at a price in noise
+          or in conditions on the sampling.
+        steps:
+          - bloch-equations
+          - mri-signal-equation
+          - entry: k-space
+            why: the spacing of the samples sets the field of view and their extent the resolution; for Cartesian sampling, too wide a spacing folds the image exactly as the discrete Fourier transform says.
+          - coil-sensitivity-map
+          - entry: sense
+            why: it unfolds a uniformly undersampled image pixel by pixel and needs the acceleration R to be at most the number of coils c.
+          - entry: g-factor
+            why: the noise of parallel imaging grows by the g-factor, which is at least 1, on top of the sqrt(R) loss from fewer samples.
+          - entry: grappa
+            why: it fills missing k-space lines from nearby lines with weights fitted on calibration data, without coil maps.
+          - partial-fourier-reconstruction
+          - entry: homodyne-reconstruction
+            why: exact for a real image times a constant phase with a nonnegative real part; for a smooth phase it is an approximation.
+          - k-space-trajectory
+          - entry: nonuniform-fft
+            why: it approximates the nonuniform discrete Fourier transform to a chosen precision in near-linear time, which makes gridding fast.
+          - density-compensation
+          - compressed-sensing-mri
+          - entry: variable-density-sampling
+            why: uniform random sampling fails for Fourier data and wavelets because the coherence is highest at low frequencies, so the center of k-space is sampled densely.
+      - title: Imaging with waves
+        intro: >
+          Ultrasound, radar and seismic imaging all form images from echoes.
+          Focusing and migration apply adjoints of wave models; inversion fits
+          the data and is nonconvex.
+        steps:
+          - delay-and-sum-beamforming
+          - pulse-echo-imaging
+          - b-mode-image-formation
+          - entry: speckle
+            why: it comes from interference of echoes of many unresolved scatterers; when fully developed the amplitude is Rayleigh and the intensity exponential.
+          - total-focusing-method
+          - pulse-compression
+          - synthetic-aperture-radar
+          - sar-image-formation
+          - sar-backprojection
+          - entry: fast-factorized-backprojection
+            why: it cuts backprojection from O(N^3) to O(N^2 log N) for an N x N image with N pulses; its interpolation error falls as the oversampling grows.
+          - entry: phase-unwrapping
+            why: in 2D the wrapped differences are a gradient only where there are no residues; every method must decide where to put the error.
+          - entry: diffraction-tomography
+            why: it inverts scattering data under the Born approximation, which holds only for weak scatterers.
+          - seismic-reflection-model
+          - normal-moveout-correction
+          - common-midpoint-stacking
+          - entry: dix-formula
+            why: for flat layers it turns rms velocities, the small-offset moveout velocities, into interval velocities; errors are amplified by about t_n/(t_n - t_{n-1}), so thin layers are poorly fixed.
+          - exploding-reflector-model
+          - seismic-migration
+          - entry: kirchhoff-migration
+            why: a high-frequency approximation and the adjoint of a ray-based modeling operator, not its inverse.
+          - reverse-time-migration
+          - entry: least-squares-migration
+            why: migration is the adjoint, so it fits the data by iterating with the modeling operator and its adjoint, for example by CGLS.
+          - entry: adjoint-state-method
+            why: the gradient with respect to all model parameters costs one forward and one adjoint simulation per source.
+          - entry: full-waveform-inversion
+            why: the misfit is nonconvex, so the result depends on the starting model.
+          - entry: cycle-skipping
+            why: when predicted and observed waves are off by more than half a period, a local method converges to a wrong minimum.
+      - title: Phase retrieval and coherent imaging
+        intro: >
+          Detectors record intensities and lose the phase. Uniqueness depends on
+          the dimension and on oversampling; the projection algorithms work in
+          practice, and some convex and nonconvex methods have guarantees for
+          random measurements.
+        steps:
+          - phase-retrieval
+          - phase-retrieval-ambiguities
+          - entry: bruck-sodin-uniqueness
+            why: almost every object in two or more dimensions is fixed by its Fourier modulus up to the trivial ambiguities; in 1D there can be up to 2^(n-2) essentially different signals.
+          - oversampling-in-phase-retrieval
+          - entry: error-reduction-algorithm
+            why: its error never increases, but it stagnates in a wrong solution.
+          - entry: hybrid-input-output
+            why: it escapes the stagnation of error reduction in practice, but has no convergence proof.
+          - shrinkwrap
+          - ptychography
+          - entry: complement-property
+            why: real signals are fixed up to sign by the magnitudes exactly when every split of the vectors leaves one part spanning, which needs at least 2n - 1 vectors.
+          - entry: phaselift
+            why: a convex semidefinite relaxation, proved exact with high probability from a number of Gaussian measurements of the order of n.
+          - spectral-initialization
+          - entry: wirtinger-flow
+            why: from the spectral start it converges at a geometric rate to the signal up to a global phase, for about n log n Gaussian measurements with high probability.
+      - title: Deconvolution, astronomy and super-resolution
+        intro: >
+          A blur by a known or unknown point spread function is undone with the
+          methods of the earlier stages. Radio astronomy reconstructs from
+          sampled Fourier data, and super-resolution goes past the diffraction
+          limit only under stated models.
+        steps:
+          - optical-transfer-function
+          - entry: abbe-diffraction-limit
+            why: the incoherent OTF is zero at and above 2NA/lambda, so no linear filter recovers those frequencies.
+          - entry: rayleigh-criterion
+            why: 0.61 lambda/NA is a convention for two equal points, not a limit of what can be estimated.
+          - entry: wiener-filter
+            why: the linear MMSE estimator for stationary Gaussian signal and noise with known spectra.
+          - entry: richardson-lucy-deconvolution
+            why: EM for Poisson data with a known PSF; it keeps the image nonnegative and is stopped early on noisy data.
+          - entry: ayers-dainty-blind-deconvolution
+            why: blind deconvolution has scale and shift ambiguities, and this iteration has no convergence proof.
+          - aperture-synthesis
+          - dirty-image
+          - entry: hogbom-clean
+            why: greedy coordinate descent on the misfit, which decreases for 0 < g < 2; the model fits the measured frequencies but has no general guarantee of reaching the true sky.
+          - entry: multiframe-super-resolution
+            why: it undoes aliasing from several shifted frames, not the diffraction limit.
+          - entry: structured-illumination-microscopy
+            why: linear SIM moves high frequencies into the passband and about doubles the resolution.
+          - single-molecule-localization
+          - entry: localization-precision-formula
+            why: the Thompson-Larson-Webb formula is an approximation, corrected by Mortensen and others; the exact limit for an unbiased estimator is the Cramer-Rao bound.
+          - entry: super-resolution-total-variation-theorem
+            why: spikes separated by at least 2/f_c are recovered exactly by total variation minimization from frequencies up to f_c, for f_c >= 128.

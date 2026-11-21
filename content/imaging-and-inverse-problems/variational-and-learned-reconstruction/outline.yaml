@@ -1,0 +1,104 @@
+# The order of chapter 46.2. Groups are read in order; entries in a group too.
+groups:
+  - title: Variational models
+    intro: >
+      A [data fidelity term](/data-fidelity-term/) measures the misfit to the data and comes from the noise law.
+      [Variational regularization](/variational-regularization/) minimizes it plus a weighted regularizer, which
+      encodes what images look like: [total generalized variation](/total-generalized-variation/)
+      keeps edges without staircases, and [analysis and synthesis sparsity](/analysis-and-synthesis-sparsity/)
+      are the two ways to ask for a sparse image. [Convergence rates in the Bregman distance](/bregman-distance-convergence-rates/)
+      replace the norm rates of the linear theory.
+    entries:
+      - data-fidelity-term
+      - variational-regularization
+      - total-generalized-variation
+      - analysis-and-synthesis-sparsity
+      - bregman-distance-convergence-rates
+
+  - title: Solvers for nonsmooth models
+    intro: >
+      Total variation and $\ell_1$ terms are not differentiable, so the solvers split them off.
+      [Chambolle's projection algorithm](/chambolle-projection-algorithm/) solves total variation denoising
+      through its dual, and the [Chambolle-Pock algorithm](/chambolle-pock-algorithm/) handles a general
+      $F(Kx) + G(x)$ with proximal steps. [Bregman iteration](/bregman-iteration/) gives back the contrast that
+      a total variation reconstruction loses, and the [split Bregman method](/split-bregman-method/) is ADMM
+      in another notation.
+    entries:
+      - chambolle-projection-algorithm
+      - chambolle-pock-algorithm
+      - bregman-iteration
+      - split-bregman-method
+
+  - title: When sparse recovery works
+    intro: >
+      The [null space property](/null-space-property/) is exactly the condition under which basis pursuit
+      recovers every $s$-sparse vector. [Mutual coherence](/mutual-coherence/) gives a condition that is easy
+      to check but weak, and the [Candès-Romberg-Tao theorem](/candes-romberg-tao-theorem/) proves recovery with high
+      probability from random Fourier samples. The [Donoho-Tanner phase transition](/donoho-tanner-phase-transition/) gives the
+      boundary for Gaussian matrices as the dimension grows.
+    entries:
+      - null-space-property
+      - mutual-coherence
+      - candes-romberg-tao-theorem
+      - donoho-tanner-phase-transition
+
+  - title: Sparse recovery algorithms
+    intro: >
+      Greedy and thresholding methods need no convex solver and have guarantees under the
+      [restricted isometry property](/restricted-isometry-property/). [Iterative hard thresholding](/iterative-hard-thresholding/) keeps the $s$ largest
+      entries after each gradient step, and [CoSaMP](/cosamp/) adds and prunes candidates with a least squares
+      solve. [Approximate message passing](/approximate-message-passing/) adds a correction term whose effect is
+      predicted exactly for Gaussian matrices in the large system limit.
+    entries:
+      - iterative-hard-thresholding
+      - cosamp
+      - approximate-message-passing
+
+  - title: Learned dictionaries
+    intro: >
+      When no fixed basis makes the images sparse, [dictionary learning](/dictionary-learning/) learns one from
+      examples. [K-SVD](/k-svd/) updates one atom at a time by a rank one SVD, and
+      [convolutional sparse coding](/convolutional-sparse-coding/) learns filters for whole images and solves in
+      the Fourier domain.
+    entries:
+      - dictionary-learning
+      - k-svd
+      - convolutional-sparse-coding
+
+  - title: Imaging set-ups
+    intro: >
+      Two instruments show what the theory is for. [Coded aperture imaging](/coded-aperture-imaging/) replaces a
+      pinhole by a mask of many holes and decodes by correlation, and the
+      [single-pixel camera](/single-pixel-camera/) measures inner products of the scene with patterns and
+      reconstructs by sparse recovery.
+    entries:
+      - coded-aperture-imaging
+      - single-pixel-camera
+
+  - title: Learning inside a method
+    intro: >
+      A variational method has parameters, and a training set can choose them.
+      [Bilevel learning of regularizers](/bilevel-learning-of-regularizers/) fits the regularizer to minimize the
+      reconstruction error, and [algorithm unrolling](/algorithm-unrolling/) turns a fixed number of iterations
+      into network layers. [LISTA](/lista/) unrolls ISTA, and [learned primal-dual](/learned-primal-dual/) unrolls
+      a primal-dual method with networks in place of both proximal steps.
+    entries:
+      - bilevel-learning-of-regularizers
+      - algorithm-unrolling
+      - lista
+      - learned-primal-dual
+
+  - title: Priors from networks
+    intro: >
+      A trained network can also stand in for the prior. [Plug-and-play priors](/plug-and-play-priors/) put a
+      denoiser in place of a proximal step, and [regularization by denoising](/regularization-by-denoising/)
+      builds an explicit regularizer from one. The [deep image prior](/deep-image-prior/) uses an untrained
+      network, [compressed sensing with generative models](/compressed-sensing-generative-models/) searches the
+      range of a generator, and [diffusion posterior sampling](/diffusion-posterior-sampling/) guides a diffusion
+      model with the data. Their guarantees hold only under stated assumptions.
+    entries:
+      - plug-and-play-priors
+      - regularization-by-denoising
+      - deep-image-prior
+      - compressed-sensing-generative-models
+      - diffusion-posterior-sampling

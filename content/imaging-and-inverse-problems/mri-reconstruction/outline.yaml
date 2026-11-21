@@ -1,0 +1,97 @@
+# The order of chapter 46.4. Groups are read in order; entries in a group too.
+groups:
+  - title: Physics and the forward model
+    intro: >
+      The [Bloch equations](/bloch-equations/) describe how the magnetization precesses and relaxes. The
+      [signal equation](/mri-signal-equation/) shows that, with gradients on, the received signal is a sample of
+      the Fourier transform of the image at a point $k(t)$ set by the integral of the gradient. So the data live
+      in [k-space](/k-space/), the scan is a [trajectory](/k-space-trajectory/) through it, and the
+      [MRI reconstruction problem](/mri-reconstruction-problem/) is to invert a sampled, possibly multi-coil,
+      Fourier operator.
+    entries:
+      - bloch-equations
+      - mri-signal-equation
+      - k-space
+      - k-space-trajectory
+      - mri-reconstruction-problem
+
+  - title: Non-Cartesian scans
+    intro: >
+      Spokes and spirals do not fall on a grid. [Density compensation](/density-compensation/) weights each
+      sample by the area it stands for, [conjugate phase reconstruction](/conjugate-phase-reconstruction/) is the
+      density-weighted adjoint of the signal model with the field map included, and [PROPELLER](/propeller-mri/) uses rotated strips that
+      overlap at the center to correct motion.
+    entries:
+      - density-compensation
+      - conjugate-phase-reconstruction
+      - propeller-mri
+
+  - title: Partial Fourier
+    intro: >
+      A real image has Hermitian k-space, so a little more than half of it is enough when the phase is smooth.
+      [Partial Fourier reconstruction](/partial-fourier-reconstruction/) states what can and cannot be recovered,
+      [homodyne reconstruction](/homodyne-reconstruction/) does it in one pass, and
+      [POCS](/pocs-partial-fourier/) does it by alternating projections.
+    entries:
+      - partial-fourier-reconstruction
+      - homodyne-reconstruction
+      - pocs-partial-fourier
+
+  - title: Coil maps and image-domain parallel imaging
+    intro: >
+      Receive coils see the object through their [sensitivity maps](/coil-sensitivity-map/).
+      [Root sum of squares](/root-sum-of-squares-coil-combination/) combines the coil images without the maps.
+      [SENSE](/sense/) uses the maps to unfold an image that was undersampled by a factor $R$, at a noise cost
+      measured by the [g-factor](/g-factor/), and [CG-SENSE](/cg-sense/) solves the same least squares problem
+      for any trajectory.
+    entries:
+      - coil-sensitivity-map
+      - root-sum-of-squares-coil-combination
+      - sense
+      - g-factor
+      - cg-sense
+
+  - title: Parallel imaging in k-space
+    intro: >
+      [GRAPPA](/grappa/) fills the skipped lines with a kernel fitted on a fully sampled center block and needs no
+      maps. [SPIRiT](/spirit/) asks that all of k-space be consistent with such a kernel, [ESPIRiT](/espirit/)
+      extracts maps from the kernel, and [slice-GRAPPA](/slice-grappa/) separates slices that were excited at
+      once.
+    entries:
+      - grappa
+      - spirit
+      - espirit
+      - slice-grappa
+
+  - title: Sparsity and low rank
+    intro: >
+      [Compressed sensing MRI](/compressed-sensing-mri/) samples k-space at random and reconstructs by
+      minimizing a sparsity norm. [Variable density sampling](/variable-density-sampling/) explains why the
+      center should be sampled more densely, and [LORAKS](/loraks/) replaces sparsity by the low rank of a
+      structured matrix built from k-space.
+    entries:
+      - compressed-sensing-mri
+      - variable-density-sampling
+      - loraks
+
+  - title: Dynamic imaging
+    intro: >
+      A series of frames is highly redundant in time. [k-t BLAST](/k-t-blast/) uses a training scan to unfold
+      aliasing in the space-frequency domain, the [partial separability model](/partial-separability-model/)
+      writes the series as a matrix of low rank, and [L+S](/low-rank-plus-sparse-mri/) adds a sparse part for
+      what the low rank misses.
+    entries:
+      - k-t-blast
+      - partial-separability-model
+      - low-rank-plus-sparse-mri
+
+  - title: Quantitative and learned methods
+    intro: >
+      [Susceptibility mapping](/quantitative-susceptibility-mapping/) inverts a dipole kernel that is zero on a
+      cone. [MR fingerprinting](/mr-fingerprinting/) matches each signal curve against a dictionary of simulated
+      curves, and the [variational network](/variational-network-mri/) learns the regularizer of an unrolled
+      gradient scheme.
+    entries:
+      - quantitative-susceptibility-mapping
+      - mr-fingerprinting
+      - variational-network-mri

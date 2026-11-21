@@ -1,17 +1,73 @@
-A detector can count photons but cannot see the phase of the wave that brought them. An X-ray diffraction pattern, the far field of a laser through a sample, the image of a star through a telescope and the spectrogram of a sound all record the magnitude of a Fourier transform and lose its phase. The phase holds most of what makes an image an image, so getting it back is the central computation of crystallography, coherent diffraction imaging and much of optics. This chapter is about that computation.
+An X-ray detector, an electron camera and the sensor behind a microscope objective count photons. They
+record the intensity of the wave that reaches them, and the intensity is the squared magnitude of the
+complex field. The phase, which carries much of the information about the object, is lost. When the
+detector sits in the far field of the object, the field there is the Fourier transform of the object, and
+the task is to recover a signal from the magnitude of its Fourier transform. This is phase retrieval. It
+decides how protein structures are solved from crystal diffraction, how a nanocrystal is imaged with X-rays
+without any lens, how a hologram is turned back into an image, and how a microscope can image transparent
+cells.
 
-The difficulty is that the magnitude fixes less than one might hope. Its square is the Fourier transform of the [autocorrelation](/autocorrelation/), so two signals with the same autocorrelation cannot be told apart from the data. In one dimension many signals share an autocorrelation, and in two or more dimensions almost every image is determined, but knowing that a solution is unique does not make it easy to compute. The practical algorithms alternate between what the measurements say and what is known about the object, and most of them come with no guarantee that they converge to a solution.
+The magnitude fixes the [autocorrelation](/autocorrelation/) of the signal and nothing else. The signals of length $n$
+that share one autocorrelation fall into as many as $2^{n-2}$ classes that no trivial change connects, so in
+one dimension the problem is badly posed. In two or more dimensions a generic image is
+unique up to a global phase, a shift and the conjugate reversal, provided the magnitude is sampled finely
+enough. Uniqueness is not an algorithm, though. The algorithms used in practice alternate between two
+constraint sets, one of which is not convex. Some never increase their error and stagnate; the better ones
+escape stagnation but have no general convergence proof. Methods with proofs exist only for random
+measurement models.
 
 ## What the chapter covers
 
-1. **Phase retrieval.** The [phase retrieval](/phase-retrieval/) entry defines the problem for a finite signal and the samples of its [discrete-time Fourier transform](/discrete-time-fourier-transform/), and proves that $M \ge 2n - 1$ magnitude samples carry the whole autocorrelation and nothing more. It separates the trivial ambiguities, shift, conjugate reversal and a unit constant, from the nontrivial ones, which come from moving zeros of the z-transform from $a$ to $1/\bar a$ and give up to $2^{n-2}$ classes in one dimension. It then compares the methods: spectral factorization, which lists every solution in 1D; the Gerchberg-Saxton iteration and Fienup's error reduction, whose error never increases but which can stall; Fienup's hybrid input-output, which often escapes stalls but has no proof; the [Griffin-Lim algorithm](/griffin-lim-algorithm/) for spectrograms; and PhaseLift and Wirtinger flow, which recover a signal with high probability from random measurements.
-
-The other topics of the chapter are not written yet. They are the iterative algorithms in their own entries (error reduction, hybrid input-output, the difference map, relaxed averaged alternating reflections, shrinkwrap and charge flipping); the theory of uniqueness, with the trivial ambiguities, oversampling, the Bruck-Sodin theorem and the complement property; methods with guarantees, PhaseLift, Wirtinger flow and spectral initialization; crystallography, with the crystallographic phase problem, the Patterson function and direct methods; and coherent imaging, with coherent diffraction imaging, ptychography and its extended iterative engine, Fourier ptychography, digital holography and the twin image problem, the angular spectrum method and the transport of intensity equation.
+1. **The problem and its ambiguities.** [Phase retrieval](/phase-retrieval/) itself, with the
+   one-dimensional zero-flipping argument, and the [ambiguities](/phase-retrieval-ambiguities/) that no data
+   of this kind can remove.
+2. **When the magnitude determines the signal.** [Oversampling](/oversampling-in-phase-retrieval/), the
+   [Bruck-Sodin uniqueness theorem](/bruck-sodin-uniqueness/) for images of two or more dimensions, and the
+   [complement property](/complement-property/) for general linear measurements.
+3. **Iterative projection methods.** The [Gerchberg-Saxton algorithm](/gerchberg-saxton-algorithm/),
+   [error reduction](/error-reduction-algorithm/), [hybrid input-output](/hybrid-input-output/), the
+   [difference map](/difference-map/), [RAAR](/raar/) and [shrinkwrap](/shrinkwrap/).
+4. **The crystallographic phase problem.** The [phase problem of crystals](/crystallographic-phase-problem/),
+   the [Patterson function](/patterson-function/), [direct methods](/direct-methods-crystallography/) and
+   [charge flipping](/charge-flipping/).
+5. **Propagation and holography.** The [angular spectrum method](/angular-spectrum-method/),
+   [digital holography](/digital-holography-reconstruction/), the [twin image problem](/twin-image-problem/)
+   and the [transport of intensity equation](/transport-of-intensity-equation/).
+6. **Coherent diffraction imaging and ptychography.** [Coherent diffraction imaging](/coherent-diffraction-imaging/),
+   [ptychography](/ptychography/), [ePIE](/epie/) and [Fourier ptychography](/fourier-ptychography/).
+7. **Methods with guarantees.** [PhaseLift](/phaselift/), [spectral initialization](/spectral-initialization/)
+   and [Wirtinger flow](/wirtinger-flow/), which are proved to work for Gaussian measurement vectors.
 
 ## A first reading
 
-Read [phase retrieval](/phase-retrieval/) in full and work its example of $[1, 5, 6]$ and $[2, 7, 3]$ by hand. Then read the [minimum-phase system](/minimum-phase/), which is the one case in 1D where the magnitude fixes the signal, and the [cepstrum](/cepstrum/), which computes its phase. The [Griffin-Lim algorithm](/griffin-lim-algorithm/) is the same alternating idea applied to a [short-time Fourier transform](/short-time-fourier-transform/), and it is the easiest of the iterations to run on real data.
+Read these in order:
+
+1. [Phase retrieval](/phase-retrieval/)
+2. [Phase retrieval ambiguities](/phase-retrieval-ambiguities/)
+3. [Oversampling in phase retrieval](/oversampling-in-phase-retrieval/)
+4. [Gerchberg-Saxton algorithm](/gerchberg-saxton-algorithm/)
+5. [Error reduction algorithm](/error-reduction-algorithm/)
+6. [Hybrid input-output](/hybrid-input-output/)
+7. [Crystallographic phase problem](/crystallographic-phase-problem/)
+8. [Patterson function](/patterson-function/)
+9. [Angular spectrum method](/angular-spectrum-method/)
+10. [Coherent diffraction imaging](/coherent-diffraction-imaging/)
+11. [Ptychography](/ptychography/)
+
+The uniqueness theorems of the second group, the refinements of HIO (the difference map, RAAR and
+shrinkwrap), direct methods and charge flipping, and the last group can wait. Read the last group when the
+measurements are designed rather than given by physics, as in coded illumination.
 
 ## Before you start
 
-You need the [discrete Fourier transform](/discrete-fourier-transform/) of Volume 11, with Parseval's identity, and the [autocorrelation](/autocorrelation/) and the [z-transform](/z-transform/) of Volume 28. Spectral factorization finds the roots of a polynomial, as in [polynomial root finding](/polynomial-root-finding/) of Volume 12. For the methods with guarantees, [semidefinite programming](/semidefinite-programming/) and [gradient descent](/gradient-descent/) of Volume 15 are enough.
+The chapter uses the [discrete Fourier transform](/discrete-fourier-transform/), the
+[fast Fourier transform](/fast-fourier-transform/) and the [convolution theorem](/convolution-theorem/)
+from Volume 11, and the [z-transform](/z-transform/), [autocorrelation](/autocorrelation/) and the
+[Nyquist rate](/nyquist-rate/) from Volume 28. The uniqueness group needs
+[irreducible polynomials](/irreducible-polynomial/) (Volume 11). The methods with guarantees use
+[semidefinite programming](/semidefinite-programming/) and [gradient descent](/gradient-descent/) from
+Volume 15 and [power iteration](/power-iteration/) from Volume 12. The propagation group needs the
+[wave equation](/wave-equation/) (Volume 12) at the level of plane waves. Some feeling for complex numbers
+and for Fourier optics helps throughout; the [optical transfer function](/optical-transfer-function/) and the
+[Abbe diffraction limit](/abbe-diffraction-limit/), from the chapter on deconvolution and astronomical
+imaging, are used by Fourier ptychography.

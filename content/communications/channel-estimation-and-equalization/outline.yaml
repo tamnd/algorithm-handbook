@@ -1,0 +1,90 @@
+# The order of chapter 44.4. Groups are read in order; entries in a group too.
+groups:
+  - title: The two problems
+    intro: >
+      A channel with memory smears each symbol over the next few samples. The receiver must undo that
+      smearing, which is [channel equalization](/channel-equalization/), and it must first learn the channel,
+      which is [channel estimation](/channel-estimation/). These two entries state both problems, the
+      models they share and the bounds that every later method is measured against.
+    entries:
+      - channel-equalization
+      - channel-estimation
+
+  - title: Estimating the channel from pilots
+    intro: >
+      Known pilot symbols turn channel estimation into a linear regression. Least squares needs nothing but
+      the pilots; LMMSE adds the channel statistics and trades a bias for a smaller error. The other entries
+      place pilots in time on a fading channel, track the taps with a Kalman filter between pilots, and
+      exploit a channel with only a few nonzero taps.
+    entries:
+      - least-squares-channel-estimation
+      - lmmse-channel-estimation
+      - pilot-symbol-assisted-modulation
+      - kalman-channel-tracking
+      - sparse-channel-estimation
+
+  - title: Linear equalizers
+    intro: >
+      A linear equalizer is a filter followed by a slicer. The zero-forcing design inverts the channel and
+      amplifies the noise at its spectral nulls; the MMSE design balances the two. Fractional spacing makes
+      the equalizer indifferent to the sampling phase, a cyclic prefix lets it work one frequency at a time,
+      and a channel-shortening filter prepares a long channel for a short prefix.
+    entries:
+      - zero-forcing-equalizer
+      - mmse-linear-equalizer
+      - fractionally-spaced-equalizer
+      - frequency-domain-equalization
+      - channel-shortening-equalizer
+
+  - title: Decision feedback
+    intro: >
+      A decision feedback equalizer subtracts the interference of symbols it has already decided. With
+      correct decisions this removes the noise enhancement of the linear designs, and the canonical theorem
+      shows that the MMSE version loses no mutual information at all. Tomlinson-Harashima precoding moves
+      the feedback to the transmitter, where decisions cannot be wrong.
+    entries:
+      - decision-feedback-equalizer
+      - mmse-dfe-canonical-theorem
+      - tomlinson-harashima-precoding
+
+  - title: Sequence detection
+    intro: >
+      The optimal receiver decides the whole sequence at once. The whitened matched filter gives a causal
+      minimum-phase channel with white noise, and the Viterbi equalizer searches its trellis of $M^{L-1}$
+      states; the Ungerboeck receiver reaches the same decisions without whitening. Reduced-state search and
+      per-survivor processing cut the cost and let the trellis track an unknown channel.
+    entries:
+      - whitened-matched-filter
+      - viterbi-equalizer
+      - ungerboeck-mlse-receiver
+      - reduced-state-sequence-estimation
+      - per-survivor-processing
+
+  - title: Adaptive and blind equalization
+    intro: >
+      An adaptive equalizer adjusts its taps from the data, first on a training sequence and then on its
+      own decisions. A blind equalizer has no training at all and uses only the known statistics of the
+      alphabet. The Sato algorithm and the constant modulus algorithm are the two classic blind costs.
+    entries:
+      - adaptive-equalization
+      - blind-equalization
+      - sato-algorithm
+      - constant-modulus-algorithm
+
+  - title: Blind identification from second-order statistics
+    intro: >
+      At the symbol rate, second-order statistics fix only $|H|$. With two or more samples per symbol, or
+      two antennas, they fix the channel itself up to a scalar, provided the subchannels share no zero. The
+      Tong-Xu-Kailath method and the subspace method are the two ways to do it.
+    entries:
+      - tong-xu-kailath-identification
+      - subspace-channel-identification
+
+  - title: Iterative receivers
+    intro: >
+      With a code in the loop, the equalizer and the decoder can exchange soft information. Turbo
+      equalization is the loop. The soft interference cancellation equalizer is a linear MMSE equalizer that
+      uses the decoder's priors, at a fraction of the cost of a BCJR equalizer.
+    entries:
+      - turbo-equalization
+      - soft-interference-cancellation-equalizer

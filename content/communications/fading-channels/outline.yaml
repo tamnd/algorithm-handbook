@@ -1,0 +1,89 @@
+# The order of chapter 44.3. Groups are read in order; entries in a group too.
+groups:
+  - title: Path loss and shadowing
+    intro: >
+      The mean received power falls with distance. Free space gives a loss of $(4\pi d/\lambda)^2$, and
+      the log-distance model replaces the exponent 2 by a fitted exponent $n$. Shadowing adds a log-normal
+      spread around that mean, and the Okumura-Hata model is an empirical formula for urban cells fitted to
+      measurements in Tokyo.
+    entries:
+      - free-space-path-loss
+      - log-distance-path-loss-model
+      - log-normal-shadowing
+      - okumura-hata-model
+
+  - title: Multipath, delay and Doppler
+    intro: >
+      Copies of a signal that arrive along several paths add with phases that change over a fraction of a
+      wavelength. The spread of their delays sets how fast the channel changes across frequency, and the
+      spread of their Doppler shifts sets how fast it changes in time. The delay spread and the coherence
+      bandwidth are a pair, and so are the Doppler spread and the coherence time; Fleury's bound links each
+      pair.
+    entries:
+      - multipath-fading
+      - delay-spread
+      - coherence-bandwidth
+      - doppler-spread
+      - coherence-time
+
+  - title: Distributions of a flat fading gain
+    intro: >
+      When the delay spread is small against a symbol, the channel is one complex gain $h$. Many paths
+      with no dominant one make $h$ circular Gaussian and $|h|$ Rayleigh. A line-of-sight path gives the
+      Rician model with factor $K$, and the Nakagami-m model fits measured fades with one shape
+      parameter $m$.
+    entries:
+      - rayleigh-fading-channel
+      - rician-fading-channel
+      - nakagami-m-fading-channel
+
+  - title: Capacity and outage
+    intro: >
+      A fading channel has two capacities, and which one applies depends on how long a codeword is and
+      on what the transmitter knows. A codeword that spans many independent fades sees the ergodic
+      capacity $\mathbb{E}\log_2(1 + |h|^2\,\mathrm{SNR})$. A codeword inside one fade fails when the
+      fade is too deep, and the outage probability and the outage capacity measure that.
+    entries:
+      - ergodic-capacity
+      - outage-probability
+      - outage-capacity
+
+  - title: Diversity and combining
+    intro: >
+      Several independent copies of a signal rarely fade together. The diversity order is the slope of
+      the error rate against SNR on a log-log plot, and $L$ independent branches give slope $L$. Maximal
+      ratio combining gets the most SNR out of the branches, selection combining uses only the best one,
+      and equal gain combining sits between them.
+    entries:
+      - diversity-order
+      - maximal-ratio-combining
+      - selection-combining
+      - equal-gain-combining
+
+  - title: Fading in time and its simulators
+    intro: >
+      Clarke's model puts scatterers all around a moving receiver and gives the time correlation
+      $J_0(2\pi f_D \tau)$ and a U-shaped Doppler spectrum. Rice's formula then gives how often the
+      envelope crosses a level and how long a fade lasts. The three simulators make sample paths with
+      Clarke's statistics: by filtering Gaussian noise, by Jakes' fixed sum of sinusoids, and by the
+      randomized sum of Zheng and Xiao.
+    entries:
+      - clarke-model
+      - level-crossing-rate
+      - filtered-gaussian-fading-simulator
+      - jakes-fading-simulator
+      - zheng-xiao-fading-simulator
+
+  - title: Wideband, geometric and burst models
+    intro: >
+      A wideband channel is a [tapped delay line](/tapped-delay-line-channel-model/) whose taps fade. The
+      WSSUS model describes its second-order statistics by one scattering function, the Saleh-Valenzuela
+      model draws indoor rays in clusters, and geometry-based models draw scatterers and compute delays,
+      angles and Doppler shifts from their positions. The Gilbert-Elliott channel looks at fading from the
+      decoder's side, as a two-state Markov chain of good and bad periods with bursts of errors.
+    entries:
+      - tapped-delay-line-channel-model
+      - wssus-channel-model
+      - saleh-valenzuela-model
+      - geometry-based-stochastic-channel-model
+      - gilbert-elliott-channel

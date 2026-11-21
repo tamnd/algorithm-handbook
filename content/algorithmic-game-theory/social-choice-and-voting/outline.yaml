@@ -1,10 +1,119 @@
+# The order of chapter 42.6. Groups are read in order; entries in a group too.
 groups:
-  - title: Combining rankings
+  - title: Preferences and majorities
     intro: >
-      Both entries take several rankings of the same items and return one. The Borda count adds points by
-      position and runs in linear time after a sort. Kemeny rank aggregation asks for the ranking with the
-      least total [Kendall tau distance](/kendall-tau-distance/) to the inputs, which is NP-hard, and the
-      Borda order is one of its approximations.
+      The input of every rule in the chapter is a [preference profile](/preference-profile/), one ranking per
+      voter. A social welfare function turns it into a ranking, a social choice function into a winner.
+      Pairwise majority votes give the first benchmark, the Condorcet winner, and the first trouble: the
+      majority relation can be a cycle.
     entries:
+      - preference-profile
+      - social-welfare-function
+      - condorcet-winner
+      - condorcet-paradox
+
+  - title: Simple voting rules
+    intro: >
+      The rules used in most real elections. Plurality looks only at first places, the Borda count at whole
+      rankings, approval voting at sets of approved candidates, and instant-runoff voting at a sequence of
+      plurality counts with eliminations. On the same profile they can elect different candidates.
+    entries:
+      - plurality-voting
       - borda-count
+      - approval-voting
+      - instant-runoff-voting
+
+  - title: Axioms and impossibility theorems
+    intro: >
+      With two candidates, majority rule is the only good rule, by [May's theorem](/may-theorem/). With three
+      or more, Arrow's theorem rules out every ranking rule that satisfies Pareto and independence of
+      irrelevant alternatives except a dictatorship, and the Gibbard-Satterthwaite theorem says that every
+      rule with at least three possible winners other than a dictatorship can be manipulated. The jury
+      theorem is the positive counterpart for a group that has a correct answer to find.
+    entries:
+      - may-theorem
+      - arrow-impossibility-theorem
+      - gibbard-satterthwaite-theorem
+      - condorcet-jury-theorem
+
+  - title: Rules based on pairwise majorities
+    intro: >
+      Condorcet-consistent rules elect the Condorcet winner whenever there is one and differ in what they do
+      when the majority relation has cycles. The [Smith set](/smith-set/) is where the winner should lie;
+      Copeland's method counts pairwise wins, and ranked pairs and the Schulze method resolve cycles by the
+      sizes of the majorities, in polynomial time.
+    entries:
+      - smith-set
+      - copeland-method
+      - ranked-pairs
+      - schulze-method
+
+  - title: Consensus rankings and distances
+    intro: >
+      Some rules choose the ranking or the winner closest to the profile in a stated distance. Kemeny's rule
+      minimizes the total Kendall tau distance and Slater's rule the disagreements with the majority
+      relation; both are feedback arc set problems and NP-hard, and KwikSort approximates Kemeny's rule
+      within a constant factor. Dodgson's rule counts the swaps needed to make a candidate a Condorcet
+      winner, and deciding its winner is complete for the class $\Theta_2^p$.
+    entries:
       - kemeny-rank-aggregation
+      - slater-rule
+      - kwiksort-rank-aggregation
+      - dodgson-rule
+
+  - title: Single-peaked preferences
+    intro: >
+      The impossibility theorems assume that any ranking can occur. When the candidates lie on a line and
+      every voter's ranking falls away from a peak, majority voting is transitive, the median peak wins, and
+      the generalized median rules are strategyproof. Whether a profile is single-peaked can be decided in
+      linear time in the size of the profile.
+    entries:
+      - single-peaked-preferences
+      - median-voter-theorem
+      - single-peaked-recognition
+      - generalized-median-voter-rule
+
+  - title: The computational difficulty of strategic behaviour
+    intro: >
+      Since manipulation cannot be ruled out, one can ask how hard it is to find. For some rules deciding
+      whether a voter or a coalition can make a candidate win is NP-hard, and so are some forms of control
+      and bribery by an organizer. These are worst-case results. Metric distortion asks a different question
+      about the same rules: how far from the best candidate can a rule's winner be when it sees only
+      rankings.
+    entries:
+      - voting-manipulation-problem
+      - election-control-problem
+      - metric-distortion
+
+  - title: Apportionment
+    intro: >
+      Seats in a parliament must be whole numbers. Hamilton's method rounds by largest remainders and
+      suffers the Alabama paradox; divisor methods such as D'Hondt, Sainte-Lague and Huntington-Hill avoid
+      it and the population paradox but can leave the quota. The Balinski-Young theorem shows that with five
+      or more states no method both stays within quota and avoids the population paradox (with four,
+      if larger states never get fewer seats).
+    entries:
+      - apportionment-problem
+      - hamilton-method
+      - alabama-paradox
+      - dhondt-method
+      - sainte-lague-method
+      - huntington-hill-method
+      - balinski-young-theorem
+
+  - title: Committees and proportional representation
+    intro: >
+      Electing several candidates at once raises the question of proportionality: a large enough group of
+      like-minded voters should get representatives. Single transferable vote answers it for ranked ballots;
+      for approval ballots, [justified representation](/justified-representation/) states the axioms, and
+      PAV, Phragmen's method and the method of equal shares satisfy versions of them. Chamberlin-Courant
+      looks for a committee that represents each voter well, and participatory budgeting adds costs to the
+      candidates.
+    entries:
+      - single-transferable-vote
+      - justified-representation
+      - chamberlin-courant-rule
+      - proportional-approval-voting
+      - phragmen-sequential-method
+      - method-of-equal-shares
+      - participatory-budgeting

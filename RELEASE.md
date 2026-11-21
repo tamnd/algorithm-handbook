@@ -1,11 +1,11 @@
-The Handbook of Algorithms, edition 0.45.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
+The Handbook of Algorithms, edition 0.48.0: the written areas of [algorithm.tamnd.com](https://algorithm.tamnd.com)
 as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EPUB 3 and LaTeX source. Built from
-[`tamnd/algorithm` v0.45.0](https://github.com/tamnd/algorithm/releases/tag/v0.45.0)
-(`91e1d11ae55f72130a50cdc92dc2f6d9af6115be`); the edition number follows the release of the site.
+[`tamnd/algorithm` v0.48.0](https://github.com/tamnd/algorithm/releases/tag/v0.48.0)
+(`86848c7b1b17aeb7dc0bec542553c9817a7dd39b`); the edition number follows the release of the site.
 
 | | Volume | Entries | Pages |
 |---|---|---:|---:|
-| 0 | Guide and Index | the whole set | 2,351 |
+| 0 | Guide and Index | the whole set | 2,511 |
 | 1 | Foundations | 204 | 1,000 |
 | 2 | Techniques | 208 | 1,123 |
 | 3 | Data structures | 427 | 3,140 |
@@ -22,7 +22,7 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 14 | Combinatorics | 174 | 877 |
 | 15 | Optimization | 301 | 1,766 |
 | 16 | Logic and constraints | 325 | 2,106 |
-| 17 | Randomized | 141 | 840 |
+| 17 | Randomized | 141 | 842 |
 | 18 | Approximation | 213 | 1,309 |
 | 19 | Online and streaming | 195 | 1,135 |
 | 20 | Parallel | 128 | 897 |
@@ -47,48 +47,47 @@ as books, one volume per area, in PDF (7 × 10 in, with bookmarks and links), EP
 | 39 | Complexity | 284 | 1,225 |
 | 40 | Databases | 296 | 2,420 |
 | 41 | Natural language and speech | 299 | 2,157 |
-| 42 | Algorithmic game theory | 6 | 102 |
+| 42 | Algorithmic game theory | 292 | 1,845 |
 | 43 | Scientific computing | 292 | 2,441 |
+| 44 | Communications | 259 | 2,006 |
 | 45 | Security and privacy | 2 | 75 |
-| 46 | Imaging and inverse problems | 1 | 61 |
-| | **All** | **12,015** | **87,964** |
+| 46 | Imaging and inverse problems | 251 | 2,327 |
+| | **All** | **12,810** | **94,141** |
 
-- **Volume 43, Scientific computing**, now has all nine of its chapters written, 292 entries in all (3 in
-  0.43.0): *N-body and particle methods* (30 entries: direct sums, Barnes-Hut trees and the fast multipole
-  method, particle-mesh and P3M methods, plasma particle-in-cell, integrators for gravitating bodies, the material
-  point method), *Molecular simulation* (40: molecular dynamics, force fields, Ewald and particle-mesh Ewald sums,
-  constraints and multiple time steps, ab initio dynamics, thermostats and barostats, free energy methods),
-  *Conservation laws and shock capturing* (34: Riemann solvers and numerical fluxes, MUSCL, ENO and
-  discontinuous Galerkin schemes, entropy stability, well-balanced schemes, adaptive mesh refinement),
-  *Incompressible flow and turbulence* (35: projection and pressure-correction methods, interfaces and immersed
-  bodies, turbulence models from k-epsilon to large eddy simulation, lattice Boltzmann methods and smoothed
-  particle hydrodynamics), *Finite element practice* (39: weak forms, elements and assembly, locking and mixed
-  methods, stabilized and discontinuous methods, error estimation and adaptivity, high order, dynamics and
-  nonlinear solids, boundary, virtual and extended elements), *Particle transport* (27: Monte Carlo transport,
-  variance reduction, criticality, discrete ordinates, hybrid methods, thermal radiation and rarefied gas),
-  *Multiscale methods* (29: homogenization, multiscale finite elements, heterogeneous multiscale methods,
-  coarse-graining, saddle points, rare transitions and accelerated molecular dynamics), *Uncertainty
-  quantification* (29: sampling and multilevel Monte Carlo, rare failures, polynomial chaos and stochastic
-  collocation, sensitivity analysis, calibration and inverse problems, reduced models) and *Data assimilation*
-  (29: optimal interpolation, 3D-Var and 4D-Var, the ensemble Kalman filter and its repairs, ensemble smoothers,
-  hybrid methods, particle filters). The introduction of the volume is rewritten for the complete volume.
-- **Volume 0, Guide and Index**, covers the whole set of 12,015 entries and has a new learning path, *Simulation
-  of physical systems*, in seven stages from time stepping to data assimilation.
-- The subject index of a volume now lists every topic of another volume that it uses, also when two of them have
-  the same name (such as *Bit vector*, 2.12.8 and 3.12.1); before, only one of the two was listed, and which one
-  could change from build to build. References from Volumes 27 and 28 to Volume 41 now carry the numbers that
-  Volume 41 gives its entries, and a link from a proof to the proof of another entry, written as a relative path,
-  now leads to that proof.
-- Only the volumes whose text changed were built again: 0, 1, 2, 7, 10, 12, 17, 23 to 29, 31, 32, 38, 41 and 43.
-  The other volumes have the same text as in 0.43.0, and their files are those of 0.43.0 under the new names, so
-  their covers, title pages and copyright pages say edition 0.43.0.
-- The entries have the corrections that the site made up to its release v0.45.0, among them those found while
-  writing edition 0.42.0 in Volumes 3, 8 and 28 and edition 0.43.0 in Volume 41. The builder no longer patches
-  any entry.
-- Volume 44 (Communications) is not built: the site has only short pages for it so far. Volume 0 lists its
-  chapters.
+- **Three volumes are new or complete.** By its release v0.48.0 the site has written all chapters of three more
+  areas, and each volume now has its introduction, a first course, and for every chapter an opening, groups, a
+  summary, exercises with hints and notes.
+  - **Volume 42, Algorithmic game theory**, has all nine chapters, 292 entries (6 in 0.45.0), and 230 exercises:
+    *Games and solution concepts* (29 entries), *Computing equilibria* (32), *Price of anarchy and selfish
+    routing* (27), *Mechanism design* (30), *Auctions* (33), *Social choice and voting* (41), *Fair division* (32),
+    *Matching markets and market equilibria* (36) and *Cooperative games and cost sharing* (32).
+  - **Volume 44, Communications**, is built for the first time, with nine chapters, 259 entries and 226
+    exercises: *Modulation and detection* (39), *Synchronization* (22), *Fading channels* (29), *Channel
+    estimation and equalization* (28), *OFDM and multicarrier* (25), *MIMO communications* (37), *Multiple access
+    and spread spectrum* (31), *Link adaptation and resource allocation* (26) and *Radar waveforms and detection*
+    (22).
+  - **Volume 46, Imaging and inverse problems**, has all eight chapters, 251 entries (1 in 0.45.0), and 195
+    exercises: *Regularization of inverse problems* (35), *Variational and learned reconstruction* (30),
+    *Tomographic reconstruction* (42), *MRI reconstruction* (29), *Ultrasound and radar imaging* (31), *Seismic
+    imaging* (25), *Phase retrieval and coherent imaging* (26) and *Deconvolution and astronomical imaging* (33).
+- **Volume 0, Guide and Index**, covers the whole set and has three new learning paths: *Algorithmic game
+  theory*, *Communications and radar*, and *Imaging and inverse problems*.
+- **Volume 43, Scientific computing**, has the corrections of
+  [tamnd/algorithm#880](https://github.com/tamnd/algorithm/pull/880), found while writing edition 0.45.0, which
+  are in the site's release v0.48.0.
+- Only the volumes whose text changed were built again: 0, 1, 2, 7, 12, 15, 17, 19, 23 to 29, 33, 35, 38, 39,
+  41, 42, 43, 44 and 46. Most of them refer to entries of Volumes 42, 44 and 46, whose numbers are new (the
+  minimax theorem is now 42.1.10). The other volumes have the same text as in 0.45.0, and their files are those
+  of 0.45.0 under the new names, so their covers, title pages and copyright pages say the edition in which they
+  were last built: 0.45.0 for Volumes 10, 31 and 32, and 0.43.0 for the others.
+- **Corrections**: thirteen errors found in thirteen entries of Volumes 42, 44 and 46 while writing (the price of
+  stability of linear congestion games, a Talmud rule example, the hardness of bribery, a table of
+  inter-carrier interference, the monotone errors of CG-SENSE, among others) were corrected on the site after
+  v0.48.0 ([tamnd/algorithm#883](https://github.com/tamnd/algorithm/pull/883)); this edition prints the entries
+  of v0.48.0.
+- Volume 45, Security and privacy, still has two of nine chapters written, with openings for the others.
 
-**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.45.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
+**Files.** For each volume `NN-area`: `handbook-of-algorithms-0.48.0-NN-area.pdf`, `.epub`, and `-tex.tar.gz`
 (`main.tex`, `body.tex`, `handbook.sty` and the figures; compile `main.tex` with XeLaTeX or tectonic).
 `…-all-pdf.zip` and `…-all-epub.zip` hold every volume; `SHA256SUMS` lists the checksums.
 

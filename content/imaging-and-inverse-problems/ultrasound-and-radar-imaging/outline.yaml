@@ -1,0 +1,96 @@
+# The order of chapter 46.5. Groups are read in order; entries in a group too.
+groups:
+  - title: Echoes, images and speckle
+    intro: >
+      A pulse-echo system sends a short pulse and turns the time of each echo into a depth. These entries
+      give the model of the received line, the steps that turn lines of echoes into a gray-level B-mode
+      image, and the statistics of speckle, the grain that every coherent image shows when many scatterers
+      share one resolution cell.
+    entries:
+      - pulse-echo-imaging
+      - b-mode-image-formation
+      - speckle
+
+  - title: Focusing an array
+    intro: >
+      An ultrasound array focuses by delaying and adding its channels. Dynamic receive focusing moves the
+      receive focus with depth, and synthetic transmit aperture, plane-wave compounding and the total focusing
+      method also focus on transmit by storing the data of many firings. Single-element SAFT does the same
+      with one transducer moved along a line.
+    entries:
+      - dynamic-receive-focusing
+      - synthetic-transmit-aperture
+      - plane-wave-compounding
+      - total-focusing-method
+      - saft
+
+  - title: Adaptive and nonlinear beamformers
+    intro: >
+      Delay-and-sum gives the same weight to every channel. The beamformers of this group change the weights
+      from the data: the coherence factor scales each pixel by how well the channels agree, the Capon
+      beamformer minimizes the output power with a unit gain in the look direction, and delay-multiply-and-sum
+      combines the channels in pairs.
+    entries:
+      - coherence-factor
+      - capon-beamformer
+      - delay-multiply-and-sum
+
+  - title: Doppler and blood flow
+    intro: >
+      Blood moves, tissue moves less, and the echoes of a pulse train carry the motion in their phase. The
+      Kasai estimator reads the mean velocity from the lag-one autocorrelation of the slow-time samples, and
+      the SVD clutter filter removes the strong tissue signal from a stack of fast plane-wave frames before
+      the blood is imaged.
+    entries:
+      - kasai-autocorrelation-estimator
+      - svd-clutter-filter
+
+  - title: Synthetic aperture radar
+    intro: >
+      A radar on a moving platform records the echoes of many pulses and combines them into the image that a
+      much longer antenna would give. These entries give the geometry and the resolution of SAR, state image
+      formation as a matched filter problem, explain why the echoes of one target cross range cells, and show
+      the same principle when the target turns instead of the radar moving.
+    entries:
+      - synthetic-aperture-radar
+      - sar-image-formation
+      - range-cell-migration
+      - inverse-synthetic-aperture-radar
+
+  - title: SAR focusing algorithms
+    intro: >
+      Back-projection focuses each pixel in the time domain and works for any flight path; fast factorized
+      back-projection makes it cheaper by merging subapertures. The range-Doppler, chirp scaling, omega-k and
+      polar format algorithms work in the frequency domain with FFTs, under a straight path or a plane-wave
+      approximation. Phase gradient autofocus then estimates the phase error that the motion data missed.
+    entries:
+      - sar-backprojection
+      - fast-factorized-backprojection
+      - range-doppler-algorithm
+      - chirp-scaling-algorithm
+      - omega-k-algorithm
+      - polar-format-algorithm
+      - phase-gradient-autofocus
+
+  - title: Interferometry and phase unwrapping
+    intro: >
+      The phase difference of two SAR images measures height or ground motion, but only modulo $2\pi$. These
+      entries state the unwrapping problem, give the interferometric height formula, and treat two methods: the
+      Goldstein branch cut, which joins residues and integrates around the cuts, and the least-squares method,
+      which solves a Poisson equation with fast cosine transforms.
+    entries:
+      - phase-unwrapping
+      - sar-interferometry
+      - goldstein-branch-cut
+      - least-squares-phase-unwrapping
+
+  - title: Tomography with waves
+    intro: >
+      In photoacoustic tomography, light heats the tissue and the tissue sends out sound, so the source of the
+      wave is the image. Universal back-projection inverts the spherical means exactly for a closed sphere.
+      Diffraction tomography treats a weak scatterer under the Born approximation and maps the scattered field
+      to arcs in the Fourier domain of the object.
+    entries:
+      - photoacoustic-tomography
+      - universal-back-projection
+      - diffraction-tomography

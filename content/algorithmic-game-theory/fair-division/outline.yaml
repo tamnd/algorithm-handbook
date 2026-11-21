@@ -1,0 +1,102 @@
+# The order of chapter 42.7. Groups are read in order; entries in a group too.
+groups:
+  - title: The cake and the fairness goals
+    intro: >
+      The [cake cutting problem](/cake-cutting-problem/) models a divisible resource as the interval
+      $[0, 1]$, shared by agents whose valuations differ. Two goals run through the chapter: a
+      proportional piece is worth at least $1/n$ to its owner, and an envy-free division leaves no agent
+      preferring another agent's piece. The [Robertson-Webb query model](/robertson-webb-query-model/)
+      fixes what a protocol may ask and so what its cost is.
+    entries:
+      - cake-cutting-problem
+      - proportional-division
+      - envy-freeness
+      - robertson-webb-query-model
+
+  - title: Proportional protocols
+    intro: >
+      Divide and choose settles two agents with two queries. The moving knife of Dubins and Spanier and
+      the last diminisher reach $n$ agents with $\Theta(n^2)$ queries, and Even-Paz halves the group at a
+      median mark to use $O(n \log n)$. The Edmonds-Pruhs lower bound shows that no deterministic
+      protocol does better, so Even-Paz is optimal.
+    entries:
+      - divide-and-choose
+      - dubins-spanier-moving-knife
+      - last-diminisher
+      - even-paz-algorithm
+      - edmonds-pruhs-lower-bound
+
+  - title: Envy-free cake cutting
+    intro: >
+      Envy-freeness is much harder than proportionality once there are three agents. Selfridge-Conway
+      settles three agents with at most five cuts, and Stromquist's four knives give connected pieces,
+      but no finite protocol can do that. For $n$ agents, Brams-Taylor is finite but unbounded, and
+      Aziz-Mackenzie is bounded by a tower of exponentials.
+    entries:
+      - selfridge-conway-procedure
+      - stromquist-moving-knife
+      - stromquist-impossibility-theorem
+      - brams-taylor-procedure
+      - aziz-mackenzie-protocol
+
+  - title: Goods instead of cake
+    intro: >
+      The adjusted winner procedure shares a few goods between two parties and splits at most one of
+      them. When goods cannot be split at all, envy-free allocations may not exist, and the standard
+      relaxation is envy-freeness up to one good (EF1). Round-robin picking and envy-cycle elimination
+      are the two simple algorithms that reach it.
+    entries:
+      - adjusted-winner
+      - indivisible-goods-allocation
+      - envy-freeness-up-to-one-good
+      - round-robin-allocation
+      - envy-cycle-elimination
+
+  - title: Maximin shares
+    intro: >
+      The maximin share of an agent is what it can secure by splitting the goods into $n$ bundles and
+      taking the worst one. Some instances have no allocation that gives every agent this share, so the
+      research question is which fraction of it can always be reached, and in polynomial time.
+    entries:
+      - maximin-share
+      - mms-nonexistence-theorem
+      - approximate-mms-allocation
+
+  - title: Nash welfare and efficiency
+    intro: >
+      Maximizing the product of the agents' values gives an allocation that is both EF1 and Pareto
+      optimal, though it is hard to compute. The algorithm of Barman, Krishnamurthy and Vaish reaches the
+      same two properties in pseudo-polynomial time by running a market with prices.
+    entries:
+      - maximum-nash-welfare
+      - unreasonable-fairness-of-mnw
+      - ef1-and-pareto-optimal-algorithm
+
+  - title: Envy-freeness up to any good
+    intro: >
+      EFX asks that envy disappear after removing any good from the envied bundle, not just the best one.
+      It is known to exist for two agents and for three additive agents; for four or more additive agents
+      the question is open.
+    entries:
+      - envy-freeness-up-to-any-good
+      - efx-existence-for-three-agents
+
+  - title: Chores and rent
+    intro: >
+      Chore division shares a burden, and protocols built on trimming do not simply reverse. Rental harmony
+      gives each housemate a room and a price, and has an exact answer when tenants state money values.
+      Su's algorithm finds an approximate answer from room choices alone by walking through a triangulated
+      simplex of price vectors.
+    entries:
+      - chore-division
+      - rental-harmony
+      - su-rental-harmony-algorithm
+
+  - title: Splitting so that everyone agrees
+    intro: >
+      In consensus halving every agent must value two parts equally, with at most $n$ cuts. A split
+      always exists, but finding an approximate one is PPA-complete. The necklace splitting theorem is the
+      discrete form for beads and any number of thieves.
+    entries:
+      - consensus-halving
+      - necklace-splitting-theorem
