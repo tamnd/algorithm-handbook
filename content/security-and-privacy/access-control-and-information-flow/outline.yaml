@@ -1,10 +1,131 @@
-# The order of chapter 45.1. One entry is written in this edition.
+# The order of chapter 45.1. Groups are read in order; entries in a group too.
 groups:
-  - title: Noninterference
+  - title: Principles and the access matrix
     intro: >
-      Information-flow security asks what a program does with its secrets, not who may call it.
-      [Noninterference](/noninterference/) is the standard definition: runs that agree on the public
-      inputs agree on the public outputs. It compares two runs, so it is not a property of single runs,
-      and it is undecidable; security type systems check a stronger condition that implies it.
+      Two principles come first: give each part of a system only the rights it needs, and check every
+      access in one small mediator, the [reference monitor](/reference-monitor/). The
+      [access control matrix](/access-control-matrix/) is the state that the monitor checks, with
+      $\mathrm{allow}(s, o, r)$ exactly when $r \in A[s, o]$. Access control lists store it by columns and
+      capability lists by rows, and the two views differ in the cost of review, delegation and revocation.
     entries:
+      - principle-of-least-privilege
+      - reference-monitor
+      - access-control-matrix
+      - access-control-list
+      - capability-list
+
+  - title: Who sets the policy
+    intro: >
+      In [discretionary access control](/discretionary-access-control/) the owner of an object fills its
+      cells, and in [mandatory access control](/mandatory-access-control/) a system rule does, from labels.
+      Roles and attributes are ways to fill a large matrix from a small description. The questions about
+      them are hard in a precise sense: checking a separation of duty policy is coNP-complete, and
+      finding the fewest roles for a given matrix is NP-complete.
+    entries:
+      - discretionary-access-control
+      - mandatory-access-control
+      - role-based-access-control
+      - separation-of-duty
+      - role-mining-problem
+      - attribute-based-access-control
+
+  - title: Multilevel and commercial models
+    intro: >
+      The [Bell-LaPadula model](/bell-lapadula-model/) states confidentiality as properties of each state,
+      and the [basic security theorem](/basic-security-theorem/) says that checking each transition is
+      enough to keep them. The theorem is about the model's own definition of a secure state, and
+      McLean's System Z shows how weak that definition can be. Biba is the integrity dual; the Chinese
+      Wall and Clark-Wilson models state commercial policies, not algorithms with guarantees.
+    entries:
+      - bell-lapadula-model
+      - basic-security-theorem
+      - biba-integrity-model
+      - chinese-wall-model
+      - clark-wilson-model
+
+  - title: Safety of protection systems
+    intro: >
+      Can some sequence of commands give a right to a subject that should never hold it? For the general
+      [Harrison-Ruzzo-Ullman model](/harrison-ruzzo-ullman-model/) this safety question is undecidable.
+      It becomes decidable when each command has one primitive operation, and the
+      [Take-Grant model](/take-grant-model/) fixes four rules so that it can be answered in linear time.
+    entries:
+      - harrison-ruzzo-ullman-model
+      - hru-safety-undecidability
+      - take-grant-model
+
+  - title: Authorization across organizations
+    intro: >
+      When requester and service share no administrator, access is decided from relations and signed
+      statements. [Relationship-based access control](/relationship-based-access-control/) answers a
+      request by a path search in a graph, [trust management](/trust-management/) by checking credentials
+      against a local policy, and [authorization logic](/authorization-logic/) by a proof with the
+      operators *says* and *speaks for*.
+    entries:
+      - relationship-based-access-control
+      - trust-management
+      - authorization-logic
+
+  - title: Enforcement by monitors
+    intro: >
+      A [security automaton](/security-automaton/) is the formal model of a monitor that watches one run
+      and may only stop it. The [EM-enforceable policies theorem](/em-enforceable-policies-theorem/) says
+      that such a monitor enforces only safety properties, and computable monitors enforce fewer still.
+      An [inline reference monitor](/inline-reference-monitor/) puts the automaton inside the program.
+    entries:
+      - security-automaton
+      - em-enforceable-policies-theorem
+      - inline-reference-monitor
+
+  - title: Information flow and noninterference
+    intro: >
+      Access control says who may touch an object; information flow says where its contents may go.
+      Denning's lattice orders the labels, and [implicit flows](/implicit-flow/) through branches are the
+      reason the program counter needs a label. [Noninterference](/noninterference/) compares two runs,
+      so it is a [hyperproperty](/hyperproperty/) and not a property of single runs. The
+      [security type system](/security-type-system/) checks it statically: sound for TINI, linear time,
+      and it rejects some secure programs.
+    entries:
+      - denning-lattice-model
+      - implicit-flow
       - noninterference
+      - termination-insensitive-noninterference
+      - hyperproperty
+      - security-type-system
+
+  - title: Dynamic information flow control
+    intro: >
+      Three ways to enforce noninterference while the program runs. The
+      [no-sensitive-upgrade](/no-sensitive-upgrade/) check stops a run and gives TINI. Secure
+      multi-execution runs one copy per level and gives TSNI. Faceted execution shares one run and splits
+      only where the levels disagree, and gives TINI without stops.
+    entries:
+      - no-sensitive-upgrade
+      - secure-multi-execution
+      - faceted-execution
+
+  - title: Releasing and measuring information
+    intro: >
+      Useful programs release some secrets on purpose. [Declassification](/declassification/) policies say
+      what, who, where and when, and the decentralized label model answers *who*. Quantitative
+      information flow measures the rest in bits for a stated attacker:
+      $\mathcal L(\pi, C) = \log_2 \bigl(V(\pi, C)/V(\pi)\bigr)$ for one guess, and g-leakage for other
+      payoffs. The min-capacity $\log_2 \sum_y \max_x C[x, y]$ bounds both.
+    entries:
+      - declassification
+      - decentralized-label-model
+      - quantitative-information-flow
+      - min-entropy-leakage
+      - min-entropy-leakage-bound
+      - g-leakage
+
+  - title: Confinement and covert channels
+    intro: >
+      A [covert channel](/covert-channel/) passes information through a resource that was not meant for
+      communication, such as a lock bit or the system load. The confinement problem asks whether a
+      service can be kept from leaking at all; it is undecidable in general, so practice reduces the
+      channels and measures their bandwidth. The shared resource matrix finds the candidates in a design.
+    entries:
+      - covert-channel
+      - confinement-problem
+      - shared-resource-matrix

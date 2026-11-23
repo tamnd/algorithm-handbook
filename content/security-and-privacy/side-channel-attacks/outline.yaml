@@ -1,10 +1,104 @@
-# The order of chapter 45.4. One entry is written in this edition.
+# The order of chapter 45.4. Groups are read in order; entries in a group too.
 groups:
-  - title: Timing attacks
+  - title: Leakage and the first attacks
     intro: >
-      A [timing attack](/timing-attack/) reads a secret out of the time a computation takes. The entry
-      models the device as a function whose cost depends on the key and on the input, shows the leaks of
-      square and multiply and of the extra reduction in Montgomery multiplication, and ranks the fixes:
-      no secret branches, no secret addresses, blinding and a uniform error path.
+      A [side-channel attack](/side-channel-attack/) reads a secret out of a physical quantity of the
+      computation, through a leakage function of the intermediate values and noise, and it breaks the key
+      into small parts that can be tested one at a time. The [timing attack](/timing-attack/) uses the
+      running time, and [simple power analysis](/simple-power-analysis/) reads the sequence of operations
+      from one power trace, as in square and multiply.
     entries:
+      - side-channel-attack
       - timing-attack
+      - simple-power-analysis
+
+  - title: Statistical power analysis
+    intro: >
+      When one trace shows too little, many traces are combined with a model of the leakage.
+      [Differential power analysis](/differential-power-analysis/) splits the traces by one predicted bit
+      and compares means, [correlation power analysis](/correlation-power-analysis/) correlates the traces
+      with a predicted Hamming weight, and [mutual information analysis](/mutual-information-analysis/)
+      drops the assumption that the leakage is linear in the model. A [template attack](/template-attack/)
+      first learns the leakage of a copy of the device and then decides by maximum likelihood.
+    entries:
+      - differential-power-analysis
+      - correlation-power-analysis
+      - mutual-information-analysis
+      - template-attack
+
+  - title: Masking
+    intro: >
+      [Boolean masking](/boolean-masking/) splits every secret value into random shares, so that no single
+      intermediate value depends on the secret. The [probing model](/probing-model/) states what this
+      buys: an attacker who sees $t$ wires learns nothing when there are at least $t + 1$ shares and the
+      gadgets are right. [ISW private circuits](/isw-private-circuits/) give the masked AND gate, and a
+      [threshold implementation](/threshold-implementation/) adds non-completeness so that glitches in
+      hardware do not combine the shares.
+    entries:
+      - boolean-masking
+      - probing-model
+      - isw-private-circuits
+      - threshold-implementation
+
+  - title: Evaluating a device
+    intro: >
+      An evaluator asks two questions: does the device leak, and how far is an attack from the key.
+      [Test vector leakage assessment](/test-vector-leakage-assessment/) answers the first with Welch t-tests
+      between fixed and random inputs; it detects leakage and cannot prove its absence.
+      [Key rank estimation](/side-channel-key-rank-estimation/) answers the second by bounding the position
+      of the true key among all keys ordered by the scores of an attack.
+    entries:
+      - test-vector-leakage-assessment
+      - side-channel-key-rank-estimation
+
+  - title: Cache channels
+    intro: >
+      A cache shared between two programs tells one of them which lines the other used.
+      [Flush+Reload](/flush-and-reload/) flushes a line of shared memory and times its reload, and
+      [Prime+Probe](/prime-and-probe/) fills a cache set with its own lines and times them again, so it
+      needs no shared memory. Both read table indices and branch targets that depend on a key.
+    entries:
+      - flush-and-reload
+      - prime-and-probe
+
+  - title: Constant-time code
+    intro: >
+      [Constant-time programming](/constant-time-programming/) removes secrets from branches, memory
+      addresses and variable-time instructions, using masks and full scans in place of secret branches and
+      secret indices. [Constant-time verification](/constant-time-verification/) checks the policy as a
+      property of two runs, by a product program of the code with itself. Both hold only for the leakage
+      model they state.
+    entries:
+      - constant-time-programming
+      - constant-time-verification
+
+  - title: Transient execution
+    intro: >
+      A processor runs instructions ahead of time and discards them when it was wrong, but the cache keeps
+      their traces. The [Meltdown attack](/meltdown-attack/) reads kernel memory through a load that is
+      refused only after its value has been used, and the [Spectre attack](/spectre-attack/) steers the
+      branch predictor so that the victim's own code reads a secret on a wrong path. Constant-time code
+      alone stops neither.
+    entries:
+      - meltdown-attack
+      - spectre-attack
+
+  - title: Faults
+    intro: >
+      An active attacker disturbs the computation instead of watching it.
+      [Differential fault analysis](/differential-fault-analysis/) compares a correct and a faulty output of
+      the same input to find the last round key, and [Rowhammer](/rowhammer/) flips bits of DRAM from
+      software by activating neighboring rows many times.
+    entries:
+      - differential-fault-analysis
+      - rowhammer
+
+  - title: Lengths and traffic
+    intro: >
+      Encryption hides content but not size. A [compression side channel](/compression-side-channel/)
+      reads a secret from the compressed length of a message that mixes it with data the attacker chooses,
+      and [website fingerprinting](/website-fingerprinting/) names the page behind an encrypted or anonymized
+      connection from the sizes and timing of its packets.
+    entries:
+      - compression-side-channel
+      - website-fingerprinting

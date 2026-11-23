@@ -1,0 +1,85 @@
+# The order of the chapter on memory safety defenses. Groups are read in order; entries in a group too.
+groups:
+  - title: Memory errors
+    intro: >
+      [Memory safety](/memory-safety/) asks that every access lands inside a live object that the pointer
+      was derived from: the spatial condition $\mathrm{base}(o) \le \mathrm{addr}(p)$ and
+      $\mathrm{addr}(p) + w \le \mathrm{base}(o) + \mathrm{size}(o)$, and the temporal condition that $o$ is
+      still allocated. A [buffer overflow](/buffer-overflow/) breaks the spatial condition, and
+      [stack smashing](/stack-smashing/) turns one on the stack into a takeover of the program. The rest of
+      the chapter is read against this attack.
+    entries:
+      - memory-safety
+      - buffer-overflow
+      - stack-smashing
+  - title: Guarding the stack and the pages
+    intro: >
+      Three defenses each break one step of stack smashing. A [stack canary](/stack-canary/) detects a
+      contiguous overwrite of the return address when the function returns, as long as its value stays
+      secret. [Data execution prevention](/data-execution-prevention/) keeps written bytes from running, and a
+      [shadow stack](/shadow-stack/) keeps a protected copy of every return address and faults on a mismatch.
+    entries:
+      - stack-canary
+      - data-execution-prevention
+      - shadow-stack
+  - title: Code reuse and randomization
+    intro: >
+      Once injected code cannot run, the attacker runs code that is already there: whole library functions
+      in a [return-to-libc attack](/return-to-libc-attack/), short sequences that end in a return in
+      [return-oriented programming](/return-oriented-programming/). Both need addresses, so
+      [address space layout randomization](/address-space-layout-randomization/) hides them behind $k$ random
+      bits, and the [derandomization attack](/aslr-derandomization-attack/) shows how fast a forking server
+      gives those bits away.
+    entries:
+      - return-to-libc-attack
+      - return-oriented-programming
+      - address-space-layout-randomization
+      - aslr-derandomization-attack
+  - title: Confining control flow and memory
+    intro: >
+      [Control-flow integrity](/control-flow-integrity/) checks each indirect transfer against labels built
+      from a static graph, so its precision is that of the graph. [Code-pointer
+      integrity](/code-pointer-integrity/) protects the code pointers themselves in a separate region.
+      [Software fault isolation](/software-fault-isolation/) confines the stores and jumps of a module to its
+      own domain with a rewriter and a verifier.
+    entries:
+      - control-flow-integrity
+      - code-pointer-integrity
+      - software-fault-isolation
+  - title: Attacks that stay inside the policy
+    intro: >
+      A control-flow policy that allows a set of targets also allows every attack that uses only those
+      targets. [Control-flow bending](/control-flow-bending/) builds attacks against fully precise static
+      CFI, and [data-oriented programming](/data-oriented-programming/) computes with corrupted data alone,
+      without changing any code pointer.
+    entries:
+      - control-flow-bending
+      - data-oriented-programming
+  - title: Checking bounds
+    intro: >
+      A bounds checker detects spatial errors as they happen. A [fat pointer](/fat-pointer/) carries its
+      bounds with it; [shadow memory](/shadow-memory/) keeps metadata for each address in a table that one
+      shift and one add can reach, which is how [AddressSanitizer](/addresssanitizer/) finds its redzones.
+      [Jones-Kelly checking](/jones-kelly-bounds-checking/) looks objects up by address,
+      [baggy bounds](/baggy-bounds-checking/) rounds them to powers of two, and
+      [SoftBound](/softbound/) keeps per-pointer bounds in a disjoint table.
+    entries:
+      - fat-pointer
+      - shadow-memory
+      - addresssanitizer
+      - jones-kelly-bounds-checking
+      - baggy-bounds-checking
+      - softbound
+  - title: Temporal safety and hardware support
+    intro: >
+      A use after free needs a different test: is the object still the one the pointer was made for.
+      [Lock-and-key checking](/lock-and-key-temporal-checking/) compares a key that is never reused, and
+      [dangling pointer nullification](/dangling-pointer-nullification/) finds the pointers into a freed
+      object and clears them. [Memory tagging](/memory-tagging/) is a probabilistic version of the key check
+      with small tags, which Armv8.5-A puts in hardware, and the [CHERI capability model](/cheri-capability-model/)
+      makes a pointer a capability whose bounds can only shrink.
+    entries:
+      - lock-and-key-temporal-checking
+      - dangling-pointer-nullification
+      - memory-tagging
+      - cheri-capability-model

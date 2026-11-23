@@ -1,0 +1,141 @@
+# The order of chapter 45.8. Groups are read in order; entries in a group too.
+groups:
+  - title: The definition
+    intro: >
+      [Differential privacy](/differential-privacy-definition/) is a property of a randomized
+      mechanism: on any two neighboring datasets, the probability of every set of outputs changes by at
+      most a factor $e^{\varepsilon}$. [Global sensitivity](/global-sensitivity/) measures how far one
+      record can move a query, and sets the scale of the noise. [Approximate differential
+      privacy](/approximate-differential-privacy/) adds a slack $\delta$, which must be much smaller
+      than $1/n$. Two closure facts are used everywhere after this: the [post-processing
+      theorem](/post-processing-theorem/) and the [group privacy theorem](/group-privacy-theorem/).
+    entries:
+      - differential-privacy-definition
+      - global-sensitivity
+      - approximate-differential-privacy
+      - post-processing-theorem
+      - group-privacy-theorem
+
+  - title: Basic mechanisms
+    intro: >
+      The [Laplace mechanism](/laplace-mechanism/) adds noise of scale $\Delta_1/\varepsilon$ to a
+      numeric answer, and [randomized response](/randomized-response/), the oldest mechanism, flips each
+      answer with a fixed chance. The [geometric mechanism](/geometric-mechanism/) is the integer form
+      of Laplace, and the [Gaussian mechanism](/gaussian-mechanism/) calibrates normal noise to the
+      $\ell_2$ sensitivity. For a choice among candidates there are the [exponential
+      mechanism](/exponential-mechanism/) and [report noisy max](/report-noisy-max/), and the [sparse
+      vector technique](/sparse-vector-technique/) answers a long stream of threshold questions at the
+      cost of the few that come out above.
+    entries:
+      - laplace-mechanism
+      - randomized-response
+      - geometric-mechanism
+      - gaussian-mechanism
+      - exponential-mechanism
+      - report-noisy-max
+      - sparse-vector-technique
+
+  - title: The local model
+    intro: >
+      In [local differential privacy](/local-differential-privacy/) each user randomizes before sending,
+      so no curator is trusted, and the error grows by a factor of about $\sqrt n$.
+      [Geo-indistinguishability](/geo-indistinguishability/) applies the idea to locations with a
+      distance in place of a neighbor relation. [RAPPOR](/rappor/) and [optimized local
+      hashing](/optimized-local-hashing/) estimate frequencies over large domains. [Amplification by
+      shuffling](/privacy-amplification-by-shuffling/) shows that local reports, mixed by a shuffler,
+      are much more private centrally.
+    entries:
+      - local-differential-privacy
+      - geo-indistinguishability
+      - rappor
+      - optimized-local-hashing
+      - privacy-amplification-by-shuffling
+
+  - title: Composition
+    intro: >
+      Privacy loss adds up. [Sequential composition](/sequential-composition-theorem/) sums the
+      parameters, and [parallel composition](/parallel-composition-theorem/) takes the largest when the
+      mechanisms read disjoint parts of the data. The [advanced composition
+      theorem](/advanced-composition-theorem/) grows as $\sqrt k$ at the price of a $\delta$, and the
+      [optimal composition theorem](/optimal-composition-theorem/) gives the exact value for $k$ uses of
+      one mechanism. [Amplification by subsampling](/privacy-amplification-by-subsampling/) lowers the
+      cost of a mechanism run on a random sample.
+    entries:
+      - sequential-composition-theorem
+      - parallel-composition-theorem
+      - advanced-composition-theorem
+      - optimal-composition-theorem
+      - privacy-amplification-by-subsampling
+
+  - title: Privacy loss and accounting
+    intro: >
+      The [privacy loss random variable](/privacy-loss-random-variable/) is the log ratio of the two
+      output densities, and every accountant tracks some summary of it. [Rényi differential
+      privacy](/renyi-differential-privacy/) and [zero-concentrated differential
+      privacy](/zero-concentrated-differential-privacy/) compose by addition and convert to
+      $(\varepsilon, \delta)$ at the end. The [moments accountant](/moments-accountant/) does this for
+      subsampled Gaussian steps, [Gaussian differential privacy](/gaussian-differential-privacy/)
+      tracks a whole trade-off curve, and [numerical accounting](/numerical-privacy-accounting/)
+      computes the composed profile with error bounds. The [discrete Gaussian
+      mechanism](/discrete-gaussian-mechanism/) gives integer noise with a zCDP guarantee.
+    entries:
+      - privacy-loss-random-variable
+      - renyi-differential-privacy
+      - zero-concentrated-differential-privacy
+      - moments-accountant
+      - gaussian-differential-privacy
+      - discrete-gaussian-mechanism
+      - numerical-privacy-accounting
+
+  - title: Beyond global sensitivity
+    intro: >
+      Some queries, such as the median, have a large global sensitivity but are stable on typical data.
+      [Subsample and aggregate](/subsample-and-aggregate/) runs any function on disjoint blocks and
+      aggregates privately. [Propose-test-release](/propose-test-release/) tests privately that the data
+      are far from unstable before it releases. [Smooth sensitivity](/smooth-sensitivity/) scales the
+      noise to a smooth upper bound on the local sensitivity.
+    entries:
+      - subsample-and-aggregate
+      - propose-test-release
+      - smooth-sensitivity
+
+  - title: Query release
+    intro: >
+      [Private query release](/private-query-release/) answers a large class of queries at once,
+      often through synthetic data. The [SmallDB mechanism](/smalldb-mechanism/) picks a small dataset
+      with the exponential mechanism, and [MWEM](/mwem/) improves a synthetic distribution by
+      multiplicative weights on badly answered queries. For linear queries, the [binary tree
+      mechanism](/binary-tree-mechanism/) releases running counts with polylogarithmic error, and the
+      [matrix mechanism](/matrix-mechanism/) answers a workload through a chosen strategy and least
+      squares.
+    entries:
+      - private-query-release
+      - smalldb-mechanism
+      - mwem
+      - binary-tree-mechanism
+      - matrix-mechanism
+
+  - title: Private learning
+    intro: >
+      [Output perturbation](/output-perturbation/) adds noise to the minimizer of a strongly convex
+      loss, and [objective perturbation](/objective-perturbation/) adds a random linear term to the loss
+      itself. [DP-SGD](/dp-sgd/) clips each example's gradient and adds Gaussian noise at every step;
+      its guarantee is for the whole run under the stated accountant. [PATE](/pate/) trains teachers on
+      disjoint parts of the data and labels public points by a noisy vote.
+    entries:
+      - output-perturbation
+      - objective-perturbation
+      - dp-sgd
+      - pate
+
+  - title: Lower bounds
+    intro: >
+      The [Dinur-Nissim reconstruction attack](/dinur-nissim-reconstruction-attack/) shows that too many
+      accurate answers reveal the data, which is why noise is needed at all. The [packing lower
+      bound](/packing-lower-bound/) limits pure privacy by the logarithm of the number of answers to
+      tell apart, and the [fingerprinting code lower bound](/fingerprinting-codes-lower-bound/) limits
+      approximate privacy on many queries. Both hold for every private mechanism.
+    entries:
+      - dinur-nissim-reconstruction-attack
+      - packing-lower-bound
+      - fingerprinting-codes-lower-bound

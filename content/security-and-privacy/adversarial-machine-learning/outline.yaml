@@ -1,0 +1,101 @@
+# The order of chapter 45.9. Groups are read in order; entries in a group too.
+groups:
+  - title: Threat models and adversarial examples
+    intro: >
+      An attack on a learned model is defined by its threat model: what the attacker wants, what it
+      knows of the model and what it may change. The first entry defines an adversarial example as a
+      point $x'$ in a small $\ell_p$ ball around a correctly classified $x$ that gets another label;
+      the second states evasion at test time as an optimization problem with an explicit adversary.
+    entries:
+      - adversarial-example
+      - evasion-attack
+  - title: White-box evasion attacks
+    intro: >
+      With the gradient of the model, an attacker can search the $\ell_p$ ball directly. FGSM takes one
+      signed step and PGD repeats it with a projection. DeepFool and Carlini-Wagner look for small
+      $\ell_2$ changes, JSMA changes few pixels, and a universal perturbation is one change for most
+      inputs. Every attack gives an upper bound on robust accuracy, never a proof of robustness.
+    entries:
+      - fast-gradient-sign-method
+      - pgd-attack
+      - deepfool
+      - carlini-wagner-attack
+      - jacobian-saliency-map-attack
+      - universal-adversarial-perturbation
+  - title: Black-box evasion
+    intro: >
+      An attacker who sees only scores or only labels can still find adversarial examples. It can
+      transfer them from a model it trained itself, estimate gradients by finite differences, or walk
+      along the decision boundary with label queries. These entries show why hiding the gradient is not a
+      defense, and what query counts and rate limits mean.
+    entries:
+      - adversarial-transferability
+      - zeroth-order-optimization-attack
+      - boundary-attack
+  - title: Evaluating defenses against adaptive attacks
+    intro: >
+      Several defenses that looked strong against standard attacks failed against attacks built for
+      them. Defensive distillation makes gradients tiny without moving the decision boundary; BPDA and
+      EOT are the tools that test defenses with non-differentiable or random steps. Read this group before
+      trusting any empirical robustness number.
+    entries:
+      - defensive-distillation
+      - backward-pass-differentiable-approximation
+      - expectation-over-transformation
+  - title: Certified robustness
+    intro: >
+      A certificate is a proof that no point of the ball changes the label. Exact verification of ReLU
+      networks is NP-complete; Reluplex solves it exactly with case splits, while interval and linear
+      bound propagation are sound, fast and incomplete. Randomized smoothing certifies a different
+      classifier, the smoothed one, with a radius that holds with probability $1 - \alpha$.
+    entries:
+      - neural-network-verification-problem
+      - reluplex
+      - interval-bound-propagation
+      - linear-bound-propagation
+      - randomized-smoothing
+  - title: Poisoning, backdoors and robust aggregation
+    intro: >
+      At training time the attacker controls part of the data or of the updates. The group starts with
+      the general poisoning problem and the optimized attack on an SVM, then turns to clean-label poisons
+      and backdoors with a trigger. The defenses are a spectral filter on learned features and Krum, an
+      aggregation rule for $n > 2f + 2$ updates of which $f$ may be Byzantine.
+    entries:
+      - data-poisoning
+      - svm-poisoning-attack
+      - clean-label-poisoning
+      - backdoor-attack
+      - spectral-signatures-defense
+      - krum-aggregation
+  - title: What a trained model reveals
+    intro: >
+      A model, its outputs and its gradients carry information about the training data and about the
+      model itself. Membership inference asks whether a record was used, and the likelihood ratio attack
+      is its calibrated form; inversion and gradient inversion reconstruct inputs, extraction recovers
+      memorized text, and model extraction copies the model through its interface. Differential privacy
+      bounds the first four as their entries state.
+    entries:
+      - membership-inference-attack
+      - likelihood-ratio-membership-attack
+      - model-inversion-attack
+      - gradient-inversion-attack
+      - training-data-extraction
+      - model-extraction-attack
+  - title: Forgetting training data
+    intro: >
+      Exact unlearning means that the model after a deletion has the distribution of a model retrained
+      without the record; approximate unlearning only bounds the difference. SISA training makes exact
+      unlearning cheaper by retraining one shard from one checkpoint.
+    entries:
+      - machine-unlearning
+      - sisa-training
+  - title: Language models
+    intro: >
+      Language models bring three problems of their own. Prompt injection mixes instructions and data in
+      one channel, so its defenses are design rules from access control. The GCG attack shows that safety
+      training can be defeated by automated search, and the green list watermark marks generated text so
+      that a keyed z-test can detect it with a known false positive rate.
+    entries:
+      - prompt-injection
+      - greedy-coordinate-gradient-attack
+      - language-model-watermarking

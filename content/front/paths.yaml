@@ -5904,3 +5904,171 @@ paths:
             why: the Thompson-Larson-Webb formula is an approximation, corrected by Mortensen and others; the exact limit for an unbiased estimator is the Cramer-Rao bound.
           - entry: super-resolution-total-variation-theorem
             why: spikes separated by at least 2/f_c are recovered exactly by total variation minimization from frequencies up to f_c, for f_c >= 128.
+  - id: security-and-privacy
+    title: Security and privacy
+    for: a student who can program in C, knows basic probability, has met hashing, public-key cryptography and a little machine learning, and wants to learn how programs, networks, data releases and learned models are attacked and what each defense proves.
+    intro: >
+      The path goes through Volume 45, after a base of hashing, cryptography,
+      probability, computability and learning from other volumes. It keeps the
+      line the entries draw between what is proved, what is only measured, and
+      what a defense detects, prevents or merely mitigates. Safety of HRU
+      protection systems and virus detection are undecidable in general;
+      execution monitors enforce only safety properties, so noninterference
+      needs a type system or another mechanism. Fuzzing finds bugs, but a run
+      with no crash does not prove that there are none, and constant-time code
+      is safe only in the leakage model it was written for. k-anonymity and
+      l-diversity are conditions on the released table with known attacks;
+      differential privacy is a property of the mechanism, and its composition
+      theorems give upper bounds. Attack success rates and robust accuracies
+      are measurements on the stated models and data, empirical defenses have
+      been broken by adaptive attacks, and certified defenses hold exactly as
+      their theorems state.
+    stages:
+      - title: The base from other volumes
+        intro: >
+          Hash functions, Bloom filters and MACs from Volumes 3 and 23, RSA,
+          the probability of Volumes 1 and 25, the sequential test of Volume
+          33, the undecidability of Volume 39 and the logistic model of Volume
+          25, on which the attacks of the last stage are first explained.
+        steps:
+          - hash-function
+          - entry: bloom-filter
+            why: it answers membership queries with false positives but never false negatives.
+          - entry: hmac
+            why: it is a PRF if the compression function is a PRF (Bellare 2006).
+          - rsa-cryptosystem
+          - entry: bayes-theorem
+            why: in odds form the posterior odds are the likelihood ratio times the prior odds, which is how the base-rate fallacy and the reading of differential privacy as a bound on odds both work.
+          - chernoff-bound
+          - entry: sequential-probability-ratio-test
+            why: it stops when the likelihood ratio leaves an interval (B, A), and no test with its error rates has a smaller expected sample size.
+          - entry: rice-theorem
+            why: every nontrivial property of the language of a Turing machine is undecidable; properties of the machine text are not covered and can be decidable.
+          - logistic-regression
+          - stochastic-gradient-descent
+      - title: Access control and information flow
+        intro: >
+          Who may do what, from Chapter 45.1: the reference monitor and the
+          access matrix, one policy model with its theorem, the limit on
+          deciding safety, the limit on monitors, and noninterference with the
+          type system that enforces it.
+        steps:
+          - reference-monitor
+          - access-control-matrix
+          - entry: bell-lapadula-model
+            why: a subject may not read an object above its level nor write to an object below it; its basic security theorem is about its own model, not about covert channels.
+          - entry: hru-safety-undecidability
+            why: whether some command sequence can enter a given right into a cell that lacked it is undecidable for HRU systems, and NP-complete for mono-operational ones.
+          - entry: em-enforceable-policies-theorem
+            why: every policy that an execution monitor can enforce is a safety property; the converse fails, and noninterference needs other mechanisms.
+          - noninterference
+          - entry: security-type-system
+            why: well-typed programs are termination-insensitive noninterferent, and the checker rejects some secure programs, such as l := h - h.
+          - min-entropy-leakage
+      - title: Programs under attack
+        intro: >
+          Memory errors and the defenses that detect, prevent or mitigate them
+          (Chapter 45.2), fuzzing (Chapter 45.3), and the side channels of
+          time, power and caches (Chapter 45.4).
+        steps:
+          - memory-safety
+          - stack-smashing
+          - entry: return-oriented-programming
+            why: it chains short sequences of existing code that end in a return, so data execution prevention cannot stop an attacker who controls the stack.
+          - entry: control-flow-integrity
+            why: it checks each indirect branch against a graph computed in advance; a coarse graph leaves many allowed targets, and even a fully precise static graph leaves enough for general attacks when returns are not checked by a shadow stack.
+          - entry: addresssanitizer
+            why: redzones and a quarantine find overflows and uses after free, but an overflow that jumps over the redzone into another object, and a use after free after the chunk is reused, are missed.
+          - entry: fuzz-testing
+            why: it runs a program on many generated or mutated inputs and watches for crashes, hangs and failed checks, and a long run with no crash does not prove that the program has no bugs.
+          - edge-coverage-bitmap
+          - entry: timing-attack
+            why: the time a secret operation takes is a function of the secret, so measurements on many inputs reveal the key even when the algorithm itself is sound.
+          - entry: probing-model
+            why: a circuit is secure if the values of up to t wires reveal nothing; the model assumes that a wire carries one value, so glitches need threshold implementations.
+          - entry: constant-time-programming
+            why: branches, memory addresses and variable-time instructions do not depend on secrets, and the guarantee holds only for the leakage model that the code was written for.
+      - title: Networks and detection
+        intro: >
+          Attacks that supply a value the receiver trusts, from Chapter 45.5,
+          and the limits and tests of intrusion and malware detection, from
+          Chapter 45.6.
+        steps:
+          - entry: sql-injection
+            why: the primary defense is the prepared statement, which sends the query text and the values separately, so a value is never parsed as SQL.
+          - entry: syn-cookies
+            why: the connection state is encoded in the initial sequence number as a keyed hash, so the server keeps no state until the handshake ends.
+          - entry: sybil-impossibility-theorem
+            why: without a trusted authority, a system cannot prevent Sybil identities unless it makes unrealistic assumptions on resources and coordination.
+          - entry: base-rate-fallacy-intrusion-detection
+            why: because intrusions are rare, most alarms are false unless the false alarm rate is tiny; in Axelsson's example about 1 in 100,000 just to make half of the alarms real.
+          - entry: virus-detection-undecidability
+            why: no program can decide for every program whether it is a virus, by reduction from the halting problem.
+          - entry: threshold-random-walk-scan-detection
+            why: a sequential probability ratio test on the outcomes of first connection attempts, with Wald's thresholds; the success rates and error targets it is run with are heuristic choices, not facts about any network.
+      - title: Anonymization
+        intro: >
+          Syntactic conditions on released tables, from Chapter 45.7: the
+          linkage attack they answer, their complexity and their known holes.
+        steps:
+          - quasi-identifier
+          - entry: k-anonymity
+            why: every record shares its quasi-identifier values with at least k - 1 others, but a class whose rows all have one sensitive value still reveals it, which is the homogeneity attack.
+          - entry: k-anonymity-np-hardness
+            why: the fewest suppressed cells for k-anonymity is NP-hard for each fixed k at least 3, and 2-anonymity is in P.
+          - entry: l-diversity
+            why: it answers the homogeneity attack on k-anonymity, and the skewness and similarity attacks on it led to t-closeness.
+      - title: Differential privacy
+        intro: >
+          A guarantee about the mechanism, not about one output, from Chapter
+          45.8: the definition, the basic mechanisms, composition, private
+          training and the lower bound that says why noise is necessary.
+        steps:
+          - entry: differential-privacy-definition
+            why: changing one record changes the probability of each output set by at most a factor e^epsilon, and every claim of privacy must say which neighbor relation, add/remove or replace, it uses.
+          - global-sensitivity
+          - entry: laplace-mechanism
+            why: Laplace noise with scale equal to the l1 sensitivity over epsilon gives epsilon-differential privacy.
+          - entry: randomized-response
+            why: with truth probability p = e^epsilon/(1 + e^epsilon) each report is epsilon-locally differentially private, for example p = 3/4 for epsilon = ln 3, and the population rate can still be estimated.
+          - entry: approximate-differential-privacy
+            why: it adds delta to the bound, and delta must be much smaller than 1/n, because a mechanism that publishes whole records with probability delta is (0, delta)-DP.
+          - entry: gaussian-mechanism
+            why: noise scaled to the l2 sensitivity gives (epsilon, delta)-DP and never pure DP; the classical calibration is proved only for 0 < epsilon < 1, and the analytic one works for every epsilon.
+          - entry: sequential-composition-theorem
+            why: k mechanisms, each (epsilon_i, delta_i)-DP, run on the same data, even adaptively, are together (sum of epsilon_i, sum of delta_i)-DP.
+          - entry: advanced-composition-theorem
+            why: k-fold adaptive composition of (epsilon, delta)-DP mechanisms is (epsilon', k delta + delta')-DP with epsilon' = epsilon sqrt(2k ln(1/delta')) + k epsilon (e^epsilon - 1), an upper bound.
+          - entry: group-privacy-theorem
+            why: an epsilon-DP mechanism gives k epsilon for a group of k records, and this is exact; for approximate DP the term k e^((k-1) epsilon) delta of Dwork and Roth is not tight.
+          - entry: privacy-amplification-by-subsampling
+            why: on a Poisson sample with rate q an (epsilon, delta)-DP mechanism is (ln(1 + q(e^epsilon - 1)), q delta)-DP under add/remove.
+          - entry: dp-sgd
+            why: it clips each gradient, adds Gaussian noise and tracks the privacy cost; the theorem covers the whole sequence of parameters, while the accuracy for deep networks is measured.
+          - entry: dinur-nissim-reconstruction-attack
+            why: if all 2^n subset sums of n secret bits have error o(n), or about n random ones have error o(sqrt n), almost all bits follow from the answers, so no private mechanism is that accurate.
+      - title: Adversarial machine learning
+        intro: >
+          Attacks on learned models and the defenses against them, from Chapter
+          45.9, each framed by its threat model: what the attacker knows, the
+          set of allowed changes, and whether it acts at training or at test
+          time.
+        steps:
+          - entry: adversarial-example
+            why: an input in an allowed small set around a correctly classified input, such as an l_p ball, to which the model gives a wrong label; the set is part of the threat model.
+          - fast-gradient-sign-method
+          - entry: pgd-attack
+            why: it is the standard attack for an upper bound on robust accuracy against an attacker with gradients, not a proof of robustness.
+          - entry: backward-pass-differentiable-approximation
+            why: of 9 defenses accepted at ICLR 2018, 7 relied on obfuscated gradients, and the new attacks circumvented 6 of them completely and 1 partially, in the threat model each paper claimed.
+          - entry: neural-network-verification-problem
+            why: it is NP-complete for ReLU networks with properties given by linear constraints, so methods are exact but exponential in the worst case, or fast but incomplete.
+          - entry: randomized-smoothing
+            why: it certifies the smoothed classifier, not the base classifier, on an l2 ball of radius sigma/2 (Phi^-1(p_A) - Phi^-1(p_B)), and the certificate holds with probability at least 1 - alpha over the samples.
+          - data-poisoning
+          - entry: krum-aggregation
+            why: it needs n > 2f + 2, and its Byzantine resilience holds under the stated conditions on the honest updates.
+          - entry: membership-inference-attack
+            why: attack quality is a measurement, and if the training procedure is epsilon-DP every attacker has advantage at most e^epsilon - 1.
+          - entry: language-model-watermarking
+            why: detection is a z-test on green counts, and for text that does not depend on the key the false positive probability is bounded by the theorem of the entry.

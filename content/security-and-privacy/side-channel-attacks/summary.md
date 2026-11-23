@@ -1,26 +1,32 @@
 ## What to remember
 
-- A timing attack treats the device as a function $T(c) = f(c, d) + \text{noise}$ of the input $c$ and the secret $d$, and inverts $f$ in $d$, piece by piece. The algorithm can be correct and the implementation still leak.
-- Left-to-right square and multiply costs $1 + d_i$ multiplications for bit $d_i$. The total, $k + \mathrm{wt}(d)$ for a $k$-bit exponent, gives the Hamming weight; the list of per-bit costs gives the whole exponent. For $d = 157 = 10011101_2$ the list is $2, 1, 1, 2, 2, 2, 1, 2$.
-- Kocher's attack needs only a step whose cost the attacker can predict from the input and a guess of the next bit. A right guess splits the inputs into two sets with different mean times; a wrong guess gives equal means.
-- Noise averages away: over $k$ repeats of one query the standard error falls as $1/\sqrt{k}$, so a small but stable difference is enough.
-- The extra reduction of Montgomery multiplication happens for some operands and not others. On the entry's toy key the private operation does 183 Montgomery multiplications, of which 21 or 36 need the extra reduction for two chosen ciphertexts, the same every time.
-- [RSA blinding](/rsa-blinding/) runs the exponentiation on $c\, r^e \bmod N$ for a fresh random $r$, so a repeated query is not a repeated measurement.
-- A constant operation count is necessary, not sufficient. Branches, memory addresses, early exits and data-dependent instructions all leak, and a compiler can undo careful source code. Constant-time code removes the timing channel only for the leakage model it was written against; check the binary.
+- A side channel is a function of the intermediate values of a computation plus noise. The usual model is $\ell = \varepsilon\,\mathrm{HW}(v) + N$. An attack tests the guesses of one small part of the key at a time, so AES-128 needs $16 \cdot 256$ tests instead of $2^{128}$.
+- One trace is enough when the sequence of operations depends on the key; many traces and a statistic are needed when only the data does.
+- In the PRESENT example with the key B and 16 noise-free traces, DPA on bit 1 gives the right guess 1.0 against 0.75 for the best wrong guess, and CPA gives correlation 1 against $|r| = 0.75$. A wrong guess correlates as $c(g \oplus k)\,\rho$ with $\rho = 1/\sqrt{1 + \sigma^2/\varepsilon^2}$, and the traces needed grow about as $28/\rho^2$.
+- MIA assumes no form of the leakage: with power $(w-2)^2$ the right guess of CPA has correlation 0 and MIA still finds it. A template attack with exact templates is optimal under a uniform key.
+- Masking with $t + 1$ shares and sound gadgets is secure against $t$ probes (ISW). This is a theorem in the probing model; glitches and transitions are outside it unless the scheme handles them, as a threshold implementation does with non-completeness.
+- TVLA flags leakage at $|t| > 4.5$ in two independent sets. It detects leakage and never proves its absence; a masked device passes the first-order test and fails the second-order one.
+- Constant-time code keeps secrets out of branches, addresses and variable-time instructions. That removes timing and cache leaks in the stated leakage model, and not power, faults or transient execution.
+- Meltdown and Spectre leave secrets in the cache through work that the processor discards. Kernel page table isolation stops Meltdown at a cost on every switch into the kernel; each Spectre defense removes one condition, at some places, for some variants.
+- Computing twice and comparing stops faults that hit one of the two computations, at twice the work. Rowhammer makes faults from software; PARA bounds a flip by $(1-p)^k$ in a simple model.
 
-## Leaks and fixes
+## The attacks side by side
 
-| leak | what the attacker sees | what it gives | fix |
+| Attack | What it observes | What the attacker needs | Result in the entry's example |
 |---|---|---|---|
-| square and multiply, total time | $k + \mathrm{wt}(d)$ | the Hamming weight of $d$ | Montgomery ladder |
-| square and multiply, per-step cost | $1 + d_i$ for each bit | every bit of $d$ | Montgomery ladder |
-| Montgomery extra reduction | a count that depends on $c$ | bits of a prime factor, by Brumley and Boneh | blinding |
-| table lookup at a secret index | which cache lines were used | the index, as for AES tables and exponent windows | no secret addresses |
-| early-exit comparison or error path | how far the check got | the correct prefix, or a padding oracle | one uniform error path |
-| loop over the bits of a nonce | the bit length of the nonce | the key, through a lattice attack (Minerva, TPM-Fail) | fixed loop length |
+| [Simple power analysis](/simple-power-analysis/) | operation sequence in one trace | distinguishable operations | $1011_2$ read from S M S S M S M |
+| [Differential power analysis](/differential-power-analysis/) | difference of means by one predicted bit | a bit of an intermediate value | success 0.925 at 400 traces, $\sigma = 1$ |
+| [Correlation power analysis](/correlation-power-analysis/) | correlation with a predicted Hamming weight | a leakage roughly linear in the model | success 0.955 at 40 traces, $\sigma = 1$ |
+| [Mutual information analysis](/mutual-information-analysis/) | mutual information with the predicted value | a model that is not injective | success 0.86 at 100 traces for $(w-2)^2$ leakage; CPA 0.035 |
+| [Template attack](/template-attack/) | likelihood under Gaussian templates | a profiling copy of the device | success 0.85 at 5 traces with exact templates |
+| [Flush+Reload](/flush-and-reload/) | reload time of a shared line | shared memory and a flush instruction | most exponent bits of GnuPG RSA from one operation (Yarom and Falkner) |
+| [Prime+Probe](/prime-and-probe/) | eviction of the attacker's lines from a set | a shared cache set | set accesses of the victim in an abstract LRU cache |
+| [Differential fault analysis](/differential-fault-analysis/) | difference of a correct and a faulty output | a fault model and repeated inputs | the key cancels in $y \oplus y^*$, leaving few candidates |
 
-: The leaks of the [timing attack](/timing-attack/) entry. The Montgomery ladder does one squaring and one multiplication for every bit, so its per-step cost is the constant 2.
+: The success rates are measurements in the entries' simulated models (200 or 300 seeded runs per cell, one sample per trace, $\varepsilon = 1$); the Flush+Reload line is Yarom and Falkner's measurement on their processors. None of them ranks the attacks on a real device.
 
-## Checking an implementation
+## Choosing a defense
 
-Write the code with no branch, loop bound or memory address that depends on a secret, and with arithmetic by masks instead of `if`. Blind RSA inputs even when the code is believed to be constant time, because blinding also covers leaks you did not think of. Then measure the compiled binary on two classes of inputs and test whether the distributions of its running times differ; a count of operations in the source is not enough evidence.
+Start from the attacker. Against one who sees time and cache use, write [constant-time code](/constant-time-programming/), check it with [constant-time verification](/constant-time-verification/), and add [RSA blinding](/rsa-blinding/) where it applies. If the attacker runs code on a speculating processor, add Spectre defenses where secrets meet attacker-controlled indices, and kernel isolation on processors open to Meltdown.
+
+Against an attacker with the device and an oscilloscope, constant time is not enough. Use [Boolean masking](/boolean-masking/) with one share more than the order you need, [ISW gadgets](/isw-private-circuits/) or composable ones for the non-linear parts, and a [threshold implementation](/threshold-implementation/) in hardware with glitches. Evaluate with TVLA at the orders that matter, and with template attacks and [key rank estimation](/side-channel-key-rank-estimation/) for the margin. Against faults, add redundancy for the stated fault model. Against length channels, compress secrets in a separate context and pad traffic to anonymity sets.

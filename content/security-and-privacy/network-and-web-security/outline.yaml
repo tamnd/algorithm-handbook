@@ -1,0 +1,81 @@
+# The order of chapter 45.5. Groups are read in order; entries in a group too.
+groups:
+  - title: The browser's boundary
+    intro: >
+      The [same-origin policy](/same-origin-policy/) lets a script read only what comes from its own
+      scheme, host and port, but it lets any page send requests anywhere. [Cross-site request forgery](/cross-site-request-forgery/) abuses the requests, and [cross-site scripting](/cross-site-scripting/) runs the attacker's code inside the origin. A [content security policy](/content-security-policy/) limits which scripts run, and [context-sensitive auto-escaping](/context-sensitive-auto-escaping/) picks the right escaper for each hole of a template.
+    entries:
+      - same-origin-policy
+      - cross-site-request-forgery
+      - cross-site-scripting
+      - content-security-policy
+      - context-sensitive-auto-escaping
+
+  - title: Injection into queries
+    intro: >
+      [SQL injection](/sql-injection/) is input that changes the structure of a query instead of
+      filling a value in it. Prepared statements are the main defense.
+      [Parse-tree validation](/parse-tree-query-validation/) checks at run time that the query with
+      the inputs has the same tree as the query the programmer wrote.
+    entries:
+      - sql-injection
+      - parse-tree-query-validation
+
+  - title: Floods and forged sources
+    intro: >
+      [SYN flooding](/syn-flooding/) fills a server's table of half-open connections with requests
+      from addresses that never answer. [SYN cookies](/syn-cookies/) keep no state at all until the
+      client answers, and [ingress filtering](/ingress-filtering/) drops forged source addresses at
+      the edge of the network they claim to come from, when that network deploys it.
+    entries:
+      - syn-flooding
+      - syn-cookies
+      - ingress-filtering
+
+  - title: Tracing packets back
+    intro: >
+      Where forged sources still get through, the [IP traceback problem](/ip-traceback-problem/) asks
+      which routers carried an attack. [Probabilistic packet marking](/probabilistic-packet-marking/)
+      writes edge samples into the packets, and the victim rebuilds the path from many packets.
+      [Hash-based IP traceback](/hash-based-ip-traceback/) stores digests in the routers and traces a
+      single packet.
+    entries:
+      - ip-traceback-problem
+      - probabilistic-packet-marking
+      - hash-based-ip-traceback
+
+  - title: Routing, naming and filtering rules
+    intro: >
+      [BGP prefix hijacking](/bgp-prefix-hijacking/) announces someone else's addresses, and [route origin validation](/route-origin-validation/) checks the origin of each route against signed
+      authorizations, though not the rest of the path. [DNS cache poisoning](/dns-cache-poisoning/) races the real answer with forged ones. [Firewall policy anomaly detection](/firewall-policy-anomaly-detection/) finds rules that conflict with or hide one another.
+    entries:
+      - bgp-prefix-hijacking
+      - route-origin-validation
+      - dns-cache-poisoning
+      - firewall-policy-anomaly-detection
+
+  - title: Passwords and humans
+    intro: >
+      A [CAPTCHA](/captcha/) is a test that people pass and programs fail, as long as the problem
+      behind it stays hard. The [Markov password model](/markov-password-model/) and the [PCFG password model](/pcfg-password-model/) estimate how guessable a password is from a list of real ones.
+      [Honeywords](/honeywords/) hide each password among decoys, so that an attacker who stole the file
+      and logs in with a decoy raises an alarm.
+    entries:
+      - captcha
+      - markov-password-model
+      - pcfg-password-model
+      - honeywords
+
+  - title: Many identities
+    intro: >
+      In the [Sybil attack](/sybil-attack/) one entity presents many identities to outvote the
+      honest ones. [Douceur's theorem](/sybil-impossibility-theorem/) says that without a trusted
+      authority it can be limited only if all entities have nearly the same resources and all
+      identities are tested at the same time, conditions that Douceur argues no large system meets. [SybilGuard](/sybilguard/) and
+      [SybilRank](/sybilrank/) add the trust of a social graph, in which fake identities have few
+      links to honest users.
+    entries:
+      - sybil-attack
+      - sybil-impossibility-theorem
+      - sybilguard
+      - sybilrank

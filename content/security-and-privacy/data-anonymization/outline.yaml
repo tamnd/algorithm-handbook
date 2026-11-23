@@ -1,0 +1,94 @@
+# The order of chapter 45.7. Groups are read in order; entries in a group too.
+groups:
+  - title: Re-identification
+    intro: >
+      Removing names does not anonymize a table. A [quasi-identifier](/quasi-identifier/) such as ZIP
+      code, birth date and sex singles out most people, and a [linkage attack](/linkage-attack/) joins a
+      release with a public list on it. [Pseudonymization](/pseudonymization/) replaces identifiers by
+      consistent codes and keeps that risk, and [sparse dataset
+      de-anonymization](/sparse-dataset-deanonymization/) shows that a few known facts suffice when the
+      records are long and sparse.
+    entries:
+      - quasi-identifier
+      - linkage-attack
+      - pseudonymization
+      - sparse-dataset-deanonymization
+
+  - title: k-anonymity by generalization
+    intro: >
+      [k-anonymity](/k-anonymity/) asks that each record share its quasi-identifier values with at least
+      $k - 1$ others. [Generalization and suppression](/generalization-and-suppression/) coarsen values
+      along hierarchies and drop outliers. Datafly, Samarati's algorithm and Incognito search the lattice
+      of full-domain generalizations greedily, by binary search over heights, and exhaustively; Mondrian
+      instead cuts the space of records like a kd-tree.
+    entries:
+      - k-anonymity
+      - generalization-and-suppression
+      - datafly
+      - samarati-algorithm
+      - incognito
+      - mondrian-anonymization
+
+  - title: The complexity of optimal k-anonymity
+    intro: >
+      Suppressing the fewest cells is NP-hard for each fixed $k \ge 3$, and 2-anonymity is in P. The
+      [hardness entry](/k-anonymity-np-hardness/) gives the reduction from perfect matching in hypergraphs
+      and the known approximation ratios, and the [forest algorithm](/k-anonymity-approximation/) is
+      within $3k - 3$ of the optimum.
+    entries:
+      - k-anonymity-np-hardness
+      - k-anonymity-approximation
+
+  - title: Protecting the sensitive values
+    intro: >
+      A k-anonymous group whose records all have the same diagnosis tells the diagnosis.
+      [l-diversity](/l-diversity/) asks for several well-represented values in each group, and
+      [t-closeness](/t-closeness/) asks that each group's distribution be close to the whole table's.
+      [Anatomy](/anatomy-bucketization/) releases l-diverse groups without generalizing,
+      [m-invariance](/m-invariance/) keeps them consistent across releases of a changing table, and
+      [km-anonymity](/km-anonymity/) carries the idea to sets of items.
+    entries:
+      - l-diversity
+      - t-closeness
+      - anatomy-bucketization
+      - m-invariance
+      - km-anonymity
+
+  - title: Statistical disclosure control of microdata
+    intro: >
+      Statistical agencies perturb records instead of coarsening them. [Microaggregation](/microaggregation/)
+      replaces values by the means of groups of at least $k$, and [MDAV](/mdav/) is its standard heuristic.
+      [Data swapping](/data-swapping/) exchanges values between records with the same totals, and the
+      [post-randomization method](/post-randomization-method/) changes categories by a published Markov
+      matrix that analysts can invert.
+    entries:
+      - microaggregation
+      - mdav
+      - data-swapping
+      - post-randomization-method
+
+  - title: Tables with totals
+    intro: >
+      A published table of counts or sums with its margins can give away a small cell by subtraction. The
+      [cell suppression problem](/cell-suppression-problem/) hides extra cells so that no sensitive cell
+      can be computed too closely, which linear programs check, and [controlled tabular
+      adjustment](/controlled-tabular-adjustment/) moves the sensitive cells instead and repairs the totals.
+    entries:
+      - cell-suppression-problem
+      - controlled-tabular-adjustment
+
+  - title: Graphs, locations and linkage
+    intro: >
+      Graphs and traces leak through their structure. The [active attack](/active-attack-on-social-graphs/)
+      plants accounts before a release, [social network
+      de-anonymization](/social-network-deanonymization/) matches a graph against another one, and
+      [k-degree anonymization](/k-degree-anonymization/) defends against an attacker who knows degrees.
+      [Spatial cloaking](/spatial-cloaking/) hides a user's position in a region with $k$ users, and
+      [privacy-preserving record linkage](/privacy-preserving-record-linkage/) joins records across parties
+      through Bloom filters.
+    entries:
+      - active-attack-on-social-graphs
+      - social-network-deanonymization
+      - k-degree-anonymization
+      - spatial-cloaking
+      - privacy-preserving-record-linkage
